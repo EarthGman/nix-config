@@ -9,4 +9,5 @@
     discord
     sysz
     qemu
+    github-desktop
  ]
