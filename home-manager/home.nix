@@ -56,6 +56,10 @@
         "dash-to-panel@jderose9.github.com"
       ];
     };
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = [ "qemu:///system" ];
+      uris = [ "qemu:///system" ];
+    };
   };
   #fonts
   fonts.fontconfig.enable = true;

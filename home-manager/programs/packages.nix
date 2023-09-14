@@ -9,5 +9,8 @@
     discord
     sysz
     qemu
+    steam
     github-desktop
+    grapejuice #roblox (lol)
+    neofetch
  ]

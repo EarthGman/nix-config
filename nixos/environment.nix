@@ -6,6 +6,7 @@
       EDITOR = "code";
     };
     systemPackages = with pkgs; [
+      virt-manager
       git
       ripgrep
       eza
@@ -13,6 +14,7 @@
   };
   programs.zsh.enable = true;
   programs._1password.enable = true;
+  programs.dconf.enable = true;
   programs._1password-gui = {
     enable = true;
     polkitPolicyOwners = [ "g" ];
@@ -22,5 +24,6 @@
   #enables clipboard sharing between host and guest for VMs
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
-  #virtualization.libvirtd.enable = true;
+
+  virtualisation.libvirtd.enable = true;
 }
