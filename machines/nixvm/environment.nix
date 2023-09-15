@@ -21,6 +21,8 @@
   };
   #services
   services.flatpak.enable = true;
+  services.nordvpn.enable = true;
+  
   #enables clipboard sharing between host and guest for VMs
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;

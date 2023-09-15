@@ -16,10 +16,11 @@
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
-    ./gnome.nix
-    ./home-manager.nix
+    ../gnome.nix
+    ../home-manager.nix
     ./environment.nix
-    ./users.nix
+    ../users.nix
+    ../sound.nix
   ];
 
  time.timeZone = "America/Chicago";
@@ -43,6 +44,11 @@
     ];
     # Configure your nixpkgs instance
     config = {
+      packageOverrides = pkgs: {
+        #nordvpn
+        nordvpn = config.nur.repos.LuisChDev.nordvpn;
+      };
+      
       # Disable if you don't want unfree packages
       allowUnfree = true;
     };
@@ -66,7 +72,7 @@
   };
 
   #: Set your hostname
-  networking.hostName = "nixos";
+  networking.hostName = "pav";
 
   #: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.grub.enable = true;

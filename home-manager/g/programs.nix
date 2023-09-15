@@ -1,15 +1,11 @@
 { pkgs, ... }:
 {
   programs = {
+    #shell ultilities
     starship.enable = true;
     bat.enable = true;
-    firefox.enable = true;
     htop.enable = true;
     hstr.enable = true;
-    git.enable = true;
-    vscode.enable = true;
-    obs-studio.enable = true;
-
     zoxide = {
       enable = true;
       enableZshIntegration = true;
@@ -33,6 +29,10 @@
         "..." = "..;..";
       };
     };
+  #system tools
+    vscode.enable = true;
+    git.enable = true;
+    obs-studio.enable = true;
     direnv = {
       enable = true;
       nix-direnv.enable = true;
@@ -41,20 +41,34 @@
         enable = true;
         gitCredentialHelper.enable = true;
     };
+
+  # browsers
+    firefox.enable = true;
   };
+    
    home.packages = with pkgs; [
+    # fonts
     (nerdfonts.override {fonts = ["SourceCodePro"];})
+    
+    # system tools
+    qemu
+    sysz
+    neofetch
     gnomeExtensions.dash-to-panel
+
+    # gaming
+    prismlauncher # minecraft
+    grapejuice # roblox
+    steam
+
+    # productivity
     obsidian
     gimp
-    prismlauncher
     discord
-    sysz
-    qemu
-    steam
+    libreoffice
+
+    # programming
     github-desktop
-    grapejuice #roblox (lol)
-    neofetch
     stdenv
     libgcc
     gdb
