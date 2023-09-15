@@ -12,10 +12,10 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
-    ./programs/programs.nix
+    ./programs.nix
   ];
 
-  home.packages = import ./programs/packages.nix { inherit pkgs; }; 
+  #home.packages = import ./packages.nix { inherit pkgs; }; 
   nixpkgs = {
     # You can add overlays here
     overlays = [

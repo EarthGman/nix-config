@@ -9,7 +9,6 @@
     git.enable = true;
     vscode.enable = true;
     obs-studio.enable = true;
-    
 
     zoxide = {
       enable = true;
@@ -43,4 +42,21 @@
         gitCredentialHelper.enable = true;
     };
   };
+   home.packages = with pkgs; [
+    (nerdfonts.override {fonts = ["SourceCodePro"];})
+    gnomeExtensions.dash-to-panel
+    obsidian
+    gimp
+    prismlauncher
+    discord
+    sysz
+    qemu
+    steam
+    github-desktop
+    grapejuice #roblox (lol)
+    neofetch
+    stdenv
+    libgcc
+    gdb
+ ];
 }
