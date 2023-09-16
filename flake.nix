@@ -2,49 +2,36 @@
   description = "Gman's Nix Config";
 
   inputs = {
-    # Nixpkgs
-    # You can access packages and modules from different nixpkgs revs
-    # at the same time. Here's an working example:
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
-
-    # Home manager
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    # TODO: Add any other flake you might need
-    # hardware.url = "github:nixos/nixos-hardware";
     nur.url = "github:nix-community/NUR";
-
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
     # nix-colors.url = "github:misterio77/nix-colors";
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, ... }@inputs:
-    let
-      inherit (self) outputs;
-      forAllSystems = nixpkgs.lib.genAttrs [
-        "aarch64-linux"
-        "i686-linux"
-        "x86_64-linux"
-        "aarch64-darwin"
-        "x86_64-darwin"
-      ];
-    in
+  outputs = inputs @ {
+    self,
+    nixpkgs,
+    home-manager,
+    nur,
+    ... 
+  }: 
+  let
+    inherit (self) outputs;
+    forAllSystems = nixpkgs.lib.genAttrs [ "aarch64-linux" "x86_64-linux" ];
+  in
     rec {
-      # Your custom packages
-      # Acessible through 'nix build', 'nix shell', etc
-      packages = forAllSystems (system:
-        let pkgs = nixpkgs.legacyPackages.${system};
-        in import ./pkgs { inherit pkgs; }
-      );
       # Devshell for bootstrapping
       # Acessible through 'nix develop' or 'nix-shell' (legacy)
       devShells = forAllSystems (system:
         let pkgs = nixpkgs.legacyPackages.${system};
-        in import ./shell.nix { inherit pkgs; }
-      );
+        in {
+          default = pkgs.mkShell {
+          # Enable experimental features without having to specify the argument
+          NIX_CONFIG = "experimental-features = nix-command flakes";
+          nativeBuildInputs = with pkgs; [ nix home-manager git ];
+        };
+      }
+    );
 
       # Your custom packages and modifications, exported as overlays
       overlays = import ./overlays { inherit inputs; };
