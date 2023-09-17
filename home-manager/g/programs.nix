@@ -15,7 +15,7 @@
     };
     zsh = {
       enable = true;
-      enableSyntaxHighlighting = true;
+      syntaxHighlighting.enable = true;
       enableCompletion = true;
       enableAutosuggestions = true;
       shellAliases = {
@@ -45,11 +45,11 @@
   # browsers
     firefox.enable = true;
   };
-    
+
    home.packages = with pkgs; [
     # fonts
     (nerdfonts.override {fonts = ["SourceCodePro"];})
-    
+
     # system tools
     qemu
     sysz
