@@ -21,6 +21,7 @@
       shellAliases = {
         nrs = "sudo nixos-rebuild switch --upgrade";
         ncg = "sudo nix-collect-garbage -d";
+        nedit = "cd /etc/nixos && code .";
         l = "ls -lh --git -I '.git'";
         ll = "ls -l";
         ls = "eza --icons";
@@ -31,7 +32,11 @@
     };
   #system tools
     vscode.enable = true;
-    git.enable = true;
+    git = {
+      enable = true;
+      userEmail = "117403037+EarthGman@users.noreply.github.com";
+      userName = "EarthGman";
+    };
     obs-studio.enable = true;
     direnv = {
       enable = true;

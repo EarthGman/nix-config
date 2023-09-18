@@ -14,7 +14,7 @@
     # You can also split up your configuration and import pieces of it here:
     # ./users.nix
 
-    # Import your generated (nixos-generate-config) hardware configuration
+    # import nix files (hardwareconfiguration.nix for the machine) and settings universal to all machines
     ./hardware-configuration.nix
     ../gnome.nix
     ../home-manager.nix
@@ -28,7 +28,7 @@
     # You can add overlays here
     overlays = [
       # Add overlays your own flake exports (from overlays and pkgs dir):
-      outputs.overlays.additions
+      # outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
 
@@ -71,13 +71,17 @@
     };
   };
 
-  #: Set your hostname
+  #: networking
   networking.hostName = "pav";
+  # networking.wireless.enable = true;
+  networking.networkmanager.enable = true;
 
-  #: This is just an example, be sure to use whatever bootloader you prefer
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/vda";
-  boot.loader.grub.useOSProber = true;
+  #: boot loader
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
+  boot.kernelModules = [ "wl" ];
+  boot.initrd.kernelModules = [ "kvm-intel" "wl" ];
 
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.
