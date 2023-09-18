@@ -10,7 +10,7 @@
       git
       ripgrep
       eza
-    ];  
+    ];
   };
   programs.zsh.enable = true;
   programs._1password.enable = true;
@@ -21,8 +21,7 @@
   };
   #services
   services.flatpak.enable = true;
-  #services.nordvpn.enable = true;
-  
+  # services.nordvpn.enable = true;
   #enables virtualization
   virtualisation.libvirtd.enable = true;
 }
