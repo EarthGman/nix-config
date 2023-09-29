@@ -5,12 +5,15 @@ let
     configHome = "${homeDirectory}/.config";
 in
 {
-    imports = [ 
+    imports = [
         ../../home-manager/utility-programs.nix
         ../../home-manager/obs.nix
         ../../home-manager/packages.nix
         ../../home-manager/firefox.nix
         ../../home-manager/vscode.nix
+        ../../home-manager/gh.nix
+        ../../home-manager/dash.nix
+        ../../home-manager/dconf.nix
     ];
     programs.home-manager.enable = true;
     home = {

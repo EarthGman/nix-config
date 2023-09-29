@@ -3,7 +3,7 @@
   environment.systemPackages = with pkgs; [
     eza
   ];
-  
+
   programs = {
     zsh = {
       enable = true;
@@ -19,6 +19,7 @@
         sudo = "sudo "; # allow for using aliases with sudo
         nrs = "sudo nixos-rebuild switch --upgrade";
         g = "git";
+        nedit = "cd /etc/nixos && code .";
       };
       interactiveShellInit = ''
         eval "$(zoxide init --cmd j zsh)"

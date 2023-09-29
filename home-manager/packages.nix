@@ -10,6 +10,7 @@
         jq
         obsidian
         dconf
+        dconf2nix
         dua
     ];
 }

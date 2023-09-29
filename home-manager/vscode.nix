@@ -29,6 +29,7 @@
       # "[jsonc]".editor.defaultFormatter = "rvest.vs-code-prettier-eslint";
       # "[lua]".editor.defaultFormatter = "johnnymorganz.stylua";
       # "[nix]".editor.defaultFormatter = "kamadorueda.alejandra";
+        "[nix]".editor.tabSize = 2;
       # "[rust]".editor.defaultFormatter = "rust-lang.rust-analyzer";
       # "[scss]".editor.defaultFormatter = "sibiraj-s.vscode-scss-formatter";
       # "[typescript]".editor.defaultFormatter = "rvest.vs-code-prettier-eslint";
