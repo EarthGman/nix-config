@@ -4,11 +4,11 @@
 {
   imports = [
       ./hardware-configuration.nix
-      ../../modules/gnome.nix
-      ../../modules/system-programs.nix
-      ../../modules/sound.nix
-      ../../modules/user-settings.nix
-      ../../modules/fonts.nix
+      ../../nixos/gnome.nix
+      ../../nixos/system-programs.nix
+      ../../nixos/sound.nix
+      ../../nixos/user-g-settings.nix
+      ../../nixos/fonts.nix
     ];
   
    # Allow unfree packages
