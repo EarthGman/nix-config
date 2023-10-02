@@ -3,15 +3,15 @@
  users.users.g = {
     shell = pkgs.zsh;
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "qemu-libvirtd" ]; # Enable ‘sudo’ for the user.
   };
   programs.git = {
     enable = true;
     config = {
-        user = {
-            name = "g";
-            email = "117403037+EarthGman@users.noreply.github.com";
-        };
+      user = {
+          name = "g";
+          email = "117403037+EarthGman@users.noreply.github.com";
+      };
     };
   };
 }

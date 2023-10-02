@@ -11,18 +11,18 @@
     nixosConfigurations.potato = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
        modules = let
-            nur-modules = import nur rec {
-              nurpkgs = nixpkgs.legacyPackages.x86_64-linux;
-              pkgs = nixpkgs.legacyPackages.x86_64-linux;
-            };
-          in
-          [
+        nur-modules = import nur rec {
+          nurpkgs = nixpkgs.legacyPackages.x86_64-linux;
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        };
+        in
+        [
 
-          nur.nixosModules.nur 
-          {
-            nixpkgs.overlays = [ nur.overlay ];
-          }
-          ./machines/potato/configuration.nix
+        nur.nixosModules.nur
+        {
+          nixpkgs.overlays = [ nur.overlay ];
+        }
+        ./machines/potato/configuration.nix
 
 
         #/home-manager
