@@ -67,11 +67,12 @@
     nordvpn = config.nur.repos.LuisChDev.nordvpn;
   };
 
-  #services
+  # services
+
   services.nordvpn.enable = true;
   services.flatpak.enable = true;
 
-  #dolphin
+  # dolphin
   services.udev.packages = [ pkgs.dolphinEmu ];
   services.udev.extraRules = ''
     SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTRS{idVendor}=="0079", ATTRS{idProduct}=="0006", MODE="0666"
@@ -79,13 +80,24 @@
     SUBSYSTEM=="hidraw", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="0306", MODE="0666"
   '';
 
+
+
   #disables sudo prompting password
   security.sudo.wheelNeedsPassword = false;
 
   #virtual camera for obs
   boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
 
-  #networking
+  # networking
+  services.sshd = {
+    enable = true;
+  };
+  services.openssh = {
+    enable = true;
+    settings.PasswordAuthentication = true;
+  };
+  # enables openVpn to resolve DNS hostnames
+  services.resolved.enable = true;
   networking =
     {
       hostName = "cypher"; # Define your hostname.
@@ -93,14 +105,14 @@
       firewall = {
         checkReversePath = false;
         allowedTCPPorts = [
-          443 #TLS/SSL listen port
+          22 # SSHD tellnet port
+          443 # TLS/SSL listen port
         ];
         allowedUDPPorts = [
           1194 #Openvpn listen port
         ];
       };
     };
-
 
   # Set your time zone.
   time.timeZone = "America/Chicago";
