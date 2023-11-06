@@ -21,7 +21,6 @@
     usbutils
     pciutils
     looking-glass-client
-    davinci-resolve
     github-desktop
 
     #Gstreamer
