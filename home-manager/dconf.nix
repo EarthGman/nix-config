@@ -1,3 +1,4 @@
+# Generated via dconf2nix: https://github.com/gvolpe/dconf2nix
 { lib, ... }:
 
 with lib.hm.gvariant;
@@ -14,6 +15,30 @@ with lib.hm.gvariant;
 
     "org/gnome/Console" = {
       last-window-size = mkTuple [ 652 481 ];
+    };
+
+    "org/gnome/TextEditor" = {
+      show-line-numbers = true;
+    };
+
+    "org/gnome/Totem" = {
+      active-plugins = [ "apple-trailers" "save-file" "open-directory" "mpris" "movie-properties" "skipto" "rotation" "recent" "vimeo" "variable-rate" "screenshot" "autoload-subtitles" "screensaver" ];
+      subtitle-encoding = "UTF-8";
+    };
+
+    "org/gnome/calculator" = {
+      accuracy = 9;
+      angle-units = "degrees";
+      base = 10;
+      button-mode = "basic";
+      number-format = "automatic";
+      show-thousands = false;
+      show-zeroes = false;
+      source-currency = "";
+      source-units = "degree";
+      target-currency = "";
+      target-units = "radian";
+      word-size = 64;
     };
 
     "org/gnome/calendar" = {
@@ -63,7 +88,15 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/notifications" = {
-      application-children = [ "gnome-power-panel" "firefox" "discord" ];
+      application-children = [ "gnome-power-panel" "firefox" "discord" "org-gnome-nautilus" "org-gnome-console" "code-url-handler" ];
+    };
+
+    "org/gnome/desktop/notifications/application/code-url-handler" = {
+      application-id = "code-url-handler.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/com-obsproject-studio" = {
+      application-id = "com.obsproject.Studio.desktop";
     };
 
     "org/gnome/desktop/notifications/application/discord" = {
@@ -74,8 +107,32 @@ with lib.hm.gvariant;
       application-id = "firefox.desktop";
     };
 
+    "org/gnome/desktop/notifications/application/gnome-network-panel" = {
+      application-id = "gnome-network-panel.desktop";
+    };
+
     "org/gnome/desktop/notifications/application/gnome-power-panel" = {
       application-id = "gnome-power-panel.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/obsidian" = {
+      application-id = "obsidian.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/org-gnome-console" = {
+      application-id = "org.gnome.Console.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/org-gnome-nautilus" = {
+      application-id = "org.gnome.Nautilus.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/steam" = {
+      application-id = "steam.desktop";
+    };
+
+    "org/gnome/desktop/peripherals/keyboard" = {
+      numlock-state = true;
     };
 
     "org/gnome/desktop/peripherals/mouse" = {
@@ -94,12 +151,30 @@ with lib.hm.gvariant;
       secondary-color = "#000000000000";
     };
 
+    "org/gnome/desktop/session" = {
+      idle-delay = mkUint32 0;
+    };
+
     "org/gnome/desktop/wm/preferences" = {
       button-layout = "appmenu:minimize,maximize,close";
     };
 
     "org/gnome/evolution-data-server" = {
       migrated = true;
+    };
+
+    "org/gnome/file-roller/listing" = {
+      list-mode = "as-folder";
+      name-column-width = 250;
+      show-path = false;
+      sort-method = "name";
+      sort-type = "ascending";
+    };
+
+    "org/gnome/file-roller/ui" = {
+      sidebar-width = 200;
+      window-height = 480;
+      window-width = 600;
     };
 
     "org/gnome/gnome-system-monitor" = {
@@ -122,21 +197,31 @@ with lib.hm.gvariant;
       sort-order = 0;
     };
 
+    "org/gnome/nautilus/compression" = {
+      default-compression-format = "zip";
+    };
+
     "org/gnome/nautilus/preferences" = {
       default-folder-viewer = "icon-view";
       migrated-gtk-settings = true;
       search-filter-time-type = "last_modified";
+      search-view = "list-view";
     };
 
     "org/gnome/nautilus/window-state" = {
       initial-size = mkTuple [ 890 550 ];
+      maximized = true;
+    };
+
+    "org/gnome/settings-daemon/plugins/power" = {
+      sleep-inactive-ac-type = "nothing";
     };
 
     "org/gnome/shell" = {
       app-picker-layout = "[{'org.gnome.Calendar.desktop': <{'position': <0>}>, 'org.gnome.Extensions.desktop': <{'position': <1>}>, 'org.gnome.Weather.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'org.gnome.Maps.desktop': <{'position': <4>}>, 'grapejuice.desktop': <{'position': <5>}>, 'nixos-manual.desktop': <{'position': <6>}>, 'org.gnome.Totem.desktop': <{'position': <7>}>, 'org.gnome.Calculator.desktop': <{'position': <8>}>, 'roblox-app.desktop': <{'position': <9>}>, 'simple-scan.desktop': <{'position': <10>}>, 'org.gnome.Settings.desktop': <{'position': <11>}>, 'gnome-system-monitor.desktop': <{'position': <12>}>, 'org.gnome.TextEditor.desktop': <{'position': <13>}>, 'xterm.desktop': <{'position': <14>}>, 'Utilities': <{'position': <15>}>}]";
       disable-user-extensions = false;
       enabled-extensions = [ "dash-to-panel@jderose9.github.com" ];
-      favorite-apps = [ "gnome-system-monitor.desktop" "1password.desktop" "org.gnome.Console.desktop" "org.gnome.Nautilus.desktop" "org.prismlauncher.PrismLauncher.desktop" "obsidian.desktop" "com.obsproject.Studio.desktop" "gimp.desktop" "code.desktop" "firefox.desktop" "blueman-manager.desktop" "discord.desktop" "virt-manager.desktop" "roblox-studio.desktop" "steam.desktop" "Terraria.desktop" "dolphin-emu.desktop" ];
+      favorite-apps = [ "org.gnome.Nautilus.desktop" "org.gnome.Calculator.desktop" "gnome-system-monitor.desktop" "1password.desktop" "org.musescore.MuseScore.desktop" "org.gnome.Console.desktop" "obsidian.desktop" "com.obsproject.Studio.desktop" "code.desktop" "org.prismlauncher.PrismLauncher.desktop" "virt-manager.desktop" "firefox.desktop" "discord.desktop" "steam.desktop" "dolphin-emu.desktop" "tModLoader.desktop" "Terraria.desktop" "Stardew Valley.desktop" ];
       last-selected-power-profile = "power-saver";
       welcome-dialog-last-shown-version = "44.4";
     };
@@ -167,8 +252,15 @@ with lib.hm.gvariant;
       window-preview-title-position = "TOP";
     };
 
+
     "org/gnome/shell/world-clocks" = {
       locations = "@av []";
+    };
+
+    "org/gnome/software" = {
+      check-timestamp = mkInt64 1699188081;
+      first-run = false;
+      flatpak-purge-timestamp = mkInt64 1699144954;
     };
 
     "org/gtk/gtk4/settings/file-chooser" = {
@@ -208,6 +300,9 @@ with lib.hm.gvariant;
 
     "org/virt-manager/virt-manager/confirm" = {
       delete-storage = true;
+      forcepoweroff = true;
+      removedev = true;
+      unapplied-dev = true;
     };
 
     "org/virt-manager/virt-manager/connections" = {
@@ -236,12 +331,35 @@ with lib.hm.gvariant;
       network-traffic = false;
     };
 
+    "org/virt-manager/virt-manager/vms/8a3f3432d5be4c648b8bceb514f08169" = {
+      autoconnect = 1;
+      scaling = 1;
+      vm-window-size = mkTuple [ 1920 1008 ];
+    };
+
+    "org/virt-manager/virt-manager/vms/a89cf9936c0f4f5f825864d8784a9490" = {
+      autoconnect = 1;
+      scaling = 1;
+      vm-window-size = mkTuple [ 1920 1008 ];
+    };
+
+    "org/virt-manager/virt-manager/vms/aff994942ea9401c98e03559f224932a" = {
+      autoconnect = 1;
+      scaling = 1;
+      vm-window-size = mkTuple [ 1024 810 ];
+    };
+
     "org/virt-manager/virt-manager/vms/ef69f56f87a34d588a479911e0a015e1" = {
       autoconnect = 1;
       scaling = 1;
       vm-window-size = mkTuple [ 1366 832 ];
     };
 
+    "org/virt-manager/virt-manager/vms/f7f44e10bb2b42d7ad37b2147d2c5fb5" = {
+      autoconnect = 1;
+      scaling = 1;
+      vm-window-size = mkTuple [ 1920 1008 ];
+    };
+
   };
 }
-
