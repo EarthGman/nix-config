@@ -23,6 +23,7 @@
       wine64
       winetricks
       file
+      zip
       unzip
     ];
   };
