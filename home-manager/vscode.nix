@@ -73,6 +73,10 @@
         };
       };
 
+      extensions = {
+        ignoreRecommendations = true;
+      };
+
       explorer = {
         confirmDragAndDrop = false;
         confirmDelete = true;
