@@ -12,6 +12,12 @@
     ./nvidia.nix
   ];
 
+  # Set your time zone.
+  time.timeZone = "America/Chicago";
+
+  #sytsem version
+  system.stateVersion = "23.11";
+
   # Allow unfree packages
   nixpkgs = {
     config = {
@@ -67,8 +73,6 @@
     nordvpn = config.nur.repos.LuisChDev.nordvpn;
   };
 
-  # services
-
   services.nordvpn.enable = true;
   services.flatpak.enable = true;
 
@@ -114,9 +118,6 @@
       };
     };
 
-  # Set your time zone.
-  time.timeZone = "America/Chicago";
-
   #enables virtualization
   virtualisation = {
     libvirtd = {
@@ -127,8 +128,6 @@
       };
     };
   };
-
-  #sytsem version
-  system.stateVersion = "23.11";
 }
+
 

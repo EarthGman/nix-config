@@ -14,6 +14,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/Console" = {
+      font-scale = 1.8000000000000007;
       last-window-size = mkTuple [ 652 481 ];
     };
 
@@ -88,7 +89,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/notifications" = {
-      application-children = [ "gnome-power-panel" "firefox" "discord" "org-gnome-nautilus" "org-gnome-console" "code-url-handler" ];
+      application-children = [ "gnome-power-panel" "firefox" "discord" "org-gnome-nautilus" "org-gnome-console" "code-url-handler" "com-obsproject-studio" ];
     };
 
     "org/gnome/desktop/notifications/application/code-url-handler" = {
@@ -141,6 +142,11 @@ with lib.hm.gvariant;
 
     "org/gnome/desktop/peripherals/touchpad" = {
       two-finger-scrolling-enabled = true;
+    };
+
+    "org/gnome/desktop/privacy" = {
+      old-files-age = mkUint32 30;
+      recent-files-max-age = -1;
     };
 
     "org/gnome/desktop/screensaver" = {
@@ -213,6 +219,11 @@ with lib.hm.gvariant;
       maximized = true;
     };
 
+    "org/gnome/nm-applet/eap/8137f202-2ad7-483e-a87e-ac5fb659e574" = {
+      ignore-ca-cert = false;
+      ignore-phase2-ca-cert = false;
+    };
+
     "org/gnome/settings-daemon/plugins/power" = {
       sleep-inactive-ac-type = "nothing";
     };
@@ -221,7 +232,7 @@ with lib.hm.gvariant;
       app-picker-layout = "[{'org.gnome.Calendar.desktop': <{'position': <0>}>, 'org.gnome.Extensions.desktop': <{'position': <1>}>, 'org.gnome.Weather.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'org.gnome.Maps.desktop': <{'position': <4>}>, 'grapejuice.desktop': <{'position': <5>}>, 'nixos-manual.desktop': <{'position': <6>}>, 'org.gnome.Totem.desktop': <{'position': <7>}>, 'org.gnome.Calculator.desktop': <{'position': <8>}>, 'roblox-app.desktop': <{'position': <9>}>, 'simple-scan.desktop': <{'position': <10>}>, 'org.gnome.Settings.desktop': <{'position': <11>}>, 'gnome-system-monitor.desktop': <{'position': <12>}>, 'org.gnome.TextEditor.desktop': <{'position': <13>}>, 'xterm.desktop': <{'position': <14>}>, 'Utilities': <{'position': <15>}>}]";
       disable-user-extensions = false;
       enabled-extensions = [ "dash-to-panel@jderose9.github.com" ];
-      favorite-apps = [ "org.gnome.Nautilus.desktop" "org.gnome.Calculator.desktop" "gnome-system-monitor.desktop" "1password.desktop" "org.musescore.MuseScore.desktop" "org.gnome.Console.desktop" "obsidian.desktop" "com.obsproject.Studio.desktop" "code.desktop" "org.prismlauncher.PrismLauncher.desktop" "virt-manager.desktop" "firefox.desktop" "discord.desktop" "steam.desktop" "dolphin-emu.desktop" "tModLoader.desktop" "Terraria.desktop" "Stardew Valley.desktop" ];
+      favorite-apps = [ "org.gnome.Nautilus.desktop" "org.gnome.Calculator.desktop" "gnome-system-monitor.desktop" "1password.desktop" "org.musescore.MuseScore.desktop" "org.gnome.Console.desktop" "obsidian.desktop" "com.obsproject.Studio.desktop" "code.desktop" "github-desktop.desktop" "org.prismlauncher.PrismLauncher.desktop" "virt-manager.desktop" "firefox.desktop" "discord.desktop" "steam.desktop" "dolphin-emu.desktop" "tModLoader.desktop" "Terraria.desktop" "Stardew Valley.desktop" ];
       last-selected-power-profile = "power-saver";
       welcome-dialog-last-shown-version = "44.4";
     };
@@ -252,13 +263,12 @@ with lib.hm.gvariant;
       window-preview-title-position = "TOP";
     };
 
-
     "org/gnome/shell/world-clocks" = {
       locations = "@av []";
     };
 
     "org/gnome/software" = {
-      check-timestamp = mkInt64 1699188081;
+      check-timestamp = mkInt64 1699933817;
       first-run = false;
       flatpak-purge-timestamp = mkInt64 1699144954;
     };
