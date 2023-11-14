@@ -5,6 +5,7 @@
     extensions = with pkgs.vscode-extensions; [
       xaver.clang-format
       ms-vscode.cpptools
+      ms-vscode.cmake-tools
       bbenoist.nix
       jnoortheen.nix-ide
     ];
