@@ -1,5 +1,5 @@
 #used as a bootstrap for home-manager config
-{ ... }:
+{ pkgs-master, ... }:
 let
   homeDirectory = "/home/g";
   configHome = "${homeDirectory}/.config";

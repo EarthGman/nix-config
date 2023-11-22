@@ -10,6 +10,7 @@
     ../../nixos/user-g-settings.nix
     ../../nixos/fonts.nix
     ./nvidia.nix
+    #./amd.nix
   ];
 
   # Set your time zone.

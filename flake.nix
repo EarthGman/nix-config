@@ -4,14 +4,16 @@
 
   inputs = {
     nur.url = "github:nix-community/NUR";
+    nixpkgs-master.url = "github:nixos/nixpkgs/master";
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, nur, ... }:
+  outputs = inputs @ { self, nixpkgs, nixpkgs-master, home-manager, nur, ... }:
     let
       nur-modules = import nur rec {
         nurpkgs = nixpkgs.legacyPackages.x86_64-linux;
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
       };
+      pkgs-master = nixpkgs-master.legacyPackages.x86_64-linux;
     in
     {
       nixosConfigurations = {
@@ -72,7 +74,7 @@
                     g = import ./machines/cypher/home-manager-g.nix;
                   };
                   extraSpecialArgs = {
-                    inherit inputs;
+                    inherit inputs pkgs-master;
                   };
                 };
               }

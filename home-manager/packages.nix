@@ -1,29 +1,34 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
+    # apps
     gimp
     discord
     libreoffice
-    sysz
     prismlauncher
+    obsidian
+    steam
+    musescore
+    dolphin-emu-beta
+    looking-glass-client
+    github-desktop
+
+    # commands
+    sysz
     ncdu
     jq
-    obsidian
     dconf
     dconf2nix
     dua
     wl-screenrec
-    steam
-    musescore
-    dolphin-emu-beta
     steam-run
+    appimage-run
     openssl
     usbutils
     pciutils
-    looking-glass-client
-    github-desktop
+    wmctrl
 
-    #Gstreamer
+    # Gstreamer
     gst_all_1.gst-libav
     gst_all_1.gst-plugins-bad
     gst_all_1.gst-plugins-base
