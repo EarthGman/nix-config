@@ -12,6 +12,7 @@
     dolphin-emu-beta
     looking-glass-client
     github-desktop
+    #grapejuice
 
     # commands
     sysz

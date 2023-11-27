@@ -19,9 +19,6 @@
       qemu_kvm # virtual machines
       nvtop # an htop like monitoring tool for NVIDIA GPUs
       virt-manager # vm manager
-      #wineWowPackages.stable
-      wine64
-      winetricks
       file
       zip
       unzip

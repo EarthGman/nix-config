@@ -9,6 +9,7 @@
     ../../nixos/sound.nix
     ../../nixos/user-g-settings.nix
     ../../nixos/fonts.nix
+    ../../nixos/wine.nix
     ./nvidia.nix
     #./amd.nix
   ];
@@ -36,12 +37,21 @@
 
   #latest linux kernel
   boot.kernelPackages = pkgs.linuxPackages_6_5;
-  #linux kernel boots in this resolution
-  boot.kernelParams = [ "video=1920x1080" "intel_iommu=on" ];
-  boot.kernelModules = [
 
+  boot.kernelParams = [
+    "video=1920x1080"
+    "intel_iommu=on"
+    "iommu=pt"
+  ];
+  boot.kernelModules = [
+    "vfio_virqfd"
+    "vfio_pci"
+    "vfio_iommu_type1"
+    "vfio"
     "kvm-intel"
   ];
+  boot.blacklistedKernelModules = [ "coffeelake" "nouveau" ];
+  boot.extraModprobeConfig = "options vfio-pci ids=8086:3e92,8086:a348";
 
   #boot - grub 2
   #boot.loader.systemd-boot.enable = true;
