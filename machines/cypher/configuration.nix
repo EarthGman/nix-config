@@ -79,6 +79,32 @@
     timeout = 5;
   };
 
+  # printing
+  services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+    openFirewall = true;
+  };
+  services.printing.drivers = [
+    pkgs.samsung-unified-linux-driver #driver for samsungCLX3175FW printer
+  ];
+  # printer downstairs
+  hardware.printers = {
+    ensurePrinters = [
+      {
+        name = "SamsungCLX3175FW";
+        location = "Home";
+        deviceUri = "http://192.168.72.21:631";
+        model = "samsung/CLX-3170.ppd";
+        ppdOptions = {
+          PageSize = "Letter";
+        };
+      }
+    ];
+    ensureDefaultPrinter = "SamsungCLX3175FW";
+  };
+
   nixpkgs.config.packageOverrides = pkgs: {
     # nord
     nordvpn = config.nur.repos.LuisChDev.nordvpn;
@@ -97,10 +123,10 @@
 
 
 
-  #disables sudo prompting password
+  # disables sudo prompting password
   security.sudo.wheelNeedsPassword = false;
 
-  #virtual camera for obs
+  # virtual camera for obs
   boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
 
   # networking
@@ -124,12 +150,13 @@
           443 # TLS/SSL listen port
         ];
         allowedUDPPorts = [
-          1194 #Openvpn listen port
+          1194 # openvpn listen port
+          5353 # printer disovery port
         ];
       };
     };
 
-  #enables virtualization
+  # enables virtualization
   virtualisation = {
     libvirtd = {
       enable = true;
