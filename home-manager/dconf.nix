@@ -14,8 +14,8 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/Console" = {
-      font-scale = 1.8000000000000007;
-      last-window-size = mkTuple [ 652 481 ];
+      font-scale = 1.8;
+      last-window-size = mkTuple [ 652 482 ];
     };
 
     "org/gnome/TextEditor" = {
@@ -39,6 +39,8 @@ with lib.hm.gvariant;
       source-units = "degree";
       target-currency = "";
       target-units = "radian";
+      window-maximized = false;
+      window-size = mkTuple [ 360 504 ];
       word-size = 64;
     };
 
@@ -49,8 +51,8 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/control-center" = {
-      last-panel = "power";
-      window-state = mkTuple [ 980 640 ];
+      last-panel = "background";
+      window-state = mkTuple [ 980 640 false ];
     };
 
     "org/gnome/desktop/app-folders" = {
@@ -73,8 +75,8 @@ with lib.hm.gvariant;
     "org/gnome/desktop/background" = {
       color-shading-type = "solid";
       picture-options = "zoom";
-      picture-uri = "file:///home/g/.local/share/backgrounds/2023-09-29-21-40-29-potato-wallpaper.webp";
-      picture-uri-dark = "file:///home/g/.local/share/backgrounds/2023-09-29-21-40-29-potato-wallpaper.webp";
+      picture-uri = "file:///home/g/.local/share/backgrounds/2023-11-30-19-03-09-gurren.png";
+      picture-uri-dark = "file:///home/g/.local/share/backgrounds/2023-11-30-19-03-09-gurren.png";
       primary-color = "#000000000000";
       secondary-color = "#000000000000";
     };
@@ -89,11 +91,15 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/notifications" = {
-      application-children = [ "gnome-power-panel" "firefox" "discord" "org-gnome-nautilus" "org-gnome-console" "code-url-handler" "com-obsproject-studio" ];
+      application-children = [ "gnome-power-panel" "firefox" "discord" "org-gnome-nautilus" "org-gnome-console" "code-url-handler" "com-obsproject-studio" "org-gnome-software" "gnome-printers-panel" ];
     };
 
     "org/gnome/desktop/notifications/application/code-url-handler" = {
       application-id = "code-url-handler.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/code" = {
+      application-id = "code.desktop";
     };
 
     "org/gnome/desktop/notifications/application/com-obsproject-studio" = {
@@ -108,12 +114,24 @@ with lib.hm.gvariant;
       application-id = "firefox.desktop";
     };
 
+    "org/gnome/desktop/notifications/application/github-desktop" = {
+      application-id = "github-desktop.desktop";
+    };
+
     "org/gnome/desktop/notifications/application/gnome-network-panel" = {
       application-id = "gnome-network-panel.desktop";
     };
 
     "org/gnome/desktop/notifications/application/gnome-power-panel" = {
       application-id = "gnome-power-panel.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/gnome-printers-panel" = {
+      application-id = "gnome-printers-panel.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/gnome-system-monitor" = {
+      application-id = "gnome-system-monitor.desktop";
     };
 
     "org/gnome/desktop/notifications/application/obsidian" = {
@@ -128,8 +146,28 @@ with lib.hm.gvariant;
       application-id = "org.gnome.Nautilus.desktop";
     };
 
+    "org/gnome/desktop/notifications/application/org-gnome-settings" = {
+      application-id = "org.gnome.Settings.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/org-gnome-software" = {
+      application-id = "org.gnome.Software.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/org-musescore-musescore" = {
+      application-id = "org.musescore.MuseScore.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/org-prismlauncher-prismlauncher" = {
+      application-id = "org.prismlauncher.PrismLauncher.desktop";
+    };
+
     "org/gnome/desktop/notifications/application/steam" = {
       application-id = "steam.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/wine-programs-roblox-roblox-player" = {
+      application-id = "wine-Programs-Roblox-Roblox Player.desktop";
     };
 
     "org/gnome/desktop/peripherals/keyboard" = {
@@ -152,7 +190,7 @@ with lib.hm.gvariant;
     "org/gnome/desktop/screensaver" = {
       color-shading-type = "solid";
       picture-options = "zoom";
-      picture-uri = "file:///home/g/.local/share/backgrounds/2023-09-29-21-40-29-potato-wallpaper.webp";
+      picture-uri = "file:///home/g/.local/share/backgrounds/2023-11-30-19-03-09-gurren.png";
       primary-color = "#000000000000";
       secondary-color = "#000000000000";
     };
@@ -197,6 +235,11 @@ with lib.hm.gvariant;
       col-6-width = 0;
     };
 
+    "org/gnome/gnome-system-monitor/openfilestree" = {
+      sort-col = 0;
+      sort-order = 0;
+    };
+
     "org/gnome/gnome-system-monitor/proctree" = {
       columns-order = [ 0 1 2 3 4 6 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 ];
       sort-col = 8;
@@ -205,6 +248,10 @@ with lib.hm.gvariant;
 
     "org/gnome/nautilus/compression" = {
       default-compression-format = "zip";
+    };
+
+    "org/gnome/nautilus/list-view" = {
+      use-tree-view = true;
     };
 
     "org/gnome/nautilus/preferences" = {
@@ -268,15 +315,15 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/software" = {
-      check-timestamp = mkInt64 1699933817;
+      check-timestamp = mkInt64 1702470601;
       first-run = false;
-      flatpak-purge-timestamp = mkInt64 1699144954;
+      flatpak-purge-timestamp = mkInt64 1702438141;
     };
 
     "org/gtk/gtk4/settings/file-chooser" = {
       date-format = "regular";
       location-mode = "path-bar";
-      show-hidden = false;
+      show-hidden = true;
       show-size-column = true;
       show-type-column = true;
       sidebar-width = 140;

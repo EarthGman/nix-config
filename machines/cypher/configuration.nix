@@ -20,12 +20,16 @@
   #sytsem version
   system.stateVersion = "23.11";
 
-  # Allow unfree packages
+  # package settings
   nixpkgs = {
     config = {
       allowUnfree = true;
       allowUnsupportedSystem = true;
     };
+  };
+  nixpkgs.config.packageOverrides = pkgs: {
+    # nord
+    nordvpn = config.nur.repos.LuisChDev.nordvpn;
   };
 
   # Enable Nix Flakes
@@ -80,19 +84,22 @@
   };
 
   # printing
-  services.printing.enable = true;
+  # searches the network for printers
   services.avahi = {
     enable = true;
     nssmdns = true;
     openFirewall = true;
   };
-  services.printing.drivers = [
-    pkgs.samsung-unified-linux-driver #driver for samsungCLX3175FW printer
-  ];
-  # printer downstairs
+  services.printing = {
+    enable = true;
+    drivers = [
+      pkgs.samsung-unified-linux-driver
+    ];
+  };
   hardware.printers = {
     ensurePrinters = [
       {
+        # printer downstairs
         name = "SamsungCLX3175FW";
         location = "Home";
         deviceUri = "http://192.168.72.21:631";
@@ -105,23 +112,16 @@
     ensureDefaultPrinter = "SamsungCLX3175FW";
   };
 
-  nixpkgs.config.packageOverrides = pkgs: {
-    # nord
-    nordvpn = config.nur.repos.LuisChDev.nordvpn;
-  };
-
+  # misc
   services.nordvpn.enable = true;
   services.flatpak.enable = true;
 
-  # dolphin
   services.udev.packages = [ pkgs.dolphinEmu ];
   services.udev.extraRules = ''
     SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTRS{idVendor}=="0079", ATTRS{idProduct}=="0006", MODE="0666"
     SUBSYSTEM=="usb", ATTRS{idVendor}=="0079", ATTRS{idProduct}=="1846", MODE="0666"
     SUBSYSTEM=="hidraw", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="0306", MODE="0666"
   '';
-
-
 
   # disables sudo prompting password
   security.sudo.wheelNeedsPassword = false;

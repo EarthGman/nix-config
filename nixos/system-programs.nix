@@ -38,7 +38,7 @@
         sudo = "sudo "; # allow for using aliases with sudo
         nrs = "sudo nixos-rebuild switch --upgrade";
         ncg = "sudo nix-collect-garbage -d";
-        nedit = "cd /etc/nixos && code .";
+        nedit = "cd /home/g/src/nix-config && code .";
         cat = "${pkgs.bat}/bin/bat";
         ls = "eza --icons";
         ld = "l -D";

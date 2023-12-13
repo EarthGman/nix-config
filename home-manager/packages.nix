@@ -1,18 +1,18 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-master, ... }:
 {
   home.packages = with pkgs; [
     # apps
     gimp
     discord
     libreoffice
-    prismlauncher
+    prismlauncher #minecraft launcher
     obsidian
     steam
     musescore
     dolphin-emu-beta
     looking-glass-client
     github-desktop
-    #grapejuice
+    #vinegar #bootstrapper for roblox
 
     # commands
     sysz
