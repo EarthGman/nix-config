@@ -80,6 +80,9 @@
               }
             ];
         };
+
+        #laptop entry goes here
+
       };
     };
 }

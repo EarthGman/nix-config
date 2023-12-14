@@ -1,4 +1,5 @@
 { pkgs, config, ... }:
+#packages and programs installed on the operating system level
 {
   environment = {
     sessionVariables = {

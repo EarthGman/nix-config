@@ -12,7 +12,7 @@
     dolphin-emu-beta
     looking-glass-client
     github-desktop
-    #vinegar #bootstrapper for roblox
+    #vinegar # bootstrapper for roblox
 
     # commands
     sysz

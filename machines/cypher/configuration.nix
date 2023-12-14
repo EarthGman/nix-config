@@ -4,14 +4,13 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../nixos/gnome.nix
-    ../../nixos/system-programs.nix
-    ../../nixos/sound.nix
-    ../../nixos/user-g-settings.nix
-    ../../nixos/fonts.nix
-    ../../nixos/wine.nix
-    ./nvidia.nix
-    #./amd.nix
+    ../../modules/gnome.nix
+    ../../modules/system-programs.nix
+    ../../modules/sound.nix
+    ../../modules/g.nix
+    ../../modules/fonts.nix
+    ../../modules/wine.nix
+    ../../modules/nvidia.nix
   ];
 
   # Set your time zone.
@@ -151,7 +150,7 @@
         ];
         allowedUDPPorts = [
           1194 # openvpn listen port
-          5353 # printer disovery port
+          5353 # printer discovery port
         ];
       };
     };
@@ -167,5 +166,3 @@
     };
   };
 }
-
-
