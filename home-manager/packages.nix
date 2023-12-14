@@ -13,6 +13,7 @@
     looking-glass-client
     github-desktop
     #vinegar # bootstrapper for roblox
+    flips # IPS and BPS file patcher
 
     # commands
     sysz
