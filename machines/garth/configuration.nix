@@ -1,17 +1,17 @@
-#configurations specific to cypher
+#configurations specific to garth
 { config, pkgs, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/gnome.nix
-    ../../modules/system-programs.nix
-    ../../modules/sound.nix
-    ../../modules/g.nix
-    ../../modules/fonts.nix
-    ../../modules/printing.nix
-    ../../modules/wine.nix
-    ../../modules/virtualization.nix
+    ../../modules/nixos/gnome.nix
+    ../../modules/nixos/system-programs.nix
+    ../../modules/nixos/sound.nix
+    ../../users/g.nix
+    ../../modules/nixos/fonts.nix
+    ../../modules/nixos/printing.nix
+    ../../modules/nixos/wine.nix
+    ../../modules/nixos/virtualization.nix
   ];
 
   # Set your time zone.

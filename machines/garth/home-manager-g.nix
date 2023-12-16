@@ -6,14 +6,14 @@ let
 in
 {
   imports = [
-    ../../home-manager/programs.nix
-    ../../home-manager/obs.nix
-    ../../home-manager/packages.nix
-    ../../home-manager/firefox.nix
-    ../../home-manager/vscode.nix
-    ../../home-manager/gh.nix
-    ../../home-manager/dash.nix
-    ../../home-manager/dconf-garth.nix
+    ../../modules/home-manager/programs.nix
+    ../../modules/home-manager/obs.nix
+    ../../modules/home-manager/packages.nix
+    ../../modules/home-manager/firefox.nix
+    ../../modules/home-manager/vscode.nix
+    ../../modules/home-manager/gh.nix
+    ../../modules/home-manager/dash.nix
+    ../../modules/home-manager/dconf-garth.nix
   ];
   programs.home-manager.enable = true;
   home = {
