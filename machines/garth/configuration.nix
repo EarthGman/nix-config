@@ -9,8 +9,9 @@
     ../../modules/sound.nix
     ../../modules/g.nix
     ../../modules/fonts.nix
+    ../../modules/printing.nix
     ../../modules/wine.nix
-    ../../modules/nvidia.nix
+    ../../modules/virtualization.nix
   ];
 
   # Set your time zone.
@@ -34,7 +35,6 @@
   # Enable Nix Flakes
   nix = {
     settings.experimental-features = [ "nix-command" "flakes" ];
-
     settings.auto-optimise-store = true;
   };
 
@@ -42,59 +42,20 @@
   boot.kernelPackages = pkgs.linuxPackages_6_5;
 
   boot.kernelParams = [
-    "video=1920x1080"
-    "intel_iommu=on"
-    "iommu=pt"
+
   ];
   boot.kernelModules = [
-    "vfio_virqfd"
-    "vfio_pci"
-    "vfio_iommu_type1"
-    "vfio"
     "kvm-intel"
   ];
-  boot.blacklistedKernelModules = [ "coffeelake" "nouveau" ];
-  boot.extraModprobeConfig = "options vfio-pci ids=8086:3e92,8086:a348";
 
-  #boot - grub 2
-  #boot.loader.systemd-boot.enable = true;
+  #boot - systemd
+  boot.loader.systemd-boot.enable = true;
   boot.loader = {
     efi.canTouchEfiVariables = true;
     efi.efiSysMountPoint = "/boot";
-    grub.enable = true;
-    grub.efiSupport = true;
-    #grub.useOSProber = true;
-    grub.devices = [ "nodev" ];
-    grub.extraEntries = ''
-      menuentry 'Windows 10' --class windows --class os {
-        insmod part_gpt
-        insmod ntfs
-        search --no-floppy --fs-uuid --set=root 42AD-8EF4
-        chainloader /efi/Microsoft/Boot/bootmgfw.efi
-      }
-      menuentry "Reboot" {
-        reboot
-      }
-      menuentry "Poweroff" {
-        halt
-      }
-    '';
-    timeout = 5;
   };
 
-  # printing
-  # searches the network for printers
-  services.avahi = {
-    enable = true;
-    nssmdns = true;
-    openFirewall = true;
-  };
-  services.printing = {
-    enable = true;
-    drivers = [
-      pkgs.samsung-unified-linux-driver
-    ];
-  };
+  # printers
   hardware.printers = {
     ensurePrinters = [
       {
@@ -140,7 +101,7 @@
   services.resolved.enable = true;
   networking =
     {
-      hostName = "cypher"; # Define your hostname.
+      hostName = "garth"; # Define your hostname.
       networkmanager.enable = true; # Easiest to use and most distros use this by default.
       firewall = {
         checkReversePath = false;
@@ -154,15 +115,4 @@
         ];
       };
     };
-
-  # enables virtualization
-  virtualisation = {
-    libvirtd = {
-      enable = true;
-      qemu = {
-        ovmf.enable = true;
-        swtpm.enable = true;
-      };
-    };
-  };
 }

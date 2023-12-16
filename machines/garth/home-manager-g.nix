@@ -13,7 +13,7 @@ in
     ../../home-manager/vscode.nix
     ../../home-manager/gh.nix
     ../../home-manager/dash.nix
-    ../../home-manager/dconf.nix
+    ../../home-manager/dconf-garth.nix
   ];
   programs.home-manager.enable = true;
   home = {

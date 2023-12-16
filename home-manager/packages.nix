@@ -12,6 +12,7 @@
     dolphin-emu-beta
     looking-glass-client
     github-desktop
+    remmina
     #vinegar # bootstrapper for roblox
     flips # IPS and BPS file patcher
 

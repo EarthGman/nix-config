@@ -81,8 +81,38 @@
             ];
         };
 
-        #laptop entry goes here
+        #laptop
+        garth = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules =
+            [
 
+              nur.nixosModules.nur
+              nur-modules.repos.LuisChDev.modules.nordvpn
+              {
+                nixpkgs.overlays = [ nur.overlay ];
+              }
+
+              ./machines/garth/configuration.nix
+
+
+              # /home-manager
+              home-manager.nixosModules.home-manager
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  backupFileExtension = "hm-bak";
+                  users = {
+                    g = import ./machines/garth/home-manager-g.nix;
+                  };
+                  extraSpecialArgs = {
+                    inherit inputs pkgs-master;
+                  };
+                };
+              }
+            ];
+        };
       };
     };
 }
