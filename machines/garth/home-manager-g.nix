@@ -6,7 +6,7 @@ let
 in
 {
   imports = [
-    ../../modules/home-manager/programs.nix
+    ../../modules/home-manager/zsh.nix
     ../../modules/home-manager/obs.nix
     ../../modules/home-manager/packages.nix
     ../../modules/home-manager/firefox.nix

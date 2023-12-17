@@ -55,23 +55,6 @@
     efi.efiSysMountPoint = "/boot";
   };
 
-  # printers
-  hardware.printers = {
-    ensurePrinters = [
-      {
-        # printer downstairs
-        name = "SamsungCLX3175FW";
-        location = "Home";
-        deviceUri = "http://192.168.72.21:631";
-        model = "samsung/CLX-3170.ppd";
-        ppdOptions = {
-          PageSize = "Letter";
-        };
-      }
-    ];
-    ensureDefaultPrinter = "SamsungCLX3175FW";
-  };
-
   # misc
   services.nordvpn.enable = true;
   services.flatpak.enable = true;
