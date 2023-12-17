@@ -15,6 +15,7 @@
     remmina
     #vinegar # bootstrapper for roblox
     flips # IPS and BPS file patcher
+    gcolor3
 
     # commands
     sysz

@@ -5,7 +5,7 @@
   # be sure to allow UDP port 5353
   services.avahi = {
     enable = true;
-    nssmdns = true;
+    nssmdns4 = true;
     openFirewall = true;
   };
 

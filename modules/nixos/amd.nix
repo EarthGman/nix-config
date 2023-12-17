@@ -1,4 +1,3 @@
-{ config, ... }:
 {
   services.xserver.videoDrivers = [ "amdgpu" ];
   # Enable OpenGL00

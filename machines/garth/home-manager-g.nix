@@ -21,7 +21,7 @@ in
     sessionVariables = {
       EDITOR = "code --wait";
     };
-    stateVersion = "23.11";
+    stateVersion = "24.05";
   };
   #cross desktop group
   xdg = {

@@ -1,5 +1,5 @@
 #configurations specific to garth
-{ config, pkgs, ... }:
+{ flake-inputs, config, pkgs, ... }:
 
 {
   imports = [
@@ -12,37 +12,21 @@
     ../../modules/nixos/printing.nix
     ../../modules/nixos/wine.nix
     ../../modules/nixos/virtualization.nix
+    ../../modules/nixos/nix.nix
   ];
 
   # Set your time zone.
   time.timeZone = "America/Chicago";
 
   #sytsem version
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
 
-  # package settings
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      allowUnsupportedSystem = true;
-    };
-  };
-  nixpkgs.config.packageOverrides = pkgs: {
-    # nord
-    nordvpn = config.nur.repos.LuisChDev.nordvpn;
-  };
-
-  # Enable Nix Flakes
-  nix = {
-    settings.experimental-features = [ "nix-command" "flakes" ];
-    settings.auto-optimise-store = true;
-  };
-
-  #latest linux kernel
-  boot.kernelPackages = pkgs.linuxPackages_6_5;
+  # linux kernel version
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.kernelParams = [
-
+    "quiet"
+    "noatime"
   ];
   boot.kernelModules = [
     "kvm-intel"

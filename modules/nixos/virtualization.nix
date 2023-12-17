@@ -1,4 +1,3 @@
-{ ... }:
 #enables virtualization with qemu
 {
   virtualisation = {
