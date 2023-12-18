@@ -14,6 +14,8 @@ in
     ../../modules/home-manager/gh.nix
     ../../modules/home-manager/dash.nix
     ../../modules/home-manager/dconf-garth.nix
+    ../../modules/home-manager/gtk.nix
+    ../../modules/home-manager/wine.nix
   ];
   programs.home-manager.enable = true;
   home = {
@@ -27,15 +29,5 @@ in
   xdg = {
     inherit configHome;
     enable = true;
-  };
-  #GUI toolkit
-  gtk = {
-    enable = true;
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
-      gtk-button-images = false;
-      gtk-menu-images = false;
-      gtk-toolbar-style = "GTK_TOOLBAR_ICONS";
-    };
   };
 }

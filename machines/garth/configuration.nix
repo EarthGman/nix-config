@@ -13,7 +13,6 @@
     ../../users/g.nix
     ../../modules/nixos/fonts.nix
     ../../modules/nixos/printing.nix
-    ../../modules/nixos/wine.nix
     ../../modules/nixos/virtualization.nix
     ../../modules/nixos/nix.nix
     ../../modules/nixos/zsh.nix
