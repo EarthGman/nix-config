@@ -38,7 +38,6 @@
       packageOverrides = pkgs: {
         # nord
         nordvpn = config.nur.repos.LuisChDev.nordvpn;
-
       };
       permittedInsecurePackages = [
         "electron-25.9.0"
