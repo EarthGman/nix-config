@@ -1,12 +1,12 @@
 #configurations specific to garth
-{ flake-inputs, config, pkgs, ... }:
+{ flake-inputs, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
     ./boot.nix
-    ./devices.nix
     ./networking.nix
+    ../../modules/nixos/devices.nix
     ../../modules/nixos/gnome.nix
     ../../modules/nixos/common.nix
     ../../modules/nixos/sound.nix
