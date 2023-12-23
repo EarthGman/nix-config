@@ -3,17 +3,13 @@
   home.packages = with pkgs; [
     # apps
     gimp
-    discord
     libreoffice
-    prismlauncher #minecraft launcher
     obsidian
-    steam
     musescore
-    dolphin-emu-beta
     looking-glass-client
     github-desktop
-    #vinegar # bootstrapper for roblox
-    flips # IPS and BPS file patcher
+    remmina
+    gcolor3
 
     # commands
     sysz
