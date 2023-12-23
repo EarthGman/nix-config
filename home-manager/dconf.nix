@@ -59,12 +59,6 @@ with lib.hm.gvariant;
       folder-children = [ "Utilities" "YaST" ];
     };
 
-    "org/gnome/desktop/app-folders/folders/Pardus" = {
-      categories = [ "X-Pardus-Apps" ];
-      name = "X-Pardus-Apps.directory";
-      translate = true;
-    };
-
     "org/gnome/desktop/app-folders/folders/Utilities" = {
       apps = [ "gnome-abrt.desktop" "gnome-system-log.desktop" "nm-connection-editor.desktop" "org.gnome.baobab.desktop" "org.gnome.Connections.desktop" "org.gnome.DejaDup.desktop" "org.gnome.Dictionary.desktop" "org.gnome.DiskUtility.desktop" "org.gnome.eog.desktop" "org.gnome.Evince.desktop" "org.gnome.FileRoller.desktop" "org.gnome.fonts.desktop" "org.gnome.seahorse.Application.desktop" "org.gnome.tweaks.desktop" "org.gnome.Usage.desktop" "vinagre.desktop" ];
       categories = [ "X-GNOME-Utilities" ];
@@ -81,8 +75,8 @@ with lib.hm.gvariant;
     "org/gnome/desktop/background" = {
       color-shading-type = "solid";
       picture-options = "zoom";
-      picture-uri = "file:///home/g/.local/share/backgrounds/2023-12-15-00-02-04-cliffside.jpg";
-      picture-uri-dark = "file:///home/g/.local/share/backgrounds/2023-12-15-00-02-04-cliffside.jpg";
+      picture-uri = "file:///home/g/.local/share/backgrounds/2023-11-30-19-03-09-gurren.png";
+      picture-uri-dark = "file:///home/g/.local/share/backgrounds/2023-11-30-19-03-09-gurren.png";
       primary-color = "#000000000000";
       secondary-color = "#000000000000";
     };
@@ -196,7 +190,7 @@ with lib.hm.gvariant;
     "org/gnome/desktop/screensaver" = {
       color-shading-type = "solid";
       picture-options = "zoom";
-      picture-uri = "file:///home/g/.local/share/backgrounds/2023-12-15-00-02-04-cliffside.jpg";
+      picture-uri = "file:///home/g/.local/share/backgrounds/2023-11-30-19-03-09-gurren.png";
       primary-color = "#000000000000";
       secondary-color = "#000000000000";
     };
@@ -277,10 +271,6 @@ with lib.hm.gvariant;
       ignore-phase2-ca-cert = false;
     };
 
-    "org/gnome/portal/filechooser/org/gnome/Settings" = {
-      last-folder-path = "/home/g/Pictures/Screenshots";
-    };
-
     "org/gnome/settings-daemon/plugins/power" = {
       sleep-inactive-ac-type = "nothing";
     };
@@ -312,7 +302,7 @@ with lib.hm.gvariant;
         {"0":100}
       '';
       panel-sizes = ''
-        {"0":45}
+        {"0":35}
       '';
       primary-monitor = 0;
       status-icon-padding = -1;
@@ -325,7 +315,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/software" = {
-      check-timestamp = mkInt64 1702618154;
+      check-timestamp = mkInt64 1702470601;
       first-run = false;
       flatpak-purge-timestamp = mkInt64 1702438141;
     };
@@ -342,7 +332,7 @@ with lib.hm.gvariant;
       sort-order = "ascending";
       type-format = "category";
       view-type = "list";
-      window-size = mkTuple [ 859 372 ];
+      window-size = mkTuple [ 859 327 ];
     };
 
     "org/gtk/settings/file-chooser" = {
@@ -356,7 +346,7 @@ with lib.hm.gvariant;
       sort-directories-first = false;
       sort-order = "ascending";
       type-format = "category";
-      window-position = mkTuple [ 26 23 ];
+      window-position = mkTuple [ 0 0 ];
       window-size = mkTuple [ 1203 686 ];
     };
 
