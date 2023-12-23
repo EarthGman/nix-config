@@ -17,7 +17,7 @@
       ripgrep # a better grep
       sysz # systemd browsing tool
       wget # a network utility to retrieve files from the Web
-      nvtop # an htop like monitoring tool for NVIDIA GPUs
+      nvtop # an htop like monitoring tool for GPUs
       zoxide
       file
       zip
@@ -27,6 +27,9 @@
 
   programs = {
     _1password.enable = true;
-    _1password-gui.enable = true;
+    _1password-gui = {
+      enable = true;
+      polkitPolicyOwners = [ "g" ];
+    };
   };
 }

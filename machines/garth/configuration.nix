@@ -8,7 +8,7 @@
     ./devices.nix
     ./networking.nix
     ../../modules/nixos/gnome.nix
-    ../../modules/nixos/system-programs.nix
+    ../../modules/nixos/common.nix
     ../../modules/nixos/sound.nix
     ../../users/g.nix
     ../../modules/nixos/fonts.nix
@@ -16,6 +16,7 @@
     ../../modules/nixos/virtualization.nix
     ../../modules/nixos/nix.nix
     ../../modules/nixos/zsh.nix
+    ../../modules/nixos/x11-utils.nix
   ];
 
   # Set your time zone.
