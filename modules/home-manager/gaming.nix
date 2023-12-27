@@ -6,6 +6,6 @@
     dolphin-emu-beta
     steam
     flips # IPS and BPS file patcher
-    #vinegar # bootstrapper for roblox
+    vinegar # bootstrapper for roblox
   ];
 }
