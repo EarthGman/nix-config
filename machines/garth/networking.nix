@@ -16,6 +16,7 @@
       allowedTCPPorts = [
         22 # SSHD tellnet port
         443 # TLS/SSL listen port
+        3389 # RDP Port
       ];
       allowedUDPPorts = [
         1194 # openvpn listen port
