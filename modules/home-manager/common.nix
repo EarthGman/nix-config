@@ -10,6 +10,7 @@
     github-desktop
     remmina
     gcolor3
+    clipgrab
 
     # commands
     sysz

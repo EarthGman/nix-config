@@ -2,6 +2,8 @@
 {
   home.packages = with pkgs; [
     discord
+    betterdiscordctl
+    betterdiscord-installer
     prismlauncher # minecraft
     dolphin-emu-beta
     steam
