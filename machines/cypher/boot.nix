@@ -7,6 +7,8 @@
     "video=1920x1080"
     "intel_iommu=on"
     "iommu=pt"
+    "quiet"
+    "noatime"
   ];
   boot.kernelModules = [
     "vfio_virqfd"
@@ -41,7 +43,7 @@
         halt
       }
     '';
-    timeout = 5;
+    timeout = 10;
   };
 
   # virtual camera for obs

@@ -55,6 +55,10 @@ with lib.hm.gvariant;
       window-state = mkTuple [ 980 640 false ];
     };
 
+    "org/gnome/desktop/a11y/keyboard" = {
+      stickykeys-enable = false;
+    };
+
     "org/gnome/desktop/app-folders" = {
       folder-children = [ "Utilities" "YaST" ];
     };
@@ -94,6 +98,7 @@ with lib.hm.gvariant;
 
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
+      enable-hot-corners = false;
     };
 
     "org/gnome/desktop/notifications" = {
@@ -172,6 +177,14 @@ with lib.hm.gvariant;
       application-id = "steam.desktop";
     };
 
+    "org/gnome/desktop/notifications/application/virt-manager" = {
+      application-id = "virt-manager.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/wine-programs-firefox" = {
+      application-id = "wine-Programs-Firefox.desktop";
+    };
+
     "org/gnome/desktop/notifications/application/wine-programs-roblox-roblox-player" = {
       application-id = "wine-Programs-Roblox-Roblox Player.desktop";
     };
@@ -191,6 +204,13 @@ with lib.hm.gvariant;
     "org/gnome/desktop/privacy" = {
       old-files-age = mkUint32 30;
       recent-files-max-age = -1;
+    };
+
+    "org/gnome/desktop/remote-desktop/rdp" = {
+      enable = true;
+      tls-cert = "/home/g/.local/share/gnome-remote-desktop/rdp-tls.crt";
+      tls-key = "/home/g/.local/share/gnome-remote-desktop/rdp-tls.key";
+      view-only = false;
     };
 
     "org/gnome/desktop/screensaver" = {
@@ -277,6 +297,14 @@ with lib.hm.gvariant;
       ignore-phase2-ca-cert = false;
     };
 
+    "org/gnome/portal/filechooser/discord" = {
+      last-folder-path = "/home/g/Videos";
+    };
+
+    "org/gnome/portal/filechooser/org/gnome/Settings" = {
+      last-folder-path = "/home/g/Pictures";
+    };
+
     "org/gnome/settings-daemon/plugins/power" = {
       sleep-inactive-ac-type = "nothing";
     };
@@ -284,7 +312,7 @@ with lib.hm.gvariant;
     "org/gnome/shell" = {
       app-picker-layout = "[{'org.gnome.Calendar.desktop': <{'position': <0>}>, 'org.gnome.Extensions.desktop': <{'position': <1>}>, 'org.gnome.Weather.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'org.gnome.Maps.desktop': <{'position': <4>}>, 'grapejuice.desktop': <{'position': <5>}>, 'nixos-manual.desktop': <{'position': <6>}>, 'org.gnome.Totem.desktop': <{'position': <7>}>, 'org.gnome.Calculator.desktop': <{'position': <8>}>, 'roblox-app.desktop': <{'position': <9>}>, 'simple-scan.desktop': <{'position': <10>}>, 'org.gnome.Settings.desktop': <{'position': <11>}>, 'gnome-system-monitor.desktop': <{'position': <12>}>, 'org.gnome.TextEditor.desktop': <{'position': <13>}>, 'xterm.desktop': <{'position': <14>}>, 'Utilities': <{'position': <15>}>}]";
       disable-user-extensions = false;
-      enabled-extensions = [ "dash-to-panel@jderose9.github.com" ];
+      enabled-extensions = [ "dash-to-panel@jderose9.github.com" "Vitals@CoreCoding.com" ];
       favorite-apps = [ "org.gnome.Nautilus.desktop" "org.gnome.Calculator.desktop" "gnome-system-monitor.desktop" "1password.desktop" "org.musescore.MuseScore.desktop" "org.gnome.Console.desktop" "obsidian.desktop" "com.obsproject.Studio.desktop" "code.desktop" "github-desktop.desktop" "org.prismlauncher.PrismLauncher.desktop" "virt-manager.desktop" "firefox.desktop" "discord.desktop" "steam.desktop" "dolphin-emu.desktop" "tModLoader.desktop" "Terraria.desktop" "Stardew Valley.desktop" ];
       last-selected-power-profile = "power-saver";
       welcome-dialog-last-shown-version = "44.4";
@@ -312,10 +340,15 @@ with lib.hm.gvariant;
       '';
       primary-monitor = 0;
       status-icon-padding = -1;
+      stockgs-keep-dash = false;
+      stockgs-keep-top-panel = false;
       tray-padding = -1;
       window-preview-title-position = "TOP";
     };
-
+    "org/gnome/shell/extensions/vitals" = {
+      show-fan = false;
+      show-voltage = false;
+    };
     "org/gnome/shell/world-clocks" = {
       locations = "@av []";
     };
