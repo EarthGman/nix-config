@@ -11,6 +11,7 @@
     remmina
     gcolor3
     clipgrab
+    openshot-qt
 
     # commands
     sysz
