@@ -7,7 +7,7 @@
     ./boot.nix
     ./networking.nix
     ../../modules/nixos/devices.nix
-    ../../modules/nixos/gnome.nix
+    ../../modules/nixos/plasma.nix
     ../../modules/nixos/common.nix
     ../../modules/nixos/sound.nix
     ../../users/g.nix
