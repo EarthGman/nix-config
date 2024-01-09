@@ -29,5 +29,13 @@
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+    # prime for laptops
+    # prime = {
+    #   intelBusId = "PCI:0:0:0";
+    #   NvidiaBusId = "PCI:0:0:0";
+
+    #   sync.enable = true;
+    # };
   };
 }

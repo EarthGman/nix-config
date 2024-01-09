@@ -18,10 +18,12 @@
       sysz # systemd browsing tool
       wget # a network utility to retrieve files from the Web
       nvtop # an htop like monitoring tool for GPUs
+      radeontop
       zoxide
       file
       zip
       unzip
+      lshw
     ];
   };
 

@@ -17,7 +17,7 @@
     ../../modules/nixos/nix.nix
     ../../modules/nixos/zsh.nix
     ../../modules/nixos/x11-utils.nix
-    ../../modules/nixos/nvidia.nix
+    ../../modules/nixos/amd.nix
   ];
 
   # Set your time zone.

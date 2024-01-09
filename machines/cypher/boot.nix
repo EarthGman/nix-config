@@ -4,7 +4,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.kernelParams = [
-    "video=1920x1080"
+    "video=3840x2160"
     "intel_iommu=on"
     "iommu=pt"
     "quiet"
@@ -17,17 +17,16 @@
     "vfio"
     "kvm-intel"
   ];
-  boot.blacklistedKernelModules = [ "coffeelake" "nouveau" ];
-  boot.extraModprobeConfig = "options vfio-pci ids=8086:3e92,8086:a348";
 
   #boot - grub 2
-  #boot.loader.systemd-boot.enable = true;
+  # boot.loader.systemd-boot.enable = true;
   boot.loader = {
     efi.canTouchEfiVariables = true;
     efi.efiSysMountPoint = "/boot";
     grub.enable = true;
     grub.efiSupport = true;
-    #grub.useOSProber = true;
+    # grub.useOSProber = true;
+    grub.gfxmodeEfi = "640x480";
     grub.devices = [ "nodev" ];
     grub.extraEntries = ''
       menuentry 'Windows 10' --class windows --class os {
