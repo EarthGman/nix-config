@@ -12,6 +12,7 @@
     gcolor3
     clipgrab
     openshot-qt
+    mpv
 
     # commands
     sysz
