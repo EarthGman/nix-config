@@ -11,15 +11,16 @@
     "noatime"
   ];
   boot.kernelModules = [
+    "kvm-amd"
     "vfio_virqfd"
     "vfio_pci"
     "vfio_iommu_type1"
     "vfio"
-    "kvm-intel"
   ];
 
-  #boot - grub 2
   # boot.loader.systemd-boot.enable = true;
+
+  # grub
   boot.loader = {
     efi.canTouchEfiVariables = true;
     efi.efiSysMountPoint = "/boot";

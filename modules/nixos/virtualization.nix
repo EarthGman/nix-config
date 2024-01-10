@@ -1,7 +1,6 @@
 #enables virtualization with qemu
 { pkgs, lib, ... }:
 {
-  boot.kernelModules = [ "kvm-intel" ];
   virtualisation = {
     libvirtd = {
       enable = true;
@@ -15,8 +14,8 @@
       };
     };
   };
+  programs.virt-manager.enable = true;
   environment.systemPackages = with pkgs; [
-    virt-manager
     qemu_kvm # virtual machines
   ];
   programs.dconf.enable = lib.mkDefault true;

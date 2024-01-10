@@ -30,10 +30,10 @@
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
 
-    # prime for laptops
+    # enables otimus prime for nvidia laptops
     # prime = {
-    #   intelBusId = "PCI:0:0:0";
-    #   NvidiaBusId = "PCI:0:0:0";
+    #   intelBusId = "PCI:0:0:0"; insert bus id here using lshw
+    #   NvidiaBusId = "PCI:0:0:0"; insert bus id here using lshw
 
     #   sync.enable = true;
     # };

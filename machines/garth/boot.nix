@@ -6,6 +6,9 @@
       "quiet"
       "noatime"
     ];
+    kernelModules = [
+      "kvm-intel"
+    ];
     loader = {
       systemd-boot.enable = true;
       efi = {

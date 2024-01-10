@@ -17,13 +17,14 @@
       ripgrep # a better grep
       sysz # systemd browsing tool
       wget # a network utility to retrieve files from the Web
-      nvtop # an htop like monitoring tool for GPUs
-      radeontop
-      zoxide
+      zoxide # allows user to jump directly to a directory
       file
-      zip
-      unzip
+      zip # archiver
+      unzip # archive unzipper
       lshw
+      etcher # ISO/USB flasher
+      radeontop # another htop like monitoring tool for AMD GPUs only
+      nvtop # an htop like monitoring tool for GPUs
     ];
   };
 

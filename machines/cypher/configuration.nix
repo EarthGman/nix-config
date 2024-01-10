@@ -6,6 +6,7 @@
     ./hardware-configuration.nix
     ./boot.nix
     ./networking.nix
+    ../../modules/nixos/virtualization.nix
     ../../modules/nixos/devices.nix
     ../../modules/nixos/plasma.nix
     ../../modules/nixos/common.nix
@@ -13,7 +14,6 @@
     ../../users/g.nix
     ../../modules/nixos/fonts.nix
     ../../modules/nixos/printing.nix
-    ../../modules/nixos/virtualization.nix
     ../../modules/nixos/nix.nix
     ../../modules/nixos/zsh.nix
     ../../modules/nixos/x11-utils.nix

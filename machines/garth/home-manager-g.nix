@@ -13,7 +13,7 @@ in
     ../../modules/home-manager/vscode.nix
     ../../modules/home-manager/gh.nix
     ../../modules/home-manager/dash.nix
-    ../../modules/home-manager/dconf-garth.nix
+    ../../modules/home-manager/dconf.nix
     ../../modules/home-manager/gtk.nix
     ../../modules/home-manager/wine.nix
     ../../modules/home-manager/gaming.nix
