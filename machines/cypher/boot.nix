@@ -5,17 +5,14 @@
 
   boot.kernelParams = [
     "video=3840x2160"
-    "intel_iommu=on"
-    "iommu=pt"
     "quiet"
     "noatime"
   ];
   boot.kernelModules = [
     "kvm-amd"
-    "vfio_virqfd"
-    "vfio_pci"
-    "vfio_iommu_type1"
-    "vfio"
+  ];
+  boot.initrd.kernelModules = [
+    "amdgpu"
   ];
 
   # boot.loader.systemd-boot.enable = true;

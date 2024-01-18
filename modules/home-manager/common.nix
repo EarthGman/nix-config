@@ -12,6 +12,7 @@
     gcolor3
     clipgrab
     openshot-qt
+    clementine
     mpv
 
     # commands

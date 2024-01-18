@@ -1,5 +1,5 @@
 {
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  services.xserver.videoDrivers = [ "modesetting" ];
   # Enable OpenGL00
   hardware.opengl = {
     enable = true;

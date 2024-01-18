@@ -8,7 +8,7 @@
     ./networking.nix
     ../../modules/nixos/virtualization.nix
     ../../modules/nixos/devices.nix
-    ../../modules/nixos/gnome.nix
+    ../../modules/nixos/cinnamon.nix
     ../../modules/nixos/common.nix
     ../../modules/nixos/sound.nix
     ../../users/g.nix
