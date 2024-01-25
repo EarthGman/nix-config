@@ -16,6 +16,7 @@
     ../../modules/nixos/printing.nix
     ../../modules/nixos/nix.nix
     ../../modules/nixos/zsh.nix
+    ../../modules/nixos/powertop.nix
     ../../modules/nixos/x11-utils.nix
   ];
 

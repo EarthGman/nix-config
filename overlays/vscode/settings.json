@@ -28,5 +28,8 @@
     "editor.tabSize": 2,
     "terminal.integrated.fontSize": 16,
     "git.openRepositoryInParentFolders": "always",
-    "debug.onTaskErrors": "showErrors"
+    "debug.onTaskErrors": "showErrors",
+    "security.workspace.trust.enabled": false,
+    "explorer.confirmDragAndDrop": false,
+    "nix.formatterPath": "nixpkgs-fmt"
 }
