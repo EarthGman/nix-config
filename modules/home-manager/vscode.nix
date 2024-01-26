@@ -14,6 +14,7 @@
       ms-vscode.cmake-tools
       bbenoist.nix
       jnoortheen.nix-ide
+      vscode-icons-team.vscode-icons
     ];
 
     #userSettings = {

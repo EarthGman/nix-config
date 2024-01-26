@@ -16,19 +16,8 @@
     mpv
 
     # commands
-    sysz
-    ncdu
-    jq
-    dconf
-    dconf2nix
-    dua
-    wl-screenrec
     steam-run
     appimage-run
-    openssl
-    usbutils
-    pciutils
-    wmctrl
 
     # Gstreamer
     gst_all_1.gst-libav

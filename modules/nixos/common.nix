@@ -25,6 +25,16 @@
       etcher # ISO/USB flasher
       radeontop # another htop like monitoring tool for AMD GPUs only
       nvtop # an htop like monitoring tool for GPUs
+      sysz
+      ncdu
+      jq
+      dconf
+      dconf2nix
+      dua
+      openssl
+      usbutils
+      pciutils
+      wmctrl
     ];
   };
 
