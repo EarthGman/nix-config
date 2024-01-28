@@ -9,14 +9,15 @@ in
     ../../modules/home-manager/zsh.nix
     ../../modules/home-manager/obs.nix
     ../../modules/home-manager/common.nix
-    ../../modules/home-manager/firefox.nix
-    ../../modules/home-manager/vscode.nix
     ../../modules/home-manager/gh.nix
     ../../modules/home-manager/gnome-extensions.nix
-    ../../modules/home-manager/dconf.nix
     ../../modules/home-manager/gtk.nix
     ../../modules/home-manager/wine.nix
     ../../modules/home-manager/gaming.nix
+    ../../modules/home-manager/firefox
+    ../../modules/home-manager/neofetch
+    ../../modules/home-manager/wezterm
+    ../../modules/home-manager/vscode
   ];
   programs.home-manager.enable = true;
   home = {

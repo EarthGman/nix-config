@@ -6,7 +6,7 @@ in
 {
   home = {
     file = {
-      ".mozilla/firefox/g/user.js".source = config.lib.file.mkOutOfStoreSymlink user_js;
+      ".mozilla/firefox/${config.home.username}/user.js".source = config.lib.file.mkOutOfStoreSymlink user_js;
     };
   };
   programs.firefox = {

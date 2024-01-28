@@ -35,7 +35,7 @@
     "window.dialogStyle": "custom",
     "window.titleBarStyle": "custom",
     "editor.suggest.showIcons": false,
-    "workbench.iconTheme": "dobri-simple-icons",
-    "workbench.colorTheme": "kelsny.nebsies.nebula-inferno",
-    "window.zoomLevel": -1
+    "workbench.iconTheme": "vscode-icons",
+    "window.zoomLevel": -1,
+    "workbench.colorTheme": "Default High Contrast"
 }
