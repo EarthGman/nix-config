@@ -12,7 +12,6 @@
       git # the stupid content tracker
       hstr # Bash and Zsh shell history suggest box
       htop # interactive process viewer
-      neofetch # displays system info
       nix-info # display Nix system information
       ripgrep # a better grep
       sysz # systemd browsing tool

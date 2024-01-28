@@ -21,6 +21,7 @@ in
       bbenoist.nix
       jnoortheen.nix-ide
       sumneko.lua
+      naumovs.color-highlight
       vscode-icons-team.vscode-icons
     ];
   };

@@ -34,5 +34,8 @@
     "nix.formatterPath": "nixpkgs-fmt",
     "window.dialogStyle": "custom",
     "window.titleBarStyle": "custom",
-    "workbench.iconTheme": "vscode-icons"
+    "editor.suggest.showIcons": false,
+    "workbench.iconTheme": "dobri-simple-icons",
+    "workbench.colorTheme": "kelsny.nebsies.nebula-inferno",
+    "window.zoomLevel": -1
 }
