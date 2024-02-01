@@ -37,5 +37,6 @@
     "editor.suggest.showIcons": false,
     "workbench.iconTheme": "vscode-icons",
     "window.zoomLevel": -1,
-    "workbench.colorTheme": "Default High Contrast"
+    "workbench.colorTheme": "Default High Contrast",
+    "cmake.showOptionsMovedNotification": false
 }

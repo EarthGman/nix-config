@@ -21,9 +21,11 @@
       zip # archiver
       unzip # archive unzipper
       lshw
+      tree # command to list files as a tree
       etcher # ISO/USB flasher
       radeontop # another htop like monitoring tool for AMD GPUs only
       nvtop # an htop like monitoring tool for GPUs
+      powertop # power consumption monitoring tool
       sysz
       ncdu
       jq
