@@ -23,8 +23,8 @@ in
     config = [
       {
         user = {
-          name = "g";
-          email = "117403037+EarthGman@users.noreply.github.com";
+          name = "EarthGman";
+          email = "EarthGman@protonmail.com";
         };
       }
       { credential."https://github.com".helper = "!${pkgs.gh}/bin/gh auth git-credential"; }

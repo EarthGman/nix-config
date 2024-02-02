@@ -20,8 +20,8 @@
     in
     {
       nixosConfigurations = {
-        # potato
-        potato = nixpkgs.lib.nixosSystem {
+        # tater
+        tater = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = {
             inherit flake-inputs;
@@ -30,10 +30,11 @@
             [
 
               nur.nixosModules.nur
+              nur-modules.repos.LuisChDev.modules.nordvpn
               {
                 nixpkgs.overlays = [ nur.overlay ];
               }
-              ./machines/potato/configuration.nix
+              ./machines/tater/configuration.nix
 
 
               # /home-manager
@@ -44,7 +45,7 @@
                   useUserPackages = true;
                   backupFileExtension = "hm-bak";
                   users = {
-                    g = import ./machines/potato/home-manager-g.nix;
+                    g = import ./machines/tater/home-manager-g.nix;
                   };
                   extraSpecialArgs = {
                     inherit inputs;
