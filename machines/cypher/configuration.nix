@@ -8,7 +8,7 @@
     ./networking.nix
     ../../modules/nixos/virtualization.nix
     ../../modules/nixos/devices.nix
-    ../../modules/nixos/cinnamon.nix
+    ../../modules/nixos/desktops.nix
     ../../modules/nixos/common.nix
     ../../modules/nixos/sound.nix
     ../../users/g.nix
@@ -19,6 +19,9 @@
     ../../modules/nixos/x11-utils.nix
     ../../modules/nixos/amd.nix
   ];
+
+  #default desktop
+  services.xserver.displayManager.defaultSession = "cinnamon";
 
   # Set your time zone.
   time.timeZone = "America/Chicago";
