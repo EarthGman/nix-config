@@ -5,7 +5,7 @@
     "editor.cursorSmoothCaretAnimation": "on",
     "editor.cursorWidth": 2,
     "editor.find.addExtraSpaceOnTop": false,
-    "editor.fontSize": 16,
+    "editor.fontSize": 20,
     "editor.fontFamily": "'SauceCodePro Nerd Font', 'monospace', monospace",
     "editor.formatOnSave": true,
     "editor.inlayHints.enabled": "off",

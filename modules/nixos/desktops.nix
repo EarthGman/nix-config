@@ -1,52 +1,56 @@
-{ config, lib, pkgs, ... }:
-
+{ pkgs, config, lib, ... }:
 {
-  services = {
-    xserver = {
-      desktopManager.gnome.enable = lib.mkDefault true;
-      displayManager.gdm.enable = lib.mkDefault true;
+  # resolve for gnome and cinnamon confliction.
+  environment.sessionVariables.NIX_GSETTINGS_OVERRIDES_DIR = lib.mkForce "/nix/store/bmn25wcr6rp682bkyvjsj7yddlln4ldv-cinnamon-gsettings-overrides/share/gsettings-schemas/nixos-gsettings-overrides/glib-2.0/schemas";
 
-      enable = true;
-
-      layout = "us";
+  services.xserver = {
+    enable = true;
+    layout = "us";
+    displayManager.sddm.enable = true;
+    desktopManager = {
+      gnome.enable = true;
+      plasma5.enable = true;
+      cinnamon.enable = true;
     };
   };
 
-  specialisation = {
-    gnome.configuration = {
-      services.xserver = {
-        desktopManager.gnome.enable = true;
-        displayManager.gdm.enable = true;
-      };
-      system.nixos.tags = [ "gnome" ];
-    };
-    pantheon.configuration = {
-      services.xserver = {
-        # Pantheon conflicts with gnome
-        desktopManager = {
-          gnome.enable = false;
-          pantheon.enable = true;
-        };
-        # Pantheon requires lightdm
-        displayManager = {
-          gdm.enable = false;
-          lightdm.enable = true;
-        };
-      };
-      system.nixos.tags = [ "pantheon" ];
-    };
-    xfce.configuration = {
-      networking.networkmanager.enable = true;
-      services.xserver = {
-        desktopManager = {
-          gnome.enable = false;
-          xfce.enable = true;
-        };
-        displayManager = {
-          gdm.enable = false;
-        };
-      };
-      system.nixos.tags = [ "gnome" ];
-    };
+  # stuff for the desktops
+  qt = {
+    enable = true;
+    platformTheme = "gnome";
+    style = "adwaita-dark";
   };
+
+  programs.dconf.enable = true;
+  # resolve conflict for plasma and gnome
+  programs.ssh.askPassword = lib.mkForce "/nix/store/0dsjcbp33ibm4zkbhm99d3fxslnaj28v-seahorse-43.0/libexec/seahorse/ssh-askpass";
+
+  environment.gnome.excludePackages = (with pkgs; [
+    gnome-photos
+    gnome-tour
+    gedit
+  ]) ++ (with pkgs.gnome; [
+    cheese
+    gnome-music
+    epiphany
+    # geary
+    gnome-characters
+    tali
+    iagno
+    hitori
+    atomix
+    yelp
+    gnome-contacts
+    gnome-initial-setup
+  ]);
+
+  environment.systemPackages = with pkgs; [
+    gnome.gnome-tweaks
+    gnome.gnome-system-monitor
+    #gnomeExtensions.custom-vpn-toggler
+    evince
+    libsForQt5.kalk # calculator
+    libsForQt5.kpmcore # library for partition manager
+    partition-manager # KDE partition manager
+  ];
 }

@@ -1,131 +1,84 @@
 {
-
   description = "Gman's nix config";
 
   inputs = {
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nur.url = "github:nix-community/NUR";
-    nixpkgs-master.url = "github:nixos/nixpkgs/master";
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-gaming = {
+      url = "github:fufexan/nix-gaming";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # nur = {
+    #   url = "github:nix-community/NUR";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
-  outputs = inputs @ { self, nixpkgs, nixpkgs-master, home-manager, nur, ... }:
+  outputs = { self, nixpkgs, home-manager, ... } @ inputs:
     let
-      flake-inputs = inputs;
-      nur-modules = import nur rec {
-        nurpkgs = nixpkgs.legacyPackages.x86_64-linux;
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      };
-      pkgs-master = nixpkgs-master.legacyPackages.x86_64-linux;
+      inherit (self) outputs;
+      lib = nixpkgs.lib // home-manager.lib;
+      systems = [ "x86_64-linux" ];
+
+      forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
+      pkgsFor = lib.genAttrs systems (system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        });
     in
     {
+      inherit lib;
+
+      packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
+      overlays = import ./overlays { inherit inputs outputs; };
+
       nixosConfigurations = {
-        # tater
-        tater = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = {
-            inherit flake-inputs;
-          };
-          modules =
-            [
-
-              nur.nixosModules.nur
-              nur-modules.repos.LuisChDev.modules.nordvpn
-              {
-                nixpkgs.overlays = [ nur.overlay ];
-              }
-              ./machines/tater/configuration.nix
-
-
-              # /home-manager
-              home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  backupFileExtension = "hm-bak";
-                  users = {
-                    g = import ./machines/tater/home-manager-g.nix;
-                  };
-                  extraSpecialArgs = {
-                    inherit inputs;
-                  };
-                };
-              }
-            ];
+        # old laptop
+        tater = lib.nixosSystem {
+          modules = [ ./machines/tater/configuration.nix ];
+          specialArgs = { inherit inputs outputs; };
         };
 
-        # main
-        cypher = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = {
-            inherit flake-inputs;
-          };
-          modules =
-            [
-
-              nur.nixosModules.nur
-              nur-modules.repos.LuisChDev.modules.nordvpn
-              {
-                nixpkgs.overlays = [ nur.overlay ];
-              }
-
-              ./machines/cypher/configuration.nix
-
-
-              # /home-manager
-              home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  backupFileExtension = "hm-bak";
-                  users = {
-                    g = import ./machines/cypher/home-manager-g.nix;
-                  };
-                  extraSpecialArgs = {
-                    inherit inputs pkgs-master;
-                  };
-                };
-              }
-            ];
+        # gaming desktop
+        cypher = lib.nixosSystem {
+          modules = [ ./machines/cypher/configuration.nix ];
+          specialArgs = { inherit inputs outputs; };
         };
 
-        #laptop
-        garth = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit flake-inputs;
-          };
-          system = "x86_64-linux";
-          modules =
-            [
-
-              nur.nixosModules.nur
-              nur-modules.repos.LuisChDev.modules.nordvpn
-              {
-                nixpkgs.overlays = [ nur.overlay ];
-              }
-
-              ./machines/garth/configuration.nix
-
-
-              # /home-manager
-              home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  backupFileExtension = "hm-bak";
-                  users = {
-                    g = import ./machines/garth/home-manager-g.nix;
-                  };
-                  extraSpecialArgs = {
-                    inherit inputs pkgs-master;
-                  };
-                };
-              }
-            ];
+        # main laptop
+        garth = lib.nixosSystem {
+          modules = [ ./machines/garth/configuration.nix ];
+          specialArgs = { inherit inputs outputs; };
         };
+      };
+      homeConfigurations = {
+        "g@cypher" = lib.homeManagerConfiguration {
+          modules = [ ./machines/cypher/home-manager-g.nix ];
+          pkgs = pkgsFor.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
+        # "g@tater" = lib.homeManagerConfiguration {
+        #   modules = [ ./machines/tater/home-manager-g.nix ];
+        #   pkgs = pkgsFor.x86_64-linux;
+        #   extraSpecialArgs = { inherit inputs outputs; };
+        # };
+        # "g@garth" = lib.homeManagerConfiguration {
+        #   modules = [ ./machines/garth/home-manager-g.nix ];
+        #   pkgs = pkgsFor.x86_64-linux;
+        #   extraSpecialArgs = { inherit inputs outputs; };
+        # };
       };
     };
 }

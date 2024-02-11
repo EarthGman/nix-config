@@ -8,10 +8,11 @@
     ./networking.nix
     ../../modules/nixos/virtualization.nix
     ../../modules/nixos/devices.nix
-    ../../modules/nixos/cinnamon.nix
+    ../../modules/nixos/desktops.nix
     ../../modules/nixos/common.nix
     ../../modules/nixos/sound.nix
     ../../users/g.nix
+    ../../modules/nixos/hm-loader.nix
     ../../modules/nixos/fonts.nix
     ../../modules/nixos/printing.nix
     ../../modules/nixos/nix.nix
@@ -27,7 +28,6 @@
   system.stateVersion = "24.05";
 
   # misc
-  services.nordvpn.enable = true;
   services.flatpak.enable = true;
 
   # disables sudo prompting password

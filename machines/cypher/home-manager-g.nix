@@ -1,5 +1,4 @@
 #used as a bootstrap for home-manager config
-{ pkgs-master, ... }:
 let
   homeDirectory = "/home/g";
   configHome = "${homeDirectory}/.config";
@@ -23,6 +22,7 @@ in
   programs.home-manager.enable = true;
   home = {
     inherit homeDirectory;
+    username = "g";
     keyboard = null;
     sessionVariables = {
       EDITOR = "code --wait";

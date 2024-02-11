@@ -1,7 +1,6 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 let
   user_js = config.home.homeDirectory + "/src/nix-config/modules/home-manager/firefox/user.js";
-  firefox-addons = pkgs.nur.repos.rycee.firefox-addons;
 in
 {
   home = {
@@ -14,11 +13,11 @@ in
     profiles = {
       "${config.home.username}" = {
         id = 0;
-        extensions = (with firefox-addons; [
+        extensions = with pkgs.inputs.firefox-addons; [
           ublock-origin
           onepassword-password-manager
           darkreader
-        ]);
+        ];
         search.default = "DuckDuckGo";
         search.force = true;
       };

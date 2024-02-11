@@ -1,0 +1,5 @@
+{ pkgs ? import <nixpks> { } }: rec {
+  vinegar = pkgs.callPackage ./vinegar.nix {
+    wine = pkgs.inputs.nix-gaming.wine-ge;
+  };
+}

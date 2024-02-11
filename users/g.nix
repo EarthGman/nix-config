@@ -5,6 +5,7 @@ let
 in
 {
   users.users.g = {
+    packages = [ pkgs.home-manager ];
     openssh.authorizedKeys.keys = [
       ssh-key
     ];
@@ -18,6 +19,7 @@ in
       "qemu-libvirtd"
     ];
   };
+
   programs.git = {
     enable = true;
     config = [
