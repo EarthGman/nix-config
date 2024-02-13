@@ -1,5 +1,7 @@
 { pkgs, pkgs-master, ... }:
 {
+  programs.obs-studio.enable = true;
+
   home.packages = with pkgs; [
     # apps
     gimp
@@ -12,12 +14,15 @@
     gcolor3
     clipgrab
     openshot-qt
-    clementine
+    museeks
+    etcher # ISO/USB flasher
     mpv
+
 
     # commands
     steam-run
     appimage-run
+    wmctrl
 
     # Gstreamer
     gst_all_1.gst-libav

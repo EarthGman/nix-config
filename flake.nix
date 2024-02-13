@@ -47,38 +47,37 @@
       nixosConfigurations = {
         # old laptop
         tater = lib.nixosSystem {
-          modules = [ ./machines/tater/configuration.nix ];
+          modules = [ ./machines/tater ];
           specialArgs = { inherit inputs outputs; };
         };
-
         # gaming desktop
         cypher = lib.nixosSystem {
-          modules = [ ./machines/cypher/configuration.nix ];
+          modules = [ ./machines/cypher ];
           specialArgs = { inherit inputs outputs; };
         };
-
         # main laptop
         garth = lib.nixosSystem {
-          modules = [ ./machines/garth/configuration.nix ];
+          modules = [ ./machines/garth ];
           specialArgs = { inherit inputs outputs; };
         };
       };
+
       homeConfigurations = {
         "g@cypher" = lib.homeManagerConfiguration {
           modules = [ ./machines/cypher/home-manager-g.nix ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
-        # "g@tater" = lib.homeManagerConfiguration {
-        #   modules = [ ./machines/tater/home-manager-g.nix ];
-        #   pkgs = pkgsFor.x86_64-linux;
-        #   extraSpecialArgs = { inherit inputs outputs; };
-        # };
-        # "g@garth" = lib.homeManagerConfiguration {
-        #   modules = [ ./machines/garth/home-manager-g.nix ];
-        #   pkgs = pkgsFor.x86_64-linux;
-        #   extraSpecialArgs = { inherit inputs outputs; };
-        # };
+        "g@tater" = lib.homeManagerConfiguration {
+          modules = [ ./machines/tater/home-manager-g.nix ];
+          pkgs = pkgsFor.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
+        "g@garth" = lib.homeManagerConfiguration {
+          modules = [ ./machines/garth/home-manager-g.nix ];
+          pkgs = pkgsFor.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
       };
     };
 }

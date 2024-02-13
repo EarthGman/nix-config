@@ -25,10 +25,6 @@
     config = {
       allowUnfree = true;
       allowUnsupportedSystem = true;
-      permittedInsecurePackages = [
-        "electron-25.9.0"
-        "electron-19.1.9"
-      ];
     };
   };
 }
