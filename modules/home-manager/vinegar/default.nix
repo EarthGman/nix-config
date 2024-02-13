@@ -4,7 +4,7 @@
     vinegar
   ];
   xdg.configFile."vinegar/config.toml".text = ''
-    #multiple_instances = true
+    multiple_instances = true
 
     [player]
     renderer = "D3D11"

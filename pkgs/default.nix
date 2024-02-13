@@ -2,4 +2,5 @@
   vinegar = pkgs.callPackage ./vinegar.nix {
     wine = pkgs.inputs.nix-gaming.wine-ge;
   };
+  nordvpn = pkgs.callPackage ./nordvpn.nix { };
 }
