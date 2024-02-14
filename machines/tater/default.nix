@@ -7,6 +7,7 @@
     ./hardware-configuration.nix
     ./boot.nix
     ./networking.nix
+    ../../modules/nixos/virtualization.nix
     ../../modules/nixos/desktops.nix
     ../../modules/nixos/common.nix
     ../../modules/nixos/sound.nix
@@ -20,7 +21,7 @@
   # loads home-manager
   home-manager.extraSpecialArgs = { inherit inputs outputs; };
 
-  # default desktop
+  #default desktop
   services.xserver.displayManager.defaultSession = "cinnamon";
 
   # Set your time zone.

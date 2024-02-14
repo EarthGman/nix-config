@@ -27,6 +27,9 @@
   # default desktop
   services.xserver.displayManager.defaultSession = "cinnamon";
 
+  #default desktop
+  services.xserver.displayManager.defaultSession = "cinnamon";
+
   # Set your time zone.
   time.timeZone = "America/Chicago";
 
