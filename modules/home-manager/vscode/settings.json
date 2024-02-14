@@ -12,7 +12,6 @@
     "editor.largeFileOptimizations": false,
     "editor.maxTokenizationLineLength": 60000,
     "editor.linkedEditing": true,
-    "editor.minimap.enabled": false,
     "editor.overviewRulerBorder": false,
     "editor.renderWhitespace": "none",
     "editor.suggest.showStatusBar": true,

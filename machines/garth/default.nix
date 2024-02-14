@@ -15,9 +15,9 @@
     ../../modules/nixos/fonts.nix
     ../../modules/nixos/printing.nix
     ../../modules/nixos/nix.nix
+    ../../modules/nixos/nordvpn.nix
     ../../modules/nixos/zsh.nix
     ../../modules/nixos/x11-utils.nix
-    ../../modules/nixos/amd.nix
     ../../users/g.nix
   ];
   # loads home-manager
@@ -34,6 +34,7 @@
 
   # misc
   services.flatpak.enable = true;
+  services.nordvpn.enable = true;
 
   # disables sudo prompting password
   security.sudo.wheelNeedsPassword = false;

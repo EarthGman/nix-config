@@ -11,7 +11,7 @@
   ll = "l -lhF";
   la = "l -a";
   t = "l -T -L3";
-  l = "ls -lhF --git -I '.git|.DS_'";
+  l = "ls -alhF --git -I '.git|.DS_'";
   g = "${pkgs.git}/bin/git";
   gco = "g checkout";
   gba = "g branch -a";

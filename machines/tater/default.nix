@@ -7,8 +7,6 @@
     ./hardware-configuration.nix
     ./boot.nix
     ./networking.nix
-    ../../modules/nixos/virtualization.nix
-    ../../modules/nixos/devices.nix
     ../../modules/nixos/desktops.nix
     ../../modules/nixos/common.nix
     ../../modules/nixos/sound.nix
@@ -17,7 +15,6 @@
     ../../modules/nixos/nix.nix
     ../../modules/nixos/zsh.nix
     ../../modules/nixos/x11-utils.nix
-    ../../modules/nixos/amd.nix
     ../../users/g.nix
   ];
   # loads home-manager

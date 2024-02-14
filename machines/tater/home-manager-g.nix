@@ -13,7 +13,6 @@ in
     ../../modules/home-manager/dconf.nix
     ../../modules/home-manager/gtk.nix
     ../../modules/home-manager/wine.nix
-    ../../modules/home-manager/gaming.nix
     ../../modules/home-manager/firefox
     ../../modules/home-manager/neofetch
     ../../modules/home-manager/vinegar
