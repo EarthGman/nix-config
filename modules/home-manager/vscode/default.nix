@@ -23,6 +23,7 @@ in
       sumneko.lua
       naumovs.color-highlight
       vscode-icons-team.vscode-icons
+      tomoki1207.pdf
     ];
   };
 }
