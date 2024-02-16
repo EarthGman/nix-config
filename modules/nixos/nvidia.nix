@@ -33,7 +33,7 @@
     # enables otimus prime for nvidia laptops
     # prime = {
     #   intelBusId = "PCI:0:0:0"; insert bus id here using lshw
-    #   NvidiaBusId = "PCI:0:0:0"; insert bus id here using lshw
+    #   nvidiaBusId = "PCI:0:0:0"; insert bus id here using lshw
 
     #   sync.enable = true;
     # };
