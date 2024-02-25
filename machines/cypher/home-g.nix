@@ -6,7 +6,6 @@ let
 in
 {
   imports = [
-    ../../modules/home-manager/zsh.nix
     ../../modules/home-manager/common.nix
     ../../modules/home-manager/gh.nix
     ../../modules/home-manager/gnome-extensions.nix
@@ -18,6 +17,7 @@ in
     ../../modules/home-manager/vinegar
     ../../modules/home-manager/vscode
     ../../modules/home-manager/wezterm
+    ../../modules/home-manager/zsh
   ];
   programs.home-manager.enable = true;
 

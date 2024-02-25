@@ -59,17 +59,17 @@
 
       homeConfigurations = {
         "g@cypher" = lib.homeManagerConfiguration {
-          modules = [ ./machines/cypher/home-manager-g.nix ];
+          modules = [ ./machines/cypher/home-g.nix ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
         "g@tater" = lib.homeManagerConfiguration {
-          modules = [ ./machines/tater/home-manager-g.nix ];
+          modules = [ ./machines/tater/home-g.nix ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
         "g@garth" = lib.homeManagerConfiguration {
-          modules = [ ./machines/garth/home-manager-g.nix ];
+          modules = [ ./machines/garth/home-g.nix ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };

@@ -18,6 +18,8 @@ in
       xaver.clang-format
       ms-vscode.cpptools
       ms-vscode.cmake-tools
+      ms-python.python
+      ms-python.vscode-pylance
       bbenoist.nix
       jnoortheen.nix-ide
       sumneko.lua

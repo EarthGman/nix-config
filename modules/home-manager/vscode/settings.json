@@ -37,5 +37,8 @@
     "workbench.iconTheme": "vscode-icons",
     "window.zoomLevel": -1,
     "workbench.colorTheme": "Default High Contrast",
-    "cmake.showOptionsMovedNotification": false
+    "cmake.showOptionsMovedNotification": false,
+    "[c]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    }
 }

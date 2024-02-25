@@ -2,13 +2,13 @@
 let
   src = config.home.homeDirectory + "/src/nix-config";
   config_conf = src + "/modules/home-manager/neofetch/config.conf";
-  logo = src + "/modules/home-manager/neofetch/owo-nixos.png";
+  logo = src + "/modules/home-manager/neofetch/nixos-logo.png";
 in
 {
   home = {
     file = {
       ".config/neofetch/config.conf".source = config.lib.file.mkOutOfStoreSymlink config_conf;
-      ".config/neofetch/owo-nixos.png".source = config.lib.file.mkOutOfStoreSymlink logo;
+      ".config/neofetch/nixos-logo.png".source = config.lib.file.mkOutOfStoreSymlink logo;
     };
     packages = with pkgs; [
       neofetch # displays system info
