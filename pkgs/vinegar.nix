@@ -1,3 +1,4 @@
+# well it was fun while it lasted ;(
 { lib
 , buildGoModule
 , fetchFromGitHub

@@ -14,7 +14,6 @@ in
     ../../modules/home-manager/wine.nix
     ../../modules/home-manager/firefox
     ../../modules/home-manager/neofetch
-    ../../modules/home-manager/vinegar
     ../../modules/home-manager/vscode
     ../../modules/home-manager/wezterm
     ../../modules/home-manager/zsh
