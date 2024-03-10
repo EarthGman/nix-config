@@ -15,7 +15,6 @@ in
     package = pkgs.vscode-fhs;
     enable = true;
     extensions = with pkgs.vscode-extensions; [
-      xaver.clang-format
       ms-vscode.cpptools
       ms-vscode.cmake-tools
       ms-python.python

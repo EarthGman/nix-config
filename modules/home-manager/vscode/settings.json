@@ -7,7 +7,6 @@
     "editor.find.addExtraSpaceOnTop": false,
     "editor.fontSize": 20,
     "editor.fontFamily": "'SauceCodePro Nerd Font', 'monospace', monospace",
-    "editor.formatOnSave": true,
     "editor.inlayHints.enabled": "off",
     "editor.largeFileOptimizations": false,
     "editor.maxTokenizationLineLength": 60000,
@@ -38,7 +37,6 @@
     "window.zoomLevel": -1,
     "workbench.colorTheme": "Default High Contrast",
     "cmake.showOptionsMovedNotification": false,
-    "[c]": {
-        "editor.defaultFormatter": "xaver.clang-format"
-    }
+    "editor.defaultFormatter": "ms-vscode.cpptools",
+    "editor.formatOnSave": true
 }
