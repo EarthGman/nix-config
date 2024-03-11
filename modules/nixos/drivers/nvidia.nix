@@ -1,3 +1,4 @@
+# Drivers for Nvidia GPUs
 { config, ... }:
 {
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -30,11 +31,13 @@
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
 
-    # enables otimus prime for nvidia laptops
-    # prime = {
-    #   intelBusId = "PCI:0:0:0"; insert bus id here using lshw
-    #   nvidiaBusId = "PCI:0:0:0"; insert bus id here using lshw
+    # optimus prime
+    # if you have and Nvidia GPU in a laptop you need to enable the following
+    # find your bus IDs using lshw
 
+    # prime = {
+    #   intelBusId = "PCI:0:0:0";
+    #   nvidiaBusId = "PCI:0:0:0";
     #   sync.enable = true;
     # };
   };

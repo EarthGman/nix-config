@@ -21,6 +21,7 @@
         fonts = [
           "JetBrainsMono"
           "DejaVuSansMono"
+          "UbuntuMono"
         ];
       })
     ];

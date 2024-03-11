@@ -1,3 +1,4 @@
+# AMD GPU drivers
 {
   services.xserver.videoDrivers = [ "modesetting" ];
   # Enable OpenGL00

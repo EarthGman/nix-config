@@ -4,15 +4,18 @@
 {
   imports = [
     inputs.home-manager.nixosModules.home-manager
-    ./hardware-configuration.nix
+    ./hardware.nix
     ./boot.nix
     ./networking.nix
     ../../modules/nixos/virtualization.nix
     ../../modules/nixos/devices.nix
-    ../../modules/nixos/desktops.nix
+    ../../modules/nixos/display-managers/sddm.nix
+    ../../modules/nixos/desktops
+    ../../modules/nixos/desktops/cinnamon.nix
     ../../modules/nixos/common.nix
     ../../modules/nixos/sound.nix
     ../../modules/nixos/fonts.nix
+    ../../modules/nixos/flatpak.nix
     ../../modules/nixos/printing.nix
     ../../modules/nixos/nix.nix
     ../../modules/nixos/nordvpn.nix
@@ -31,10 +34,6 @@
 
   #system version
   system.stateVersion = "24.05";
-
-  # misc
-  services.flatpak.enable = true;
-  services.nordvpn.enable = true;
 
   # disables sudo prompting password
   security.sudo.wheelNeedsPassword = false;

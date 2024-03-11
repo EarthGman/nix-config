@@ -1,5 +1,6 @@
 { lib, ... }:
 
+# declaritive dconf settings, currently adds minimize and maximize buttons
 with lib.hm.gvariant;
 {
   dconf.settings = {

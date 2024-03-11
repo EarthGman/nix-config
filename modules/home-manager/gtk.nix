@@ -1,4 +1,5 @@
 {
+  # needed for running some applications
   gtk = {
     enable = true;
     gtk3.extraConfig = {

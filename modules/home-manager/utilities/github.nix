@@ -1,4 +1,8 @@
+{ pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    github-desktop
+  ];
   programs.gh = {
     enable = true;
     gitCredentialHelper.enable = true;

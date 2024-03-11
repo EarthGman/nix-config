@@ -25,6 +25,7 @@
       radeontop # another htop like monitoring tool for AMD GPUs only
       nvtop # an htop like monitoring tool for GPUs
       powertop # power consumption monitoring tool
+      nix-prefetch-git # for obtaining github hashes
       ncdu
       jq
       dua

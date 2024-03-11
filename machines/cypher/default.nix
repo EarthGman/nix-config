@@ -1,41 +1,46 @@
-#configurations specific to cypher
-{ inputs, outputs, ... }:
+# nixos configurations specific to cypher
+{ pkgs, inputs, outputs, ... }:
 
 {
   imports = [
     inputs.home-manager.nixosModules.home-manager
-    ./hardware-configuration.nix
+    ./hardware.nix
     ./boot.nix
     ./networking.nix
-    ../../modules/nixos/virtualization.nix
+    ../../modules/nixos/drivers/amd.nix
+    ../../modules/nixos/display-managers/sddm
+    ../../modules/nixos/desktops
+    ../../modules/nixos/nordvpn
+    ../../modules/nixos/desktops/gnome.nix
+    ../../modules/nixos/desktops/cinnamon.nix
     ../../modules/nixos/devices.nix
-    ../../modules/nixos/desktops.nix
-    ../../modules/nixos/common.nix
+    ../../modules/nixos/virtualization.nix
     ../../modules/nixos/sound.nix
+    ../../modules/nixos/nix.nix
+    ../../modules/nixos/flatpak.nix
+    ../../modules/nixos/common.nix
     ../../modules/nixos/fonts.nix
     ../../modules/nixos/printing.nix
-    ../../modules/nixos/nix.nix
-    ../../modules/nixos/nordvpn.nix
     ../../modules/nixos/zsh.nix
     ../../modules/nixos/x11-utils.nix
-    ../../modules/nixos/amd.nix
     ../../users/g.nix
   ];
   # loads home-manager
   home-manager.extraSpecialArgs = { inherit inputs outputs; };
 
   # default desktop
-  services.xserver.displayManager.defaultSession = "cinnamon";
+  services.xserver = {
+    displayManager = {
+      sddm.theme = "${import ../../modules/nixos/display-managers/sddm/themes/sugar-dark.nix {inherit pkgs; }}";
+      defaultSession = "cinnamon";
+    };
+  };
 
   # Set your time zone.
   time.timeZone = "America/Chicago";
 
   #system version
   system.stateVersion = "24.05";
-
-  # misc
-  services.flatpak.enable = true;
-  services.nordvpn.enable = true;
 
   # disables sudo prompting password
   security.sudo.wheelNeedsPassword = false;

@@ -37,6 +37,6 @@
     "window.zoomLevel": -1,
     "workbench.colorTheme": "Default High Contrast",
     "cmake.showOptionsMovedNotification": false,
-    "editor.defaultFormatter": "ms-vscode.cpptools",
+    "editor.defaultFormatter": "B4dM4n.nixpkgs-fmt",
     "editor.formatOnSave": true
 }

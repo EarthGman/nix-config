@@ -6,17 +6,17 @@ let
 in
 {
   imports = [
-    ../../modules/home-manager/common.nix
-    ../../modules/home-manager/gh.nix
+    ../../modules/home-manager/utilities
+    ../../modules/home-manager/gaming
+    ../../modules/home-manager/firefox
+    ../../modules/home-manager/vscode
+    ../../modules/home-manager/wezterm
+    ../../modules/home-manager/neofetch
+    ../../modules/home-manager/zsh
     ../../modules/home-manager/gnome-extensions.nix
     ../../modules/home-manager/dconf.nix
     ../../modules/home-manager/gtk.nix
     ../../modules/home-manager/wine.nix
-    ../../modules/home-manager/firefox
-    ../../modules/home-manager/neofetch
-    ../../modules/home-manager/vscode
-    ../../modules/home-manager/wezterm
-    ../../modules/home-manager/zsh
   ];
   programs.home-manager.enable = true;
 
