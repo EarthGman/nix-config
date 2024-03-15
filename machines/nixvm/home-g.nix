@@ -9,6 +9,7 @@ in
     ../../modules/home-manager/utilities/github.nix
     ../../modules/home-manager/gnome-extensions.nix
     ../../modules/home-manager/gtk.nix
+    ../../modules/home-manager/dconf.nix
     ../../modules/home-manager/firefox
     ../../modules/home-manager/neofetch
     ../../modules/home-manager/vscode

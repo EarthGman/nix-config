@@ -1,6 +1,6 @@
 {
   networking = {
-    hostname = "nixvm";
+    hostName = "nixvm";
     networkmanager.enable = true;
   };
 }

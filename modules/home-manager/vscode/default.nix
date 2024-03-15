@@ -19,6 +19,7 @@ in
       ms-vscode.cmake-tools
       ms-python.python
       ms-python.vscode-pylance
+      b4dm4n.vscode-nixpkgs-fmt
       bbenoist.nix
       jnoortheen.nix-ide
       sumneko.lua

@@ -55,6 +55,11 @@
           modules = [ ./machines/garth ];
           specialArgs = { inherit inputs outputs; };
         };
+        # VM
+        nixvm = lib.nixosSystem {
+          modules = [ ./machines/nixvm ];
+          specialArgs = { inherit inputs outputs; };
+        };
       };
 
       homeConfigurations = {
@@ -70,6 +75,11 @@
         };
         "g@garth" = lib.homeManagerConfiguration {
           modules = [ ./machines/garth/home-g.nix ];
+          pkgs = pkgsFor.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
+        "g@nixvm" = lib.homeManagerConfiguration {
+          modules = [ ./machines/nixvm/home-g.nix ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };

@@ -5,8 +5,8 @@
       "quiet"
       "noatime"
     ];
+    kernelPackages = pkgs.linuxPackages_latest;
     loader = {
-      kernelPackages = pkgs.linuxPackages_latest;
       efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";
