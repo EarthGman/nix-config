@@ -23,7 +23,7 @@
   services.xserver = {
     displayManager = {
       defaultSession = "gnome";
-      sddm.theme = "${import ../../modules/nixos/display-managers/sddm/themes/flight-sddm {inherit pkgs; }}";
+      sddm.theme = "${import ../../modules/nixos/display-managers/sddm/themes/oneshot {inherit pkgs; }}";
     };
   };
 

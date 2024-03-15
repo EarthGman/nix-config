@@ -1,7 +1,7 @@
 { pkgs }:
 
 let
-  image = ./Background.jpg;
+  image = ./background.jpg;
 in
 pkgs.stdenv.mkDerivation {
   name = "sugar-dark";

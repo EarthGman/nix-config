@@ -1,0 +1,22 @@
+{ pkgs, ... }:
+
+let
+  image = ./background.jpg;
+in
+pkgs.stdenv.mkDerivation {
+  name = "utterly-sweet";
+  src = pkgs.fetchFromGitHub {
+    owner = "HimDek";
+    repo = "Utterly-Sweet-Plasma";
+    rev = "bb098dc35fb146c5045492e3225f9b2e2f4dc16c";
+    sha256 = "01k0rrm56yxxcgdx3a20xgzw291q9ps268jl3ngg3pkcrrazvlz1";
+  };
+  dontWrapQtApps = true;
+
+  installPhase = ''
+    mkdir -p $out
+    cp -R ./sddm/* $out/
+    rm $out/background.jpg
+    cp ${image} $out
+  '';
+}

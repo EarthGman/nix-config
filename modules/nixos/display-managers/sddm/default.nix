@@ -25,6 +25,7 @@
     kservice
     ktexteditor
     kwidgetsaddons
+    kirigami2
   ]) ++ (with pkgs.libsForQt5.qt5; [
     qtbase
     qtquickcontrols2
