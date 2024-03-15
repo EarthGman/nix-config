@@ -31,7 +31,7 @@
   # default desktop
   services.xserver = {
     displayManager = {
-      sddm.theme = "${import ../../modules/nixos/display-managers/sddm/themes/sugar-dark.nix {inherit pkgs; }}";
+      sddm.theme = "${import ../../modules/nixos/display-managers/sddm/themes/utterly-sweet {inherit pkgs; }}";
       defaultSession = "cinnamon";
     };
   };

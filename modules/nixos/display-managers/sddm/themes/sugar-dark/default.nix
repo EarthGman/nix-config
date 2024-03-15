@@ -1,5 +1,8 @@
 { pkgs }:
 
+let
+  image = ./Background.jpg;
+in
 pkgs.stdenv.mkDerivation {
   name = "sugar-dark";
   src = pkgs.fetchFromGitHub {
@@ -11,5 +14,7 @@ pkgs.stdenv.mkDerivation {
   installPhase = ''
     mkdir -p $out
     cp -R ./* $out/
+    rm $out/Background.jpg
+    cp -r ${image} $out/Background.jpg
   '';
 }
