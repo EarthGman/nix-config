@@ -4,18 +4,18 @@ let
   image = ./background.jpg;
 in
 pkgs.stdenv.mkDerivation {
-  name = "utterly-sweet";
+  name = "oneshot-sddm-theme";
   src = pkgs.fetchFromGitHub {
-    owner = "HimDek";
-    repo = "Utterly-Sweet-Plasma";
-    rev = "bb098dc35fb146c5045492e3225f9b2e2f4dc16c";
-    sha256 = "01k0rrm56yxxcgdx3a20xgzw291q9ps268jl3ngg3pkcrrazvlz1";
+    owner = "L4ki";
+    repo = "Bluish-Plasma-Themes";
+    rev = "5afbd9a22c677d1a8dbafd3d82184f3421d3d27c";
+    sha256 = "0an6xba339ihw66rjaf67mhh5j6zmllxkhrv1s9jcrlwfyim6lxp";
   };
   dontWrapQtApps = true;
 
   installPhase = ''
     mkdir -p $out
-    cp -R ./sddm/* $out/
+    cp -R ./Bluish\ SDDM\ Themes/Bluish-SDDM/* $out/
     rm $out/background.jpg
     cp ${image} $out
   '';
