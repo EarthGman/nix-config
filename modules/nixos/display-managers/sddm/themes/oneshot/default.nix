@@ -6,6 +6,7 @@ in
 pkgs.stdenv.mkDerivation {
   name = "oneshot-sddm-theme";
   src = pkgs.fetchFromGitHub {
+    # uses Bluish Plasma as a Template
     owner = "L4ki";
     repo = "Bluish-Plasma-Themes";
     rev = "5afbd9a22c677d1a8dbafd3d82184f3421d3d27c";
@@ -17,6 +18,6 @@ pkgs.stdenv.mkDerivation {
     mkdir -p $out
     cp -R ./Bluish\ SDDM\ Themes/Bluish-SDDM/* $out/
     rm $out/background.jpg
-    cp ${image} $out
+    cp ${image} $out/background.jpg
   '';
 }
