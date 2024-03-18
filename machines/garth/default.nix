@@ -9,7 +9,7 @@
     ./networking.nix
     ../../modules/nixos/virtualization.nix
     ../../modules/nixos/devices.nix
-    ../../modules/nixos/display-managers/sddm.nix
+    ../../modules/nixos/display-managers/sddm
     ../../modules/nixos/desktops
     ../../modules/nixos/desktops/cinnamon.nix
     ../../modules/nixos/common.nix
@@ -18,7 +18,7 @@
     ../../modules/nixos/flatpak.nix
     ../../modules/nixos/printing.nix
     ../../modules/nixos/nix.nix
-    ../../modules/nixos/nordvpn.nix
+    ../../modules/nixos/nordvpn
     ../../modules/nixos/zsh.nix
     ../../modules/nixos/x11-utils.nix
     ../../users/g.nix

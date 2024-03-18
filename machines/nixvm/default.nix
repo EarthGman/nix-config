@@ -19,7 +19,7 @@
   #loads home-manager
   home-manager.extraSpecialArgs = { inherit inputs outputs; };
 
-  # set deafault desktops
+  # set default desktops
   services.xserver = {
     displayManager = {
       defaultSession = "gnome";

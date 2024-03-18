@@ -9,7 +9,7 @@
     ./networking.nix
     ../../modules/nixos/virtualization.nix
     ../../modules/nixos/desktops
-    ../../modules/nixos/display-managers/sddm.nix
+    ../../modules/nixos/display-managers/sddm
     ../../modules/nixos/cinnamon.nix
     ../../modules/nixos/common.nix
     ../../modules/nixos/sound.nix
@@ -24,8 +24,13 @@
   # loads home-manager
   home-manager.extraSpecialArgs = { inherit inputs outputs; };
 
-  #default desktop
-  services.xserver.displayManager.defaultSession = "cinnamon";
+  # set default desktops
+  services.xserver = {
+    displayManager = {
+      defaultSession = "cinnamon";
+      sddm.theme = "${import ../../modules/nixos/display-managers/sddm/themes/bluish-sddm {inherit pkgs; }}";
+    };
+  };
 
   # Set your time zone.
   time.timeZone = "America/Chicago";
