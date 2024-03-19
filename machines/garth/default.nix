@@ -1,5 +1,5 @@
 #configurations specific to garth
-{ inputs, outputs, ... }:
+{ pkgs, inputs, outputs, ... }:
 
 {
   imports = [
@@ -12,6 +12,7 @@
     ../../modules/nixos/display-managers/sddm
     ../../modules/nixos/desktops
     ../../modules/nixos/desktops/cinnamon.nix
+    ../../modules/nixos/desktops/gnome.nix
     ../../modules/nixos/common.nix
     ../../modules/nixos/sound.nix
     ../../modules/nixos/fonts.nix
@@ -27,7 +28,12 @@
   home-manager.extraSpecialArgs = { inherit inputs outputs; };
 
   # default desktop
-  services.xserver.displayManager.defaultSession = "cinnamon";
+  services.xserver = {
+    displayManager = {
+      defaultSession = "cinnamon";
+      sddm.theme = "${import ../../modules/nixos/display-managers/sddm/themes/utterly-sweet {inherit pkgs; }}";
+    };
+  };
 
   # Set your time zone.
   time.timeZone = "America/Chicago";
