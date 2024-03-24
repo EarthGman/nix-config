@@ -23,6 +23,7 @@
     museeks # music app
     flips # IPS and BPS file patcher
     filezilla # FTP client
+    pika-backup # simple backups based on borg
 
     # commands
     steam-run # running DLL applications, not related to steam at all
