@@ -23,7 +23,7 @@
       lshw
       tree # command to list files as a tree
       radeontop # another htop like monitoring tool for AMD GPUs only
-      nvtop # an htop like monitoring tool for GPUs
+      nvtopPackages.full # an htop like monitoring tool for GPUs
       powertop # power consumption monitoring tool
       nix-prefetch-git # for obtaining github hashes
       ncdu

@@ -17,7 +17,7 @@ in
     extensions = with pkgs.vscode-extensions; [
       ms-vscode.cpptools
       ms-vscode.cmake-tools
-      ms-python.python
+      # ms-python.python
       ms-python.vscode-pylance
       b4dm4n.vscode-nixpkgs-fmt
       bbenoist.nix

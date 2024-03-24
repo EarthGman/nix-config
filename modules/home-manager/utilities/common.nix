@@ -21,7 +21,6 @@
     openshot-qt # video editor
     audacity # audio editor
     museeks # music app
-    etcher # ISO/USB flasher
     flips # IPS and BPS file patcher
     filezilla # FTP client
 
