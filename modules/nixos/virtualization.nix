@@ -17,6 +17,7 @@
   programs.virt-manager.enable = true;
   environment.systemPackages = with pkgs; [
     qemu_kvm # virtual machines
+    virtiofsd
   ];
   programs.dconf.enable = lib.mkDefault true;
 }
