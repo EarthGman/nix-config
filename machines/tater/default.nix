@@ -38,7 +38,7 @@
   #system version
   system.stateVersion = "24.05";
 
-  # disables sudo prompting password
+  # sudo prompting password
   security.sudo.wheelNeedsPassword = false;
 }
 
