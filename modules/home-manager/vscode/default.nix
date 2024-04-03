@@ -9,6 +9,7 @@ in
     packages = with pkgs; [
       # formatter for nix
       nixpkgs-fmt
+      nixd
     ];
   };
   programs.vscode = {

@@ -4,5 +4,6 @@
     ./common.nix
     ./github.nix
     ./musescore.nix
+    ./gpg.nix
   ];
 }

@@ -38,5 +38,6 @@
     "workbench.colorTheme": "Default High Contrast",
     "cmake.showOptionsMovedNotification": false,
     "editor.defaultFormatter": "B4dM4n.nixpkgs-fmt",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "nix.serverPath": "nixd"
 }
