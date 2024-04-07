@@ -1,5 +1,5 @@
 #configurations specific to tater
-{ inputs, outputs, ... }:
+{pkgs, inputs, outputs, ... }:
 
 {
   imports = [
@@ -9,8 +9,8 @@
     ./networking.nix
     ../../modules/nixos/virtualization.nix
     ../../modules/nixos/desktops
+    ../../modules/nixos/desktops/cinnamon.nix
     ../../modules/nixos/display-managers/sddm
-    ../../modules/nixos/cinnamon.nix
     ../../modules/nixos/common.nix
     ../../modules/nixos/sound.nix
     ../../modules/nixos/flatpak.nix
@@ -28,7 +28,7 @@
   services.xserver = {
     displayManager = {
       defaultSession = "cinnamon";
-      sddm.theme = "${import ../../modules/nixos/display-managers/sddm/themes/bluish-sddm {inherit pkgs; }}";
+      sddm.theme = "${import ../../modules/nixos/display-managers/sddm/themes/hallow-knight {inherit pkgs; }}";
     };
   };
 
