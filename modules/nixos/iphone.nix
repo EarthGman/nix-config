@@ -5,6 +5,7 @@
     ifuse # filesystem mount for iphones
     libimobiledevice # required
     checkra1n # jailbreaker
+    usbmuxd
   ];
 
   services.usbmuxd = {
