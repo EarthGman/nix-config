@@ -29,6 +29,8 @@
     steam-run # running DLL applications, not related to steam at all
     appimage-run # appimages
     wmctrl # some ctrl options for window managers
+    ifuse # filesystem mount for iphones
+    libimobiledevice
 
   ]) ++ (with pkgs.gst_all_1; [
     # Gstreamer needed for playing videos through media players

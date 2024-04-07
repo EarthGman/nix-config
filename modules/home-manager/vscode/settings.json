@@ -39,5 +39,6 @@
     "cmake.showOptionsMovedNotification": false,
     "editor.defaultFormatter": "B4dM4n.nixpkgs-fmt",
     "editor.formatOnSave": true,
-    "nix.serverPath": "nixd"
+    "nix.serverPath": "nixd",
+    "editor.minimap.enabled": false
 }
