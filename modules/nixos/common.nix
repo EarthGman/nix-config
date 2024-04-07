@@ -31,7 +31,6 @@
       dua
       openssl
       usbutils
-      usbmuxd # allows for usb connection with IOS devices
       pciutils
     ];
   };

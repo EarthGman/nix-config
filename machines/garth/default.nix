@@ -18,6 +18,7 @@
     ../../modules/nixos/fonts.nix
     ../../modules/nixos/flatpak.nix
     ../../modules/nixos/printing.nix
+    ../../modules/nixos/iphone.nix
     ../../modules/nixos/nix.nix
     ../../modules/nixos/nordvpn
     ../../modules/nixos/zsh.nix
