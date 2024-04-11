@@ -29,6 +29,7 @@
     steam-run # running DLL applications, not related to steam at all
     appimage-run # appimages
     wmctrl # some ctrl options for window managers
+    unrar-free # unzip rar
 
   ]) ++ (with pkgs.gst_all_1; [
     # Gstreamer needed for playing videos through media players

@@ -11,6 +11,7 @@
   networking = {
     hostName = "cypher"; # Define your hostname.
     networkmanager.enable = true; # Easiest to use and most distros use this by default.
+    extraHosts = ''66.79.209.80 ico-reb.stardock.com'';
     firewall = {
       checkReversePath = false;
       allowedTCPPorts = [

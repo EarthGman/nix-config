@@ -2,6 +2,7 @@
 { pkgs, lib, ... }:
 {
   virtualisation = {
+    spiceUSBRedirection.enable = true;
     libvirtd = {
       enable = true;
       qemu = {

@@ -1,21 +1,27 @@
-{ pkgs, config, ... }:
+{ pkgs, lib, config, ... }:
 {
   #latest linux kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.kernelParams = [
-    "video=3840x2160"
+    "video=1920x1080"
     "quiet"
     "noatime"
-  ];
-  boot.kernelModules = [
-    "kvm-amd"
-  ];
-  boot.initrd.kernelModules = [
-    "amdgpu"
+    "amd_iommu=on"
   ];
 
-  # boot.loader.systemd-boot.enable = true;
+  boot.kernelModules = [
+    "kvm-amd"
+    "vfio_pci"
+    "vfio"
+    "vfio_iommu_type1"
+    "vfio_virqfd"
+  ];
+
+  boot.extraModprobeConfig = ''
+    options vfio-pci ids=1002:164e,1002:1640
+    softdep amdgpu pre: vfio-pci
+  '';
 
   # grub
   boot.loader = {
