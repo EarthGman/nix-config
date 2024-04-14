@@ -18,6 +18,5 @@
   environment.systemPackages = with pkgs; ([
     gnome.gnome-system-monitor
   ]) ++ (with pkgs.libsForQt5; [
-    dolphin
   ]);
 }

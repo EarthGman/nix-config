@@ -5,5 +5,6 @@
     ./github.nix
     ./musescore.nix
     ./gpg.nix
+    ./looking-glass.nix
   ];
 }
