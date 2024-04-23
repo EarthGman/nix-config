@@ -29,7 +29,7 @@
   home-manager.extraSpecialArgs = { inherit inputs outputs; };
 
   # default desktop
-  services.xserver = {
+  services = {
     displayManager = {
       defaultSession = "cinnamon";
       sddm.theme = "${import ../../modules/nixos/display-managers/sddm/themes/utterly-sweet {inherit pkgs; }}";

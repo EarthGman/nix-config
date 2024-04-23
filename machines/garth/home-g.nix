@@ -6,7 +6,10 @@ let
 in
 {
   imports = [
-    ../../modules/home-manager/utilities
+    ../../modules/home-manager/utilities/common.nix
+    ../../modules/home-manager/utilities/github.nix
+    ../../modules/home-manager/utilities/gpg.nix
+    ../../modules/home-manager/utilities/musescore.nix
     ../../modules/home-manager/firefox
     ../../modules/home-manager/wezterm
     ../../modules/home-manager/zsh
