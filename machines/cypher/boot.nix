@@ -33,12 +33,6 @@
     grub.gfxmodeEfi = "640x480";
     grub.devices = [ "nodev" ];
     grub.extraEntries = ''
-      menuentry 'Windows 10' --class windows --class os {
-        insmod part_gpt
-        insmod ntfs
-        search --no-floppy --fs-uuid --set=root 42AD-8EF4
-        chainloader /efi/Microsoft/Boot/bootmgfw.efi
-      }
       menuentry "Reboot" {
         reboot
       }
