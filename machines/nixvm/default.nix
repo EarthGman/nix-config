@@ -9,6 +9,7 @@
     ../../modules/nixos/display-managers/sddm
     ../../modules/nixos/desktops
     ../../modules/nixos/desktops/gnome.nix
+    ../../modules/nixos/desktops/hyprland.nix
     ../../modules/nixos/sound.nix
     ../../modules/nixos/nix.nix
     ../../modules/nixos/common.nix
@@ -23,7 +24,7 @@
   services = {
     displayManager = {
       defaultSession = "gnome";
-      sddm.theme = "${import ../../modules/nixos/display-managers/sddm/themes/oneshot {inherit pkgs; }}";
+      sddm.theme = "${import ../../modules/nixos/display-managers/sddm/themes/hallow-knight {inherit pkgs; }}";
     };
   };
 
