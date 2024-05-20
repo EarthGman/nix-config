@@ -32,6 +32,7 @@
       openssl
       usbutils
       pciutils
+      tldr
     ];
   };
 

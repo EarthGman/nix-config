@@ -10,9 +10,12 @@ in
     ../../modules/home-manager/gaming
     ../../modules/home-manager/firefox
     ../../modules/home-manager/vscode
+    ../../modules/home-manager/zed-editor
     ../../modules/home-manager/wezterm
     ../../modules/home-manager/neofetch
     ../../modules/home-manager/zsh
+    #../../modules/home-manager/hyprland
+    ../../modules/home-manager/kitty.nix
     ../../modules/home-manager/gnome-extensions.nix
     ../../modules/home-manager/dconf.nix
     ../../modules/home-manager/gtk.nix

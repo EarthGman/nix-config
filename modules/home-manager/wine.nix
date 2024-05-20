@@ -1,9 +1,8 @@
 { pkgs, ... }:
-# windows emulator
 {
   home.packages = with pkgs; [
+    bottles
     winetricks
-    wineWowPackages.stable
-    #wineWowPackages.waylandFull
+    wineWowPackages.staging
   ];
 }

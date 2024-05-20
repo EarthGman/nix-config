@@ -13,6 +13,7 @@
     ../../modules/nixos/nordvpn
     ../../modules/nixos/desktops/gnome.nix
     ../../modules/nixos/desktops/cinnamon.nix
+    ../../modules/nixos/desktops/hyprland.nix
     ../../modules/nixos/devices.nix
     ../../modules/nixos/virtualization.nix
     ../../modules/nixos/sound.nix
