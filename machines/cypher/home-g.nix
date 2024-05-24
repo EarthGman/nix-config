@@ -20,6 +20,7 @@ in
     ../../modules/home-manager/dconf.nix
     ../../modules/home-manager/gtk.nix
     ../../modules/home-manager/wine.nix
+    ../../scripts
   ];
   programs.home-manager.enable = true;
 

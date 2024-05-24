@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     github-desktop
+    lazygit
   ];
   programs.gh = {
     enable = true;

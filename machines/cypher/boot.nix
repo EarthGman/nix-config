@@ -1,7 +1,8 @@
 { pkgs, lib, config, ... }:
+
 {
-  #latest linux kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.tmp.cleanOnBoot = true;
 
   boot.kernelParams = [
     "video=1920x1080"
