@@ -22,24 +22,20 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
-      lib = nixpkgs.lib // home-manager.lib;
+      inherit (self) outputs;
+      stateVersion = "24.05";
+      lib = import ./lib { inherit inputs outputs stateVersion; };
     in
     {
       nixosConfigurations = {
-        nixos = lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [ ./machines/test ];
-          specialArgs = { inherit inputs; };
-        };
+        # flake rebuild vm
+        nixos = lib.mkHost { hostname = "nixos"; username = "g"; desktop = "gnome"; };
       };
 
       homeConfigurations = {
-        "g@nixos" = lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          extraSpecialArgs = { inherit inputs; };
-          modules = [ ./machines/test/home.nix ];
-        };
+        "g@nixos" = lib.mkHome { hostname = "nixos"; username = "g"; desktop = "gnome"; };
       };
     };
 }
+
 

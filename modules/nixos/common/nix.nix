@@ -1,5 +1,15 @@
 { pkgs, inputs, ... }:
 {
+  nix = {
+    settings = {
+      auto-optimise-store = true;
+      experimental-features = [ "nix-command" "flakes" ];
+    };
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 10d";
+    };
+  };
   nixpkgs = {
     overlays = [
       inputs.nur.overlay
@@ -9,11 +19,10 @@
           config.allowUnfree = true;
         };
       })
-      #(final: _prev: import ../../pkgs { pkgs = final; })
+      (final: _prev: import ../../../pkgs { pkgs = final; })
     ];
     config = {
       allowUnfree = true;
     };
   };
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }

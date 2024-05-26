@@ -30,7 +30,6 @@
           config.allowUnfree = true;
         };
       })
-      #(final: _prev: import ../../pkgs { pkgs = final; })
     ];
     config = {
       allowUnfree = true;
