@@ -20,13 +20,11 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       lib = nixpkgs.lib // home-manager.lib;
     in
     {
-      #packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
-
       nixosConfigurations = {
         nixos = lib.nixosSystem {
           system = "x86_64-linux";

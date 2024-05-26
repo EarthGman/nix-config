@@ -1,5 +1,9 @@
 { pkgs, ... }:
 {
+  imports = [
+    ./neofetch
+  ];
+
   programs = {
     obs-studio.enable = true;
     git = {
@@ -43,6 +47,32 @@
     appimage-run # for appimages
     wmctrl # ctrl options for wm
     unrar-free # for that guy who only uploads stuff in .rar format
+    bat
+    eza
+    fzf
+    hstr
+    htop
+    nix-info
+    ripgrep
+    sysz
+    lshw
+    tree
+    radeontop
+    nvtopPackages.full
+    powertop
+    nix-prefetch-git
+    ncdu
+    jq
+    yq-go
+    dua
+    openssl
+    usbutils
+    pciutils
+    tldr
+    ifuse
+    libimobiledevice
+    checkra1n
+    usbmuxd
   ]) ++ (with pkgs.gst_all_1; [
     # gstreamer, needed for some media playing applications to work on linux
     gst-libav

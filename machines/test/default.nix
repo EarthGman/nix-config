@@ -12,6 +12,7 @@
     ./networking.nix
     ../../modules/nixos/users
     ../../modules/nixos/common
+    #../../modules/nixos/nordvpn
   ];
 
   home-manager = {
@@ -77,12 +78,7 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Allow unfree packages
-  nixpkgs = {
-    config.allowUnfree = true;
-  };
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
+  # Allow unfree package
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
