@@ -29,7 +29,7 @@
     {
       nixosConfigurations = {
         # flake rebuild vm
-        nixos = lib.mkHost { hostname = "nixos"; username = "g"; desktop = "gnome"; displayManager = "gdm"; };
+        nixos = lib.mkHost { hostname = "nixos"; username = "g"; desktop = "gnome,cinnamon"; displayManager = "sddm"; };
       };
 
       homeConfigurations = {
