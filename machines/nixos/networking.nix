@@ -1,3 +1,4 @@
+{ hostname, ... }:
 {
   services.sshd = {
     enable = true;
@@ -9,7 +10,7 @@
   # enables openVpn to resolve DNS hostnames
   services.resolved.enable = true;
   networking = {
-    hostName = "nixos";
+    hostName = hostname;
     networkmanager.enable = true;
     firewall = {
       checkReversePath = false;

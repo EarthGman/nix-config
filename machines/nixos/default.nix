@@ -1,9 +1,7 @@
-{ config, desktop, hostname, inputs, lib, modulesPath, outputs, pkgs, platform, stateVersion, username, ... }:
+{ config, desktop, displayManager, hostname, inputs, lib, modulesPath, outputs, pkgs, platform, stateVersion, username, ... }:
 let
-  # set preferences
-
+  hasDesktop = if (desktop != null) then true else false;
   timezone = "America/Chicago";
-
 in
 {
   imports = [
@@ -13,9 +11,10 @@ in
     ./networking.nix
     ../../modules/nixos/users
     ../../modules/nixos/common
-    ../../modules/nixos/desktops
-    ../../modules/nixos/display-managers/sddm
     #../../modules/nixos/nordvpn
+  ] ++ lib.optionals (hasDesktop) [
+    ../../modules/nixos/desktops
+    ../../modules/nixos/display-managers
   ];
 
   home-manager = {
@@ -24,9 +23,6 @@ in
     #   g = import ./home.nix;
     # };
   };
-
-
-  # Set your time zone.
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -45,5 +41,4 @@ in
 
   time.timeZone = timezone;
   system.stateVersion = stateVersion;
-
 }

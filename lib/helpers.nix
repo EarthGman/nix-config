@@ -9,9 +9,9 @@
     modules = [ ../machines/${hostname}/home-${username}.nix ];
   };
 
-  mkHost = { hostname, username, desktop ? null, platform ? "x86_64-linux" }: inputs.nixpkgs.lib.nixosSystem {
+  mkHost = { hostname, username, desktop ? null, displayManager ? "sddm", platform ? "x86_64-linux" }: inputs.nixpkgs.lib.nixosSystem {
     specialArgs = {
-      inherit inputs outputs desktop hostname platform username stateVersion;
+      inherit inputs outputs desktop displayManager hostname platform username stateVersion;
     };
     # If the hostname starts with "iso-", generate an ISO image
     modules =
@@ -23,6 +23,7 @@
         ../machines/${hostname}
       ] ++ (inputs.nixpkgs.lib.optionals (isISO) [ cd-dvd ]);
   };
+
   forAllSystems = inputs.nixpkgs.lib.genAttrs [
     "aarch64-linux"
     "i686-linux"

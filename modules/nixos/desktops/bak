@@ -1,0 +1,12 @@
+{ lib, desktop, ... }:
+let
+  desktops = builtins.filter builtins.isString (builtins.split "," desktop);
+in
+{
+  imports = [
+    ./gnome
+    ./hyprland
+  ];
+  gnome.enable = lib.elem "gnome" desktops;
+  hyprland.enable = lib.elem "hyprland" desktops;
+}

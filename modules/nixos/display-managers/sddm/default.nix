@@ -1,4 +1,5 @@
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
+
 {
   services.displayManager.sddm.enable = true;
 
