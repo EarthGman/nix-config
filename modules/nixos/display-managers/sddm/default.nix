@@ -1,7 +1,12 @@
-{ pkgs, lib, config, ... }:
-
+{ pkgs, lib, config, displayManagerTheme, ... }:
+let
+  hasTheme = if (displayManagerTheme != null) then true else false;
+in
 {
-  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    theme = lib.mkIf (hasTheme) "${import ./themes/${displayManagerTheme} {inherit pkgs; }}";
+  };
 
   # sddm theme dependencies
   environment.systemPackages = (with pkgs; [
@@ -30,3 +35,4 @@
     qtgraphicaleffects
   ]);
 }
+

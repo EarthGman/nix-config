@@ -1,17 +1,17 @@
 { inputs, outputs, stateVersion, ... }: {
 
   # Helper function for generating home-manager configs
-  mkHome = { hostname, username, git-username, git-email, desktop ? null, platform ? "x86_64-linux", search-engine ? "DuckDuckGo" }: inputs.home-manager.lib.homeManagerConfiguration {
+  mkHome = { hostname, username, editor ? "code", git-username, git-email, desktop ? null, platform ? "x86_64-linux", search-engine ? "DuckDuckGo" }: inputs.home-manager.lib.homeManagerConfiguration {
     pkgs = inputs.nixpkgs.legacyPackages.${platform};
     extraSpecialArgs = {
-      inherit inputs outputs desktop hostname platform username git-username git-email search-engine stateVersion;
+      inherit inputs outputs desktop hostname platform username editor git-username git-email search-engine stateVersion;
     };
     modules = [ ../users/${username}/home.nix ];
   };
 
-  mkHost = { hostname, username, desktop ? null, displayManager ? "sddm", platform ? "x86_64-linux", timezone ? "America/Chicago", gpu ? null }: inputs.nixpkgs.lib.nixosSystem {
+  mkHost = { hostname, username, desktop ? null, displayManager ? "sddm", platform ? "x86_64-linux", timezone ? "America/Chicago", gpu ? null, displayManagerTheme ? null }: inputs.nixpkgs.lib.nixosSystem {
     specialArgs = {
-      inherit inputs outputs desktop displayManager hostname platform gpu username timezone stateVersion;
+      inherit inputs outputs desktop displayManager displayManagerTheme hostname platform gpu username timezone stateVersion;
     };
     # If the hostname starts with "iso-", generate an ISO image
     modules =

@@ -1,8 +1,4 @@
 {
-  home.sessionVariables = {
-    EDITOR = "code --wait";
-  };
-
   # browsers
   firefox.enable = true;
 

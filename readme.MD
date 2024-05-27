@@ -1,9 +1,7 @@
 TODO:
 
-display manager theming 
-
 automatic better discord installer
 
-nordvpn overlay
+Overlay module
 
 obtain gpu information from iron

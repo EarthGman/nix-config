@@ -5,28 +5,7 @@
     ./wine
     ./git
     ./discord
-    ./audacity.nix
-    ./checkra1n.nix
-    ./clipgrab.nix
-    ./filezilla.nix
-    ./flips.nix
-    ./flips.nix
-    ./gcolor.nix
-    ./gimp.nix
-    ./gpg.nix
-    ./htop.nix
-    ./libreoffice.nix
-    ./looking-glass.nix
-    ./museeks.nix
-    ./musescore.nix
-    ./nvtop.nix
-    ./obs.nix
-    ./obsidian.nix
-    ./openshot.nix
-    ./pika-backup.nix
-    ./powertop.nix
-    ./radeontop.nix
-    ./remmina.nix
+    ./utilities
   ];
 
   home.packages = (with pkgs; [

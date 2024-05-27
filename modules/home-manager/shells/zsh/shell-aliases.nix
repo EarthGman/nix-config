@@ -4,5 +4,5 @@
   nrt = "sudo nixos-rebuild test";
   hms = "home-manager switch --flake ~/src/nix-config";
   ncg = "sudo nix-collect-garbage -d";
-  edit-config = "cd ~/src/nix-config && code .";
+  edit-config = "cd ~/src/nix-config && $EDITOR .";
 }
