@@ -18,6 +18,10 @@
     nur = {
       url = "github:nix-community/nur";
     };
+
+    xremap = {
+      url = "github:xremap/nix-flake";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:

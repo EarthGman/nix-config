@@ -22,5 +22,6 @@
     ./powertop.nix
     ./radeontop.nix
     ./remmina.nix
+    ./xremap.nix
   ];
 }

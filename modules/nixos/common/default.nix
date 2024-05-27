@@ -10,6 +10,7 @@ in
     ./nix.nix
     ./sound.nix
     ./printing.nix
+    ./xremap.nix
   ] ++ (lib.optionals notVM [
     ./virtualization.nix
   ]);

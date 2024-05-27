@@ -39,6 +39,7 @@
   gcolor.enable = true;
   flips.enable = true;
   pika-backup.enable = true;
+  xremap.enable = true;
 
   # tops
   nvtop.enable = false;
