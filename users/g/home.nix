@@ -1,4 +1,4 @@
-{ config, inputs, username, stateVersion, ... }:
+{ config, inputs, outputs, username, stateVersion, ... }:
 {
   home = {
     inherit username;
@@ -18,17 +18,8 @@
     ../../modules/home-manager/gaming
   ];
 
-  # allows home-manager to install unfree packages from nur
   nixpkgs = {
-    overlays = [
-      inputs.nur.overlay
-      (final: _: {
-        unstable = import inputs.nixpkgs-unstable {
-          inherit (final) system;
-          config.allowUnfree = true;
-        };
-      })
-    ];
+    overlays = builtins.attrValues outputs.overlays;
     config = {
       allowUnfree = true;
     };

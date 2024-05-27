@@ -13,7 +13,7 @@ in
         ".config/neofetch/nixos-logo.png".source = config.lib.file.mkOutOfStoreSymlink logo;
       };
       packages = with pkgs; [
-        neofetch # displays system info
+        neofetch
         # required for displaying images in terminal
         imagemagick
         viu

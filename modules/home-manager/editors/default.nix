@@ -3,5 +3,6 @@
   imports = [
     ./vscode
     ./vim
+    ./zed
   ];
 }

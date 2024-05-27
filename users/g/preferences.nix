@@ -9,32 +9,51 @@
   prismlauncher.enable = true;
   steam.enable = true;
 
-  # # common
-  neofetch.enable = true;
-  gpg.enable = true;
-  looking-glass.enable = true;
-  wine.enable = true;
+  # coding
+  vscode.enable = true;
+  vim.enable = false;
+  zed.enable = false;
   github-desktop.enable = true;
   lazygit.enable = true;
-  gimp.enable = true;
+
+  # productivity
   libreoffice.enable = true;
   obsidian.enable = true;
   discord.enable = false;
   betterdiscord.enable = false;
-  remmina.enable = false;
-  gcolor.enable = true;
-  clipgrab.enable = true;
+
+  # image and video
+  gimp.enable = true;
   openshot.enable = true;
   obs-studio.enable = true;
-  audacity.enable = true;
-  museeks.enable = true;
+
+  # audio and music
   musescore.enable = true;
+  museeks.enable = true;
+  audacity.enable = true;
+  clipgrab.enable = true;
+
+  # tools
+  looking-glass.enable = true;
+  wine.enable = true;
+  gcolor.enable = true;
   flips.enable = true;
-  filezilla.enable = true;
   pika-backup.enable = true;
-  radeontop.enable = false;
+
+  # tops
   nvtop.enable = false;
   powertop.enable = true;
+  radeontop.enable = false;
   htop.enable = true;
   checkra1n.enable = false;
+
+  # info
+  neofetch.enable = true;
+
+  # clients
+  filezilla.enable = true;
+  remmina.enable = false;
+
+  # encryption
+  gpg.enable = true;
 }
