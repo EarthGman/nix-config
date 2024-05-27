@@ -27,6 +27,7 @@
       lib = import ./lib { inherit inputs outputs stateVersion; };
     in
     {
+      overlays = import ./overlays { inherit inputs outputs; };
       nixosConfigurations = {
         # flake rebuild vm
         nixos = lib.mkHost { hostname = "nixos"; username = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "hallow-knight"; };

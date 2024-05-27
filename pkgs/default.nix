@@ -1,4 +1,4 @@
 { pkgs ? import <nixpkgs> { } }: rec
 {
-  nordvpn = pkgs.callPackage ./nordvpn.nix;
+  nordvpn = pkgs.callPackage ./nordvpn.nix { };
 }
