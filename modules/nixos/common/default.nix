@@ -1,3 +1,7 @@
+{ hostname, lib, ... }:
+let
+  notVM = if (hostname != "nixos") then true else false;
+in
 {
   imports = [
     ./zsh.nix
@@ -6,5 +10,7 @@
     ./nix.nix
     ./sound.nix
     ./printing.nix
-  ];
+  ] ++ (lib.optionals notVM [
+    ./virtualization.nix
+  ]);
 }
