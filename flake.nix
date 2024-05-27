@@ -29,11 +29,11 @@
     {
       nixosConfigurations = {
         # flake rebuild vm
-        nixos = lib.mkHost { hostname = "nixos"; username = "g"; desktop = "gnome,cinnamon"; displayManager = "sddm"; };
+        nixos = lib.mkHost { hostname = "nixos"; username = "g"; desktop = "gnome"; displayManager = "sddm"; };
       };
 
       homeConfigurations = {
-        "g@nixos" = lib.mkHome { hostname = "nixos"; username = "g"; desktop = "gnome"; };
+        "g@nixos" = lib.mkHome { hostname = "nixos"; username = "g"; desktop = "gnome"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
       };
     };
 }

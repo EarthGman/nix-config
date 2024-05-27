@@ -1,23 +1,26 @@
-{ pkgs, ... }:
+{ pkgs, config, lib, ... }:
 {
-  programs.gpg = {
-    enable = true;
-    settings = {
-      personal-digest-preferences = "SHA512";
-      cert-digest-algo = "SHA512";
-      cipher-algo = "AES256";
-      default-preference-list = "SHA512 SHA384 SHA256 SHA224 AES256 AES192 AES CAST5 ZLIB BZIP2 ZIP Uncompressed";
-      personal-cipher-preferences = "TWOFISH CAMELLIA256 AES 3DES";
-      throw-keyids = true;
-      keyid-format = "0xlong";
-      with-fingerprint = true;
+  options.gpg.enable = lib.mkEnableOption "enable gpg";
+  config = lib.mkIf config.gpg.enable {
+    programs.gpg = {
+      enable = true;
+      settings = {
+        personal-digest-preferences = "SHA512";
+        cert-digest-algo = "SHA512";
+        cipher-algo = "AES256";
+        default-preference-list = "SHA512 SHA384 SHA256 SHA224 AES256 AES192 AES CAST5 ZLIB BZIP2 ZIP Uncompressed";
+        personal-cipher-preferences = "TWOFISH CAMELLIA256 AES 3DES";
+        throw-keyids = true;
+        keyid-format = "0xlong";
+        with-fingerprint = true;
+      };
     };
-  };
 
-  services.gpg-agent = {
-    enable = true;
-    pinentryPackage = pkgs.pinentry-gtk2;
-    defaultCacheTtl = 43200;
-    maxCacheTtl = 43200;
+    services.gpg-agent = {
+      enable = true;
+      pinentryPackage = pkgs.pinentry-gtk2;
+      defaultCacheTtl = 43200;
+      maxCacheTtl = 43200;
+    };
   };
 }

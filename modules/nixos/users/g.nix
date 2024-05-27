@@ -2,7 +2,6 @@
 {
   programs = {
     zsh.enable = true;
-    _1password-gui.polkitPolicyOwners = [ "g" ];
   };
   users.users.g = {
     isNormalUser = true;

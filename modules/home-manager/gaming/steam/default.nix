@@ -1,6 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, config, lib, ... }:
 {
-  home.packages = with pkgs; [
-    steam
-  ];
+  options.steam.enable = lib.mkEnableOption "enable steam";
+  config = lib.mkIf config.steam.enable {
+    home.packages = with pkgs; [
+      steam
+    ];
+  };
 }
