@@ -6,7 +6,7 @@
     extraSpecialArgs = {
       inherit inputs outputs desktop hostname platform username git-username git-email search-engine stateVersion;
     };
-    modules = [ ../machines/${hostname}/home-${username}.nix ];
+    modules = [ ../users/${username}/home.nix ];
   };
 
   mkHost = { hostname, username, desktop ? null, displayManager ? "sddm", platform ? "x86_64-linux", timezone ? "America/Chicago", gpu ? null }: inputs.nixpkgs.lib.nixosSystem {
@@ -20,7 +20,7 @@
         cd-dvd = if (desktop == null) then inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix" else inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares.nix";
       in
       [
-        ../machines/${hostname}
+        ../hosts
       ] ++ (inputs.nixpkgs.lib.optionals (isISO) [ cd-dvd ]);
   };
 
