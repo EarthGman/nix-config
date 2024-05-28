@@ -18,7 +18,7 @@
 
 let
   pname = "nordvpn";
-  version = "3.17.1";
+  version = "3.18.1";
   LuisChDev = {
     name = "Luis Chavarriaga";
     email = "luischa123@gmail.com";
@@ -37,7 +37,7 @@ let
     src = fetchurl {
       url =
         "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn_${version}_amd64.deb";
-      hash = "sha256-RJtaYLIwAvux11gj8q7qg5W6QdhGdXQrZwd4gtqRe8w=";
+      hash = "sha256-EHtjTUFHukmDE/jxpk8BqRSlIadV1jz/1DvDG8wRZP0=";
     };
 
     buildInputs = [ libxml2 libidn2 ];

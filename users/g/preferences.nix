@@ -40,13 +40,13 @@
   flips.enable = true;
   pika-backup.enable = true;
   xremap.enable = true;
+  checkra1n.enable = false;
 
   # tops
   nvtop.enable = false;
   powertop.enable = true;
   radeontop.enable = true;
   htop.enable = true;
-  checkra1n.enable = false;
 
   # info
   neofetch.enable = true;
