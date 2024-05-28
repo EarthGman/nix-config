@@ -1,8 +1,6 @@
-# Drivers for Nvidia GPUs
 { config, ... }:
 {
   services.xserver.videoDrivers = [ "nvidia" ];
-  # Enable OpenGL
   hardware.opengl = {
     enable = true;
     driSupport = true;
