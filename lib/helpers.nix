@@ -6,7 +6,7 @@
     extraSpecialArgs = {
       inherit inputs outputs desktop hostname platform username editor git-username git-email search-engine stateVersion;
     };
-    modules = [ ../users/${username}/home.nix ];
+    modules = [ ../users ];
   };
 
   mkHost = { hostname, username, desktop ? null, displayManager ? "sddm", platform ? "x86_64-linux", timezone ? "America/Chicago", gpu ? null, displayManagerTheme ? null }: inputs.nixpkgs.lib.nixosSystem {

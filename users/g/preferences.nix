@@ -19,8 +19,8 @@
   # productivity
   libreoffice.enable = true;
   obsidian.enable = true;
-  discord.enable = false;
-  betterdiscord.enable = false;
+  discord.enable = true;
+  betterdiscord.enable = true;
 
   # image and video
   gimp.enable = true;
@@ -44,7 +44,7 @@
   # tops
   nvtop.enable = false;
   powertop.enable = true;
-  radeontop.enable = false;
+  radeontop.enable = true;
   htop.enable = true;
   checkra1n.enable = false;
 

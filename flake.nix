@@ -33,11 +33,14 @@
     {
       overlays = import ./overlays { inherit inputs outputs; };
       nixosConfigurations = {
+        # gaming desktop
+        cypher = lib.mkHost { hostname = "cypher"; username = "g"; desktop = "gnome,cinnamon"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; gpu = "amd"; };
         # flake rebuild vm
         nixos = lib.mkHost { hostname = "nixos"; username = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "hallow-knight"; };
       };
 
       homeConfigurations = {
+        "g@cypher" = lib.mkHome { hostname = "cypher"; username = "g"; desktop = "gnome"; editor = "code"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
         "g@nixos" = lib.mkHome { hostname = "nixos"; username = "g"; desktop = "gnome"; editor = "code"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
       };
     };

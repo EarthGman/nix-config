@@ -1,4 +1,4 @@
-{ gpu, hostname, ... }:
+{ gpu, lib, hostname, ... }:
 let
   amd = if (gpu == "amd") then true else false;
   nvidia = if (gpu == "nvidia") then true else false;
