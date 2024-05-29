@@ -11,6 +11,7 @@ in
     ./sound.nix
     ./printing.nix
     ./xremap.nix
+    ./udev.nix
   ] ++ (lib.optionals notVM [
     ./virtualization.nix
   ]);
