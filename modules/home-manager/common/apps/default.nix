@@ -5,7 +5,7 @@
     ./clipgrab.nix
     ./filezilla.nix
     ./flips.nix
-    ./flips.nix
+    ./freeoffice.nix
     ./gcolor.nix
     ./gimp.nix
     ./gpg.nix

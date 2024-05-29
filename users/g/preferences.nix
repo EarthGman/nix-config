@@ -21,6 +21,7 @@
   lazygit.enable = true;
 
   # productivity
+  freeoffice.enable = false;
   libreoffice.enable = true;
   obsidian.enable = true;
 
