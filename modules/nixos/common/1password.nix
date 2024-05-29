@@ -1,6 +1,6 @@
-{ username, ... }:
+{ username, hostname, lib, ... }:
 {
-  programs = {
+  programs = lib.mkIf (hostname == "cypher" || hostname == "garth") {
     _1password.enable = true;
     _1password-gui = {
       enable = true;
