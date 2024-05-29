@@ -19,8 +19,10 @@
   # productivity
   libreoffice.enable = true;
   obsidian.enable = true;
+
+  #discord with vesktop
   discord.enable = true;
-  betterdiscord.enable = true;
+  betterdiscord.enable = false;
 
   # image and video
   gimp.enable = true;

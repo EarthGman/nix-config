@@ -22,6 +22,10 @@
     xremap = {
       url = "github:xremap/nix-flake";
     };
+
+    stylix = {
+      url = "github:danth/stylix";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:

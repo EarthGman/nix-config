@@ -5,7 +5,8 @@
     ./wine
     ./git
     ./discord
-    ./utilities
+    ./apps
+    ./xremap
   ];
 
   home.packages = (with pkgs; [
