@@ -39,6 +39,8 @@
       nixosConfigurations = {
         # gaming desktop
         cypher = lib.mkHost { hostname = "cypher"; username = "g"; desktop = "gnome,cinnamon"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; gpu = "amd"; };
+        # work laptop
+        garth = lib.mkHost { hostname = "garth"; username = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
         # flake rebuild vm
         nixos = lib.mkHost { hostname = "nixos"; username = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "hallow-knight"; };
       };
@@ -46,6 +48,7 @@
       homeConfigurations = {
         "g@cypher" = lib.mkHome { hostname = "cypher"; username = "g"; desktop = "gnome"; editor = "code"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
         "g@nixos" = lib.mkHome { hostname = "nixos"; username = "g"; desktop = "gnome"; editor = "code"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
+        "g@garth" = lib.mkHome { hostname = "garth"; username = "g"; desktop = "gnome"; editor = "code"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
       };
     };
 }
