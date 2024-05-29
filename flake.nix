@@ -38,7 +38,7 @@
       overlays = import ./overlays { inherit inputs outputs; };
       nixosConfigurations = {
         # gaming desktop
-        cypher = lib.mkHost { hostname = "cypher"; username = "g"; desktop = "gnome,cinnamon"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; gpu = "amd"; };
+        cypher = lib.mkHost { hostname = "cypher"; username = "g"; desktop = "gnome,cinnamon,hyprland"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; gpu = "amd"; };
         # work laptop
         garth = lib.mkHost { hostname = "garth"; username = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
         # flake rebuild vm

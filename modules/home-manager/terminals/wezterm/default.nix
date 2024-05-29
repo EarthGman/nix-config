@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 let
   src = config.home.homeDirectory + "/src/nix-config";
   wezterm_lua = src + "/modules/home-manager/wezterm/wezterm.lua";

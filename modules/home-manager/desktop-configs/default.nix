@@ -1,4 +1,4 @@
-{ desktop, lib, ... }:
+{ desktop, lib, pkgs, ... }:
 let
   desktops = builtins.filter builtins.isString (builtins.split "," desktop);
   gnome = builtins.elem "gnome" desktops;
@@ -14,6 +14,18 @@ in
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;
       gtk-button-images = false;
+    };
+  };
+
+  xdg = {
+    portal = {
+      config = {
+        common.default = "*";
+      };
+      enable = true;
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gtk
+      ];
     };
   };
 }
