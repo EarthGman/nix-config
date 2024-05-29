@@ -6,10 +6,7 @@ let
   plasma = builtins.elem "plasma" desktops;
   cinnamon = builtins.elem "cinnamon" desktops;
 
-  # resolve conflict for plasma and gnome
   resolvePlasmaGnome = if (plasma && gnome) then true else false;
-
-  #resolve conflict for cinnamon and gnome
   resolveCinnamonGnome = if (cinnamon && gnome) then true else false;
 in
 {

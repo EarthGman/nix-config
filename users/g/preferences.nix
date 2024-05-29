@@ -1,4 +1,8 @@
 {
+  # terminals
+  wezterm.enable = true;
+  kitty.enable = true;
+
   # browsers
   firefox.enable = true;
 
@@ -43,6 +47,7 @@
   pika-backup.enable = true;
   xremap.enable = true;
   checkra1n.enable = false;
+  solaar.enable = false;
 
   # tops
   nvtop.enable = false;

@@ -21,6 +21,7 @@
     ./pika-backup.nix
     ./powertop.nix
     ./radeontop.nix
+    ./solaar.nix
     ./remmina.nix
   ];
 }
