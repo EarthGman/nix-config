@@ -6,8 +6,8 @@ let
   plasma = builtins.elem "plasma" desktops;
   cinnamon = builtins.elem "cinnamon" desktops;
 
-  resolvePlasmaGnome = if (plasma && gnome) then true else false;
-  resolveCinnamonGnome = if (cinnamon && gnome) then true else false;
+  resolvePlasmaGnome = (plasma && gnome);
+  resolveCinnamonGnome = (cinnamon && gnome);
 in
 {
   imports =

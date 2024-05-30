@@ -1,8 +1,8 @@
 { gpu, lib, hostname, ... }:
 let
-  amd = if (gpu == "amd") then true else false;
-  nvidia = if (gpu == "nvidia") then true else false;
-  isLaptop = if (hostname == "cutlass") then true else false;
+  amd = (gpu == "amd");
+  nvidia = (gpu == "nvidia");
+  isLaptop = (hostname == "cutlass");
 in
 {
   imports =

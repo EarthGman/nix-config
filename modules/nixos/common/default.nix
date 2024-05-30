@@ -1,6 +1,6 @@
 { hostname, lib, ... }:
 let
-  notVM = if (hostname != "nixos") then true else false;
+  notVM = (hostname != "nixos");
 in
 {
   imports = [

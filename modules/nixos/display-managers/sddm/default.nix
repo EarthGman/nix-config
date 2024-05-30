@@ -1,6 +1,6 @@
 { pkgs, lib, config, displayManagerTheme, ... }:
 let
-  hasTheme = if (displayManagerTheme != null) then true else false;
+  hasTheme = (displayManagerTheme != null);
 in
 {
   services.displayManager.sddm = {

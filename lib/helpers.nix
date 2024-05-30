@@ -1,28 +1,50 @@
 { inputs, outputs, stateVersion, ... }: {
 
   # Helper function for generating home-manager configs
-  mkHome = { hostname, username, editor ? "code", git-username, git-email, desktop ? null, platform ? "x86_64-linux", search-engine ? "DuckDuckGo" }: inputs.home-manager.lib.homeManagerConfiguration {
-    pkgs = inputs.nixpkgs.legacyPackages.${platform};
-    extraSpecialArgs = {
-      inherit inputs outputs desktop hostname platform username editor git-username git-email search-engine stateVersion;
+  mkHome =
+    { hostname
+    , username
+    , editor ? "code"
+    , git-username
+    , git-email
+    , desktop ? null
+    , platform ? "x86_64-linux"
+    , search-engine ? "DuckDuckGo"
+    }: inputs.home-manager.lib.homeManagerConfiguration {
+      pkgs = inputs.nixpkgs.legacyPackages.${platform};
+      extraSpecialArgs = {
+        inherit inputs outputs desktop hostname platform username editor git-username git-email search-engine stateVersion;
+      };
+      modules = [ ../users ];
     };
-    modules = [ ../users ];
-  };
 
-  mkHost = { hostname, username, desktop ? null, displayManager ? "sddm", platform ? "x86_64-linux", timezone ? "America/Chicago", gpu ? null, displayManagerTheme ? null }: inputs.nixpkgs.lib.nixosSystem {
-    specialArgs = {
-      inherit inputs outputs desktop displayManager displayManagerTheme hostname platform gpu username timezone stateVersion;
+  mkHost =
+    { hostname
+    , username
+    , desktop ? null
+    , displayManager ? "sddm"
+    , platform ? "x86_64-linux"
+    , timezone ? "America/Chicago"
+    , gpu ? null
+    , displayManagerTheme ? null
+    }: inputs.nixpkgs.lib.nixosSystem {
+      specialArgs = {
+        inherit inputs outputs desktop displayManager displayManagerTheme hostname platform gpu username timezone stateVersion;
+      };
+      # If the hostname starts with "iso-", generate an ISO image
+      modules =
+        let
+          isISO = (builtins.substring 0 4 hostname == "iso-");
+          cd-dvd =
+            if (desktop == null) then
+              inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+            else
+              inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares.nix";
+        in
+        [
+          ../hosts
+        ] ++ (inputs.nixpkgs.lib.optionals (isISO) [ cd-dvd ]);
     };
-    # If the hostname starts with "iso-", generate an ISO image
-    modules =
-      let
-        isISO = if (builtins.substring 0 4 hostname == "iso-") then true else false;
-        cd-dvd = if (desktop == null) then inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix" else inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares.nix";
-      in
-      [
-        ../hosts
-      ] ++ (inputs.nixpkgs.lib.optionals (isISO) [ cd-dvd ]);
-  };
 
   # unused as of now
   forAllSystems = inputs.nixpkgs.lib.genAttrs [

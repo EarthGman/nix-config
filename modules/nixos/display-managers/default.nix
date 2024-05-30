@@ -1,7 +1,7 @@
 { displayManager, lib, ... }:
 let
-  sddm = if (displayManager == "sddm") then true else false;
-  gdm = if (displayManager == "gdm") then true else false;
+  sddm = (displayManager == "sddm");
+  gdm = (displayManager == "gdm");
 in
 {
   imports =
