@@ -3,6 +3,7 @@
     ./audacity.nix
     ./checkra1n.nix
     ./clipgrab.nix
+    ./dosbox.nix
     ./filezilla.nix
     ./flips.nix
     ./freeoffice.nix

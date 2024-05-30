@@ -41,6 +41,7 @@
   clipgrab.enable = true;
 
   # tools
+  dosbox.enable = true;
   looking-glass.enable = true;
   wine.enable = true;
   gcolor.enable = true;
