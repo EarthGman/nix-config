@@ -6,7 +6,7 @@ let
 in
 {
   imports = [
-    #inputs.stylix.nixosModules.stylix
+    # inputs.stylix.nixosModules.stylix
     ./${hostname}
     ../users/${username}
     ../modules/nixos/common

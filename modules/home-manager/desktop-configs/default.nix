@@ -17,6 +17,10 @@ in
     };
   };
 
+  qt = {
+    enable = true;
+  };
+
   xdg = {
     portal = {
       config = {

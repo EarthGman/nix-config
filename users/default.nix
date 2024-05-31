@@ -9,7 +9,9 @@
   programs.home-manager.enable = true;
 
   imports = [
+    inputs.stylix.homeManagerModules.stylix
     ./${username}/preferences.nix
+    ../modules/home-manager/rices
     ../modules/home-manager/shells
     ../modules/home-manager/terminals
     ../modules/home-manager/editors

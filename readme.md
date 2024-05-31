@@ -11,4 +11,5 @@ TODO:
 - [ ] secrets
 - [ ] mangohud
 - [ ] fix the weird looking glass shm permission thing
-- [ ] replace the booleans
+- [x] replace the booleans
+- [ ] icon problem on GNOME
