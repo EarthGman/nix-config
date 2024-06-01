@@ -21,6 +21,7 @@
   lazygit.enable = true;
 
   # productivity
+  thunderbird.enable = true;
   freeoffice.enable = false;
   libreoffice.enable = true;
   obsidian.enable = true;
@@ -59,6 +60,7 @@
 
   # info
   neofetch.enable = true;
+  mangohud.enable = true;
 
   # clients
   filezilla.enable = true;
