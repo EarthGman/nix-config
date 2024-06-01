@@ -4,7 +4,7 @@ let
 in
 {
   imports = [
-    ./zsh.nix
+    ./environment.nix
     ./1password.nix
     ./systempackages.nix
     ./nix.nix
