@@ -8,5 +8,8 @@
     vitals
   ]) ++ (with pkgs.gnome; [
     gnome-tweaks
+    dconf-editor
+  ]) ++ (with pkgs; [
+    dconf2nix
   ]);
 }

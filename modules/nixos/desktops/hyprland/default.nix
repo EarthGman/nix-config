@@ -1,3 +1,7 @@
+{ inputs, platform, ... }:
 {
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    # package = inputs.hyprland.packages.${platform}.hyprland;
+    enable = true;
+  };
 }

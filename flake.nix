@@ -19,6 +19,10 @@
       url = "github:nix-community/nur";
     };
 
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+    };
+
     xremap = {
       url = "github:xremap/nix-flake";
     };

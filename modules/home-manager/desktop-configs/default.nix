@@ -9,18 +9,6 @@ in
     (lib.optionals gnome [ ./gnome ]) ++
     (lib.optionals hyprland [ ./hyprland ]);
 
-  gtk = {
-    enable = true;
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
-      gtk-button-images = false;
-    };
-  };
-
-  qt = {
-    enable = true;
-  };
-
   xdg = {
     portal = {
       config = {
