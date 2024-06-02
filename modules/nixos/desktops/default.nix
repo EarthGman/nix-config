@@ -19,6 +19,8 @@ in
     (lib.optionals resolvePlasmaGnome [ ./conflicts/plasma-gnome.nix ]) ++
     (lib.optionals resolveCinnamonGnome [ ./conflicts/cinnamon-gnome.nix ]);
 
+  xdg.portal.enable = true;
+
   services.xserver = {
     enable = true;
     xkb = {
