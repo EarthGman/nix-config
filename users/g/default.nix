@@ -1,11 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 {
   programs = {
     zsh.enable = true;
   };
-  users.users.g = {
+  users.users.${username} = {
     isNormalUser = true;
-    description = "g";
+    description = "${username}";
     shell = pkgs.zsh;
     # passwd = "";
     extraGroups = [

@@ -1,5 +1,8 @@
-{ pkgs, ... }:
-# enables printing
+{ pkgs, lib, hostname, ... }:
+let
+  hasSamsungPrinter = (hostname == "cypher" || hostname == "garth");
+  ownsSamsungCLX3175FW = (hostname == "cypher" || hostname == "garth");
+in
 {
   # searches the network for printers
   # be sure to allow UDP port 5353
@@ -8,17 +11,16 @@
     nssmdns4 = true;
     openFirewall = true;
   };
-
   services.printing.enable = true;
 
   # drivers
-  services.printing.drivers = [
-    pkgs.samsung-unified-linux-driver
+  services.printing.drivers = with pkgs; lib.optionals hasSamsungPrinter [
+    samsung-unified-linux-driver
   ];
 
   # printers
   hardware.printers = {
-    ensurePrinters = [
+    ensurePrinters = lib.optionals ownsSamsungCLX3175FW [
       {
         # printer downstairs
         name = "SamsungCLX3175FW";
@@ -30,6 +32,5 @@
         };
       }
     ];
-    ensureDefaultPrinter = "SamsungCLX3175FW";
   };
 }
