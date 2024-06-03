@@ -53,9 +53,9 @@
 
       homeConfigurations = {
         "g@cypher" = lib.mkHome { hostname = "cypher"; username = "g"; desktop = "gnome,hyprland"; wallpaper = "crystal-tower.jpg"; stylix-theme = "nocturne"; editor = "code"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
-        "g@nixos" = lib.mkHome { hostname = "nixos"; username = "g"; desktop = "gnome"; editor = "code"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
-        "g@garth" = lib.mkHome { hostname = "garth"; username = "g"; desktop = "gnome"; editor = "code"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
+        "g@garth" = lib.mkHome { hostname = "garth"; username = "g"; desktop = "gnome"; wallpaper = "fiery-dragon.jpg"; stylix-theme = "home-depot"; editor = "code"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
         "g@tater" = lib.mkHome { hostname = "tater"; username = "g"; desktop = "gnome"; editor = "code"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
+        "g@nixos" = lib.mkHome { hostname = "nixos"; username = "g"; desktop = "gnome"; editor = "code"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
       };
     };
 }
