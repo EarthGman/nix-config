@@ -10,7 +10,7 @@ palette:
   base07: "FFFFFF" # actually white
   base08: "db0004" # red
   base09: "d10e84" # magenta
-  base0A: "700185" # dark magenta
+  base0A: "455aee" # Blue
   base0B: "066624" # green
   base0C: "1FAAAA" # pale teal
   base0D: "3777E6" # light blue
