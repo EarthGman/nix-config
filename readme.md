@@ -13,5 +13,5 @@ TODO:
 - [ ] fix the weird looking glass shm permission thing
 - [x] replace the booleans
 - [ ] icon problem on GNOME
-- [ ] fix printing module
+- [x] fix printing module
 - [ ] allow xremap disable

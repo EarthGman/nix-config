@@ -48,7 +48,6 @@
   gcolor.enable = true;
   flips.enable = true;
   pika-backup.enable = true;
-  xremap.enable = true;
   checkra1n.enable = false;
   solaar.enable = false;
 
