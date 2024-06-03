@@ -42,7 +42,7 @@
       overlays = import ./overlays { inherit inputs outputs; };
       nixosConfigurations = {
         # gaming desktop
-        cypher = lib.mkHost { hostname = "cypher"; username = "g"; desktop = "gnome,cinnamon,hyprland"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; gpu = "amd"; };
+        cypher = lib.mkHost { hostname = "cypher"; username = "g"; desktop = "gnome,hyprland"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; gpu = "amd"; };
         # work laptop
         garth = lib.mkHost { hostname = "garth"; username = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
         # old potato hp laptop
@@ -52,7 +52,7 @@
       };
 
       homeConfigurations = {
-        "g@cypher" = lib.mkHome { hostname = "cypher"; username = "g"; desktop = "gnome,cinnamon,hyprland"; editor = "code"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
+        "g@cypher" = lib.mkHome { hostname = "cypher"; username = "g"; desktop = "gnome,hyprland"; wallpaper = "crystal-tower.jpg"; stylix-theme = "nocturne"; editor = "code"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
         "g@nixos" = lib.mkHome { hostname = "nixos"; username = "g"; desktop = "gnome"; editor = "code"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
         "g@garth" = lib.mkHome { hostname = "garth"; username = "g"; desktop = "gnome"; editor = "code"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
         "g@tater" = lib.mkHome { hostname = "tater"; username = "g"; desktop = "gnome"; editor = "code"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };

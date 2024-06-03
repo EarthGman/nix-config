@@ -5,6 +5,8 @@
     { hostname
     , username
     , editor ? "code"
+    , wallpaper ? null
+    , stylix-theme ? null
     , git-username
     , git-email
     , desktop ? null
@@ -13,7 +15,7 @@
     }: inputs.home-manager.lib.homeManagerConfiguration {
       pkgs = inputs.nixpkgs.legacyPackages.${platform};
       extraSpecialArgs = {
-        inherit inputs outputs desktop hostname platform username editor git-username git-email search-engine stateVersion;
+        inherit inputs outputs desktop wallpaper stylix-theme hostname platform username editor git-username git-email search-engine stateVersion;
       };
       modules = [ ../users ];
     };
