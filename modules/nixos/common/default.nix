@@ -9,6 +9,7 @@ in
     ./systempackages.nix
     ./nix.nix
     ./sound.nix
+    ./sops.nix
     ./printing.nix
     ./xremap.nix
     ./udev.nix

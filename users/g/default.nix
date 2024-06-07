@@ -1,13 +1,17 @@
-{ pkgs, username, ... }:
+{ pkgs, username, config, ... }:
 {
   programs = {
     zsh.enable = true;
   };
+
+  sops.secrets.${username}.neededForUsers = true;
+  users.mutableUsers = false;
+
   users.users.${username} = {
     isNormalUser = true;
-    description = "${username}";
+    description = username;
+    hashedPasswordFile = config.sops.secrets.${username}.path;
     shell = pkgs.zsh;
-    # passwd = "";
     extraGroups = [
       "networkmanager"
       "wheel"
