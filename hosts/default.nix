@@ -3,11 +3,13 @@ let
   hasDesktop = (desktop != null);
   hasGPU = (gpu != null);
   hasNord = (hostname == "cypher" || hostname == "garth");
+  isISO = (builtins.substring 0 4 hostname == "iso-");
 in
 {
   imports = [
     # inputs.stylix.nixosModules.stylix
     ./${hostname}
+  ] ++ lib.optionals (!isISO) [
     ../users/${username}
     ../modules/nixos/common
   ] ++ lib.optionals (hasNord) [

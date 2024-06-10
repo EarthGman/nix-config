@@ -11,7 +11,6 @@
   ffxiv-launcher.enable = false;
   lutris.enable = true;
   prismlauncher.enable = true;
-  steam.enable = true;
 
   # coding
   vscode.enable = true;
@@ -59,7 +58,6 @@
 
   # info
   neofetch.enable = true;
-  mangohud.enable = true;
 
   # clients
   filezilla.enable = true;

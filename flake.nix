@@ -57,6 +57,9 @@
 
         # gaming desktop
         somnus = lib.mkHost { hostname = "somnus"; username = "bean"; desktop = "gnome,hyprland"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; gpu = "amd"; };
+
+        # isos
+        iso-installer = lib.mkHost { hostname = "iso-installer"; username = "nixos"; };
       };
 
       homeConfigurations = {

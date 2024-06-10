@@ -13,7 +13,6 @@
     ./htop.nix
     ./libreoffice.nix
     ./looking-glass.nix
-    ./mangohud.nix
     ./museeks.nix
     ./musescore.nix
     ./nvtop.nix

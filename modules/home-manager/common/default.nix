@@ -15,6 +15,7 @@
     appimage-run # for appimages
     wmctrl # ctrl options for wm
     unrar-free # for that guy who only uploads stuff in .rar format
+    cifs-utils
     bat
     eza
     fzf
