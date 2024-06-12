@@ -15,10 +15,16 @@ TODO:
 - [ ] icon problem on GNOME
 - [x] fix printing module
 
-Imperative actions upon installation
-- connect to wifi or use ethernet cable
-- age keys: /var/lib/sops-nix/keys.txt and .config/sops/age/keys.txt
-
+Imperative actions upon installation:
+  - connect to wifi or use ethernet cable
+  - disko: configure disko.nix & run disko --mode zap_create_mount ./disko.nix
+  - run nixos-generate-config --root /mnt && cd /mnt/etc/nixos
+  - pull nix config: git pull https://github.com/EarthGman/nix-config
+  - place hardware.nix into the respective hosts folder or make a new one if it doesn't exist
+  - for new hosts:
+    - configure boot and networking options respectively and place them into the host folder
+    - add an entry for the host in flake.nix
+  - age keys: /var/lib/sops-nix/keys.txt and .config/sops/age/keys.txt
 After installation:
   - enable firefox extensions
   - login to 1password
