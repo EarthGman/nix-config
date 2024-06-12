@@ -1,7 +1,11 @@
 keys:
-  - &g age1f3axcm808wfxm38lg3qfwllytlgmqcjwn4yenlkyqpg3c3ku532s77e48d
+  - &users:
+    - &g age1f3axcm808wfxm38lg3qfwllytlgmqcjwn4yenlkyqpg3c3ku532s77e48d
+  - &hosts:
+    - &garth age14cjeh2y4lz3naygflwvpmwhsya3l80x8s7pec308x0r5mrj6kugsenl669
 creation_rules:
   - path_regex: secrets/secrets.yaml$
     key_groups:
       - age:
         - *g
+        - *garth

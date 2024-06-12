@@ -58,7 +58,7 @@
         # old potato hp laptop
         tater = lib.mkHost { hostname = "tater"; username = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "oneshot"; };
         # nixos vm
-        nixos = lib.mkHost { hostname = "nixos"; username = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "hallow-knight"; };
+        nixos = lib.mkHost { hostname = "nixos"; username = "nixos"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "hallow-knight"; };
 
         # gaming desktop
         somnus = lib.mkHost { hostname = "somnus"; username = "bean"; desktop = "gnome,hyprland"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; gpu = "amd"; };

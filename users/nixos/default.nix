@@ -4,14 +4,14 @@
     zsh.enable = true;
   };
 
-  # sops.secrets.${username}.neededForUsers = true;
+  sops.secrets.${username}.neededForUsers = true;
   users.mutableUsers = false;
 
   users.users.${username} = {
     isNormalUser = true;
     description = username;
-    password = "123";
-    # hashedPasswordFile = config.sops.secrets.${username}.path;
+    hashedPasswordFile = config.sops.secrets.${username}.path;
+    packages = with pkgs; [ home-manager ];
     shell = pkgs.zsh;
     extraGroups = [
       "networkmanager"
