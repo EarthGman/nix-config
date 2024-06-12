@@ -7,7 +7,6 @@
     file
     zip
     unzip
-    home-manager
   ];
 
   services.usbmuxd = {

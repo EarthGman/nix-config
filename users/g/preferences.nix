@@ -62,7 +62,4 @@
   # clients
   filezilla.enable = true;
   remmina.enable = false;
-
-  # encryption
-  gpg.enable = true;
 }

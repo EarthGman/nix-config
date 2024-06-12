@@ -17,6 +17,7 @@
     ../modules/home-manager/desktop-configs
     ../modules/home-manager/browsers
     ../modules/home-manager/common
+    ../modules/home-manager/apps
     ../modules/home-manager/gaming
   ];
 

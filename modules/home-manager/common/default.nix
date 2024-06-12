@@ -4,9 +4,7 @@
     ./neofetch
     ./wine
     ./git
-    ./discord
-    ./apps
-    ./xremap
+    # ./xremap
   ];
 
   home.packages = (with pkgs; [

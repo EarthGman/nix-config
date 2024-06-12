@@ -4,21 +4,18 @@
     zsh.enable = true;
   };
 
-  sops.secrets.${username}.neededForUsers = true;
+  # sops.secrets.${username}.neededForUsers = true;
   users.mutableUsers = false;
 
   users.users.${username} = {
     isNormalUser = true;
     description = username;
-    hashedPasswordFile = config.sops.secrets.${username}.path;
-    packages = with pkgs; [ home-manager ];
+    password = "123";
+    # hashedPasswordFile = config.sops.secrets.${username}.path;
     shell = pkgs.zsh;
     extraGroups = [
       "networkmanager"
       "wheel"
-      "nordvpn"
-      "libvirtd"
-      "qemu-libvirtd"
     ];
   };
 }
