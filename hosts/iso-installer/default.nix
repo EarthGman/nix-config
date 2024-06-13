@@ -1,13 +1,12 @@
 { pkgs, lib, modulesPath, platform, ... }:
 {
-  # Create a bootable ISO image with bcachefs.
-  # - https://nixos.wiki/wiki/Bcachefs
   boot = {
     kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
-    supportedFilesystems = [ "bcachefs" ];
+    supportedFilesystems = [ "bcachefs" "ext4" ];
   };
   environment.systemPackages = with pkgs; [
     bcachefs-tools
+    cryptsetup
     keyutils
     git
     disko

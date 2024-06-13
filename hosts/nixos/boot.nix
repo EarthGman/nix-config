@@ -5,7 +5,7 @@
     loader = {
       grub = {
         enable = true;
-        device = "/dev/vda";
+        devices = [ "nodev" ];
         useOSProber = false;
         efiSupport = true;
       };
