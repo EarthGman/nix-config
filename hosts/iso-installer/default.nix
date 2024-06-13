@@ -2,9 +2,10 @@
 {
   boot = {
     kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
-    supportedFilesystems = [ "bcachefs" "ext4" ];
+    supportedFilesystems = [ "bcachefs" "ext4" "vfat" ];
   };
   environment.systemPackages = with pkgs; [
+    _1password
     bcachefs-tools
     cryptsetup
     keyutils
@@ -15,6 +16,7 @@
     file
     sops
     age
+    ripgrep
     zip
     unzip
   ];
@@ -26,7 +28,7 @@
   };
 
   nixpkgs.hostPlatform = platform;
-
+  nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [
     # Prevent mbrola-voices (~650MB) from being on the live media
     (_final: super: {
