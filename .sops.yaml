@@ -1,11 +1,12 @@
 keys:
-  - &users:
-    - &g age1f3axcm808wfxm38lg3qfwllytlgmqcjwn4yenlkyqpg3c3ku532s77e48d
-  - &hosts:
-    - &garth age14cjeh2y4lz3naygflwvpmwhsya3l80x8s7pec308x0r5mrj6kugsenl669
+  - &g age1f3axcm808wfxm38lg3qfwllytlgmqcjwn4yenlkyqpg3c3ku532s77e48d
+  - &nixos age1rhaqy98rkc67y7da82vgzsturkssekjhv7eawp36qyqx0wjpms9sfl43sj
 creation_rules:
-  - path_regex: secrets/secrets.yaml$
+  - path_regex: secrets/g.yaml$
     key_groups:
       - age:
         - *g
-        - *garth
+  - path_regex: secrets/nixos.yaml$
+    key_groups:
+      - age:
+        - *nixos
