@@ -5,10 +5,10 @@
     { hostname
     , username
     , editor ? "code"
-    , wallpaper ? null
+    , wallpaper ? "default.png" # default wallpaper required because stylix will complain if one is not set
     , stylix-theme ? null
-    , git-username
-    , git-email
+    , git-username ? null
+    , git-email ? null
     , desktop ? null
     , platform ? "x86_64-linux"
     , search-engine ? "DuckDuckGo"
