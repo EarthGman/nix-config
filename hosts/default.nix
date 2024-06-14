@@ -1,4 +1,4 @@
-{ config, desktop, displayManager, hostname, inputs, lib, modulesPath, outputs, pkgs, platform, stateVersion, timezone, username, gpu, ... }:
+{ config, desktop, displayManager, hostname, inputs, lib, modulesPath, outputs, platform, stateVersion, timezone, gpu, ... }:
 let
   hasDesktop = (desktop != null);
   hasGPU = (gpu != null);
@@ -10,7 +10,6 @@ in
     # inputs.stylix.nixosModules.stylix
     ./${hostname}
   ] ++ lib.optionals (!isISO) [
-    ../users/${username}
     ../modules/nixos/common
   ] ++ lib.optionals (hasNord) [
     ../modules/nixos/nordvpn

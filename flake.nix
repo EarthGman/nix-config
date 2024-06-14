@@ -52,19 +52,19 @@
       overlays = import ./overlays { inherit inputs outputs; };
       nixosConfigurations = {
         # gaming desktop
-        cypher = lib.mkHost { hostname = "cypher"; username = "g"; desktop = "gnome,hyprland"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; gpu = "amd"; };
+        cypher = lib.mkHost { hostname = "cypher"; users = "g"; desktop = "gnome,hyprland"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; gpu = "amd"; };
         # work laptop
-        garth = lib.mkHost { hostname = "garth"; username = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
+        garth = lib.mkHost { hostname = "garth"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
         # old potato hp laptop
-        tater = lib.mkHost { hostname = "tater"; username = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "oneshot"; };
+        tater = lib.mkHost { hostname = "tater"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "oneshot"; };
         # nixos vm
-        nixos = lib.mkHost { hostname = "nixos"; username = "nixos"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "hallow-knight"; };
+        nixos = lib.mkHost { hostname = "nixos"; users = "nixos"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "hallow-knight"; };
 
         # gaming desktop
-        somnus = lib.mkHost { hostname = "somnus"; username = "bean"; desktop = "gnome,hyprland"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; gpu = "amd"; };
+        somnus = lib.mkHost { hostname = "somnus"; users = "bean"; desktop = "gnome,hyprland"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; gpu = "amd"; };
 
         # isos
-        iso-installer = lib.mkHost { hostname = "iso-installer"; username = "nixos"; };
+        iso-installer = lib.mkHost { hostname = "iso-installer"; };
       };
 
       homeConfigurations = {

@@ -15,6 +15,7 @@ TODO:
 - [ ] icon problem on GNOME
 - [x] fix printing module
 - [ ] hard disk encryption
+- [ ] add multi user per machine support
 
 Installation steps
   - connect to wifi or use ethernet cable

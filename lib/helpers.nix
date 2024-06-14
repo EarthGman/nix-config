@@ -17,12 +17,12 @@
       extraSpecialArgs = {
         inherit inputs outputs desktop wallpaper stylix-theme hostname platform username editor git-username git-email search-engine stateVersion;
       };
-      modules = [ ../users ];
+      modules = [ ../home.nix ];
     };
 
   mkHost =
     { hostname
-    , username
+    , users ? null
     , desktop ? null
     , displayManager ? "sddm"
     , platform ? "x86_64-linux"
@@ -31,7 +31,7 @@
     , displayManagerTheme ? null
     }: inputs.nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit inputs outputs desktop displayManager displayManagerTheme hostname platform gpu username timezone stateVersion;
+        inherit inputs outputs desktop displayManager displayManagerTheme hostname platform gpu users timezone stateVersion;
       };
       # If the hostname starts with "iso-", generate an ISO image
       modules =

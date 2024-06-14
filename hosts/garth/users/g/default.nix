@@ -1,16 +1,12 @@
-{ pkgs, username, config, ... }:
+{ pkgs, config, ... }:
 {
-  programs = {
-    zsh.enable = true;
-  };
-
-  sops.secrets.${username}.neededForUsers = true;
+  sops.secrets.g.neededForUsers = true;
   users.mutableUsers = false;
 
-  users.users.${username} = {
+  users.users.g = {
     isNormalUser = true;
-    description = username;
-    hashedPasswordFile = config.sops.secrets.${username}.path;
+    description = "g";
+    hashedPasswordFile = config.sops.secrets.g.path;
     packages = with pkgs; [ home-manager ];
     shell = pkgs.zsh;
     extraGroups = [
