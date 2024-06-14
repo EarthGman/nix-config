@@ -1,11 +1,16 @@
 keys:
   - &cypher age1f3axcm808wfxm38lg3qfwllytlgmqcjwn4yenlkyqpg3c3ku532s77e48d
+  - &garth age13mj768x90kcw2m80d0v3px5v2kvhf9dq63a40xxjgyt75kcv0assr0u8eu
   - &nixos age1rhaqy98rkc67y7da82vgzsturkssekjhv7eawp36qyqx0wjpms9sfl43sj
 creation_rules:
   - path_regex: hosts/cypher/secrets.yaml$
     key_groups:
       - age:
         - *cypher
+  - path_regex: hosts/garth/secrets.yaml$
+    key_groups:
+    - age:
+      - *garth
   - path_regex: hosts/nixos/secrets.yaml$
     key_groups:
       - age:
