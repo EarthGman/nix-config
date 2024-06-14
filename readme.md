@@ -16,6 +16,8 @@ TODO:
 - [x] fix printing module
 - [ ] hard disk encryption
 - [ ] add multi user per machine support
+- [ ] hardware.nix for nixos test vm
+- [ ] disko for all other machines
 
 Installation steps
   - connect to wifi or use ethernet cable

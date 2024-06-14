@@ -1,21 +1,25 @@
-{ pkgs, username, config, ... }:
+{ pkgs, config, ... }:
+let
+  username = "bean";
+  hashedPasswordFile = config.sops.secrets.${username}.path;
+  password = if !(builtins.pathExists hashedPasswordFile) then "123" else null;
+in
 {
-  programs = {
-    zsh.enable = true;
-  };
-
   sops.secrets.${username}.neededForUsers = true;
   users.mutableUsers = false;
 
   users.users.${username} = {
+    inherit password;
+    inherit hashedPasswordFile;
     isNormalUser = true;
     description = username;
-    hashedPasswordFile = config.sops.secrets.${username}.path;
     packages = with pkgs; [ home-manager ];
     shell = pkgs.zsh;
     extraGroups = [
       "networkmanager"
       "wheel"
+      "libvirtd"
+      "qemu-libvirtd"
     ];
   };
 }

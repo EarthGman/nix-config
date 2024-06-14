@@ -4,8 +4,8 @@
   edit-config = "cd ~/src/nix-config && $EDITOR .";
   edit-preferences = "cd ~/src/nix-config/users/${username} && $EDITOR preferences.nix";
   sudo = "sudo ";
-  nrs = "sudo nixos-rebuild switch --upgrade";
-  nrt = "sudo nixos-rebuild test";
+  nrs = "sudo nixos-rebuild switch --flake ~/src/nix-config --upgrade";
+  nrt = "sudo nixos-rebuild test --flake ~/src/nix-config";
   hms = "home-manager switch --flake ~/src/nix-config; source ~/.zshrc";
   ncg = "sudo nix-collect-garbage -d";
   cat = "${pkgs.bat}/bin/bat";

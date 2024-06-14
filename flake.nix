@@ -51,15 +51,17 @@
     {
       overlays = import ./overlays { inherit inputs outputs; };
       nixosConfigurations = {
+        # Earth's PCs
         # gaming desktop
         cypher = lib.mkHost { hostname = "cypher"; users = "g"; desktop = "gnome,hyprland"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; gpu = "amd"; };
         # work laptop
         garth = lib.mkHost { hostname = "garth"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
         # old potato hp laptop
         tater = lib.mkHost { hostname = "tater"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "oneshot"; };
-        # nixos vm
-        nixos = lib.mkHost { hostname = "nixos"; users = "nixos"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "hallow-knight"; };
+        # nixos testing vm
+        nixos = lib.mkHost { hostname = "nixos"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "hallow-knight"; };
 
+        # Thunder's PCs
         # gaming desktop
         somnus = lib.mkHost { hostname = "somnus"; users = "bean"; desktop = "gnome,hyprland"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; gpu = "amd"; };
 
@@ -71,7 +73,7 @@
         "g@cypher" = lib.mkHome { hostname = "cypher"; username = "g"; desktop = "gnome,hyprland"; wallpaper = "fiery-dragon.jpg"; stylix-theme = "home-depot"; editor = "code"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
         "g@garth" = lib.mkHome { hostname = "garth"; username = "g"; desktop = "gnome"; wallpaper = "fiery-dragon.jpg"; stylix-theme = "home-depot"; editor = "code"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
         "g@tater" = lib.mkHome { hostname = "tater"; username = "g"; desktop = "gnome"; editor = "code"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
-        "nixos@nixos" = lib.mkHome { hostname = "nixos"; username = "nixos"; desktop = "gnome"; editor = "code"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
+        "g@nixos" = lib.mkHome { hostname = "nixos"; username = "g"; desktop = "gnome"; editor = "code"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
 
         "bean@somnus" = lib.mkHome { hostname = "somnus"; username = "bean"; desktop = "gnome,hyprland"; wallpaper = "crystal-tower.jpg"; stylix-theme = "nocturne"; editor = "code"; git-username = "Thunderbean290"; git-email = "156272091+Thunderbean290@users.noreply.github.com"; };
       };
