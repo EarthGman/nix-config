@@ -9,8 +9,8 @@ creation_rules:
         - *cypher
   - path_regex: hosts/garth/secrets.yaml$
     key_groups:
-    - age:
-      - *garth
+      - age:
+        - *garth
   - path_regex: hosts/nixos/secrets.yaml$
     key_groups:
       - age:

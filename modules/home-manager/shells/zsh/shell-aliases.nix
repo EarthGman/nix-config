@@ -4,9 +4,12 @@
   edit-config = "cd ~/src/nix-config && $EDITOR .";
   edit-preferences = "cd ~/src/nix-config/users/${username} && $EDITOR preferences.nix";
   sudo = "sudo ";
-  nrs = "sudo nixos-rebuild switch --flake ~/src/nix-config --upgrade";
-  nrt = "sudo nixos-rebuild test --flake ~/src/nix-config";
-  hms = "home-manager switch --flake ~/src/nix-config; source ~/.zshrc";
+  #nrs = "sudo nixos-rebuild switch --flake ~/src/nix-config --upgrade";
+  nrs = "${pkgs.nh}/bin/nh os switch ~/src/nix-config";
+  #nrt = "sudo nixos-rebuild test --flake ~/src/nix-config";
+  nrt = "${pkgs.nh}/bin/nh os test ~/src/nix-config";
+  #hms = "home-manager switch --flake ~/src/nix-config; source ~/.zshrc";
+  hms = "${pkgs.nh}/bin/nh home switch ~/src/nix-config";
   ncg = "sudo nix-collect-garbage -d";
   cat = "${pkgs.bat}/bin/bat";
   ls = "${pkgs.eza}/bin/eza --icons";
