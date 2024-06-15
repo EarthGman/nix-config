@@ -1,6 +1,8 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
+    bcachefs-tools
+    cryptsetup
     git
     gparted
     wget
@@ -12,7 +14,6 @@
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = "/home/g/src/nix-config";
   };
   programs.zsh.enable = true;
 
