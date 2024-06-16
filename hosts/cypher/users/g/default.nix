@@ -1,13 +1,17 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, hostname, ... }:
 let
   username = "g";
-  hashedPasswordFile = config.sops.secrets.${username}.path;
-  password = if (hashedPasswordFile == null) then "123" else null;
+  hasSecrets = builtins.pathExists ../../../../secrets/${hostname}.yaml;
+  hashedPasswordFile =
+    if (hasSecrets)
+    then
+      config.sops.secrets.${username}.path
+    else
+      null;
+  password = if (hasSecrets) then null else "123";
 in
 {
-  sops.secrets.${username}.neededForUsers = true;
-  users.mutableUsers = false;
-
+  imports = lib.optionals hasSecrets [ ./sops.nix ];
   users.users.${username} = {
     inherit hashedPasswordFile;
     inherit password;

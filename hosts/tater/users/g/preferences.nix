@@ -1,65 +1,65 @@
 {
   # terminals
-  wezterm.enable = false;
+  wezterm.enable = true;
   kitty.enable = true;
 
   # browsers
   firefox.enable = true;
 
   # gaming
-  dolphin-emu.enable = false;
+  dolphin-emu.enable = true;
   ffxiv-launcher.enable = false;
-  lutris.enable = false;
-  prismlauncher.enable = false;
+  lutris.enable = true;
+  prismlauncher.enable = true;
 
   # coding
   vscode.enable = true;
-  vim.enable = true;
-  zed.enable = true;
+  vim.enable = false;
+  zed.enable = false;
   github-desktop.enable = true;
   lazygit.enable = true;
 
   # productivity
-  thunderbird.enable = false;
+  thunderbird.enable = true;
   freeoffice.enable = false;
-  libreoffice.enable = false;
-  obsidian.enable = false;
+  libreoffice.enable = true;
+  obsidian.enable = true;
 
   #discord with vesktop
-  discord.enable = false;
+  discord.enable = true;
   betterdiscord.enable = false;
 
   # image and video
-  gimp.enable = false;
-  openshot.enable = false;
-  obs-studio.enable = false;
+  gimp.enable = true;
+  openshot.enable = true;
+  obs-studio.enable = true;
 
   # audio and music
-  musescore.enable = false;
-  museeks.enable = false;
-  audacity.enable = false;
-  clipgrab.enable = false;
+  musescore.enable = true;
+  museeks.enable = true;
+  audacity.enable = true;
+  clipgrab.enable = true;
 
   # tools
-  dosbox.enable = false;
-  looking-glass.enable = false;
-  wine.enable = false;
+  dosbox.enable = true;
+  looking-glass.enable = true;
+  wine.enable = true;
   gcolor.enable = true;
-  flips.enable = false;
-  pika-backup.enable = false;
+  flips.enable = true;
+  pika-backup.enable = true;
   checkra1n.enable = false;
   solaar.enable = false;
 
   # tops
   nvtop.enable = false;
   powertop.enable = true;
-  radeontop.enable = false;
+  radeontop.enable = true;
   htop.enable = true;
 
   # info
   neofetch.enable = true;
 
   # clients
-  filezilla.enable = false;
+  filezilla.enable = true;
   remmina.enable = false;
 }
