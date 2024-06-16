@@ -9,6 +9,8 @@
     file
     zip
     unzip
+    sops
+    age
   ];
   programs.nh = {
     enable = true;

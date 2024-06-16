@@ -59,7 +59,7 @@
         # old potato hp laptop
         tater = lib.mkHost { hostname = "tater"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "oneshot"; };
         # nixos testing vm
-        nixos = lib.mkHost { hostname = "nixos"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "hallow-knight"; };
+        nixos = lib.mkHost { hostname = "nixos"; users = "g,test"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "hallow-knight"; };
 
         # Thunder's PCs
         # gaming desktop
@@ -74,6 +74,7 @@
         "g@garth" = lib.mkHome { hostname = "garth"; username = "g"; desktop = "gnome"; wallpaper = "fiery-dragon.jpg"; stylix-theme = "home-depot"; editor = "code"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
         "g@tater" = lib.mkHome { hostname = "tater"; username = "g"; desktop = "gnome"; editor = "code"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
         "g@nixos" = lib.mkHome { hostname = "nixos"; username = "g"; desktop = "gnome"; editor = "code"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
+        "test@nixos" = lib.mkHome { hostname = "nixos"; username = "test"; desktop = "gnome"; editor = "code"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
 
         "bean@somnus" = lib.mkHome { hostname = "somnus"; username = "bean"; desktop = "gnome,hyprland"; wallpaper = "crystal-tower.jpg"; stylix-theme = "nocturne"; editor = "code"; git-username = "Thunderbean290"; git-email = "156272091+Thunderbean290@users.noreply.github.com"; };
       };
