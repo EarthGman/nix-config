@@ -22,7 +22,6 @@ in
     extraGroups = [
       "networkmanager"
       "wheel"
-      "nordvpn"
       "libvirtd"
       "qemu-libvirtd"
     ];
