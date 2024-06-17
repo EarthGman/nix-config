@@ -7,16 +7,16 @@
   firefox.enable = true;
 
   # gaming
-  dolphin-emu.enable = true;
+  dolphin-emu.enable = false;
   ffxiv-launcher.enable = false;
-  lutris.enable = true;
+  lutris.enable = false;
   prismlauncher.enable = true;
 
   # coding
   vscode.enable = true;
   vim.enable = false;
   zed.enable = false;
-  github-desktop.enable = true;
+  github-desktop.enable = false;
   lazygit.enable = true;
 
   # productivity
@@ -41,8 +41,8 @@
   clipgrab.enable = true;
 
   # tools
-  dosbox.enable = true;
-  looking-glass.enable = true;
+  dosbox.enable = false;
+  looking-glass.enable = false;
   wine.enable = true;
   gcolor.enable = true;
   flips.enable = true;
@@ -53,7 +53,7 @@
   # tops
   nvtop.enable = false;
   powertop.enable = true;
-  radeontop.enable = true;
+  radeontop.enable = false;
   htop.enable = true;
 
   # info
@@ -61,5 +61,5 @@
 
   # clients
   filezilla.enable = true;
-  remmina.enable = false;
+  remmina.enable = true;
 }
