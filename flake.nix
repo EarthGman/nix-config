@@ -57,7 +57,7 @@
         # work laptop
         garth = lib.mkHost { hostname = "garth"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
         # old potato hp laptop
-        tater = lib.mkHost { hostname = "tater"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "oneshot"; };
+        tater = lib.mkHost { hostname = "tater"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
         # nixos testing vm
         nixos = lib.mkHost { hostname = "nixos"; users = "g,test"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "hallow-knight"; };
 
