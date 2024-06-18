@@ -1,9 +1,10 @@
 {
   imports = [
-    ./discord
     ./audacity.nix
     ./checkra1n.nix
     ./clipgrab.nix
+    ./davinci-resolve.nix
+    ./discord
     ./dosbox.nix
     ./filezilla.nix
     ./flips.nix

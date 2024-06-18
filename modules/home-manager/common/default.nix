@@ -14,9 +14,11 @@
     wmctrl # ctrl options for wm
     unrar-free # for that guy who only uploads stuff in .rar format
     cifs-utils
+    clinfo
     bat
     eza
     fzf
+    glxinfo
     hstr
     nix-info
     ripgrep
@@ -35,6 +37,7 @@
     ifuse
     libimobiledevice
     usbmuxd
+    xorg.xmodmap
   ]) ++ (with pkgs.gst_all_1; [
     # gstreamer, needed for some media playing applications to work on linux
     gst-libav

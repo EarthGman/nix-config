@@ -1,5 +1,6 @@
 {
   # terminals
+  alacritty.enable = false;
   wezterm.enable = true;
   kitty.enable = true;
 
@@ -32,6 +33,7 @@
   # image and video
   gimp.enable = true;
   openshot.enable = true;
+  davinci-resolve.enable = true;
   obs-studio.enable = true;
 
   # audio and music
