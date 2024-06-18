@@ -5,7 +5,6 @@
     supportedFilesystems = [ "bcachefs" "ext4" "vfat" ];
   };
   environment.systemPackages = with pkgs; [
-    _1password
     bcachefs-tools
     cryptsetup
     keyutils

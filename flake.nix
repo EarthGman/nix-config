@@ -66,7 +66,8 @@
         somnus = lib.mkHost { hostname = "somnus"; users = "bean"; desktop = "gnome,hyprland"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; gpu = "amd"; };
 
         # isos
-        iso-installer = lib.mkHost { hostname = "iso-installer"; };
+        iso-x86_64 = lib.mkHost { hostname = "iso-headless"; };
+        iso-i686 = lib.mkHost { hostname = "iso-headless"; platform = "i686-linux"; };
       };
 
       homeConfigurations = {

@@ -1,6 +1,5 @@
 { pkgs, username, ... }:
 {
-  build-iso = "pushd ~/src/nix-config; nix run nixpkgs#nixos-generators -- --format iso --flake .#iso-installer -o result; popd";
   edit-config = "cd ~/src/nix-config && $EDITOR .";
   edit-preferences = "cd ~/src/nix-config/users/${username} && $EDITOR preferences.nix";
   sudo = "sudo ";
