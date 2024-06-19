@@ -2,19 +2,18 @@
 {
   boot = {
     kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
-    supportedFilesystems = [ "bcachefs" "ext4" "vfat" ];
+    supportedFilesystems = [
+      "bcachefs"
+      "ext4"
+      "vfat"
+    ];
   };
   environment.systemPackages = with pkgs; [
-    bcachefs-tools
     cryptsetup
-    keyutils
     git
     disko
-    gparted
     wget
     file
-    sops
-    age
     ripgrep
     zip
     unzip
@@ -29,6 +28,16 @@
   nixpkgs.hostPlatform = platform;
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [
+    (self: super: {
+      haskellPackages = super.haskellPackages.override {
+        overrides = self: super: {
+          # Disable tests for all Haskell packages
+          mkDerivation = args: super.mkDerivation (args // {
+            doCheck = false;
+          });
+        };
+      };
+    })
     # Prevent mbrola-voices (~650MB) from being on the live media
     (_final: super: {
       espeak = super.espeak.override {

@@ -12,6 +12,13 @@
               type = "EF02"; # for grub MBR
               priority = 1; # Needs to be first partition
             };
+            swap = {
+              size = "8G";
+              content = {
+                type = "swap";
+                resumeDevice = true;
+              };
+            };
             root = {
               size = "100%";
               content = {
