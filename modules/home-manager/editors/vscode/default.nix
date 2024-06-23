@@ -34,6 +34,7 @@ in
         naumovs.color-highlight
         vscode-icons-team.vscode-icons
         tomoki1207.pdf
+        ms-vscode-remote.remote-ssh
       ];
     };
   };

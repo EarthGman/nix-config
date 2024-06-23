@@ -65,6 +65,9 @@
         # gaming desktop
         somnus = lib.mkHost { hostname = "somnus"; users = "bean"; desktop = "gnome,hyprland"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; gpu = "amd"; };
 
+        # servers
+        testvm1 = lib.mkHost { hostname = "prox-template"; users = "g"; };
+
         # isos
         iso-x86_64 = lib.mkHost { hostname = "iso-headless"; };
         iso-i686 = lib.mkHost { hostname = "iso-headless"; platform = "i686-linux"; };
