@@ -33,6 +33,14 @@
     openssl
     usbutils
     pciutils
+    statix
+    deadnix
+    nixpkgs-hammering
+    nixpkgs-fmt
+    nix-init
+    nix-update
+    nixpkgs-review
+    nurl
     tldr
     ifuse
     libimobiledevice
