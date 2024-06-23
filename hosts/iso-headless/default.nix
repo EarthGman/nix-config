@@ -3,11 +3,14 @@
   boot = {
     kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
     supportedFilesystems = [
+      "btrfs"
       "bcachefs"
       "ext4"
       "vfat"
     ];
   };
+
+  networking.firewall.allowedTCPPorts = [ 22 ];
   environment.systemPackages = with pkgs; [
     cryptsetup
     git
