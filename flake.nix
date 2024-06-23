@@ -66,7 +66,7 @@
         somnus = lib.mkHost { hostname = "somnus"; users = "bean"; desktop = "gnome,hyprland"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; gpu = "amd"; };
 
         # servers
-        testvm1 = lib.mkHost { hostname = "prox-template"; users = "g"; };
+        mc112 = lib.mkHost { hostname = "mc112"; users = "g"; };
 
         # isos
         iso-x86_64 = lib.mkHost { hostname = "iso-headless"; };
