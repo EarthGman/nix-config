@@ -4,6 +4,7 @@
     inputs.stylix.homeManagerModules.stylix
   ];
   stylix = {
+    enable = true;
     image = ./wallpapers/${wallpaper};
     base16Scheme = lib.mkIf (stylix-theme != null) ./color-palettes/${stylix-theme}.yaml;
 
