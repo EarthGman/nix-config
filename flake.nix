@@ -67,6 +67,7 @@
 
         # servers
         mc112 = lib.mkHost { hostname = "mc112"; users = "g"; };
+        mc-blueprints = lib.mkHost { hostname = "mc-blueprints"; users = "g"; };
 
         # isos
         iso-x86_64 = lib.mkHost { hostname = "iso-headless"; };
