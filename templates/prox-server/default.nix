@@ -27,7 +27,11 @@
     openssh.enable = true;
     # settings.PasswordAuthentication = false;
   };
-
+  
+  environment.systemPackages = with pkgs; [ 
+    sysz
+  ];
+ 
   # user
   users = {
     mutableUsers = false;
@@ -37,7 +41,11 @@
       hashedPassword = "$y$j9T$h7xkMgTmjL4sZztucHA7T/$cZHZYhWdoyU.x72hX10e4AhBpJzJFX2nGsl1kKgo/i2";
     };
   };
-
+ 
+  programs.git = {
+    enable = true;
+  };
+    
   # misc
   time.timeZone = timezone;
   system.stateVersion = stateVersion;
