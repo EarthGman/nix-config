@@ -23,6 +23,8 @@
   mkHost =
     { hostname
     , users ? null
+    , git-username ? null
+    , git-email ? null
     , desktop ? null
     , displayManager ? "sddm"
     , platform ? "x86_64-linux"
@@ -31,7 +33,7 @@
     , displayManagerTheme ? null
     }: inputs.nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit inputs outputs desktop displayManager displayManagerTheme hostname platform gpu users timezone stateVersion;
+        inherit inputs outputs git-username git-email desktop displayManager displayManagerTheme hostname platform gpu users timezone stateVersion;
       };
       # If the hostname starts with "iso-", generate an ISO image
       modules =

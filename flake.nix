@@ -66,8 +66,9 @@
         somnus = lib.mkHost { hostname = "somnus"; users = "bean"; desktop = "gnome,hyprland"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; gpu = "amd"; };
 
         # servers
-        mc112 = lib.mkHost { hostname = "mc112"; users = "g"; };
-        mc-blueprints = lib.mkHost { hostname = "mc-blueprints"; users = "g"; };
+        mc112 = lib.mkHost { hostname = "server-mc112"; users = "g"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
+        mc121 = lib.mkHost { hostname = "server-mc121"; users = "g"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
+        mc-blueprints = lib.mkHost { hostname = "server-mc-blueprints"; users = "g"; git-username = "EarthGman"; git-email = "EarthGman@protonmail.com"; };
 
         # isos
         iso-x86_64 = lib.mkHost { hostname = "iso-headless"; };
