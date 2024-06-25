@@ -5,19 +5,20 @@ TODO:
 - [x] installer iso
 - [ ] startup scripts - nordvpn start on login
 - [ ] xremap
-- [ ] hyprland
+- [ ] hyprland and i3
 - [x] discord audio wayland
 - [x] stylix - mouse cursor bug on gnome
 - [x] secrets
-- [ ] mangohud
 - [ ] fix the weird looking glass shm permission thing
 - [x] replace the booleans
-- [ ] icon problem on GNOME
 - [x] fix printing module
 - [ ] hard disk encryption
 - [x] add multi user per machine support
 - [x] hardware.nix for nixos test vm
 - [ ] disko for all other machines
+- [ ] home-manager and declartive git for prox vms
+- [ ] disable uneeded common modules for prox vms
+- [ ] binary cache server
 
 Pre-Install
   1. for new hosts add keys for nixos and/or home Configurations in flake.nix. Function arguments are defined in lib/helpers.nix

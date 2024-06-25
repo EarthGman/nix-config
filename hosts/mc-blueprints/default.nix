@@ -8,19 +8,20 @@
   environment.systemPackages = with pkgs; [
     jre8
   ];
- 
+
   services.minecraft-server = {
     enable = true;
     eula = true;
     declarative = true;
     dataDir = "/opt/minecraft/server";
     # overrides jre_headless to use jre8 instead. This is because attempting to load server-icon.png causes a server crash from a missing library.
-    package = 
-    let
-      override = pkgs.minecraftServers.vanilla-1-12.override {
-        jre_headless = pkgs.jre8;
-      }; 
-    in
+    package =
+      let
+        override = pkgs.minecraftServers.vanilla-1-12.override {
+          jre_headless = pkgs.jre8;
+        };
+      in
+      # carpetmod112
       override.overrideAttrs (old: {
         src = ./server.jar;
       });
