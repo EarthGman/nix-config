@@ -26,7 +26,6 @@
   services = {
     sshd.enable = true;
     openssh.enable = true;
-    # settings.PasswordAuthentication = false;
   };
 
   environment.systemPackages = with pkgs; [

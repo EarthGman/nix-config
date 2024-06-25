@@ -19,6 +19,7 @@ TODO:
 - [ ] home-manager and declartive git for prox vms
 - [ ] disable uneeded common modules for prox vms
 - [ ] binary cache server
+- [ ] remote building - trusted keys
 
 Pre-Install
   1. for new hosts add keys for nixos and/or home Configurations in flake.nix. Function arguments are defined in lib/helpers.nix
