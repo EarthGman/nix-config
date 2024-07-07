@@ -9,7 +9,7 @@
   enable-command-block = false;
   enable-jmx-monitoring = false;
   enable-query = false;
-  enable-rcon = false;
+  enable-rcon = true;
   enable-status = true;
   enforce-secure-profile = true;
   enforce-whitelist = true;
@@ -40,7 +40,7 @@
   pvp = true;
   "query.port" = 25567;
   rate-limit = 0;
-  "rcon.password" = "";
+  "rcon.password" = "password";
   "rcon.port" = 25575;
   region-file-compression = "deflate";
   require-resource-pack = false;

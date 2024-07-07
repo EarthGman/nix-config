@@ -33,6 +33,7 @@
     openssl
     usbutils
     pciutils
+    mcrcon
     statix
     deadnix
     nixpkgs-hammering

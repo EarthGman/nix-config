@@ -1,4 +1,4 @@
-{ inputs, pkgs, config, lib, hostname, users, git-username, git-email, timezone, stateVersion, ... }:
+{ inputs, pkgs, config, lib, hostname, users, git-username, git-email, ... }:
 {
   imports = [
     inputs.home-manager.nixosModules.default
@@ -60,8 +60,4 @@
       };
     };
   };
-
-  # misc
-  time.timeZone = timezone;
-  system.stateVersion = stateVersion;
 }
