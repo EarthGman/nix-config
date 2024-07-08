@@ -41,5 +41,11 @@
     "editor.formatOnSave": true,
     "nix.serverPath": "nixd",
     "editor.minimap.enabled": false,
-    "rust-analyzer.server.path": "/nix/store/9yy1qvl2w9pwxdddvf2gmq903fjabqkx-rust-analyzer-2024-03-25/bin/rust-analyzer"
+    "rust-analyzer.server.path": "/nix/store/9yy1qvl2w9pwxdddvf2gmq903fjabqkx-rust-analyzer-2024-03-25/bin/rust-analyzer",
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    }
 }
