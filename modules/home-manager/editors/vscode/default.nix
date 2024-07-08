@@ -12,7 +12,7 @@ in
     };
 
     programs.vscode = {
-      package = pkgs.vscode-fhs;
+      package = pkgs.master.vscode-fhs;
       enable = true;
       extensions = with pkgs.vscode-extensions; [
         # nix

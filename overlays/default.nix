@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, outputs, ... }:
 {
   additions = final: _prev: import ../pkgs { pkgs = final; };
 
@@ -17,6 +17,12 @@
 
   nixpkgs-unstable = final: _: {
     unstable = import inputs.nixpkgs-unstable {
+      inherit (final) system;
+      config.allowUnfree = true;
+    };
+  };
+  nixpkgs-master = final: _: {
+    master = import inputs.nixpkgs-master {
       inherit (final) system;
       config.allowUnfree = true;
     };

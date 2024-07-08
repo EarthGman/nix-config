@@ -2,18 +2,24 @@
   description = "Gman's nix config";
 
   inputs = {
+    nixpkgs = {
+      url = "github:nixos/nixpkgs/nixos-24.05";
+    };
+
     nixpkgs-unstable = {
       url = "github:nixos/nixpkgs/nixos-unstable";
     };
 
-    nixpkgs = {
-      url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-master = {
+      url = "github:NixOS/nixpkgs";
     };
 
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    flake-utils.url = "github:numtide/flake-utils";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";

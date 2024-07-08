@@ -18,6 +18,7 @@
     bat
     eza
     fzf
+    duf
     glxinfo
     hstr
     nix-info
@@ -25,6 +26,7 @@
     sysz
     lshw
     tree
+    inxi
     nix-prefetch-git
     ncdu
     jq
