@@ -12,6 +12,7 @@
   l = "ls -al";
   g = "${pkgs.git}/bin/git";
   t = "${pkgs.tree}/bin/tree";
+  ff = "${pkgs.fastfetch}/bin/fastfetch";
   ga = "g add .";
   gco = "g checkout";
   gba = "g branch -a";
