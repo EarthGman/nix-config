@@ -1,4 +1,4 @@
-''local wezterm = require 'wezterm'
+local wezterm = require 'wezterm'
 --local act = wezterm.action
 local config = {}
 if wezterm.config_builder then
@@ -35,4 +35,4 @@ config.launch_menu = {
   },
 }
 return config
-''
+

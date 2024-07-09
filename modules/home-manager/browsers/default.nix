@@ -1,5 +1,5 @@
+{ browser, lib, ... }:
 {
-  imports = [
-    ./firefox
-  ];
+  imports =
+    lib.optionals (browser == "firefox") [ ./firefox ];
 }

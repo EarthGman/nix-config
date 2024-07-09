@@ -1,8 +1,8 @@
 { pkgs, ... }:
 {
   imports = [
+    ./fastfetch
     ./neofetch
-    ./wine
     ./git
     # ./xremap
   ];

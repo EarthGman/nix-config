@@ -10,15 +10,16 @@
 
   imports = [
     ./hosts/${hostname}/users/${username}/preferences.nix
-    ./modules/home-manager/rices
-    ./modules/home-manager/shells
-    ./modules/home-manager/terminals
-    ./modules/home-manager/editors
-    ./modules/home-manager/desktop-configs
+    ./modules/home-manager/apps
     ./modules/home-manager/browsers
     ./modules/home-manager/common
-    ./modules/home-manager/apps
+    ./modules/home-manager/desktop-configs
+    ./modules/home-manager/editors
     ./modules/home-manager/gaming
+    ./modules/home-manager/shells
+    ./modules/home-manager/stylix
+    ./modules/home-manager/terminals
+    ./modules/home-manager/wine
   ];
 
   nixpkgs = {

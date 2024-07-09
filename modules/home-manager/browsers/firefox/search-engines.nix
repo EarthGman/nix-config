@@ -7,7 +7,7 @@
     icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
     definedAliases = [ "@np" ];
   };
-  "HM options" = {
+  "Home Manager Options" = {
     urls = [{
       template = "https://home-manager-options.extranix.com/options.html?query={searchTerms}";
     }];

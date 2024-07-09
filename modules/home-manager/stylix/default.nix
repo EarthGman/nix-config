@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, stylix-theme, wallpaper, ... }:
+{ pkgs, lib, inputs, color-scheme, wallpaper, ... }:
 {
   imports = [
     inputs.stylix.homeManagerModules.stylix
@@ -6,7 +6,7 @@
   stylix = {
     enable = true;
     image = ./wallpapers/${wallpaper};
-    base16Scheme = lib.mkIf (stylix-theme != null) ./color-palettes/${stylix-theme}.yaml;
+    base16Scheme = lib.mkIf (color-scheme != null) ./color-palettes/${color-scheme}.yaml;
 
     targets = {
       vscode.enable = false;

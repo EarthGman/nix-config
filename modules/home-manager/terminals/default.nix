@@ -1,7 +1,7 @@
+{ terminal, lib, ... }:
 {
-  imports = [
-    ./alacritty
-    ./kitty
-    ./wezterm
-  ];
+  imports =
+    lib.optionals (terminal == "alacritty") [ ./alacritty ] ++
+    lib.optionals (terminal == "kitty") [ ./kitty ] ++
+    lib.optionals (terminal == "wezterm") [ ./wezterm ];
 }

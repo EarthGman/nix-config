@@ -1,12 +1,4 @@
 {
-  # terminals
-  alacritty.enable = false;
-  wezterm.enable = true;
-  kitty.enable = true;
-
-  # browsers
-  firefox.enable = true;
-
   # gaming
   dolphin-emu.enable = true;
   ffxiv-launcher.enable = false;

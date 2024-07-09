@@ -1,41 +1,38 @@
-{ pkgs, lib, config, username, search-engine, ... }:
-# search engine defaults to duckduckgo
+{ pkgs, lib, username, browser-theme, search-engine, ... }:
+# uses betterfox user.js by default
 let
-  profileDir = ".mozilla/firefox/${username}";
-  shyFoxRepo = pkgs.fetchFromGitHub {
-    owner = "Naezr";
-    repo = "ShyFox";
+  betterfox = pkgs.fetchFromGitHub {
+    owner = "yokoffing";
+    repo = "Betterfox";
     rev = "main";
-    sha256 = "04zwfacnz3wfmabmbawgg523s6qyxszjcafgl2qahn1j30rsxxl1";
+    sha256 = "1xpd5zxb3i03pzx209rn46vpsj4cd9z8brcyb2ilafafm1dz39wb";
   };
-  user_js = "${shyFoxRepo}/user.js";
-  chrome = "${shyFoxRepo}/chrome";
+  user_js = "${betterfox}/user.js";
 in
 {
-  options.firefox.enable = lib.mkEnableOption "enable firefox";
-  config = lib.mkIf config.firefox.enable {
-    home.file = {
-      "${profileDir}/chrome".source = chrome;
-      "${profileDir}/user.js".source = user_js;
-    };
-    programs.firefox = {
-      enable = true;
-      profiles = {
-        "${config.home.username}" = {
-          id = 0;
-          extensions = (with pkgs.nur.repos.rycee.firefox-addons; [
-            ublock-origin
-            onepassword-password-manager
-            darkreader
-            sidebery
-          ]) ++ (with pkgs; [
-            userchrome-toggle-extended
-          ]);
-          search = {
-            default = search-engine;
-            engines = import ./search-engines.nix { inherit pkgs; };
-            force = true;
-          };
+  imports = lib.optionals (browser-theme != null) [
+    # TODO declarative browser theme
+    ./themes/${browser-theme}
+  ];
+  home.file.".mozilla/firefox/g/user.js".source = user_js;
+  programs.firefox = {
+    enable = true;
+    profiles = {
+      "${username}" = {
+        id = 0;
+        extensions = (with pkgs.nur.repos.rycee.firefox-addons; [
+          ublock-origin
+          onepassword-password-manager
+          darkreader
+          sidebery
+        ]) ++ (with pkgs; [
+          userchrome-toggle-extended
+        ]);
+        search = {
+          # search engine defaults to duckduckgo
+          default = search-engine;
+          engines = import ./search-engines.nix { inherit pkgs; };
+          force = true;
         };
       };
     };

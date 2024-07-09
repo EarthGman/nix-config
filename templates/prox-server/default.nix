@@ -40,7 +40,7 @@
       hashedPassword = "$y$j9T$h7xkMgTmjL4sZztucHA7T/$cZHZYhWdoyU.x72hX10e4AhBpJzJFX2nGsl1kKgo/i2";
     };
   };
-  # only used for git pushing
+  # only used for git pushing (will be removed in a future version once remote building is properly setup)
   home-manager = {
     users = {
       "${users}" = {
