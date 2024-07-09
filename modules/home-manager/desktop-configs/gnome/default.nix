@@ -11,5 +11,6 @@
     dconf-editor
   ]) ++ (with pkgs; [
     dconf2nix
+    gnome-tilingShell
   ]);
 }
