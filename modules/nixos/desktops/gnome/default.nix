@@ -4,6 +4,10 @@
   services.xserver.desktopManager.gnome.enable = true;
   programs.dconf.enable = true;
 
+  environment.systemPackages = with pkgs; [
+    gnome-tilingShell
+  ];
+
   programs.geary.enable = false;
   environment.gnome.excludePackages = (with pkgs; [
     weather
