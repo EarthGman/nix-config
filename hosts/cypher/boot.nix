@@ -28,10 +28,11 @@
   boot.loader = {
     efi.canTouchEfiVariables = true;
     efi.efiSysMountPoint = "/boot";
+    grub.theme = pkgs.grub-theme;
     grub.enable = true;
     grub.efiSupport = true;
     # grub.useOSProber = true;
-    grub.gfxmodeEfi = "640x480";
+    grub.gfxmodeEfi = "1920x1080";
     grub.devices = [ "nodev" ];
     grub.extraEntries = ''
       menuentry "Reboot" {

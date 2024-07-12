@@ -14,4 +14,11 @@
     icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg";
     definedAliases = [ "@hm" ];
   };
+  "Nix Hub" = {
+    urls = [{
+      template = "https://www.nixhub.io/?query={searchTerms}";
+    }];
+    icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg";
+    definedAliases = [ "@nh" ];
+  };
 }

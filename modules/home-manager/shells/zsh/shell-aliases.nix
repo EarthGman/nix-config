@@ -2,6 +2,8 @@
 {
   edit-config = "cd ~/src/nix-config && $EDITOR .";
   edit-preferences = "cd ~/src/nix-config/users/${username} && $EDITOR preferences.nix";
+  nix-shell = "nix-shell --command zsh";
+  nixdev = "nix develop --command zsh";
   sudo = "sudo ";
   nrs = "${pkgs.nh}/bin/nh os switch ~/src/nix-config";
   nrt = "${pkgs.nh}/bin/nh os test ~/src/nix-config";
