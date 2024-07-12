@@ -1,4 +1,4 @@
-{ pkgs, inputs, outputs, ... }:
+{ lib, outputs, platform, ... }:
 {
   nix = {
     settings = {
@@ -11,9 +11,15 @@
     # };
   };
   nixpkgs = {
+    hostPlatform = lib.mkDefault platform;
     overlays = builtins.attrValues outputs.overlays;
     config = {
       allowUnfree = true;
     };
+  };
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 4d --keep 3";
   };
 }

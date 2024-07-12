@@ -21,4 +21,11 @@
     icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg";
     definedAliases = [ "@nh" ];
   };
+  "Nixos Options" = {
+    urls = [{
+      template = "https://search.nixos.org/options?query={searchTerms}";
+    }];
+    icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+    definedAliases = [ "@no" ];
+  };
 }

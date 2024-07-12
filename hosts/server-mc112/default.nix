@@ -1,10 +1,6 @@
 # Vanilla MC 1.12.2
 { pkgs, ... }:
 {
-  imports = [
-    ../../templates/prox-server
-  ];
-
   networking.firewall.allowedTCPPorts = [ 25565 ];
 
   environment.systemPackages = with pkgs; [

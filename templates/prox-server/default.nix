@@ -1,4 +1,5 @@
 { inputs, pkgs, config, lib, hostname, users, git-username, git-email, ... }:
+# UEFI, Q35, Qemu proxmox virtual machine
 {
   imports = [
     inputs.home-manager.nixosModules.default

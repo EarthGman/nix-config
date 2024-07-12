@@ -1,4 +1,4 @@
-{ inputs, pkgs, config, hostname, ... }:
+{ inputs, pkgs, hostname, ... }:
 let
   keyFile = "/var/lib/sops-nix/keys.txt";
 in
@@ -8,7 +8,7 @@ in
   ];
 
   sops = {
-    defaultSopsFile = ../../../secrets/${hostname}.yaml;
+    defaultSopsFile = ../../secrets/${hostname}.yaml;
     defaultSopsFormat = "yaml";
     age = {
       inherit keyFile;

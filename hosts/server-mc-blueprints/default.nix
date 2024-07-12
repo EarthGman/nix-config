@@ -1,8 +1,5 @@
 { pkgs, ... }:
 {
-  imports = [
-    ../../templates/prox-server
-  ];
   networking.firewall.allowedTCPPorts = [ 25566 ];
 
   environment.systemPackages = with pkgs; [

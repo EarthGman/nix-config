@@ -1,4 +1,4 @@
-{ pkgs, lib, modulesPath, platform, ... }:
+{ pkgs, lib, modulesPath, outputs, ... }:
 {
   boot = {
     kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
@@ -11,25 +11,9 @@
   };
 
   networking.firewall.allowedTCPPorts = [ 22 ];
-  environment.systemPackages = with pkgs; [
-    cryptsetup
-    git
-    disko
-    wget
-    file
-    ripgrep
-    zip
-    unzip
-  ];
 
-  nix = {
-    settings = {
-      experimental-features = [ "nix-command" "flakes" ];
-    };
-  };
+  users.mutableUsers = true;
 
-  nixpkgs.hostPlatform = platform;
-  nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [
     (self: super: {
       haskellPackages = super.haskellPackages.override {

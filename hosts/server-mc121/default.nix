@@ -1,9 +1,5 @@
 { pkgs, ... }:
 {
-  imports = [
-    ../../templates/prox-server
-  ];
-
   networking.firewall.allowedTCPPorts = [ 25567 ];
 
   services.minecraft-server = {
