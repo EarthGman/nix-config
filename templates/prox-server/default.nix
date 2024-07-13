@@ -3,7 +3,6 @@
 {
   imports = [
     inputs.home-manager.nixosModules.default
-    inputs.disko.nixosModules.disko
     ./disko.nix
     ./hardware.nix
   ];

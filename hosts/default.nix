@@ -12,6 +12,7 @@ let
 in
 {
   imports = [
+    inputs.disko.nixosModules.disko
     ./${hostname}
     ../modules/nixos/nix.nix
     ../modules/nixos/packages.nix

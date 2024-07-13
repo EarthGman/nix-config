@@ -1,4 +1,5 @@
 { pkgs, lib, modulesPath, outputs, ... }:
+# broken, fix later
 {
   boot = {
     kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;

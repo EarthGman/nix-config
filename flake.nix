@@ -70,6 +70,8 @@
         # Thunder's PCs
         # gaming desktop
         somnus = lib.mkHost { hostname = "somnus"; users = "bean"; desktop = "gnome,hyprland"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; gpu = "amd"; };
+        # old dinosaur
+        xj9 = lib.mkHost { hostname = "xj9"; users = "sniffer"; desktop = "gnome,cinnamon"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
 
         # servers
         mc112 = lib.mkHost { hostname = "server-mc112"; users = "g"; };
@@ -89,6 +91,7 @@
         "test@nixos" = lib.mkHome { hostname = "nixos"; username = "test"; desktop = "gnome"; };
 
         "bean@somnus" = lib.mkHome { hostname = "somnus"; username = "bean"; desktop = "gnome,hyprland"; wallpaper = "crystal-tower.jpg"; color-scheme = "nocturne"; git-username = "Thunderbean290"; git-email = "156272091+Thunderbean290@users.noreply.github.com"; };
+        "sniffer@xj9" = lib.mkHome { hostname = "xj9"; username = "sniffer"; desktop = "gnome,cinnamon"; git-username = null; git-email = null; };
       };
     };
 }
