@@ -1,24 +1,27 @@
 { pkgs, lib, inputs, color-scheme, wallpaper, ... }:
+let
+  default = lib.mkDefault;
+in
 {
   imports = [
     inputs.stylix.homeManagerModules.stylix
   ];
   stylix = {
     enable = true;
-    image = ./wallpapers/${wallpaper};
+    image = default ./wallpapers/${wallpaper};
     base16Scheme = lib.mkIf (color-scheme != null) ./color-palettes/${color-scheme}.yaml;
 
-    targets = {
+    targets = default {
       vscode.enable = false;
     };
 
-    cursor = {
+    cursor = default {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Classic";
       size = 24;
     };
 
-    fonts = {
+    fonts = default {
       serif = {
         package = pkgs.dejavu_fonts;
         name = "DejaVu Sans";
@@ -37,6 +40,6 @@
       };
     };
 
-    polarity = "dark";
+    polarity = default "dark";
   };
 }

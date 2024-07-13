@@ -1,4 +1,6 @@
 {
+  # extra config for home-manager. anything here will not apply to any user on any system other than this one
+
   # gaming
   dolphin-emu.enable = true;
   ffxiv-launcher.enable = false;

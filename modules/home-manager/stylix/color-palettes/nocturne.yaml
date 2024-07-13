@@ -1,18 +1,17 @@
-# pairs with crystal-tower.jpg
 palette:
-  base00: "151515" # black
-  base01: "202020" # dark grey
-  base02: "303030" # dark grey
-  base03: "505050" # light grey
-  base04: "B0B0B0" # very light grey
-  base05: "9296be" # light blue-purple
-  base06: "E0E0E0" # almost white
-  base07: "FFFFFF" # actually white
-  base08: "db0004" # red
-  base09: "d10e84" # magenta
-  base0A: "455aee" # Blue
-  base0B: "066624" # green
-  base0C: "1FAAAA" # pale teal
-  base0D: "3777E6" # light blue
-  base0E: "AD00A1" # magenta
-  base0F: "2c0aa7" # blue
+  base00: "151515"
+  base01: "202020"
+  base02: "303030"
+  base03: "505050"
+  base04: "B0B0B0"
+  base05: "9296be"
+  base06: "E0E0E0"
+  base07: "FFFFFF"
+  base08: "db0004"
+  base09: "d10e84"
+  base0A: "455aee"
+  base0B: "066624"
+  base0C: "1FAAAA"
+  base0D: "3777E6"
+  base0E: "AD00A1"
+  base0F: "2c0aa7"

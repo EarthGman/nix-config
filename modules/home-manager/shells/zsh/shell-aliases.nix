@@ -1,7 +1,7 @@
-{ pkgs, username, ... }:
+{ pkgs, username, hostname, ... }:
 {
   edit-config = "cd ~/src/nix-config && $EDITOR .";
-  edit-preferences = "cd ~/src/nix-config/users/${username} && $EDITOR preferences.nix";
+  edit-preferences = "cd ~/src/nix-config/hosts/${hostname}/users/${username} && $EDITOR preferences.nix";
   nix-shell = "nix-shell --command zsh";
   nixdev = "nix develop --command zsh";
   sudo = "sudo ";

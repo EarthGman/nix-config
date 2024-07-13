@@ -1,4 +1,4 @@
-{ pkgs, editor, username, ... }:
+{ pkgs, editor, username, hostname, ... }:
 {
   programs = {
     zsh = {
@@ -6,7 +6,7 @@
       enableCompletion = true;
       syntaxHighlighting.enable = true;
       autosuggestion.enable = true;
-      shellAliases = import ./shell-aliases.nix { inherit pkgs username; };
+      shellAliases = import ./shell-aliases.nix { inherit pkgs username hostname; };
       initExtra = ''
         eval "$(${pkgs.zoxide}/bin/zoxide init --cmd j zsh)"
         export PATH=$(realpath ~/bin):$PATH
