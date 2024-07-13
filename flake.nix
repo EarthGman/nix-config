@@ -59,7 +59,7 @@
       nixosConfigurations = {
         # Earth's PCs
         # gaming desktop
-        cypher = lib.mkHost { hostname = "cypher"; users = "g"; desktop = "gnome,hyprland"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; gpu = "amd"; };
+        cypher = lib.mkHost { hostname = "cypher"; users = "g"; desktop = "gnome,hyprland"; displayManager = "sddm"; displayManagerTheme = "april"; gpu = "amd"; };
         # work laptop
         garth = lib.mkHost { hostname = "garth"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
         # old potato hp laptop
@@ -84,7 +84,7 @@
       };
 
       homeConfigurations = {
-        "g@cypher" = lib.mkHome { hostname = "cypher"; username = "g"; desktop = "gnome,hyprland"; wallpaper = "fiery-dragon.jpg"; color-scheme = "home-depot"; };
+        "g@cypher" = lib.mkHome { hostname = "cypher"; username = "g"; desktop = "gnome,hyprland"; wallpaper = "kaori.jpg"; color-scheme = "home-depot"; };
         "g@garth" = lib.mkHome { hostname = "garth"; username = "g"; desktop = "gnome"; wallpaper = "fiery-dragon.jpg"; color-scheme = "home-depot"; };
         "g@tater" = lib.mkHome { hostname = "tater"; username = "g"; desktop = "gnome"; };
         "g@nixos" = lib.mkHome { hostname = "nixos"; username = "g"; desktop = "gnome"; };
