@@ -22,8 +22,19 @@
       # "zfs"
     ];
   };
-  networking.firewall.allowedTCPPorts = [ 22 ];
-  users.mutableUsers = true;
+  networking = {
+    hostName = "nixos";
+    firewall.allowedTCPPorts = [ 22 ];
+  };
+  users.mutableUsers = false;
+
+  users.users."nixos" = {
+    isNormalUser = true;
+    description = "nixos";
+    extraGroups = [ "wheel" ];
+    hashedPassword = null; # is set to "" by default causing a confliction with password
+    password = "123"; # required for ssh during installation
+  };
 
   nixpkgs.overlays = [
     (self: super: {
