@@ -29,6 +29,9 @@
     softdep amdgpu pre: vfio-pci
   '';
 
+  boot.binfmt.emulatedSystems = [
+    "aarch64-linux"
+  ];
   boot.loader.grub.theme = pkgs.grub-theme;
 
   networking = {

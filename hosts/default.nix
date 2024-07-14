@@ -14,8 +14,8 @@ in
   imports = [
     inputs.disko.nixosModules.disko
     ./${hostname}
-    ../modules/nixos/nix.nix
     ../modules/nixos/packages.nix
+    ../modules/nixos/nix.nix
   ] ++ lib.optionals (isServer) [
     ../templates/prox-server
   ] ++ lib.optionals (hasNord) [
