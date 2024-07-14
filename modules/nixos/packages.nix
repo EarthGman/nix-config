@@ -7,7 +7,6 @@
     git
     disko
     ripgrep
-    gparted
     wget
     file
     zip
@@ -18,7 +17,7 @@
     lshw
   ];
   programs = {
-    zsh = {
+    zsh = lib.mkDefault {
       enableCompletion = true;
       syntaxHighlighting.enable = true;
       enable = true;

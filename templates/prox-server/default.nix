@@ -29,7 +29,11 @@
   };
 
   # user
+  programs.zsh.enable = false;
   users = {
+    users."root" = {
+      shell = pkgs.bashInteractive;
+    };
     users.${users} = {
       isNormalUser = true;
       extraGroups = [ "networkmanager" "wheel" ];
