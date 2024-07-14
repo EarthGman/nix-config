@@ -6,5 +6,5 @@
   gnome-tilingShell = pkgs.callPackage ./tilingshell.nix { };
   userchrome-toggle-extended = pkgs.callPackage ./uct-extended.nix { };
   grub-theme = pkgs.callPackage ./nixos-grub.nix { };
-  sddmThemes = import ./themes/sddm { inherit pkgs; };
+  sddm-themes = import ./themes/sddm { inherit pkgs; };
 }
