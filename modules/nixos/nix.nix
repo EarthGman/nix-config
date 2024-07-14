@@ -12,7 +12,7 @@
   };
   nixpkgs = {
     hostPlatform = lib.mkDefault platform;
-    overlays = builtins.attrValues outputs.overlays;
+    overlays = lib.mkDefault (builtins.attrValues outputs.overlays);
     config = {
       allowUnfree = true;
     };

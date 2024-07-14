@@ -3,7 +3,6 @@
 {
   imports = [
     inputs.home-manager.nixosModules.default
-    (modulesPath + "/profiles/qemu-guest.nix")
     ./disko.nix
   ];
   # boot stuff
