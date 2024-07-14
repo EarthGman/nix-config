@@ -1,4 +1,4 @@
-{ pkgs, desktop, hostname, inputs, lib, modulesPath, stateVersion, timezone, gpu, platform, ... }:
+{ pkgs, config, lib, desktop, hostname, cpu, inputs, modulesPath, stateVersion, timezone, gpu, platform, ... }:
 let
   hasDesktop = (desktop != null);
   hasGPU = (gpu != null);
@@ -31,11 +31,19 @@ in
   ] ++ lib.optionals (hasGPU) [
     ../modules/nixos/gpudrivers
   ] ++ lib.optionals (!isVM) [
+    (modulesPath + "/installer/scan/not-detected.nix")
     ../modules/nixos/virtualization.nix
+  ] ++ lib.optionals (isVM) [
+    (modulesPath + "/profiles/qemu-guest.nix")
   ] ++ lib.optionals (hasSecrets) [
     ../modules/nixos/sops.nix
   ];
 
+  hardware.cpu.${cpu}.updateMicrocode = lib.mkIf (!isVM) (lib.mkDefault config.hardware.enableRedistributableFirmware);
+
+  boot.kernelModules = if (isVM) then [ ] else if (cpu == "intel") then [ "kvm-intel" ] else [ "kvm-amd" ];
+
+  networking.useDHCP = lib.mkDefault true;
   users.mutableUsers = lib.mkDefault false;
   time.timeZone = timezone;
   system.stateVersion = stateVersion;

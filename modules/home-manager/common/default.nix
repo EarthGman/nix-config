@@ -23,7 +23,6 @@
     hstr
     nix-info
     ripgrep
-    sysz
     lshw
     tree
     inxi

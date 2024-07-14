@@ -14,6 +14,7 @@
     unzip
     sops
     age
+    sysz
   ];
   programs.zsh.enable = true;
 }

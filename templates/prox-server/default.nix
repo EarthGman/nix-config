@@ -1,13 +1,15 @@
-{ inputs, pkgs, config, lib, hostname, users, git-username, git-email, ... }:
+{ inputs, pkgs, config, lib, modulesPath, stateVersion, hostname, users, git-username, git-email, ... }:
 # UEFI, Q35, Qemu proxmox virtual machine
 {
   imports = [
     inputs.home-manager.nixosModules.default
+    (modulesPath + "/profiles/qemu-guest.nix")
+    (modulesPath + "/profiles/minimal.nix")
     ./disko.nix
-    ./hardware.nix
   ];
   # boot stuff
   boot = {
+    initrd.availableKernelModules = [ "uhci_hcd" "ehci_pci" "ahci" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod" ];
     kernelParams = [ "quiet" "noatime" ];
     kernelPackages = pkgs.linuxPackages_latest;
     tmp.cleanOnBoot = true;
@@ -27,10 +29,6 @@
     sshd.enable = true;
     openssh.enable = true;
   };
-
-  environment.systemPackages = with pkgs; [
-    sysz
-  ];
 
   # user
   users = {

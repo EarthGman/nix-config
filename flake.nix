@@ -19,7 +19,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    flake-utils.url = "github:numtide/flake-utils";
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
@@ -59,19 +61,19 @@
       nixosConfigurations = {
         # Earth's PCs
         # gaming desktop
-        cypher = lib.mkHost { hostname = "cypher"; users = "g"; desktop = "gnome,hyprland"; displayManager = "sddm"; displayManagerTheme = "april"; gpu = "amd"; };
+        cypher = lib.mkHost { hostname = "cypher"; cpu = "amd"; gpu = "amd"; users = "g"; desktop = "gnome,hyprland"; displayManager = "sddm"; displayManagerTheme = "april"; };
         # work laptop
-        garth = lib.mkHost { hostname = "garth"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
+        garth = lib.mkHost { hostname = "garth"; cpu = "intel"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
         # old potato hp laptop
-        tater = lib.mkHost { hostname = "tater"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
+        tater = lib.mkHost { hostname = "tater"; cpu = "intel"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
         # nixos testing vm
-        nixos = lib.mkHost { hostname = "nixos"; users = "g,test"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "hallow-knight"; };
+        nixos = lib.mkHost { hostname = "nixos"; cpu = "amd"; users = "g,test"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "hallow-knight"; };
 
         # Thunder's PCs
         # gaming desktop
-        somnus = lib.mkHost { hostname = "somnus"; users = "bean"; desktop = "gnome,hyprland"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; gpu = "amd"; };
+        somnus = lib.mkHost { hostname = "somnus"; cpu = "amd"; gpu = "amd"; users = "bean"; desktop = "gnome,hyprland"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
         # old dinosaur
-        xj9 = lib.mkHost { hostname = "xj9"; users = "sniffer"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
+        xj9 = lib.mkHost { hostname = "xj9"; cpu = "amd"; users = "sniffer"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
 
         # servers
         mc112 = lib.mkHost { hostname = "server-mc112"; users = "g"; };

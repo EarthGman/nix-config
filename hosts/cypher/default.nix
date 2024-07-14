@@ -1,8 +1,18 @@
 { pkgs, lib, ... }:
 {
   imports = [
-    ./hardware.nix
+    ./fs.nix
   ];
+
+  boot.initrd.availableKernelModules = [
+    "nvme"
+    "ahci"
+    "xhci_pci"
+    "usb_storage"
+    "usbhid"
+    "sd_mod"
+  ];
+
   boot.kernelParams = [
     "amd_iommu=on"
   ];

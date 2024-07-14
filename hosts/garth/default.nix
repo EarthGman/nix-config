@@ -1,8 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ./users
-    ./hardware.nix
+    ./fs.nix
   ];
   boot.loader.grub.theme = pkgs.grub-theme;
 }
