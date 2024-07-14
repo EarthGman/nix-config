@@ -24,6 +24,7 @@
     nix-info
     ripgrep
     lshw
+    sysz
     tree
     inxi
     nix-prefetch-git

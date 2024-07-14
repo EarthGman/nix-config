@@ -47,4 +47,8 @@ in
   users.mutableUsers = lib.mkDefault false;
   time.timeZone = timezone;
   system.stateVersion = stateVersion;
+
+  users.users."root" = {
+    shell = pkgs.zsh;
+  };
 }

@@ -34,6 +34,7 @@
     extraGroups = [ "wheel" ];
     hashedPassword = null; # is set to "" by default causing a confliction with password
     password = "123"; # required for ssh during installation
+    shell = pkgs.zsh;
   };
 
   nixpkgs.overlays = [
