@@ -17,10 +17,10 @@
               };
             };
             home = {
-              size = "20G";
+              size = "15G";
               content = {
                 type = "filesystem";
-                format = "ext4";
+                format = "btrfs";
                 mountpoint = "/home";
               };
             };
@@ -28,7 +28,7 @@
               size = "100%";
               content = {
                 type = "filesystem";
-                format = "bcachefs";
+                format = "btrfs";
                 mountpoint = "/";
               };
             };
