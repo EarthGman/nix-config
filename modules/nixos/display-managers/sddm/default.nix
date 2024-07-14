@@ -5,7 +5,7 @@ in
 {
   services.displayManager.sddm = {
     enable = true;
-    theme = lib.mkIf (hasTheme) "${import ./themes/${displayManagerTheme} {inherit pkgs; }}";
+    theme = lib.mkIf (hasTheme) pkgs.sddmThemes.${displayManagerTheme};
   };
 
   # sddm theme dependencies
