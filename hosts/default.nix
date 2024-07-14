@@ -49,6 +49,6 @@ in
   system.stateVersion = stateVersion;
 
   users.users."root" = {
-    shell = lib.mkdefault pkgs.zsh;
+    shell = lib.mkDefault pkgs.zsh;
   };
 }
