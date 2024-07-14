@@ -20,7 +20,7 @@
               size = "230G";
               content = {
                 type = "filesystem";
-                format = "bcachefs";
+                format = "btrfs";
                 mountpoint = "/home";
               };
             };
@@ -28,7 +28,7 @@
               size = "100%";
               content = {
                 type = "filesystem";
-                format = "bcachefs";
+                format = "btrfs";
                 mountpoint = "/";
               };
             };

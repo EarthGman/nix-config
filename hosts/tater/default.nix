@@ -3,13 +3,12 @@
   imports = [
     inputs.disko.nixosModules.disko
     ./disko.nix
-    ./users
-    ./boot.nix
-    ./hardware.nix
-    ./networking.nix
   ];
-  environment.systemPackages = with pkgs; [
-    broadcom-bt-firmware
-    linuxKernel.packages.linux_zen.broadcom_sta
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "ahci"
+    "usb_storage"
+    "sd_mod"
+    "rtsx_pci_sdmmc"
   ];
 }
