@@ -8,7 +8,7 @@
   nrs = "${pkgs.nh}/bin/nh os switch ~/src/nix-config";
   nrt = "${pkgs.nh}/bin/nh os test ~/src/nix-config";
   hms = "${pkgs.nh}/bin/nh home switch ~/src/nix-config";
-  ncg = "sudo nix-collect-garbage -d";
+  ncg = "${pkgs.nh}/bin/nh clean all";
   cat = "${pkgs.bat}/bin/bat";
   ls = "${pkgs.eza}/bin/eza --icons";
   l = "ls -al";
