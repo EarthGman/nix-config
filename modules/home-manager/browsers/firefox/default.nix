@@ -14,7 +14,7 @@ in
     # TODO declarative browser theme
     ./themes/${browser-theme}
   ];
-  home.file.".mozilla/firefox/g/user.js".source = user_js;
+  home.file.".mozilla/firefox/${username}/user.js".source = user_js;
   programs.firefox = {
     enable = true;
     profiles = {
