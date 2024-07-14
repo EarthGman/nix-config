@@ -5,12 +5,11 @@ in
 {
   services.displayManager.sddm = {
     enable = true;
-    theme = lib.mkIf (hasTheme) displayManagerTheme;
+    theme = lib.mkIf (hasTheme) "${pkgs.sddm-themes.${displayManagerTheme}}";
   };
 
   # sddm theme dependencies
   environment.systemPackages = (with pkgs; [
-    sddm-themes.${displayManagerTheme}
     kconfig-frontends
   ]) ++ (with pkgs.libsForQt5; [
     karchive

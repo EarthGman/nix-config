@@ -1,7 +1,6 @@
 keys:
   - &cypher age1f3axcm808wfxm38lg3qfwllytlgmqcjwn4yenlkyqpg3c3ku532s77e48d
   - &garth age13mj768x90kcw2m80d0v3px5v2kvhf9dq63a40xxjgyt75kcv0assr0u8eu
-  - &nixos age1vy7yj08r5fmfyg96cry9f6255qcvn7spl2efgwy75607008ju4uqfum4u7
   - &somnus age18uzw9yhgjnuy0zg9fajmp75m0r8w93aq0qw453e868mxadflcghqpeqgy4
 creation_rules:
   - path_regex: secrets/cypher.yaml$
@@ -12,10 +11,6 @@ creation_rules:
     key_groups:
       - age:
         - *garth
-  - path_regex: secrets/nixos.yaml$
-    key_groups:
-      - age:
-        - *nixos
   - path_regex: secrets/somnus.yaml$
     key_groups:
       - age:

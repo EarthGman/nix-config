@@ -32,7 +32,6 @@
   boot.binfmt.emulatedSystems = [
     "aarch64-linux"
   ];
-  boot.loader.grub.theme = pkgs.grub-theme;
 
   networking = {
     # required for sins of a solar empire lag bug in multiplayer

@@ -18,7 +18,7 @@
       };
       grub = {
         enable = true;
-        # theme = TODO
+        theme = pkgs.grub-themes.nixos;
         efiSupport = true;
         devices = [ "nodev" ];
         gfxmodeEfi = "1920x1080";
