@@ -29,7 +29,11 @@
   };
 
   # user
-  programs.zsh.enable = false;
+  programs = {
+    zsh.enable = false;
+    starship.enable = false;
+    direnv.enable = false;
+  };
   users = {
     users."root" = {
       shell = pkgs.bashInteractive;

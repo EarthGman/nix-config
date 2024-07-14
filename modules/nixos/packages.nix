@@ -1,4 +1,7 @@
 { pkgs, ... }:
+let
+  default = lib.mkDefault;
+in
 {
   environment.systemPackages = with pkgs; [
     nix-output-monitor
@@ -17,7 +20,7 @@
     lshw
   ];
   programs = {
-    zsh = lib.mkDefault {
+    zsh = default {
       enableCompletion = true;
       syntaxHighlighting.enable = true;
       enable = true;
@@ -31,10 +34,10 @@
         cat = "${pkgs.bat}/bin/bat";
       };
     };
-    starship = {
+    starship = default {
       enable = true;
     };
-    direnv = {
+    direnv = default {
       enable = true;
       nix-direnv.enable = true;
     };
