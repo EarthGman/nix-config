@@ -36,6 +36,8 @@
     usbutils
     pciutils
     mcrcon
+    mupdf
+    switcheroo
     statix
     deadnix
     nixpkgs-hammering
