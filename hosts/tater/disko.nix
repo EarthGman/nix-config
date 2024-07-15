@@ -16,14 +16,6 @@
                 mountpoint = "/boot";
               };
             };
-            home = {
-              size = "230G";
-              content = {
-                type = "filesystem";
-                format = "btrfs";
-                mountpoint = "/home";
-              };
-            };
             root = {
               size = "100%";
               content = {

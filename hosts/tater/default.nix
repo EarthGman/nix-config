@@ -11,4 +11,10 @@
     "sd_mod"
     "rtsx_pci_sdmmc"
   ];
+  boot.kernelModules = [
+    "wl"
+  ];
+  boot.extraModulePackages = with pkgs.linuxKernel.packages.linux_6_9; [
+    broadcom_sta
+  ];
 }
