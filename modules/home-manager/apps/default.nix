@@ -26,5 +26,6 @@
     ./remmina.nix
     ./solaar.nix
     ./thunderbird.nix
+    ./xclicker.nix
   ];
 }
