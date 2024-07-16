@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ outputs, pkgs, lib, ... }:
 {
   boot = {
     kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
@@ -27,16 +27,13 @@
     firewall.allowedTCPPorts = [ 22 ];
   };
 
-  users.users."nixos" = {
-    isNormalUser = true;
-    description = "nixos";
-    extraGroups = [ "wheel" ];
-    hashedPassword = null; # is set to "" by default causing a confliction with password
-    password = "123"; # required for ssh during installation
-    shell = pkgs.zsh;
+  users.users."root" = {
+    initialHashedPassword = lib.mkForce "$y$j9T$d2RB4sobsNvCRKTiZL04K1$oHhfOT2x9Ie4.eDXb9x8SN2EeuNqXSyNBcddA/xWlD3";
   };
 
   nixpkgs.overlays = [
+    outputs.overlays.disable-mbrola-voices
+  ] ++ [
     (self: super: {
       haskellPackages = super.haskellPackages.override {
         overrides = self: super: {

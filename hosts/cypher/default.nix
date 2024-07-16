@@ -1,6 +1,9 @@
+{ displayManager, lib, ... }:
 {
   imports = [
     ./fs.nix
+  ] ++ lib.optionals (displayManager == "sddm") [
+    ./sddm.nix
   ];
 
   boot.initrd.availableKernelModules = [
