@@ -27,18 +27,18 @@
   mkHost =
     { hostname
     , cpu ? null
+    , gpu ? null
     , users ? null
-    , git-username ? "EarthGman"
-    , git-email ? "EarthGman@protonmail.com"
     , desktop ? null
     , displayManager ? "sddm"
-    , platform ? "x86_64-linux"
-    , timezone ? "America/Chicago"
-    , gpu ? null
     , displayManagerTheme ? null
+    , platform ? "x86_64-linux"
+    , grub-theme ? "nixos"
+    , git-username ? "EarthGman"
+    , git-email ? "EarthGman@protonmail.com"
     }: inputs.nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit inputs outputs cpu git-username git-email desktop displayManager displayManagerTheme hostname platform gpu users timezone stateVersion;
+        inherit inputs outputs hostname cpu gpu users desktop displayManager displayManagerTheme grub-theme git-username git-email platform stateVersion;
       };
       # If the hostname starts with "iso-", generate an ISO image
       modules =

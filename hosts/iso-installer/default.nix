@@ -26,7 +26,6 @@
     hostName = "nixos";
     firewall.allowedTCPPorts = [ 22 ];
   };
-  users.mutableUsers = false;
 
   users.users."nixos" = {
     isNormalUser = true;

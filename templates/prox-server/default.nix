@@ -9,7 +9,6 @@
   boot = {
     initrd.availableKernelModules = [ "uhci_hcd" "ehci_pci" "ahci" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod" ];
     kernelParams = [ "quiet" "noatime" ];
-    kernelPackages = pkgs.linuxPackages_latest;
     tmp.cleanOnBoot = true;
     loader = {
       efi.canTouchEfiVariables = true;

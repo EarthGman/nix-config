@@ -1,7 +1,6 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, grub-theme, ... }:
 {
   boot = {
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
     extraModulePackages = [
       # for obs virtual camera
       config.boot.kernelPackages.v4l2loopback
@@ -18,7 +17,7 @@
       };
       grub = {
         enable = true;
-        theme = pkgs.grub-themes.nixos;
+        theme = pkgs.grub-themes.${grub-theme};
         efiSupport = true;
         devices = [ "nodev" ];
         gfxmodeEfi = "1920x1080";

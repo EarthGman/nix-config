@@ -1,4 +1,4 @@
-{ pkgs, config, lib, desktop, hostname, cpu, inputs, modulesPath, stateVersion, timezone, gpu, platform, ... }:
+{ pkgs, config, lib, desktop, hostname, cpu, inputs, modulesPath, stateVersion, gpu, platform, ... }:
 let
   hasDesktop = (desktop != null);
   hasGPU = (gpu != null);
@@ -41,11 +41,14 @@ in
 
   hardware.cpu.${cpu}.updateMicrocode = lib.mkIf (!isVM) (lib.mkDefault config.hardware.enableRedistributableFirmware);
 
-  boot.kernelModules = if (isVM) then [ ] else if (cpu == "intel") then [ "kvm-intel" ] else [ "kvm-amd" ];
+  boot = {
+    kernelModules = if (isVM) then [ ] else if (cpu == "intel") then [ "kvm-intel" ] else [ "kvm-amd" ];
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+  };
 
   networking.useDHCP = lib.mkDefault true;
   users.mutableUsers = lib.mkDefault false;
-  time.timeZone = timezone;
+  time.timeZone = lib.mkDefault "America/Chicago";
   system.stateVersion = stateVersion;
 
   users.users."root" = {
