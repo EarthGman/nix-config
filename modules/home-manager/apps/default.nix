@@ -1,6 +1,7 @@
 {
   imports = [
     ./audacity.nix
+    ./autokey.nix
     ./checkra1n.nix
     ./clipgrab.nix
     ./davinci-resolve.nix

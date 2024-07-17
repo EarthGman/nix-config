@@ -15,6 +15,7 @@
     unrar-free # for that guy who only uploads stuff in .rar format
     cifs-utils
     clinfo
+    cava
     bat
     eza
     fzf
