@@ -60,4 +60,26 @@
   # clients
   filezilla.enable = true;
   remmina.enable = false;
+
+  home.file = {
+    "bin/ygo-omega" = {
+      executable = true;
+      text = ''
+        #!/usr/bin/env bash
+        steam-run ~/games/ygo-omega/OmegaUpdater
+      '';
+    };
+    ".local/share/applications/ygo-omega.desktop" = {
+      text = ''
+        [Desktop Entry]
+        Name=YGO Omega
+        Comment=Yugioh Simulator
+        Icon=/home/g/games/ygo-omega/YGO Omega_Data/Resources/UnityPlayer.png
+        Exec=steam-run /home/g/games/ygo-omega/OmegaUpdater
+        Terminal=false
+        Type=Application
+        Categories=Game
+      '';
+    };
+  };
 }
