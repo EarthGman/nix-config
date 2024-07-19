@@ -2,7 +2,7 @@
 let
   hasTheme = (displayManagerTheme != null);
   desktops = builtins.filter builtins.isString (builtins.split "," desktop);
-  plasmaEnabled = bulitins.elem "plasma" desktops;
+  plasmaEnabled = builtins.elem "plasma" desktops;
 in
 {
   services.displayManager.sddm = {
