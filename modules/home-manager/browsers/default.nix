@@ -1,5 +1,7 @@
-{ browser, lib, ... }:
+{ lib, ... }:
 {
-  imports =
-    lib.optionals (browser == "firefox") [ ./firefox ];
+  imports = [
+    ./firefox
+  ];
+  firefox.enable = lib.mkDefault true;
 }

@@ -1,7 +1,9 @@
-{ terminal, lib, ... }:
+{ lib, ... }:
 {
-  imports =
-    lib.optionals (terminal == "alacritty") [ ./alacritty ] ++
-    lib.optionals (terminal == "kitty") [ ./kitty ] ++
-    lib.optionals (terminal == "wezterm") [ ./wezterm ];
+  imports = [
+    ./alacritty
+    ./wezterm
+    ./kitty
+  ];
+  kitty.enable = lib.mkDefault true;
 }

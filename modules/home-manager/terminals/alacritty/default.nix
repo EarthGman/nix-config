@@ -1,4 +1,7 @@
 { pkgs, config, lib, ... }:
 {
-  programs.alacritty.enable = true;
+  options.alacritty.enable = lib.mkEnableOption "alacritty";
+  config = lib.mkIf config.alacritty.enable {
+    programs.alacritty.enable = true;
+  };
 }

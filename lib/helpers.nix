@@ -5,21 +5,16 @@
     { hostname
     , username
     , desktop ? null
-    , shell ? "zsh"
-    , terminal ? "kitty"
     , editor ? "code"
     , wallpaper ? "default.png" # default wallpaper required because stylix will complain if one is not set
     , color-scheme ? null
-    , browser ? "firefox"
-    , browser-theme ? null
-    , search-engine ? "DuckDuckGo"
     , git-username ? "EarthGman"
     , git-email ? "EarthGman@protonmail.com"
     , platform ? "x86_64-linux"
     }: inputs.home-manager.lib.homeManagerConfiguration {
       pkgs = inputs.nixpkgs.legacyPackages.${platform};
       extraSpecialArgs = {
-        inherit inputs outputs hostname username desktop shell terminal editor wallpaper color-scheme browser browser-theme search-engine git-username git-email platform stateVersion;
+        inherit inputs outputs hostname username desktop editor wallpaper color-scheme git-username git-email platform stateVersion;
       };
       modules = [ ../home.nix ];
     };
