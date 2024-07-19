@@ -63,7 +63,7 @@
         # old potato hp laptop
         tater = lib.mkHost { hostname = "tater"; cpu = "intel"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
         # nixos testing vm
-        nixos = lib.mkHost { hostname = "nixos"; cpu = "amd"; users = "test"; desktop = "gnome,plasma"; displayManager = "sddm"; };
+        nixos = lib.mkHost { hostname = "nixos"; cpu = "amd"; users = "test"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
 
         # Thunder's PCs
         # gaming desktop
