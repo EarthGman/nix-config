@@ -1,24 +1,28 @@
 { desktop, lib, ... }:
 let
+  inherit (lib) optionals;
+  inherit (builtins) elem filter isString split;
   # allows for a system to use multiple desktops at once
-  desktops = builtins.filter builtins.isString (builtins.split "," desktop);
-  gnome = builtins.elem "gnome" desktops;
-  hyprland = builtins.elem "hyprland" desktops;
-  plasma = builtins.elem "plasma" desktops;
-  cinnamon = builtins.elem "cinnamon" desktops;
+  desktops = filter isString (split "," desktop);
+  gnome = elem "gnome" desktops;
+  hyprland = elem "hyprland" desktops;
+  plasma = elem "plasma" desktops;
+  cinnamon = elem "cinnamon" desktops;
+  i3 = elem "i3" desktops;
 
   resolvePlasmaGnome = (plasma && gnome);
   resolveCinnamonGnome = (cinnamon && gnome);
 in
 {
   imports =
-    (lib.optionals gnome [ ./gnome ]) ++
-    (lib.optionals hyprland [ ./hyprland ]) ++
-    (lib.optionals plasma [ ./plasma ]) ++
-    (lib.optionals cinnamon [ ./cinnamon ]) ++
+    (optionals gnome [ ./gnome ]) ++
+    (optionals hyprland [ ./hyprland ]) ++
+    (optionals plasma [ ./plasma ]) ++
+    (optionals cinnamon [ ./cinnamon ]) ++
+    (optionals i3 [ ./i3 ]) ++
 
-    (lib.optionals resolvePlasmaGnome [ ./conflicts/plasma-gnome.nix ]) ++
-    (lib.optionals resolveCinnamonGnome [ ./conflicts/cinnamon-gnome.nix ]);
+    (optionals resolvePlasmaGnome [ ./conflicts/plasma-gnome.nix ]) ++
+    (optionals resolveCinnamonGnome [ ./conflicts/cinnamon-gnome.nix ]);
 
   xdg.portal.enable = true;
   services.xserver = {
