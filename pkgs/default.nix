@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> { } }: rec
+{ pkgs, ... }: rec
 {
   nordvpn = pkgs.callPackage ./nordvpn.nix { };
   # forces version B6 since B7-rc1 is broken for my VM

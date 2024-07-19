@@ -78,7 +78,8 @@
 
         # isos
         iso-x86_64 = lib.mkHost { hostname = "iso-installer"; };
-        iso-i686 = lib.mkHost { hostname = "iso-installer"; platform = "i686-linux"; };
+        # broken
+        # iso-i686 = lib.mkHost { hostname = "iso-installer"; platform = "i686-linux"; };
       };
 
       homeConfigurations = {
@@ -90,5 +91,7 @@
         "bean@somnus" = lib.mkHome { hostname = "somnus"; username = "bean"; desktop = "gnome,hyprland"; wallpaper = "crystal-tower.jpg"; color-scheme = "nocturne"; git-username = "Thunderbean290"; git-email = "156272091+Thunderbean290@users.noreply.github.com"; };
         "sniffer@xj9" = lib.mkHome { hostname = "xj9"; username = "sniffer"; desktop = "gnome"; git-username = null; git-email = null; };
       };
+
+      packages.x86_64-linux = import ./pkgs { pkgs = import nixpkgs { system = "x86_64-linux"; config.allowUnfree = true; }; };
     };
 }

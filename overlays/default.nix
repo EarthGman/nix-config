@@ -28,8 +28,8 @@
     });
   };
 
-  disable-mbrola-voices = final: super: {
-    espeak = super.espeak.override {
+  disable-mbrola-voices = final: prev: {
+    espeak = prev.espeak.override {
       mbrolaSupport = false;
     };
   };
