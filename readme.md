@@ -2,76 +2,46 @@ EarthGman's nix flake ❄️ version 3
 
 
 TODO:
-- [x] installer iso
 - [ ] startup scripts - nordvpn start on login
 - [ ] xremap
-- [ ] hyprland and i3
-- [x] discord audio wayland
-- [x] stylix - mouse cursor bug on gnome
+- [ ] i3
 - [ ] redo and add more secrets
 - [ ] fix the weird looking glass shm permission thing
-- [x] replace the booleans
-- [x] fix printing module
 - [ ] hard disk encryption
-- [x] add multi user per machine support
-- [x] hardware.nix for nixos test vm
 - [ ] disko for all other machines
-- [x] home-manager and declartive git for prox vms
-- [x] disable uneeded common modules for prox vms
 - [ ] binary cache server
 - [ ] remote building - trusted keys
-- [ ] add desktop pc stuff to templates
-- [ ] update the readme
-- [ ] replace neofetch with fastfetch
+- [x] update readme
+- [-] replace neofetch with fastfetch
+- [-] finish hyprland
+- [ ] declarative wine and bottles programs?
 
-Pre-Install
-  1. for new hosts add keys for nixos and/or home Configurations in flake.nix. Function arguments are defined in lib/helpers.nix
-  2. create a module set for the new host under hosts following the template provided by the other hosts.
-  3. obtain details of your drive and customize disko.nix to set partitions.
-  4. if your host has a user(s) add them under /hosts/hostname/users. each needs a default and preferences.nix. Remember to add a key in flake.nix under homeConfigurations for each.
-  5. as of now modules/nixos/common is imported by all hosts by default. logic exists to configure specific hosts based on needs. I recommend to skim through this folder and modify the logic to your needs.
-  6. build the headless iso: nix run nixpkgs#nixos-generators -- --format iso --flake .#iso-installer -o result
+Notes:
+ - Uses the stable branch nixos-24.05 for most system packages. Unstable and Master exist as overlays
+ - Built for x86_64 devices, in theory it should work for aarch64 but it is completely untested.
+ - mutable users is set to false by default, dont get locked out like I did :(
+ - Use x11. I do not support wayland at the moment.
+ - while it is possible to enable multiple desktops at once it is strongly discouraged. Especially for complex desktops such as gnome, cinnamon, and plasma. 
+ - cinnamon and plasma dont receive much support but they should function.
+ - main display manager is sddm which cannot be themed if plasma6 is enabled due to differing qt versions. (plasma will launch with a black screen)
+ - if you are using KDE Plasma you will have to imperatively open system settings > session > background Serives and disable Gnome GTK settings synchronization.
+   otherwise plasma will write the file and home manager will complain that it is in the way. https://github.com/danth/stylix/issues/267
+ - stylix does not work with cinnamon
+
+Installation Steps: (mostly personal notes)
+Pre install
+1. clone repo
+2. nix run nixpkgs#nixos-generators -- --format iso --flake .#iso-x86_64 -o result
+3. For new systems or users add a nixosConfigurations and homeConfigurations key in the flake (see lib/helpers.nix for arguments). Then add any custom config under hosts/Hostname (disko, availiable kerenlModules, etc)
 
 Install
-  1. boot from USB or CDROM
-  2. establish an internet connection
-  3. clone nix-config to somewhere in the root directory: git clone https://github/EarthGman/nix-config
-  4. partition drives using the hosts disko.nix: disko --mode zap_create_mount ./disko.nix. Run lsblk to verify
-  5. run nixos-generate-config --no-filesystems --root /mnt and move the hardware-configuration.nix to hosts/hostname/hardware.nix
-  6. verify that boot.nix, networking.nix, disko.nix, hardware.nix, and any other specific modules are configured properly and imported within your host.
-  7. move the nix-config into the /mnt directory so it is not deleted after install.
-  8. cd into /mnt/nix-config and run nixos-install --flake .#yourhostname
-  9. reboot
- 
-Post-Install
-  1. login to your user, if user config is unchanged, password will default to 123
-  2. move the nix-config from the / directory to ~/src/nix-config (all my zsh shell aliases refer to it here so if you move it make sure to change those too).
-  3. cd ~/src/nix-config and run: home-manager switch --flake .#yourusername@yourhostname
-  4. (Personal checklist)
-  - enable firefox extensions
-  - login to 1password
-  - login to discord
-  - login to steam
-  - symlink game saves to games drive (if applicable)
-  gnome: 
-    - enable extensions (dash, vitals, etc)
-    - customize taskbar
-  
-  Optional:
-    it is recommended to change the user password. by default mutable users is false. To imperatively change the password this option must be set to true
-    you can also declariatively change the password by using password (plaintext) or hashedPassword / hashedPasswordFile.
-    Or you can use sops-nix and secrets for maximum security.
+1. Clone repo
+2. disko --mode zap_create_mount ./hosts/hostname/disko.nix
+3. if redeploying an existing system with secrets add age keys.txt to /mnt/var/lib/sops-nix
+4. nixos-install --flake .#hostname
 
-  To setup Sops secrets:
-    1. mkdir ~/.config/sops/age and cd to it. Then run age-keygen > keys.txt. you will get a warning that it is world readable so run: chmod 600 keys.txt 
-    2. open .sops.yaml and add your host as a key entry using your public key generated by the previous step then add a path regex block for your hostname
-    3. cd to the secrets folder and run: sops yourhostname.yaml the existence of this file will import the sops nixos modules on the next rebuild. NOTE: if you use a web based editor such as vscode you will have to use a terminal based editor such as vim or nano: EDITOR=nano sops yourhostname.yaml
-    4. use mkpasswd -s to create a salted hashed password and add it to the file, EX username: passwordhash.
-    5. save the file and close. The file will then be encrypted and placed into the secrets folder.
-    6. before rebuild either set the keyfile located in modules/nixos/common/sops.nix to the keys.txt generated earlier in .config or copy the keys.txt to /var/lib/sops-nix/keys.txt
-    7. after rebuild the user password should be automatically changed to the new password stored in the secrets file.
-
-footnotes:
-  - as of now cinnamon and gnome are the most functional desktops, plasma hasn't been touched in months.
-  - if using gnome when changing your user's password, you will get an error with the gnome keyring. to resolve just enter the previous password that your user had when prompted.
-  - sops is currently only used to store user passwords
+Post Install
+1. login to github, discord, 1password, steam, etc
+2. enable firefox extensions (idk how to enable these by default)
+3. setup wine and bottles programs
+4. redeploy qemu/kvm VMs
