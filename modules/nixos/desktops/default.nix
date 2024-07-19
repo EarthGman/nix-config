@@ -1,5 +1,6 @@
 { desktop, lib, ... }:
 let
+  # allows for a system to use multiple desktops at once
   desktops = builtins.filter builtins.isString (builtins.split "," desktop);
   gnome = builtins.elem "gnome" desktops;
   hyprland = builtins.elem "hyprland" desktops;
@@ -20,7 +21,6 @@ in
     (lib.optionals resolveCinnamonGnome [ ./conflicts/cinnamon-gnome.nix ]);
 
   xdg.portal.enable = true;
-
   services.xserver = {
     enable = true;
     xkb = {

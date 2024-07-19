@@ -1,6 +1,7 @@
+# seperate user for KDE plasma due to gtk conflicts in home directory with other desktops
 { pkgs, ... }:
 let
-  username = "test";
+  username = "plasma";
 in
 {
   users.users.${username} = {

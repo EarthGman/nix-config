@@ -7,8 +7,8 @@ in
     inputs.stylix.homeManagerModules.stylix
   ];
   stylix = {
-    enable = true;
-    image = default ./wallpapers/${wallpaper};
+    enable = default true;
+    image = ./wallpapers/${wallpaper};
     base16Scheme = lib.mkIf (color-scheme != null) ./color-palettes/${color-scheme}.yaml;
 
     targets = default {
