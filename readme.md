@@ -12,8 +12,8 @@ TODO:
 - [ ] binary cache server
 - [ ] remote building - trusted keys
 - [x] update readme
-- [-] replace neofetch with fastfetch
-- [-] finish hyprland
+- [ ] replace neofetch with fastfetch
+- [ ] finish hyprland
 - [ ] declarative wine and bottles programs?
 
 Notes:
