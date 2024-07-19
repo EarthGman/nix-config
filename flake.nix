@@ -83,7 +83,7 @@
 
       homeConfigurations = {
         "g@cypher" = lib.mkHome { hostname = "cypher"; username = "g"; desktop = "gnome,hyprland"; wallpaper = "kaori.jpg"; color-scheme = "april"; };
-        "g@garth" = lib.mkHome { hostname = "garth"; username = "g"; desktop = "gnome"; wallpaper = "fiery-dragon.jpg"; color-scheme = "home-depot"; };
+        "g@garth" = lib.mkHome { hostname = "garth"; username = "g"; desktop = "gnome"; wallpaper = "fiery-dragon.jpg"; color-scheme = "inferno"; };
         "g@tater" = lib.mkHome { hostname = "tater"; username = "g"; desktop = "gnome"; };
         "test@nixos" = lib.mkHome { hostname = "nixos"; username = "test"; desktop = "gnome"; color-scheme = "ashes"; wallpaper = "scarlet-tree-dark.png"; };
 
