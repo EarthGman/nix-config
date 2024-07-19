@@ -4,7 +4,7 @@ let
   image = ./background.jpg;
 in
 pkgs.stdenv.mkDerivation {
-  name = "bluish-sddm";
+  name = "april";
   src = pkgs.fetchFromGitHub {
     owner = "L4ki";
     repo = "Bluish-Plasma-Themes";

@@ -4,7 +4,7 @@ let
   image = ./background.jpg;
 in
 pkgs.stdenv.mkDerivation {
-  name = "hallow-sddm";
+  name = "inferno";
   src = pkgs.fetchFromGitHub {
     # uses Bluish Plasma as a Template
     owner = "L4ki";

@@ -34,6 +34,7 @@
   clipgrab.enable = true;
 
   # tools
+  autokey.enable = true;
   dosbox.enable = true;
   looking-glass.enable = true;
   wine.enable = true;

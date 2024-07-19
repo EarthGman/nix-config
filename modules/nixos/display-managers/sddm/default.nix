@@ -22,6 +22,7 @@ in
       plasma-framework
       plasma-workspace
       kdeclarative
+      kirigami2
     ]) ++ optional (with pkgs.libsForQt5.qt5; [
     qtgraphicaleffects
   ]);

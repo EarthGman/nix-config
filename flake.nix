@@ -59,7 +59,7 @@
         # gaming desktop
         cypher = lib.mkHost { hostname = "cypher"; cpu = "amd"; gpu = "amd"; users = "g"; desktop = "gnome,hyprland"; displayManager = "sddm"; displayManagerTheme = "april"; };
         # work laptop
-        garth = lib.mkHost { hostname = "garth"; cpu = "intel"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
+        garth = lib.mkHost { hostname = "garth"; cpu = "intel"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "inferno"; };
         # old potato hp laptop
         tater = lib.mkHost { hostname = "tater"; cpu = "intel"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
         # nixos testing vm
