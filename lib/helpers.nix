@@ -50,7 +50,6 @@
         ] ++ (inputs.nixpkgs.lib.optionals (isISO) [ cd-dvd ]);
     };
 
-  # unused as of now
   forAllSystems = inputs.nixpkgs.lib.genAttrs [
     "aarch64-linux"
     "i686-linux"

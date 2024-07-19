@@ -14,6 +14,7 @@ TODO:
 - [x] update readme
 - [ ] replace neofetch with fastfetch
 - [ ] finish hyprland
+- [ ] fix nix flake show and nix flake check
 - [ ] declarative wine and bottles programs?
 
 Notes:

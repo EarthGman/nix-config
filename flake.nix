@@ -92,6 +92,11 @@
         "sniffer@xj9" = lib.mkHome { hostname = "xj9"; username = "sniffer"; desktop = "gnome"; git-username = null; git-email = null; };
       };
 
-      packages.x86_64-linux = import ./pkgs { pkgs = import nixpkgs { system = "x86_64-linux"; config.allowUnfree = true; }; };
+      packages = lib.forAllSystems (system:
+        let
+          pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
+        in
+        import ./pkgs { inherit pkgs; }
+      );
     };
 }

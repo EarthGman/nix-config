@@ -1,8 +1,4 @@
-{ stdenvNoCC
-, lib
-, fetchzip
-,
-}:
+{ stdenvNoCC, lib, fetchzip }:
 let
   uuid = "tilingshell@ferrarodomenico.com";
 in
