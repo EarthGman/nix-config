@@ -9,6 +9,17 @@
         name = lib.mkForce "DejaVuSansM Nerd Font";
         size = lib.mkForce 14.0;
       };
+      settings = {
+        update_check_interval = 0;
+        tab_bar_style = "powerline";
+        tab_powerline_style = "slanted";
+        confirm_os_window_close = 0;
+        copy_on_select = "clipboard";
+        enable_audio_bell = "no";
+        hide_window_decorations = "no";
+        placement_strategy = "center";
+        scrollback_lines = 20000;
+      };
       extraConfig = ''
         background_opacity 0.87
         initial_window_width 640
