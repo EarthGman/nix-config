@@ -50,7 +50,7 @@
     let
       inherit (self) outputs;
       stateVersion = "24.05";
-      lib = import ./lib { inherit inputs outputs stateVersion; };
+      lib = import ./lib { inherit self inputs outputs stateVersion; };
       inherit (lib) mkHost mkHome forAllSystems;
     in
     {

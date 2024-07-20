@@ -1,9 +1,8 @@
-{ inputs, outputs, stateVersion, ... }: {
+{ self, inputs, outputs, stateVersion, ... }: {
 
   # Helper function for generating home-manager configs
   mkHome =
-    { rootPath ? "~/src/nix-config"
-    , hostname
+    { hostname
     , username
     , desktop ? null
     , editor ? "code"
@@ -15,14 +14,13 @@
     }: inputs.home-manager.lib.homeManagerConfiguration {
       pkgs = inputs.nixpkgs.legacyPackages.${platform};
       extraSpecialArgs = {
-        inherit rootPath inputs outputs hostname username desktop editor wallpaper color-scheme git-username git-email platform stateVersion;
+        inherit self inputs outputs hostname username desktop editor wallpaper color-scheme git-username git-email platform stateVersion;
       };
       modules = [ ../home.nix ];
     };
 
   mkHost =
-    { rootPath ? "~/src/nix-config"
-    , hostname
+    { hostname
     , cpu ? null
     , gpu ? null
     , users ? null
@@ -35,7 +33,7 @@
     , git-email ? "EarthGman@protonmail.com"
     }: inputs.nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit rootPath inputs outputs hostname cpu gpu users desktop displayManager displayManagerTheme grub-theme git-username git-email platform stateVersion;
+        inherit self inputs outputs hostname cpu gpu users desktop displayManager displayManagerTheme grub-theme git-username git-email platform stateVersion;
       };
       # If the hostname starts with "iso-", generate an ISO image
       modules =

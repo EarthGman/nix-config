@@ -1,7 +1,7 @@
-{ pkgs, config, lib, hostname, ... }:
+{ pkgs, config, lib, hostname, self, ... }:
 let
   username = "g";
-  hasSecrets = builtins.pathExists ../../../../secrets/${hostname}.yaml;
+  hasSecrets = builtins.pathExists (self + /secrets/${hostname}.yaml);
   hashedPasswordFile =
     if (hasSecrets)
     then
@@ -11,7 +11,6 @@ let
   password = if (hasSecrets) then null else "123";
 in
 {
-  imports = lib.optionals hasSecrets [ ./sops.nix ];
   users.users.${username} = {
     inherit hashedPasswordFile;
     inherit password;

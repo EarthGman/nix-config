@@ -11,7 +11,7 @@ in
     wayland = {
       enable = true;
     };
-    theme = lib.mkIf (hasTheme && !plasmaEnabled) "${pkgs.sddm-themes.${displayManagerTheme}}";
+    theme = lib.mkIf (hasTheme && !plasmaEnabled) "${pkgs.${displayManagerTheme}}";
   };
 
   # note: due to the current move from plasma5 to plasma6 many sddm themes will not work with plasma6 enabled due to differing qt versions

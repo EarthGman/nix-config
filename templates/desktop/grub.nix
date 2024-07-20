@@ -17,7 +17,7 @@
       };
       grub = {
         enable = true;
-        theme = pkgs.grub-themes.${grub-theme};
+        theme = pkgs.${grub-theme};
         efiSupport = true;
         devices = [ "nodev" ];
         gfxmodeEfi = "1920x1080";
