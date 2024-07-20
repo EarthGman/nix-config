@@ -1,7 +1,7 @@
 { pkgs }:
 
 let
-  image = ./background.jpg;
+  background = ./background.jpg;
 in
 pkgs.stdenv.mkDerivation {
   name = "sugar-dark";
@@ -12,9 +12,10 @@ pkgs.stdenv.mkDerivation {
     sha256 = "0153z1kylbhc9d12nxy9vpn0spxgrhgy36wy37pk6ysq7akaqlvy";
   };
   installPhase = ''
-    mkdir -p $out
-    cp -R ./* $out/
-    rm $out/Background.jpg
-    cp -r ${image} $out/Background.jpg
+    THEME_DIR=$out/share/themes/sugar-dark
+    mkdir -p $THEME_DIR
+    cp -R ./* $THEME_DIR
+    rm $THEME_DIR/Background.jpg
+    cp -r ${background} $THEME_DIR/background.jpg
   '';
 }

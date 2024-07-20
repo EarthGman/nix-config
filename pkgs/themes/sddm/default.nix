@@ -8,4 +8,5 @@
   sugar-dark = pkgs.callPackage ./sugar-dark { };
   utterly-sweet = pkgs.callPackage ./utterly-sweet { };
   inferno = pkgs.callPackage ./inferno { };
+  eucalpytus-drop = pkgs.callPackage ./eucalpytus-drop { };
 }

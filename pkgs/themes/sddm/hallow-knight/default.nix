@@ -1,12 +1,10 @@
 { pkgs, ... }:
-
 let
-  image = ./background.jpg;
+  background = ./background.jpg;
 in
 pkgs.stdenv.mkDerivation {
-  name = "hallow-sddm";
+  name = "hallow-knight";
   src = pkgs.fetchFromGitHub {
-    # uses Bluish Plasma as a Template
     owner = "L4ki";
     repo = "Bluish-Plasma-Themes";
     rev = "5afbd9a22c677d1a8dbafd3d82184f3421d3d27c";
@@ -15,9 +13,10 @@ pkgs.stdenv.mkDerivation {
   dontWrapQtApps = true;
 
   installPhase = ''
-    mkdir -p $out
-    cp -R ./Bluish\ SDDM\ Themes/Bluish-SDDM/* $out/
-    rm $out/background.jpg
-    cp ${image} $out/background.jpg
+    THEME_DIR=$out/share/sddm/themes/hallow-knight
+    mkdir -p $THEME_DIR
+    cp -r ./Bluish\ SDDM\ Themes/Bluish-SDDM/* $THEME_DIR
+    rm $THEME_DIR/background.jpg
+    cp ${background} $THEME_DIR/background.jpg
   '';
 }

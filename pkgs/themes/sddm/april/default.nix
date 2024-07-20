@@ -14,9 +14,12 @@ pkgs.stdenv.mkDerivation {
   dontWrapQtApps = true;
 
   installPhase = ''
-    mkdir -p $out
-    cp -R ./Bluish\ SDDM\ Themes/Bluish-SDDM/* $out/
-    rm $out/background.jpg
-    cp ${image} $out/background.jpg
+    THEME_DIR=$out/share/sddm/themes/april
+    mkdir -p $THEME_DIR
+    cp -R ./Bluish\ SDDM\ Themes/Bluish-SDDM/* $THEME_DIR
+    sed -i "s|/usr/share/sddm/themes/Bluish-SDDM/components|components|g" $THEME_DIR/*.qml
+    sed -i "s|/usr/share/sddm/themes/Bluish-SDDM/||g" $THEME_DIR/theme.conf
+    rm $THEME_DIR/background.jpg
+    cp ${image} $THEME_DIR/background.jpg
   '';
 }

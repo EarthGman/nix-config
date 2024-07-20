@@ -11,7 +11,8 @@ pkgs.stdenv.mkDerivation {
   dontWrapQtApps = true;
 
   installPhase = ''
-    mkdir -p $out
-    cp -R ./sddm/* $out/
+    THEME_DIR=$out/share/sddm/themes/utterly-sweet
+    mkdir -p $THEME_DIR
+    cp -R ./sddm/* $THEME_DIR
   '';
 }
