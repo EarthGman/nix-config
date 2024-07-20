@@ -15,6 +15,7 @@
     age
     sysz
     lshw
+    fd
   ];
   programs = {
     zsh = {

@@ -51,48 +51,49 @@
       inherit (self) outputs;
       stateVersion = "24.05";
       lib = import ./lib { inherit inputs outputs stateVersion; };
+      inherit (lib) mkHost mkHome forAllSystems;
     in
     {
       overlays = import ./overlays { inherit inputs outputs; };
       nixosConfigurations = {
         # Earth's PCs
         # gaming desktop
-        cypher = lib.mkHost { hostname = "cypher"; cpu = "amd"; gpu = "amd"; users = "g"; desktop = "gnome,hyprland"; displayManager = "sddm"; displayManagerTheme = "april"; };
+        cypher = mkHost { hostname = "cypher"; cpu = "amd"; gpu = "amd"; users = "g"; desktop = "gnome,hyprland"; displayManager = "sddm"; displayManagerTheme = "april"; };
         # work laptop
-        garth = lib.mkHost { hostname = "garth"; cpu = "intel"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "inferno"; };
+        garth = mkHost { hostname = "garth"; cpu = "intel"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "inferno"; };
         # old potato hp laptop
-        tater = lib.mkHost { hostname = "tater"; cpu = "intel"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
+        tater = mkHost { hostname = "tater"; cpu = "intel"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
         # nixos testing vm
-        nixos = lib.mkHost { hostname = "nixos"; cpu = "amd"; users = "test"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
+        nixos = mkHost { hostname = "nixos"; cpu = "amd"; users = "test"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
 
         # Thunder's PCs
         # gaming desktop
-        somnus = lib.mkHost { hostname = "somnus"; cpu = "amd"; gpu = "amd"; users = "bean"; desktop = "gnome,hyprland"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
+        somnus = mkHost { hostname = "somnus"; cpu = "amd"; gpu = "amd"; users = "bean"; desktop = "gnome,hyprland"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
         # old dinosaur
-        xj9 = lib.mkHost { hostname = "xj9"; cpu = "amd"; users = "sniffer"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
+        xj9 = mkHost { hostname = "xj9"; cpu = "amd"; users = "sniffer"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
 
         # servers
-        mc112 = lib.mkHost { hostname = "server-mc112"; users = "g"; };
-        mc121 = lib.mkHost { hostname = "server-mc121"; users = "g"; };
-        mc-blueprints = lib.mkHost { hostname = "server-mc-blueprints"; users = "g"; };
+        mc112 = mkHost { hostname = "server-mc112"; users = "g"; };
+        mc121 = mkHost { hostname = "server-mc121"; users = "g"; };
+        mc-blueprints = mkHost { hostname = "server-mc-blueprints"; users = "g"; };
 
         # isos
-        iso-x86_64 = lib.mkHost { hostname = "iso-installer"; };
+        iso-x86_64 = mkHost { hostname = "iso-installer"; };
         # broken
-        # iso-i686 = lib.mkHost { hostname = "iso-installer"; platform = "i686-linux"; };
+        # iso-i686 = mkHost { hostname = "iso-installer"; platform = "i686-linux"; };
       };
 
       homeConfigurations = {
-        "g@cypher" = lib.mkHome { hostname = "cypher"; username = "g"; desktop = "gnome,hyprland"; wallpaper = "kaori.jpg"; color-scheme = "april"; };
-        "g@garth" = lib.mkHome { hostname = "garth"; username = "g"; desktop = "gnome"; wallpaper = "fiery-dragon.jpg"; color-scheme = "inferno"; };
-        "g@tater" = lib.mkHome { hostname = "tater"; username = "g"; desktop = "gnome"; };
-        "test@nixos" = lib.mkHome { hostname = "nixos"; username = "test"; desktop = "gnome"; color-scheme = "ashes"; wallpaper = "scarlet-tree-dark.png"; };
+        "g@cypher" = mkHome { hostname = "cypher"; username = "g"; desktop = "gnome,hyprland"; wallpaper = "kaori.jpg"; color-scheme = "april"; };
+        "g@garth" = mkHome { hostname = "garth"; username = "g"; desktop = "gnome"; wallpaper = "fiery-dragon.jpg"; color-scheme = "inferno"; };
+        "g@tater" = mkHome { hostname = "tater"; username = "g"; desktop = "gnome"; };
+        "test@nixos" = mkHome { hostname = "nixos"; username = "test"; desktop = "gnome"; color-scheme = "ashes"; wallpaper = "scarlet-tree-dark.png"; };
 
-        "bean@somnus" = lib.mkHome { hostname = "somnus"; username = "bean"; desktop = "gnome,hyprland"; wallpaper = "crystal-tower.jpg"; color-scheme = "nocturne"; git-username = "Thunderbean290"; git-email = "156272091+Thunderbean290@users.noreply.github.com"; };
-        "sniffer@xj9" = lib.mkHome { hostname = "xj9"; username = "sniffer"; desktop = "gnome"; git-username = null; git-email = null; };
+        "bean@somnus" = mkHome { hostname = "somnus"; username = "bean"; desktop = "gnome,hyprland"; wallpaper = "crystal-tower.jpg"; color-scheme = "nocturne"; git-username = "Thunderbean290"; git-email = "156272091+Thunderbean290@users.noreply.github.com"; };
+        "sniffer@xj9" = mkHome { hostname = "xj9"; username = "sniffer"; desktop = "gnome"; git-username = null; git-email = null; };
       };
 
-      packages = lib.forAllSystems (system:
+      packages = forAllSystems (system:
         let
           pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
         in

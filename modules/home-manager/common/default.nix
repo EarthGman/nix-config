@@ -19,6 +19,7 @@
     bat
     eza
     fzf
+    fd
     duf
     glxinfo
     hstr
