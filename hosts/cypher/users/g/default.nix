@@ -1,14 +1,10 @@
-{ pkgs, config, lib, hostname, self, ... }:
+{ pkgs, config, ... }:
 let
   username = "g";
-  hasSecrets = builtins.pathExists (self + /secrets/${hostname}.yaml);
-  hashedPasswordFile =
-    if (hasSecrets)
-    then
-      config.sops.secrets.${username}.path
-    else
-      null;
-  password = if (hasSecrets) then null else "123";
+  secret-path = config.sops.secrets.${username}.path;
+  hashedPasswordFile = if builtins.pathExists (secret-path) then secret-path else null;
+  # failsafe for sops
+  password = if (hashedPasswordFile == null) then "123" else null;
 in
 {
   users.users.${username} = {

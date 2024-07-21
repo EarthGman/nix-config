@@ -5,6 +5,7 @@ TODO:
 - [ ] startup scripts - nordvpn start on login
 - [ ] xremap
 - [ ] i3
+- [ ] learn vim
 - [ ] redo and add more secrets
 - [ ] fix the weird looking glass shm permission thing
 - [ ] hard disk encryption

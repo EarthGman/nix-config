@@ -28,6 +28,7 @@ in
       kirigami2
     ]) ++ (with pkgs.libsForQt5.qt5; [
       qtgraphicaleffects
+      qtsvg
     ]));
 }
 
