@@ -1,15 +1,11 @@
 { pkgs, config, lib, ... }:
 let
   username = "bean";
-  secret-path = config.sops.secrets.${username}.path;
-  hashedPasswordFile = if builtins.pathExists (secret-path) then secret-path else null;
-  # failsafe for sops
-  password = if (hashedPasswordFile == null) then "123" else null;
 in
 {
   users.users.${username} = {
-    inherit hashedPasswordFile;
-    inherit password;
+    initialPassword = lib.mkDefault "";
+    hashedPasswordFile = lib.mkIf (config.sops.secrets ? "${username}") config.sops.secrets.${username}.path;
     isNormalUser = true;
     description = username;
     packages = with pkgs; [ home-manager ];
@@ -17,8 +13,10 @@ in
     extraGroups = [
       "networkmanager"
       "wheel"
+      "nordvpn"
       "libvirtd"
       "qemu-libvirtd"
     ];
   };
 }
+
