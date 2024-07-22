@@ -1,15 +1,19 @@
 { desktop, lib, pkgs, ... }:
 let
-  desktops = builtins.filter builtins.isString (builtins.split "," desktop);
-  gnome = builtins.elem "gnome" desktops;
-  hyprland = builtins.elem "hyprland" desktops;
-  plasma = builtins.elem "plasma" desktops;
-  cinnamon = builtins.elem "cinnamon" desktops;
+  inherit (lib) optionals;
+  inherit (builtins) filter isString split elem;
+  desktops = filter isString (split "," desktop);
+  gnome = elem "gnome" desktops;
+  hyprland = elem "hyprland" desktops;
+  plasma = elem "plasma" desktops;
+  cinnamon = elem "cinnamon" desktops;
+  i3 = elem "i3" desktops;
 in
 {
   imports =
-    (lib.optionals gnome [ ./gnome ]) ++
-    (lib.optionals hyprland [ ./hyprland ]) ++
-    (lib.optionals plasma [ ./plasma ]) ++
-    (lib.optionals cinnamon [ ./cinnamon ]);
+    (optionals gnome [ ./gnome ]) ++
+    (optionals hyprland [ ./hyprland ]) ++
+    (optionals plasma [ ./plasma ]) ++
+    (optionals cinnamon [ ./cinnamon ]) ++
+    (optionals i3 [ ./i3 ]);
 }

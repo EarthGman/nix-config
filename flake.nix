@@ -64,7 +64,7 @@
         # old potato hp laptop
         tater = mkHost { hostname = "tater"; cpu = "intel"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
         # nixos testing vm
-        nixos = mkHost { hostname = "nixos"; cpu = "amd"; users = "test"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
+        nixos = mkHost { hostname = "nixos"; cpu = "amd"; users = "test"; desktop = "gnome,i3"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
 
         # Thunder's PCs
         # gaming desktop
@@ -87,7 +87,7 @@
         "g@cypher" = mkHome { hostname = "cypher"; username = "g"; desktop = "gnome,hyprland"; wallpaper = "kaori.jpg"; color-scheme = "april"; };
         "g@garth" = mkHome { hostname = "garth"; username = "g"; desktop = "gnome"; wallpaper = "fiery-dragon.jpg"; color-scheme = "inferno"; };
         "g@tater" = mkHome { hostname = "tater"; username = "g"; desktop = "gnome"; };
-        "test@nixos" = mkHome { hostname = "nixos"; username = "test"; desktop = "gnome"; color-scheme = "ashes"; wallpaper = "scarlet-tree-dark.png"; };
+        "test@nixos" = mkHome { hostname = "nixos"; username = "test"; desktop = "gnome,i3"; color-scheme = "ashes"; wallpaper = "scarlet-tree-dark.png"; };
 
         "bean@somnus" = mkHome { hostname = "somnus"; username = "bean"; desktop = "gnome,hyprland"; wallpaper = "crystal-tower.jpg"; color-scheme = "nocturne"; git-username = "Thunderbean290"; git-email = "156272091+Thunderbean290@users.noreply.github.com"; };
         "sniffer@xj9" = mkHome { hostname = "xj9"; username = "sniffer"; desktop = "gnome"; git-username = null; git-email = null; };

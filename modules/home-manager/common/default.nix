@@ -23,6 +23,7 @@
     duf
     glxinfo
     hstr
+    psmisc
     nix-info
     ripgrep
     lshw
