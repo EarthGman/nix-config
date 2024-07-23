@@ -5,6 +5,11 @@ TODO:
 - [ ] startup scripts - nordvpn start on login
 - [ ] xremap
 - [ ] i3
+  - [ ] sound slider
+  - [ ] networkManager
+  - [ ] Screenshots
+  - [ ] transparency compositor
+  - [ ] rofi theme
 - [ ] learn vim
 - [ ] redo and add more secrets
 - [ ] fix the weird looking glass shm permission thing

@@ -1,4 +1,4 @@
-{ self, pkgs, wallpaper, lib, ... }:
+{ self, pkgs, wallpaper, lib, hostname, username, ... }:
 let
   inherit (builtins) readFile;
   wp = self + /modules/home-manager/stylix/wallpapers/${wallpaper};
@@ -16,9 +16,23 @@ in
       terminal = "kitty";
       workspaceAutoBackAndForth = true;
       keybindings = import ./keybinds.nix;
-      startup = [
+      startup = lib.optionals (hostname == "cypher") [
+        # position and scale monitors
         {
-          command = "systemctl --user restart polybar";
+          command = "${self}/modules/home-manager/desktop-configs/i3/monitors.sh";
+          always = false;
+          notification = false;
+        }
+      ] ++ lib.optionals (username == "g") [
+        # LH mouse
+        {
+          command = "${pkgs.xorg.xmodmap}/bin/xmodmap ${self}/modules/home-manager/desktop-configs/i3/.xmodmap";
+          always = true;
+          notification = false;
+        }
+      ] ++ [
+        {
+          command = "${self}/modules/home-manager/desktop-configs/i3/polybar/launch.sh";
           always = true;
           notification = false;
         }
@@ -28,7 +42,7 @@ in
           notification = false;
         }
         {
-          command = "${pkgs.feh}/bin/feh --bg-scale ${wp}";
+          command = "sleep 0.4 && ${pkgs.feh}/bin/feh --bg-scale ${wp}";
           always = true;
           notification = false;
         }
