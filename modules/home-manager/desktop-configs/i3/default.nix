@@ -1,4 +1,4 @@
-{ self, pkgs, wallpaper, lib, hostname, username, ... }:
+{ self, pkgs, config, lib, wallpaper, hostname, username, ... }:
 let
   inherit (builtins) readFile;
   wp = self + /modules/home-manager/stylix/wallpapers/${wallpaper};
@@ -16,6 +16,9 @@ in
       terminal = "kitty";
       workspaceAutoBackAndForth = true;
       keybindings = import ./keybinds.nix;
+      window = {
+        hideEdgeBorders = "both";
+      };
       startup = lib.optionals (hostname == "cypher") [
         # position and scale monitors
         {

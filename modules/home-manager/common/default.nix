@@ -11,6 +11,7 @@
     # some commands
     steam-run # running DLL applications, has nothing to do with steam
     appimage-run # for appimages
+    bustle
     wmctrl # ctrl options for wm
     unrar-free # for that guy who only uploads stuff in .rar format
     cifs-utils

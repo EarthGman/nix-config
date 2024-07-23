@@ -34,8 +34,6 @@ in
   };
   security.rtkit.enable = true;
 
-  environment.pathsToLink = [ "/share/zsh" "/share/xdg-desktop-portal" "/share/applications" ];
-
   # macro stuff
   hardware.uinput.enable = true;
   users.groups = {

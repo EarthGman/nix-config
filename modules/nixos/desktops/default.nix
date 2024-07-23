@@ -1,4 +1,4 @@
-{ desktop, lib, ... }:
+{ pkgs, lib, desktop, ... }:
 let
   inherit (lib) optionals;
   inherit (builtins) elem filter isString split;
@@ -24,7 +24,16 @@ in
     (optionals resolvePlasmaGnome [ ./conflicts/plasma-gnome.nix ]) ++
     (optionals resolveCinnamonGnome [ ./conflicts/cinnamon-gnome.nix ]);
 
-  xdg.portal.enable = true;
+  xdg = {
+    mime.enable = true;
+    icons.enable = true;
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal
+      ];
+    };
+  };
   services.xserver = {
     enable = true;
     xkb = {
