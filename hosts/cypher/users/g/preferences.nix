@@ -46,6 +46,7 @@
   pika-backup.enable = true;
   checkra1n.enable = false;
   solaar.enable = false;
+  wireshark.enable = true;
   xclicker.enable = true;
 
   # tops
