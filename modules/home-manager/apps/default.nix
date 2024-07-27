@@ -27,6 +27,7 @@
     ./remmina.nix
     ./solaar.nix
     ./thunderbird.nix
+    ./wireshark.nix
     ./xclicker.nix
   ];
 }
