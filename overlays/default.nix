@@ -19,10 +19,12 @@
 
   # gtk portal is not used in i3 by default
   xdg-desktop-portal-gtk = final: prev: {
-    xdg-desktop-portal-gtk = prev.xdg-desktop-portal-gtk.overrideAttrs {
+    xdg-desktop-portal-gtk = (prev.xdg-desktop-portal-gtk.overrideAttrs {
       postInstall = ''
         sed -i 's/UseIn=gnome/UseIn=gnome;none+i3/' $out/share/xdg-desktop-portal/portals/gtk.portal
       '';
+    }).override {
+      buildPortalsInGnome = false;
     };
   };
 
