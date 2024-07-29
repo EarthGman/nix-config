@@ -59,9 +59,9 @@ in
     };
   };
   services = {
-    # picom = {
-    #   enable = true;
-    # };
+    picom = {
+      enable = true;
+    };
     polybar = {
       enable = true;
       script = readFile ./polybar/launch.sh;
