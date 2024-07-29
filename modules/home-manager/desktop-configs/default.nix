@@ -16,4 +16,6 @@ in
     (optionals plasma [ ./plasma ]) ++
     (optionals cinnamon [ ./cinnamon ]) ++
     (optionals i3 [ ./i3 ]);
+
+  xdg.enable = true;
 }
