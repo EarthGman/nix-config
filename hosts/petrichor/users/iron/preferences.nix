@@ -1,0 +1,64 @@
+{
+  # extra config for home-manager. anything here will not apply to any user on any system other than this one
+
+  # gaming
+  dolphin-emu.enable = true;
+  ffxiv-launcher.enable = false;
+  lutris.enable = true;
+  prismlauncher.enable = true;
+
+  # coding
+  vscode.enable = true;
+  vim.enable = false;
+  zed.enable = false;
+  github-desktop.enable = true;
+  lazygit.enable = true;
+
+  # productivity
+  thunderbird.enable = true;
+  freeoffice.enable = false;
+  libreoffice.enable = true;
+  obsidian.enable = true;
+
+  #discord with vesktop
+  discord.enable = true;
+  betterdiscord.enable = false;
+
+  # image and video
+  gimp.enable = true;
+  openshot.enable = true;
+  davinci-resolve.enable = true;
+  obs-studio.enable = true;
+
+  # audio and music
+  musescore.enable = true;
+  museeks.enable = true;
+  audacity.enable = true;
+  clipgrab.enable = true;
+
+  # tools
+  autokey.enable = true;
+  dosbox.enable = true;
+  looking-glass.enable = false;
+  wine.enable = true;
+  gcolor.enable = true;
+  flips.enable = false;
+  pika-backup.enable = false;
+  checkra1n.enable = false;
+  solaar.enable = false;
+  wireshark.enable = false;
+  xclicker.enable = true;
+
+  # tops
+  nvtop.enable = false;
+  powertop.enable = true;
+  radeontop.enable = true;
+  htop.enable = true;
+
+  # info
+  neofetch.enable = true;
+
+  # clients
+  filezilla.enable = false;
+  remmina.enable = false;
+}

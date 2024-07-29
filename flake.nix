@@ -72,6 +72,9 @@
         # old dinosaur
         xj9 = mkHost { hostname = "xj9"; cpu = "amd"; users = "sniffer"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
 
+        # Iron's PCs
+        petrichor = mkHost { hostname = "petrichor"; cpu = "amd"; gpu = "amd"; users = "iron"; desktop = "gnome"; displayManagerTheme = "oneshot"; };
+
         # servers
         mc112 = mkHost { hostname = "server-mc112"; users = "g"; };
         mc121 = mkHost { hostname = "server-mc121"; users = "g"; };
@@ -91,6 +94,8 @@
 
         "bean@somnus" = mkHome { hostname = "somnus"; username = "bean"; desktop = "gnome,i3"; color-scheme = "headspace"; wallpaper = "the-gang.jpg"; git-username = "Thunderbean290"; git-email = "156272091+Thunderbean290@users.noreply.github.com"; };
         "sniffer@xj9" = mkHome { hostname = "xj9"; username = "sniffer"; desktop = "gnome"; git-username = null; git-email = null; };
+
+        "iron@petrichor" = mkHome { hostname = "petrichor"; username = "iron"; desktop = "gnome"; color-scheme = "oneshot"; git-username = "IronCutlass"; git-email = "nogreenink@gmail.com"; };
       };
 
       packages = forAllSystems (system:

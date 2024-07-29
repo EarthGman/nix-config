@@ -39,4 +39,12 @@
     # required for sins of a solar empire lag bug in multiplayer
     extraHosts = ''66.79.209.80 ico-reb.stardock.com'';
   };
+  services.zerotierone = {
+    enable = true;
+
+    joinNetworks = [
+      # Test Network 
+      "1c33c1ced0b9fe7c"
+    ];
+  };
 }
