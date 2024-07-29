@@ -1,4 +1,4 @@
-{ pkgs, editor, username, hostname, ... }:
+{ self, pkgs, editor, username, hostname, ... }:
 {
   programs = {
     starship = {

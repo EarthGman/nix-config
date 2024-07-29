@@ -10,6 +10,7 @@
 
   imports = [
     ./hosts/${hostname}/users/${username}/preferences.nix
+    ./scripts
     ./modules/home-manager/apps
     ./modules/home-manager/browsers
     ./modules/home-manager/common
