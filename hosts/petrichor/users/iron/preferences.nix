@@ -15,10 +15,10 @@
   lazygit.enable = true;
 
   # productivity
-  thunderbird.enable = true;
+  thunderbird.enable = false;
   freeoffice.enable = false;
-  libreoffice.enable = true;
-  obsidian.enable = true;
+  libreoffice.enable = false;
+  obsidian.enable = false;
 
   #discord with vesktop
   discord.enable = true;
@@ -26,19 +26,19 @@
 
   # image and video
   gimp.enable = true;
-  openshot.enable = true;
-  davinci-resolve.enable = true;
-  obs-studio.enable = true;
+  openshot.enable = false;
+  davinci-resolve.enable = false;
+  obs-studio.enable = false;
 
   # audio and music
-  musescore.enable = true;
+  musescore.enable = false;
   museeks.enable = true;
   audacity.enable = true;
   clipgrab.enable = true;
 
   # tools
-  autokey.enable = true;
-  dosbox.enable = true;
+  autokey.enable = false;
+  dosbox.enable = false;
   looking-glass.enable = false;
   wine.enable = true;
   gcolor.enable = true;
