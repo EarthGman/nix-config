@@ -10,4 +10,5 @@
   inferno = pkgs.callPackage ./inferno { };
   eucalpytus-drop = pkgs.callPackage ./eucalpytus-drop { };
   reverie = pkgs.callPackage ./reverie { };
+  risk = pkgs.callPackage ./risk { };
 }

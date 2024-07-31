@@ -28,6 +28,9 @@
           menuentry "Poweroff" {
             halt
           }
+          menuentry 'UEFI Firmware Settings' --id 'uefi-firmware' {
+            fwsetup
+          }
         '';
       };
       timeout = lib.mkDefault 10;

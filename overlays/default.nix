@@ -17,6 +17,17 @@
     };
   };
 
+  # gtk portal is not used in i3 by default
+  xdg-desktop-portal-gtk = final: prev: {
+    xdg-desktop-portal-gtk = (prev.xdg-desktop-portal-gtk.overrideAttrs {
+      postInstall = ''
+        sed -i 's/UseIn=gnome/UseIn=gnome;none+i3/' $out/share/xdg-desktop-portal/portals/gtk.portal
+      '';
+    }).override {
+      buildPortalsInGnome = false;
+    };
+  };
+
   # required for OpenCL detection within davinci-resolve for AMD graphics cards
   davinci-resolve = final: prev: {
     davinci-resolve = prev.davinci-resolve.override (old: {

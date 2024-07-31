@@ -2,7 +2,6 @@
 {
   environment.systemPackages = with pkgs; [
     nix-output-monitor
-    bcachefs-tools
     cryptsetup
     git
     disko
@@ -16,6 +15,7 @@
     sysz
     lshw
     fd
+    tcpdump
   ];
   programs = {
     zsh = {
