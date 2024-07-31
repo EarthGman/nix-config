@@ -9,4 +9,5 @@
   utterly-sweet = pkgs.callPackage ./utterly-sweet { };
   inferno = pkgs.callPackage ./inferno { };
   eucalpytus-drop = pkgs.callPackage ./eucalpytus-drop { };
+  reverie = pkgs.callPackage ./reverie { };
 }
