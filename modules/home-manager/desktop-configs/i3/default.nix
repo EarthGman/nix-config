@@ -6,6 +6,7 @@ in
 {
   home.packages = with pkgs; [
     feh
+    polybar-pulseaudio-control
   ];
   xsession.windowManager.i3 = {
     enable = true;
@@ -60,7 +61,7 @@ in
   };
   services = {
     picom = {
-      vsync = true;
+      vSync = true;
       enable = true;
     };
     polybar = {
