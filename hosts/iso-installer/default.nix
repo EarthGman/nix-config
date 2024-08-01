@@ -22,6 +22,7 @@
       # "zfs"
     ];
   };
+
   networking = {
     hostName = "nixos";
     firewall.allowedTCPPorts = [ 22 ];

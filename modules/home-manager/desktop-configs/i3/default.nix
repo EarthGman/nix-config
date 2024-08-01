@@ -22,20 +22,20 @@ in
       startup = lib.optionals (hostname == "cypher") [
         # position and scale monitors
         {
-          command = "${self}/modules/home-manager/desktop-configs/i3/monitors.sh";
+          command = "${self}/scripts/monitors.sh";
           always = false;
           notification = false;
         }
       ] ++ lib.optionals (username == "g") [
         # LH mouse
         {
-          command = "${pkgs.xorg.xmodmap}/bin/xmodmap ${self}/modules/home-manager/desktop-configs/i3/.xmodmap";
+          command = "${pkgs.xorg.xmodmap}/bin/xmodmap ${self}/scripts/.xmodmap";
           always = true;
           notification = false;
         }
       ] ++ [
         {
-          command = "${self}/modules/home-manager/desktop-configs/i3/polybar/launch.sh";
+          command = "${self}/scripts/polybar.sh";
           always = true;
           notification = false;
         }
@@ -59,12 +59,13 @@ in
     };
   };
   services = {
-    # picom = {
-    #   enable = true;
-    # };
+    picom = {
+      vsync = true;
+      enable = true;
+    };
     polybar = {
       enable = true;
-      script = readFile ./polybar/launch.sh;
+      script = readFile (self + /scripts/polybar.sh);
       extraConfig = readFile ./polybar/polybar.ini;
     };
   };

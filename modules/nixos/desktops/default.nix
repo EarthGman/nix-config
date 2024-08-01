@@ -1,4 +1,4 @@
-{ pkgs, lib, desktop, ... }:
+{ inputs, pkgs, lib, desktop, ... }:
 let
   inherit (lib) optionals;
   inherit (builtins) elem filter isString split;
@@ -25,13 +25,15 @@ in
     (optionals resolveCinnamonGnome [ ./conflicts/cinnamon-gnome.nix ]);
 
   xdg = {
-    mime.enable = true;
-    icons.enable = true;
     portal = {
+      config = {
+        common = {
+          default = [ "gnome" ];
+        };
+      };
       enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal
-        xdg-desktop-portal-gtk
       ];
     };
   };

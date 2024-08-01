@@ -60,7 +60,7 @@
         # gaming desktop
         cypher = mkHost { hostname = "cypher"; cpu = "amd"; gpu = "amd"; users = "g"; desktop = "gnome,i3"; displayManager = "sddm"; displayManagerTheme = "april"; };
         # work laptop
-        garth = mkHost { hostname = "garth"; cpu = "intel"; users = "g"; desktop = "i3"; displayManager = "sddm"; displayManagerTheme = "inferno"; };
+        garth = mkHost { hostname = "garth"; cpu = "intel"; users = "g"; desktop = "gnome,i3"; displayManager = "sddm"; displayManagerTheme = "inferno"; };
         # old potato hp laptop
         tater = mkHost { hostname = "tater"; cpu = "intel"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
         # nixos testing vm
@@ -88,7 +88,7 @@
 
       homeConfigurations = {
         "g@cypher" = mkHome { hostname = "cypher"; username = "g"; desktop = "gnome,i3"; wallpaper = "kaori.jpg"; color-scheme = "april"; };
-        "g@garth" = mkHome { hostname = "garth"; username = "g"; desktop = "i3"; wallpaper = "fiery-dragon.jpg"; color-scheme = "inferno"; };
+        "g@garth" = mkHome { hostname = "garth"; username = "g"; desktop = "gnome,i3"; wallpaper = "fiery-dragon.jpg"; color-scheme = "inferno"; };
         "g@tater" = mkHome { hostname = "tater"; username = "g"; desktop = "gnome"; };
         "test@nixos" = mkHome { hostname = "nixos"; username = "test"; desktop = "gnome,i3"; color-scheme = "ashes"; wallpaper = "scarlet-tree-dark.png"; };
 

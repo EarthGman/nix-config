@@ -28,6 +28,14 @@
     };
   };
 
+  xdg-desktop-portal-gnome = final: prev: {
+    xdg-desktop-portal-gnome = (prev.xdg-desktop-portal-gnome.overrideAttrs {
+      postInstall = ''
+        sed -i 's/UseIn=gnome/UseIn=gnome;none+i3/' $out/share/xdg-desktop-portal/portals/gnome.portal
+      '';
+    });
+  };
+
   # required for OpenCL detection within davinci-resolve for AMD graphics cards
   davinci-resolve = final: prev: {
     davinci-resolve = prev.davinci-resolve.override (old: {
