@@ -53,7 +53,9 @@
     tldr
     ifuse
     libimobiledevice
+    vlc
     usbmuxd
+    xorg.xev
     xorg.xmodmap
   ]) ++ (with pkgs.gst_all_1; [
     # gstreamer, needed for some media playing applications to work on linux

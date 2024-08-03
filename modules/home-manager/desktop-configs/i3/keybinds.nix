@@ -81,8 +81,13 @@ in
   # exit i3 (logs you out of your X session)
   "${mod}+Shift+e" = "exit i3";
 
-  "XF86AudioRaiseVolume" = "exec amixer -q sset Master 5%+";
-  "XF86AudioLowerVolume" = "exec amxier -q sset Master 5%-";
-  "XF86AudioMute" = "exec amxier -q sset Master toggle";
-  "XF86AudioMicMute" = "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status";
+  # screenshots
+  "Print" = "exec --no-startup-id \"maim | xclip -selection clipboard -t image/png; xclip -selection clipboard -t image/png -o > ~/Pictures/Screenshots/$(date +%F-%H:%M:%S).png\"";
+  "Shift+Print" = "exec --no-startup-id \"maim -s | xclip -selection clipboard -t image/png; xclip -selection clipboard -t image/png -o > ~/Pictures/Screenshots/$(date +%F-%H:%M:%S).png\"";
+  "Control+Print" = "exec --no-startup-id \"maim -s -u | xclip -selection clipboard -t image/png; xclip -selection clipboard -t image/png -o > ~/Pictures/Screenshots/$(date +%F-%H:%M:%S).png\"";
+
+  "XF86AudioRaiseVolume" = "exec pamixer -i 5";
+  "XF86AudioLowerVolume" = "exec pamixer -d 5";
+  "XF86AudioMute" = "exec pamixer -t";
+  "XF86AudioMicMute" = "exec pamixer $(pamixer --list-sources | grep input | cut -d ' ' -f1) -t";
 }

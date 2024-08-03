@@ -6,7 +6,12 @@ in
 {
   home.packages = with pkgs; [
     feh
-    polybar-pulseaudio-control
+    pavucontrol
+    pamixer
+    flameshot
+    maim
+    xclip
+    polybar
   ];
   xsession.windowManager.i3 = {
     enable = true;
@@ -23,7 +28,12 @@ in
       startup = lib.optionals (hostname == "cypher") [
         # position and scale monitors
         {
-          command = "${self}/scripts/monitors.sh";
+          command = ''
+            xrandr --output DisplayPort-2 --auto --right-of HDMI-A-0 \
+                   --output DisplayPort-2 --mode 2560x1440 \
+                   --output HDMI-A-0 --mode 1920x1080 --rate 74.97 \
+            && ${pkgs.feh}/bin/feh --bg-scale ${wp}
+          '';
           always = false;
           notification = false;
         }
@@ -41,12 +51,12 @@ in
           notification = false;
         }
         {
-          command = "picom";
+          command = "${pkgs.picom}/bin/picom";
           always = false;
           notification = false;
         }
         {
-          command = "sleep 0.4 && ${pkgs.feh}/bin/feh --bg-scale ${wp}";
+          command = "${pkgs.feh}/bin/feh --bg-scale ${wp}";
           always = true;
           notification = false;
         }
@@ -59,15 +69,20 @@ in
       extraConfig = import ./rofi/config.nix;
     };
   };
-  services = {
-    picom = {
-      vSync = true;
-      enable = true;
-    };
-    polybar = {
-      enable = true;
-      script = readFile (self + /scripts/polybar.sh);
-      extraConfig = readFile ./polybar/polybar.ini;
+  xdg.configFile = {
+    "polybar/config.ini".source = ./polybar/config.ini;
+    "flameshot/flameshot.ini".text = lib.generators.toINI { } {
+      General = {
+        "contrastOpacity" = 188;
+        "copyOnDoubleClick" = true;
+        "drawColor" = "#fff600";
+        "drawThickness" = 26;
+        "saveAfterCopy" = true;
+        "saveAsFileExtension" = "png";
+        "savePath" = "${config.home.homeDirectory}/Pictures/Screenshots";
+        "savePathFixed" = true;
+        "showHelp" = true;
+      };
     };
   };
 }

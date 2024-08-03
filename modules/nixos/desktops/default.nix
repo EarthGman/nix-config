@@ -26,11 +26,6 @@ in
 
   xdg = {
     portal = {
-      config = {
-        common = {
-          default = [ "gnome" ];
-        };
-      };
       enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal
@@ -43,5 +38,10 @@ in
       layout = "us";
       variant = "";
     };
+  };
+  qt = {
+    enable = true;
+    platformTheme = "gnome";
+    style = "adwaita-dark";
   };
 }
