@@ -6,6 +6,7 @@ in
 {
   home.packages = with pkgs; [
     feh
+    networkmanager_dmenu
     pavucontrol
     pamixer
     flameshot
@@ -51,7 +52,7 @@ in
           notification = false;
         }
         {
-          command = "${pkgs.picom}/bin/picom";
+          command = "${pkgs.picom}/bin/picom --config ~/.config/picom/picom.conf";
           always = false;
           notification = false;
         }
@@ -70,6 +71,9 @@ in
     };
   };
   xdg.configFile = {
+    "picom/picom.conf".text = ''
+      vsync = true
+    '';
     "polybar/config.ini".source = ./polybar/config.ini;
     "flameshot/flameshot.ini".text = lib.generators.toINI { } {
       General = {
