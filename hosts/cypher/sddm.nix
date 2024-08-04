@@ -1,4 +1,4 @@
-{ outputs, pkgs, lib, config, displayManagerTheme, ... }:
+{ outputs, pkgs, lib, config, ... }:
 let
   xcfg = config.services.xserver;
   weston-ini = pkgs.writeText "weston.ini" ''
