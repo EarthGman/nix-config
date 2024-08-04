@@ -50,30 +50,31 @@
     let
       inherit (self) outputs;
       stateVersion = "24.05";
-      lib = import ./lib { inherit self inputs outputs stateVersion; };
-      inherit (lib) mkHost mkHome forAllSystems;
+      mylib = import ./lib { inherit self inputs outputs stateVersion; };
+      inherit (mylib) mkHost mkHome forAllSystems mapfiles;
     in
     {
-      overlays = import ./overlays { inherit inputs outputs; };
+      overlays = import ./overlays { inherit inputs outputs mylib; };
+      wallpapers = mapfiles ./wallpapers;
       nixosConfigurations = {
         # Earth's PCs
         # gaming desktop
-        cypher = mkHost { hostname = "cypher"; cpu = "amd"; gpu = "amd"; users = "g"; desktop = "i3"; displayManager = "sddm"; displayManagerTheme = "sddm-astronaut"; };
+        cypher = mkHost { hostname = "cypher"; cpu = "amd"; gpu = "amd"; users = "g"; desktop = "i3"; displayManager = "sddm"; displayManagerTheme = "astronaut"; };
         # work laptop
-        garth = mkHost { hostname = "garth"; cpu = "intel"; users = "g"; desktop = "gnome,i3"; displayManager = "sddm"; displayManagerTheme = "inferno"; };
+        garth = mkHost { hostname = "garth"; cpu = "intel"; users = "g"; desktop = "gnome,i3"; displayManager = "sddm"; displayManagerTheme = "astronaut"; };
         # old potato hp laptop
-        tater = mkHost { hostname = "tater"; cpu = "intel"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
+        tater = mkHost { hostname = "tater"; cpu = "intel"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "astronaut"; };
         # nixos testing vm
-        nixos = mkHost { hostname = "nixos"; cpu = "amd"; users = "test"; desktop = "gnome,i3"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
+        nixos = mkHost { hostname = "nixos"; cpu = "amd"; users = "test"; desktop = "gnome,i3"; displayManager = "sddm"; displayManagerTheme = "astronaut"; };
 
         # Thunder's PCs
         # gaming desktop
-        somnus = mkHost { hostname = "somnus"; cpu = "amd"; gpu = "amd"; users = "bean"; desktop = "gnome,i3"; displayManager = "sddm"; displayManagerTheme = "reverie"; };
+        somnus = mkHost { hostname = "somnus"; cpu = "amd"; gpu = "amd"; users = "bean"; desktop = "gnome,i3"; displayManager = "sddm"; displayManagerTheme = "astronaut"; };
         # old dinosaur
-        xj9 = mkHost { hostname = "xj9"; cpu = "amd"; users = "sniffer"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "utterly-sweet"; };
+        xj9 = mkHost { hostname = "xj9"; cpu = "amd"; users = "sniffer"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "astronaut"; };
 
         # Iron's PCs
-        petrichor = mkHost { hostname = "petrichor"; cpu = "amd"; gpu = "amd"; users = "iron"; desktop = "gnome"; displayManagerTheme = "oneshot"; };
+        petrichor = mkHost { hostname = "petrichor"; cpu = "amd"; gpu = "amd"; users = "iron"; desktop = "gnome"; displayManagerTheme = "astronaut"; };
 
         # servers
         mc112 = mkHost { hostname = "server-mc112"; users = "g"; };
@@ -87,22 +88,22 @@
       };
 
       homeConfigurations = {
-        "g@cypher" = mkHome { hostname = "cypher"; username = "g"; desktop = "i3"; wallpaper = "kaori.jpg"; color-scheme = "april"; };
-        "g@garth" = mkHome { hostname = "garth"; username = "g"; desktop = "gnome,i3"; wallpaper = "fiery-dragon.jpg"; color-scheme = "inferno"; };
+        "g@cypher" = mkHome { hostname = "cypher"; username = "g"; desktop = "i3"; wallpaper = "kaori"; color-scheme = "april"; };
+        "g@garth" = mkHome { hostname = "garth"; username = "g"; desktop = "gnome,i3"; wallpaper = "fiery-dragon"; color-scheme = "inferno"; };
         "g@tater" = mkHome { hostname = "tater"; username = "g"; desktop = "gnome"; };
-        "test@nixos" = mkHome { hostname = "nixos"; username = "test"; desktop = "gnome,i3"; color-scheme = "ashes"; wallpaper = "scarlet-tree-dark.png"; };
+        "test@nixos" = mkHome { hostname = "nixos"; username = "test"; desktop = "gnome,i3"; color-scheme = "ashes"; wallpaper = "scarlet-tree-dark"; };
 
-        "bean@somnus" = mkHome { hostname = "somnus"; username = "bean"; desktop = "gnome,i3"; color-scheme = "headspace"; wallpaper = "the-gang.jpg"; git-username = "Thunderbean290"; git-email = "156272091+Thunderbean290@users.noreply.github.com"; };
+        "bean@somnus" = mkHome { hostname = "somnus"; username = "bean"; desktop = "gnome,i3"; color-scheme = "headspace"; wallpaper = "the-gang-1"; git-username = "Thunderbean290"; git-email = "156272091+Thunderbean290@users.noreply.github.com"; };
         "sniffer@xj9" = mkHome { hostname = "xj9"; username = "sniffer"; desktop = "gnome"; git-username = null; git-email = null; };
 
-        "iron@petrichor" = mkHome { hostname = "petrichor"; username = "iron"; desktop = "gnome"; color-scheme = "vibrant-cool"; wallpaper = "survivors1.jpg"; git-username = "IronCutlass"; git-email = "nogreenink@gmail.com"; };
+        "iron@petrichor" = mkHome { hostname = "petrichor"; username = "iron"; desktop = "gnome"; color-scheme = "vibrant-cool"; wallpaper = "survivors-1"; git-username = "IronCutlass"; git-email = "nogreenink@gmail.com"; };
       };
 
       packages = forAllSystems (system:
         let
           pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
         in
-        import ./pkgs { inherit pkgs; }
+        import ./pkgs { inherit pkgs mylib; }
       );
     };
 }

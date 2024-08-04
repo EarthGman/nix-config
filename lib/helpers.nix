@@ -1,4 +1,4 @@
-{ self, inputs, outputs, stateVersion, ... }: {
+{ self, inputs, outputs, stateVersion, ... }: rec {
 
   # Helper function for generating home-manager configs
   mkHome =
@@ -57,4 +57,19 @@
     "aarch64-darwin"
     "x86_64-darwin"
   ];
+
+  # generates attribute set with keyname of base filename with .(extension) removed. Value is store path
+  splitFilename = file:
+    let
+      parts = builtins.match "(.*)\\.(.*)" (builtins.baseNameOf file);
+    in
+    if parts == null then
+      { name = builtins.baseNameOf file; ext = ""; }
+    else
+      { name = builtins.elemAt parts 0; ext = builtins.elemAt parts 1; };
+  mapfiles = dir:
+    let
+      files = builtins.attrNames (builtins.readDir dir);
+    in
+    builtins.listToAttrs (builtins.map (file: { name = (splitFilename file).name; value = "${dir}/${file}"; }) files);
 }

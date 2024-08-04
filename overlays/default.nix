@@ -1,6 +1,6 @@
-{ inputs, outputs, ... }:
+{ inputs, outputs, mylib, ... }:
 {
-  additions = final: _prev: import ../pkgs { pkgs = final; };
+  packages = final: _prev: import ../pkgs { pkgs = final; inherit mylib; };
 
   nur = inputs.nur.overlay;
 

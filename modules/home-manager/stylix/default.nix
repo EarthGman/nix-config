@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, color-scheme, wallpaper, ... }:
+{ outputs, pkgs, lib, inputs, color-scheme, wallpaper, ... }:
 let
   default = lib.mkDefault;
 in
@@ -8,7 +8,7 @@ in
   ];
   stylix = {
     enable = default true;
-    image = ./wallpapers/${wallpaper};
+    image = outputs.wallpapers.${wallpaper};
     base16Scheme = lib.mkIf (color-scheme != null) ./color-palettes/${color-scheme}.yaml;
 
     targets = default {

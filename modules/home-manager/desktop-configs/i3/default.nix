@@ -1,7 +1,7 @@
-{ self, pkgs, config, lib, wallpaper, hostname, username, ... }:
+{ self, outputs, pkgs, config, lib, wallpaper, hostname, username, ... }:
 let
   inherit (builtins) readFile;
-  wp = self + /modules/home-manager/stylix/wallpapers/${wallpaper};
+  wp = outputs.wallpapers.${wallpaper};
 in
 {
   home.packages = with pkgs; [
@@ -13,6 +13,7 @@ in
     maim
     xclip
     polybar
+    gnome.gnome-system-monitor
   ];
   xsession.windowManager.i3 = {
     enable = true;
