@@ -16,6 +16,7 @@ in
     ./${hostname}
     ../modules/nixos/packages.nix
     ../modules/nixos/nix.nix
+    ../modules/nixos/neovim.nix
   ] ++ lib.optionals (isServer) [
     ../templates/prox-server
   ] ++ lib.optionals (hasNord) [

@@ -1,6 +1,6 @@
 { pkgs, lib, stdenvNoCC, themeConfig ? null }:
 stdenvNoCC.mkDerivation rec {
-  pname = "sddm-astronaut";
+  pname = "astronaut";
   version = "1.0";
 
   src = pkgs.fetchFromGitHub {
@@ -18,7 +18,7 @@ stdenvNoCC.mkDerivation rec {
       iniFormat = pkgs.formats.ini { };
       configFile = iniFormat.generate "" { General = themeConfig; };
 
-      basePath = "$out/share/sddm/themes/astronaut";
+      basePath = "$out/share/sddm/themes/${pname}";
     in
     ''
       mkdir -p ${basePath}

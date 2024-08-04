@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 {
-  options.vim.enable = lib.mkEnableOption "enable vim";
-  config = lib.mkIf config.vim.enable {
-    programs.vim.enable = true;
+  options.neovim.enable = lib.mkEnableOption "enable neovim";
+  config = lib.mkIf config.neovim.enable {
+    programs.neovim.enable = true;
   };
 }

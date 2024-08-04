@@ -1,22 +1,41 @@
-{ pkgs, lib, config, displayManagerTheme, desktop, ... }:
+{ self, pkgs, lib, config, hostname, displayManagerTheme, desktop, ... }:
 let
   hasTheme = (displayManagerTheme != null);
-  desktops = builtins.filter builtins.isString (builtins.split "," desktop);
+  cfg = config.services.displayManager.sddm;
+  inherit (lib) types mkOption;
 in
 {
-  services.displayManager.sddm = {
-    enable = true;
-    package = pkgs.kdePackages.sddm;
-    wayland = {
-      enable = true;
-    };
-    extraPackages = lib.mkIf hasTheme (with pkgs; [
-      sddm-themes.${displayManagerTheme}
-    ]);
-    theme = lib.mkIf hasTheme "${displayManagerTheme}";
-  };
-  environment.systemPackages = [
-    pkgs.sddm-themes.${displayManagerTheme}
-  ];
-}
+  options.services.displayManager.sddm = {
+    themeConfig = mkOption {
+      description = ''
+        sddm theme configuration written to
+        theme.conf.user
+      '';
+      default = { };
+      type = types.attrsOf types.str;
 
+    };
+  };
+  config =
+    let
+      themePackage = pkgs.sddm-themes.${displayManagerTheme}.override {
+        inherit (cfg) themeConfig;
+      };
+    in
+    {
+      services.displayManager.sddm = {
+        enable = true;
+        package = pkgs.kdePackages.sddm;
+        wayland = {
+          enable = true;
+        };
+        extraPackages = lib.mkIf hasTheme (with pkgs; [
+          themePackage
+        ]);
+        theme = lib.mkIf hasTheme "${displayManagerTheme}";
+      };
+      environment.systemPackages = lib.mkIf hasTheme [
+        themePackage
+      ];
+    };
+}

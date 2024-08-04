@@ -5,12 +5,17 @@ TODO:
 - [ ] startup scripts - nordvpn start on login
 - [ ] xremap
 - [ ] i3
-  - [ ] sound slider
-  - [ ] networkManager
-  - [ ] Screenshots
-  - [ ] transparency compositor
-  - [ ] rofi theme
-- [ ] learn vim
+  - [x] sound slider
+  - [x] networkManager
+  - [x] Screenshots
+  - [x] transparency compositor
+  - [x] rofi theme
+  - [ ] gcolor or colorpicker that works
+- [ ] learn neovim
+  - [ ] basics
+  - [ ] customization + plugins
+  - [ ] lsp
+  - [ ] debugger
 - [ ] redo and add more secrets
 - [ ] fix the weird looking glass shm permission thing
 - [ ] hard disk encryption

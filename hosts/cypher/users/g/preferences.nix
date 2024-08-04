@@ -10,7 +10,7 @@
 
   # coding
   vscode.enable = true;
-  vim.enable = false;
+  neovim.enable = true;
   zed.enable = false;
   github-desktop.enable = true;
   lazygit.enable = true;

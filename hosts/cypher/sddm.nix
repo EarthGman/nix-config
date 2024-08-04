@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ outputs, pkgs, lib, config, displayManagerTheme, ... }:
 let
   xcfg = config.services.xserver;
   weston-ini = pkgs.writeText "weston.ini" ''
@@ -35,6 +35,12 @@ in
     wayland = {
       compositor = lib.mkForce "weston";
       compositorCommand = weston-command;
+    };
+    themeConfig = {
+      Background = outputs.wallpapers.kaori;
+      FormPosition = "left";
+      FullBlur = "false";
+      PartialBlur = "false";
     };
   };
 }
