@@ -1,10 +1,10 @@
-{ outputs
-, ...
-}:
+{ outputs, pkgs, ... }:
 {
   imports = [
+    #./disko.nix
     ./fs.nix
   ];
+
   boot.initrd.availableKernelModules = [
     "nvme"
     "xhci_pci"
@@ -13,14 +13,27 @@
     "usb_storage"
     "sd_mod"
   ];
-  boot.loader.grub.extraEntries = ''
-    menuentry 'Windows 10' --class windows --class os {
-      insmod part_gpt
-      insmod ntfs
-      search --no-floppy --fs-uuid --set=root 1836-033E
-      chainloader /efi/Microsoft/Boot/bootmgfw.efi
-    }
+
+  environment.systemPackages = with pkgs; [
+    liquidctl
+  ];
+  services.hardware.openrgb = {
+    enable = true;
+  };
+  #allow liquidctl without sudo (kraken z73)
+  services.udev.extraRules = ''
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="1e71", ATTRS{idProduct}=="3008", TAG+="uaccess"
   '';
+
+  # boot.loader.grub.extraEntries = ''
+  #   menuentry 'Windows 10' --class windows --class os {
+  #     insmod part_gpt
+  #     insmod ntfs
+  #     search --no-floppy --fs-uuid --set=root 1836-033E
+  #     chainloader /efi/Microsoft/Boot/bootmgfw.efi
+  #   }
+  # '';
+
   services.displayManager.sddm.themeConfig = {
     Background = outputs.wallpapers.the-gang-2;
     ScreenWidth = "2560";

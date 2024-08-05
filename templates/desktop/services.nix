@@ -35,7 +35,7 @@
       settings.PasswordAuthentication = true;
     };
 
-    # required for gamecube controller permission error in dolphin
-    udev.packages = [ pkgs.dolphinEmu ];
+    # permission error for dolphin GC adapters
+    udev.packages = with pkgs; [ dolphinEmu ];
   };
 }
