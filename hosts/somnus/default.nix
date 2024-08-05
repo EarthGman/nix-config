@@ -1,3 +1,6 @@
+{ outputs
+, ...
+}:
 {
   imports = [
     ./fs.nix
@@ -18,4 +21,16 @@
       chainloader /efi/Microsoft/Boot/bootmgfw.efi
     }
   '';
+  services.displayManager.sddm.themeConfig = {
+    Background = outputs.wallpapers.the-gang-2;
+    ScreenWidth = "2560";
+    ScreenHeight = "1440";
+    FullBlur = "false";
+    PartialBlur = "false";
+    MainColor = "##e3688c";
+    AccentColor = "#f099ff";
+    BackgroundColor = "#744fdd";
+    placeholderColor = "#e3688c";
+    IconColor = "#e3688c";
+  };
 }
