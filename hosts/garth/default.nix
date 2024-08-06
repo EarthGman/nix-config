@@ -16,5 +16,9 @@
     FullBlur = "false";
     PartialBlur = "false";
   };
-  custom.enableSteam = true;
+  custom = {
+    enableSteam = true;
+    enable1password = true;
+  };
+  services.nordvpn.enable = true;
 }

@@ -2,8 +2,6 @@
 let
   hasDesktop = (desktop != null);
   hasGPU = (gpu != null);
-  hasNord = (hostname == "cypher" || hostname == "garth");
-  hasOnePassword = (hostname == "cypher" || hostname == "garth" || hostname == "tater");
   isISO = (builtins.substring 0 4 hostname == "iso-");
   isServer = builtins.substring 0 7 hostname == "server-";
   isVM = (hostname == "nixos" || isServer);
@@ -17,12 +15,10 @@ in
     ../modules/nixos/packages.nix
     ../modules/nixos/nix.nix
     ../modules/nixos/neovim.nix
+    ../modules/nixos/nordvpn.nix
+    ../modules/nixos/1passwd.nix
   ] ++ lib.optionals (isServer) [
     ../templates/prox-server
-  ] ++ lib.optionals (hasNord) [
-    ../modules/nixos/nordvpn
-  ] ++ lib.optionals (hasOnePassword) [
-    ../modules/nixos/1passwd.nix
   ] ++ lib.optionals (hasDesktop) [
     ../templates/desktop
     ../modules/nixos/desktops

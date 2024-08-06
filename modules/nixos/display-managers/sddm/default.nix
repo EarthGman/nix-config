@@ -5,16 +5,13 @@ let
   inherit (lib) types mkOption;
 in
 {
-  options.services.displayManager.sddm = {
-    themeConfig = mkOption {
-      description = ''
-        sddm theme configuration written to
-        theme.conf.user
-      '';
-      default = { };
-      type = types.attrsOf types.str;
-
-    };
+  options.services.displayManager.sddm.themeConfig = mkOption {
+    description = ''
+      sddm theme configuration written to
+      theme.conf.user
+    '';
+    default = { };
+    type = types.attrsOf types.str;
   };
   config =
     let

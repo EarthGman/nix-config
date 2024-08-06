@@ -16,7 +16,10 @@
     kernelPackages = pkgs.linuxPackages_6_9;
   };
   custom.enableSteam = true;
-  services.displayManager.sddm.themeConfig = {
-    wallpaper = outputs.wallpapers.slime-puddle;
+  services = {
+    nordvpn.enable = true;
+    displayManager.sddm.themeConfig = {
+      wallpaper = outputs.wallpapers.slime-puddle;
+    };
   };
 }

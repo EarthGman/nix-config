@@ -11,5 +11,7 @@
     "sd_mod"
   ];
   custom.enableSteam = true;
+  # display manager customization
+  services.displayManager.sddm.themeConfig = { };
 }
 

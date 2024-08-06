@@ -46,5 +46,9 @@
       "1c33c1ced0b9fe7c"
     ];
   };
-  custom.enableSteam = true;
+  custom = {
+    enableSteam = true;
+    enable1password = true;
+  };
+  services.nordvpn.enable = true;
 }

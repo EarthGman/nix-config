@@ -19,4 +19,8 @@
   boot.extraModulePackages = with pkgs.linuxKernel.packages.linux_6_9; [
     broadcom_sta
   ];
+  custom = {
+    enable1password = true;
+  };
+  services.nordvpn.enable = true;
 }

@@ -89,5 +89,7 @@ in
   "XF86AudioRaiseVolume" = "exec pamixer -i 5";
   "XF86AudioLowerVolume" = "exec pamixer -d 5";
   "XF86AudioMute" = "exec pamixer -t";
-  "XF86AudioMicMute" = "exec pamixer $(pamixer --list-sources | grep input | cut -d ' ' -f1) -t";
+  "XF86AudioMicMute" = "exec pamixer -t --default-source";
 }
+
+
