@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   # gaming
   dolphin-emu.enable = true;

@@ -12,4 +12,5 @@ in
   userchrome-toggle-extended = callPackage ./uct-extended.nix { };
   sddm-themes = makePackages (mapfiles ./themes/sddm);
   grub-themes = makePackages (mapfiles ./themes/grub);
+  shyfox = callPackage ./themes/firefox/shyfox.nix { };
 }
