@@ -77,7 +77,7 @@
         petrichor = mkHost { hostname = "petrichor"; cpu = "amd"; gpu = "amd"; users = "iron"; desktop = "gnome"; displayManagerTheme = "astronaut"; };
 
         # Pumpkin's PCs
-        thePumpkinPatch = mkHost { hostname = "thePumpkinPatch"; cpu = "amd"; gpu = "nvidia"; users = "PumpkinKing"; desktop = "gnome"; displayManagerTheme = "astronaut"; };
+        thePumpkinPatch = mkHost { hostname = "thePumpkinPatch"; cpu = "amd"; gpu = "nvidia"; users = "pumpkinking"; desktop = "gnome"; displayManagerTheme = "astronaut"; };
 
         # servers
         mc112 = mkHost { hostname = "server-mc112"; users = "g"; };
@@ -101,7 +101,7 @@
 
         "iron@petrichor" = mkHome { hostname = "petrichor"; username = "iron"; desktop = "gnome"; color-scheme = "vibrant-cool"; wallpaper = "survivors-1"; git-username = "IronCutlass"; git-email = "nogreenink@gmail.com"; };
 
-        "PumpkinKing@thePumpkinPatch" = mkHome { hostname = "thePumpkinPatch"; username = "PumpkinKing"; desktop = "gnome"; git-username = "PumpkinKing432"; git-email = "Trombonekidd17@gmail.com"; };
+        "pumpkinking@thePumpkinPatch" = mkHome { hostname = "thePumpkinPatch"; username = "pumpkinking"; desktop = "gnome"; wallpaper = "siblings"; git-username = "PumpkinKing432"; git-email = "Trombonekidd17@gmail.com"; };
       };
 
       packages = forAllSystems (system:
