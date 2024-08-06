@@ -32,12 +32,12 @@
         type = "disk";
         content = {
           type = "gpt";
-          partition.games = {
+          partitions.games = {
             size = "100%";
             content = {
               type = "filesystem";
               format = "btrfs";
-              mountpoint = /home/bean/games;
+              mountpoint = "/home/bean/games";
             };
           };
         };

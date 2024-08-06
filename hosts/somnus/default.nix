@@ -1,8 +1,7 @@
 { outputs, pkgs, ... }:
 {
   imports = [
-    #./disko.nix
-    ./fs.nix
+    ./disko.nix
   ];
 
   boot.initrd.availableKernelModules = [
