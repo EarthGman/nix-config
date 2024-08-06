@@ -46,4 +46,5 @@
       "1c33c1ced0b9fe7c"
     ];
   };
+  custom.enableSteam = true;
 }

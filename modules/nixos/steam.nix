@@ -1,21 +1,24 @@
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 {
-  programs = {
-    gamemode.enable = true;
-    steam = {
-      enable = true;
-      gamescopeSession = {
+  options.custom.enableSteam = lib.mkEnableOption "enables the steam module";
+  config = lib.mkIf config.enableSteam {
+    programs = {
+      gamemode.enable = true;
+      steam = {
         enable = true;
+        gamescopeSession = {
+          enable = true;
+        };
       };
     };
-  };
-  environment = {
-    systemPackages = with pkgs; [
-      mangohud
-      protonup
-    ];
-    sessionVariables = {
-      STEAM_EXTRA_COMPAT_TOOLS_PATHS = "~/.steam/root/compatibilitytools.d";
+    environment = {
+      systemPackages = with pkgs; [
+        mangohud
+        protonup
+      ];
+      sessionVariables = {
+        STEAM_EXTRA_COMPAT_TOOLS_PATHS = "~/.steam/root/compatibilitytools.d";
+      };
     };
   };
 }

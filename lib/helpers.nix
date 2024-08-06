@@ -6,7 +6,7 @@
     , username
     , desktop ? null
     , editor ? "code"
-    , wallpaper ? "default.png" # default wallpaper required because stylix will complain if one is not set
+    , wallpaper ? "default" # default wallpaper required because stylix will complain if one is not set
     , color-scheme ? null
     , git-username ? "EarthGman"
     , git-email ? "EarthGman@protonmail.com"

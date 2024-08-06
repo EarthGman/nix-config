@@ -3,7 +3,6 @@ let
   hasDesktop = (desktop != null);
   hasGPU = (gpu != null);
   hasNord = (hostname == "cypher" || hostname == "garth");
-  isGamingPC = (hostname == "cypher" || hostname == "garth" || hostname == "somnus" || hostname == "cutlass") || hostname == "petrichor";
   hasOnePassword = (hostname == "cypher" || hostname == "garth" || hostname == "tater");
   isISO = (builtins.substring 0 4 hostname == "iso-");
   isServer = builtins.substring 0 7 hostname == "server-";
@@ -27,8 +26,6 @@ in
     ../templates/desktop
     ../modules/nixos/desktops
     ../modules/nixos/display-managers
-  ] ++ lib.optionals (isGamingPC) [
-    ../modules/nixos/steam.nix
   ] ++ lib.optionals (hasGPU) [
     ../modules/nixos/gpudrivers
   ] ++ lib.optionals (!isVM) [

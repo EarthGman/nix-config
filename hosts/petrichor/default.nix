@@ -10,5 +10,6 @@
     "usbhid"
     "sd_mod"
   ];
+  custom.enableSteam = true;
 }
 

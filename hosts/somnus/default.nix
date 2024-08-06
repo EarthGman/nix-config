@@ -45,4 +45,5 @@
     placeholderColor = "#e3688c";
     IconColor = "#e3688c";
   };
+  custom.enableSteam = true;
 }

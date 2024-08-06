@@ -16,4 +16,5 @@
     FullBlur = "false";
     PartialBlur = "false";
   };
+  custom.enableSteam = true;
 }
