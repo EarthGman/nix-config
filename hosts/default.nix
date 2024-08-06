@@ -13,6 +13,7 @@ in
   imports = [
     inputs.disko.nixosModules.disko
     ./${hostname}
+    ../modules/nixos/steam.nix
     ../modules/nixos/packages.nix
     ../modules/nixos/nix.nix
     ../modules/nixos/neovim.nix

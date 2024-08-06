@@ -1,7 +1,7 @@
 { pkgs, lib, config, ... }:
 {
   options.custom.enableSteam = lib.mkEnableOption "enables the steam module";
-  config = lib.mkIf config.enableSteam {
+  config = lib.mkIf config.custom.enableSteam {
     programs = {
       gamemode.enable = true;
       steam = {
