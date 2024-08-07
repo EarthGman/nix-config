@@ -25,6 +25,11 @@
       FullBlur = "false";
       PartialBlur = "false";
       FormPosition = "right";
+      MainColor = "#ffeaac";
+      AccentColor = "#302a19";
+      BackgroundColor = "#ffeaac";
+      placeholderColor = "#302a19";
+      IconColor = "#ffeaac";
     };
   };
 }
