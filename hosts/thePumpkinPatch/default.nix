@@ -24,6 +24,7 @@
       ScreenHeight = "1440";
       FullBlur = "false";
       PartialBlur = "false";
+      FormPosition = "right"
+        };
     };
-  };
-}
+  }

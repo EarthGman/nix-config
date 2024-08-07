@@ -1,5 +1,10 @@
+{ outputs, ... }:
 {
   # extra config for home-manager. anything here will not apply to any user on any system other than this one
+
+  #firefox
+  firefox.theme.name = "shyfox";
+  firefox.theme.config.wallpaper = outputs.wallpapers.get-mooned;
 
   # gaming
   dolphin-emu.enable = true;
