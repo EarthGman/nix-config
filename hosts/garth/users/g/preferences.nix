@@ -1,4 +1,6 @@
 {
+  firefox.theme.name = "shyfox";
+
   # gaming
   dolphin-emu.enable = true;
   ffxiv-launcher.enable = false;

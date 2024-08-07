@@ -19,7 +19,7 @@
   services = {
     nordvpn.enable = true;
     displayManager.sddm.themeConfig = {
-      wallpaper = outputs.wallpapers.slime-puddle;
+      Background = outputs.wallpapers.slime-puddle;
     };
   };
 }
