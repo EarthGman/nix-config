@@ -1,5 +1,9 @@
-{ pkgs, ... }:
+{ outputs, ... }:
 {
+  #firefox
+  firefox.theme.name = "shyfox";
+  firefox.theme.config.wallpaper = outputs.wallpapers.headspace-dark;
+
   # gaming
   dolphin-emu.enable = true;
   ffxiv-launcher.enable = true;
