@@ -25,11 +25,13 @@
       FullBlur = "false";
       PartialBlur = "false";
       FormPosition = "right";
-      MainColor = "#ffeaac";
-      AccentColor = "#302a19";
-      BackgroundColor = "#ffeaac";
+      MainColor = "#cd4967";
+      AccentColor = "#000000";
+      BackgroundColor = "#000000";
       placeholderColor = "#302a19";
-      IconColor = "#ffeaac";
+      IconColor = "#cd4967";
+      HourFormat = "hh:mm A";
+      FontSize = "16";
     };
   };
 }
