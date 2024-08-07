@@ -20,6 +20,10 @@
     nordvpn.enable = true;
     displayManager.sddm.themeConfig = {
       Background = outputs.wallpapers.slime-puddle;
+      ScreenWidth = "2560";
+      ScreenHeight = "1440";
+      FullBlur = "false";
+      PartialBlur = "false";
     };
   };
 }
