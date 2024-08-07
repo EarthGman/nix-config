@@ -3,6 +3,9 @@
   # extra config for home-manager. anything here will not apply to any user on any system other than this one
   brave.enable = false;
 
+  firefox.theme.name = "shyfox";
+  firefox.theme.config.wallpaper = outputs.wallpapers.april-night;
+
   # gaming
   dolphin-emu.enable = true;
   ffxiv-launcher.enable = false;
@@ -63,10 +66,6 @@
   # clients
   filezilla.enable = true;
   remmina.enable = false;
-
-  #firefox.theme.name = "shyfox";
-  firefox.theme.config.wallpaper = outputs.wallpapers.april-night;
-
 
   home.file = {
     " bin/ygo-omega " = {

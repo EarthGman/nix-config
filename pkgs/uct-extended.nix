@@ -35,8 +35,8 @@ buildFirefoxXpiAddon {
   pname = "userchrome-toggle-extended";
   version = "1.5";
   addonId = "userchrome-toggle-extended@n2ezr.ru";
-  url = "https://addons.mozilla.org/firefox/downloads/file/4295256/userchrome_toggle_extended-1.5.xpi";
-  sha256 = "1r4pc6sbg54ig09niykljxgp9v4b3rahp7pn9hrbnhrmvbrphrr4";
+  url = "https://addons.mozilla.org/firefox/downloads/file/4331605/userchrome_toggle_extended-2.0.xpi";
+  sha256 = "1b5r2pbxyj1wcad1myiah863r70d0gl5nnl2l7zf37njdy2avq02";
 
   meta = with lib;
     {

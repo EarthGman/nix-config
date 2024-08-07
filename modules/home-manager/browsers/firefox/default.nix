@@ -12,22 +12,20 @@ let
   user_js = "${betterfox}/user.js";
 in
 {
-  options = {
-    firefox = {
-      enable = mkEnableOption "firefox config";
-      theme = {
-        name = mkOption {
-          description = "name of theme";
-          type = types.str;
-          default = "";
-        };
-        config = mkOption {
-          description = ''
-            extra config passed to theme derivtaion
-          '';
-          default = { };
-          type = types.attrsOf types.str;
-        };
+  options.firefox = {
+    enable = mkEnableOption "firefox config";
+    theme = {
+      name = mkOption {
+        description = "name of theme";
+        type = types.str;
+        default = "";
+      };
+      config = mkOption {
+        description = ''
+          extra config passed to theme derivtaion
+        '';
+        default = { };
+        type = types.attrsOf types.str;
       };
     };
   };

@@ -10,7 +10,11 @@ stdenvNoCC.mkDerivation rec {
     hash = "sha256-k3p8VxFpI/jw1TLBOKskH4KylsiiWBJLRNpffm+w7Bo=";
   };
 
-  inherit (themeConfig) wallpaper;
+  wallpaper =
+    if (builtins.hasAttr "wallpaper" themeConfig) then
+      themeConfig.wallpaper
+    else
+      null;
 
   installPhase = ''  
     rm -f *.md LICENSE
