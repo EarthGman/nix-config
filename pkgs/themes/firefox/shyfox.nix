@@ -10,12 +10,15 @@ stdenvNoCC.mkDerivation rec {
     hash = "sha256-k3p8VxFpI/jw1TLBOKskH4KylsiiWBJLRNpffm+w7Bo=";
   };
 
-  installPhase =
-    let
-      path = "$out/share/firefox/themes/shyfox";
-    in
-    ''  
-    mkdir -p ${path}
-    cp -r $src/chrome/* ${path} 
+  inherit (themeConfig) wallpaper;
+
+  installPhase = ''  
+    rm -f *.md LICENSE
+    mkdir -p $out
+    cp -r ./* $out
+  '' + lib.optionalString (wallpaper != null) ''
+    cd $out
+    rm -f chrome/wallpaper.png
+    ln -sf ${wallpaper} chrome/wallpaper.png
   '';
 }

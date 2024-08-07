@@ -1,3 +1,4 @@
+{ outputs, ... }:
 {
   # extra config for home-manager. anything here will not apply to any user on any system other than this one
   brave.enable = false;
@@ -63,15 +64,19 @@
   filezilla.enable = true;
   remmina.enable = false;
 
+  #firefox.theme.name = "shyfox";
+  firefox.theme.config.wallpaper = outputs.wallpapers.april-night;
+
+
   home.file = {
-    "bin/ygo-omega" = {
+    " bin/ygo-omega " = {
       executable = true;
       text = ''
         #!/usr/bin/env bash
         steam-run ~/games/ygo-omega/OmegaUpdater
       '';
     };
-    ".local/share/applications/ygo-omega.desktop" = {
+    " .local/share/applications/ygo-omega.desktop " = {
       text = ''
         [Desktop Entry]
         Name=YGO Omega
@@ -85,3 +90,4 @@
     };
   };
 }
+
