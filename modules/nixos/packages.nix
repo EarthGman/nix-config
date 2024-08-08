@@ -3,6 +3,7 @@
   environment.systemPackages = with pkgs; [
     nix-output-monitor
     cryptsetup
+    dmidecode
     git
     disko
     ripgrep

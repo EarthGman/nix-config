@@ -1,5 +1,13 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
+let
+  radeon-profile = pkgs.writeScript "radeon-profile" ''
+    sudo -E ${lib.getExe pkgs.radeon-profile}
+  '';
+in
 {
+  programs.zsh.shellAliases = {
+    "radeon-profile" = radeon-profile;
+  };
   services.xserver.videoDrivers = [ "amdgpu" ];
   hardware.opengl = {
     enable = true;
