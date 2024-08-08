@@ -53,6 +53,7 @@
   solaar.enable = false;
   wireshark.enable = true;
   xclicker.enable = true;
+  yazi.enable = true;
 
   # tops
   nvtop.enable = false;

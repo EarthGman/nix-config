@@ -29,5 +29,6 @@
     ./thunderbird.nix
     ./wireshark.nix
     ./xclicker.nix
+    ./yazi
   ];
 }

@@ -4,7 +4,6 @@ let
   wp = outputs.wallpapers.${wallpaper};
 in
 {
-  imports = [ ./yazi ];
   home.packages = with pkgs; [
     feh
     networkmanager_dmenu
