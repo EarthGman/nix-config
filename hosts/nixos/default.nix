@@ -11,6 +11,6 @@
     "virtio_blk"
   ];
   boot.loader.grub.themeConfig = {
-    background = outputs.wallpapers.april-red;
+    background = outputs.wallpapers.blackspace;
   };
 }

@@ -1,4 +1,7 @@
+{ outputs, ... }:
 {
+  firefox.theme.name = "shyfox";
+  firefox.theme.config.wallpaper = outputs.wallpapers.blackspace;
   # gaming
   dolphin-emu.enable = false;
   ffxiv-launcher.enable = false;
@@ -23,7 +26,7 @@
   betterdiscord.enable = false;
 
   # image and video
-  gimp.enable = false;
+  gimp.enable = true;
   openshot.enable = false;
   obs-studio.enable = false;
 
@@ -42,6 +45,7 @@
   pika-backup.enable = false;
   checkra1n.enable = false;
   solaar.enable = false;
+  yazi.enable = true;
 
   # tops
   nvtop.enable = false;
