@@ -32,6 +32,9 @@
   #     chainloader /efi/Microsoft/Boot/bootmgfw.efi
   #   }
   # '';
+  boot.loader.grub.themeConfig = {
+    background = outputs.wallpapers.blackspace;
+  };
 
   services.displayManager.sddm.themeConfig = {
     Background = outputs.wallpapers.the-gang-2;
