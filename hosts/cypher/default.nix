@@ -1,4 +1,4 @@
-{ displayManager, lib, ... }:
+{ displayManager, lib, outputs, ... }:
 {
   imports = [
     ./fs.nix
@@ -46,6 +46,11 @@
       "1c33c1ced0b9fe7c"
     ];
   };
+
+  boot.loader.grub.themeConfig = {
+    background = outputs.wallpapers.april-red;
+  };
+
   custom = {
     enableSteam = true;
     enable1password = true;
