@@ -42,7 +42,7 @@
     ScreenHeight = "1440";
     FullBlur = "false";
     PartialBlur = "false";
-    MainColor = "##ffffff";
+    MainColor = "#FFFFFF";
     AccentColor = "#f099ff";
     BackgroundColor = "#ffffff";
     placeholderColor = "#ffffff";
