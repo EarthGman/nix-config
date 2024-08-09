@@ -1,20 +1,10 @@
-{ pkgs, config, lib, hostname, ... }:
+{ pkgs, config, lib, ... }:
 let
   username = "g";
-  hasSecrets = builtins.pathExists ../../../../secrets/${hostname}.yaml;
-  hashedPasswordFile =
-    if (hasSecrets)
-    then
-      config.sops.secrets.${username}.path
-    else
-      null;
-  password = if (hasSecrets) then null else "123";
 in
 {
-  imports = lib.optionals hasSecrets [ ./sops.nix ];
   users.users.${username} = {
-    inherit hashedPasswordFile;
-    inherit password;
+    hashedPassword = "$y$j9T$dOyX2O3/YiszsmZC3WBlA0$/UZDYx6/11rsE6DDvPxpFSJo2YvxNIOl2pAz5W.kdg3";
     isNormalUser = true;
     description = username;
     packages = with pkgs; [ home-manager ];

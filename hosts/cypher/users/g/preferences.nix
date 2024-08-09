@@ -1,11 +1,13 @@
 { outputs, ... }:
 {
   # extra config for home-manager. anything here will not apply to any user on any system other than this one
-  brave.enable = false;
+  stylix.image = outputs.wallpapers.kaori;
+  stylix.colorScheme = "april";
 
   firefox.theme.name = "shyfox";
   firefox.theme.config.wallpaper = outputs.wallpapers.april-night;
 
+  brave.enable = false;
   # gaming
   dolphin-emu.enable = true;
   ffxiv-launcher.enable = false;

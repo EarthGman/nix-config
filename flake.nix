@@ -59,25 +59,25 @@
       nixosConfigurations = {
         # Earth's PCs
         # gaming desktop
-        cypher = mkHost { hostname = "cypher"; cpu = "amd"; gpu = "amd"; users = "g"; desktop = "i3"; displayManager = "sddm"; displayManagerTheme = "astronaut"; };
+        cypher = mkHost { hostname = "cypher"; cpu = "amd"; gpu = "amd"; users = "g"; desktop = "i3"; displayManager = "sddm"; };
         # work laptop
-        garth = mkHost { hostname = "garth"; cpu = "intel"; users = "g"; desktop = "i3"; displayManager = "sddm"; displayManagerTheme = "astronaut"; };
+        garth = mkHost { hostname = "garth"; cpu = "intel"; users = "g"; desktop = "i3"; displayManager = "sddm"; };
         # old potato hp laptop
-        tater = mkHost { hostname = "tater"; cpu = "intel"; users = "g"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "astronaut"; };
+        tater = mkHost { hostname = "tater"; cpu = "intel"; users = "g"; desktop = "gnome"; displayManager = "sddm"; };
         # nixos testing vm
-        nixos = mkHost { hostname = "nixos"; cpu = "amd"; users = "test"; desktop = "gnome,i3"; displayManager = "sddm"; displayManagerTheme = "astronaut"; };
+        nixos = mkHost { hostname = "nixos"; cpu = "amd"; users = "test"; desktop = "gnome,i3"; displayManager = "sddm"; };
 
         # Thunder's PCs
         # gaming desktop
-        somnus = mkHost { hostname = "somnus"; cpu = "amd"; gpu = "amd"; users = "bean"; desktop = "gnome,i3"; displayManager = "sddm"; displayManagerTheme = "astronaut"; };
+        somnus = mkHost { hostname = "somnus"; cpu = "amd"; gpu = "amd"; users = "bean"; desktop = "gnome,i3"; displayManager = "sddm"; };
         # old dinosaur
-        xj9 = mkHost { hostname = "xj9"; cpu = "amd"; users = "sniffer"; desktop = "gnome"; displayManager = "sddm"; displayManagerTheme = "astronaut"; };
+        xj9 = mkHost { hostname = "xj9"; cpu = "amd"; users = "sniffer"; desktop = "gnome"; displayManager = "sddm"; };
 
         # Iron's PCs
-        petrichor = mkHost { hostname = "petrichor"; cpu = "amd"; gpu = "amd"; users = "iron"; desktop = "gnome"; displayManagerTheme = "astronaut"; };
+        petrichor = mkHost { hostname = "petrichor"; cpu = "amd"; gpu = "amd"; users = "iron"; desktop = "gnome"; displayManager = "sddm"; };
 
         # Pumpkin's PCs
-        thePumpkinPatch = mkHost { hostname = "thePumpkinPatch"; cpu = "amd"; gpu = "nvidia"; users = "pumpkinking"; desktop = "gnome"; displayManagerTheme = "astronaut"; };
+        thePumpkinPatch = mkHost { hostname = "thePumpkinPatch"; cpu = "amd"; gpu = "nvidia"; users = "pumpkinking"; desktop = "gnome"; displayManager = "sddm"; };
 
         # servers
         mc112 = mkHost { hostname = "server-mc112"; users = "g"; };
@@ -91,17 +91,17 @@
       };
 
       homeConfigurations = {
-        "g@cypher" = mkHome { hostname = "cypher"; username = "g"; desktop = "i3"; wallpaper = "kaori"; color-scheme = "april"; };
-        "g@garth" = mkHome { hostname = "garth"; username = "g"; desktop = "i3"; wallpaper = "fiery-dragon"; color-scheme = "inferno"; };
+        "g@cypher" = mkHome { hostname = "cypher"; username = "g"; desktop = "i3"; };
+        "g@garth" = mkHome { hostname = "garth"; username = "g"; desktop = "i3"; };
         "g@tater" = mkHome { hostname = "tater"; username = "g"; desktop = "gnome"; };
-        "test@nixos" = mkHome { hostname = "nixos"; username = "test"; desktop = "gnome,i3"; color-scheme = "ashes"; wallpaper = "scarlet-tree-dark"; };
+        "test@nixos" = mkHome { hostname = "nixos"; username = "test"; desktop = "gnome,i3"; };
 
-        "bean@somnus" = mkHome { hostname = "somnus"; username = "bean"; desktop = "gnome,i3"; color-scheme = "headspace"; wallpaper = "the-gang-headspace"; git-username = "Thunderbean290"; git-email = "156272091+Thunderbean290@users.noreply.github.com"; };
+        "bean@somnus" = mkHome { hostname = "somnus"; username = "bean"; desktop = "gnome,i3"; git-username = "Thunderbean290"; git-email = "156272091+Thunderbean290@users.noreply.github.com"; };
         "sniffer@xj9" = mkHome { hostname = "xj9"; username = "sniffer"; desktop = "gnome"; git-username = null; git-email = null; };
 
-        "iron@petrichor" = mkHome { hostname = "petrichor"; username = "iron"; desktop = "gnome"; color-scheme = "vibrant-cool"; wallpaper = "survivors-1"; git-username = "IronCutlass"; git-email = "nogreenink@gmail.com"; };
+        "iron@petrichor" = mkHome { hostname = "petrichor"; username = "iron"; desktop = "gnome"; git-username = "IronCutlass"; git-email = "nogreenink@gmail.com"; };
 
-        "pumpkinking@thePumpkinPatch" = mkHome { hostname = "thePumpkinPatch"; username = "pumpkinking"; desktop = "gnome"; wallpaper = "siblings"; git-username = "PumpkinKing432"; git-email = "Trombonekidd17@gmail.com"; };
+        "pumpkinking@thePumpkinPatch" = mkHome { hostname = "thePumpkinPatch"; username = "pumpkinking"; desktop = "gnome"; };
       };
 
       packages = forAllSystems (system:

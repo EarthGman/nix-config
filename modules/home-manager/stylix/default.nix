@@ -1,45 +1,58 @@
-{ outputs, pkgs, lib, inputs, color-scheme, wallpaper, ... }:
+{ inputs, outputs, pkgs, config, lib, ... }:
 let
-  default = lib.mkDefault;
+  inherit (lib) mkOption mkIf mkDefault types;
+  cfg = config.stylix;
 in
 {
   imports = [
     inputs.stylix.homeManagerModules.stylix
   ];
-  stylix = {
-    enable = default true;
-    image = outputs.wallpapers.${wallpaper};
-    base16Scheme = lib.mkIf (color-scheme != null) ./color-palettes/${color-scheme}.yaml;
-
-    targets = default {
-      vscode.enable = false;
+  options = {
+    stylix.colorScheme = mkOption {
+      description = ''
+        name of the .yaml file under ./color-palettes (excluding .yaml)
+        used to convert a simple string into a path for easier config management
+      '';
+      type = types.str;
+      default = "";
     };
+  };
+  config = {
+    stylix = {
+      enable = mkDefault true;
+      image = mkDefault outputs.wallpapers.default;
+      base16Scheme = mkIf (cfg.colorScheme != "") (./. + "/color-palettes/${cfg.colorScheme}.yaml");
 
-    cursor = default {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Classic";
-      size = 24;
+      targets = mkDefault {
+        vscode.enable = false;
+      };
+
+      cursor = mkDefault {
+        package = pkgs.bibata-cursors;
+        name = "Bibata-Modern-Classic";
+        size = 24;
+      };
+
+      fonts = mkDefault {
+        serif = {
+          package = pkgs.dejavu_fonts;
+          name = "DejaVu Sans";
+        };
+        sansSerif = {
+          package = pkgs.dejavu_fonts;
+          name = "DejaVu Sans";
+        };
+        monospace = {
+          package = pkgs.dejavu_fonts;
+          name = "DejaVu Sans Mono";
+        };
+        emoji = {
+          package = pkgs.noto-fonts-emoji;
+          name = "Noto Color Emoji";
+        };
+      };
+
+      polarity = mkDefault "dark";
     };
-
-    fonts = default {
-      serif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Sans";
-      };
-      sansSerif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Sans";
-      };
-      monospace = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Sans Mono";
-      };
-      emoji = {
-        package = pkgs.noto-fonts-emoji;
-        name = "Noto Color Emoji";
-      };
-    };
-
-    polarity = default "dark";
   };
 }

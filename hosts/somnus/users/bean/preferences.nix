@@ -1,5 +1,8 @@
 { outputs, ... }:
 {
+  stylix.image = outputs.wallpapers.the-gang-headspace;
+  stylix.colorScheme = "headspace";
+
   #firefox
   firefox.theme.name = "shyfox";
   firefox.theme.config.wallpaper = outputs.wallpapers.headspace-dark;

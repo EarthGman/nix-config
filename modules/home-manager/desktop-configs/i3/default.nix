@@ -1,7 +1,7 @@
-{ self, outputs, pkgs, config, lib, wallpaper, hostname, username, ... }:
+{ self, outputs, pkgs, config, lib, hostname, username, ... }:
 let
   inherit (builtins) readFile;
-  wp = outputs.wallpapers.${wallpaper};
+  wp = config.stylix.image;
 in
 {
   home.packages = with pkgs; [

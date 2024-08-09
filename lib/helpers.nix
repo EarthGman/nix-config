@@ -6,15 +6,13 @@
     , username
     , desktop ? null
     , editor ? "code"
-    , wallpaper ? "default" # default wallpaper required because stylix will complain if one is not set
-    , color-scheme ? null
     , git-username ? "EarthGman"
     , git-email ? "EarthGman@protonmail.com"
     , platform ? "x86_64-linux"
     }: inputs.home-manager.lib.homeManagerConfiguration {
       pkgs = inputs.nixpkgs.legacyPackages.${platform};
       extraSpecialArgs = {
-        inherit self inputs outputs hostname username desktop editor wallpaper color-scheme git-username git-email platform stateVersion;
+        inherit self inputs outputs hostname username desktop editor git-username git-email platform stateVersion;
       };
       modules = [ ../home.nix ];
     };
@@ -26,14 +24,10 @@
     , users ? null
     , desktop ? null
     , displayManager ? "sddm"
-    , displayManagerTheme ? null
     , platform ? "x86_64-linux"
-    , grub-theme ? "nixos"
-    , git-username ? "EarthGman"
-    , git-email ? "EarthGman@protonmail.com"
     }: inputs.nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit self inputs outputs hostname cpu gpu users desktop displayManager displayManagerTheme grub-theme git-username git-email platform stateVersion;
+        inherit self inputs outputs hostname cpu gpu users desktop displayManager platform stateVersion;
       };
       # If the hostname starts with "iso-", generate an ISO image
       modules =

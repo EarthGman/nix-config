@@ -1,6 +1,7 @@
 { outputs, ... }:
 {
   # extra config for home-manager. anything here will not apply to any user on any system other than this one
+  stylix.image = outputs.wallpapers.siblings;
 
   #firefox
   firefox.theme.name = "shyfox";

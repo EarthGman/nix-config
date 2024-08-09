@@ -1,19 +1,24 @@
 { pkgs, lib, config, grub-theme, ... }:
 let
-  inherit (lib) mkOption types;
+  inherit (lib) mkOption types mkDefault;
   cfg = config.boot.loader.grub;
 in
 {
-  options.boot.loader.grub.themeConfig = mkOption {
-    description = ''
-      extra config options for grub themes
-    '';
-    default = { };
-    type = types.attrsOf types.str;
+  options.boot.loader.grub = {
+    themeConfig = mkOption {
+      description = "extra config options for grub themes";
+      default = { };
+      type = types.attrsOf types.str;
+    };
+    themeName = mkOption {
+      description = "name of the grub theme from pkgs/themes/grub. Name must match exactly minus .nix";
+      type = types.str;
+      default = "nixos";
+    };
   };
   config =
     let
-      theme = pkgs.grub-themes.${grub-theme}.override {
+      theme = pkgs.grub-themes."${cfg.themeName}".override {
         inherit (cfg) themeConfig;
       };
     in
@@ -51,7 +56,7 @@ in
               }
             '';
           };
-          timeout = lib.mkDefault 10;
+          timeout = mkDefault 10;
         };
       };
     };

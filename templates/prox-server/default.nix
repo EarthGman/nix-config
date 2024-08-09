@@ -1,4 +1,4 @@
-{ inputs, pkgs, config, lib, modulesPath, stateVersion, hostname, users, git-username, git-email, ... }:
+{ inputs, pkgs, config, lib, modulesPath, stateVersion, hostname, users, ... }:
 # UEFI, Q35, Qemu proxmox virtual machine
 {
   imports = [
@@ -48,8 +48,8 @@
           home-manager.enable = true;
           git = {
             enable = true;
-            userName = git-username;
-            userEmail = git-email;
+            userName = "EarthGman";
+            userEmail = "EarthGman@protonmail.com";
           };
         };
       };

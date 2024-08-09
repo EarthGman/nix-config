@@ -1,7 +1,10 @@
 { outputs, ... }:
 {
+  stylix.image = outputs.wallpapers.scarlet-tree-dark;
+
   firefox.theme.name = "shyfox";
   firefox.theme.config.wallpaper = outputs.wallpapers.blackspace;
+
   # gaming
   dolphin-emu.enable = false;
   ffxiv-launcher.enable = false;

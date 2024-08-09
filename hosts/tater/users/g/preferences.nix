@@ -1,4 +1,10 @@
+{ outputs, ... }:
 {
+  stylix.image = outputs.wallpapers.fiery-dragon;
+  stylix.colorScheme = "inferno";
+
+  firefox.theme.name = "shyfox";
+
   # gaming
   dolphin-emu.enable = false;
   ffxiv-launcher.enable = false;
