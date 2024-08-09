@@ -37,16 +37,19 @@
   };
 
   services.displayManager.sddm.themeConfig = {
-    Background = outputs.wallpapers.the-gang-headspace;
+    Background = outputs.wallpapers.the-gang-headspace-2;
     ScreenWidth = "2560";
     ScreenHeight = "1440";
     FullBlur = "false";
     PartialBlur = "false";
-    MainColor = "##e3688c";
+    MainColor = "##ffffff";
     AccentColor = "#f099ff";
-    BackgroundColor = "#744fdd";
-    placeholderColor = "#e3688c";
-    IconColor = "#e3688c";
+    BackgroundColor = "#ffffff";
+    placeholderColor = "#ffffff";
+    IconColor = "#ffffff";
+    FormPosition = "left";
+    Font = "DejaVuSans 12";
+    HourFormat = "hh:mm A";
   };
   custom.enableSteam = true;
 }
