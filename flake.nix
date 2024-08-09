@@ -96,7 +96,7 @@
         "g@tater" = mkHome { hostname = "tater"; username = "g"; desktop = "gnome"; };
         "test@nixos" = mkHome { hostname = "nixos"; username = "test"; desktop = "gnome,i3"; color-scheme = "ashes"; wallpaper = "scarlet-tree-dark"; };
 
-        "bean@somnus" = mkHome { hostname = "somnus"; username = "bean"; desktop = "gnome,i3"; color-scheme = "headspace"; wallpaper = "the-gang-1"; git-username = "Thunderbean290"; git-email = "156272091+Thunderbean290@users.noreply.github.com"; };
+        "bean@somnus" = mkHome { hostname = "somnus"; username = "bean"; desktop = "gnome,i3"; color-scheme = "headspace"; wallpaper = "the-gang-headspace"; git-username = "Thunderbean290"; git-email = "156272091+Thunderbean290@users.noreply.github.com"; };
         "sniffer@xj9" = mkHome { hostname = "xj9"; username = "sniffer"; desktop = "gnome"; git-username = null; git-email = null; };
 
         "iron@petrichor" = mkHome { hostname = "petrichor"; username = "iron"; desktop = "gnome"; color-scheme = "vibrant-cool"; wallpaper = "survivors-1"; git-username = "IronCutlass"; git-email = "nogreenink@gmail.com"; };

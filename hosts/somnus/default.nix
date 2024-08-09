@@ -37,7 +37,7 @@
   };
 
   services.displayManager.sddm.themeConfig = {
-    Background = outputs.wallpapers.the-gang-2;
+    Background = outputs.wallpapers.the-gang-headspace;
     ScreenWidth = "2560";
     ScreenHeight = "1440";
     FullBlur = "false";
