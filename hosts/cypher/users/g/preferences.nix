@@ -3,6 +3,7 @@
   # extra config for home-manager. anything here will not apply to any user on any system other than this one
   stylix.image = outputs.wallpapers.kaori;
   stylix.colorScheme = "april";
+  #preferredEditor = "zed";
 
   firefox.theme.name = "shyfox";
   firefox.theme.config.wallpaper = outputs.wallpapers.april-night;
@@ -17,7 +18,7 @@
   # coding
   vscode.enable = true;
   neovim.enable = true;
-  zed.enable = false;
+  zed.enable = true;
   github-desktop.enable = true;
   lazygit.enable = true;
 

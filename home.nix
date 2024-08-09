@@ -1,13 +1,6 @@
 # home-manager wrapper
-{ config, inputs, outputs, username, hostname, stateVersion, ... }:
+{ outputs, config, lib, username, hostname, stateVersion, ... }:
 {
-  home = {
-    inherit username;
-    inherit stateVersion;
-    homeDirectory = "/home/${username}";
-  };
-  programs.home-manager.enable = true;
-
   imports = [
     ./hosts/${hostname}/users/${username}/preferences.nix
     ./scripts
@@ -23,10 +16,23 @@
     ./modules/home-manager/wine
   ];
 
-  nixpkgs = {
-    overlays = builtins.attrValues outputs.overlays;
-    config = {
-      allowUnfree = true;
+  options.preferredEditor = lib.mkOption {
+    description = "editor most apps will use to open files with by default";
+    default = "code";
+    type = lib.types.str;
+  };
+  config = {
+    home = {
+      inherit username;
+      inherit stateVersion;
+      homeDirectory = "/home/${username}";
+    };
+    programs.home-manager.enable = true;
+    nixpkgs = {
+      overlays = builtins.attrValues outputs.overlays;
+      config = {
+        allowUnfree = true;
+      };
     };
   };
 }

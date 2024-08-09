@@ -1,4 +1,4 @@
-{ self, pkgs, editor, username, hostname, ... }:
+{ self, pkgs, config, username, hostname, ... }:
 {
   programs = {
     starship = {
@@ -22,7 +22,7 @@
       initExtra = ''
         eval "$(${pkgs.zoxide}/bin/zoxide init --cmd j zsh)"
         export PATH=$(realpath ~/bin):$PATH
-        export EDITOR=${editor}
+        export EDITOR=${config.preferredEditor}
       '';
     };
   };

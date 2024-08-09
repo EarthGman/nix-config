@@ -5,14 +5,13 @@
     { hostname
     , username
     , desktop ? null
-    , editor ? "code"
     , git-username ? "EarthGman"
     , git-email ? "EarthGman@protonmail.com"
     , platform ? "x86_64-linux"
     }: inputs.home-manager.lib.homeManagerConfiguration {
       pkgs = inputs.nixpkgs.legacyPackages.${platform};
       extraSpecialArgs = {
-        inherit self inputs outputs hostname username desktop editor git-username git-email platform stateVersion;
+        inherit self inputs outputs hostname username desktop git-username git-email platform stateVersion;
       };
       modules = [ ../home.nix ];
     };
