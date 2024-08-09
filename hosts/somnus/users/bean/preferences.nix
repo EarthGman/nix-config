@@ -50,7 +50,7 @@
   checkra1n.enable = false;
   solaar.enable = false;
 
-  #yazi
+  # yazi
   yazi.enable = true;
 
   # tops

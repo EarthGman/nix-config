@@ -56,6 +56,9 @@
   wireshark.enable = false;
   xclicker.enable = true;
 
+  # yazi
+  yazi.enable = true;
+
   # tops
   nvtop.enable = false;
   powertop.enable = true;
