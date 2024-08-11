@@ -26,7 +26,6 @@
 
   #discord with vesktop
   discord.enable = true;
-  betterdiscord.enable = false;
 
   # image and video
   gimp.enable = true;
@@ -54,7 +53,6 @@
   nvtop.enable = false;
   powertop.enable = true;
   radeontop.enable = true;
-  htop.enable = true;
 
   # info
   neofetch.enable = true;
