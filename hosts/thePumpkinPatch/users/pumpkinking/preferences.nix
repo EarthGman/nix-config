@@ -1,13 +1,6 @@
 { outputs, ... }:
 {
   # extra config for home-manager. anything here will not apply to any user on any system other than this one
-  stylix.image = outputs.wallpapers.siblings;
-<<<<<<< HEAD
-  stylix.colorScheme = "nightmare";
-=======
-  stylix.colorScheme.name = "warmth";
->>>>>>> 365be73 (commitPK)
-
   #firefox
   firefox.theme.name = "shyfox";
   firefox.theme.config.wallpaper = outputs.wallpapers.two-hallow-knights;
@@ -29,10 +22,12 @@
   thunderbird.enable = false;
   freeoffice.enable = false;
   libreoffice.enable = false;
+  -
   obsidian.enable = false;
 
   #discord with vesktop
   discord.enable = true;
+  betterdiscord.enable = false;
 
   # image and video
   gimp.enable = true;
@@ -58,15 +53,12 @@
   solaar.enable = false;
   wireshark.enable = false;
   xclicker.enable = false;
-  yazi.enable = true;
-
-  # yazi
-  yazi.enable = true;
 
   # tops
   nvtop.enable = false;
   powertop.enable = true;
   radeontop.enable = false;
+  htop.enable = true;
 
   # info
   neofetch.enable = true;
