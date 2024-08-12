@@ -2,7 +2,11 @@
 {
   # extra config for home-manager. anything here will not apply to any user on any system other than this one
   stylix.image = outputs.wallpapers.siblings;
+<<<<<<< HEAD
   stylix.colorScheme = "nightmare";
+=======
+  stylix.colorScheme.name = "warmth";
+>>>>>>> 365be73 (commitPK)
 
   #firefox
   firefox.theme.name = "shyfox";
@@ -54,6 +58,7 @@
   solaar.enable = false;
   wireshark.enable = false;
   xclicker.enable = false;
+  yazi.enable = true;
 
   # yazi
   yazi.enable = true;
