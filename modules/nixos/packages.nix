@@ -1,5 +1,6 @@
 { pkgs, lib, ... }:
 {
+  # for all systems
   environment.systemPackages = with pkgs; [
     nix-output-monitor
     cryptsetup
