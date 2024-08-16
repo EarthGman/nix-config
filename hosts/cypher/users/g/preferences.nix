@@ -48,6 +48,7 @@
   autokey.enable = true;
   dosbox.enable = true;
   looking-glass.enable = true;
+  looking-glass.version = "B6";
   wine.enable = true;
   gcolor.enable = true;
   flips.enable = true;
