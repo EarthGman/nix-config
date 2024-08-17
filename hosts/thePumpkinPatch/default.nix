@@ -15,7 +15,7 @@
     ];
     kernelPackages = pkgs.linuxPackages_6_9;
   };
-  custom.enableSteam = true;
+  custom.steam.enable = true;
   services = {
     nordvpn.enable = true;
     displayManager.sddm.themeConfig = {

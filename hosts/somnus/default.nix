@@ -51,5 +51,5 @@
     Font = "DejaVuSans 12";
     HourFormat = "hh:mm A";
   };
-  custom.enableSteam = true;
+  custom.steam.enable = true;
 }

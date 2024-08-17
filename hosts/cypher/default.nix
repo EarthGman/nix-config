@@ -52,8 +52,9 @@
   };
 
   custom = {
-    enableSteam = true;
-    enable1password = true;
+    steam.enable = true;
+    steam.remotePlay = true;
+    onepassword.enable = true;
   };
   services.nordvpn.enable = true;
 }

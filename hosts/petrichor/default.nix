@@ -10,7 +10,7 @@
     "usbhid"
     "sd_mod"
   ];
-  custom.enableSteam = true;
+  custom.steam.enable = true;
   # display manager customization
   services.displayManager.sddm.themeConfig = { };
 }

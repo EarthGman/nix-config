@@ -17,13 +17,13 @@
     PartialBlur = "false";
   };
   custom = {
-    enableSteam = true;
-    enable1password = true;
+    steam.enable = true;
+    steam.remotePlay = true;
+    onepassword.enable = true;
   };
   services.nordvpn.enable = true;
   services.zerotierone = {
     enable = true;
-
     joinNetworks = [
       # personal darkweb
       "d5e5fb653723b80e"
