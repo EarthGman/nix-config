@@ -1,13 +1,13 @@
 { lib, ... }:
 let
-  inherit (lib) mkOption;
+  inherit (lib) mkOption types;
 in
 {
   options = {
-    preferredEditor = lib.mkOption {
-      description = "editor most apps will use to open files with by default";
+    preferredEditor = mkOption {
+      description = "string exported as EDITOR env variable";
       default = "code";
-      type = lib.types.str;
+      type = types.str;
     };
   };
 }

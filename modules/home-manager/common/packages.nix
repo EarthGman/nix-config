@@ -49,6 +49,7 @@
     viu
     vlc
     usbmuxd
+    xclip
     xorg.xev
     xorg.xmodmap
   ];

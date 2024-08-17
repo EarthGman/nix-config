@@ -1,24 +1,23 @@
 { self, outputs, pkgs, config, lib, hostname, username, ... }:
 let
   inherit (builtins) readFile;
+  inherit (lib) mkDefault mkForce optionals;
   wp = config.stylix.image;
 in
 {
-  home.packages = with pkgs; [
-    feh
-    networkmanager_dmenu
-    pavucontrol
-    pamixer
-    flameshot
-    maim
-    xclip
-    polybar
-    gnome.gnome-system-monitor
-  ];
+  feh.enable = mkDefault true;
+  networkmanager_dmenu.enable = mkDefault true;
+  pavucontrol.enable = mkDefault true;
+  pamixer.enable = mkDefault true;
+  flameshot.enable = mkDefault true;
+  maim.enable = mkDefault true;
+  polybar.enable = mkDefault true;
+  gnome-system-monitor.enable = mkDefault true;
+
   xsession.windowManager.i3 = {
     enable = true;
     config = {
-      bars = lib.mkForce [ ];
+      bars = mkForce [ ];
       modifier = "Mod4";
       floating.modifier = "Mod4";
       terminal = "kitty";
@@ -39,7 +38,7 @@ in
           always = false;
           notification = false;
         }
-      ] ++ lib.optionals (username == "g") [
+      ] ++ optionals (username == "g") [
         # LH mouse
         {
           command = "${pkgs.xorg.xmodmap}/bin/xmodmap ${self}/scripts/.xmodmap";
@@ -65,29 +64,9 @@ in
       ];
     };
   };
-  programs = {
-    rofi = {
-      enable = true;
-      extraConfig = import ./rofi/config.nix;
-    };
-  };
   xdg.configFile = {
     "picom/picom.conf".text = ''
       vsync = true
     '';
-    "polybar/config.ini".source = ./polybar/config.ini;
-    "flameshot/flameshot.ini".text = lib.generators.toINI { } {
-      General = {
-        "contrastOpacity" = 188;
-        "copyOnDoubleClick" = true;
-        "drawColor" = "#fff600";
-        "drawThickness" = 26;
-        "saveAfterCopy" = true;
-        "saveAsFileExtension" = "png";
-        "savePath" = "${config.home.homeDirectory}/Pictures/Screenshots";
-        "savePathFixed" = true;
-        "showHelp" = true;
-      };
-    };
   };
 }
