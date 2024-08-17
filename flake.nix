@@ -71,7 +71,7 @@
         # gaming desktop
         somnus = mkHost { hostname = "somnus"; cpu = "amd"; gpu = "amd"; users = "bean"; desktop = "gnome,i3"; displayManager = "sddm"; };
         # old dinosaur
-        pioneer = mkHost { hostname = "pioneer"; cpu = "intel"; users = "bean"; desktop = "i3"; displayManager = "sddm"; };
+        pioneer = mkHost { hostname = "pioneer"; cpu = "intel"; users = "bean"; desktop = "gnome,i3"; displayManager = "sddm"; };
 
         # Iron's PCs
         petrichor = mkHost { hostname = "petrichor"; cpu = "amd"; gpu = "amd"; users = "iron"; desktop = "gnome"; displayManager = "sddm"; };
@@ -97,7 +97,7 @@
         "test@nixos" = mkHome { hostname = "nixos"; username = "test"; desktop = "gnome,i3"; };
 
         "bean@somnus" = mkHome { hostname = "somnus"; username = "bean"; desktop = "gnome,i3"; git-username = "Thunderbean290"; git-email = "156272091+Thunderbean290@users.noreply.github.com"; };
-        "bean@pioneer" = mkHome { hostname = "pioneer"; username = "bean"; desktop = "i3"; git-username = "Thunderbean290"; git-email = "156272091+Thunderbean290@users.noreply.github.com"; };
+        "bean@pioneer" = mkHome { hostname = "pioneer"; username = "bean"; desktop = "gnome,i3"; git-username = "Thunderbean290"; git-email = "156272091+Thunderbean290@users.noreply.github.com"; };
 
         "iron@petrichor" = mkHome { hostname = "petrichor"; username = "iron"; desktop = "gnome"; git-username = "IronCutlass"; git-email = "nogreenink@gmail.com"; };
 
