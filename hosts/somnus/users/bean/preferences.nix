@@ -64,4 +64,18 @@
   # clients
   filezilla.enable = false;
   remmina.enable = false;
+
+  programs.zsh.shellAliases = {
+    "lctl" = "sudo -E liquidctl-profile";
+  };
+  home.file."bin/liquidctl-profile" = {
+    executable = true;
+    text = ''
+      #!/usr/bin/env bash
+      liquidctl --match kraken set external color fixed 2f18d6
+      liquidctl --match kraken set lcd screen gif /home/bean/Pictures/pluto-expanded.gif
+      liquidctl --match kraken set pump speed 70
+      liquidctl --match kraken set fan speed 70
+    '';
+  };
 }
