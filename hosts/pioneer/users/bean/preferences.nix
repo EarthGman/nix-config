@@ -42,6 +42,7 @@
   pika-backup.enable = false;
   checkra1n.enable = false;
   solaar.enable = false;
+  yazi.enable = true;
 
   # tops
   nvtop.enable = false;
