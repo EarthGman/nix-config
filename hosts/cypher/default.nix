@@ -42,8 +42,8 @@
     enable = true;
 
     joinNetworks = [
-      # Test Network 
-      "1c33c1ced0b9fe7c"
+      # personal darkweb
+      "d5e5fb653723b80e"
     ];
   };
 

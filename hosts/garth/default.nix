@@ -21,4 +21,12 @@
     enable1password = true;
   };
   services.nordvpn.enable = true;
+  services.zerotierone = {
+    enable = true;
+
+    joinNetworks = [
+      # personal darkweb
+      "d5e5fb653723b80e"
+    ];
+  };
 }
