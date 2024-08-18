@@ -101,7 +101,7 @@
 
         "iron@petrichor" = mkHome { hostname = "petrichor"; username = "iron"; desktop = "gnome"; git-username = "IronCutlass"; git-email = "nogreenink@gmail.com"; };
 
-        "pumpkinking@thePumpkinPatch" = mkHome { hostname = "thePumpkinPatch"; username = "pumpkinking"; desktop = "gnome"; };
+        "pumpkinking@thePumpkinPatch" = mkHome { hostname = "thePumpkinPatch"; username = "pumpkinking"; desktop = "gnome"; git-username = "PumpkinKing432"; git-email = "trombonekidd17@gmail.com"; };
       };
 
       packages = forAllSystems (system:
