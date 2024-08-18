@@ -55,10 +55,10 @@
     steam.enable = true;
     steam.remotePlay = true;
     onepassword.enable = true;
+    sunshine.enable = true;
   };
+
+  environment.etc."X11/Xsession".source = "/run/current-system/sw/share/sddm/scripts/Xsession";
   services.displayManager.defaultSession = "none+i3";
   services.nordvpn.enable = true;
-  services.xrdp.enable = true;
-  services.xrdp.openFirewall = true;
-
 }

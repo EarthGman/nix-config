@@ -69,7 +69,7 @@
 
   # clients
   filezilla.enable = true;
-  remmina.enable = false;
+  remmina.enable = true;
 
   home.file = {
     " bin/ygo-omega " = {

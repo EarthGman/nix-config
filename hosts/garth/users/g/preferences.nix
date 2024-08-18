@@ -31,6 +31,7 @@
   gimp.enable = true;
   openshot.enable = true;
   obs-studio.enable = true;
+  moonlight.enable = true;
 
   # audio and music
   musescore.enable = true;

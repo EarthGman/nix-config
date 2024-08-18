@@ -7,6 +7,7 @@ in
     ./git.nix
     ./packages.nix
     ./options.nix
+    #./vnc.nix
   ];
   kitty.enable = mkDefault true;
   firefox.enable = mkDefault true;

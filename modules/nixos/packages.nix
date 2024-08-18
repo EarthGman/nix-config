@@ -16,6 +16,7 @@
     age
     sysz
     lshw
+    lsof
     fd
     tcpdump
   ];

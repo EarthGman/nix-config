@@ -17,6 +17,7 @@ in
     ../modules/nixos/neovim.nix
     ../modules/nixos/nordvpn.nix
     ../modules/nixos/1passwd.nix
+    ../modules/nixos/sunshine.nix
   ] ++ lib.optionals (isServer) [
     ../templates/prox-server
   ] ++ lib.optionals (hasDesktop) [
