@@ -4,6 +4,8 @@
   #firefox
   firefox.theme.name = "shyfox";
   firefox.theme.config.wallpaper = outputs.wallpapers.two-hallow-knights;
+  stylix.image = outputs.wallpapers.siblings;
+  stylix.colorScheme = "warmth";
 
   # gaming
   dolphin-emu.enable = false;
