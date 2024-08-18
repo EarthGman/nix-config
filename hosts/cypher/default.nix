@@ -56,6 +56,7 @@
     steam.remotePlay = true;
     onepassword.enable = true;
   };
+  services.displayManager.defaultSession = "none+i3";
   services.nordvpn.enable = true;
   services.xrdp.enable = true;
   services.xrdp.openFirewall = true;
