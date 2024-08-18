@@ -19,19 +19,19 @@
   obsidian.enable = true;
 
   #discord with vesktop
-  discord.enable = true;
+  discord.enable = false;
 
   # image and video
   gimp.enable = true;
-  openshot.enable = true;
+  openshot.enable = false;
   davinci-resolve.enable = false;
   obs-studio.enable = true;
 
   # audio and music
   musescore.enable = false;
   museeks.enable = false;
-  audacity.enable = true;
-  clipgrab.enable = true;
+  audacity.enable = false;
+  clipgrab.enable = false;
 
   # tools
   dosbox.enable = false;
@@ -42,6 +42,7 @@
   pika-backup.enable = false;
   checkra1n.enable = false;
   solaar.enable = false;
+  yazi.enable = true;
 
   # tops
   nvtop.enable = false;

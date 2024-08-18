@@ -1,10 +1,10 @@
 { pkgs, config, lib, ... }:
 let
-  username = "sniffer";
+  username = "bean";
 in
 {
   users.users.${username} = {
-    password = "123";
+    hashedPassword = "$y$j9T$w5v0.7p6Id3n8M9LqIdvq0$HVpB/nfJo2qGCcci/ahRndyKS19A5jvbkkozOvYEKbA";
     isNormalUser = true;
     description = username;
     packages = with pkgs; [ home-manager ];

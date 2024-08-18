@@ -61,7 +61,7 @@ in
             extraConfig =
               if (themePackage != null) then
                 (builtins.readFile (themePackage + "/user.js"))
-              else user_js;
+              else builtins.readFile user_js;
           };
         };
       };
