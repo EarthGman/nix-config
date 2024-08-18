@@ -14,6 +14,7 @@ in
       "wheel"
       "libvirtd"
       "qemu-libvirtd"
+      "nordvpn"
     ];
   };
 }
