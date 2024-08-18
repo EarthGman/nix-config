@@ -21,7 +21,10 @@ with lib; {
       services.nordvpn = {
         description = "NordVPN daemon.";
         serviceConfig = {
-          ExecStart = "${pkgs.nordvpn}/bin/nordvpnd";
+          ExecStart = ''
+            ${pkgs.bash}/bin/bash -c '\
+            ${pkgs.nordvpn}/bin/nordvpnd && ${pkgs.nordvpn}/bin/nordvpn connect || exit 1'
+          '';
           ExecStartPre = ''
             ${pkgs.bash}/bin/bash -c '\
               mkdir -m 700 -p /var/lib/nordvpn; \

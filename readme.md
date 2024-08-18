@@ -2,7 +2,8 @@ EarthGman's nix flake ❄️ version 3
 
 
 TODO:
-- [ ] startup scripts - nordvpn start on login
+- [ ] learn systemd -
+  - [x] nordvpn start on login (kinda)
 - [ ] xremap
 - [ ] i3
   - [x] sound slider
@@ -10,7 +11,7 @@ TODO:
   - [x] Screenshots
   - [x] transparency compositor
   - [x] rofi theme
-  - [ ] gcolor or colorpicker that works
+  - [ ] xdg portal stuff (notification and screenshot missing)
 - [ ] learn neovim
   - [ ] basics
   - [ ] customization + plugins
