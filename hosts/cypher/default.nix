@@ -57,4 +57,7 @@
     onepassword.enable = true;
   };
   services.nordvpn.enable = true;
+  services.xrdp.enable = true;
+  services.xrdp.openFirewall = true;
+
 }
