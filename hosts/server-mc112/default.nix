@@ -3,9 +3,16 @@
 {
   networking.firewall.allowedTCPPorts = [ 25565 ];
 
-  environment.systemPackages = with pkgs; [
-    jre8
-  ];
+  services.zerotierone = {
+    enable = true;
+    joinNetworks = [
+      "d5e5fb653723b80e"
+    ];
+  };
+
+  # environment.systemPackages = with pkgs; [
+  #   jre8
+  # ];
 
   services.minecraft-server = {
     enable = true;
