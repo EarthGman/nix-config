@@ -1,4 +1,9 @@
+{ outputs, ... }:
 {
+  # stylix
+  stylix.image = outputs.wallpapers.siblings;
+  stylix.colorScheme = "vibrant-cool";
+
   # gaming
   dolphin-emu.enable = false;
   ffxiv-launcher.enable = false;
