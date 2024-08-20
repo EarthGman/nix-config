@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, hostname, users, self, ... }:
+{ inputs, pkgs, config, lib, hostname, users, self, ... }:
 let
   keyFile = "/var/lib/sops-nix/keys.txt";
   usernames = builtins.filter builtins.isString (builtins.split "," users);
@@ -8,12 +8,15 @@ in
     inputs.sops-nix.nixosModules.sops
   ];
 
-  sops = {
-    secrets = lib.genAttrs usernames (user: { neededForUsers = true; });
-    defaultSopsFile = self + /secrets/${hostname}.yaml;
-    defaultSopsFormat = "yaml";
-    age = {
-      inherit keyFile;
+  options.custom.sops-nix.enable = lib.mkEnableOption "enable sops module";
+  config = lib.mkIf config.custom.sops-nix.enable {
+    sops = {
+      secrets = lib.genAttrs usernames (user: { neededForUsers = true; });
+      defaultSopsFile = self + /secrets/${hostname}.yaml;
+      defaultSopsFormat = "yaml";
+      age = {
+        inherit keyFile;
+      };
     };
   };
 }
