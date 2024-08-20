@@ -1,6 +1,6 @@
 { pkgs, config, lib, desktop, hostname, cpu, inputs, modulesPath, stateVersion, gpu, platform, ... }:
 let
-  inherit (lib) mkIf mkDefault;
+  inherit (lib) mkIf mkDefault optionals;
   hasDesktop = (desktop != null);
   hasGPU = (gpu != null);
   isISO = (builtins.substring 0 4 hostname == "iso-");
@@ -22,24 +22,24 @@ in
     ../modules/nixos/polkit.nix
     ../modules/nixos/virtualization.nix
     ../modules/nixos/sops.nix
-  ] ++ lib.optionals (isServer) [
+  ] ++ optionals (isServer) [
     ../templates/prox-server
-  ] ++ lib.optionals (hasDesktop) [
+  ] ++ optionals (hasDesktop) [
     ../templates/desktop
     ../modules/nixos/desktops
     ../modules/nixos/display-managers
-  ] ++ lib.optionals (hasGPU) [
+  ] ++ optionals (hasGPU) [
     ../modules/nixos/gpudrivers
-  ] ++ lib.optionals (!isVM) [
+  ] ++ optionals (!isVM) [
     (modulesPath + "/installer/scan/not-detected.nix")
-  ] ++ lib.optionals (isVM) [
+  ] ++ optionals (isVM) [
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
 
   hardware.cpu.${cpu}.updateMicrocode = mkIf (!isVM) (mkDefault config.hardware.enableRedistributableFirmware);
 
   boot = {
-    kernelModules = if (isVM) then [ ] else if (cpu == "intel") then [ "kvm-intel" ] else [ "kvm-amd" ];
+    kernelModules = mkIf ((!isVM) && config.custom.virtualization.enable) [ "kvm-${cpu}" ];
     kernelPackages = mkDefault pkgs.linuxPackages_latest;
   };
 
