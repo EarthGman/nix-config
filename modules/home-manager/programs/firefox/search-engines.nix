@@ -16,7 +16,7 @@
   };
   "Nix Hub" = {
     urls = [{
-      template = "https://www.nixhub.io/?query={searchTerms}";
+      template = "https://www.nixhub.io/packages/{searchTerms}";
     }];
     icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg";
     definedAliases = [ "@nh" ];
