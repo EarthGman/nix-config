@@ -6,6 +6,7 @@
   home.packages = (with pkgs.gnomeExtensions; [
     dash-to-panel
     vitals
+    arcmenu
   ]) ++ (with pkgs.gnome; [
     gnome-tweaks
     dconf-editor
