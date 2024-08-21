@@ -90,6 +90,7 @@ in
   "XF86AudioLowerVolume" = "exec pamixer -d 5";
   "XF86AudioMute" = "exec pamixer -t";
   "XF86AudioMicMute" = "exec pamixer -t --default-source";
+
+  "XF86MonBrightnessUp" = "exec --no-startup-id brightnessctl set +5%";
+  "XF86MonBrightnessDown" = "exec --no-startup-id brightnessctl set 5%-";
 }
-
-

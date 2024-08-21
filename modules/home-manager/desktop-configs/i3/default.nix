@@ -1,6 +1,5 @@
-{ self, outputs, pkgs, config, lib, hostname, username, ... }:
+{ self, pkgs, config, lib, hostname, username, ... }:
 let
-  inherit (builtins) readFile;
   inherit (lib) mkDefault mkForce optionals;
   wp = config.stylix.image;
 in
@@ -13,6 +12,7 @@ in
   maim.enable = mkDefault true;
   polybar.enable = mkDefault true;
   gnome-system-monitor.enable = mkDefault true;
+  brightnessctl.enable = mkDefault true;
 
   xsession.windowManager.i3 = {
     enable = true;

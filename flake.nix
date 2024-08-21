@@ -32,10 +32,6 @@
       url = "github:hyprwm/Hyprland";
     };
 
-    xremap = {
-      url = "github:xremap/nix-flake";
-    };
-
     stylix = {
       url = "github:danth/stylix";
     };
@@ -46,7 +42,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, ... }@inputs:
     let
       inherit (self) outputs;
       stateVersion = "24.05";

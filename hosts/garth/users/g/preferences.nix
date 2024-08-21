@@ -7,20 +7,15 @@
 
   # gaming
   dolphin-emu.enable = true;
-  ffxiv-launcher.enable = false;
   lutris.enable = true;
   prismlauncher.enable = true;
 
   # coding
-  vscode.enable = true;
-  neovim.enable = false;
-  zed.enable = false;
   github-desktop.enable = true;
   lazygit.enable = true;
 
   # productivity
   thunderbird.enable = true;
-  freeoffice.enable = false;
   libreoffice.enable = true;
   obsidian.enable = true;
 
@@ -47,12 +42,9 @@
   gcolor.enable = true;
   flips.enable = true;
   pika-backup.enable = true;
-  checkra1n.enable = false;
-  solaar.enable = false;
   yazi.enable = true;
 
   # tops
-  nvtop.enable = false;
   powertop.enable = true;
   radeontop.enable = true;
 
