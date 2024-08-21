@@ -11,4 +11,6 @@ in
   sddm-themes = makePackages (mapfiles ./themes/sddm);
   grub-themes = makePackages (mapfiles ./themes/grub);
   shyfox = callPackage ./themes/firefox/shyfox.nix { };
+  # zed_extension_api = callPackage ./zed_extension_api.nix { };
+  # zed-nix = callPackage ./zed-extensions/nix.nix { };
 }

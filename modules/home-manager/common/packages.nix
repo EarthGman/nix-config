@@ -36,6 +36,7 @@
     mcrcon
     statix
     deadnix
+    nixd
     nixpkgs-hammering
     nixpkgs-fmt
     nix-init

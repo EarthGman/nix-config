@@ -1,6 +1,7 @@
 { lib, config, ... }:
 let
   inherit (lib) mkDefault;
+  editor = config.preferredEditor;
 in
 {
   imports = [
@@ -14,4 +15,6 @@ in
   fastfetch.enable = mkDefault true;
   mupdf.enable = mkDefault true;
   switcheroo.enable = mkDefault true;
+  vscode.enable = mkDefault (editor == "code");
+  zed.enable = mkDefault (editor == "zed");
 }
