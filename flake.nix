@@ -56,6 +56,7 @@
     {
       overlays = import ./overlays { inherit inputs outputs mylib; };
       wallpapers = mapfiles ./wallpapers;
+      icons = mapfiles ./icons;
       nixosConfigurations = {
         # Earth's PCs
         # gaming desktop

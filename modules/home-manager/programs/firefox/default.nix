@@ -1,4 +1,4 @@
-{ pkgs, lib, config, username, ... }:
+{ outputs, pkgs, lib, config, username, ... }:
 # uses betterfox user.js by default
 let
   inherit (lib) types mkIf mkDefault mkOption mkEnableOption;
@@ -55,7 +55,7 @@ in
             ]);
             search = {
               default = mkDefault "DuckDuckGo";
-              engines = import ./search-engines.nix { inherit pkgs; };
+              engines = import ./search-engines.nix { inherit pkgs outputs; };
               force = true;
             };
             extraConfig =

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, outputs, ... }:
 {
   "Nix Packages" = {
     urls = [{
@@ -27,5 +27,12 @@
     }];
     icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
     definedAliases = [ "@no" ];
+  };
+  "Noogle.dev" = {
+    urls = [{
+      template = "https://noogle.dev/q?term={searchTerms}";
+    }];
+    icon = outputs.icons.lambda;
+    definedAliases = [ "@ngd" ];
   };
 }
