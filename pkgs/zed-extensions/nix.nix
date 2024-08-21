@@ -1,4 +1,5 @@
 { rustPlatform, pkgs }:
+# in progress
 let
   pname = "zed-nix-extension";
   version = "1.0";

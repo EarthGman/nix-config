@@ -1,4 +1,5 @@
 { rustPlatform, fetchCrate, lib }:
+# doesn't work yet
 let
   pname = "zed_extension_api";
   version = "0.1.0";

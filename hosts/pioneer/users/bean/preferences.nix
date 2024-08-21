@@ -31,6 +31,7 @@
   openshot.enable = false;
   davinci-resolve.enable = false;
   obs-studio.enable = true;
+  zoom.enable = true;
 
   # audio and music
   musescore.enable = false;
