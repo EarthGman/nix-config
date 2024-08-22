@@ -16,7 +16,6 @@
   # coding
   vscode.enable = true;
   neovim.enable = false;
-  zed.enable = false;
   github-desktop.enable = false;
   lazygit.enable = false;
 
