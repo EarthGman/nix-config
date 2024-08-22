@@ -1,3 +1,4 @@
+{ outputs, ... }:
 {
   imports = [
     ./disko.nix
@@ -12,6 +13,7 @@
   ];
   custom.steam.enable = true;
   # display manager customization
-  services.displayManager.sddm.themeConfig = { };
+  services.displayManager.sddm.themeConfig = {
+    Background = outputs.wallpapers.survivors;
+  };
 }
-
