@@ -13,6 +13,7 @@ in
   polybar.enable = mkDefault true;
   gnome-system-monitor.enable = mkDefault true;
   brightnessctl.enable = mkDefault true;
+  vlc.enable = mkDefault true;
 
   xsession.windowManager.i3 = {
     enable = true;

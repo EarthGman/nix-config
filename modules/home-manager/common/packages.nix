@@ -48,7 +48,6 @@
     libimobiledevice
     imagemagick
     viu
-    vlc
     usbmuxd
     xclip
     xorg.xev
