@@ -1,4 +1,4 @@
-{ inputs, outputs, mylib, ... }:
+{ inputs, mylib, ... }:
 {
   packages = final: _prev: import ../pkgs { pkgs = final; inherit mylib; };
 
@@ -12,6 +12,14 @@
   };
   nixpkgs-master = final: _: {
     master = import inputs.nixpkgs-master {
+      inherit (final) system;
+      config.allowUnfree = true;
+    };
+  };
+
+  #linux-6-9 kernel reached EOL upstream
+  nixpkgs_2024-08-14 = final: _: {
+    nixpkgs_2024-08-14 = import inputs.nixpkgs_2024-08-14 {
       inherit (final) system;
       config.allowUnfree = true;
     };

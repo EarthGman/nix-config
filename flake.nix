@@ -14,6 +14,11 @@
       url = "github:NixOS/nixpkgs";
     };
 
+    # nixpkgs has removed linux kernel 6.9
+    nixpkgs_2024-08-14 = {
+      url = "github:NixOS/nixpkgs/0cb2fd7c59fed0cd82ef858cbcbdb552b";
+    };
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";

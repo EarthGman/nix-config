@@ -1,4 +1,4 @@
-{ config, pkgs, outputs, ... }:
+{ pkgs, outputs, ... }:
 {
   imports = [
     ./disko.nix
@@ -13,7 +13,7 @@
       "usbhid"
       "sd_mod"
     ];
-    kernelPackages = pkgs.linuxPackages_6_9;
+    kernelPackages = pkgs.nixpkgs_2024-08-14.linuxPackages_6_9;
   };
   custom.steam.enable = true;
   services = {
