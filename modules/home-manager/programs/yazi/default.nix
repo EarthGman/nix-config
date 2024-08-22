@@ -11,6 +11,7 @@
         inherit lib;
         pkgs = pkgs.unstable;
       };
+      keymap = import ./keymap.nix { inherit pkgs; };
     };
   };
 }

@@ -54,4 +54,5 @@
   # clients
   filezilla.enable = true;
   remmina.enable = true;
+  openconnect.enable = true;
 }
