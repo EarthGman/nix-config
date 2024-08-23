@@ -39,7 +39,7 @@
     deadnix
     nil
     nixpkgs-hammering
-    nixpkgs-fmt
+    # nixpkgs-fmt
     nix-init
     nix-update
     nixpkgs-review

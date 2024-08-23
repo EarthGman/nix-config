@@ -28,6 +28,9 @@ in
         # lua
         sumneko.lua
 
+        #rust
+        rust-lang.rust-analyzer
+
         # utilities
         naumovs.color-highlight
         vscode-icons-team.vscode-icons
@@ -56,7 +59,7 @@ in
           "formatOnSave" = true;
           "suggest.showIcons" = false;
           "minimap.enabled" = false;
-
+          "defaultFormatter" = "B4dM4n.nixpkgs-fmt";
         };
         # doesn't work when placed in the editor block?
         "editor.guides.bracketPairs" = true;
@@ -95,12 +98,10 @@ in
         "debug.onTaskErrors" = "showErrors";
 
         nix = {
-          "formatterPath" = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
+          "enableLanguageServer" = true;
+          "formatterPath" = "${pkgs.alejandra}/bin/alejandra";
           "serverPath" = "${pkgs.nil}/bin/nil";
-        };
-
-        C_Cpp = {
-          "default.compilerPath" = "${pkgs.gcc}/bin/gcc";
+          "serverSettings"."nil"."formatting"."command" = [ "${pkgs.alejandra}/bin/alejandra" ];
         };
       };
     };
