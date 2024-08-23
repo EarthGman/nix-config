@@ -2,11 +2,228 @@
 {
   options.polybar.enable = lib.mkEnableOption "enable polybar";
   config = lib.mkIf config.polybar.enable {
-    home.packages = with pkgs; [
-      polybar
-    ];
-    xdg.configFile = {
-      "polybar/config.ini".source = ./config.ini;
+    services.polybar = {
+      enable = true;
+      # the systemd unit cannot find user level packages such as: brightnessctl, pamixer, etc
+      # home-manager will complain if this is not set so it is forced to do nothing
+      script = "";
+      settings = {
+        "bar/top" = {
+          monitor = "\${env:MONITOR:}";
+          width = "100%";
+          height = "22pt";
+          radius = 0;
+          background = "#101010";
+          foreground = "#c4c4c4";
+          bottom = false;
+          line-size = "6pt";
+          boarder-color = "#000000";
+          padding-left = 0;
+          padding-right = 1;
+          module-margin = 1;
+          separator = "|";
+          separator-foreground = "#a7a7a7";
+          font-0 = "MesloLGS Nerd Font Mono:size=16;6";
+          cursor-click = "pointer";
+          cursor-scroll = "ns-resize";
+          enable-ipc = true;
+
+          modules-right = "battery memory cpu wlan";
+        };
+
+        "bar/bottom" = {
+          monitor = "\${env:MONITOR:}";
+          width = "100%";
+          height = "28pt";
+          radius = 0;
+          background = "#101010";
+          foreground = "#c4c4c4";
+          bottom = true;
+          line-size = "6pt";
+          boarder-color = "#000000";
+          padding-left = 0;
+          padding-right = 1;
+          module-margin = 1;
+          separator = "|";
+          separator-foreground = "#a7a7a7";
+          font-0 = "MesloLGS Nerd Font Mono:size=16;6";
+          cursor-click = "pointer";
+          cursor-scroll = "ns-resize";
+          enable-ipc = true;
+
+          modules-left = "xworkspaces xwindow";
+          modules-right = "volume microphone tools date power-menu";
+        };
+
+        "module/systray" = {
+          type = "internal/tray";
+          format-margin = "8pt";
+          tray-spacing = "16pt";
+        };
+
+        "module/xworkspaces" = {
+          type = "internal/xworkspaces";
+          label-active = "%name%";
+          label-active-background = "#a7a7a7";
+          label-active-foreground = "#11111b";
+          label-active-padding = 1;
+          label-occupied = "%name%";
+          label-occupied-padding = 1;
+          label-urgent = "%name%";
+          label-urgent-background = "#f38ba8";
+          label-urgent-padding = 1;
+          label-empty = "%name%";
+          label-empty-padding = 1;
+        };
+
+        "module/xwindow" = {
+          type = "internal/xwindow";
+          label = "%title:0:60:...%";
+        };
+
+        "module/xkeyboard" = {
+          type = "internal/keyboard";
+          blacklist-0 = "num lock";
+          label-layout-foreground = "#a7a7a7";
+          label-indicator-padding = 2;
+          label-indicator-margin = 1;
+          label-indicator-foreground = "#101010";
+          label-indicator-background = "#1d1d1d";
+        };
+
+        "module/memory" = {
+          type = "internal/memory";
+          interval = 2;
+          format-prefix = "RAM ";
+          format-prefix-foreground = "#a7a7a7";
+          label = "%percentage_used:2%%";
+        };
+
+        "module/cpu" = {
+          type = "internal/cpu";
+          interval = 2;
+          format-prefix = "CPU ";
+          format-prefix-foreground = "#a7a7a7";
+          label = "%percentage:2%%";
+        };
+
+        "module/volume" = {
+          type = "custom/script";
+          interval = 0.1;
+          format-prefix = " ";
+          format-background = "#101010";
+
+          exec = "${pkgs.pamixer}/bin/pamixer --get-volume-human";
+
+          click-right = "${pkgs.pavucontrol}/bin/pavucontrol &";
+          click-left = "${pkgs.pamixer}/bin/pamixer -t";
+          scroll-up = "${pkgs.pamixer}/bin/pamixer -i 1";
+          scroll-down = "${pkgs.pamixer}/bin/pamixer -d 1";
+        };
+
+        "module/microphone" = {
+          type = "custom/script";
+          exec = "${pkgs.pamixer}/bin/pamixer --default-source --get-volume-human";
+          interval = 0.1;
+          format-prefix = " ";
+          # label-muted = " Muted";
+
+          click-left = "${pkgs.pamixer}/bin/pamixer -t --default-source";
+          click-right = "${pkgs.pavucontrol}/bin/pavucontrol &";
+          scroll-up = "${pkgs.pamixer}/bin/pamixer -i 1 --default-source";
+          scroll-down = "${pkgs.pamixer}/bin/pamixer -d 1 --default-source";
+        };
+
+        "module/battery" = {
+          type = "internal/battery";
+          format-prefix = "BAT ";
+          format-prefix-foreground = "#a7a7a7";
+          full-at = 99;
+          format-charging = "<animation-charging> <label-charging>";
+          animation-charging-0 = "";
+          animation-charging-1 = "";
+          animation-charging-2 = "";
+          animation-charging-3 = "";
+          animation-charging-4 = "";
+          animation-charging-framerate = 750;
+          animation-charging-foreground = "#fab387";
+          format-discharging = "<ramp-capacity> <label-discharging>";
+          ramp-capacity-0 = "";
+          ramp-capacity-1 = "";
+          ramp-capacity-2 = "";
+          ramp-capacity-3 = "";
+          ramp-capacity-4 = "";
+          low-at = 5;
+          battery = "BAT1";
+          adapter = "ACAD";
+          poll-interval = 5;
+        };
+
+        "module/tools" = {
+          type = "custom/menu";
+          expand-right = true;
+          menu-0-0 = " Screenshot";
+          menu-0-0-exec = "${pkgs.flameshot}/bin/flameshot gui &";
+          format = "<menu>  <label-toggle>";
+          label-open = " Tools";
+          label-close = " Close";
+          label-seperator = "  ";
+        };
+
+        "module/power-menu" = {
+          type = "custom/menu";
+          expand-right = true;
+          menu-0-0 = "";
+          menu-0-0-exec = "systemctl suspend";
+          menu-0-1 = "";
+          menu-0-1-exec = "reboot";
+          menu-0-2 = "";
+          menu-0-2-exec = "shutdown now";
+          menu-0-3 = "";
+          menu-0-3-exec = "loginctl lock-session";
+          format = "<menu>  <label-toggle>";
+          label-open = "";
+          # label-close = "";
+          label-close = " Close";
+          label-separator = "  ";
+        };
+
+        "network-base" = {
+          type = "internal/network";
+          interval = 5;
+          format-connected = "<label-connected>";
+          format-disconnected = "<label-disconnected>";
+          label-disconnected = "%{F#F0C674}%ifname%%{F#707880} disconnected";
+        };
+
+        "module/wlan" = {
+          "inherit" = "network-base";
+          interface-type = "wireless";
+          label-connected = "%{F#F0C674}%ifname%%{F-} %essid%";
+        };
+
+        "module/eth" = {
+          "inherit" = "network-base";
+          interface-type = "wired";
+          label-connected = "%{F#F0C674}%ifname%%{F-} %local_ip%";
+        };
+
+        "module/date" = {
+          type = "internal/date";
+          interval = 1;
+          date = "%H:%M";
+          date-alt = "%Y-%m-%d %H:%M:%S";
+
+          label = "%date%";
+          label-foreground = "#a7a7a7";
+        };
+
+        "settings" = {
+          screenchange-reload = true;
+          pseudo-transparency = true;
+        };
+
+      };
     };
   };
 }

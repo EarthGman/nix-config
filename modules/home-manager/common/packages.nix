@@ -33,6 +33,7 @@
     openssl
     usbutils
     pciutils
+    lm_sensors
     mcrcon
     statix
     deadnix
