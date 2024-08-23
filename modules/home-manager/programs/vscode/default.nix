@@ -87,13 +87,11 @@ in
           "openRepositoryInParentFolders" = "always";
         };
 
-        terminal = {
-          "integrated.smoothScrolling" = true;
-          "integrated.cursorWidth" = 2;
-          "integrated.cursorBlinking" = true;
-          "integrated.fontSize" = 16;
 
-        };
+        "terminal.integrated.smoothScrolling" = true;
+        "terminal.integrated.cursorWidth" = 2;
+        "terminal.integrated.cursorBlinking" = true;
+        "terminal.integrated.fontSize" = 20;
 
         "debug.onTaskErrors" = "showErrors";
 

@@ -6,6 +6,7 @@
   firefox.theme.config.wallpaper = outputs.wallpapers.two-hallow-knights;
   stylix.image = outputs.wallpapers.siblings;
   stylix.colorScheme = "warmth";
+  preferredEditor = "zed";
 
   # gaming
   dolphin-emu.enable = false;

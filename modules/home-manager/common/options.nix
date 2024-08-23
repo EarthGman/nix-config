@@ -6,7 +6,7 @@ in
   options = {
     preferredEditor = mkOption {
       description = "string exported as EDITOR env variable";
-      default = "zed";
+      default = "codium";
       type = types.str;
     };
   };

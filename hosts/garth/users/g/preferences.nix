@@ -5,8 +5,6 @@
 
   firefox.theme.name = "shyfox";
 
-  preferredEditor = "codium";
-
   # gaming
   dolphin-emu.enable = true;
   lutris.enable = true;
