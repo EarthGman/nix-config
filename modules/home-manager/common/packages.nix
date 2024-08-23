@@ -37,9 +37,7 @@
     mcrcon
     statix
     deadnix
-    nil
     nixpkgs-hammering
-    # nixpkgs-fmt
     nix-init
     nix-update
     nixpkgs-review
