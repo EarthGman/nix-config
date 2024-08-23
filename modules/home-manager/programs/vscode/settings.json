@@ -39,7 +39,7 @@
     "cmake.showOptionsMovedNotification": false,
     "editor.defaultFormatter": "B4dM4n.nixpkgs-fmt",
     "editor.formatOnSave": true,
-    "nix.serverPath": "nixd",
+    "nix.serverPath": "nil",
     "editor.minimap.enabled": false,
     "rust-analyzer.server.path": "/nix/store/9yy1qvl2w9pwxdddvf2gmq903fjabqkx-rust-analyzer-2024-03-25/bin/rust-analyzer",
     "[jsonc]": {

@@ -15,6 +15,6 @@ in
   fastfetch.enable = mkDefault true;
   mupdf.enable = mkDefault true;
   switcheroo.enable = mkDefault true;
-  vscode.enable = mkDefault (editor == "code");
+  vscode.enable = mkDefault (editor == "code" || editor == "codium");
   zed.enable = mkDefault (editor == "zed");
 }
