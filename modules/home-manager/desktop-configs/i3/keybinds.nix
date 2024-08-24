@@ -1,16 +1,21 @@
+{ pkgs, config, ... }:
 let
-  mod = "Mod4";
+  mod = config.xsession.windowManager.i3.config.modifier;
+  pamixer = "${pkgs.pamixer}/bin/pamixer";
+  brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
+  maim = "${pkgs.maim}/bin/maim";
+  xclip = "${pkgs.xclip}/bin/xclip";
 in
 {
-  "${mod}+Return" = "exec kitty";
+  "${mod}+Return" = "exec ${pkgs.kitty}/bin/kitty";
   "${mod}+Shift+q" = "kill";
-  "${mod}+d" = "exec --no-startup-id dmenu_run";
-  "${mod}+space" = "exec rofi -show";
+  # "${mod}+d" = "exec --no-startup-id dmenu_run";
+  "${mod}+space" = "exec ${pkgs.rofi}/bin/rofi -show";
 
-  "${mod}+j" = "focus left";
-  "${mod}+k" = "focus down";
-  "${mod}+l" = "focus up";
-  "${mod}+semicolon" = "focus right";
+  # "${mod}+j" = "focus left";
+  # "${mod}+k" = "focus down";
+  # "${mod}+l" = "focus up";
+  # "${mod}+semicolon" = "focus right";
 
   "${mod}+Left" = "focus left";
   "${mod}+Down" = "focus down";
@@ -18,12 +23,11 @@ in
   "${mod}+Right" = "focus right";
 
   # move focused window
-  "${mod}+Shift+j" = "move left";
-  "${mod}+Shift+k" = "move down";
-  "${mod}+Shift+l" = "move up";
-  "${mod}+Shift+semicolon" = "move right";
+  # "${mod}+Shift+j" = "move left";
+  # "${mod}+Shift+k" = "move down";
+  # "${mod}+Shift+l" = "move up";
+  # "${mod}+Shift+semicolon" = "move right";
 
-  # alternatively, you can use the cursor keys:
   "${mod}+Shift+Left" = "move left";
   "${mod}+Shift+Down" = "move down";
   "${mod}+Shift+Up" = "move up";
@@ -82,15 +86,15 @@ in
   "${mod}+Shift+e" = "exit i3";
 
   # screenshots
-  "Print" = "exec --no-startup-id \"maim | xclip -selection clipboard -t image/png; xclip -selection clipboard -t image/png -o > ~/Pictures/Screenshots/$(date +%F-%H:%M:%S).png\"";
-  "Shift+Print" = "exec --no-startup-id \"maim -s | xclip -selection clipboard -t image/png; xclip -selection clipboard -t image/png -o > ~/Pictures/Screenshots/$(date +%F-%H:%M:%S).png\"";
-  "Control+Print" = "exec --no-startup-id \"maim -s -u | xclip -selection clipboard -t image/png; xclip -selection clipboard -t image/png -o > ~/Pictures/Screenshots/$(date +%F-%H:%M:%S).png\"";
+  "Print" = "exec --no-startup-id \"${maim} | ${xclip} -selection clipboard -t image/png; ${xclip} -selection clipboard -t image/png -o > ~/Pictures/Screenshots/$(date +%F-%H:%M:%S).png\"";
+  "Shift+Print" = "exec --no-startup-id \"${maim} -s | ${xclip} -selection clipboard -t image/png; ${xclip} -selection clipboard -t image/png -o > ~/Pictures/Screenshots/$(date +%F-%H:%M:%S).png\"";
+  "Control+Print" = "exec --no-startup-id \"${maim} | ${xclip} -selection clipboard -t image/png; ${xclip} -selection clipboard -t image/png -o > ~/Pictures/Screenshots/$(date +%F-%H:%M:%S).png\"";
 
-  "XF86AudioRaiseVolume" = "exec pamixer -i 5";
-  "XF86AudioLowerVolume" = "exec pamixer -d 5";
-  "XF86AudioMute" = "exec pamixer -t";
-  "XF86AudioMicMute" = "exec pamixer -t --default-source";
+  "XF86AudioRaiseVolume" = "exec ${pamixer} -i 5";
+  "XF86AudioLowerVolume" = "exec ${pamixer} -d 5";
+  "XF86AudioMute" = "exec ${pamixer} -t";
+  "XF86AudioMicMute" = "exec ${pamixer} -t --default-source";
 
-  "XF86MonBrightnessUp" = "exec --no-startup-id brightnessctl set +5%";
-  "XF86MonBrightnessDown" = "exec --no-startup-id brightnessctl set 5%-";
+  "XF86MonBrightnessUp" = "exec --no-startup-id ${brightnessctl} set +5%";
+  "XF86MonBrightnessDown" = "exec --no-startup-id ${brightnessctl} set 5%-";
 }

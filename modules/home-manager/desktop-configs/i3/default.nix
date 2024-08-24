@@ -4,16 +4,14 @@ let
   wp = config.stylix.image;
 in
 {
-  feh.enable = mkDefault true;
   networkmanager_dmenu.enable = mkDefault true;
   pavucontrol.enable = mkDefault true;
-  pamixer.enable = mkDefault true;
   flameshot.enable = mkDefault true;
-  maim.enable = mkDefault true;
   polybar.enable = mkDefault true;
   gnome-system-monitor.enable = mkDefault true;
-  brightnessctl.enable = mkDefault true;
   vlc.enable = mkDefault true;
+  nautilus.enable = mkDefault true;
+  evince.enable = mkDefault true;
 
   xsession.windowManager.i3 = {
     enable = true;
@@ -23,11 +21,11 @@ in
       floating.modifier = "Mod4";
       terminal = "kitty";
       workspaceAutoBackAndForth = true;
-      keybindings = import ./keybinds.nix;
+      keybindings = import ./keybinds.nix { inherit pkgs config; };
       window = {
         hideEdgeBorders = "both";
       };
-      startup = lib.optionals (hostname == "cypher") [
+      startup = optionals (hostname == "cypher") [
         # position and scale monitors
         {
           command = ''

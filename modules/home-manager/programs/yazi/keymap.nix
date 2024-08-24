@@ -4,7 +4,7 @@
     prepend_keymap = [
       {
         on = "<C-A-c>";
-        run = "${pkgs.xclip}/bin/xclip -selection clipboard -t image/png -i \"$1\"";
+        run = "shell '${pkgs.xclip}/bin/xclip -selection clipboard -t image/png -i \"$@\"' --confirm";
         desc = "copy screenshot to clipboard";
       }
     ];
