@@ -69,7 +69,7 @@
   remmina.enable = true;
 
   home.file = {
-    " bin/ygo-omega " = {
+    "bin/ygo-omega" = {
       executable = true;
       text = ''
         #!/usr/bin/env bash

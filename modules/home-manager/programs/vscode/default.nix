@@ -36,6 +36,7 @@ in
         vscode-icons-team.vscode-icons
         tomoki1207.pdf
         ms-vscode-remote.remote-ssh
+        nefrob.vscode-just-syntax
       ];
 
       userSettings = {
