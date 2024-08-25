@@ -23,7 +23,7 @@
           module-margin = 1;
           separator = "|";
           separator-foreground = "#a7a7a7";
-          font-0 = "MesloLGS Nerd Font Mono:size=16;6";
+          font-0 = "MesloLGS Nerd Font Mono:size=20;6";
           cursor-click = "pointer";
           cursor-scroll = "ns-resize";
           enable-ipc = true;
@@ -46,7 +46,7 @@
           module-margin = 1;
           separator = "|";
           separator-foreground = "#a7a7a7";
-          font-0 = "MesloLGS Nerd Font Mono:size=16;6";
+          font-0 = "MesloLGS Nerd Font Mono:size=20;6";
           cursor-click = "pointer";
           cursor-scroll = "ns-resize";
           enable-ipc = true;
@@ -110,11 +110,26 @@
         "module/volume" = {
           type = "custom/script";
           interval = 0.1;
-          format-prefix = " ";
+          # format-prefix = " "     ;
           format-background = "#101010";
 
-          exec = "${pkgs.pamixer}/bin/pamixer --get-volume-human";
+          exec = pkgs.writeScript "volume levels" ''
+            percent="%"
+            current_volume=$(${pkgs.pamixer}/bin/pamixer --get-volume-human | sed 's/%//')
 
+            if [ $current_volume == "muted" ]; then
+              echo " $current_volume"
+
+            elif [ $current_volume -lt 25 ]; then
+              echo " $current_volume$percent"
+
+            elif [ $current_volume -lt 75 ]; then
+              echo " $current_volume$percent"
+  
+            else
+              echo " $current_volume$percent"
+            fi
+          '';
           click-right = "${pkgs.pavucontrol}/bin/pavucontrol &";
           click-left = "${pkgs.pamixer}/bin/pamixer -t";
           scroll-up = "${pkgs.pamixer}/bin/pamixer -i 1";
@@ -123,10 +138,16 @@
 
         "module/microphone" = {
           type = "custom/script";
-          exec = "${pkgs.pamixer}/bin/pamixer --default-source --get-volume-human";
+          exec = pkgs.writeScript "input volume level" ''
+            current_volume=$(${pkgs.pamixer}/bin/pamixer --default-source --get-volume-human)
+
+            if [ $current_volume == "muted" ] || [ $current_volume == "0%" ]; then
+              echo " $current_volume"
+            else
+              echo " $current_volume"
+            fi
+          '';
           interval = 0.1;
-          format-prefix = " ";
-          # label-muted = " Muted";
 
           click-left = "${pkgs.pamixer}/bin/pamixer -t --default-source";
           click-right = "${pkgs.pavucontrol}/bin/pavucontrol &";

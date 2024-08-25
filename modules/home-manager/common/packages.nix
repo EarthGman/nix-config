@@ -2,9 +2,8 @@
 {
   home.packages = with pkgs; [
     # some commands
-    steam-run # running DLL applications, has nothing to do with steam
+    steam-run # running DLL/SO applications, has nothing to do with steam
     appimage-run # for appimages
-    bustle # dbus viewer
     wmctrl # ctrl options for wm
     unrar-free # for that guy who only uploads stuff in .rar format
     cifs-utils # network filesystems

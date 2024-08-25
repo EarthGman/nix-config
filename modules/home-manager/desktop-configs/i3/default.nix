@@ -6,11 +6,13 @@ in
 {
   networkmanager_dmenu.enable = mkDefault true;
   pavucontrol.enable = mkDefault true;
+  bustle.enable = mkDefault true;
   flameshot.enable = mkDefault true;
   polybar.enable = mkDefault true;
   gnome-system-monitor.enable = mkDefault true;
   vlc.enable = mkDefault true;
   nautilus.enable = mkDefault true;
+  rofi.enable = mkDefault true;
   evince.enable = mkDefault true;
 
   xsession.windowManager.i3 = {

@@ -1,7 +1,7 @@
 { lib, config, ... }:
 {
   options.rofi.enable = lib.mkEnableOption "enable rofi";
-  config = {
+  config = lib.mkIf config.rofi.enable {
     programs = {
       rofi = {
         enable = true;

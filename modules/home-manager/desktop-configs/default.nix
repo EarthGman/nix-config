@@ -1,4 +1,4 @@
-{ desktop, lib, pkgs, ... }:
+{ desktop, lib, ... }:
 let
   inherit (lib) optionals;
   inherit (builtins) filter isString split elem;

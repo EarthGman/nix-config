@@ -1,6 +1,6 @@
-{ inputs, pkgs, lib, desktop, ... }:
+{ pkgs, lib, desktop, ... }:
 let
-  inherit (lib) optionals;
+  inherit (lib) optionals mkDefault;
   inherit (builtins) elem filter isString split;
   # allows for a system to use multiple desktops at once
   desktops = filter isString (split "," desktop);
@@ -34,6 +34,7 @@ in
   };
   services.xserver = {
     enable = true;
+    updateDbusEnvironment = mkDefault true;
     xkb = {
       layout = "us";
       variant = "";
