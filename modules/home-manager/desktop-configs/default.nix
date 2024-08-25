@@ -1,6 +1,6 @@
-{ desktop, lib, ... }:
+{ pkgs, desktop, lib, ... }:
 let
-  inherit (lib) optionals;
+  inherit (lib) optionals mkDefault;
   inherit (builtins) filter isString split elem;
   desktops = filter isString (split "," desktop);
   gnome = elem "gnome" desktops;
@@ -18,4 +18,10 @@ in
     (optionals i3 [ ./i3 ]);
 
   xdg.enable = true;
+
+  # gtk apps have some missing icons if not set
+  gtk.iconTheme = mkDefault {
+    name = "Adwaita";
+    package = pkgs.gnome.adwaita-icon-theme;
+  };
 }
