@@ -1,3 +1,5 @@
+# slightly modified material color theme
+# src https://github.com/ntpeters/base16-materialtheme-scheme
 { config, ... }:
 let
   inherit (config.lib.formats.rasi) mkLiteral;
@@ -21,12 +23,12 @@ in
     base0E = mkLiteral "#C792EA";
     base0F = mkLiteral "#FF5370";
     spacing = 0;
-    background-color = mkLiteral "transparent";
+    #background-color = mkLiteral "transparent";
   };
 
   "window" = {
     transparency = "real";
-    background-color = mkLiteral "#263238FF";
+    #background-color = mkLiteral "#263238FF";
   };
 
   "mainbox" = {
@@ -34,7 +36,7 @@ in
     spacing = mkLiteral "30px";
     padding = mkLiteral "30px 0";
     border = mkLiteral "1px";
-    border-color = mkLiteral "@base0D";
+    #border-color = mkLiteral "@base0D";
   };
 
   "inputbar" = {
@@ -43,31 +45,31 @@ in
   };
 
   "prompt" = {
-    text-color = mkLiteral "@base0D";
+    #text-color = mkLiteral "@base0D";
   };
 
   "textbox-prompt-colon" = {
     expand = false;
     str = ":";
     margin = mkLiteral "0 1ch 0 0";
-    text-color = mkLiteral "@base0D";
+    #text-color = mkLiteral "@base0D";
   };
 
   "entry" = {
-    text-color = mkLiteral "@base07";
+    #text-color = mkLiteral "@base07";
   };
 
   "case-indicator" = {
-    text-color = mkLiteral "@base0F";
+    #text-color = mkLiteral "@base0F";
   };
 
   "mode-switcher, message" = {
     border = mkLiteral "1px 0";
-    border-color = mkLiteral "@base0D";
+    #border-color = mkLiteral "@base0D";
   };
 
   "button selected" = {
-    background-color = mkLiteral "@base0D";
+    #background-color = mkLiteral "@base0D";
   };
 
   "listview" = {
@@ -76,11 +78,11 @@ in
   };
 
   "scrollbar" = {
-    background-color = mkLiteral "@base03";
-    handle-color = mkLiteral "@base0D";
+    #background-color = mkLiteral "@base03";
+    #handle-color = mkLiteral "@base0D";
     handle-width = mkLiteral "10px";
     border = mkLiteral "0 1px";
-    border-color = mkLiteral "@base0D";
+    # border-color = mkLiteral "@base0D";
     margin = mkLiteral "0 0 0 20px";
   };
 
@@ -102,7 +104,7 @@ in
   };
 
   "element selected" = {
-    background-color = mkLiteral "@base0D";
+    # background-color = mkLiteral "@base0D";
   };
 
   # "#element-alternate" = {
@@ -110,14 +112,14 @@ in
   # };
 
   "element normal normal, element selected normal, element alternate normal" = {
-    text-color = mkLiteral "@base07";
+    # text-color = mkLiteral "@base07";
   };
 
   "element normal urgent, element selected urgent, element alternate urgent" = {
-    text-color = mkLiteral "@base0F";
+    # text-color = mkLiteral "@base0F";
   };
 
   "element normal active, element selected active, element alternate active" = {
-    text-color = mkLiteral "@base0B";
+    # text-color = mkLiteral "@base0B";
   };
 }

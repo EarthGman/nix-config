@@ -25,7 +25,6 @@ in
 
       targets = mkDefault {
         vscode.enable = false;
-        rofi.enable = false;
       };
 
       cursor = mkDefault {
