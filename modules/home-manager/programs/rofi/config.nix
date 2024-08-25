@@ -1,5 +1,5 @@
 {
-  modi = "run,window,combi";
+  modi = "window,drun,run,ssh";
   icon-theme = "Oranchelo";
   show-icons = true;
   terminal = "kitty";
@@ -7,7 +7,9 @@
   location = 0;
   disable-history = false;
   hide-scrollbar = true;
-  display-combi = " 🖥️  All ";
+  display-ssh = "  SSH";
+  #display-combi = " 🖥️  All ";
+  display-drun = "🏃  Drun ";
   display-run = " 🏃  Run ";
   display-window = " 🪟  Window";
   sidebar-mode = true;

@@ -6,6 +6,7 @@
       rofi = {
         enable = true;
         extraConfig = import ./config.nix;
+        theme = import ./theme.nix { inherit config; };
       };
     };
   };
