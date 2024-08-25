@@ -1,4 +1,4 @@
-{ outputs, ... }:
+{ pkgs, outputs, ... }:
 {
   # extra config for home-manager. anything here will not apply to any user on any system other than this one
   stylix.image = outputs.wallpapers.kaori;
@@ -12,6 +12,7 @@
   ffxiv-launcher.enable = false;
   lutris.enable = true;
   prismlauncher.enable = true;
+  ygo-omega.enable = true;
 
   # coding
   neovim.enable = true;
@@ -67,26 +68,4 @@
   # clients
   filezilla.enable = true;
   remmina.enable = true;
-
-  home.file = {
-    "bin/ygo-omega" = {
-      executable = true;
-      text = ''
-        #!/usr/bin/env bash
-        steam-run ~/games/ygo-omega/OmegaUpdater
-      '';
-    };
-    " .local/share/applications/ygo-omega.desktop " = {
-      text = ''
-        [Desktop Entry]
-        Name=YGO Omega
-        Comment=Yugioh Simulator
-        Icon=/home/g/games/ygo-omega/YGO Omega_Data/Resources/UnityPlayer.png
-        Exec=steam-run /home/g/games/ygo-omega/OmegaUpdater
-        Terminal=false
-        Type=Application
-        Categories=Game
-      '';
-    };
-  };
 }
