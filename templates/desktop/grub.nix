@@ -1,4 +1,4 @@
-{ pkgs, lib, config, grub-theme, ... }:
+{ pkgs, lib, config, ... }:
 let
   inherit (lib) mkOption types mkDefault;
   cfg = config.boot.loader.grub;

@@ -10,6 +10,7 @@
   dolphin-emu.enable = true;
   lutris.enable = true;
   prismlauncher.enable = true;
+  ygo-omega.enable = true;
 
   # coding
   github-desktop.enable = true;
