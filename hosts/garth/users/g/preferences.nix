@@ -4,6 +4,7 @@
   stylix.colorScheme = "inferno";
 
   firefox.theme.name = "shyfox";
+  firefox.theme.config.wallpaper = outputs.wallpapers.fire-and-flames;
 
   # gaming
   dolphin-emu.enable = true;

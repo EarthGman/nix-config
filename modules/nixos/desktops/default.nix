@@ -35,6 +35,7 @@ in
   services.xserver = {
     enable = true;
     updateDbusEnvironment = mkDefault true;
+    excludePackages = [ pkgs.xterm ];
     xkb = {
       layout = "us";
       variant = "";
