@@ -25,9 +25,9 @@
 
   # image and video
   gimp.enable = true;
-  openshot.enable = true;
   obs-studio.enable = true;
   moonlight.enable = true;
+  openshot.enable = true;
 
   # audio and music
   musescore.enable = true;
@@ -44,6 +44,7 @@
   flips.enable = true;
   pika-backup.enable = true;
   yazi.enable = true;
+  ghex.enable = true;
 
   # tops
   powertop.enable = true;
