@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, ... }:
 {
 
   services.xserver.desktopManager.gnome.enable = true;
@@ -9,22 +9,34 @@
 
   programs.geary.enable = false;
   environment.gnome.excludePackages = (with pkgs; [
-    weather
     gnome-tour
     gedit
     hexchat
     loupe
+    snapshot
+    gnome-connections
+    gnome-text-editor
   ]) ++ (with pkgs.gnome; [
     cheese
-    gnome-music
     epiphany
-    gnome-characters
     tali
     iagno
     hitori
     atomix
     yelp
+    gnome-terminal
+    gnome-calendar
+    gnome-weather
+    gnome-music
+    gnome-characters
+    gnome-clocks
+    gnome-maps
     gnome-contacts
     gnome-initial-setup
+    gnome-font-viewer
+    gnome-disk-utility
+    gnome-remote-desktop
+    gnome-online-miners
+    gnome-logs
   ]);
 }
