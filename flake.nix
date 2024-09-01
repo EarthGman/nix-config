@@ -67,7 +67,7 @@
         # old potato hp laptop
         tater = mkHost { hostname = "tater"; cpu = "intel"; users = "g"; desktop = "gnome"; displayManager = "sddm"; };
         # nixos testing vm
-        nixos = mkHost { hostname = "nixos"; cpu = "amd"; users = "test"; desktop = "gnome"; displayManager = "sddm"; };
+        nixos = mkHost { hostname = "nixos"; users = "test"; desktop = "gnome,i3"; displayManager = "sddm"; };
 
         # Thunder's PCs
         # gaming desktop
@@ -96,7 +96,7 @@
         "g@cypher" = mkHome { hostname = "cypher"; username = "g"; desktop = "i3"; };
         "g@garth" = mkHome { hostname = "garth"; username = "g"; desktop = "i3"; };
         "g@tater" = mkHome { hostname = "tater"; username = "g"; desktop = "gnome"; };
-        "test@nixos" = mkHome { hostname = "nixos"; username = "test"; desktop = "gnome"; };
+        "test@nixos" = mkHome { hostname = "nixos"; username = "test"; desktop = "gnome,i3"; };
 
         "bean@somnus" = mkHome { hostname = "somnus"; username = "bean"; desktop = "gnome,i3"; git-username = "Thunderbean290"; git-email = "156272091+Thunderbean290@users.noreply.github.com"; };
         "bean@pioneer" = mkHome { hostname = "pioneer"; username = "bean"; desktop = "gnome,i3"; git-username = "Thunderbean290"; git-email = "156272091+Thunderbean290@users.noreply.github.com"; };

@@ -1,4 +1,7 @@
 { pkgs, config, lib, ... }:
+let
+  inherit (lib) mkDefault;
+in
 {
   options.polybar.enable = lib.mkEnableOption "enable polybar";
   config = lib.mkIf config.polybar.enable {
@@ -10,49 +13,49 @@
       settings = {
         "bar/top" = {
           monitor = "\${env:MONITOR:}";
-          width = "100%";
-          height = "22pt";
-          radius = 0;
-          background = "#101010";
-          foreground = "#c4c4c4";
+          width = mkDefault "100%";
+          height = mkDefault "22pt";
+          radius = mkDefault 0;
+          background = mkDefault "#101010";
+          foreground = mkDefault "#c4c4c4";
           bottom = false;
-          line-size = "6pt";
-          boarder-color = "#000000";
-          padding-left = 0;
-          padding-right = 1;
-          module-margin = 1;
-          separator = "|";
-          separator-foreground = "#a7a7a7";
-          font-0 = "MesloLGS Nerd Font Mono:size=20;6";
-          cursor-click = "pointer";
-          cursor-scroll = "ns-resize";
-          enable-ipc = true;
+          line-size = mkDefault "6pt";
+          boarder-color = mkDefault "#000000";
+          padding-left = mkDefault 0;
+          padding-right = mkDefault 1;
+          module-margin = mkDefault 1;
+          separator = mkDefault "|";
+          separator-foreground = mkDefault "#a7a7a7";
+          font-0 = mkDefault "MesloLGS Nerd Font Mono:size=20;6";
+          cursor-click = mkDefault "pointer";
+          cursor-scroll = mkDefault "ns-resize";
+          enable-ipc = mkDefault true;
 
-          modules-right = "battery memory cpu wlan";
+          modules-right = mkDefault "battery memory cpu wlan";
         };
 
         "bar/bottom" = {
           monitor = "\${env:MONITOR:}";
-          width = "100%";
-          height = "28pt";
-          radius = 0;
-          background = "#101010";
-          foreground = "#c4c4c4";
+          width = mkDefault "100%";
+          height = mkDefault "28pt";
+          radius = mkDefault 0;
+          background = mkDefault "#101010";
+          foreground = mkDefault "#c4c4c4";
           bottom = true;
-          line-size = "6pt";
-          boarder-color = "#000000";
-          padding-left = 0;
-          padding-right = 1;
-          module-margin = 1;
-          separator = "|";
-          separator-foreground = "#a7a7a7";
-          font-0 = "MesloLGS Nerd Font Mono:size=20;6";
-          cursor-click = "pointer";
-          cursor-scroll = "ns-resize";
-          enable-ipc = true;
+          line-size = mkDefault "6pt";
+          boarder-color = mkDefault "#000000";
+          padding-left = mkDefault 0;
+          padding-right = mkDefault 1;
+          module-margin = mkDefault 1;
+          separator = mkDefault "|";
+          separator-foreground = mkDefault "#a7a7a7";
+          font-0 = mkDefault "MesloLGS Nerd Font Mono:size=20;6";
+          cursor-click = mkDefault "pointer";
+          cursor-scroll = mkDefault "ns-resize";
+          enable-ipc = mkDefault true;
 
-          modules-left = "xworkspaces xwindow";
-          modules-right = "volume microphone tools date power-menu";
+          modules-left = mkDefault "xworkspaces xwindow";
+          modules-right = mkDefault "volume microphone tools date power-menu";
         };
 
         "module/systray" = {
