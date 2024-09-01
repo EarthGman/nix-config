@@ -14,6 +14,7 @@ in
   nautilus.enable = mkDefault true;
   rofi.enable = mkDefault true;
   evince.enable = mkDefault true;
+  gnome-calculator.enable = mkDefault true;
 
   xsession.windowManager.i3 = {
     enable = true;

@@ -1,4 +1,4 @@
-{ pkgs, outputs, ... }:
+{ outputs, ... }:
 {
   # extra config for home-manager. anything here will not apply to any user on any system other than this one
   stylix.image = outputs.wallpapers.kaori;
@@ -9,7 +9,6 @@
 
   # gaming
   dolphin-emu.enable = true;
-  ffxiv-launcher.enable = false;
   lutris.enable = true;
   prismlauncher.enable = true;
   ygo-omega.enable = true;
@@ -21,7 +20,6 @@
 
   # productivity
   thunderbird.enable = true;
-  freeoffice.enable = false;
   libreoffice.enable = true;
   obsidian.enable = true;
 
@@ -30,7 +28,6 @@
 
   # image and video
   gimp.enable = true;
-  openshot.enable = true;
   davinci-resolve.enable = true;
   obs-studio.enable = true;
   mupdf.enable = true;
@@ -51,14 +48,11 @@
   gcolor.enable = true;
   flips.enable = true;
   pika-backup.enable = true;
-  checkra1n.enable = false;
-  solaar.enable = false;
   wireshark.enable = true;
   xclicker.enable = true;
   yazi.enable = true;
 
   # tops
-  nvtop.enable = false;
   powertop.enable = true;
   radeontop.enable = true;
 
