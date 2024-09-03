@@ -31,7 +31,7 @@ in
           cursor-scroll = mkDefault "ns-resize";
           enable-ipc = mkDefault true;
 
-          modules-right = mkDefault "battery memory cpu wlan";
+          modules-right = mkDefault "battery memory cpu eth wlan";
         };
 
         "bar/bottom" = {
@@ -113,7 +113,6 @@ in
         "module/volume" = {
           type = "custom/script";
           interval = 0.1;
-          # format-prefix = " "     ;
           format-background = "#101010";
 
           exec = pkgs.writeScript "volume levels" ''
@@ -157,6 +156,12 @@ in
           scroll-up = "${pkgs.pamixer}/bin/pamixer -i 1 --default-source";
           scroll-down = "${pkgs.pamixer}/bin/pamixer -d 1 --default-source";
         };
+
+        # TODO finish brightness
+        # "module/brightness" = {
+        #   type = "custom/script";
+        #   exec = ""
+        # };
 
         "module/battery" = {
           type = "internal/battery";
@@ -212,25 +217,34 @@ in
           label-separator = "  ";
         };
 
-        "network-base" = {
-          type = "internal/network";
-          interval = 5;
-          format-connected = "<label-connected>";
-          format-disconnected = "<label-disconnected>";
-          label-disconnected = "%{F#F0C674}%ifname%%{F#707880} disconnected";
-        };
-
         "module/wlan" = {
-          "inherit" = "network-base";
+          type = "internal/network";
           interface-type = "wireless";
-          label-connected = "%{F#F0C674}%ifname%%{F-} %essid%";
+          interval = 3;
+
+          format-connected = " <label-connected>";
+          label-connected = "%essid%";
+          label-connected-foreground = "#a7a7a7";
+
+          format-disconnected = "󰤭  No Wifi";
+          label-disconnected = "%ifname% disconnected";
+          label-disconnected-foreground = "#a7a7a7";
         };
 
-        "module/eth" = {
-          "inherit" = "network-base";
-          interface-type = "wired";
-          label-connected = "%{F#F0C674}%ifname%%{F-} %local_ip%";
-        };
+        # TODO not working rn
+        # "module/eth" = {
+        #   type = "internal/network";
+        #   interface-type = "enp3so";
+        #   interval = 3;
+
+        #   format-connected = "󰈁 <label-connected>";
+        #   label-connected = "%upspeed% %downspeed%";
+        #   label-connected-foreground = "#a7a7a7";
+
+        #   format-disconnected = "🌐 <label-disconnected>";
+        #   label-disconnected = "%ifname% disconnected";
+        #   label-disconnected-foreground = "#a7a7a7";
+        # };
 
         "module/date" = {
           type = "internal/date";
