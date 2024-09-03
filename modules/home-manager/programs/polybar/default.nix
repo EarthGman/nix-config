@@ -223,28 +223,27 @@ in
           interval = 3;
 
           format-connected = " <label-connected>";
-          label-connected = "%essid%";
-          label-connected-foreground = "#a7a7a7";
+          format-connected-foreground = "#a7a7a7";
+          label-connected = "%essid% %upspeed% %downspeed%";
 
-          format-disconnected = "󰤭  No Wifi";
-          label-disconnected = "%ifname% disconnected";
-          label-disconnected-foreground = "#a7a7a7";
+          format-disconnected = "󰤭 <label-disconnected>";
+          format-disconnected-foreground = "#a7a7a7";
+          label-disconnected = "Disconnected";
         };
 
-        # TODO not working rn
-        # "module/eth" = {
-        #   type = "internal/network";
-        #   interface-type = "enp3so";
-        #   interval = 3;
+        "module/eth" = {
+          type = "internal/network";
+          interface-type = "wired";
+          interval = 3;
 
-        #   format-connected = "󰈁 <label-connected>";
-        #   label-connected = "%upspeed% %downspeed%";
-        #   label-connected-foreground = "#a7a7a7";
+          format-connected = "󰈁 <label-connected>";
+          format-connected-foreground = "#a7a7a7";
+          label-connected = "%upspeed% %downspeed%";
 
-        #   format-disconnected = "🌐 <label-disconnected>";
-        #   label-disconnected = "%ifname% disconnected";
-        #   label-disconnected-foreground = "#a7a7a7";
-        # };
+          format-disconnected = "󰈁 <label-disconnected>";
+          format-disconnected-foreground = "#a7a7a7";
+          label-disconnected = "Disconnected";
+        };
 
         "module/date" = {
           type = "internal/date";
