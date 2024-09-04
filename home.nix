@@ -1,28 +1,25 @@
-# home-manager wrapper
-{ outputs, lib, username, hostname, stateVersion, ... }:
+{ outputs, lib, ... }:
 let
   programsDir = ./modules/home-manager/programs;
   programs = lib.forEach (builtins.attrNames (builtins.readDir programsDir)) (dirname: programsDir + /${dirname});
 in
 {
-  imports = [
-    ./hosts/${hostname}/users/${username}/preferences.nix
-    ./scripts
-    ./modules/home-manager/common
-    ./modules/home-manager/desktop-configs
-    ./modules/home-manager/stylix
-  ] ++ programs;
+  programs.home-manager.enable = true;
+
+  imports = programs;
 
   home = {
-    inherit username;
-    inherit stateVersion;
-    homeDirectory = "/home/${username}";
+    username = "test";
+    homeDirectory = "/home/test";
+    stateVersion = "24.05";
   };
-  programs.home-manager.enable = true;
+
+  programs.starship.enable = true;
+  programs.kitty.enable = true;
+
+  vscode.enable = true;
   nixpkgs = {
     overlays = builtins.attrValues outputs.overlays;
-    config = {
-      allowUnfree = true;
-    };
+    config.allowUnfree = true;
   };
 }

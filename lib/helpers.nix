@@ -1,20 +1,4 @@
-{ self, inputs, outputs, stateVersion, ... }: rec {
-
-  # Helper function for generating home-manager configs
-  mkHome =
-    { hostname
-    , username
-    , desktop ? null
-    , git-username ? "EarthGman"
-    , git-email ? "EarthGman@protonmail.com"
-    , platform ? "x86_64-linux"
-    }: inputs.home-manager.lib.homeManagerConfiguration {
-      pkgs = inputs.nixpkgs.legacyPackages.${platform};
-      extraSpecialArgs = {
-        inherit self inputs outputs hostname username desktop git-username git-email platform stateVersion;
-      };
-      modules = [ ../home.nix ];
-    };
+{ self, inputs, outputs, lib, stateVersion, ... }: rec {
 
   mkHost =
     { hostname
@@ -24,11 +8,10 @@
     , desktop ? null
     , displayManager ? "sddm"
     , platform ? "x86_64-linux"
-    }: inputs.nixpkgs.lib.nixosSystem {
+    }: lib.nixosSystem {
       specialArgs = {
-        inherit self inputs outputs hostname cpu gpu users desktop displayManager platform stateVersion;
+        inherit self platform inputs outputs hostname cpu gpu users desktop displayManager stateVersion;
       };
-      # If the hostname starts with "iso-", generate an ISO image
       modules =
         let
           isISO = (builtins.substring 0 4 hostname == "iso-");
@@ -38,16 +21,14 @@
             else
               inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares.nix";
         in
-        [
-          ../hosts
-        ] ++ (inputs.nixpkgs.lib.optionals (isISO) [ cd-dvd ]);
+        [ ../configuration.nix ] ++ lib.optionals (isISO) [ cd-dvd ];
     };
 
-  forAllSystems = inputs.nixpkgs.lib.genAttrs [
+  forAllSystems = lib.genAttrs [
     "aarch64-linux"
+    "aarch64-darwin"
     "i686-linux"
     "x86_64-linux"
-    "aarch64-darwin"
     "x86_64-darwin"
   ];
 

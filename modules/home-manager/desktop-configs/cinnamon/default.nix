@@ -1,3 +1,0 @@
-{
-  stylix.enable = false;
-}
