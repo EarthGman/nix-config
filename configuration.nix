@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ inputs, outputs, config, lib, pkgs, platform, stateVersion, ... }:
+{ inputs, outputs, config, lib, pkgs, hostname, platform, stateVersion, ... }:
 
 {
   imports = [
@@ -13,6 +13,11 @@
   ];
 
   #boot.loader.systemd-boot.enable = true;
+  boot.kernelPackages = pkgs.linuxPackages_6_10;
+  boot.extraModulePackages = with pkgs; [
+    linuxKernel.packages.linux_6_10.broadcom_sta
+  ];
+  boot.kernelModules = [ "wl" ];
   boot.loader.grub = {
     enable = true;
     efiSupport = true;
@@ -21,8 +26,7 @@
   };
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos-rebuild"; # Define your hostname.
-
+  networking.hostName = hostname; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   time.timeZone = "America/Chicago";
@@ -84,6 +88,8 @@
   environment.systemPackages = with pkgs; [
     btop
     sysz
+    git
+    networkmanager_dmenu
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
