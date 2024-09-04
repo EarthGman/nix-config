@@ -12,7 +12,13 @@
     ./hardware-configuration.nix
   ];
 
-  boot.loader.systemd-boot.enable = true;
+  #boot.loader.systemd-boot.enable = true;
+  boot.loader.grub = {
+    enable = true;
+    efiSupport = true;
+    devices = [ "nodev" ];
+    gfxmodeEfi = "1920x1080";
+  };
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos-rebuild"; # Define your hostname.
@@ -28,7 +34,7 @@
 
   programs.zsh.enable = true;
 
-  home-manager.users."test" = import ./home.nix { inherit outputs pkgs lib; };
+  home-manager.users.g = import ./home.nix { inherit outputs pkgs lib; };
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -64,11 +70,14 @@
   # services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.test = {
+  users.users.g = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
+    hashedPassword = "$y$j9T$7tYxxNPgxLhrPDjHKj8nh/$8YcqgeeJMWnXGVP9VH0Tnzf/rkeWMZJ6VRZIWSEan94";
   };
+
+  users.mutableUsers = false;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

@@ -33,7 +33,7 @@
       overlays = import ./overlays.nix { inherit inputs; };
 
       nixosConfigurations = {
-        nixos-rebuild = mkHost { hostname = "nixos-rebuild"; users = "test"; desktop = "i3"; };
+        tater = mkHost { hostname = "tater"; users = "g"; desktop = "i3"; };
       };
     };
 }

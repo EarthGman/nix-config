@@ -9,8 +9,8 @@ in
   imports = programs;
 
   home = {
-    username = "test";
-    homeDirectory = "/home/test";
+    username = "g";
+    homeDirectory = "/home/g";
     stateVersion = "24.05";
   };
 
