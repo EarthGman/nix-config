@@ -38,8 +38,6 @@ in
   nixpkgs.config.allowUnfree = true;
   nixpkgs.hostPlatform = platform;
 
-  programs.zsh.enable = true;
-
   # creates a home manager config for every user specificed in users string
   home-manager.users = lib.genAttrs usernames (username:
     import ./home.nix { inherit username outputs pkgs lib stateVersion; });
@@ -88,16 +86,44 @@ in
     hashedPassword = "$y$j9T$7tYxxNPgxLhrPDjHKj8nh/$8YcqgeeJMWnXGVP9VH0Tnzf/rkeWMZJ6VRZIWSEan94";
   };
 
+  users.users."root".shell = pkgs.zsh;
+
   users.mutableUsers = false;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # packages that will be installed on all systems: desktop, server, iso 
   environment.systemPackages = with pkgs; [
     btop
     sysz
     git
-    networkmanager_dmenu
+    disko
+    file
+    zip
+    unzip
+    usbutils
+    pciutils
+    lshw
+    fd
+    steam-run
   ];
+
+  # root level shell
+  programs.zsh = {
+    enable = true;
+    enableCompletion = lib.mkDefault true;
+    syntaxHighlighting.enable = lib.mkDefault true;
+    shellAliases = {
+      l = "ls -al";
+      g = "${lib.getExe pkgs.git}";
+      t = "${lib.getExe pkgs.tree}";
+      ga = "g add .";
+      gco = "g checkout";
+      gba = "g branch -a";
+      cat = "${lib.getExe pkgs.bat}";
+    };
+  };
+  programs.starship.enable = lib.mkDefault true;
+  programs.direnv.enable = lib.mkDefault true;
+  programs.direnv.nix-direnv.enable = lib.mkDefault true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
