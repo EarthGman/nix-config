@@ -30,6 +30,7 @@
       inherit (myLib) mkHost forAllSystems mapfiles;
     in
     {
+      inherit myLib;
       overlays = import ./overlays.nix { inherit inputs; };
 
       nixosConfigurations = {

@@ -2,8 +2,10 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ inputs, outputs, config, lib, pkgs, hostname, platform, stateVersion, ... }:
-
+{ inputs, outputs, config, lib, myLib, pkgs, hostname, users, platform, stateVersion, ... }:
+let
+  usernames = myLib.splitToList users;
+in
 {
   imports = [
     inputs.disko.nixosModules.disko
@@ -38,7 +40,12 @@
 
   programs.zsh.enable = true;
 
-  home-manager.users.g = import ./home.nix { inherit outputs pkgs lib; };
+  # creates a home manager config for every user specificed in users string
+  home-manager.users = lib.genAttrs usernames (username:
+    import ./home.nix { inherit username outputs pkgs lib stateVersion; });
+
+  # home-manager.users.g = import ./home.nix { inherit outputs lib stateVersion; };
+
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";

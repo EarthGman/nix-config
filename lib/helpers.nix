@@ -8,9 +8,13 @@
     , desktop ? null
     , displayManager ? "sddm"
     , platform ? "x86_64-linux"
-    }: lib.nixosSystem {
+    }:
+    let
+      myLib = outputs.myLib;
+    in
+    lib.nixosSystem {
       specialArgs = {
-        inherit self platform inputs outputs hostname cpu gpu users desktop displayManager stateVersion;
+        inherit self myLib platform inputs outputs hostname cpu gpu users desktop displayManager stateVersion;
       };
       modules =
         let
@@ -46,4 +50,7 @@
       files = builtins.attrNames (builtins.readDir dir);
     in
     builtins.listToAttrs (builtins.map (file: { name = (splitFilename file).name; value = "${dir}/${file}"; }) files);
+
+  # takes a string with elements split by a comma such as "alice,bob" and will create list [ alice bob ]
+  splitToList = string: builtins.filter builtins.isString (builtins.split "," string);
 }
