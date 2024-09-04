@@ -30,6 +30,10 @@ in
   home-manager.users = genAttrs usernames (username:
     import ../home.nix { inherit username outputs pkgs lib stateVersion; });
 
+  custom = {
+    ssh.enable = mkDefault true;
+  };
+
   users.users."root".shell = pkgs.zsh;
   users.mutableUsers = mkDefault false;
 

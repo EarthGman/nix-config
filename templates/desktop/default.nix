@@ -1,10 +1,23 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
+let
+  inherit (lib) mkDefault;
+in
 {
-  services.xserver.enable = true;
-  services.xserver.windowManager.i3.enable = true;
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal ];
-  xdg.portal.configPackages = [ pkgs.xdg-desktop-portal ];
-  services.xserver.xkb.layout = "us";
-  services.xserver.excludePackages = with pkgs; [ xterm ];
+  services.xserver = {
+    enable = true;
+    xkb.layout = "us";
+    excludePackages = with pkgs; [ xterm ];
+  };
+  xdg.portal = {
+    enable = true;
+    configPackages = [ pkgs.xdg-desktop-portal ];
+    extraPortals = [ pkgs.xdg-desktop-portal ];
+  };
+  custom = {
+    sound.enable = mkDefault true;
+    printing.enable = mkDefault true;
+    ifuse.enable = mkDefault true;
+  };
+  # if you have dolphin emu installed GC controllers will not have correct permissions unless set
+  udev.packages = [ pkgs.dolphinEmu ];
 }
