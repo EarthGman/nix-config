@@ -31,10 +31,16 @@
     in
     {
       inherit myLib;
-      overlays = import ./overlays.nix { inherit inputs; };
+      overlays = import ./overlays.nix { inherit inputs myLib; };
+      packages = forAllSystems (system:
+        let
+          pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
+        in
+        import ./pkgs { inherit pkgs myLib; }
+      );
 
       nixosConfigurations = {
-        tater = mkHost { hostname = "tater"; users = "g"; desktop = "i3"; };
+        tater = mkHost { hostName = "tater"; users = "g"; desktop = "i3"; };
       };
     };
 }

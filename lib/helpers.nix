@@ -1,11 +1,12 @@
 { self, inputs, outputs, lib, stateVersion, ... }: rec {
 
   mkHost =
-    { hostname
+    { hostName
     , cpu ? null
     , gpu ? null
     , users ? null
     , desktop ? null
+    , vm ? "no"
     , displayManager ? "sddm"
     , platform ? "x86_64-linux"
     }:
@@ -14,18 +15,22 @@
     in
     lib.nixosSystem {
       specialArgs = {
-        inherit self myLib platform inputs outputs hostname cpu gpu users desktop displayManager stateVersion;
+        inherit self myLib platform inputs outputs hostName cpu gpu users desktop displayManager vm stateVersion;
       };
       modules =
         let
-          isISO = (builtins.substring 0 4 hostname == "iso-");
+          isISO = (builtins.substring 0 4 hostName == "iso-");
+          isVM = (vm == "yes");
           cd-dvd =
             if (desktop == null) then
               inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
             else
               inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares.nix";
+          qemu-guest = inputs.nixpkgs + "nixos/modules/profiles/qemu-guest.nix";
         in
-        [ ../configuration.nix ] ++ lib.optionals (isISO) [ cd-dvd ];
+        [ ../hosts ]
+        ++ lib.optionals (isISO) [ cd-dvd ]
+        ++ lib.optionals (isVM) [ qemu-guest ];
     };
 
   forAllSystems = lib.genAttrs [
