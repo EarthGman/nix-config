@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, ... }:
 let
   inherit (lib) mkDefault;
 in
@@ -13,6 +13,7 @@ in
     fastfetch.enable = mkDefault true;
     evince.enable = mkDefault true;
     switcheroo.enable = mkDefault true;
+    totem.enable = mkDefault true;
   };
   gtk = {
     enable = true;
