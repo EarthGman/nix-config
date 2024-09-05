@@ -2,6 +2,19 @@
 let
   inherit (lib) mkDefault mkForce optionals getExe;
   wp = config.stylix.image;
+  polybar_sh = pkgs.writeScript "polybar.sh" ''
+    ${getExe pkgs.killall} polybar
+    sleep 0.1
+    if type "xrandr"; then
+      for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+        MONITOR=$m ${getExe pkgs.polybar} --reload top & \
+        MONITOR=$m ${getExe pkgs.polybar} --reload bottom &
+      done
+    else
+      ${getExe pkgs.polybar} --reload top & \
+      ${getExe pkgs.polybar} --reload bottom &
+    fi 
+  '';
 in
 {
   home.packages = [ pkgs.networkmanager_dmenu ];
@@ -48,19 +61,7 @@ in
         }
       ] ++ [
         {
-          command = ''
-            ${getExe pkgs.killall} polybar
-            sleep 0.1
-            if type "xrandr"; then
-              for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-                MONITOR=$m ${getExe pkgs.polybar} --reload top & \
-                MONITOR=$m ${getExe pkgs.polybar} --reload bottom &
-              done
-            else
-              ${getExe pkgs.polybar} --reload top & \
-              ${getExe pkgs.polybar} --reload bottom &
-            fi 
-          '';
+          command = "${polybar_sh}";
           always = true;
           notification = false;
         }
