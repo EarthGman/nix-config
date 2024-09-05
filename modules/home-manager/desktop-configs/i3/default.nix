@@ -4,6 +4,7 @@ let
   wp = config.stylix.image;
 in
 {
+  home.packages = [ pkgs.networkmanager_dmenu ];
   custom = {
     # networkmanager_dmenu.enable = mkDefault true;
     # pavucontrol.enable = mkDefault true;

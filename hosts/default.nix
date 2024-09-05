@@ -88,12 +88,14 @@ in
     git
     #disko
     file
+    ncdu
     zip
     unzip
     usbutils
     pciutils
     lshw
     fd
+    lynx
     zoxide # must be on path
   ];
 

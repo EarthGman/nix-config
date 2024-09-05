@@ -11,7 +11,7 @@ in
     # fastfetch.enable = mkDefault true;
     # mupdf.enable = mkDefault true;
     # switcheroo.enable = mkDefault true;
-    vscode.enable = (config.preferredEditor == "codium");
+    vscode.enable = mkDefault (config.preferredEditor == "codium");
     # zed.enable = mkDefault (editor == "zed");
   };
   gtk = {
