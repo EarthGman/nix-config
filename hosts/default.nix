@@ -16,6 +16,7 @@ in
     ../modules/nixos/sunshine.nix
     ../modules/nixos/virtualization.nix
     ../modules/nixos/ssh.nix
+    ../modules/nixos/grub.nix
 
     ../modules/nixos/gpu
     ../modules/nixos/display-managers

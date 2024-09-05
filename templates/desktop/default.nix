@@ -17,6 +17,7 @@ in
     sound.enable = mkDefault true;
     printing.enable = mkDefault true;
     ifuse.enable = mkDefault true;
+    grub.enable = mkDefault true;
   };
   # decorate shell for root by default ~2.5GB of bloat
   programs = {
