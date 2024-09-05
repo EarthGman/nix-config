@@ -9,6 +9,8 @@ in
     ./modules/home-manager/desktop-configs
     ./modules/home-manager/stylix
     ./templates/home-manager
+
+    ./hosts/${hostName}/users/${username}/preferences.nix
   ];
 
   options.custom = {

@@ -5,6 +5,9 @@ in
 {
   options.custom.vscode.enable = mkEnableOption "enable vscode";
   config = mkIf config.custom.vscode.enable {
+    home.packages = with pkgs; [
+      (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
+    ];
     programs.vscode = {
       package = mkDefault pkgs.master.vscodium-fhs;
       enable = true;

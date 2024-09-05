@@ -13,7 +13,7 @@ in
     fastfetch.enable = mkDefault true;
     evince.enable = mkDefault true;
     switcheroo.enable = mkDefault true;
-    totem.enable = mkDefault true;
+    vlc.enable = mkDefault true;
   };
   gtk = {
     enable = true;
@@ -21,5 +21,11 @@ in
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
     };
+  };
+  qt = {
+    enable = true;
+    platformTheme.name = "adwaita";
+    style.name = "adwaita-dark";
+    style.package = pkgs.adwaita-qt;
   };
 }
