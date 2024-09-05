@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ lib, config, ... }:
 {
   options.custom.kitty.enable = lib.mkEnableOption "kitty config";
   config = lib.mkIf config.custom.kitty.enable {
@@ -14,14 +14,11 @@
         hide_window_decorations = "no";
         placement_strategy = "center";
         scrollback_lines = 20000;
+        background_opacity = lib.mkForce "0.87";
+        initial_window_width = 640;
+        initial_window_height = 400;
+        sync_to_monitor = "yes";
       };
-      extraConfig = ''
-        background_opacity 0.87
-        initial_window_width 640
-        initial_window_height 400
-
-        sync_to_monitor yes
-      '';
     };
   };
 }

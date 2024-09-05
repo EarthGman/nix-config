@@ -1,15 +1,12 @@
-{ self, pkgs, config, lib, hostName, username, ... }:
+{ pkgs, config, lib, hostName, username, ... }:
 let
-  inherit (lib) mkDefault mkForce optionals;
+  inherit (lib) mkDefault mkForce optionals getExe;
   wp = config.stylix.image;
 in
 {
   home.packages = [ pkgs.networkmanager_dmenu ];
   custom = {
-    # networkmanager_dmenu.enable = mkDefault true;
     # pavucontrol.enable = mkDefault true;
-    # bustle.enable = mkDefault true;
-    # flameshot.enable = mkDefault true;
     polybar.enable = mkDefault true;
     # gnome-system-monitor.enable = mkDefault true;
     # vlc.enable = mkDefault true;
@@ -23,14 +20,13 @@ in
     enable = true;
     config = {
       bars = mkForce [ ];
-      modifier = "Mod4";
-      floating.modifier = "Mod4";
-      terminal = "kitty";
+      modifier = mkDefault "Mod4";
+      floating.modifier = mkDefault "Mod4";
+      terminal = config.terminal;
       workspaceAutoBackAndForth = true;
-      keybindings = import ./keybinds.nix { inherit pkgs config; };
-      window = {
-        hideEdgeBorders = "both";
-      };
+      keybindings = import ./keybinds.nix { inherit pkgs config getExe; };
+      window.hideEdgeBorders = "both";
+
       startup = optionals (hostName == "cypher") [
         # position and scale monitors
         {
@@ -38,7 +34,7 @@ in
             xrandr --output DisplayPort-2 --auto --right-of HDMI-A-0 \
                    --output DisplayPort-2 --mode 2560x1440 \
                    --output HDMI-A-0 --mode 1920x1080 --rate 74.97 \
-            && ${pkgs.feh}/bin/feh --bg-scale ${wp}
+            && ${getExe pkgs.feh} --bg-scale ${wp}
           '';
           always = false;
           notification = false;
@@ -46,23 +42,35 @@ in
       ] ++ optionals (username == "g") [
         # LH mouse
         {
-          command = "${pkgs.xorg.xmodmap}/bin/xmodmap ${self}/scripts/.xmodmap";
+          command = "${getExe pkgs.xorg.xmodmap} ./.xmodmap";
           always = true;
           notification = false;
         }
       ] ++ [
         {
-          command = "${self}/scripts/polybar.sh";
+          command = ''
+            ${getExe pkgs.killall} polybar
+            sleep 0.1
+            if type "xrandr"; then
+              for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+                MONITOR=$m ${getExe pkgs.polybar} --reload top & \
+                MONITOR=$m ${getExe pkgs.polybar} --reload bottom &
+              done
+            else
+              ${getExe pkgs.polybar} --reload top & \
+              ${getExe pkgs.polybar} --reload bottom &
+            fi 
+          '';
           always = true;
           notification = false;
         }
         {
-          command = "${pkgs.picom}/bin/picom --config ~/.config/picom/picom.conf";
+          command = "${getExe pkgs.picom} --config ${config.xdg.configHome}/picom/picom.conf";
           always = false;
           notification = false;
         }
         {
-          command = "${pkgs.feh}/bin/feh --bg-scale ${wp}";
+          command = "${getExe pkgs.feh} --bg-scale ${wp}";
           always = true;
           notification = false;
         }

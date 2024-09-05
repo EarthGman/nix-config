@@ -1,16 +1,16 @@
-{ pkgs, config, ... }:
+{ pkgs, config, getExe, ... }:
 let
   mod = config.xsession.windowManager.i3.config.modifier;
-  pamixer = "${pkgs.pamixer}/bin/pamixer";
-  brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
-  maim = "${pkgs.maim}/bin/maim";
-  xclip = "${pkgs.xclip}/bin/xclip";
+  pamixer = "${getExe pkgs.pamixer}";
+  brightnessctl = "${getExe pkgs.brightnessctl}";
+  maim = "${getExe pkgs.maim}";
+  xclip = "${getExe pkgs.xclip}";
 in
 {
-  "${mod}+Return" = "exec ${pkgs.kitty}/bin/kitty";
+  "${mod}+Return" = "exec ${config.xsession.windowManager.i3.config.terminal}";
   "${mod}+Shift+q" = "kill";
   # "${mod}+d" = "exec --no-startup-id dmenu_run";
-  "${mod}+space" = "exec ${pkgs.rofi}/bin/rofi -show";
+  "${mod}+space" = "exec ${getExe pkgs.rofi} -show";
 
   # "${mod}+j" = "focus left";
   # "${mod}+k" = "focus down";
