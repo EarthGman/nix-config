@@ -28,9 +28,6 @@ in
     gitCredentialHelper.enable = true;
   };
 
-  programs.kitty.enable = true;
-  custom.vscode.enable = true;
-
   nixpkgs = {
     overlays = builtins.attrValues outputs.overlays;
     config.allowUnfree = true;

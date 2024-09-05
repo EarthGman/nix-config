@@ -27,10 +27,15 @@ in
     zsh = {
       enableCompletion = mkDefault true;
       syntaxHighlighting.enable = mkDefault true;
+      autosuggestions.enable = true;
     };
     starship.enable = mkDefault true;
     dconf.enable = true;
   };
+
+  # for most desktop users editing the config from the home directory is preferred over /etc/nixos
+  # this links the /etc/nixos directory to ~/src/nix-config
+  # environment.etc."nixos".source = /home/${username}/src/nix-config;
 
   # if you have dolphin emu installed GC controllers will not have correct permissions unless set
   # services.udev.packages = mkIf config.home-manager.users.${username}.custom.dolphin-emu.enable [ pkgs.dolphinEmu ];

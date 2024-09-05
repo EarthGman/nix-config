@@ -94,6 +94,7 @@ in
     pciutils
     lshw
     fd
+    zoxide # must be on path
   ];
 
   # root level shell
@@ -107,14 +108,12 @@ in
       gco = "g checkout";
       gba = "g branch -a";
       cat = "${getExe pkgs.bat}";
+      nrs = "${getExe pkgs.nh} os switch $(readlink -f /etc/nixos)";
+      nrt = "${getExe pkgs.nh} os test $(readlink -f /etc/nixos)";
+      ncg = "${getExe pkgs.nh} clean all";
     };
+    promptInit = ''
+      eval "$(${getExe pkgs.zoxide} init --cmd j zsh)"
+    '';
   };
-
-  boot.loader.grub = {
-    enable = true;
-    efiSupport = true;
-    devices = [ "nodev" ];
-    gfxmodeEfi = "1920x1080";
-  };
-  boot.loader.efi.canTouchEfiVariables = true;
 }
