@@ -35,7 +35,7 @@ in
       bars = mkForce [ ];
       modifier = mkDefault "Mod4";
       floating.modifier = mkDefault "Mod4";
-      terminal = config.terminal;
+      terminal = config.custom.terminal;
       workspaceAutoBackAndForth = true;
       keybindings = import ./keybinds.nix { inherit pkgs config getExe; };
       window.hideEdgeBorders = "both";

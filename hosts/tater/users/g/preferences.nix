@@ -15,7 +15,7 @@
 
   #modules
   custom = {
-    firefox.theme.name = "shyfox";
+    firefox.theme.name = "";
     firefox.theme.config.wallpaper = outputs.wallpapers.fiery-dragon;
   };
 }
