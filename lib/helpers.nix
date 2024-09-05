@@ -4,7 +4,7 @@
     { hostName
     , cpu ? null
     , gpu ? null
-    , users ? null
+    , username ? null
     , desktop ? null
     , vm ? "no"
     , displayManager ? "sddm"
@@ -15,7 +15,7 @@
     in
     lib.nixosSystem {
       specialArgs = {
-        inherit self myLib platform inputs outputs hostName cpu gpu users desktop displayManager vm stateVersion;
+        inherit self myLib platform inputs outputs hostName cpu gpu username desktop displayManager vm stateVersion;
       };
       modules =
         let
@@ -27,10 +27,12 @@
             else
               inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares.nix";
           qemu-guest = inputs.nixpkgs + "nixos/modules/profiles/qemu-guest.nix";
+          desktop-setup = self + /modules/nixos/templates/desktop.nix;
         in
         [ ../hosts ]
         ++ lib.optionals (isISO) [ cd-dvd ]
-        ++ lib.optionals (isVM) [ qemu-guest ];
+        ++ lib.optionals (isVM) [ qemu-guest ]
+        ++ lib.optionals (desktop != null) [ desktop-setup ];
     };
 
   forAllSystems = lib.genAttrs [

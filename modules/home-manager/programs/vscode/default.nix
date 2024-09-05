@@ -3,8 +3,8 @@ let
   inherit (lib) mkDefault mkEnableOption mkIf;
 in
 {
-  options.vscode.enable = mkEnableOption "enable vscode";
-  config = mkIf config.vscode.enable {
+  options.custom.vscode.enable = mkEnableOption "enable vscode";
+  config = mkIf config.custom.vscode.enable {
     programs.vscode = {
       package = mkDefault pkgs.master.vscodium-fhs;
       enable = true;

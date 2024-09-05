@@ -1,8 +1,6 @@
-{ self, inputs, outputs, config, lib, myLib, pkgs, hostName, cpu, users, desktop, vm, platform, stateVersion, ... }:
+{ inputs, outputs, config, lib, desktop, myLib, pkgs, hostName, cpu, username, vm, platform, stateVersion, ... }:
 let
   inherit (lib) mkIf mkDefault genAttrs forEach optionals getExe;
-  usernames = myLib.splitToList users;
-  hasDesktop = (desktop != null);
   #TODO auto module importer
 in
 {
@@ -27,13 +25,19 @@ in
     inputs.disko.nixosModules.disko
     inputs.home-manager.nixosModules.default
     ./${hostName}
-  ] ++ optionals hasDesktop [
-    ../templates/desktop
-  ] ++ forEach usernames (username: self + /hosts/${hostName}/users/${username});
+    ./${hostName}/users/${username}
+  ];
 
   # creates a home manager config for every user specificed in users string
-  home-manager.users = genAttrs usernames (username:
-    import ../home.nix { inherit username outputs pkgs lib stateVersion; });
+  # home-manager = {
+  #   users = genAttrs usernames (username:
+  #     import ../home.nix { inherit username outputs pkgs lib stateVersion; });
+  home-manager = {
+    users.g = import ../home.nix;
+    extraSpecialArgs = {
+      inherit inputs outputs hostName username desktop myLib stateVersion;
+    };
+  };
 
   custom = {
     ssh.enable = mkDefault true;

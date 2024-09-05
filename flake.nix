@@ -19,6 +19,10 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    stylix = {
+      url = "github:danth/stylix";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -31,6 +35,7 @@
     in
     {
       inherit myLib;
+      wallpapers = mapfiles ./wallpapers;
       overlays = import ./overlays.nix { inherit inputs myLib; };
       packages = forAllSystems (system:
         let
@@ -40,7 +45,7 @@
       );
 
       nixosConfigurations = {
-        tater = mkHost { hostName = "tater"; users = "g"; desktop = "i3"; };
+        tater = mkHost { hostName = "tater"; username = "g"; desktop = "i3"; };
       };
     };
 }
