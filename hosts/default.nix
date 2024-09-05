@@ -1,7 +1,8 @@
-{ self, inputs, outputs, config, lib, myLib, pkgs, hostName, cpu, users, vm, platform, stateVersion, ... }:
+{ self, inputs, outputs, config, lib, myLib, pkgs, hostName, cpu, users, desktop, vm, platform, stateVersion, ... }:
 let
-  inherit (lib) mkIf mkDefault genAttrs forEach getExe;
+  inherit (lib) mkIf mkDefault genAttrs forEach optionals getExe;
   usernames = myLib.splitToList users;
+  hasDesktop = (desktop != null);
   #TODO auto module importer
 in
 {
@@ -16,6 +17,7 @@ in
     ../modules/nixos/sunshine.nix
     ../modules/nixos/virtualization.nix
     ../modules/nixos/ssh.nix
+    ../modules/nixos/ifuse.nix
     ../modules/nixos/grub.nix
 
     ../modules/nixos/gpu
@@ -25,6 +27,8 @@ in
     inputs.disko.nixosModules.disko
     inputs.home-manager.nixosModules.default
     ./${hostName}
+  ] ++ optionals hasDesktop [
+    ../templates/desktop
   ] ++ forEach usernames (username: self + /hosts/${hostName}/users/${username});
 
   # creates a home manager config for every user specificed in users string
@@ -78,7 +82,7 @@ in
     btop
     sysz
     git
-    disko
+    #disko
     file
     zip
     unzip

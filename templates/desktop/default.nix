@@ -29,5 +29,5 @@ in
   };
 
   # if you have dolphin emu installed GC controllers will not have correct permissions unless set
-  udev.packages = [ pkgs.dolphinEmu ];
+  #services.udev.packages = [ pkgs.dolphinEmu ];
 }

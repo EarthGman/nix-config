@@ -7,7 +7,6 @@ in
     sound.enable = lib.mkEnableOption "enable sound with pipewire";
   };
   config = lib.mkIf config.custom.sound.enable {
-    sound.enable = true;
     hardware = {
       pulseaudio.enable = false;
       bluetooth.enable = mkDefault true;
