@@ -1,4 +1,4 @@
-{ self, pkgs, config, lib, hostname, username, ... }:
+{ self, pkgs, config, lib, hostName, username, ... }:
 let
   inherit (lib) mkDefault mkForce optionals;
   wp = config.stylix.image;
@@ -30,7 +30,7 @@ in
       window = {
         hideEdgeBorders = "both";
       };
-      startup = optionals (hostname == "cypher") [
+      startup = optionals (hostName == "cypher") [
         # position and scale monitors
         {
           command = ''

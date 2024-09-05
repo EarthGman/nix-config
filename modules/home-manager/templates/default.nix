@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ pkgs, lib, config, ... }:
 let
   inherit (lib) mkDefault;
 in
@@ -12,5 +12,12 @@ in
     # switcheroo.enable = mkDefault true;
     vscode.enable = (config.preferredEditor == "codium");
     # zed.enable = mkDefault (editor == "zed");
+  };
+  gtk = {
+    enable = true;
+    iconTheme = mkDefault {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+    };
   };
 }

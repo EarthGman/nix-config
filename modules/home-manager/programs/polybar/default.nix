@@ -5,6 +5,11 @@ in
 {
   options.custom.polybar.enable = lib.mkEnableOption "enable polybar";
   config = lib.mkIf config.custom.polybar.enable {
+    # make sure meslo is installed
+    home.packages = with pkgs; [
+      (nerdfonts.override { fonts = [ "Meslo" ]; })
+    ];
+
     services.polybar = {
       enable = true;
       # the systemd unit cannot find user level packages such as: brightnessctl, pamixer, etc

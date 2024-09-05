@@ -23,8 +23,8 @@ in
       image = mkDefault outputs.wallpapers.default;
       base16Scheme = mkIf (cfg.colorScheme != "") (./. + "/color-palettes/${cfg.colorScheme}.yaml");
 
-      targets = mkDefault {
-        vscode.enable = false;
+      targets = {
+        vscode.enable = mkDefault false;
       };
 
       cursor = mkDefault {

@@ -1,4 +1,4 @@
-{ inputs, outputs, config, lib, desktop, myLib, pkgs, hostName, cpu, username, vm, platform, stateVersion, ... }:
+{ self, inputs, outputs, config, lib, desktop, myLib, pkgs, hostName, cpu, username, vm, platform, stateVersion, ... }:
 let
   inherit (lib) mkIf mkDefault genAttrs forEach optionals getExe;
   #TODO auto module importer
@@ -35,7 +35,7 @@ in
   home-manager = {
     users.g = import ../home.nix;
     extraSpecialArgs = {
-      inherit inputs outputs hostName username desktop myLib stateVersion;
+      inherit self inputs outputs hostName username desktop myLib stateVersion;
     };
   };
 

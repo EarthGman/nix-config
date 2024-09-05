@@ -29,6 +29,7 @@ in
       syntaxHighlighting.enable = mkDefault true;
     };
     starship.enable = mkDefault true;
+    dconf.enable = true;
   };
 
   # if you have dolphin emu installed GC controllers will not have correct permissions unless set
