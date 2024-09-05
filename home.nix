@@ -23,6 +23,7 @@ in
     homeDirectory = "/home/${username}";
   };
 
+  # enable gh for all users
   programs.gh = {
     enable = true;
     gitCredentialHelper.enable = true;

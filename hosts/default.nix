@@ -114,7 +114,7 @@ in
     };
     promptInit = ''
       eval "$(${getExe pkgs.zoxide} init --cmd j zsh)"
-      export EDITOR=${config.home-manager.users.${username}.preferredEditor}
+      export EDITOR=nano
     '';
   };
 }
