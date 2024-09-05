@@ -7,7 +7,7 @@ in
   custom = {
     kitty.enable = mkDefault true;
     zsh.enable = mkDefault true;
-    # firefox.enable = mkDefault true;
+    firefox.enable = mkDefault true;
     # fastfetch.enable = mkDefault true;
     # mupdf.enable = mkDefault true;
     # switcheroo.enable = mkDefault true;

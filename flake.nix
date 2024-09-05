@@ -15,6 +15,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nur = {
+      url = "github:nix-community/nur";
+    };
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,7 +40,10 @@
     {
       inherit myLib;
       wallpapers = mapfiles ./wallpapers;
-      overlays = import ./overlays.nix { inherit inputs myLib; };
+      icons = mapfiles ./icons;
+      overlays = import ./overlays.nix {
+        inherit inputs myLib;
+      };
       packages = forAllSystems (system:
         let
           pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };

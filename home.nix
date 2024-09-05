@@ -1,4 +1,4 @@
-{ username, hostName, pkgs, outputs, lib, stateVersion, ... }:
+{ self, username, hostName, pkgs, outputs, lib, stateVersion, ... }:
 let
   isMinUser = builtins.substring 0 7 hostName == "server-";
   programsDir = ./modules/home-manager/programs;
@@ -13,6 +13,8 @@ in
   ] ++ [
     ./modules/home-manager/options.nix
     ./modules/home-manager/desktop-configs
+  ] ++ lib.optionals (builtins.pathExists (self + /hosts/${hostName}/users/${username})) [
+    ./hosts/${hostName}/users/${username}/preferences.nix
   ];
 
   programs.home-manager.enable = true;

@@ -7,6 +7,8 @@
     };
   };
 
+  nur = inputs.nur.overlay;
+
   # additional packages added to the package set
   packages = final: _prev: import ./pkgs { pkgs = final; inherit myLib; };
 } 
