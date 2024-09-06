@@ -27,10 +27,10 @@ in
         vscode.enable = mkDefault false;
       };
 
-      cursor = mkDefault {
-        package = pkgs.bibata-cursors;
-        name = "Bibata-Modern-Classic";
-        size = 24;
+      cursor = {
+        package = mkDefault pkgs.bibata-cursors;
+        name = mkDefault "Bibata-Modern-Classic";
+        size = mkDefault 24;
       };
 
       fonts = {
