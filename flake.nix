@@ -52,8 +52,9 @@
       );
 
       nixosConfigurations = {
-        tater = mkHost { hostName = "tater"; cpu = "intel"; username = "g"; desktop = "i3"; };
-        garth = mkHost { hostName = "garth"; cpu = "intel"; username = "g"; desktop = "i3"; };
+        cypher = mkHost { hostName = "cypher"; cpu = "amd"; gpu = "amd"; username = "g"; desktop = "i3"; };
+        tater = mkHost { hostName = "tater"; cpu = "intel"; gpu = "intel-igpu"; username = "g"; desktop = "i3"; };
+        garth = mkHost { hostName = "garth"; cpu = "intel"; gpu = "intel-igpu"; username = "g"; desktop = "i3"; };
       };
     };
 }

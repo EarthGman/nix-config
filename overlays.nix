@@ -11,4 +11,11 @@
 
   # additional packages added to the package set
   packages = final: _prev: import ./pkgs { pkgs = final; inherit myLib; };
+
+  # cuts out roughly 600Mb of bloat
+  disable-mbrola-voices = final: prev: {
+    espeak = prev.espeak.override {
+      mbrolaSupport = false;
+    };
+  };
 } 

@@ -6,6 +6,8 @@ in
   custom = {
     preferredEditor = mkDefault "codium";
     terminal = mkDefault "kitty";
+    bottles.enable = mkDefault true;
+    clipgrab.enable = mkDefault true;
     zsh.enable = mkDefault true;
     firefox.enable = mkDefault true;
     gnome-calculator.enable = mkDefault true;
@@ -25,6 +27,7 @@ in
     pwvucontrol.enable = mkDefault true;
     thunderbird.enable = mkDefault true;
     discord.enable = mkDefault true;
+    xclicker.enable = mkDefault true;
     yazi.enable = mkDefault true;
 
     # fun and useless

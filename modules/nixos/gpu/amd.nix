@@ -12,12 +12,8 @@ in
       "radeon-profile" = radeon-profile;
     };
     services.xserver.videoDrivers = [ "amdgpu" ];
-    hardware.opengl = {
-      extraPackages = with pkgs; lib.mkDefault [
-        # for davinci resolve 6GB of bloat tho
-        rocm-opencl-icd
-        rocm-opencl-runtime
-      ];
+    hardware.graphics = {
+      enable = true;
     };
   };
 }

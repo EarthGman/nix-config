@@ -8,6 +8,7 @@ in
   imports = programs ++ [
     ./modules/home-manager/desktop-configs
     ./modules/home-manager/stylix
+    ./scripts
     ./templates/home-manager
 
     ./hosts/${hostName}/users/${username}/preferences.nix
