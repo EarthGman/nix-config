@@ -1,7 +1,8 @@
-{ config, lib, ... }:
+{ pkgs, config, lib, ... }:
 {
   options.custom.nvidiagpu.enable = lib.mkEnableOption "enable nvidia drivers";
   config = lib.mkIf config.custom.nvidiagpu.enable {
+    environment.systemPackages = [ pkgs.nvtopPackages.nvidia ];
     services.xserver.videoDrivers = [ "nvidia" ];
     hardware.nvidia = {
       # Modesetting is needed most of the time

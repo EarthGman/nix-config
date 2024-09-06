@@ -19,14 +19,8 @@ in
 {
   home.packages = [ pkgs.networkmanager_dmenu ];
   custom = {
-    # pavucontrol.enable = mkDefault true;
     polybar.enable = mkDefault true;
-    # gnome-system-monitor.enable = mkDefault true;
-    # vlc.enable = mkDefault true;
-    # nautilus.enable = mkDefault true;
     rofi.enable = mkDefault true;
-    # evince.enable = mkDefault true;
-    # gnome-calculator.enable = mkDefault true;
   };
 
   xsession.windowManager.i3 = {

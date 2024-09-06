@@ -1,4 +1,4 @@
-{ pkgs, mkDefault, ... }:
+{ pkgs, mkDefault, getExe, ... }:
 {
   "bar/top" = {
     monitor = "\${env:MONITOR:}";
@@ -106,7 +106,7 @@
 
     exec = pkgs.writeScript "volume levels" ''
       percent="%"
-      current_volume=$(${pkgs.pamixer}/bin/pamixer --get-volume-human | sed 's/%//')
+      current_volume=$(${getExe pkgs.pamixer} --get-volume-human | sed 's/%//')
 
       if [ $current_volume == "muted" ]; then
         echo " $current_volume"
@@ -121,16 +121,16 @@
         echo " $current_volume$percent"
       fi
     '';
-    click-right = "${pkgs.pavucontrol}/bin/pavucontrol &";
-    click-left = "${pkgs.pamixer}/bin/pamixer -t";
-    scroll-up = "${pkgs.pamixer}/bin/pamixer -i 1";
-    scroll-down = "${pkgs.pamixer}/bin/pamixer -d 1";
+    click-right = "${getExe pkgs.pwvucontrol} &";
+    click-left = "${getExe pkgs.pamixer} -t";
+    scroll-up = "${getExe pkgs.pamixer} -i 1";
+    scroll-down = "${getExe pkgs.pamixer} -d 1";
   };
 
   "module/microphone" = {
     type = "custom/script";
     exec = pkgs.writeScript "input volume level" ''
-      current_volume=$(${pkgs.pamixer}/bin/pamixer --default-source --get-volume-human)
+      current_volume=$(${getExe pkgs.pamixer} --default-source --get-volume-human)
 
       if [ $current_volume == "muted" ] || [ $current_volume == "0%" ]; then
         echo " $current_volume"
@@ -140,10 +140,10 @@
     '';
     interval = 0.1;
 
-    click-left = "${pkgs.pamixer}/bin/pamixer -t --default-source";
-    click-right = "${pkgs.pavucontrol}/bin/pavucontrol &";
-    scroll-up = "${pkgs.pamixer}/bin/pamixer -i 1 --default-source";
-    scroll-down = "${pkgs.pamixer}/bin/pamixer -d 1 --default-source";
+    click-left = "${getExe pkgs.pamixer} -t --default-source";
+    click-right = "${getExe pkgs.pwvucontrol} &";
+    scroll-up = "${getExe pkgs.pamixer} -i 1 --default-source";
+    scroll-down = "${getExe pkgs.pamixer} -d 1 --default-source";
   };
 
   # TODO finish brightness
@@ -181,7 +181,7 @@
     type = "custom/menu";
     expand-right = true;
     menu-0-0 = " Screenshot";
-    menu-0-0-exec = "${pkgs.flameshot}/bin/flameshot gui &";
+    menu-0-0-exec = "${getExe pkgs.flameshot} gui &";
     format = "<menu>  <label-toggle>";
     label-open = " Tools";
     label-close = " Close";

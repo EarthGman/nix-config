@@ -1,6 +1,6 @@
 { pkgs, config, lib, ... }:
 let
-  inherit (lib) mkDefault;
+  inherit (lib) mkDefault getExe;
 in
 {
   options.custom.polybar.enable = lib.mkEnableOption "enable polybar";
@@ -15,7 +15,7 @@ in
       # the systemd unit cannot find user level packages such as: brightnessctl, pamixer, etc
       # home-manager will complain if this is not set so it is forced to do nothing
       script = "";
-      settings = import ./settings.nix { inherit pkgs mkDefault; };
+      settings = import ./settings.nix { inherit pkgs mkDefault getExe; };
     };
   };
 }
