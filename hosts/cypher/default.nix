@@ -45,13 +45,13 @@
     background = outputs.wallpapers.april-red;
   };
 
-  # hardware.graphics = {
-  #   extraPackages = with pkgs; [
-  #     # for davinci resolve 6GB of bloat tho
-  #     rocm-opencl-icd
-  #     rocm-opencl-runtime
-  #   ];
-  # };
+  # for davinci resolve ~4GB of bloat
+  hardware.graphics = {
+    extraPackages = with pkgs; [
+      rocm-opencl-icd
+      rocm-opencl-runtime
+    ];
+  };
 
   custom = {
     steam.enable = true;
