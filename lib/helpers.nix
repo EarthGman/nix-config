@@ -7,7 +7,7 @@
     , username ? null
     , desktop ? null
     , vm ? "no"
-    , displayManager ? "sddm"
+    , displayManager ? null
     , platform ? "x86_64-linux"
     }:
     let
@@ -28,9 +28,10 @@
               inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares.nix";
           qemu-guest = inputs.nixpkgs + "nixos/modules/profiles/qemu-guest.nix";
           desktop-setup = self + /templates/nixos/desktop.nix;
+          iso-setup = self + /templates/nixos/iso.nix;
         in
         [ ../hosts ]
-        ++ lib.optionals (isISO) [ cd-dvd ]
+        ++ lib.optionals (isISO) [ cd-dvd iso-setup ]
         ++ lib.optionals (isVM) [ qemu-guest ]
         ++ lib.optionals (desktop != null) [ desktop-setup ];
     };

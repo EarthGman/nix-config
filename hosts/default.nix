@@ -1,11 +1,13 @@
-{ self, inputs, outputs, config, lib, desktop, myLib, pkgs, hostName, cpu, username, vm, platform, stateVersion, ... }:
+{ inputs, outputs, config, lib, pkgs, hostName, cpu, username, vm, platform, stateVersion, ... }:
 let
-  inherit (lib) mkIf mkDefault genAttrs forEach optionals getExe;
+  inherit (lib) mkIf mkDefault mkForce genAttrs forEach optionals getExe;
   #TODO auto module importer
 in
 {
   imports = [
     #temporary
+    inputs.disko.nixosModules.disko
+    ./${hostName}
     ../modules/nixos/1passwd.nix
     ../modules/nixos/nordvpn.nix
     ../modules/nixos/pipewire.nix
@@ -18,27 +20,12 @@ in
     ../modules/nixos/ifuse.nix
     ../modules/nixos/grub.nix
     ../modules/nixos/bluetooth.nix
+    ../modules/nixos/nh.nix
 
     ../modules/nixos/gpu
     ../modules/nixos/display-managers
     ../modules/nixos/desktops
-
-    inputs.disko.nixosModules.disko
-    inputs.home-manager.nixosModules.default
-    ./${hostName}
-    ./${hostName}/users/${username}
   ];
-
-  # creates a home manager config for every user specificed in users string
-  # home-manager = {
-  #   users = genAttrs usernames (username:
-  #     import ../home.nix { inherit username outputs pkgs lib stateVersion; });
-  home-manager = {
-    users.g = import ../home.nix;
-    extraSpecialArgs = {
-      inherit self inputs outputs hostName username desktop myLib stateVersion;
-    };
-  };
 
   custom = {
     ssh.enable = mkDefault true;
@@ -48,7 +35,7 @@ in
   users.mutableUsers = mkDefault false;
 
   hardware = {
-    enableRedistributableFirmware = lib.mkDefault true;
+    enableRedistributableFirmware = mkDefault true;
     cpu.${cpu}.updateMicrocode = mkIf (vm == "no")
       (mkDefault config.hardware.enableRedistributableFirmware);
   };
@@ -59,6 +46,8 @@ in
   };
 
   networking = {
+    # forces wireless off since I use networkmanager for all systems
+    wireless.enable = mkForce false;
     inherit hostName;
     networkmanager.enable = true;
   };
@@ -68,13 +57,6 @@ in
     overlays = (builtins.attrValues outputs.overlays);
     config.allowUnfree = true;
     hostPlatform = platform;
-  };
-
-  # better nix cli
-  programs.nh = {
-    enable = true;
-    clean.enable = true;
-    clean.extraArgs = "--keep-since 4d --keep 3";
   };
 
   time.timeZone = mkDefault "America/Chicago";

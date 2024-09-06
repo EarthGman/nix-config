@@ -1,11 +1,27 @@
-{ inputs, pkgs, lib, config, username, ... }:
+{ self, inputs, outputs, hostName, pkgs, lib, myLib, config, desktop, username, stateVersion, ... }:
 let
   inherit (lib) mkDefault mkIf;
+  user = self + /hosts/${hostName}/users/${username};
+  home = self + /home.nix;
 in
 {
-  # imports = [
-  #   inputs.stylix.nixosModules.stylix
-  # ];
+  imports = [
+    inputs.home-manager.nixosModules.default
+    user
+  ];
+
+  # creates a home manager config for every user specificed in users string
+  # home-manager = {
+  #   users = genAttrs usernames (username:
+  #     import ../home.nix { inherit username outputs pkgs lib stateVersion; });
+
+  home-manager = {
+    users.${username} = import home;
+    extraSpecialArgs = {
+      inherit self inputs outputs hostName username desktop myLib stateVersion;
+    };
+  };
+
   services.xserver = {
     enable = true;
     xkb.layout = "us";
@@ -22,6 +38,7 @@ in
     printing.enable = mkDefault true;
     ifuse.enable = mkDefault true;
     grub.enable = mkDefault true;
+    nh.enable = mkDefault true;
   };
   # decorate shell for root ~2.5GB of bloat
   programs = {
@@ -31,6 +48,8 @@ in
       autosuggestions.enable = true;
     };
     starship.enable = mkDefault true;
+
+    # required for some stylix to work properly (gtk)
     dconf.enable = true;
   };
 

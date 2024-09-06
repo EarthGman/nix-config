@@ -1,9 +1,9 @@
 # note while it is possible to enable multiple desktops at once it is highly unrecommended.
 # any conflicts between 2 desktops are not supported
-{ desktop, myLib, ... }:
+{ desktop, myLib, lib, ... }:
 let
   inherit (builtins) elem;
-  desktops = myLib.splitToList desktop;
+  desktops = if (desktop != null) then myLib.splitToList desktop else [ ];
 
   gnome = elem "gnome" desktops;
   plasma = elem "plasma" desktops;
