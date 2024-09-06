@@ -18,6 +18,7 @@ in
   };
   custom = {
     sound.enable = mkDefault true;
+    bluetooth.enable = mkDefault true;
     printing.enable = mkDefault true;
     ifuse.enable = mkDefault true;
     grub.enable = mkDefault true;

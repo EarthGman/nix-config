@@ -19,6 +19,7 @@ in
 {
   home.packages = [ pkgs.networkmanager_dmenu ];
   custom = {
+    pwvucontrol.enable = mkDefault true;
     polybar.enable = mkDefault true;
     rofi.enable = mkDefault true;
   };

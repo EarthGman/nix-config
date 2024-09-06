@@ -8,7 +8,8 @@ in
     programs.zsh = mkIf config.custom.zsh.enable {
       enable = true;
       shellAliases = {
-        l = "${getExe pkgs.eza} --icons";
+        l = "${getExe pkgs.eza} -al --icons";
+        ls = "${getExe pkgs.eza} --icons";
         edit-config = "cd ~/src/nix-config && $EDITOR .";
         edit-preferences = "cd ~/src/nix-config/hosts/${hostName}/users/${config.home.username} && $EDITOR preferences.nix";
       };

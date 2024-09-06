@@ -17,6 +17,7 @@ in
     ../modules/nixos/ssh.nix
     ../modules/nixos/ifuse.nix
     ../modules/nixos/grub.nix
+    ../modules/nixos/bluetooth.nix
 
     ../modules/nixos/gpu
     ../modules/nixos/display-managers

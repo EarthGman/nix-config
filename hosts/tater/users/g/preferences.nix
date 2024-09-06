@@ -16,7 +16,6 @@
   #modules
   custom = {
     firefox.theme.name = "";
-    vscode.enable = false;
     firefox.theme.config.wallpaper = outputs.wallpapers.fiery-dragon;
   };
 }

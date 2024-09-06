@@ -9,12 +9,10 @@ in
   config = lib.mkIf config.custom.sound.enable {
     hardware = {
       pulseaudio.enable = false;
-      bluetooth.enable = mkDefault true;
     };
     # pulse needs this
     security.rtkit.enable = true;
     services = {
-      blueman.enable = mkDefault true;
       pipewire = {
         enable = true;
         alsa.enable = true;
