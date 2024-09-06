@@ -1,6 +1,6 @@
-{ users, lib, myLib, config, ... }:
+{ username, lib, myLib, config, ... }:
 let
-  usernames = myLib.splitToList users;
+  usernames = myLib.splitToList username;
 in
 {
   options.custom.onepassword.enable = lib.mkEnableOption "enable 1password";

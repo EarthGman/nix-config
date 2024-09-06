@@ -24,6 +24,16 @@ in
       default = "";
       type = types.str;
     };
+    git-username = mkOption {
+      description = "username configured in git";
+      default = "EarthGman";
+      type = types.str;
+    };
+    git-email = mkOption {
+      description = "email configured in git";
+      default = "EarthGman@protonmail.com";
+      type = types.str;
+    };
   };
 
   config = {
@@ -36,9 +46,16 @@ in
     };
 
     # enable gh for all users
-    programs.gh = {
-      enable = true;
-      gitCredentialHelper.enable = true;
+    programs = {
+      gh = {
+        enable = true;
+        gitCredentialHelper.enable = true;
+      };
+      git = {
+        enable = true;
+        userName = config.custom.git-username;
+        userEmail = config.custom.git-email;
+      };
     };
 
     nixpkgs = {

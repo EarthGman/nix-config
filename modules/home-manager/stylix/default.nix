@@ -32,6 +32,15 @@ in
         name = "Bibata-Modern-Classic";
         size = 24;
       };
+
+      fonts = {
+        sizes = {
+          applications = mkDefault 12;
+          desktop = mkDefault 12;
+          popups = mkDefault 10;
+          terminal = mkDefault 14;
+        };
+      };
     };
   };
 }

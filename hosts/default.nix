@@ -54,7 +54,7 @@ in
   };
 
   boot = {
-    kernelModules = mkIf ((vm == "no") && config.custom.virtualization.enable) [ "kvm-${cpu}" ];
+    kernelModules = mkIf config.custom.virtualization.enable [ "kvm-${cpu}" ];
     kernelPackages = mkDefault pkgs.linuxPackages_latest;
   };
 

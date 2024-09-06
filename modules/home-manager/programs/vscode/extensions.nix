@@ -10,7 +10,7 @@ with pkgs.master.vscode-extensions; [
   ms-vscode.cmake-tools
 
   # python
-  ms-python.vscode-pylance
+  # ms-python.vscode-pylance
 
   # lua
   sumneko.lua
