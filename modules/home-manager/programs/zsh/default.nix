@@ -3,7 +3,7 @@ let
   inherit (lib) getExe mkEnableOption mkIf;
 in
 {
-  options.custom.zsh.enable = mkEnableOption "enable home zsh";
+  options.custom.zsh.enable = mkEnableOption "enable extra config for zsh";
   config = {
     programs.zsh = mkIf config.custom.zsh.enable {
       enable = true;

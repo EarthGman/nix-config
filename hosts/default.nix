@@ -84,9 +84,9 @@ in
   # packages that will be installed on all systems: desktop, server, iso 
   environment.systemPackages = with pkgs; [
     btop
+    powertop
     sysz
     git
-    #disko
     file
     ncdu
     zip

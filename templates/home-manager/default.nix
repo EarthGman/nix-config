@@ -9,6 +9,8 @@ in
     zsh.enable = mkDefault true;
     firefox.enable = mkDefault true;
     gnome-calculator.enable = mkDefault true;
+    gnome-system-monitor.enable = mkDefault true;
+    gthumb.enable = mkDefault true;
     nautilus.enable = mkDefault true;
     fastfetch.enable = mkDefault true;
     evince.enable = mkDefault true;
