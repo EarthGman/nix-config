@@ -24,7 +24,7 @@ in
 
   services.xserver = {
     enable = true;
-    xkb.layout = "us";
+    xkb.layout = mkDefault "us";
     excludePackages = with pkgs; [ xterm ];
   };
   xdg.portal = {
@@ -38,7 +38,6 @@ in
     printing.enable = mkDefault true;
     ifuse.enable = mkDefault true;
     grub.enable = mkDefault true;
-    nh.enable = mkDefault true;
   };
   # decorate shell for root ~2.5GB of bloat
   programs = {

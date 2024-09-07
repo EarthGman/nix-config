@@ -29,6 +29,7 @@ in
 
   custom = {
     ssh.enable = mkDefault true;
+    nh.enable = mkDefault true;
   };
 
   users.users."root".shell = pkgs.zsh;
@@ -97,6 +98,7 @@ in
       nrt = "${getExe pkgs.nh} os test $(readlink -f /etc/nixos)";
       ncg = "${getExe pkgs.nh} clean all";
     };
+    #TODO export EDITOR=neovim once learned
     promptInit = ''
       eval "$(${getExe pkgs.zoxide} init --cmd j zsh)"
       export EDITOR=nano

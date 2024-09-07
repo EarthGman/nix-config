@@ -5,7 +5,6 @@ in
 {
   custom = {
     preferredEditor = mkDefault "codium";
-    terminal = mkDefault "kitty";
     bottles.enable = mkDefault true;
     clipgrab.enable = mkDefault true;
     zsh.enable = mkDefault true;

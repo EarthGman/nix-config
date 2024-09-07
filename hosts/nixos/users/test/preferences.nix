@@ -8,4 +8,8 @@ in
   ];
 
   stylix.image = outputs.wallpapers.scarlet-tree-dark;
+
+  custom = {
+    yazi.enable = true;
+  };
 }

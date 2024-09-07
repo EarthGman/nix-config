@@ -7,6 +7,7 @@ in
     terminal = mkDefault "kitty";
     # less bloated than firefox
     brave.enable = mkDefault true;
+    fastfetch.enable = mkDefault true;
     nautilus.enable = mkDefault true;
     openshot.enable = mkDefault true;
     audacity.enable = mkDefault true;

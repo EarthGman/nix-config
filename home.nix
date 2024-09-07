@@ -22,7 +22,7 @@ in
     };
     terminal = mkOption {
       description = "which terminal emulator is used by default";
-      default = "";
+      default = "kitty";
       type = types.str;
     };
     git-username = mkOption {

@@ -1,6 +1,7 @@
 { pkgs, config, lib, hostName, username, ... }:
 let
   inherit (lib) mkDefault mkForce optionals getExe;
+  enabled = { enable = mkDefault true; };
   wp = config.stylix.image;
   polybar_sh = pkgs.writeScript "polybar.sh" ''
     ${getExe pkgs.killall} polybar
@@ -19,9 +20,9 @@ in
 {
   home.packages = [ pkgs.networkmanager_dmenu ];
   custom = {
-    pwvucontrol.enable = mkDefault true;
-    polybar.enable = mkDefault true;
-    rofi.enable = mkDefault true;
+    pwvucontrol = enabled;
+    polybar = enabled;
+    rofi = enabled;
   };
 
   xsession.windowManager.i3 = {

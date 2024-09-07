@@ -14,11 +14,11 @@
     # always use latest linux kernel
     kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
 
-    # disables zfs
+    # disables zfs, bcachefs
     #TODO figure out how to use zfs
     supportedFilesystems = lib.mkForce [
       "auto"
-      "bcachefs"
+      #"bcachefs"
       "btrfs"
       "cifs"
       "ext4"

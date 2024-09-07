@@ -9,6 +9,7 @@
     ];
 
     # exclude all packages built into gnome and allow each user to choose what they want installed
+    programs.geary.enable = false;
     environment.gnome.excludePackages = with pkgs; [
       gnome-tour
       gedit

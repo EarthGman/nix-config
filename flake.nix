@@ -55,7 +55,7 @@
         cypher = mkHost { hostName = "cypher"; cpu = "amd"; gpu = "amd"; username = "g"; desktop = "i3"; displayManager = "sddm"; };
         tater = mkHost { hostName = "tater"; cpu = "intel"; gpu = "intel-igpu"; username = "g"; desktop = "i3"; displayManager = "sddm"; };
         garth = mkHost { hostName = "garth"; cpu = "intel"; gpu = "intel-igpu"; username = "g"; desktop = "i3"; displayManager = "sddm"; };
-        nixos = mkHost { hostName = "nixos"; vm = "yes"; username = "test"; desktop = "gnome"; displayManager = "sddm"; };
+        nixos = mkHost { hostName = "nixos"; vm = "yes"; username = "test"; desktop = "i3"; displayManager = "sddm"; };
 
         iso-headless-x86_64 = mkHost { hostName = "iso-headless"; platform = "x86_64-linux"; };
       };
