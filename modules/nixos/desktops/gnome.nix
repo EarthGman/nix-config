@@ -1,7 +1,7 @@
-{ pkgs, lib, ... }:
+{ pkgs, config, lib, ... }:
 {
   options.custom.gnome.enable = lib.mkEnableOption "enable gnome desktop";
-  config = {
+  config = lib.mkIf config.custom.gnome.enable {
     services.xserver.desktopManager.gnome.enable = true;
 
     environment.systemPackages = with pkgs; [
