@@ -1,24 +1,25 @@
 { lib, ... }:
+# minimal functional work desktop setup
 let
-  inherit (lib) mkDefault;
+  enabled = { enable = lib.mkDefault true; };
 in
 {
   custom = {
-    terminal = mkDefault "kitty";
+    terminal = lib.mkDefault "kitty";
     # less bloated than firefox
-    brave.enable = mkDefault true;
-    fastfetch.enable = mkDefault true;
-    nautilus.enable = mkDefault true;
-    openshot.enable = mkDefault true;
-    audacity.enable = mkDefault true;
-    libreoffice.enable = mkDefault true;
-    gimp.enable = mkDefault true;
-    gthumb.enable = mkDefault true;
-    evince.enable = mkDefault true;
-    obsidian.enable = mkDefault true;
-    vlc.enable = mkDefault true;
-    gnome-system-monitor.enable = mkDefault true;
-    gnome-calculator.enable = mkDefault true;
-    thunderbird.enable = mkDefault true;
+    brave = enabled;
+    fastfetch = enabled;
+    nautilus = enabled;
+    openshot = enabled;
+    audacity = enabled;
+    libreoffice = enabled;
+    gimp = enabled;
+    gthumb = enabled;
+    evince = enabled;
+    obsidian = enabled;
+    vlc = enabled;
+    gnome-system-monitor = enabled;
+    gnome-calculator = enabled;
+    thunderbird = enabled;
   };
 }

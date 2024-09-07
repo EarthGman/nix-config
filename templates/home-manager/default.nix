@@ -1,49 +1,37 @@
-{ pkgs, lib, ... }:
+{ lib, ... }:
 let
-  inherit (lib) mkDefault;
+  enabled = { enable = lib.mkDefault true; };
 in
 {
   custom = {
-    preferredEditor = mkDefault "codium";
-    bottles.enable = mkDefault true;
-    clipgrab.enable = mkDefault true;
-    zsh.enable = mkDefault true;
-    firefox.enable = mkDefault true;
-    gnome-calculator.enable = mkDefault true;
-    gnome-system-monitor.enable = mkDefault true;
-    gthumb.enable = mkDefault true;
-    gimp.enable = true;
-    gcolor.enable = true;
-    musescore.enable = true;
-    nautilus.enable = mkDefault true;
-    fastfetch.enable = mkDefault true;
-    evince.enable = mkDefault true;
-    vlc.enable = mkDefault true;
-    libreoffice.enable = mkDefault true;
-    museeks.enable = mkDefault true;
-    obsidian.enable = mkDefault true;
-    prismlauncher.enable = mkDefault true;
-    pwvucontrol.enable = mkDefault true;
-    thunderbird.enable = mkDefault true;
-    discord.enable = mkDefault true;
-    xclicker.enable = mkDefault true;
-    yazi.enable = mkDefault true;
+    preferredEditor = lib.mkDefault "codium";
+    bottles = enabled;
+    clipgrab = enabled;
+    zsh = enabled;
+    firefox = enabled;
+    gnome-calculator = enabled;
+    gnome-system-monitor = enabled;
+    gthumb = enabled;
+    gimp = enabled;
+    gcolor = enabled;
+    musescore = enabled;
+    nautilus = enabled;
+    fastfetch = enabled;
+    evince = enabled;
+    vlc = enabled;
+    libreoffice = enabled;
+    museeks = enabled;
+    obsidian = enabled;
+    prismlauncher = enabled;
+    pwvucontrol = enabled;
+    thunderbird = enabled;
+    discord = enabled;
+    xclicker = enabled;
+    yazi = enabled;
 
     # fun and useless
-    pipes.enable = mkDefault true;
-    cbonsai.enable = mkDefault true;
-  };
-  gtk = {
-    enable = true;
-    iconTheme = mkDefault {
-      name = "Adwaita";
-      package = pkgs.adwaita-icon-theme;
-    };
-  };
-  qt = {
-    enable = true;
-    platformTheme.name = "adwaita";
-    style.name = "adwaita-dark";
-    style.package = pkgs.adwaita-qt;
+    pipes = enabled;
+    cbonsai = enabled;
+    cmatrix = enabled;
   };
 }
