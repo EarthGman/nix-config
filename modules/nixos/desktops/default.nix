@@ -6,22 +6,16 @@ let
   desktops = if (desktop != null) then myLib.splitToList desktop else [ ];
 
   gnome = elem "gnome" desktops;
-  plasma = elem "plasma" desktops;
-  cinnamon = elem "cinnamon" desktops;
   i3 = elem "i3" desktops;
 in
 {
   imports = [
     ./i3.nix
-    # ./gnome.nix
-    # ./plasma.nix
-    # ./cinnamon.nix
+    ./gnome.nix
   ];
 
   custom = {
-    # gnome.enable = gnome;
-    # plasma.enable = plasma;
-    # cinnamon.enable = cinnamon;
+    gnome.enable = gnome;
     i3.enable = i3;
   };
 }

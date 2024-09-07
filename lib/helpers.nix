@@ -26,7 +26,7 @@
               inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
             else
               inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares.nix";
-          qemu-guest = inputs.nixpkgs + "nixos/modules/profiles/qemu-guest.nix";
+          qemu-guest = inputs.nixpkgs + "/nixos/modules/profiles/qemu-guest.nix";
           desktop-setup = self + /templates/nixos/desktop.nix;
           iso-setup = self + /templates/nixos/iso.nix;
         in

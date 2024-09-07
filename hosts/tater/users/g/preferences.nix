@@ -1,13 +1,16 @@
-{ outputs, pkgs, ... }:
+{ self, outputs, ... }:
+let
+  template = self + /templates/home-manager;
+in
 {
+  imports = [
+    template
+  ];
+
   stylix.image = outputs.wallpapers.scarlet-tree-dark;
   stylix.fonts.sizes = {
     terminal = 12;
   };
-  # stylix.cursor = {
-  #   package = pkgs.posy-cursors;
-  #   name = "left_ptr";
-  # };
 
   services.polybar.settings = {
     "bar/top" = {

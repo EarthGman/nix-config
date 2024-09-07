@@ -1,8 +1,8 @@
 { lib, ... }:
 {
+  # minimal setup, usually used for servers without a desktop installed
   stylix = {
-    enable = lib.mkForce false;
-    autoEnable = lib.mkForce false;
+    enable = false;
+    autoEnable = false;
   };
-  programs.gh.enable = false;
 }

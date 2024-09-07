@@ -1,15 +1,15 @@
-{ self, username, config, hostName, pkgs, outputs, lib, stateVersion, ... }:
+{ username, config, hostName, pkgs, outputs, lib, stateVersion, ... }:
 let
   inherit (lib) mkDefault mkOption types;
   programsDir = ./modules/home-manager/programs;
   programs = lib.forEach (builtins.attrNames (builtins.readDir programsDir)) (dirname: programsDir + /${dirname});
 in
 {
-  imports = programs ++ [
+  imports = programs # all programs in the programs dir
+    ++ [
     ./modules/home-manager/desktop-configs
     ./modules/home-manager/stylix
     ./scripts
-    ./templates/home-manager
 
     ./hosts/${hostName}/users/${username}/preferences.nix
   ];
@@ -67,7 +67,7 @@ in
     custom = {
       kitty.enable = mkDefault (config.custom.terminal == "kitty");
       vscode.enable = mkDefault (config.custom.preferredEditor == "codium");
-      # zed.enable = mkDefault (editor == "zed");
+      zed.enable = mkDefault (config.custom.preferredEditor == "zed");
     };
   };
 }

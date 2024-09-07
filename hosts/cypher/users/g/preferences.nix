@@ -1,5 +1,12 @@
-{ outputs, ... }:
+{ self, outputs, ... }:
+let
+  template = self + /templates/home-manager;
+in
 {
+  imports = [
+    template
+  ];
+
   stylix.image = outputs.wallpapers.kaori;
   stylix.colorScheme = "april";
 
@@ -14,5 +21,7 @@
 
     looking-glass.enable = true;
     looking-glass.version = "B6";
+
+    ygo-omega.enable = true;
   };
 }

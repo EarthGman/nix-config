@@ -1,5 +1,11 @@
-{ outputs, ... }:
+{ self, outputs, ... }:
+let
+  template = self + /templates/home-manager;
+in
 {
+  imports = [
+    template
+  ];
 
   stylix.image = outputs.wallpapers.fiery-dragon;
   stylix.colorScheme = "inferno";
