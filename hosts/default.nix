@@ -73,6 +73,7 @@ in
     git
     file
     ncdu
+    hstr
     zip
     unzip
     usbutils
