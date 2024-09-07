@@ -28,11 +28,20 @@ in
     xkb.layout = mkDefault "us";
     excludePackages = with pkgs; [ xterm ];
   };
+
   xdg.portal = {
     enable = true;
     configPackages = [ pkgs.xdg-desktop-portal ];
     extraPortals = [ pkgs.xdg-desktop-portal ];
   };
+
+  # forces qt dark theme since qt apps dont work well with stylix
+  qt = {
+    enable = true;
+    platformTheme = "gnome";
+    style = "adwaita-dark";
+  };
+
   custom = {
     sound = enabled;
     bluetooth = enabled;

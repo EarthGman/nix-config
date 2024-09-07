@@ -17,11 +17,11 @@ in
         package = mkDefault pkgs.adwaita-icon-theme;
       };
     };
-    qt = {
-      enable = mkDefault true;
-      # platformTheme.name = mkDefault "adwaita-dark";
-      style.name = mkDefault "Fusion";
-      style.package = mkForce pkgs.adwaita-qt;
-    };
+    # qt = {
+    #   enable = mkDefault true;
+    #   platformTheme.name = mkDefault "adwaita";
+    #   style.name = mkDefault "adwaita-dark";
+    #   style.package = mkForce pkgs.adwaita-qt;
+    # };
   };
 }
