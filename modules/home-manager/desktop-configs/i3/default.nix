@@ -1,4 +1,4 @@
-{ pkgs, config, lib, hostName, username, ... }:
+{ self, pkgs, config, lib, hostName, username, ... }:
 let
   inherit (lib) mkDefault mkForce optionals getExe;
   enabled = { enable = mkDefault true; };
@@ -51,7 +51,7 @@ in
       ] ++ optionals (username == "g") [
         # LH mouse
         {
-          command = "${getExe pkgs.xorg.xmodmap} ./.xmodmap";
+          command = "${getExe pkgs.xorg.xmodmap} ${./.xmodmap}";
           always = true;
           notification = false;
         }
