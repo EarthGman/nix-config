@@ -28,6 +28,11 @@
       url = "github:danth/stylix";
     };
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     personal-cache = {
       url = "github:EarthGman/personal-cache";
     };

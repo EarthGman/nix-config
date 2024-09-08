@@ -1,0 +1,8 @@
+keys:
+  - &cypher age1f3axcm808wfxm38lg3qfwllytlgmqcjwn4yenlkyqpg3c3ku532s77e48d
+
+creation_rules:
+  - path_regex: hosts/cypher/secrets.yaml
+    key_groups:
+      - age:
+        - *cypher

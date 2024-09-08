@@ -58,7 +58,24 @@
     onepassword.enable = true;
     sunshine.enable = true;
     virtualization.enable = true;
+    sops.enable = true;
   };
 
   services.displayManager.defaultSession = "none+i3";
+
+  environment.etc = {
+    "ssh/ssh_host_ed25519_key.pub".source = ./ssh_host_ed25519_key.pub;
+    "ssh/ssh_host_rsa_key.pub".source = ./ssh_host_rsa_key.pub;
+  };
+
+  # use ed25519 key
+  sops.gnupg.sshKeyPaths = [
+    "/etc/ssh/ssh_host_ed25519_key"
+    "/etc/ssh/ssh_host_rsa_key"
+  ];
+
+  sops.secrets = {
+    ssh_host_ed25519_key.path = "/etc/ssh/ssh_host_ed25519_key";
+    ssh_host_rsa_key.path = "/etc/ssh/ssh_host_rsa_key";
+  };
 }
