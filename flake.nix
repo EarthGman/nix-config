@@ -53,7 +53,6 @@
       inherit (myLib) mkHost forAllSystems;
     in
     {
-      inherit wallpapers;
       inherit myLib;
       overlays = import ./overlays.nix { inherit inputs myLib; };
       packages = forAllSystems (system:
