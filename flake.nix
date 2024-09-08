@@ -27,23 +27,23 @@
     stylix = {
       url = "github:danth/stylix";
     };
+
+    personal-cache = {
+      url = "github:EarthGman/personal-cache";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, personal-cache, ... }@inputs:
     let
       inherit (self) outputs;
       stateVersion = "24.05";
       lib = nixpkgs.lib;
       myLib = import ./lib/helpers.nix { inherit self inputs outputs lib stateVersion; };
-      inherit (myLib) mkHost forAllSystems mapfiles;
+      inherit (myLib) mkHost forAllSystems;
     in
     {
       inherit myLib;
-      wallpapers = mapfiles ./wallpapers;
-      icons = mapfiles ./icons;
-      overlays = import ./overlays.nix {
-        inherit inputs myLib;
-      };
+      overlays = import ./overlays.nix { inherit inputs myLib; };
       packages = forAllSystems (system:
         let
           pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };

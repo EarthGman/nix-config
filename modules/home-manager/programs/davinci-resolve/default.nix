@@ -1,4 +1,4 @@
-{ self, pkgs, config, lib, ... }:
+{ icons, pkgs, config, lib, ... }:
 {
   options.custom.davinci-resolve.enable = lib.mkEnableOption "enable davinci-resolve";
   config = lib.mkIf config.custom.davinci-resolve.enable {
@@ -12,8 +12,8 @@
         [Desktop Entry]
         Name=Davinci Resolve
         Comment=Professional Video Editing
-        Icon=${self}/icons/davinci-resolve.png
-        Exec=${pkgs.davinci-resolve}/bin/davinci-resolve
+        Icon=${icons.davinci-resolve}
+        Exec=${lib.getExe pkgs.davinci-resolve}
         Terminal=false
         Type=Application
         Categories=Video

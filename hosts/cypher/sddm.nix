@@ -1,4 +1,4 @@
-{ outputs, pkgs, lib, config, ... }:
+{ wallpapers, pkgs, lib, config, ... }:
 let
   xcfg = config.services.xserver;
   weston-ini = pkgs.writeText "weston.ini" ''
@@ -37,7 +37,7 @@ in
       compositorCommand = weston-command;
     };
     themeConfig = {
-      Background = outputs.wallpapers.kaori;
+      Background = wallpapers.kaori;
       FormPosition = "left";
       FullBlur = "false";
       PartialBlur = "false";

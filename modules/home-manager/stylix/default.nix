@@ -1,4 +1,4 @@
-{ inputs, outputs, pkgs, config, lib, ... }:
+{ inputs, wallpapers, pkgs, config, lib, ... }:
 let
   inherit (lib) mkOption mkIf mkDefault types;
   cfg = config.stylix;
@@ -20,7 +20,7 @@ in
   config = {
     stylix = {
       enable = mkDefault true;
-      image = mkDefault outputs.wallpapers.default;
+      image = mkDefault wallpapers.default;
       base16Scheme = mkIf (cfg.colorScheme != "") (./. + "/color-palettes/${cfg.colorScheme}.yaml");
 
       targets = {

@@ -1,4 +1,4 @@
-{ outputs, pkgs, lib, displayManager, ... }:
+{ pkgs, lib, displayManager, wallpapers, ... }:
 {
   imports = [ ./fs.nix ] ++ lib.optionals (displayManager == "sddm") [ ./sddm.nix ];
   boot.initrd.availableKernelModules = [
@@ -42,7 +42,7 @@
   };
 
   boot.loader.grub.themeConfig = {
-    background = outputs.wallpapers.april-red;
+    background = wallpapers.april-red;
   };
 
   # for davinci resolve ~4GB of bloat

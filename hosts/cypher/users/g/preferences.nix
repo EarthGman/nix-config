@@ -1,4 +1,4 @@
-{ self, outputs, ... }:
+{ self, wallpapers, ... }:
 let
   template = self + /templates/home-manager;
 in
@@ -7,12 +7,12 @@ in
     template
   ];
 
-  stylix.image = outputs.wallpapers.kaori;
+  stylix.image = wallpapers.kaori;
   stylix.colorScheme = "april";
 
   custom = {
     firefox.theme.name = "shyfox";
-    firefox.theme.config.wallpaper = outputs.wallpapers.april-night;
+    firefox.theme.config.wallpaper = wallpapers.april-night;
 
     dolphin-emu.enable = true;
     lutris.enable = true;

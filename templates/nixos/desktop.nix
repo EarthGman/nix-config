@@ -1,4 +1,4 @@
-{ self, inputs, outputs, hostName, pkgs, lib, myLib, config, desktop, username, stateVersion, ... }:
+{ self, inputs, outputs, hostName, pkgs, lib, myLib, wallpapers, icons, config, desktop, username, stateVersion, ... }:
 let
   inherit (lib) mkDefault mkIf;
   enabled = { enable = mkDefault true; };
@@ -19,7 +19,7 @@ in
   home-manager = {
     users.${username} = import home;
     extraSpecialArgs = {
-      inherit self inputs outputs hostName username desktop myLib stateVersion;
+      inherit self inputs outputs wallpapers icons hostName username desktop myLib stateVersion;
     };
   };
 

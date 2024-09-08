@@ -1,4 +1,4 @@
-{ pkgs, outputs, ... }:
+{ pkgs, icons, ... }:
 {
   "Nix Packages" = {
     urls = [{
@@ -32,7 +32,7 @@
     urls = [{
       template = "https://noogle.dev/q?term={searchTerms}";
     }];
-    icon = outputs.icons.lambda;
+    icon = icons.lambda;
     definedAliases = [ "@ngd" ];
   };
 }

@@ -1,4 +1,4 @@
-{ self, pkgs, config, lib, hostName, username, ... }:
+{ pkgs, config, lib, hostName, username, ... }:
 let
   inherit (lib) mkDefault mkForce optionals getExe;
   enabled = { enable = mkDefault true; };

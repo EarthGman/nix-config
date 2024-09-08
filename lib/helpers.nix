@@ -12,10 +12,12 @@
     }:
     let
       myLib = outputs.myLib;
+      wallpapers = inputs.personal-cache.wallpapers;
+      icons = inputs.personal-cache.icons;
     in
     lib.nixosSystem {
       specialArgs = {
-        inherit self myLib platform inputs outputs hostName cpu gpu username desktop displayManager vm stateVersion;
+        inherit self platform inputs outputs myLib wallpapers icons hostName cpu gpu username desktop displayManager vm stateVersion;
       };
       modules =
         let
