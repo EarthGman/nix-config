@@ -1,4 +1,4 @@
-{ outputs, ... }:
+{ wallpapers, ... }:
 {
   imports = [
     ./fs.nix
@@ -12,7 +12,7 @@
     "rtsx_pci_sdmmc"
   ];
   services.displayManager.sddm.themeConfig = {
-    Background = outputs.wallpapers.fiery-dragon;
+    Background = builtins.fetchurl wallpapers.fiery-dragon;
     FullBlur = "false";
     PartialBlur = "false";
   };

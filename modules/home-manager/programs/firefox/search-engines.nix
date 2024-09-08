@@ -32,7 +32,7 @@
     urls = [{
       template = "https://noogle.dev/q?term={searchTerms}";
     }];
-    icon = icons.lambda;
+    icon = builtins.fetchurl icons.lambda;
     definedAliases = [ "@ngd" ];
   };
 }

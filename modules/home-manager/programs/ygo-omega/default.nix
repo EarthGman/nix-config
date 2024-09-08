@@ -1,4 +1,4 @@
-{ self, pkgs, lib, config, ... }:
+{ pkgs, lib, config, icons, ... }:
 # does not provide game files, they must be installed already
 let
   inherit (lib) mkEnableOption mkOption types mkIf;
@@ -33,7 +33,7 @@ in
         [Desktop Entry]
         Name=YGO Omega
         Comment=Yugioh Simulator
-        Icon=${self}/icons/ygo-omega.png
+        Icon=${builtins.fetchurl icons.ygo-omega}
         Exec=${launch}
         Terminal=false
         Type=Application

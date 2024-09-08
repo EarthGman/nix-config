@@ -1,4 +1,4 @@
-{ self, outputs, ... }:
+{ self, wallpapers, ... }:
 let
   template = self + /templates/home-manager/minimal-desktop.nix;
 in
@@ -7,7 +7,7 @@ in
     template
   ];
 
-  stylix.image = outputs.wallpapers.scarlet-tree-dark;
+  stylix.image = builtins.fetchurl wallpapers.scarlet-tree-dark;
 
   custom = {
     yazi.enable = true;

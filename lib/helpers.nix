@@ -12,8 +12,8 @@
     }:
     let
       myLib = outputs.myLib;
-      wallpapers = inputs.personal-cache.wallpapers;
-      icons = inputs.personal-cache.icons;
+      wallpapers = builtins.fromJSON (builtins.readFile inputs.wallpapers.outPath);
+      icons = builtins.fromJSON (builtins.readFile inputs.icons.outPath);
     in
     lib.nixosSystem {
       specialArgs = {
@@ -46,20 +46,21 @@
     "x86_64-darwin"
   ];
 
-  # generates attribute set with keyname of base filename with .(extension) removed. Value is store path
-  splitFilename = file:
+  # takes a string, creates a set with 2 keys: name, and ext where name is the string before "." and ext is the string after
+  parseFilename = str:
     let
-      parts = builtins.match "(.*)\\.(.*)" (builtins.baseNameOf file);
+      parts = builtins.match "(.*)\\.(.*)" (builtins.baseNameOf str);
     in
     if parts == null then
-      { name = builtins.baseNameOf file; ext = ""; }
+      { name = builtins.baseNameOf str; ext = ""; }
     else
       { name = builtins.elemAt parts 0; ext = builtins.elemAt parts 1; };
+
   mapfiles = dir:
     let
       files = builtins.attrNames (builtins.readDir dir);
     in
-    builtins.listToAttrs (builtins.map (file: { name = (splitFilename file).name; value = "${dir}/${file}"; }) files);
+    builtins.listToAttrs (builtins.map (file: { name = (parseFilename file).name; value = "${dir}/${file}"; }) files);
 
   # takes a string with elements split by a comma such as "alice,bob" and will create list [ alice bob ]
   splitToList = string: builtins.filter builtins.isString (builtins.split "," string);

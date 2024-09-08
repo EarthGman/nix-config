@@ -8,12 +8,12 @@ in
     template
   ];
 
-  stylix.image = wallpapers.kaori;
+  stylix.image = builtins.fetchurl wallpapers.kaori;
   stylix.colorScheme = "april";
 
   custom = {
     firefox.theme.name = "shyfox";
-    firefox.theme.config.wallpaper = wallpapers.april-night;
+    firefox.theme.config.wallpaper = builtins.fetchurl wallpapers.april-night;
 
     dolphin-emu.enable = true;
     lutris.enable = true;

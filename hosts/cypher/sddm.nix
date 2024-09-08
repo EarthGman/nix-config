@@ -37,7 +37,7 @@ in
       compositorCommand = weston-command;
     };
     themeConfig = {
-      Background = wallpapers.kaori;
+      Background = builtins.fetchurl wallpapers.kaori;
       FormPosition = "left";
       FullBlur = "false";
       PartialBlur = "false";

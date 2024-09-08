@@ -12,7 +12,7 @@
         [Desktop Entry]
         Name=Davinci Resolve
         Comment=Professional Video Editing
-        Icon=${icons.davinci-resolve}
+        Icon=${builtins.fetchurl icons.davinci-resolve}
         Exec=${lib.getExe pkgs.davinci-resolve}
         Terminal=false
         Type=Application

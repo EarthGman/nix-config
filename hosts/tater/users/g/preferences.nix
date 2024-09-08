@@ -1,4 +1,4 @@
-{ self, outputs, ... }:
+{ self, wallpapers, ... }:
 let
   template = self + /templates/home-manager;
 in
@@ -7,7 +7,7 @@ in
     template
   ];
 
-  stylix.image = outputs.wallpapers.scarlet-tree-dark;
+  stylix.image = builtins.fetchurl wallpapers.scarlet-tree-dark;
   stylix.fonts.sizes = {
     terminal = 12;
   };
@@ -26,6 +26,6 @@ in
   #modules
   custom = {
     firefox.theme.name = "";
-    firefox.theme.config.wallpaper = outputs.wallpapers.fiery-dragon;
+    firefox.theme.config.wallpaper = builtins.fetchurl wallpapers.fiery-dragon;
   };
 }

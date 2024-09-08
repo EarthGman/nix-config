@@ -1,4 +1,4 @@
-{ outputs, ... }:
+{ wallpapers, ... }:
 {
   imports = [
     ./disko.nix
@@ -11,6 +11,6 @@
     "virtio_blk"
   ];
   boot.loader.grub.themeConfig = {
-    background = outputs.wallpapers.blackspace;
+    background = builtins.fetchurl wallpapers.blackspace;
   };
 }

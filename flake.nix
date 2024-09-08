@@ -33,12 +33,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    personal-cache = {
-      url = "github:EarthGman/personal-cache";
+    wallpapers = {
+      url = "https://raw.githubusercontent.com/EarthGman/personal-cache/master/wallpapers.json";
+      flake = false;
+    };
+
+    icons = {
+      url = "https://raw.githubusercontent.com/EarthGman/personal-cache/master/icons.json";
+      flake = false;
     };
   };
 
-  outputs = { self, nixpkgs, personal-cache, ... }@inputs:
+  outputs = { self, nixpkgs, wallpapers, ... }@inputs:
     let
       inherit (self) outputs;
       stateVersion = "24.05";
@@ -47,6 +53,7 @@
       inherit (myLib) mkHost forAllSystems;
     in
     {
+      inherit wallpapers;
       inherit myLib;
       overlays = import ./overlays.nix { inherit inputs myLib; };
       packages = forAllSystems (system:

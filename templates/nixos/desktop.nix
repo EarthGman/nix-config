@@ -57,6 +57,10 @@ in
       autosuggestions.enable = mkDefault true;
     };
     starship = enabled;
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
 
     # required for some stylix to work properly (gtk)
     dconf.enable = true;

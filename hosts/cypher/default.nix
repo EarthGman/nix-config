@@ -42,7 +42,7 @@
   };
 
   boot.loader.grub.themeConfig = {
-    background = wallpapers.april-red;
+    background = builtins.fetchurl wallpapers.april-red;
   };
 
   # for davinci resolve ~4GB of bloat
