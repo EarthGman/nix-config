@@ -1,6 +1,6 @@
 { pkgs, myLib, lib, desktop, ... }:
 let
-  inherit (lib) optionals mkDefault mkIf mkForce;
+  inherit (lib) optionals mkDefault mkIf;
   inherit (builtins) elem;
   desktops = if (desktop != null) then myLib.splitToList desktop else [ ];
   i3 = elem "i3" desktops;
@@ -10,18 +10,13 @@ in
   imports = optionals i3 [ ./i3 ]
     ++ optionals gnome [ ./gnome ];
   config = mkIf (desktop != null) {
+    # icons for gtk apps
     gtk = {
       enable = mkDefault true;
-      iconTheme = mkDefault {
+      iconTheme = {
         name = mkDefault "Adwaita";
         package = mkDefault pkgs.adwaita-icon-theme;
       };
     };
-    # qt = {
-    #   enable = mkDefault true;
-    #   platformTheme.name = mkDefault "adwaita";
-    #   style.name = mkDefault "adwaita-dark";
-    #   style.package = mkForce pkgs.adwaita-qt;
-    # };
   };
 }
