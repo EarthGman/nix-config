@@ -1,6 +1,6 @@
 { self, wallpapers, ... }:
 let
-  template = self + /templates/home-manager;
+  template = self + /templates/home-manager/g.nix;
 in
 {
   imports = [
