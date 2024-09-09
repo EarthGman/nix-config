@@ -1,8 +1,6 @@
-{ inputs, ... }:
 # UEFI, Q35, Qemu proxmox virtual machine
 {
   imports = [
-    inputs.home-manager.nixosModules.default
     ./disko.nix
   ];
   # use systemd boot, might use UKI later?

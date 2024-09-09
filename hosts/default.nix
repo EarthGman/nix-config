@@ -90,6 +90,7 @@ in
       cat = "${getExe pkgs.bat}";
       nrs = "${getExe pkgs.nh} os switch $(readlink -f /etc/nixos)";
       nrt = "${getExe pkgs.nh} os test $(readlink -f /etc/nixos)";
+      nrb = "nixos-rebuild build";
       ncg = "${getExe pkgs.nh} clean all";
     };
     #TODO export EDITOR=neovim once learned
