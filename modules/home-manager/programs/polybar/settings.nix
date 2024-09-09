@@ -44,7 +44,7 @@
     enable-ipc = mkDefault true;
 
     modules-left = mkDefault "xworkspaces xwindow";
-    modules-right = mkDefault "volume microphone tools date power-menu";
+    modules-right = mkDefault "systray volume microphone tools date power-menu";
   };
 
   "module/systray" = {

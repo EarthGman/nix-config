@@ -18,14 +18,15 @@ let
   '';
 in
 {
-  # home.packages = [ pkgs.networkmanager_dmenu ];
   custom = {
     pwvucontrol = enabled;
     polybar = enabled;
     rofi = enabled;
     dunst = enabled;
+    nm-applet = enabled;
   };
 
+  xsession.enable = true;
   xsession.windowManager.i3 = {
     enable = true;
     config = {
