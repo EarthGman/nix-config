@@ -63,10 +63,10 @@
       );
 
       nixosConfigurations = {
-        cypher = mkHost { hostName = "cypher"; cpu = "amd"; gpu = "amd"; username = "g"; desktop = "i3"; displayManager = "sddm"; };
-        tater = mkHost { hostName = "tater"; cpu = "intel"; gpu = "intel-igpu"; username = "g"; desktop = "i3"; displayManager = "sddm"; };
-        garth = mkHost { hostName = "garth"; cpu = "intel"; gpu = "intel-igpu"; username = "g"; desktop = "i3"; displayManager = "sddm"; };
-        nixos = mkHost { hostName = "nixos"; vm = "yes"; username = "test"; desktop = "i3"; displayManager = "sddm"; };
+        cypher = mkHost { hostName = "cypher"; cpu = "amd"; gpu = "amd"; users = "g"; desktop = "i3"; displayManager = "sddm"; };
+        tater = mkHost { hostName = "tater"; cpu = "intel"; gpu = "intel-igpu"; users = "g"; desktop = "i3"; displayManager = "sddm"; };
+        garth = mkHost { hostName = "garth"; cpu = "intel"; gpu = "intel-igpu"; users = "g"; desktop = "i3"; displayManager = "sddm"; };
+        nixos = mkHost { hostName = "nixos"; vm = "yes"; users = "test,test2"; desktop = "i3"; displayManager = "sddm"; };
 
         server-mc112 = mkHost { hostName = "server-mc112"; vm = "yes"; };
 

@@ -1,7 +1,8 @@
-{ pkgs, lib, config, ... }:
+{ self, pkgs, lib, config, ... }:
 let
   enabled = { enable = lib.mkDefault true; };
   signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKNRHd6NLt4Yd9y5Enu54fJ/a2VCrRgbvfMuom3zn5zg";
+  LHmouse = self + /modules/home-manager/desktop-configs/i3/.xmodmap;
 in
 {
   custom = {
@@ -53,4 +54,12 @@ in
       gpg."ssh".program = "${pkgs._1password-gui}/bin/op-ssh-sign";
     };
   };
+
+  xsession.windowManager.i3.config.startup = [
+    {
+      command = "${lib.getExe pkgs.xorg.xmodmap} ${LHmouse}";
+      always = true;
+      notification = false;
+    }
+  ];
 }

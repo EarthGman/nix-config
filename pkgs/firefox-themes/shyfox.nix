@@ -1,13 +1,13 @@
 { pkgs, lib, stdenvNoCC, themeConfig ? null }:
 stdenvNoCC.mkDerivation rec {
   pname = "shyfox";
-  version = "3.8";
+  version = "3.8.1";
 
   src = pkgs.fetchFromGitHub {
     owner = "Naezr";
     repo = "ShyFox";
-    rev = "8d0d0139bbdb538a64e5a05df907160c39c8f008";
-    hash = "sha256-k3p8VxFpI/jw1TLBOKskH4KylsiiWBJLRNpffm+w7Bo=";
+    rev = "bd41f885f19771b12e23c522ccaafe33af59a1c7";
+    hash = "sha256-w4kaOjz51FYYS58TrPVI/OgZ8At9mbPXj2G3X/N7Lu8=";
   };
 
   wallpaper =

@@ -1,26 +1,22 @@
-{ self, inputs, outputs, hostName, pkgs, lib, myLib, wallpapers, icons, config, desktop, username, stateVersion, ... }:
+{ self, inputs, outputs, hostName, pkgs, lib, myLib, wallpapers, icons, config, desktop, users, stateVersion, ... }:
 let
-  inherit (lib) mkDefault mkIf;
+  inherit (lib) mkDefault mkIf genAttrs;
   enabled = { enable = mkDefault true; };
-  user = self + /hosts/${hostName}/users/${username};
   home = self + /home.nix;
+  usernames = myLib.splitToList users;
 in
 {
   imports = [
     inputs.home-manager.nixosModules.default
-    user
   ];
 
-  # creates a home manager config for every user specificed in users string
-  # home-manager = {
-  #   users = genAttrs usernames (username:
-  #     import ../home.nix { inherit username outputs pkgs lib stateVersion; });
-
   # only import home-manager for users with a desktop
+  # creates a home manager config for every user specificed in users string
   home-manager = {
-    users.${username} = import home;
+    users = genAttrs usernames (username:
+      import home { inherit pkgs username hostName myLib stateVersion; });
     extraSpecialArgs = {
-      inherit self inputs outputs wallpapers icons hostName username desktop myLib stateVersion;
+      inherit self inputs outputs wallpapers icons hostName desktop myLib;
     };
   };
 
@@ -50,7 +46,7 @@ in
     ifuse = enabled;
     grub = enabled;
   };
-  # decorate shell for root ~2.5GB of bloat
+  # decorate shell ~2.5GB of bloat
   programs = {
     zsh = {
       enableCompletion = mkDefault true;

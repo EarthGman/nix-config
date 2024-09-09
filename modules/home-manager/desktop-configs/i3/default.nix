@@ -1,4 +1,4 @@
-{ pkgs, config, lib, hostName, username, ... }:
+{ pkgs, config, lib, hostName, ... }:
 let
   inherit (lib) mkDefault mkForce optionals getExe;
   enabled = { enable = mkDefault true; };
@@ -46,13 +46,6 @@ in
             && ${getExe pkgs.feh} --bg-scale ${wp}
           '';
           always = false;
-          notification = false;
-        }
-      ] ++ optionals (username == "g") [
-        # LH mouse
-        {
-          command = "${getExe pkgs.xorg.xmodmap} ${./.xmodmap}";
-          always = true;
           notification = false;
         }
       ] ++ [

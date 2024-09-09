@@ -1,9 +1,14 @@
-{ inputs, outputs, config, lib, myLib, pkgs, hostName, username, cpu, vm, platform, stateVersion, ... }:
+{ inputs, outputs, config, lib, myLib, pkgs, hostName, users, cpu, vm, platform, stateVersion, ... }:
 let
-  inherit (lib) mkIf mkDefault mkForce getExe optionals;
+  inherit (lib) mkIf mkDefault mkForce getExe;
   nixosModules = myLib.autoImport ../modules/nixos;
-  user = ./${hostName}/users/${username};
-  hasUser = builtins.pathExists user;
+
+  hasUser = (users != "");
+  nixosUsers =
+    if hasUser
+    then
+      myLib.autoImport ./${hostName}/users
+    else [ ];
 in
 {
   imports = [
@@ -11,7 +16,7 @@ in
     ./${hostName}
   ]
   ++ nixosModules
-  ++ optionals (hasUser) [ user ];
+  ++ nixosUsers;
 
 
   custom = {

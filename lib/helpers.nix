@@ -4,7 +4,7 @@
     { hostName
     , cpu ? null
     , gpu ? null
-    , username ? ""
+    , users ? ""
     , desktop ? null
     , vm ? "no"
     , displayManager ? null
@@ -17,7 +17,7 @@
     in
     lib.nixosSystem {
       specialArgs = {
-        inherit self platform inputs outputs myLib wallpapers icons hostName cpu gpu username desktop displayManager vm stateVersion;
+        inherit self platform inputs outputs myLib wallpapers icons hostName cpu gpu users desktop displayManager vm stateVersion;
       };
       modules =
         let

@@ -1,8 +1,8 @@
-{ icons, pkgs, lib, config, username, ... }:
+{ icons, pkgs, lib, config, ... }:
 # uses betterfox user.js by default
 let
   inherit (lib) types mkIf mkDefault mkOption mkEnableOption;
-  profile = ".mozilla/firefox/${username}";
+  profile = ".mozilla/firefox/default";
   cfg = config.custom.firefox;
   betterfox = pkgs.fetchFromGitHub {
     owner = "yokoffing";
@@ -44,7 +44,7 @@ in
       programs.firefox = {
         enable = true;
         profiles = {
-          "${username}" = {
+          "default" = {
             id = 0;
             extensions = (with pkgs.nur.repos.rycee.firefox-addons; [
               ublock-origin
