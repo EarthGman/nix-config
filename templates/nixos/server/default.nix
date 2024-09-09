@@ -5,7 +5,6 @@
   ];
   # use systemd boot, might use UKI later?
   boot = {
-    initrd.availableKernelModules = [ "uhci_hcd" "ehci_pci" "ahci" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod" ];
     kernelParams = [ "quiet" "noatime" ];
     tmp.cleanOnBoot = true;
     loader = {
