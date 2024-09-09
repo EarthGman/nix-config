@@ -9,6 +9,7 @@
     ];
   };
 
+  networking.firewall.allowedTCPPorts = [ 25565 ];
   services.minecraft-server = {
     enable = true;
     eula = true;

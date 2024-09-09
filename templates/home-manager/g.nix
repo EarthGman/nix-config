@@ -37,11 +37,11 @@ in
     cmatrix = enabled;
   };
 
-  programs.ssh = {
-    enable = true;
-    forwardAgent = true;
-    extraConfig = "${config.home.homeDirectory}/.1password/agent.sock";
-  };
+  # programs.ssh = {
+  #   enable = true;
+  #   forwardAgent = true;
+  #   extraConfig = "${config.home.homeDirectory}/.1password/agent.sock";
+  # };
 
   programs.git = {
     signing = {
