@@ -1,18 +1,14 @@
-{ username, config, hostName, pkgs, outputs, lib, stateVersion, ... }:
+{ username, config, hostName, pkgs, outputs, lib, myLib, stateVersion, ... }:
 let
   inherit (lib) mkDefault mkOption types;
-  programsDir = ./modules/home-manager/programs;
-  programs = lib.forEach (builtins.attrNames (builtins.readDir programsDir)) (dirname: programsDir + /${dirname});
+  programs = myLib.autoImport ./modules/home-manager/programs;
 in
 {
-  imports = programs # all programs in the programs dir
-    ++ [
-    ./modules/home-manager/desktop-configs
+  imports = [
     ./modules/home-manager/stylix
-    ./scripts
-
+    ./modules/home-manager/desktop-configs
     ./hosts/${hostName}/users/${username}/preferences.nix
-  ];
+  ] ++ programs;
 
   options.custom = {
     preferredEditor = mkOption {

@@ -4,7 +4,7 @@
     { hostName
     , cpu ? null
     , gpu ? null
-    , username ? null
+    , username ? ""
     , desktop ? null
     , vm ? "no"
     , displayManager ? null
@@ -21,8 +21,10 @@
       };
       modules =
         let
+          inherit (lib) optionals;
           isISO = (builtins.substring 0 4 hostName == "iso-");
           isVM = (vm == "yes");
+          isServer = (builtins.substring 0 7 hostName == "server-");
           cd-dvd =
             if (desktop == null) then
               inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
@@ -31,11 +33,13 @@
           qemu-guest = inputs.nixpkgs + "/nixos/modules/profiles/qemu-guest.nix";
           desktop-setup = self + /templates/nixos/desktop.nix;
           iso-setup = self + /templates/nixos/iso.nix;
+          server-setup = self + /templates/nixos/server;
         in
         [ ../hosts ]
-        ++ lib.optionals (isISO) [ cd-dvd iso-setup ]
-        ++ lib.optionals (isVM) [ qemu-guest ]
-        ++ lib.optionals (desktop != null) [ desktop-setup ];
+        ++ optionals (isISO) [ cd-dvd iso-setup ]
+        ++ optionals (isVM) [ qemu-guest ]
+        ++ optionals (desktop != null) [ desktop-setup ]
+        ++ optionals (isServer) [ server-setup ];
     };
 
   forAllSystems = lib.genAttrs [
@@ -64,4 +68,11 @@
 
   # takes a string with elements split by a comma such as "alice,bob" and will create list [ alice bob ]
   splitToList = string: builtins.filter builtins.isString (builtins.split "," string);
+
+  # takes a directory and a prefix. Returns a list of strings with the names of the files and folders and prepends each element with prefix.
+  autoImport = dir:
+    let
+      workingDirectory = dir;
+    in
+    lib.forEach (builtins.attrNames (builtins.readDir workingDirectory)) (dirname: workingDirectory + /${dirname});
 }

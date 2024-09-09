@@ -68,6 +68,8 @@
         garth = mkHost { hostName = "garth"; cpu = "intel"; gpu = "intel-igpu"; username = "g"; desktop = "i3"; displayManager = "sddm"; };
         nixos = mkHost { hostName = "nixos"; vm = "yes"; username = "test"; desktop = "i3"; displayManager = "sddm"; };
 
+        server-mc112 = mkHost { hostName = "server-mc112"; vm = "yes"; };
+
         iso-headless-x86_64 = mkHost { hostName = "iso-headless"; platform = "x86_64-linux"; };
       };
     };

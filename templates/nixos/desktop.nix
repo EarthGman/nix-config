@@ -16,6 +16,7 @@ in
   #   users = genAttrs usernames (username:
   #     import ../home.nix { inherit username outputs pkgs lib stateVersion; });
 
+  # only import home-manager for users with a desktop
   home-manager = {
     users.${username} = import home;
     extraSpecialArgs = {

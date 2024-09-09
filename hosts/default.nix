@@ -1,31 +1,18 @@
-{ inputs, outputs, config, lib, pkgs, hostName, cpu, username, vm, platform, stateVersion, ... }:
+{ inputs, outputs, config, lib, myLib, pkgs, hostName, username, cpu, vm, platform, stateVersion, ... }:
 let
-  inherit (lib) mkIf mkDefault mkForce genAttrs forEach optionals getExe;
-  #TODO auto module importer
+  inherit (lib) mkIf mkDefault mkForce getExe optionals;
+  nixosModules = myLib.autoImport ../modules/nixos;
+  user = ./${hostName}/users/${username};
+  hasUser = builtins.pathExists user;
 in
 {
   imports = [
-    #temporary
     inputs.disko.nixosModules.disko
     ./${hostName}
-    ../modules/nixos/1passwd.nix
-    ../modules/nixos/nordvpn.nix
-    ../modules/nixos/pipewire.nix
-    ../modules/nixos/printing.nix
-    ../modules/nixos/sops.nix
-    ../modules/nixos/steam.nix
-    ../modules/nixos/sunshine.nix
-    ../modules/nixos/virtualization.nix
-    ../modules/nixos/ssh.nix
-    ../modules/nixos/ifuse.nix
-    ../modules/nixos/grub.nix
-    ../modules/nixos/bluetooth.nix
-    ../modules/nixos/nh.nix
+  ]
+  ++ nixosModules
+  ++ optionals (hasUser) [ user ];
 
-    ../modules/nixos/gpu
-    ../modules/nixos/display-managers
-    ../modules/nixos/desktops
-  ];
 
   custom = {
     ssh.enable = mkDefault true;
