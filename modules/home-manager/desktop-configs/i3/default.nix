@@ -18,11 +18,12 @@ let
   '';
 in
 {
-  home.packages = [ pkgs.networkmanager_dmenu ];
+  # home.packages = [ pkgs.networkmanager_dmenu ];
   custom = {
     pwvucontrol = enabled;
     polybar = enabled;
     rofi = enabled;
+    dunst = enabled;
   };
 
   xsession.windowManager.i3 = {
