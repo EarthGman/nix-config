@@ -7,6 +7,7 @@ in
   users.users.${username} = {
     initialPassword = "";
     hashedPasswordFile = lib.mkIf (config.sops.secrets ? ${username}) config.sops.secrets.${username}.path;
+    password = null;
     isNormalUser = true;
     shell = pkgs.zsh;
     extraGroups = [
