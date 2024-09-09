@@ -75,6 +75,7 @@
 
         server-mc112 = mkHost { hostName = "server-mc112"; vm = "yes"; };
         server-mc-blueprints = mkHost { hostName = "server-mc-blueprints"; vm = "yes"; };
+        server-mc121 = mkHost { hostName = "server-mc121"; vm = "yes"; };
 
         iso-headless-x86_64 = mkHost { hostName = "iso-headless"; platform = "x86_64-linux"; };
       };

@@ -4,7 +4,7 @@
 
   services.minecraft-server = {
     enable = true;
-    package = pkgs.unstable.minecraftServers.vanilla-1-21.overrideAttrs (old: {
+    package = pkgs.minecraftServers.vanilla-1-21.overrideAttrs (old: {
       src = builtins.fetchurl binaries.purpur-121;
     });
     eula = true;
