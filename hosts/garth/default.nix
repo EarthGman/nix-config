@@ -20,6 +20,7 @@
     steam.enable = true;
     onepassword.enable = true;
     virtualization.enable = true;
+    sops.enable = true;
   };
   services.displayManager.defaultSession = "none+i3";
   services.nordvpn.enable = true;

@@ -3,8 +3,10 @@ let
   username = "g";
 in
 {
+  sops.secrets.${username}.neededForUsers = true;
   users.users.${username} = {
-    hashedPassword = "$y$j9T$7tYxxNPgxLhrPDjHKj8nh/$8YcqgeeJMWnXGVP9VH0Tnzf/rkeWMZJ6VRZIWSEan94";
+    initialPassword = "";
+    hashedPasswordFile = lib.mkIf (config.sops.secrets ? ${username}) config.sops.secrets.${username}.path;
     isNormalUser = true;
     shell = pkgs.zsh;
     extraGroups = [
