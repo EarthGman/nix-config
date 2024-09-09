@@ -14,10 +14,11 @@
       myLib = outputs.myLib;
       wallpapers = builtins.fromJSON (builtins.readFile inputs.wallpapers.outPath);
       icons = builtins.fromJSON (builtins.readFile inputs.icons.outPath);
+      binaries = builtins.fromJSON (builtins.readFile inputs.binaries.outPath);
     in
     lib.nixosSystem {
       specialArgs = {
-        inherit self platform inputs outputs myLib wallpapers icons hostName cpu gpu users desktop displayManager vm stateVersion;
+        inherit self platform inputs outputs myLib wallpapers icons binaries hostName cpu gpu users desktop displayManager vm stateVersion;
       };
       modules =
         let

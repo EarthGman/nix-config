@@ -42,6 +42,11 @@
       url = "https://raw.githubusercontent.com/EarthGman/personal-cache/master/icons.json";
       flake = false;
     };
+
+    binaries = {
+      url = "https://raw.githubusercontent.com/EarthGman/personal-cache/master/binaries.json";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, wallpapers, ... }@inputs:
@@ -69,6 +74,7 @@
         nixos = mkHost { hostName = "nixos"; vm = "yes"; users = "test,test2"; desktop = "i3"; displayManager = "sddm"; };
 
         server-mc112 = mkHost { hostName = "server-mc112"; vm = "yes"; };
+        server-mc-blueprints = mkHost { hostName = "server-mc-blueprints"; vm = "yes"; };
 
         iso-headless-x86_64 = mkHost { hostName = "iso-headless"; platform = "x86_64-linux"; };
       };
