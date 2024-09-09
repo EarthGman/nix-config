@@ -3,6 +3,7 @@ Now with (hopefully) finalized framework
 
 Changes from v3:
 - revamped framework
+- integrated home-manager into nixos
 - removed support for plasma and cinnamon
 - debloat
 - externel repo for assets (wallpapers, binaries, etc)
@@ -40,11 +41,11 @@ Post Install:
 - login to apps (discord steam etc)
 - run protonup for steam to download proton-ge
 
-#TODO:
-- [ ] vim
-- [ ] hyprland
+#TODO: in order of priority
 - [ ] ssh keys
-- [ ] drive encryption
-- [ ] zfs
+- [ ] hyprland
 - [ ] remote building
 - [ ] install scripts
+- [ ] drive encryption
+- [ ] vim
+- [ ] zfs
