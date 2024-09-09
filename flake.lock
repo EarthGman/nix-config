@@ -223,11 +223,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1725831139,
-        "narHash": "sha256-9syY5nEehCswE8AMcjpUO4T0iX9nrNbzq69Kqcs92L0=",
+        "lastModified": 1725863684,
+        "narHash": "sha256-HmdTBpuCsw35Ii35JUKO6AE6nae+kJliQb0XGd4hoLE=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "8a175a89137fe798b33c476d4dae17dba5fb3fd3",
+        "rev": "be47a2bdf278c57c2d05e747a13ed31cef54a037",
         "type": "github"
       },
       "original": {
@@ -287,11 +287,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1725855293,
-        "narHash": "sha256-6Go7YticY2NZOKWy6E9nZ+5sctzYFvd7ZTyW7T4pbR8=",
+        "lastModified": 1725886427,
+        "narHash": "sha256-ws9NgHrzZ/A0ONikkLipiRebNKbY4eAmNQuSTduOsJ8=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "643b483100c613ada050d896592ff2477f8f3141",
+        "rev": "c9192dc8864a49697e60f35daafc3278de6d3cbc",
         "type": "github"
       },
       "original": {
@@ -334,11 +334,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1725854666,
-        "narHash": "sha256-Peccz5solKBUlGtN5vfWHxbd0Mxks+feh1TU/A7hZTg=",
+        "lastModified": 1725882298,
+        "narHash": "sha256-pj3q7WxoSOknlKoGyJ9M9NawuMC0+IF1amd3jsbppdU=",
         "owner": "nix-community",
         "repo": "nur",
-        "rev": "4448858f13f127db4c8055e2bf6fe6e1257ba8ea",
+        "rev": "3713baa0b8578637f15e1a76cf60be33d60a71db",
         "type": "github"
       },
       "original": {
@@ -430,7 +430,7 @@
     "wallpapers": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-Y7Geugn8BVmPm4UsisSxt0OnZrtQURlO2QuTFiKngv4=",
+        "narHash": "sha256-VRoe9z2tncYB/JJbRwi2IQn1ooP4dxcz1CPqFsGvFDQ=",
         "type": "file",
         "url": "https://raw.githubusercontent.com/EarthGman/personal-cache/master/wallpapers.json"
       },

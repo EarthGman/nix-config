@@ -73,6 +73,7 @@ in
     lshw
     fd
     lynx
+    ripgrep
     zoxide # must be on path
   ];
 

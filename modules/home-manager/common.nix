@@ -47,6 +47,7 @@ in
     };
 
     custom = {
+      zsh.enable = mkDefault true;
       kitty.enable = mkDefault (config.custom.terminal == "kitty");
       vscode.enable = mkDefault (config.custom.preferredEditor == "codium");
       zed.enable = mkDefault (config.custom.preferredEditor == "zed");

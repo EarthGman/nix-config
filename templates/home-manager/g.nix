@@ -9,7 +9,6 @@ in
     preferredEditor = lib.mkDefault "codium";
     bottles = enabled;
     clipgrab = enabled;
-    zsh = enabled;
     firefox = enabled;
     gnome-calculator = enabled;
     gnome-system-monitor = enabled;
