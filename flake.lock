@@ -117,7 +117,7 @@
     "binaries": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-n0OldH4yA7Rnho4XjpK0yNZqrKYqlWaDvGNc+sFFCsA=",
+        "narHash": "sha256-9AeTvFherknZ2lfPF1W6VHGJkfIPJ+w/3MNK04SZFpk=",
         "type": "file",
         "url": "https://raw.githubusercontent.com/EarthGman/personal-cache/master/binaries.json"
       },
@@ -287,11 +287,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1725886427,
-        "narHash": "sha256-ws9NgHrzZ/A0ONikkLipiRebNKbY4eAmNQuSTduOsJ8=",
+        "lastModified": 1725891475,
+        "narHash": "sha256-a90Wxj7iYZplwXpjmeCoQ4Zsc7gAzQn0YzU8fu81xd4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c9192dc8864a49697e60f35daafc3278de6d3cbc",
+        "rev": "7fa0c16b94c39c3a3462ca710c968a4617349155",
         "type": "github"
       },
       "original": {
@@ -334,11 +334,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1725882298,
-        "narHash": "sha256-pj3q7WxoSOknlKoGyJ9M9NawuMC0+IF1amd3jsbppdU=",
+        "lastModified": 1725891095,
+        "narHash": "sha256-JqigD8lUZ3jXfAK6yU3EYPQR7bVucsw5INmeWkJGH+M=",
         "owner": "nix-community",
         "repo": "nur",
-        "rev": "3713baa0b8578637f15e1a76cf60be33d60a71db",
+        "rev": "3d901bbb77c4ac88b25508fba9d27d5464bee520",
         "type": "github"
       },
       "original": {
