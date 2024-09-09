@@ -38,6 +38,7 @@ Post Install:
 - firefox extension configuration
 - 1password setup (login and 1password agent)
 - login to apps (discord steam etc)
+- run protonup for steam to download proton-ge
 
 #TODO:
 - [ ] vim
