@@ -15,4 +15,4 @@ creation_rules:
   - path_regex: hosts/somnus/secrets.yaml
     key_groups:
       - age:
-        - *somnu
+        - *somnus
