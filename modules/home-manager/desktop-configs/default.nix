@@ -5,10 +5,12 @@ let
   desktops = if (desktop != null) then myLib.splitToList desktop else [ ];
   i3 = elem "i3" desktops;
   gnome = elem "gnome" desktops;
+  hyprland = elem "hyprland" desktops;
 in
 {
   imports = optionals i3 [ ./i3 ]
-    ++ optionals gnome [ ./gnome ];
+    ++ optionals gnome [ ./gnome ]
+    ++ optionals hyprland [ ./hyprland ];
   config = mkIf (desktop != null) {
     # icons for gtk apps
     gtk = {
