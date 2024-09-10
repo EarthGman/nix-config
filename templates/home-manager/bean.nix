@@ -11,6 +11,7 @@ in
     firefox = enabled;
     fastfetch = enabled;
     nautilus = enabled;
+    preferredEditor = "codium";
     openshot = enabled;
     audacity = enabled;
     libreoffice = enabled;
