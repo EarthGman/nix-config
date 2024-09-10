@@ -73,6 +73,8 @@
         garth = mkHost { hostName = "garth"; cpu = "intel"; gpu = "intel-igpu"; users = "g"; desktop = "i3"; displayManager = "sddm"; };
         nixos = mkHost { hostName = "nixos"; vm = "yes"; users = "test,test2"; desktop = "i3"; displayManager = "sddm"; };
 
+        somnus = mkHost { hostName = "somnus"; cpu = "amd"; gpu = "amd"; users = "bean"; desktop = "gnome"; displayManager = "sddm"; };
+
         server-mc112 = mkHost { hostName = "server-mc112"; vm = "yes"; };
         server-mc-blueprints = mkHost { hostName = "server-mc-blueprints"; vm = "yes"; };
         server-mc121 = mkHost { hostName = "server-mc121"; vm = "yes"; };

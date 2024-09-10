@@ -5,6 +5,10 @@ let
   LHmouse = self + /modules/home-manager/desktop-configs/i3/.xmodmap;
 in
 {
+  programs.git = {
+    userName = "EarthGman";
+    userEmail = "EarthGman@protonmail.com";
+  };
   custom = {
     preferredEditor = lib.mkDefault "codium";
     bottles = enabled;

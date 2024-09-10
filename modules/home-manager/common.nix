@@ -14,16 +14,6 @@ in
       default = "kitty";
       type = types.str;
     };
-    git-username = mkOption {
-      description = "username configured in git";
-      default = "EarthGman";
-      type = types.str;
-    };
-    git-email = mkOption {
-      description = "email configured in git";
-      default = "EarthGman@protonmail.com";
-      type = types.str;
-    };
   };
 
   config = {
@@ -36,8 +26,8 @@ in
       };
       git = {
         enable = true;
-        userName = config.custom.git-username;
-        userEmail = config.custom.git-email;
+        userName = mkDefault "";
+        userEmail = mkDefault "";
       };
     };
 
