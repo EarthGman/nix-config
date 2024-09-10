@@ -28,8 +28,8 @@ in
 
   xdg.portal = {
     enable = true;
-    configPackages = [ pkgs.xdg-desktop-portal-gtk ];
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    configPackages = [ pkgs.xdg-desktop-portal ];
+    extraPortals = [ pkgs.xdg-desktop-portal ];
   };
 
   # forces qt dark theme since qt apps dont work well with stylix

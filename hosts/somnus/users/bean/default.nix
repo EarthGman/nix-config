@@ -3,6 +3,7 @@ let
   username = "bean";
 in
 {
+  sops.secrets.${username}.neededForUsers = true;
   users.users.${username} = {
     initialPassword = lib.mkDefault "";
     hashedPasswordFile = lib.mkIf (config.sops.secrets ? "${username}") config.sops.secrets.${username}.path;
