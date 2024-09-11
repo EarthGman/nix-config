@@ -8,7 +8,7 @@ let
 in
 {
   "${mod}+Return" = "exec ${config.xsession.windowManager.i3.config.terminal}";
-  "${mod}+Shift+q" = "kill";
+  "${mod}+q" = "kill";
   # "${mod}+d" = "exec --no-startup-id dmenu_run";
   "${mod}+space" = "exec ${getExe pkgs.rofi} -show";
 

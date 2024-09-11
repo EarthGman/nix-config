@@ -1,4 +1,7 @@
 { pkgs, ... }:
 {
-  programs.rofi.package = pkgs.rofi-wayland;
+  custom = {
+    mako.enable = true;
+    hyprpaper.enable = true;
+  };
 }

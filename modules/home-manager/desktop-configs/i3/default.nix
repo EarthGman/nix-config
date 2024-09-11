@@ -31,8 +31,8 @@ in
     enable = true;
     config = {
       bars = mkForce [ ];
-      modifier = mkDefault "Mod4";
-      floating.modifier = mkDefault "Mod4";
+      modifier = mkDefault "Mod1";
+      floating.modifier = mkDefault "Mod1";
       terminal = config.custom.terminal;
       workspaceAutoBackAndForth = true;
       keybindings = import ./keybinds.nix { inherit pkgs config getExe; };
