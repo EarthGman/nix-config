@@ -3,6 +3,7 @@
   custom = {
     mako.enable = true;
     hyprpaper.enable = true;
+    waybar.enable = true;
   };
 
   wayland.windowManager.hyprland = {

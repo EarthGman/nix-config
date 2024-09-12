@@ -1,6 +1,7 @@
 { pkgs, lib, config, mainMod, ... }:
 let
-  terminal = lib.getExe pkgs.${config.custom.terminal};
+  inherit (lib) getExe;
+  terminal = getExe pkgs.${config.custom.terminal};
   fileManager = "nautilus";
   menu = "${lib.getExe config.programs.rofi.package}";
 in
@@ -15,6 +16,7 @@ in
   "${mainMod}, P, pseudo"
   "${mainMod}, J, togglesplit"
   "${mainMod}, F, fullscreen"
+  "${mainMod}, R, exec, hyprctl reload"
 
   "${mainMod}, left, movefocus, l"
   "${mainMod}, right, movefocus, r"
@@ -52,4 +54,7 @@ in
   "${mainMod} SHIFT, S, movetoworkspace, special:magic"
   "${mainMod}, mouse_down, workspace, e+1"
   "${mainMod}, mouse_up, workspace, e-1"
+
+  ", Print, exec, ${getExe pkgs.grim} -g \"$(${getExe pkgs.slurp})\" - | ${pkgs.wl-clipboard}/bin/wl-copy && ${pkgs.wl-clipboard}/bin/wl-paste > ${config.home.homeDirectory}/Pictures/Screenshots/Screenshot-$(date +%F_%T).png"
+  "SHIFT, Print, exec, ${getExe pkgs.grim} - | ${pkgs.wl-clipboard}/bin/wl-copy && ${pkgs.wl-clipboard}/bin/wl-paste > ${config.home.homeDirectory}/Pictures/Screenshots/Screenshot-$(date +%F_%T).png"
 ]

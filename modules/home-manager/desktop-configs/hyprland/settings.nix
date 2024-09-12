@@ -4,6 +4,10 @@ let
   inherit (lib) mkDefault;
   inherit (builtins) toString;
   mainMod = "Alt";
+  waybar = pkgs.writeScript "waybar.sh" ''
+    ${lib.getExe pkgs.killall} .waybar-wrapped
+    ${lib.getExe pkgs.waybar}
+  '';
 in
 {
   # env
@@ -22,11 +26,15 @@ in
     "systemctl --user start hyprpaper.service"
   ];
 
+  exec = [
+    "${waybar}"
+  ];
+
   #keybinds
   bind = import ./keybinds.nix { inherit pkgs lib config mainMod; };
   bindm = [
-    "${mainMod}, mouse:272, movewindow"
-    "${mainMod}, mouse:273, resizewindow"
+    "SUPER, mouse:272, movewindow"
+    "SUPER, mouse:273, resizewindow"
   ];
 
   # other settings
