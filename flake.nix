@@ -75,6 +75,8 @@
 
         somnus = mkHost { hostName = "somnus"; cpu = "amd"; gpu = "amd"; users = "bean"; desktop = "gnome"; displayManager = "sddm"; };
 
+        petrichor = mkHost { hostName = "petrichor"; cpu = "amd"; gpu = "amd"; users = "iron"; desktop = "gnome"; displayManager = "sddm"; };
+
         server-mc112 = mkHost { hostName = "server-mc112"; vm = "yes"; };
         server-mc-blueprints = mkHost { hostName = "server-mc-blueprints"; vm = "yes"; };
         server-mc121 = mkHost { hostName = "server-mc121"; vm = "yes"; };
