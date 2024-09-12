@@ -4,7 +4,7 @@
   config = lib.mkIf config.custom.waybar.enable {
     programs.waybar = {
       enable = true;
-      # settings = import ./settings.nix;
+      settings = import ./settings.nix;
     };
   };
 }
