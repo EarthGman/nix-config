@@ -97,7 +97,7 @@ in
   input = {
     kb_layout = "us";
     follow_mouse = 1;
-    left_handed = true;
+    left_handed = mkDefault false;
     sensitivity = 0;
 
     touchpad = {

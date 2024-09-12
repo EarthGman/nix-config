@@ -65,4 +65,5 @@ in
       notification = false;
     }
   ];
+  wayland.windowManager.hyprland.settings.input.left_handed = true;
 }
