@@ -1,14 +1,6 @@
 # Vanilla MC 1.12.2
 { pkgs, ... }:
 {
-
-  services.zerotierone = {
-    enable = true;
-    joinNetworks = [
-      "d5e5fb653723b80e"
-    ];
-  };
-
   networking.firewall.allowedTCPPorts = [ 25565 ];
   services.minecraft-server = {
     enable = true;
