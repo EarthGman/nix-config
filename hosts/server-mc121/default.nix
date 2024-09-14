@@ -1,7 +1,6 @@
 { pkgs, binaries, ... }:
 {
   networking.firewall.allowedTCPPorts = [ 25567 ];
-
   services.minecraft-server = {
     enable = true;
     package = pkgs.minecraftServers.vanilla-1-21.overrideAttrs (old: {
