@@ -11,6 +11,17 @@
     "sd_mod"
     "rtsx_pci_sdmmc"
   ];
+
+  boot.kernelParams = [
+    "intel_iommu=on"
+  ];
+
+  boot.kernelModules = [
+    "vfio_pci"
+    "vfio"
+    "vfio_iommu_type1"
+  ];
+
   services.displayManager.sddm.themeConfig = {
     Background = builtins.fetchurl wallpapers.fiery-dragon;
     FullBlur = "false";

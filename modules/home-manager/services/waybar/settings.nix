@@ -14,8 +14,8 @@
     ];
     modules-center = [ ];
     modules-right = [
-      "battery"
       "tray"
+      "battery"
       "cpu"
       "memory"
       "disk"
