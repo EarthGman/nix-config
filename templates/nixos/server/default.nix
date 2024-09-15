@@ -32,7 +32,7 @@ in
     password = null;
     isNormalUser = true;
     shell = pkgs.zsh;
-    openssh.authorizedKeys.keys = ssh-key;
+    openssh.authorizedKeys.keys = [ ssh-key ];
     extraGroups = [
       "wheel"
     ];
