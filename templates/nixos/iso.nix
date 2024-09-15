@@ -3,7 +3,7 @@
   environment.systemPackages = with pkgs; [
     disko
   ];
-  users.users."root" = {
+  users.users.nixos = {
     # for SSH
     initialHashedPassword = lib.mkForce "$y$j9T$d2RB4sobsNvCRKTiZL04K1$oHhfOT2x9Ie4.eDXb9x8SN2EeuNqXSyNBcddA/xWlD3";
   };
