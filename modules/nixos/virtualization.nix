@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ cpu, pkgs, lib, config, ... }:
 {
   options.custom.virtualization.enable = lib.mkEnableOption "enable virtual machines";
   config = lib.mkIf config.custom.virtualization.enable {
@@ -17,6 +17,7 @@
       };
     };
     programs.virt-manager.enable = true;
+    boot.kernelModules = [ "kvm-${cpu}" ];
     environment.systemPackages = with pkgs; [
       qemu_kvm # virtual machines
       virtiofsd # file system sharing with VMs

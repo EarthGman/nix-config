@@ -1,6 +1,3 @@
-{ pkgs, ... }:
 {
-  environment.systemPackages = [
-    pkgs.steamPackages.steamcmd
-  ];
+  custom.docker.enable = true;
 }

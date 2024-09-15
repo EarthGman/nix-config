@@ -27,6 +27,7 @@ in
 
   services.openssh.settings.PasswordAuthentication = false;
 
+  # admin
   users.users.g = {
     hashedPassword = "$y$j9T$za3lM.azPMASkrasWaw1M/$mkRlFSsS1gZUb2rBEtGRMGK9v.9MRFMdokJh292H2LA";
     password = null;

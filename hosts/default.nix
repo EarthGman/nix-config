@@ -1,9 +1,9 @@
-{ inputs, outputs, config, lib, myLib, pkgs, hostName, users, cpu, vm, platform, stateVersion, ... }:
+{ inputs, outputs, config, lib, myLib, pkgs, hostName, cpu, vm, platform, stateVersion, ... }:
 let
   inherit (lib) mkIf mkDefault mkForce getExe;
   nixosModules = myLib.autoImport ../modules/nixos;
 
-  hasUser = (users != "");
+  hasUser = (builtins.pathExists ./${hostName}/users);
   nixosUsers =
     if hasUser
     then
@@ -34,7 +34,6 @@ in
   };
 
   boot = {
-    kernelModules = mkIf config.custom.virtualization.enable [ "kvm-${cpu}" ];
     kernelPackages = mkDefault pkgs.linuxPackages_latest;
   };
 

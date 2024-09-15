@@ -4,7 +4,7 @@
     { hostName
     , cpu ? null
     , gpu ? null
-    , users ? ""
+    , users ? "" # string of custom defined users sperated by a comma. First element is the power user.
     , desktop ? null
     , vm ? "no"
     , displayManager ? null
