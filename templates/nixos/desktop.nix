@@ -53,7 +53,6 @@ in
       syntaxHighlighting = enabled;
       autosuggestions.enable = mkDefault true;
     };
-    starship = enabled;
     direnv = {
       enable = true;
       nix-direnv.enable = true;

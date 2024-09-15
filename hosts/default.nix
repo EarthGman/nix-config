@@ -93,10 +93,13 @@ in
       nrb = "nixos-rebuild build";
       ncg = "${getExe pkgs.nh} clean all";
     };
+
     #TODO export EDITOR=neovim once learned
     promptInit = ''
       eval "$(${getExe pkgs.zoxide} init --cmd j zsh)"
       export EDITOR=nano
     '';
   };
+  # enable starship for everyone
+  programs.starship.enable = true;
 }
