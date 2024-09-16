@@ -18,6 +18,7 @@ in
     extraSpecialArgs = {
       inherit self inputs outputs wallpapers icons hostName desktop myLib;
     };
+    backupFileExtension = "bak";
   };
 
   services.xserver = {
