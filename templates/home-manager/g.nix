@@ -27,6 +27,7 @@ in
     bottles = enabled;
     clipgrab = enabled;
     firefox = enabled;
+    freetube = enabled;
     gnome-calculator = enabled;
     gnome-system-monitor = enabled;
     gthumb = enabled;
