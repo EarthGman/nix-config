@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 {
-  options.custom.lutris.enable = lib.mkEnableOption "enable lutris";
-  config = lib.mkIf config.custom.lutris.enable {
+  options.programs.lutris.enable = lib.mkEnableOption "enable lutris";
+  config = lib.mkIf config.programs.lutris.enable {
     home.packages = with pkgs; [
       lutris
     ];

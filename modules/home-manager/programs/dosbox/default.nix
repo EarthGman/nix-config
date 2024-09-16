@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 {
-  options.custom.dosbox.enable = lib.mkEnableOption "enable dosbox";
-  config = lib.mkIf config.custom.dosbox.enable {
+  options.programs.dosbox.enable = lib.mkEnableOption "enable dosbox";
+  config = lib.mkIf config.programs.dosbox.enable {
     home.packages = with pkgs; [
       dosbox-staging
     ];

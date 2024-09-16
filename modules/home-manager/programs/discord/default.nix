@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 {
-  options.custom.discord.enable = lib.mkEnableOption "enable discord";
-  config = lib.mkIf config.custom.discord.enable {
+  options.programs.discord.enable = lib.mkEnableOption "enable discord";
+  config = lib.mkIf config.programs.discord.enable {
     home.packages = with pkgs; [
       vesktop
     ];

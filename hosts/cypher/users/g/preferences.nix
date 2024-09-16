@@ -11,7 +11,7 @@ in
   stylix.image = builtins.fetchurl wallpapers.kaori;
   stylix.colorScheme = "april";
 
-  custom = {
+  programs = {
     firefox.theme.name = "shyfox";
     firefox.theme.config.wallpaper = builtins.fetchurl wallpapers.april-night;
 

@@ -9,7 +9,7 @@ in
 
   stylix.image = builtins.fetchurl wallpapers.scarlet-tree-dark;
 
-  custom = {
+  programs = {
     yazi.enable = true;
   };
 }

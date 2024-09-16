@@ -24,7 +24,7 @@ in
   };
 
   #modules
-  custom = {
+  programs = {
     firefox.theme.name = "";
     firefox.theme.config.wallpaper = builtins.fetchurl wallpapers.fiery-dragon;
   };

@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 let
   inherit (lib) mkOption types mkIf;
-  cfg = config.custom.looking-glass;
+  cfg = config.programs.looking-glass;
   looking-glass-client =
     if (cfg.version != "B7-rc1") then
       (pkgs.looking-glass-client.overrideAttrs rec {
@@ -19,7 +19,7 @@ let
       pkgs.looking-glass-client;
 in
 {
-  options.custom.looking-glass = {
+  options.programs.looking-glass = {
     enable = lib.mkEnableOption "enable looking-glass-client";
     version = mkOption {
       description = "set version of looking glass";

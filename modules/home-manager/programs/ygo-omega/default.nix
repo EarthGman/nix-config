@@ -3,12 +3,12 @@
 let
   inherit (lib) mkEnableOption mkOption types mkIf;
   inherit (builtins) toPath;
-  cfg = config.custom.ygo-omega;
+  cfg = config.programs.ygo-omega;
   home = config.home.homeDirectory;
   launch = "${pkgs.steam-run}/bin/steam-run ${cfg.gameFileDir}/OmegaUpdater";
 in
 {
-  options.custom.ygo-omega = {
+  options.programs.ygo-omega = {
     enable = mkEnableOption "enable ygo-omega desktop";
     gameFileDir = mkOption {
       description = "path to the ygo omega game files";

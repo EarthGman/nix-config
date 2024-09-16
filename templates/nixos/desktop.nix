@@ -67,5 +67,5 @@ in
   # environment.etc."nixos".source = /home/${username}/src/nix-config;
 
   # if you have dolphin emu installed GC controllers will not have correct permissions unless set
-  # services.udev.packages = mkIf config.home-manager.users.${username}.custom.dolphin-emu.enable [ pkgs.dolphinEmu ];
+  # services.udev.packages = mkIf config.home-manager.users.${username}.custom.programs.enable [ pkgs.dolphinEmu ];
 }

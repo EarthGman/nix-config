@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 {
-  options.custom.nautilus.enable = lib.mkEnableOption "enable nautilus";
-  config = lib.mkIf config.custom.nautilus.enable {
+  options.programs.nautilus.enable = lib.mkEnableOption "enable nautilus";
+  config = lib.mkIf config.programs.nautilus.enable {
     home.packages = with pkgs; [
       nautilus
     ];

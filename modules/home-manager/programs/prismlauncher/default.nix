@@ -3,8 +3,8 @@ let
   inherit (lib) getExe;
 in
 {
-  options.custom.prismlauncher.enable = lib.mkEnableOption "enable prismlauncher";
-  config = lib.mkIf config.custom.prismlauncher.enable {
+  options.programs.prismlauncher.enable = lib.mkEnableOption "enable prismlauncher";
+  config = lib.mkIf config.programs.prismlauncher.enable {
     home.packages = with pkgs; [
       prismlauncher
     ];

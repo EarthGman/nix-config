@@ -6,6 +6,7 @@ in
   sops.secrets.${username}.neededForUsers = true;
   users.users.${username} = {
     initialPassword = lib.mkDefault "";
+    password = null;
     hashedPasswordFile = lib.mkIf (config.sops.secrets ? "${username}") config.sops.secrets.${username}.path;
     isNormalUser = true;
     description = username;

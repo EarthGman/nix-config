@@ -1,9 +1,16 @@
 { pkgs, lib, config, ... }:
+let
+  enabled = { enable = lib.mkDefault true; };
+in
 {
-  custom = {
-    mako.enable = true;
-    hyprpaper.enable = true;
-    waybar.enable = true;
+  services = {
+    mako = enabled;
+    hyprpaper = enabled;
+    network-manager-applet = enabled;
+  };
+
+  programs = {
+    waybar = enabled;
   };
 
   wayland.windowManager.hyprland = {

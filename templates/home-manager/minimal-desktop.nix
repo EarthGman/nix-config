@@ -4,8 +4,9 @@ let
   enabled = { enable = lib.mkDefault true; };
 in
 {
-  custom = {
-    terminal = lib.mkDefault "kitty";
+  custom.terminal = lib.mkDefault "kitty";
+
+  programs = {
     # less bloated than firefox
     brave = enabled;
     fastfetch = enabled;

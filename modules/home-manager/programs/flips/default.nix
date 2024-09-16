@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 {
-  options.custom.flips.enable = lib.mkEnableOption "enable flips";
-  config = lib.mkIf config.custom.flips.enable {
+  options.programs.flips.enable = lib.mkEnableOption "enable flips";
+  config = lib.mkIf config.programs.flips.enable {
     home.packages = with pkgs; [
       flips
     ];

@@ -1,7 +1,7 @@
 { icons, pkgs, config, lib, ... }:
 {
-  options.custom.davinci-resolve.enable = lib.mkEnableOption "enable davinci-resolve";
-  config = lib.mkIf config.custom.davinci-resolve.enable {
+  options.programs.davinci-resolve.enable = lib.mkEnableOption "enable davinci-resolve";
+  config = lib.mkIf config.programs.davinci-resolve.enable {
     home.packages = with pkgs; [
       davinci-resolve
     ];

@@ -9,7 +9,8 @@ in
 
   stylix.image = builtins.fetchurl wallpapers.fiery-dragon;
   stylix.colorScheme = "inferno";
-  custom = {
+
+  programs = {
     firefox.theme.name = "shyfox";
     firefox.theme.config.wallpaper = builtins.fetchurl wallpapers.fire-and-flames;
 

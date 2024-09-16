@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 {
-  options.custom.wireshark.enable = lib.mkEnableOption "wireshark";
-  config = lib.mkIf config.custom.wireshark.enable {
+  options.programs.wireshark.enable = lib.mkEnableOption "wireshark";
+  config = lib.mkIf config.programs.wireshark.enable {
     home.packages = with pkgs; [
       wireshark
     ];

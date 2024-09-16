@@ -36,7 +36,7 @@ in
       config.allowUnfree = true;
     };
 
-    custom = {
+    programs = {
       zsh.enable = mkDefault true;
       kitty.enable = mkDefault (config.custom.terminal == "kitty");
       vscode.enable = mkDefault (config.custom.preferredEditor == "codium");

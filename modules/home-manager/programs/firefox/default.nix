@@ -3,7 +3,7 @@
 let
   inherit (lib) types mkIf mkDefault mkOption mkEnableOption;
   profile = ".mozilla/firefox/default";
-  cfg = config.custom.firefox;
+  cfg = config.programs.firefox;
   betterfox = pkgs.fetchFromGitHub {
     owner = "yokoffing";
     repo = "Betterfox";
@@ -13,8 +13,7 @@ let
   user_js = "${betterfox}/user.js";
 in
 {
-  options.custom.firefox = {
-    enable = mkEnableOption "firefox config";
+  options.programs.firefox = {
     theme = {
       name = mkOption {
         description = "name of theme";
@@ -42,7 +41,6 @@ in
     in
     mkIf cfg.enable {
       programs.firefox = {
-        enable = true;
         profiles = {
           "default" = {
             id = 0;

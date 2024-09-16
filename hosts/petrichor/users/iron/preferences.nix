@@ -3,13 +3,12 @@ let
   inherit (builtins) fetchurl;
 in
 {
-
   stylix.image = fetchurl wallpapers.survivors;
   stylix.colorScheme = "vibrant-cool";
 
-  custom = {
-    #firefox
-    preferredEditor = "codium";
+  custom.preferredEditor = "codium";
+
+  programs = {
     firefox.enable = true;
     firefox.theme.name = "shyfox";
     firefox.theme.config.wallpaper = fetchurl wallpapers.get-mooned;
@@ -23,7 +22,7 @@ in
 
     museeks.enable = true;
     clipgrab.enable = true;
-    obs.enable = true;
+    obs-studio.enable = true;
     openshot.enable = true;
 
     audacity.enable = true;

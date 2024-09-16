@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 {
-  options.custom.remmina.enable = lib.mkEnableOption "enable remmina";
-  config = lib.mkIf config.custom.remmina.enable {
+  options.programs.remmina.enable = lib.mkEnableOption "enable remmina";
+  config = lib.mkIf config.programs.remmina.enable {
     home.packages = with pkgs; [
       remmina
     ];

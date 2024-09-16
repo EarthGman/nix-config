@@ -18,12 +18,15 @@ let
   '';
 in
 {
-  custom = {
+  programs = {
     pwvucontrol = enabled;
-    polybar = enabled;
     rofi = enabled;
+  };
+
+  services = {
+    network-manager-applet = enabled;
     dunst = enabled;
-    nm-applet = enabled;
+    polybar = enabled;
   };
 
   xsession.enable = true;

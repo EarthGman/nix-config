@@ -19,6 +19,6 @@ in
       9443
     ];
     # adds the first user in usernames (power user) to the docker group
-    users.users.${power-user}.extraGroups = [ " docker" ];
+    users.users.${power-user}.extraGroups = [ "docker" ];
   };
 }

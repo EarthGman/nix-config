@@ -5,12 +5,25 @@ let
   LHmouse = self + /modules/home-manager/desktop-configs/i3/.xmodmap;
 in
 {
-  programs.git = {
-    userName = "EarthGman";
-    userEmail = "EarthGman@protonmail.com";
-  };
   custom = {
-    preferredEditor = lib.mkDefault "codium";
+    preferredEditor = "codium";
+  };
+
+  programs = {
+    git = {
+      userName = "EarthGman";
+      userEmail = "EarthGman@protonmail.com";
+      signing = {
+        key = signingkey;
+        signByDefault = true;
+        gpgPath = "";
+      };
+      extraConfig = {
+        gpg.format = "ssh";
+        gpg."ssh".program = "${pkgs._1password-gui}/bin/op-ssh-sign";
+      };
+    };
+
     bottles = enabled;
     clipgrab = enabled;
     firefox = enabled;
@@ -45,18 +58,6 @@ in
   #   forwardAgent = true;
   #   extraConfig = "${config.home.homeDirectory}/.1password/agent.sock";
   # };
-
-  programs.git = {
-    signing = {
-      key = signingkey;
-      signByDefault = true;
-      gpgPath = "";
-    };
-    extraConfig = {
-      gpg.format = "ssh";
-      gpg."ssh".program = "${pkgs._1password-gui}/bin/op-ssh-sign";
-    };
-  };
 
   xsession.windowManager.i3.config.startup = [
     {

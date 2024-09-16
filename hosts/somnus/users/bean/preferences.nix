@@ -9,7 +9,7 @@ in
   stylix.image = fetchurl wallpapers.the-gang-headspace;
   stylix.colorScheme = "headspace";
 
-  custom = {
+  programs = {
     firefox.theme.name = "shyfox";
     firefox.theme.config.wallpaper = fetchurl wallpapers.headspace-dark;
 

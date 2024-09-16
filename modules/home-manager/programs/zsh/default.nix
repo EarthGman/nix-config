@@ -1,12 +1,11 @@
 { pkgs, config, lib, hostName, ... }:
 let
-  inherit (lib) getExe mkEnableOption mkIf;
+  inherit (lib) getExe mkIf;
+  cfg = config.programs.zsh;
 in
 {
-  options.custom.zsh.enable = mkEnableOption "enable extra config for zsh";
   config = {
-    programs.zsh = mkIf config.custom.zsh.enable {
-      enable = true;
+    programs.zsh = mkIf cfg.enable {
       shellAliases = {
         l = "${getExe pkgs.eza} -al --icons";
         ls = "${getExe pkgs.eza} --icons";
@@ -19,7 +18,7 @@ in
       '';
     };
     # auto create a .zshrc file with just a comment if no home configuration is specified
-    home.file.".zshrc".text = mkIf (!(config.custom.zsh.enable)) "#";
+    home.file.".zshrc".text = mkIf (!(cfg.enable)) "#";
   };
 }
     

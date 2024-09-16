@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 {
-  options.custom.musescore.enable = lib.mkEnableOption "enable musescore";
-  config = lib.mkIf config.custom.musescore.enable {
+  options.programs.musescore.enable = lib.mkEnableOption "enable musescore";
+  config = lib.mkIf config.programs.musescore.enable {
     home.packages = with pkgs; [
       musescore
     ];

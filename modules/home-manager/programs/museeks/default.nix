@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 {
-  options.custom.museeks.enable = lib.mkEnableOption "enable museeks";
-  config = lib.mkIf config.custom.museeks.enable {
+  options.programs.museeks.enable = lib.mkEnableOption "enable museeks";
+  config = lib.mkIf config.programs.museeks.enable {
     home.packages = with pkgs; [
       museeks
     ];
