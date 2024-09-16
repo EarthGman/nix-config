@@ -3,6 +3,8 @@ let
   inherit (lib) getExe;
   terminal = getExe pkgs.${config.custom.terminal};
   fileManager = "nautilus";
+  pamixer = getExe pkgs.pamixer;
+  brightnessctl = getExe pkgs.brightnessctl;
   menu = "${lib.getExe config.programs.rofi.package}";
 in
 [
@@ -57,4 +59,12 @@ in
 
   ", Print, exec, ${getExe pkgs.grim} -g \"$(${getExe pkgs.slurp})\" - | ${pkgs.wl-clipboard}/bin/wl-copy && ${pkgs.wl-clipboard}/bin/wl-paste > ${config.home.homeDirectory}/Pictures/Screenshots/Screenshot-$(date +%F_%T).png"
   "SHIFT, Print, exec, ${getExe pkgs.grim} - | ${pkgs.wl-clipboard}/bin/wl-copy && ${pkgs.wl-clipboard}/bin/wl-paste > ${config.home.homeDirectory}/Pictures/Screenshots/Screenshot-$(date +%F_%T).png"
+
+  ",XF86AudioRaiseVolume, exec, ${pamixer} -i 5"
+  ",XF86AudioLowerVolume, exec, ${pamixer} -d 5"
+  ",XF86AudioMute, exec, ${pamixer} -t"
+  ",XF86AudioMicMute, exec, ${pamixer} -t --default-source"
+
+  ",XF86MonBrightnessUp, exec, ${brightnessctl} set +5%"
+  ",XF86MonBrightnessDown, exec, ${brightnessctl} set 5%-"
 ]
