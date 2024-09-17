@@ -1,4 +1,4 @@
-{ self, pkgs, lib, config, ... }:
+{ self, pkgs, lib, ... }:
 let
   enabled = { enable = lib.mkDefault true; };
   signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKNRHd6NLt4Yd9y5Enu54fJ/a2VCrRgbvfMuom3zn5zg";
@@ -24,6 +24,7 @@ in
       };
     };
 
+    ardour = enabled;
     bottles = enabled;
     clipgrab = enabled;
     firefox = enabled;
@@ -52,6 +53,7 @@ in
     pipes = enabled;
     cbonsai = enabled;
     cmatrix = enabled;
+    cava = enabled;
   };
 
   # programs.ssh = {
