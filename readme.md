@@ -12,6 +12,7 @@ Supported desktops:
 - gnome on xorg
 - gnome on wayland
 - i3
+- hyprland
 
 Supported display managers:
 - sddm:
