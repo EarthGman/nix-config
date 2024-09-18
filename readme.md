@@ -8,6 +8,22 @@ Changes from v3:
 - debloat
 - externel repo for assets (wallpapers, binaries, etc)
 
+Some Notes:
+It is possible to enable multiple desktops at once but this is not recommended.
+"gnome"
+"i3"
+"hyprland"
+These can all be enabled by setting desktop = "gnome,i3,hyprland" in flake.nix
+The first desktop in this string will be set as the default session within the display manager.
+
+Multiple users can be enabled on each system, each has its own nixos and home-manager configuration located under 
+hostname/users.
+ex. users = "alice,bob" in flake.nix
+
+The first user in this list is by default considered the power user.
+Some modules will give this user extra permissions or add it to certain groups automatically.
+Ex. modules/nixos/docker.nix 
+
 Supported desktops:
 - gnome on xorg
 - gnome on wayland
@@ -44,7 +60,7 @@ Post Install:
 
 #TODO: in order of priority
 - [ ] ssh keys
-- [ ] hyprland
+- [x] hyprland
 - [ ] remote building
 - [ ] install scripts
 - [ ] drive encryption

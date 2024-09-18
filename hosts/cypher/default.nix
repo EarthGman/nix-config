@@ -61,8 +61,6 @@
     sops.enable = true;
   };
 
-  services.displayManager.defaultSession = "none+i3";
-
   environment.etc = {
     "ssh/ssh_host_ed25519_key.pub".source = ./ssh_host_ed25519_key.pub;
     "ssh/ssh_host_rsa_key.pub".source = ./ssh_host_rsa_key.pub;

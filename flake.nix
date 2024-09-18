@@ -49,7 +49,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, wallpapers, ... }@inputs:
+  outputs = { self, nixpkgs, ... }@inputs:
     let
       inherit (self) outputs;
       stateVersion = "24.05";
@@ -68,8 +68,8 @@
       );
 
       nixosConfigurations = {
-        cypher = mkHost { hostName = "cypher"; cpu = "amd"; gpu = "amd"; users = "g"; desktop = "i3,hyprland"; displayManager = "sddm"; };
-        garth = mkHost { hostName = "garth"; cpu = "intel"; gpu = "intel-igpu"; users = "g"; desktop = "i3,hyprland"; displayManager = "sddm"; };
+        cypher = mkHost { hostName = "cypher"; cpu = "amd"; gpu = "amd"; users = "g"; desktop = "hyprland,i3"; displayManager = "sddm"; };
+        garth = mkHost { hostName = "garth"; cpu = "intel"; gpu = "intel-igpu"; users = "g"; desktop = "hyprland,i3"; displayManager = "sddm"; };
         tater = mkHost { hostName = "tater"; cpu = "intel"; gpu = "intel-igpu"; users = "g"; desktop = "i3"; displayManager = "sddm"; };
         nixos = mkHost { hostName = "nixos"; vm = "yes"; users = "test,test2"; desktop = "i3"; displayManager = "sddm"; };
 

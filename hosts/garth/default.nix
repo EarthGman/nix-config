@@ -33,7 +33,6 @@
     virtualization.enable = true;
     sops.enable = true;
   };
-  services.displayManager.defaultSession = "none+i3";
   services.nordvpn.enable = true;
   services.zerotierone = {
     enable = true;

@@ -1,7 +1,17 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, myLib, config, desktop, ... }:
 let
   cfg = config.services.displayManager.sddm;
   inherit (lib) types mkOption mkIf;
+  desktops = myLib.splitToList desktop;
+  preferredDesktop = builtins.elemAt desktops 0;
+
+  # handle some weird edge cases with session names
+  defaultSession =
+    if (preferredDesktop == "i3")
+    then
+      "none+i3"
+    else
+      preferredDesktop;
 in
 {
   options = {
@@ -24,18 +34,21 @@ in
       };
     in
     mkIf config.custom.sddm.enable {
-      services.displayManager.sddm = {
-        enable = true;
-        package = pkgs.kdePackages.sddm;
-        wayland.enable = true;
-        # so sddm can use the dependencies in build inputs
-        extraPackages = [ themePackage ];
-        # specificies the theme folder in path /run/current-system/sw/share/sddm/themes
-        theme = "${cfg.themeName}";
+      services.displayManager = {
+        inherit defaultSession;
+        sddm = {
+          enable = true;
+          package = pkgs.kdePackages.sddm;
+          wayland.enable = true;
+          # so sddm can use the dependencies in build inputs
+          extraPackages = [ themePackage ];
+          # specificies the theme folder in path /run/current-system/sw/share/sddm/themes
+          theme = "${cfg.themeName}";
+        };
+        # actually places the theme in the /run/current-system
+        environment.systemPackages = [
+          themePackage
+        ];
       };
-      # actually places the theme in the /run/current-system
-      environment.systemPackages = [
-        themePackage
-      ];
     };
 }
