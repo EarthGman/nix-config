@@ -45,10 +45,10 @@ in
           # specificies the theme folder in path /run/current-system/sw/share/sddm/themes
           theme = "${cfg.themeName}";
         };
-        # actually places the theme in the /run/current-system
-        environment.systemPackages = [
-          themePackage
-        ];
       };
+      # actually places the theme in the /run/current-system
+      environment.systemPackages = [
+        themePackage
+      ];
     };
 }
