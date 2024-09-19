@@ -1,4 +1,4 @@
-{ self, lib, myLib, wallpapers, desktop, ... }:
+{ self, lib, myLib, wallpapers, icons, desktop, ... }:
 let
   desktops = myLib.splitToList desktop;
   template = self + /templates/home-manager/g.nix;
@@ -12,6 +12,7 @@ in
   stylix.colorScheme = "april";
 
   programs = {
+    fastfetch.image = builtins.fetchurl icons.kaori;
     firefox.theme.name = "shyfox";
     firefox.theme.config.wallpaper = builtins.fetchurl wallpapers.april-night;
 

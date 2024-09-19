@@ -1,6 +1,9 @@
+{ config, ... }:
 {
   logo = {
-    source = "nixos";
+    source = config.programs.fastfetch.image;
+    height = 20;
+    width = 48;
   };
   display = {
     separator = " - ";

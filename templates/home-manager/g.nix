@@ -45,6 +45,7 @@ in
     prismlauncher = enabled;
     pwvucontrol = enabled;
     thunderbird = enabled;
+    switcheroo = enabled;
     discord = enabled;
     xclicker = enabled;
     yazi = enabled;
