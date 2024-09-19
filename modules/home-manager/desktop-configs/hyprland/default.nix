@@ -11,6 +11,7 @@ in
 
   programs = {
     waybar = enabled;
+    hyprlock = enabled;
   };
 
   wayland.windowManager.hyprland = {
