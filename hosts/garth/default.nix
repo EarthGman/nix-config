@@ -1,4 +1,4 @@
-{ wallpapers, ... }:
+{ pkgs, wallpapers, ... }:
 {
   imports = [
     ./fs.nix
@@ -33,6 +33,12 @@
     virtualization.enable = true;
     sops.enable = true;
   };
+
+  programs.wireshark = {
+    enable = true;
+    package = pkgs.wireshark;
+  };
+
   services.nordvpn.enable = true;
   services.zerotierone = {
     enable = true;

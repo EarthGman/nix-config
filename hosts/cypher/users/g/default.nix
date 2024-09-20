@@ -15,6 +15,7 @@ in
       "wheel"
       "libvirtd"
       "qemu-libvirtd"
+      "wireshark"
     ];
   };
 }
