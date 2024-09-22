@@ -65,7 +65,7 @@ in
       warning = 30;
       critical = 10;
     };
-    format = " { icon } {capacity}%";
+    format = "{icon} {capacity}%";
     format-charging = " {capacity}%";
     format-plugged = " {capacity}%";
     format-alt = "{time} {icon}";
