@@ -3,7 +3,7 @@
 let
   inherit (lib) mkDefault;
   inherit (builtins) toString;
-  mainMod = "Alt";
+  mainMod = config.wayland.windowManager.hyprland.mainMod;
   waybar = pkgs.writeScript "waybar.sh" ''
     ${lib.getExe pkgs.killall} .waybar-wrapped
     ${lib.getExe pkgs.waybar}

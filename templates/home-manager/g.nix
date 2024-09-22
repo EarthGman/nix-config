@@ -24,6 +24,7 @@ in
       };
     };
 
+    audacity = enabled;
     ardour = enabled;
     bottles = enabled;
     clipgrab = enabled;
