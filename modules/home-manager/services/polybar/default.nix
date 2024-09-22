@@ -1,12 +1,12 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 let
   inherit (lib) mkDefault getExe;
 in
 {
   # make sure meslo font is installed
-  home.packages = with pkgs; [
+  home.packages = lib.mkIf config.services.polybar.enable (with pkgs; [
     (nerdfonts.override { fonts = [ "Meslo" ]; })
-  ];
+  ]);
 
   services.polybar = {
     # the systemd unit cannot find user level packages such as: brightnessctl, pamixer, etc

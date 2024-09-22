@@ -109,7 +109,7 @@
       current_volume=$(${getExe pkgs.pamixer} --get-volume-human | sed 's/%//')
 
       if [ $current_volume == "muted" ]; then
-        echo " $current_volume"
+        echo "  $current_volume"
 
       elif [ $current_volume -lt 25 ]; then
         echo " $current_volume$percent"

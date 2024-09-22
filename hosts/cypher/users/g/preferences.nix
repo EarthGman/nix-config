@@ -1,6 +1,5 @@
-{ self, lib, myLib, wallpapers, icons, desktop, ... }:
+{ self, wallpapers, icons, ... }:
 let
-  desktops = myLib.splitToList desktop;
   template = self + /templates/home-manager/g.nix;
 in
 {
@@ -26,7 +25,7 @@ in
     ygo-omega.enable = true;
   };
 
-  wayland.windowManager.hyprland.settings.monitor = lib.mkIf (builtins.elem "hyprland" desktops) [
+  wayland.windowManager.hyprland.settings.monitor = [
     "DP-3, 2560x1440, 0x0, 1"
     "HDMI-A-1, 1920x1080@74.97, -1920x0, 1"
   ];
