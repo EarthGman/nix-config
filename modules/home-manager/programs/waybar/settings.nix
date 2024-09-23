@@ -12,7 +12,6 @@ in
   gtk-layer-shell = true;
   passthrough = false;
   modules-left = [
-    "battery"
     "network"
     "cpu"
     "memory"
@@ -24,10 +23,11 @@ in
     "hyprland/workspaces"
   ];
   modules-right = [
+    "battery"
     "tray"
     "custom/microphone"
     "pulseaudio"
-    "pulseaudio/slider"
+    # "pulseaudio/slider"
     "clock"
     "custom/lockscreen"
     "custom/reboot"
@@ -85,9 +85,9 @@ in
   };
 
   "network" = {
-    format-wifi = " {icon} {essid} 󰛀 {bandwidthDownBytes} 󰛃 {bandwidthUpBytes} |";
-    format-ethernet = " 󰈁 {ifname} 󰛀 {bandwidthDownBytes} 󰛃 {bandwidthUpBytes} |";
-    format-disconnected = "󰤭  Disconnected |";
+    format-wifi = " {icon} {essid} 󰛀 {bandwidthDownBytes} 󰛃 {bandwidthUpBytes} ";
+    format-ethernet = " 󰈁 {ifname} 󰛀 {bandwidthDownBytes} 󰛃 {bandwidthUpBytes} ";
+    format-disconnected = "󰤭  Disconnected ";
     format-icons = [
       "󰤯 "
       "󰤟 "
@@ -129,7 +129,7 @@ in
   };
 
   "clock" = {
-    format = "{:%R} |";
+    format = " {:%R  %m.%d.%Y}";
     tooltip-format = "<tt><small>{calendar}</small></tt>";
     calendar = {
       mode = "year";
@@ -157,7 +157,7 @@ in
     exec = ''
       current_volume=$(${getExe pkgs.pamixer} --default-source --get-volume-human)
       if [ $current_volume == "muted" ] || [ $current_volume == "0%" ]; then
-        echo " $current_volume"
+        echo "  $current_volume"
       else
         echo " $current_volume"
       fi
@@ -169,6 +169,7 @@ in
     on-click-right = "${getExe pkgs.pwvucontrol}";
     on-scroll-up = "${getExe pkgs.pamixer} -i 1 --default-source";
     on-scroll-down = "${getExe pkgs.pamixer} -d 1 --default-source";
+    tooltip = false;
   };
 
   "pulseaudio/slider" = {
@@ -179,9 +180,9 @@ in
 
   "pulseaudio" = {
     max-volume = 100;
-    scroll-step = 5;
+    scroll-step = 1;
     format = "{icon} {volume}%";
-    format-muted = " ";
+    format-muted = "  muted";
     format-icons = {
       default = [
         " "
@@ -193,31 +194,13 @@ in
     on-click-right = "${getExe pkgs.pwvucontrol}";
   };
 
-  "custom/shutdown" = {
-    format = "   ";
-    tooltip = false;
-    on-click = "shutdown now";
-  };
-
-  "custom/lockscreen" = {
-    format = "  ";
-    tooltip = false;
-    on-click = "hyprlock";
-  };
-
-  "custom/reboot" = {
-    format = "  ";
-    tooltip = false;
-    on-click = "systemctl reboot";
-  };
-
 }
   {
     name = "top";
     layer = "bottom";
     position = "top";
     modules-left = [ "wlr/taskbar" ];
-    modules-right = [ ];
+    modules-right = [ "custom/lockscreen" "custom/reboot" "custom/shutdown" ];
 
     "wlr/taskbar" = {
       format = "{icon} {title:.17}";
@@ -227,6 +210,24 @@ in
       on-click = "activate";
       tooltip-format = "{title}";
       ignore-list = [ ];
+    };
+
+    "custom/shutdown" = {
+      format = "   ";
+      tooltip = false;
+      on-click = "shutdown now";
+    };
+
+    "custom/lockscreen" = {
+      format = "  ";
+      tooltip = false;
+      on-click = "hyprlock";
+    };
+
+    "custom/reboot" = {
+      format = "  ";
+      tooltip = false;
+      on-click = "systemctl reboot";
     };
   }]
 
