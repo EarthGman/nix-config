@@ -25,6 +25,7 @@ in
 
   #modules
   programs = {
+    google-chrome.enable = true;
     firefox.theme.name = "";
     firefox.theme.config.wallpaper = builtins.fetchurl wallpapers.fiery-dragon;
   };
