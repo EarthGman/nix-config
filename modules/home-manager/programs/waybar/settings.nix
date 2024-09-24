@@ -165,7 +165,7 @@ in
     '';
     exec-on-event = true;
     interval = 1;
-    format = "{} ";
+    format = "{}";
     on-click = "${getExe pkgs.pamixer} -t --default-source";
     on-click-right = "${getExe pkgs.pwvucontrol}";
     on-scroll-up = "${getExe pkgs.pamixer} -i 1 --default-source";
