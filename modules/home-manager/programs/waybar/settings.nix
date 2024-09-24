@@ -215,7 +215,8 @@ in
 
     "custom/hyprpaper" = {
       format = " 󰸉 ";
-      tooltip-format = "{}";
+      tooltip = true;
+      tooltip-format = "Searching for wallpapers in: ${config.services.hyprpaper.sourceDirectory}";
       on-click = wallpaper-switcher;
     };
 
