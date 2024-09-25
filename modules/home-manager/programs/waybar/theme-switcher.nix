@@ -4,7 +4,7 @@ let
 in
 pkgs.writeScript "theme-switcher.sh" ''
 
-    THEMES=("april" "inferno" "headspace" "vibrant-cool" )
+    THEMES=("april" "inferno" "headspace" "ashes" "vibrant-cool" )
 
     THEME=$(printf "%s\n" "${t}" | rofi -dmenu -i -p "Search" )
   if [ -z "$THEME" ]; then

@@ -3,10 +3,6 @@
   font-size: 12pt;
 }
 
-window#waybar {
-  color: #191919;
-}
-
 #window, #network, #cpu, #memory, #disk, #pulseaudio, #custom-microphone,
 #battery, #clock, #tray {
   background-color: #32003d;
