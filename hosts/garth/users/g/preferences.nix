@@ -1,19 +1,16 @@
-{ self, icons, wallpapers, ... }:
+{ self, icons, ... }:
 let
   template = self + /templates/home-manager/g.nix;
+  theme = self + /modules/home-manager/desktop-configs/themes/inferno.nix;
 in
 {
   imports = [
     template
+    theme
   ];
-
-  stylix.image = builtins.fetchurl wallpapers.fiery-dragon;
-  stylix.colorScheme = "inferno";
 
   programs = {
     fastfetch.image = builtins.fetchurl icons.nixos-clean;
-    firefox.theme.name = "shyfox";
-    firefox.theme.config.wallpaper = builtins.fetchurl wallpapers.fire-and-flames;
 
     openconnect.enable = true;
     lutris.enable = true;

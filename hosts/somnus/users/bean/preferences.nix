@@ -1,18 +1,15 @@
-{ self, wallpapers, ... }:
+{ self, ... }:
 let
   template = self + /templates/home-manager/bean.nix;
-  inherit (builtins) fetchurl;
+  theme = self + /modules/home-manager/desktop-configs/themes/headspace.nix;
 in
 {
-  imports = [ template ];
-
-  stylix.image = fetchurl wallpapers.the-gang-headspace;
-  stylix.colorScheme = "headspace";
+  imports = [
+    theme
+    template
+  ];
 
   programs = {
-    firefox.theme.name = "shyfox";
-    firefox.theme.config.wallpaper = fetchurl wallpapers.headspace-dark;
-
     prismlauncher.enable = true;
     discord.enable = true;
     ffxiv-launcher.enable = true;

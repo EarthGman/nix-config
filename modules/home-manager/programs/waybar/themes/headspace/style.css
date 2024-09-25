@@ -1,0 +1,31 @@
+* {
+  font-family: "MesloLGS Nerd Font", DejaVu Sans;
+  font-size: 12pt;
+}
+
+#window, #network, #cpu, #memory, #disk, #pulseaudio, #custom-microphone,
+#battery, #clock, #tray {
+  background-color: #303030;
+  color: #c47fa2;
+  border-radius: 5px;  
+  padding-left: 10px;
+  padding-right: 10px;                     
+  margin: 5px;
+}
+
+#tray {
+padding: 0 10px;
+}
+
+#custom-os_button {
+color: #a740b7;
+}
+#custom-shutdown {
+color: #c03839;
+}
+#custom-lockscreen {
+color: #e1bd66;
+}
+#custom-reboot {
+color: #59bd5d;
+}

@@ -1,17 +1,14 @@
-{ wallpapers, ... }:
+{ self, ... }:
 let
-  inherit (builtins) fetchurl;
+  theme = self + /modules/home-manager/desktop-configs/themes/vibrant-cool.nix;
 in
 {
-  stylix.image = fetchurl wallpapers.survivors;
-  stylix.colorScheme = "vibrant-cool";
+  imports = [ theme ];
 
   custom.preferredEditor = "codium";
 
   programs = {
     firefox.enable = true;
-    firefox.theme.name = "shyfox";
-    firefox.theme.config.wallpaper = fetchurl wallpapers.get-mooned;
 
     bottles.enable = true;
     lutris.enable = true;

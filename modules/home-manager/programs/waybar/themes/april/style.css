@@ -1,0 +1,52 @@
+* {
+  font-family: "MesloLGS Nerd Font", DejaVu Sans;
+  font-size: 12pt;
+}
+
+#cpu, #memory, #disk {
+  background-color: #303030;
+  color: #1b94ff;
+  border-radius: 5px;  
+  padding-left: 10px;
+  padding-right: 10px;                     
+  margin: 5px;
+}
+
+#network {
+  background-color: #303030;
+  border-radius: 5px;  
+  padding-left: 10px;
+  padding-right: 10px;                     
+  margin: 5px;
+  color: #e1bd66;
+}
+
+#tray {
+  border-radius: 5px;  
+  padding-left: 10px;
+  padding-right: 10px;                     
+  margin: 5px;
+  background-color: #303030;
+}
+
+#pulseaudio, #custom-microphone, #clock {
+  border-radius: 5px;  
+  padding-left: 10px;
+  padding-right: 10px;                     
+  margin: 5px;
+  background-color: #303030;
+  color: #f49a21;
+}
+
+#custom-os_button {
+color: #bebf38;
+}
+#custom-shutdown {
+color: #c03839;
+}
+#custom-lockscreen {
+color: #e1bd66;
+}
+#custom-reboot {
+color: #59bd5d;
+}

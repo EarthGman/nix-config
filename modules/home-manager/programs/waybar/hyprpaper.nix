@@ -13,9 +13,7 @@ pkgs.writeScript "wp-selector.sh" ''
     exit 1
   fi
 
-  echo $WALLPAPERS_DIR
-
-  selected_wallpaper=$(echo "$wallpapers" | rofi -dmenu -i -p "Select Wallpaper")
+  selected_wallpaper=$(echo "$wallpapers" | rofi -dmenu -i -p "Search")
 
   if [ -z "$selected_wallpaper" ]; then
     exit 0

@@ -1,7 +1,8 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, hostName, ... }:
 let
   inherit (lib) getExe;
   wallpaper-switcher = import ./hyprpaper.nix { inherit pkgs config; };
+  theme-switcher = import ./theme-switcher.nix { inherit pkgs config hostName; };
 in
 [{
   name = "bottom";
@@ -201,7 +202,7 @@ in
     layer = "bottom";
     position = "top";
     modules-left = [ "wlr/taskbar" ];
-    modules-right = [ "custom/hyprpaper" "custom/lockscreen" "custom/reboot" "custom/shutdown" ];
+    modules-right = [ "custom/theme-switcher" "custom/hyprpaper" "custom/lockscreen" "custom/reboot" "custom/shutdown" ];
 
     "wlr/taskbar" = {
       format = "{icon} {title:.17}";
@@ -218,6 +219,11 @@ in
       tooltip = true;
       tooltip-format = "Searching for wallpapers in: ${config.services.hyprpaper.sourceDirectory}";
       on-click = wallpaper-switcher;
+    };
+
+    "custom/theme-switcher" = {
+      format = "  ";
+      on-click = theme-switcher;
     };
 
     "custom/shutdown" = {
