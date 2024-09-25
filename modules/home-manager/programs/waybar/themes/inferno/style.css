@@ -3,33 +3,60 @@
   font-size: 12pt;
 }
 
-window#waybar {
-  color: #191919;
-}
-
 #window, #network, #cpu, #memory, #disk, #pulseaudio, #custom-microphone,
 #battery, #clock, #tray {
-  background-color: #32003d;
-  color: #8839c7;
+  background-color: #303030;
   border-radius: 5px;  
   padding-left: 10px;
   padding-right: 10px;                     
   margin: 5px;
 }
 
+#network {
+  color: #ff9088;
+}
+
+#cpu {
+  color: #ff5643;
+}
+
+#memory {
+  color: #ff6f31;
+}
+
+#disk {
+  color: #fff843;
+}
+
+#battery {
+  color: #fff843;
+}
+
+#custom-microphone {
+  color: #ff6f31;
+}
+
+#pulseaudio {
+  color: #ff5643;
+}
+
+#clock {
+  color: #ff9088;
+}
+
 #tray {
-padding: 0 10px;
+ padding: 0 10px;
 }
 
 #custom-os_button {
-color: #a740b7;
+color: #ff000c;
 }
 #custom-shutdown {
 color: #c03839;
 }
 #custom-lockscreen {
-color: #e1bd66;
+color: #fff843;
 }
 #custom-reboot {
-color: #59bd5d;
+color: #ff6f31;
 }
