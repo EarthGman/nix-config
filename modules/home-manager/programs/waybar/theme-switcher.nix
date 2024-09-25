@@ -1,4 +1,4 @@
-{ pkgs, lib, config, hostName, ... }:
+{ pkgs, config, hostName, ... }:
 let
   t = "$" + "{THEMES[@]}";
 in
@@ -14,8 +14,7 @@ pkgs.writeScript "theme-switcher.sh" ''
   sed -i -E "s|(theme = self \+ /modules/home-manager/desktop-configs/themes/).*|\1$THEME.nix;|" ${config.home.homeDirectory}/src/nix-config/hosts/${hostName}/users/${config.home.username}/preferences.nix
 
   sudo nixos-rebuild test
-  systemctl --user restart hyprpaper.service
 
-  ${lib.getExe pkgs.killall} .waybar-wrapped
-  ${lib.getExe pkgs.waybar}
+  hyprctl reload
+  exit 0
 ''

@@ -6,7 +6,8 @@ let
   mainMod = config.wayland.windowManager.hyprland.mainMod;
   waybar = pkgs.writeScript "waybar.sh" ''
     ${lib.getExe pkgs.killall} .waybar-wrapped
-    ${lib.getExe pkgs.waybar}
+    ${lib.getExe pkgs.waybar} &
+    exit 0
   '';
 in
 {
@@ -28,6 +29,7 @@ in
 
   exec = [
     "${waybar}"
+    "systemctl --user restart hyprpaper.service"
   ];
 
   #keybinds

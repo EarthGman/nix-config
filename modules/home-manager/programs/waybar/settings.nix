@@ -46,6 +46,7 @@ in
       shutdown = "shutdown";
       lockscreen = "hyprlock";
       reboot = "systemctl reboot";
+      inherit theme-switcher wallpaper-switcher;
     };
   };
 
@@ -215,7 +216,6 @@ in
     layer = "bottom";
     position = "top";
     modules-left = [ "wlr/taskbar" ];
-    modules-right = [ "custom/theme-switcher" "custom/hyprpaper" ];
 
     "wlr/taskbar" = {
       format = "{icon} {title:.17}";
@@ -225,18 +225,6 @@ in
       on-click = "activate";
       tooltip-format = "{title}";
       ignore-list = [ ];
-    };
-
-    "custom/hyprpaper" = {
-      format = " 󰸉 ";
-      tooltip = true;
-      tooltip-format = "Searching for wallpapers in: ${config.services.hyprpaper.sourceDirectory}";
-      on-click = wallpaper-switcher;
-    };
-
-    "custom/theme-switcher" = {
-      format = "  ";
-      on-click = theme-switcher;
     };
   }]
 
