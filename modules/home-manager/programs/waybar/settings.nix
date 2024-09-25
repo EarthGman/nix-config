@@ -14,6 +14,7 @@ in
   gtk-layer-shell = true;
   passthrough = false;
   modules-left = [
+    "custom/settings-menu"
     "network"
     "cpu"
     "memory"
@@ -35,6 +36,18 @@ in
     "custom/reboot"
     "custom/shutdown"
   ];
+
+  "custom/settings-menu" = {
+    format = "  ";
+    tooltip = false;
+    menu = "on-click";
+    menu-file = "${config.xdg.configHome}/waybar/settings-menu.xml";
+    menu-actions = {
+      shutdown = "shutdown";
+      lockscreen = "hyprlock";
+      reboot = "systemctl reboot";
+    };
+  };
 
   "hyprland/workspaces" = {
     icon-size = 32;
@@ -202,7 +215,7 @@ in
     layer = "bottom";
     position = "top";
     modules-left = [ "wlr/taskbar" ];
-    modules-right = [ "custom/theme-switcher" "custom/hyprpaper" "custom/lockscreen" "custom/reboot" "custom/shutdown" ];
+    modules-right = [ "custom/theme-switcher" "custom/hyprpaper" ];
 
     "wlr/taskbar" = {
       format = "{icon} {title:.17}";
@@ -224,24 +237,6 @@ in
     "custom/theme-switcher" = {
       format = "  ";
       on-click = theme-switcher;
-    };
-
-    "custom/shutdown" = {
-      format = "   ";
-      tooltip = false;
-      on-click = "shutdown now";
-    };
-
-    "custom/lockscreen" = {
-      format = "  ";
-      tooltip = false;
-      on-click = "hyprlock";
-    };
-
-    "custom/reboot" = {
-      format = "  ";
-      tooltip = false;
-      on-click = "systemctl reboot";
     };
   }]
 
