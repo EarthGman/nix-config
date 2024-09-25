@@ -16,6 +16,6 @@ pkgs.writeScript "theme-switcher.sh" ''
   sudo nixos-rebuild test
   systemctl --user restart hyprpaper.service
 
-  ${lib.getExe pkgs.killall} waybar
+  ${lib.getExe pkgs.killall} .waybar-wrapped
   ${lib.getExe pkgs.waybar}
 ''
