@@ -2,7 +2,7 @@
 let
   inherit (lib) getExe;
   wallpaper-switcher = import ./hyprpaper.nix { inherit pkgs config; };
-  theme-switcher = import ./theme-switcher.nix { inherit pkgs config hostName; };
+  theme-switcher = import ./theme-switcher.nix { inherit pkgs lib config hostName; };
 in
 [{
   name = "bottom";

@@ -1,4 +1,4 @@
-{ pkgs, config, hostName, ... }:
+{ pkgs, lib, config, hostName, ... }:
 let
   t = "$" + "{THEMES[@]}";
 in
@@ -15,4 +15,7 @@ pkgs.writeScript "theme-switcher.sh" ''
 
   sudo nixos-rebuild test
   systemctl --user restart hyprpaper.service
+
+  ${lib.getExe pkgs.killall} waybar
+  ${lib.getExe pkgs.waybar}
 ''

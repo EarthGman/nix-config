@@ -32,6 +32,8 @@
     onepassword.enable = true;
     virtualization.enable = true;
     sops.enable = true;
+
+    decreased-security.nixos-rebuild = true;
   };
 
   programs.wireshark = {
