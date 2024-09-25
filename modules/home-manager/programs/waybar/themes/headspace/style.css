@@ -5,8 +5,8 @@
 
 #window, #network, #cpu, #memory, #disk, #pulseaudio, #custom-microphone,
 #battery, #clock, #tray {
-  background-color: #32003d;
-  color: #8839c7;
+  background-color: #1d001d;
+  color: #c55ec5;
   border-radius: 5px;  
   padding-left: 10px;
   padding-right: 10px;                     
