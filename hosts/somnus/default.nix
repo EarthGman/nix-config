@@ -23,6 +23,7 @@
   custom = {
     steam.enable = true;
     sops.enable = true;
+    decreased-security.nixos-rebuild = true;
   };
 
   boot.initrd.availableKernelModules = [
