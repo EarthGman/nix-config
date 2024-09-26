@@ -1,4 +1,4 @@
-{ self, wallpapers, ... }:
+{ self, ... }:
 let
   template = self + /templates/home-manager/g.nix;
   theme = self + /modules/home-manager/desktop-configs/themes/ashes.nix;
@@ -8,8 +8,6 @@ in
     theme
     template
   ];
-
-  stylix.image = builtins.fetchurl wallpapers.scarlet-tree-dark;
   stylix.fonts.sizes = {
     terminal = 12;
   };
@@ -28,6 +26,5 @@ in
   #modules
   programs = {
     google-chrome.enable = true;
-    firefox.theme.name = "";
   };
 }

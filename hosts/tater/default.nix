@@ -18,5 +18,6 @@
 
   custom = {
     onepassword.enable = true;
+    decreased-security.nixos-rebuild = true;
   };
 }
