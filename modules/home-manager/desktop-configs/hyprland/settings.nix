@@ -24,11 +24,11 @@ in
 
   # autostart
   exec-once = [
+    "${waybar}"
     "systemctl --user start hyprpaper.service"
   ];
 
   exec = [
-    "${waybar}"
     "systemctl --user restart hyprpaper.service"
   ];
 
