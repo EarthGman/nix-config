@@ -100,5 +100,5 @@ in
     '';
   };
   # enable starship for everyone
-  programs.starship.enable = true;
+  programs.starship.enable = mkDefault true;
 }
