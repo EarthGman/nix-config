@@ -5,7 +5,14 @@ in
 {
   imports = [ ./zed.nix ];
   programs.zed = {
-    enable = (config.custom.preferredEditor == "zed" || config.custom.preferredEditor == "Zed");
+    enable =
+      let
+        cfg = config.custom.editor;
+      in
+      (
+        cfg == "zed" ||
+        cfg == "Zed"
+      );
     settings = {
       theme = mkDefault "Ayu Dark";
       vim_mode = mkDefault false;

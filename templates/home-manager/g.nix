@@ -6,7 +6,7 @@ let
 in
 {
   custom = {
-    preferredEditor = "codium";
+    editor = "codium";
   };
 
   programs = {

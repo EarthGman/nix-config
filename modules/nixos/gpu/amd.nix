@@ -12,8 +12,5 @@ in
       "radeon-profile" = radeon-profile;
     };
     services.xserver.videoDrivers = [ "amdgpu" ];
-    hardware.graphics = {
-      enable = true;
-    };
   };
 }

@@ -9,15 +9,15 @@ in
   programs.vscode = {
     enable =
       let
-        cfg = config.custom.preferredEditor;
+        cfg = config.custom.editor;
       in
       (
-        (cfg == "Codium") ||
-        (cfg == "codium") ||
-        (cfg == "Code") ||
-        (cfg == "code") ||
-        (cfg == "Vscode") ||
-        (cfg == "vscode")
+        cfg == "Codium" ||
+        cfg == "codium" ||
+        cfg == "Code" ||
+        cfg == "code" ||
+        cfg == "Vscode" ||
+        cfg == "vscode"
       );
     package = mkDefault pkgs.master.vscodium-fhs;
     enableExtensionUpdateCheck = false;

@@ -5,7 +5,7 @@ in
 {
   imports = [ theme ];
 
-  custom.preferredEditor = "codium";
+  custom.editor = "codium";
 
   programs = {
     firefox.enable = true;

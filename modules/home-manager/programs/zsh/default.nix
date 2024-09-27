@@ -13,7 +13,7 @@ in
         edit-preferences = "cd ~/src/nix-config/hosts/${hostName}/users/${config.home.username} && $EDITOR preferences.nix";
       };
       initExtra = ''
-        export EDITOR=${config.custom.preferredEditor}
+        export EDITOR=${config.custom.editor}
         export PATH=$(realpath ~/bin):$PATH
       '';
     };
