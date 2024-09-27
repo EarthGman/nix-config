@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 let
   inherit (lib) mkDefault;
 in
@@ -7,6 +7,18 @@ in
     (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
   ];
   programs.vscode = {
+    enable =
+      let
+        cfg = config.custom.preferredEditor;
+      in
+      (
+        (cfg == "Codium") ||
+        (cfg == "codium") ||
+        (cfg == "Code") ||
+        (cfg == "code") ||
+        (cfg == "Vscode") ||
+        (cfg == "vscode")
+      );
     package = mkDefault pkgs.master.vscodium-fhs;
     enableExtensionUpdateCheck = false;
     enableUpdateCheck = false;

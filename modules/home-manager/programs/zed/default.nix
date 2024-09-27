@@ -1,10 +1,11 @@
-{ lib, ... }:
+{ lib, config, ... }:
 let
   inherit (lib) mkDefault;
 in
 {
   imports = [ ./zed.nix ];
   programs.zed = {
+    enable = (config.custom.preferredEditor == "zed" || config.custom.preferredEditor == "Zed");
     settings = {
       theme = mkDefault "Ayu Dark";
       vim_mode = mkDefault false;

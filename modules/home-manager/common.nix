@@ -1,3 +1,5 @@
+# extension of home.nix
+# the reason this file exists is because of a weird behavior with the config top level argument if used in home.nix
 { lib, config, outputs, ... }:
 let
   inherit (lib) mkDefault mkOption types;
@@ -17,7 +19,6 @@ in
   };
 
   config = {
-
     # enable gh for all users
     programs = {
       gh = {
@@ -38,9 +39,6 @@ in
 
     programs = {
       zsh.enable = mkDefault true;
-      kitty.enable = mkDefault (config.custom.terminal == "kitty");
-      vscode.enable = mkDefault (config.custom.preferredEditor == "codium");
-      zed.enable = mkDefault (config.custom.preferredEditor == "zed");
     };
   };
 }

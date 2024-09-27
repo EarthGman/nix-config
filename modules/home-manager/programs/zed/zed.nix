@@ -22,6 +22,7 @@ in
         default = { };
       };
 
+      # not finished
       extensions = mkOption {
         type = types.listOf types.package;
         default = [ ];

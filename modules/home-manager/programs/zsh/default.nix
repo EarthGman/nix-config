@@ -1,6 +1,6 @@
 { pkgs, config, lib, hostName, ... }:
 let
-  inherit (lib) getExe mkIf;
+  inherit (lib) getExe mkIf mkDefault;
   cfg = config.programs.zsh;
 in
 {

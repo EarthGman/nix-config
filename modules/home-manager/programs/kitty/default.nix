@@ -1,6 +1,7 @@
-{ lib, ... }:
+{ lib, config, ... }:
 {
   programs.kitty = {
+    enable = (config.custom.terminal == "kitty" || config.custom.terminal == "Kitty");
     settings = {
       update_check_interval = 0;
       tab_bar_style = "powerline";
