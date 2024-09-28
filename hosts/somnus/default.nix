@@ -1,7 +1,7 @@
 { wallpapers, pkgs, ... }:
 {
   imports = [
-    ./disko.nix
+    ./disko
   ];
 
   services.displayManager.sddm.themeConfig = {
