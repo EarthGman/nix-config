@@ -1,4 +1,4 @@
-{ self, pkgs, lib, ... }:
+{ self, config, pkgs, lib, ... }:
 let
   enabled = { enable = lib.mkDefault true; };
   signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKNRHd6NLt4Yd9y5Enu54fJ/a2VCrRgbvfMuom3zn5zg";
@@ -58,11 +58,11 @@ in
     cava = enabled;
   };
 
-  # programs.ssh = {
-  #   enable = true;
-  #   forwardAgent = true;
-  #   extraConfig = "${config.home.homeDirectory}/.1password/agent.sock";
-  # };
+  programs.ssh = {
+    enable = true;
+    forwardAgent = true;
+    extraConfig = "IdentityAgent ${config.home.homeDirectory}/.1password/agent.sock";
+  };
 
   xsession.windowManager.i3.config.startup = [
     {
