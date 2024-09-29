@@ -6,7 +6,7 @@ pkgs.writeScript "wp-selector.sh" ''
     exit 1
   fi
 
-  wallpapers=$(ls "$WALLPAPERS_DIR" | grep -E "\.(jpg|jpeg|png|bmp|gif)$")
+  wallpapers=$(ls "$WALLPAPERS_DIR" | grep -E "\.(jpg|jpeg|png|bmp|gif|webp)$")
 
   if [ -z "$wallpapers" ]; then
     echo "No wallpapers found"
