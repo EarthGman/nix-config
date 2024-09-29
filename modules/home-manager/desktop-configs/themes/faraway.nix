@@ -1,4 +1,4 @@
-{ pkgs, lib, wallpapers, ... }:
+{ pkgs, lib, wallpapers, icons, ... }:
 let
   inherit (builtins) fetchurl;
   inherit (lib) mkForce;
@@ -93,6 +93,7 @@ in
   programs = {
     firefox.theme.name = "shyfox";
     firefox.theme.config.wallpaper = fetchurl wallpapers.a-home-for-flowers;
+    fastfetch.image = fetchurl icons.oops;
   };
 
   stylix.colorScheme = "faraway";
