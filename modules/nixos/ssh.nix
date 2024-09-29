@@ -5,7 +5,7 @@
     services = {
       sshd.enable = true;
       openssh = {
-        settings.PasswordAuthentication = lib.mkDefault true;
+        settings.PasswordAuthentication = lib.mkDefault false;
       };
     };
     networking.firewall.allowedTCPPorts = [ 22 ];
