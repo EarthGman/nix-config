@@ -1,7 +1,7 @@
 { self, pkgs, icons, ... }:
 let
   template = self + /templates/home-manager/bean.nix;
-  theme = self + /modules/home-manager/desktop-configs/themes/headspace.nix;
+  theme = self + /modules/home-manager/desktop-configs/themes/faraway.nix;
 in
 {
   imports = [
