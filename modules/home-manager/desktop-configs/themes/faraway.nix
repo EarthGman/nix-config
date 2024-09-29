@@ -4,21 +4,6 @@ let
   inherit (lib) mkForce;
   inherit (pkgs) writeScript;
 
-  wait-for-hyprland = writeScript "wait-for-hyprland.sh" ''
-    for i in {1..5}; do
-      hyprctl clients > /dev/null 2>&1
-      if [ $? -eq 0 ]; then
-        break
-      fi
-      sleep 1
-    done
-
-    if ! hyprctl clients > /dev/null 2>&1; then
-      exit 1
-    fi
-
-    systemd --user start omori-calendar-project.service  
-  '';
   service-script = writeScript "set-wallpaper-by-month.sh" ''
     #!/usr/bin/env bash
 
@@ -34,6 +19,18 @@ let
     October="${fetchurl wallpapers.omori-october}"
     November="${fetchurl wallpapers.omori-november}"
     December="${fetchurl wallpapers.omori-december}"
+
+    for i in {1..5}; do
+      hyprctl clients > /dev/null 2>&1
+      if [ $? -eq 0 ]; then
+        break
+      fi
+      sleep 1
+    done
+
+    if ! hyprctl clients > /dev/null 2>&1; then
+      exit 1
+    fi
   
     MONTH=$(date +"%B")
     CURRENT_CHECK=$(hyprctl hypaper listloaded | grep -i "omori-''${MONTH}")
@@ -67,7 +64,7 @@ in
   # must wait for hyprland to fully initialize before starting the service
   wayland.windowManager.hyprland.settings = {
     exec-once = [
-      "${wait-for-hyprland}"
+      "systemctl --user start omori-calendar-project.service"
     ];
     exec = [
       "systemctl --user restart omori-calendar-project.service"
@@ -97,4 +94,6 @@ in
     firefox.theme.name = "shyfox";
     firefox.theme.config.wallpaper = fetchurl wallpapers.a-home-for-flowers;
   };
+
+  stylix.colorScheme = "faraway";
 }
