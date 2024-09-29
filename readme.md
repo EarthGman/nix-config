@@ -59,7 +59,7 @@ Post Install:
 - run protonup for steam to download proton-ge
 
 #TODO: in order of priority
-- [ ] ssh keys
+- [x] ssh keys
 - [x] hyprland
 - [ ] remote building
 - [ ] install scripts
