@@ -43,18 +43,18 @@ in
       ExecStart = "${script}";
     };
   };
-  xdg.configFile."systemd/user/omori-calendar-project.timer" = {
-    text = ''
-      [Unit]
-      Description=Run Check Wallpaper Script at 12:00 AM daily
 
-      [Timer]
-      OnCalendar=*-*-* 00:00:00
-      Persistent=true
-
-      [Install]
-      WantedBy=timers.target
-    '';
+  systemd.user.timers."omori-calendar-project" = {
+    Unit = {
+      Description = "Check Month at 12:00 AM";
+    };
+    Timer = {
+      OnCalendar = "*-*-* 00:00:00";
+      Persistent = true;
+    };
+    Install = {
+      WantedBy = [ "timers.target" ];
+    };
   };
 
   # prevent hyprpaper from loading the default stylix.image
