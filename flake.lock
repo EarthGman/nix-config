@@ -260,7 +260,7 @@
     "icons": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-IJszvCiq51Zu5C86SaikeQBiUo7u0a7K7Q8ny23ncAs=",
+        "narHash": "sha256-Xm2qM2li6a7remv7mD2lm6SBdEG4GWusimN2jBV3acw=",
         "type": "file",
         "url": "https://raw.githubusercontent.com/EarthGman/personal-cache/master/icons.json"
       },

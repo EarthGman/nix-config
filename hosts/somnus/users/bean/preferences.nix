@@ -1,4 +1,4 @@
-{ self, ... }:
+{ self, pkgs, icons, ... }:
 let
   template = self + /templates/home-manager/bean.nix;
   theme = self + /modules/home-manager/desktop-configs/themes/headspace.nix;
@@ -20,6 +20,18 @@ in
     cmatrix.enable = true;
     cbonsai.enable = true;
     pipes.enable = true;
+
+    alacritty.enable = true;
+  };
+
+  # use alacritty because kitty will not work on this PC
+  # mysteriously crashes every time any icon is loaded for any reason and I cannot fix it
+  custom.terminal = "alacritty";
+  stylix.fonts = {
+    monospace = {
+      name = "MesloLGL Nerd Font";
+      package = pkgs.nerdfonts.override { fonts = [ "Meslo" ]; };
+    };
   };
 
   wayland.windowManager.hyprland.mainMod = "SUPER";
@@ -32,7 +44,7 @@ in
     text = ''
       #!/usr/bin/env bash
       liquidctl --match kraken set external color fixed 2f18d6
-      liquidctl --match kraken set lcd screen gif /home/bean/Pictures/pluto-expanded.gif
+      liquidctl --match kraken set lcd screen gif ${builtins.fetchurl icons.pluto-expanded}
       liquidctl --match kraken set pump speed 70
       liquidctl --match kraken set fan speed 70
     '';
