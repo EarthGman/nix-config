@@ -2,8 +2,24 @@
 let
   inherit (builtins) fetchurl;
   inherit (lib) mkForce;
+  inherit (pkgs) writeScript;
 
-  script = pkgs.writeScript "set-wallpaper-by-month.sh" ''
+  wait-for-hyprland = writeScript "wait-for-hyprland.sh" ''
+    for i in {1..5}; do
+      hyprctl clients > /dev/null 2>&1
+      if [ $? -eq 0 ]; then
+        break
+      fi
+      sleep 1
+    done
+
+    if ! hyprctl clients > /dev/null 2>&1; then
+      exit 1
+    fi
+
+    systemd --user start omori-calendar-project.service  
+  '';
+  service-script = writeScript "set-wallpaper-by-month.sh" ''
     #!/usr/bin/env bash
 
     January="${fetchurl wallpapers.omori-january}"
@@ -37,14 +53,21 @@ in
         every day at Midnight, the current month is checked
         sets the wallpaper from the omori calendar project corresponding to the month
       '';
+      After = [ "graphical-session.target" ];
     };
     Service = {
       Type = "oneshot";
-      ExecStart = "${script}";
+      ExecStart = "${service-script}";
     };
     Install = {
-      WantedBy = [ "default.target" ];
+      WantedBy = [ "graphical-session.target" ];
     };
+  };
+
+  wayland.windowManager.hyprland.settings = {
+    exec-once = [
+      "${wait-for-hyprland}"
+    ];
   };
 
   systemd.user.timers."omori-calendar-project" = {
@@ -56,7 +79,7 @@ in
       Persistent = true;
     };
     Install = {
-      WantedBy = [ "default.target" "timers.target" ];
+      WantedBy = [ "timers.target" ];
     };
   };
 
