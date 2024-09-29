@@ -64,9 +64,13 @@ in
     };
   };
 
+  # must wait for hyprland to fully initialize before starting the service
   wayland.windowManager.hyprland.settings = {
     exec-once = [
       "${wait-for-hyprland}"
+    ];
+    exec = [
+      "systemctl --user restart omori-calendar-project.service"
     ];
   };
 
@@ -91,5 +95,6 @@ in
 
   programs = {
     firefox.theme.name = "shyfox";
+    firefox.theme.config.wallpaper = fetchurl wallpapers.a-home-for-flowers;
   };
 }
