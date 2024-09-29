@@ -42,6 +42,9 @@ in
       Type = "oneshot";
       ExecStart = "${script}";
     };
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
   };
 
   systemd.user.timers."omori-calendar-project" = {
@@ -53,7 +56,7 @@ in
       Persistent = true;
     };
     Install = {
-      WantedBy = [ "timers.target" ];
+      WantedBy = [ "default.target" "timers.target" ];
     };
   };
 
