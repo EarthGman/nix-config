@@ -43,7 +43,7 @@ in
     menu = "on-click";
     menu-file = "${config.xdg.configHome}/waybar/settings-menu.xml";
     menu-actions = {
-      shutdown = "shutdown";
+      shutdown = "shutdown now";
       lockscreen = "hyprlock";
       reboot = "systemctl reboot";
       inherit theme-switcher wallpaper-switcher;
