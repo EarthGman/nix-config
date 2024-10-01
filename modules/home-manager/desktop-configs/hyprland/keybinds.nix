@@ -54,8 +54,8 @@ in
 
   "${mainMod}, S, togglespecialworkspace, magic"
   "${mainMod} SHIFT, S, movetoworkspace, special:magic"
-  "${mainMod}, mouse_down, workspace, e+1"
-  "${mainMod}, mouse_up, workspace, e-1"
+  # "${mainMod}, mouse_down, workspace, e+1"
+  # "${mainMod}, mouse_up, workspace, e-1"
 
   ", Print, exec, ${getExe pkgs.grim} -g \"$(${getExe pkgs.slurp})\" - | ${pkgs.wl-clipboard}/bin/wl-copy && ${pkgs.wl-clipboard}/bin/wl-paste > ${config.home.homeDirectory}/Pictures/Screenshots/Screenshot-$(date +%F_%T).png"
   "SHIFT, Print, exec, ${getExe pkgs.grim} - | ${pkgs.wl-clipboard}/bin/wl-copy && ${pkgs.wl-clipboard}/bin/wl-paste > ${config.home.homeDirectory}/Pictures/Screenshots/Screenshot-$(date +%F_%T).png"
