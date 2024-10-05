@@ -93,7 +93,6 @@ in
       ncg = "${getExe pkgs.nh} clean all";
     };
 
-    #TODO export EDITOR=neovim once learned
     promptInit = ''
       eval "$(${getExe pkgs.zoxide} init --cmd j zsh)"
       export EDITOR=nvim
@@ -101,10 +100,4 @@ in
   };
   # enable starship for everyone
   programs.starship.enable = mkDefault true;
-
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-  };
 }
