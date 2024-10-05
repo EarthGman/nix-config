@@ -10,7 +10,10 @@
         nssmdns4 = true;
         openFirewall = true;
       };
-      printing.enable = true;
+      printing = {
+        enable = true;
+        browsed.enable = false;
+      };
     };
     networking.firewall.allowedUDPPorts = [ 5353 ];
   };
