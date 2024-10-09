@@ -1,27 +1,25 @@
 { pkgs, mkDefault, getExe, ... }:
 {
-  "bar/top" = {
-    monitor = "\${env:MONITOR:}";
-    width = mkDefault "100%";
-    height = mkDefault "22pt";
-    radius = mkDefault 0;
-    background = mkDefault "#101010";
-    foreground = mkDefault "#c4c4c4";
-    bottom = false;
-    line-size = mkDefault "6pt";
-    boarder-color = mkDefault "#000000";
-    padding-left = mkDefault 0;
-    padding-right = mkDefault 1;
-    module-margin = mkDefault 1;
-    separator = mkDefault "|";
-    separator-foreground = mkDefault "#a7a7a7";
-    font-0 = mkDefault "MesloLGS Nerd Font Mono:size=20;6";
-    cursor-click = mkDefault "pointer";
-    cursor-scroll = mkDefault "ns-resize";
-    enable-ipc = mkDefault true;
-
-    modules-right = mkDefault "battery memory cpu eth wlan";
-  };
+  # "bar/top" = {
+  #   monitor = "\${env:MONITOR:}";
+  #   width = mkDefault "100%";
+  #   height = mkDefault "22pt";
+  #   radius = mkDefault 0;
+  #   background = mkDefault "#101010";
+  #   foreground = mkDefault "#c4c4c4";
+  #   bottom = false;
+  #   line-size = mkDefault "6pt";
+  #   boarder-color = mkDefault "#000000";
+  #   padding-left = mkDefault 0;
+  #   padding-right = mkDefault 1;
+  #   module-margin = mkDefault 1;
+  #   separator = mkDefault "";
+  #   separator-foreground = mkDefault "#a7a7a7";
+  #   font-0 = mkDefault "MesloLGS Nerd Font Mono:size=20;6";
+  #   cursor-click = mkDefault "pointer";
+  #   cursor-scroll = mkDefault "ns-resize";
+  #   enable-ipc = mkDefault true;
+  # };
 
   "bar/bottom" = {
     monitor = "\${env:MONITOR:}";
@@ -36,15 +34,16 @@
     padding-left = mkDefault 0;
     padding-right = mkDefault 1;
     module-margin = mkDefault 1;
-    separator = mkDefault "|";
+    separator = mkDefault "";
     separator-foreground = mkDefault "#a7a7a7";
-    font-0 = mkDefault "MesloLGS Nerd Font Mono:size=20;6";
+    font-0 = mkDefault "MesloLGS Nerd Font Mono:size=16;6";
     cursor-click = mkDefault "pointer";
     cursor-scroll = mkDefault "ns-resize";
     enable-ipc = mkDefault true;
 
-    modules-left = mkDefault "xworkspaces xwindow";
-    modules-right = mkDefault "systray volume microphone tools date power-menu";
+    modules-left = mkDefault "cpu memory eth wlan";
+    modules-center = mkDefault "xworkspaces";
+    modules-right = mkDefault "battery systray volume microphone date power-menu";
   };
 
   "module/systray" = {
@@ -86,7 +85,7 @@
   "module/memory" = {
     type = "internal/memory";
     interval = 2;
-    format-prefix = "RAM ";
+    format-prefix = " ";
     format-prefix-foreground = "#a7a7a7";
     label = "%percentage_used:2%%";
   };
@@ -94,7 +93,7 @@
   "module/cpu" = {
     type = "internal/cpu";
     interval = 2;
-    format-prefix = "CPU ";
+    format-prefix = " ";
     format-prefix-foreground = "#a7a7a7";
     label = "%percentage:2%%";
   };
@@ -109,7 +108,7 @@
       current_volume=$(${getExe pkgs.pamixer} --get-volume-human | sed 's/%//')
 
       if [ $current_volume == "muted" ]; then
-        echo "  $current_volume"
+        echo " $current_volume"
 
       elif [ $current_volume -lt 25 ]; then
         echo " $current_volume$percent"
@@ -211,11 +210,11 @@
     interface-type = "wireless";
     interval = 3;
 
-    format-connected = " <label-connected>";
+    format-connected = "󰖩 <label-connected>";
     format-connected-foreground = "#a7a7a7";
-    label-connected = "%essid% %upspeed% %downspeed%";
+    label-connected = "%essid%  %downspeed%  %upspeed%";
 
-    format-disconnected = "󰤭 <label-disconnected>";
+    format-disconnected = "󰖪 <label-disconnected>";
     format-disconnected-foreground = "#a7a7a7";
     label-disconnected = "Disconnected";
   };
@@ -227,7 +226,7 @@
 
     format-connected = "󰈁 <label-connected>";
     format-connected-foreground = "#a7a7a7";
-    label-connected = "%upspeed% %downspeed%";
+    label-connected = " %downspeed%  %upspeed%";
 
     format-disconnected = "󰈁 <label-disconnected>";
     format-disconnected-foreground = "#a7a7a7";
@@ -237,8 +236,8 @@
   "module/date" = {
     type = "internal/date";
     interval = 1;
-    date = "%H:%M";
-    date-alt = "%Y-%m-%d %H:%M:%S";
+    date = " %Y-%m-%d   %H:%M";
+    date-alt = " %Y-%m-%d   %H:%M:%S";
 
     label = "%date%";
     label-foreground = "#a7a7a7";
