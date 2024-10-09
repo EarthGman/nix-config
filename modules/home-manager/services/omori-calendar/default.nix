@@ -1,11 +1,10 @@
-{ pkgs, myLib, lib, config, wallpapers, desktop, ... }:
+{ pkgs, lib, config, wallpapers, ... }:
 let
-  desktops = myLib.splitToList desktop;
   inherit (pkgs) writeScript;
   inherit (builtins) fetchurl;
   script = writeScript "set-wallpaper-by-month.sh" ''
-    #!/usr/bin/env bash
-
+    #!${pkgs.bash}/bin/bash
+   
     January="${fetchurl wallpapers.omori-january}"
     Feburary="${fetchurl wallpapers.omori-feburary}"
     March="${fetchurl wallpapers.omori-march}"
@@ -18,37 +17,33 @@ let
     October="${fetchurl wallpapers.omori-october}"
     November="${fetchurl wallpapers.omori-november}"
     December="${fetchurl wallpapers.omori-december}"
-
-    for i in {1..5}; do
-      hyprctl clients > /dev/null 2>&1
-      if [ $? -eq 0 ]; then
-        break
-      fi
-      sleep 1
-    done
-
-    if ! hyprctl clients > /dev/null 2>&1; then
-      exit 1
-    fi
   
-    MONTH=$(date +"%B")
-    CURRENT_CHECK=$(hyprctl hypaper listloaded | grep -i "omori-''${MONTH}")
-    
-    if [ -n "$CURRENT_CHECK" ]; then
-      exit 0
-    fi
+    MONTH=$(/run/current-system/sw/bin/date +"%B")
     
     case "$XDG_CURRENT_DESKTOP" in
       "Hyprland")
+        for i in {1..5}; do
+        hyprctl clients > /dev/null 2>&1
+        if [ $? -eq 0 ]; then
+          break
+        fi
+        sleep 1
+        done
+        if ! hyprctl clients > /dev/null 2>&1; then
+          exit 1
+        fi
+
+        CURRENT_CHECK=$(hyprctl hypaper listloaded | grep -i "omori-''${MONTH}")
+        if [ -n "$CURRENT_CHECK" ]; then
+          exit 0
+        fi
+
         hyprctl hyprpaper preload "''${!MONTH}"
         hyprctl hyprpaper wallpaper ",''${!MONTH}"
-        ;;
-      "i3")
-        ${lib.getExe pkgs.feh} --bg-scale ''${!MONTH}"
+        exit 0
         ;;
       *)
-        echo "unsupported desktop"
-        exit 1
+        ${lib.getExe pkgs.feh} --bg-scale "''${!MONTH}"
         ;;
     esac
   '';

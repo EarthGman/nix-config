@@ -27,6 +27,7 @@ in
     network-manager-applet = enabled;
     dunst = enabled;
     polybar = enabled;
+    picom = enabled;
   };
 
   xsession.enable = true;
@@ -60,21 +61,18 @@ in
           notification = false;
         }
         {
-          command = "${getExe pkgs.picom} --config ${config.xdg.configHome}/picom/picom.conf";
+          command = "systemctl --user start picom.service";
           always = false;
           notification = false;
         }
+      ] ++ optionals (!(config.services.omori-calendar-project.enable)) [
         {
+          # custom case where the omori calendar project is enabled, disable this
           command = "${getExe pkgs.feh} --bg-scale ${wp}";
           always = true;
           notification = false;
         }
       ];
     };
-  };
-  xdg.configFile = {
-    "picom/picom.conf".text = ''
-      vsync = true
-    '';
   };
 }
