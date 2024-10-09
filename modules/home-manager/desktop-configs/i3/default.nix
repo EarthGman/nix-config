@@ -42,19 +42,7 @@ in
       keybindings = import ./keybinds.nix { inherit pkgs config getExe; };
       window.hideEdgeBorders = "both";
 
-      startup = optionals (hostName == "cypher") [
-        # position and scale monitors
-        {
-          command = ''
-            xrandr --output DisplayPort-2 --auto --right-of HDMI-A-0 \
-                   --output DisplayPort-2 --mode 2560x1440 \
-                   --output HDMI-A-0 --mode 1920x1080 --rate 74.97 \
-            && ${getExe pkgs.feh} --bg-scale ${wp}
-          '';
-          always = false;
-          notification = false;
-        }
-      ] ++ [
+      startup = [
         {
           command = "${polybar_sh}";
           always = true;

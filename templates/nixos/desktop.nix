@@ -1,9 +1,10 @@
-{ self, inputs, outputs, hostName, pkgs, lib, myLib, wallpapers, icons, config, desktop, users, stateVersion, ... }:
+{ self, inputs, outputs, hostName, pkgs, lib, myLib, wallpapers, icons, desktop, users, stateVersion, ... }:
 let
-  inherit (lib) mkDefault mkIf genAttrs;
+  inherit (lib) mkDefault genAttrs;
   enabled = { enable = mkDefault true; };
   home = self + /home.nix;
   usernames = myLib.splitToList users;
+
 in
 {
   imports = [
@@ -62,11 +63,4 @@ in
     # required for some stylix to work properly (gtk)
     dconf.enable = true;
   };
-
-  # for most desktop users editing the config from the home directory is preferred over /etc/nixos
-  # this links the /etc/nixos directory to ~/src/nix-config
-  # environment.etc."nixos".source = /home/${username}/src/nix-config;
-
-  # if you have dolphin emu installed GC controllers will not have correct permissions unless set
-  # services.udev.packages = mkIf config.home-manager.users.${username}.custom.programs.enable [ pkgs.dolphinEmu ];
 }
