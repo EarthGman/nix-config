@@ -41,7 +41,7 @@
     cursor-scroll = mkDefault "ns-resize";
     enable-ipc = mkDefault true;
 
-    modules-left = mkDefault "cpu memory eth wlan";
+    modules-left = mkDefault "eth wlan cpu memory";
     modules-center = mkDefault "xworkspaces";
     modules-right = mkDefault "battery systray volume microphone date power-menu";
   };
@@ -176,16 +176,16 @@
     poll-interval = 5;
   };
 
-  "module/tools" = {
-    type = "custom/menu";
-    expand-right = true;
-    menu-0-0 = " Screenshot";
-    menu-0-0-exec = "${getExe pkgs.flameshot} gui &";
-    format = "<menu>  <label-toggle>";
-    label-open = " Tools";
-    label-close = " Close";
-    label-seperator = "  ";
-  };
+  # "module/tools" = {
+  #   type = "custom/menu";
+  #   expand-right = true;
+  #   menu-0-0 = " Screenshot";
+  #   menu-0-0-exec = "${getExe pkgs.flameshot} gui &";
+  #   format = "<menu>  <label-toggle>";
+  #   label-open = " Tools";
+  #   label-close = " Close";
+  #   label-seperator = "  ";
+  # };
 
   "module/power-menu" = {
     type = "custom/menu";

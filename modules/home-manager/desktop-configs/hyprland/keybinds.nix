@@ -16,7 +16,7 @@ in
   "${mainMod} SHIFT, E, exit"
   "${mainMod} SHIFT, Space, togglefloating"
   "${mainMod}, P, pseudo"
-  "${mainMod}, J, togglesplit"
+  "${mainMod}, S, togglesplit"
   "${mainMod}, F, fullscreen"
   "${mainMod}, R, exec, hyprctl reload"
 
@@ -25,10 +25,20 @@ in
   "${mainMod}, up, movefocus, u"
   "${mainMod}, down, movefocus, d"
 
+  "${mainMod}, h, movefocus, l"
+  "${mainMod}, j, movefocus, d"
+  "${mainMod}, k, movefocus, u"
+  "${mainMod}, l, movefocus, r"
+
   "${mainMod} SHIFT, left, movewindow, l"
   "${mainMod} SHIFT, right, movewindow, r"
   "${mainMod} SHIFT, up, movewindow, u"
   "${mainMod} SHIFT, down, movewindow, d"
+
+  "${mainMod} SHIFT, h, movewindow, l"
+  "${mainMod} SHIFT, j, movewindow, d"
+  "${mainMod} SHIFT, k, movewindow, u"
+  "${mainMod} SHIFT, l, movewindow, r"
 
   "${mainMod}, 1, workspace, 1"
   "${mainMod}, 2, workspace, 2"
@@ -52,7 +62,7 @@ in
   "${mainMod} SHIFT, 9, movetoworkspacesilent, 9"
   "${mainMod} SHIFT, 0, movetoworkspacesilent, 0"
 
-  "${mainMod}, S, togglespecialworkspace, magic"
+  # "${mainMod}, S, togglespecialworkspace, magic"
   "${mainMod} SHIFT, S, movetoworkspace, special:magic"
   # "${mainMod}, mouse_down, workspace, e+1"
   # "${mainMod}, mouse_up, workspace, e-1"
