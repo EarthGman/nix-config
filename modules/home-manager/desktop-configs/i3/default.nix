@@ -46,11 +46,6 @@ in
           always = true;
           notification = false;
         }
-        {
-          command = "systemctl --user start picom.service";
-          always = false;
-          notification = false;
-        }
       ] ++ optionals (!(config.services.omori-calendar-project.enable)) [
         {
           # custom case where the omori calendar project is enabled, disable this
