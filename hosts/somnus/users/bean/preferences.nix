@@ -20,13 +20,14 @@ in
     cmatrix.enable = true;
     cbonsai.enable = true;
     pipes.enable = true;
+    sl.enable = true;
 
     alacritty.enable = true;
+    kitty.enable = true;
   };
 
   # use alacritty because kitty will not work on this PC
   # mysteriously crashes every time any icon is loaded for any reason and I cannot fix it
-  custom.terminal = "alacritty";
   stylix.fonts = {
     monospace = {
       name = "MesloLGL Nerd Font";
