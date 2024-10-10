@@ -40,6 +40,22 @@ in
           popups = mkDefault 10;
           terminal = mkDefault 14;
         };
+        sansSerif = mkDefault {
+          name = "MesloLGS Nerd Font";
+          package = (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; });
+        };
+        serif = mkDefault {
+          name = "MesloLGS Nerd Font";
+          package = (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; });
+        };
+        monospace = mkDefault {
+          name = "MesloLGS Nerd Font";
+          package = (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; });
+        };
+        emoji = mkDefault {
+          name = "MesloLGS Nerd Font";
+          package = (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; });
+        };
       };
     };
   };

@@ -18,6 +18,7 @@ in
     };
 
     programs = {
+      rofi = enabled;
       waybar = enabled;
       hyprlock = enabled;
     };
