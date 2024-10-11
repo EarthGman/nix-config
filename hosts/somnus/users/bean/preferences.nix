@@ -28,12 +28,6 @@ in
 
   # use alacritty because kitty will not work on this PC
   # mysteriously crashes every time any icon is loaded for any reason and I cannot fix it
-  stylix.fonts = {
-    monospace = {
-      name = "MesloLGL Nerd Font";
-      package = pkgs.nerdfonts.override { fonts = [ "Meslo" ]; };
-    };
-  };
 
   wayland.windowManager.hyprland.mainMod = "SUPER";
 
