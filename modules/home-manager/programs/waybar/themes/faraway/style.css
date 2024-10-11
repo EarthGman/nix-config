@@ -1,0 +1,22 @@
+* {
+  font-family: "OMORI_GAME";
+  font-size: 18pt;
+}
+
+#window, #network, #cpu, #memory, #disk, #pulseaudio, #custom-microphone,
+#battery, #clock, #tray {
+  background-color: #303030;
+  color: #cecece;
+  border-radius: 5px;  
+  padding-left: 10px;
+  padding-right: 10px;                     
+  margin: 5px;
+}
+
+#tray {
+padding: 0 10px;
+}
+
+#custom-os_button {
+color: #85cffa;
+}

@@ -8,6 +8,7 @@ in
     firefox.theme.name = "shyfox";
     firefox.theme.config.wallpaper = fetchurl wallpapers.a-home-for-flowers;
     fastfetch.image = fetchurl icons.oops;
+    waybar.theme = "faraway";
     vscode.userSettings = {
       editor = {
         "fontFamily" = mkForce "'OMORI_GAME'";

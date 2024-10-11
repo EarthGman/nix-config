@@ -21,4 +21,5 @@ pkgs.writeScript "wp-selector.sh" ''
 
   hyprctl hyprpaper preload "$WALLPAPERS_DIR/$selected_wallpaper"
   hyprctl hyprpaper wallpaper ",$WALLPAPERS_DIR/$selected_wallpaper"
+  hyprctl hyprpaper unload unused
 ''
