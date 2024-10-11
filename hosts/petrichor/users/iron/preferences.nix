@@ -17,6 +17,11 @@ in
     gimp.enable = true;
     yazi.enable = true;
 
+    sl.enable = true;
+    cbonsai.enable = true;
+    cmatrix.enable = true;
+    pipes.enable = true;
+
     museeks.enable = true;
     clipgrab.enable = true;
     obs-studio.enable = true;
