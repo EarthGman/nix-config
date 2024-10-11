@@ -69,6 +69,7 @@ in
 
   ", Print, exec, ${getExe pkgs.grim} -g \"$(${getExe pkgs.slurp})\" - | ${pkgs.wl-clipboard}/bin/wl-copy && ${pkgs.wl-clipboard}/bin/wl-paste > ${config.home.homeDirectory}/Pictures/Screenshots/Screenshot-$(date +%F_%T).png"
   "SHIFT, Print, exec, ${getExe pkgs.grim} - | ${pkgs.wl-clipboard}/bin/wl-copy && ${pkgs.wl-clipboard}/bin/wl-paste > ${config.home.homeDirectory}/Pictures/Screenshots/Screenshot-$(date +%F_%T).png"
+  "${mainMod} SHIFT, Z, exec, ${getExe pkgs.hyprpicker}"
 
   ",XF86AudioRaiseVolume, exec, ${pamixer} -i 5"
   ",XF86AudioLowerVolume, exec, ${pamixer} -d 5"

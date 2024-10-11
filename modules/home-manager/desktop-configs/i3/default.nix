@@ -23,9 +23,9 @@ in
 
   services = {
     network-manager-applet = enabled;
-    dunst = enabled;
     polybar = enabled;
     picom = enabled;
+    mako = enabled;
   };
 
   xsession.enable = true;

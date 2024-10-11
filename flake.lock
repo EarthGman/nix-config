@@ -430,7 +430,7 @@
     "wallpapers": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-3jxZKiZHUsBcYKaMrMdLE3+Dkq5h8IPvwDzK/mD8YQs=",
+        "narHash": "sha256-kc/ctCzl8wegpYClLegKtwmMAhXrTH552E5ea26fsHA=",
         "type": "file",
         "url": "https://raw.githubusercontent.com/EarthGman/personal-cache/master/wallpapers.json"
       },

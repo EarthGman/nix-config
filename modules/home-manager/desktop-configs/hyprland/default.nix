@@ -13,6 +13,7 @@ in
   config = {
     services = {
       mako = enabled;
+      dunst.enable = lib.mkForce false;
       hyprpaper = enabled;
       network-manager-applet = enabled;
     };
