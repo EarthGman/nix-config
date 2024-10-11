@@ -16,8 +16,11 @@
     linuxKernel.packages.linux_6_10.broadcom_sta
   ];
 
-  custom = {
+  modules = {
     onepassword.enable = true;
+  };
+
+  custom = {
     decreased-security.nixos-rebuild = true;
   };
 }

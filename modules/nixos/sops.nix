@@ -1,14 +1,15 @@
 { self, inputs, pkgs, config, lib, hostName, ... }:
 let
   keyFile = "/var/lib/sops-nix/keys.txt";
+  cfg = config.modules.sops;
 in
 {
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
 
-  options.custom.sops.enable = lib.mkEnableOption "enable sops module";
-  config = lib.mkIf config.custom.sops.enable {
+  options.modules.sops.enable = lib.mkEnableOption "enable sops module";
+  config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [ sops age ];
     sops = {
       defaultSopsFile = self + /hosts/${hostName}/secrets.yaml;

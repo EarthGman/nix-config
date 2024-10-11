@@ -11,7 +11,7 @@ pkgs.writeScript "theme-switcher.sh" ''
       exit 0
   fi
 
-  sed -i -E "s|(theme = self \+ /modules/home-manager/desktop-configs/themes/).*|\1$THEME.nix;|" ${config.home.homeDirectory}/src/nix-config/hosts/${hostName}/users/${config.home.username}/preferences.nix
+  sed -i -E "s|(theme = self \+ /profiles/home-manager/desktop-themes/).*|\1$THEME.nix;|" ${config.home.homeDirectory}/src/nix-config/hosts/${hostName}/users/${config.home.username}/preferences.nix
 
   sudo nixos-rebuild test
   exit 0

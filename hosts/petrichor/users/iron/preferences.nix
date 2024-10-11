@@ -1,6 +1,6 @@
 { self, ... }:
 let
-  theme = self + /modules/home-manager/desktop-configs/themes/vibrant-cool.nix;
+  theme = self + /profiles/home-manager/desktop-themes/vibrant-cool.nix;
 in
 {
   imports = [ theme ];

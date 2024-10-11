@@ -1,7 +1,7 @@
 { lib, config, ... }:
 {
-  options.custom.nh.enable = lib.mkEnableOption "enable nix helper a better nix cli";
-  config = lib.mkIf config.custom.nh.enable {
+  options.modules.nh.enable = lib.mkEnableOption "enable custom nh module";
+  config = lib.mkIf config.modules.nh.enable {
     programs.nh = {
       enable = true;
       clean.enable = true;

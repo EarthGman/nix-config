@@ -1,9 +1,9 @@
 { config, lib, ... }:
 let
-  cfg = config.custom.sunshine;
+  cfg = config.modules.sunshine;
 in
 {
-  options.custom.sunshine = {
+  options.modules.sunshine = {
     enable = lib.mkEnableOption "enable sunshine module";
   };
   config = lib.mkIf cfg.enable {

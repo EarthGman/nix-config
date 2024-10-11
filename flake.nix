@@ -80,7 +80,7 @@
         cypher = mkHost { hostName = "cypher"; cpu = "amd"; gpu = "amd"; users = "g"; desktop = "hyprland,i3"; displayManager = "sddm"; };
         garth = mkHost { hostName = "garth"; cpu = "intel"; gpu = "intel-igpu"; users = "g"; desktop = "hyprland"; displayManager = "sddm"; };
         tater = mkHost { hostName = "tater"; cpu = "intel"; gpu = "intel-igpu"; users = "g"; desktop = "hyprland,i3"; displayManager = "sddm"; };
-        nixos = mkHost { hostName = "nixos"; vm = "yes"; users = "test,test2"; desktop = "i3"; displayManager = "sddm"; };
+        nixos = mkHost { hostName = "nixos"; vm = "yes"; users = "test"; desktop = "i3"; displayManager = "sddm"; };
 
         somnus = mkHost { hostName = "somnus"; cpu = "amd"; gpu = "amd"; users = "bean"; desktop = "i3,hyprland"; displayManager = "sddm"; };
 

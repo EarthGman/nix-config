@@ -20,9 +20,12 @@
     HourFormat = "hh:mm A";
   };
 
-  custom = {
+  modules = {
     steam.enable = true;
     sops.enable = true;
+  };
+
+  custom = {
     decreased-security.nixos-rebuild = true;
   };
 

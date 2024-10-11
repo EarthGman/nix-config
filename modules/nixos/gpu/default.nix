@@ -9,6 +9,6 @@ in
     ./nvidia.nix
   ];
 
-  custom.amdgpu.enable = amd;
-  custom.nvidiagpu.enable = nvidia;
+  modules.gpu.amd.enable = amd;
+  modules.gpu.nvidia.enable = nvidia;
 }

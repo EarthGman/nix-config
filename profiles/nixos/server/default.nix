@@ -8,6 +8,7 @@ in
     ./disko.nix
   ];
   # use systemd boot, might use UKI later?
+  modules.bootloaders.systemd-boot.enable = true;
   boot = {
     kernelParams = [ "quiet" "noatime" ];
     tmp.cleanOnBoot = true;

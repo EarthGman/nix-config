@@ -1,7 +1,10 @@
 { config, lib, ... }:
+let
+  cfg = config.modules.desktops.i3;
+in
 {
-  options.custom.i3.enable = lib.mkEnableOption "enable i3 desktop";
-  config = lib.mkIf config.custom.i3.enable {
+  options.modules.desktops.i3.enable = lib.mkEnableOption "enable i3 desktop";
+  config = lib.mkIf cfg.enable {
     services.xserver.windowManager.i3 = {
       enable = true;
       extraSessionCommands = ''

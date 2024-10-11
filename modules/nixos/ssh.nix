@@ -1,7 +1,10 @@
 { config, lib, ... }:
+let
+  cfg = config.modules.ssh;
+in
 {
-  options.custom.ssh.enable = lib.mkEnableOption "enable ssh daemon";
-  config = lib.mkIf config.custom.ssh.enable {
+  options.modules.ssh.enable = lib.mkEnableOption "enable ssh daemon";
+  config = lib.mkIf cfg.enable {
     services = {
       sshd.enable = true;
       openssh = {

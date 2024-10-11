@@ -1,7 +1,10 @@
 { pkgs, config, lib, ... }:
+let
+  cfg = config.modules.gpu.nvidia;
+in
 {
-  options.custom.nvidiagpu.enable = lib.mkEnableOption "enable nvidia drivers";
-  config = lib.mkIf config.custom.nvidiagpu.enable {
+  options.modules.gpu.nvidia.enable = lib.mkEnableOption "enable nvidia drivers";
+  config = lib.mkIf cfg.enable {
     environment.systemPackages = [ pkgs.nvtopPackages.nvidia ];
     services.xserver.videoDrivers = [ "nvidia" ];
     hardware.nvidia = {

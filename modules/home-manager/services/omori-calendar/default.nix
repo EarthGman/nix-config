@@ -40,7 +40,7 @@ let
 
         hyprctl hyprpaper preload "''${!MONTH}"
         hyprctl hyprpaper wallpaper ",''${!MONTH}"
-        hyprctl hyprpaper unload unused
+        hyprctl hyprpaper unload
         exit 0
         ;;
       *)

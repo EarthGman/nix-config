@@ -1,12 +1,12 @@
 { self, ... }:
 let
-  template = self + /templates/home-manager/g.nix;
-  theme = self + /modules/home-manager/desktop-configs/themes/faraway.nix;
+  profile = self + /templates/home-manager/g.nix;
+  theme = self + /profiles/home-manager/desktop-themes/faraway.nix;
 in
 {
   imports = [
     theme
-    template
+    profile
   ];
   stylix.fonts.sizes = {
     terminal = 12;

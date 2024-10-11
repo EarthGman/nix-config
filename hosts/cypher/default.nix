@@ -53,13 +53,15 @@
     ];
   };
 
-  custom = {
+  modules = {
     steam.enable = true;
     onepassword.enable = true;
     sunshine.enable = true;
-    virtualization.enable = true;
+    qemu-kvm.enable = true;
     sops.enable = true;
+  };
 
+  custom = {
     decreased-security.nixos-rebuild = true;
   };
 

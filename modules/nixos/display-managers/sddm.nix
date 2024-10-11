@@ -15,7 +15,7 @@ let
 in
 {
   options = {
-    custom.sddm.enable = lib.mkEnableOption "enable sddm";
+    modules.display-managers.sddm.enable = lib.mkEnableOption "enable sddm module";
     services.displayManager.sddm.themeConfig = mkOption {
       description = "sddm theme configuration written to theme.conf.user";
       type = types.attrsOf types.str;
@@ -33,7 +33,7 @@ in
         inherit (cfg) themeConfig;
       };
     in
-    mkIf config.custom.sddm.enable {
+    mkIf config.modules.display-managers.sddm.enable {
       services.displayManager = {
         inherit defaultSession;
         sddm = {

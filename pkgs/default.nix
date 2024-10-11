@@ -9,5 +9,5 @@ in
   gnome-tilingShell = callPackage ./tilingshell.nix { };
   userchrome-toggle-extended = callPackage ./uct-extended.nix { };
   shyfox = callPackage ./firefox-themes/shyfox.nix { };
-  omori-font = callPackage ./fonts/omori-2.nix { inherit inputs; };
+  omori-font = callPackage ./fonts/omori-font.nix { inherit inputs; };
 }

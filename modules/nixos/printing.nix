@@ -1,9 +1,10 @@
 { config, lib, ... }:
+let
+  cfg = config.modules.printing;
+in
 {
-  options.custom = {
-    printing.enable = lib.mkEnableOption "enable printing";
-  };
-  config = lib.mkIf config.custom.printing.enable {
+  options.modules.printing.enable = lib.mkEnableOption "enable printing";
+  config = lib.mkIf cfg.enable {
     services = {
       avahi = {
         enable = true;

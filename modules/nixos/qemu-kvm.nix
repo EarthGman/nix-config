@@ -1,7 +1,10 @@
 { cpu, pkgs, lib, config, ... }:
+let
+  cfg = config.modules.qemu-kvm;
+in
 {
-  options.custom.virtualization.enable = lib.mkEnableOption "enable virtual machines";
-  config = lib.mkIf config.custom.virtualization.enable {
+  options.modules.qemu-kvm.enable = lib.mkEnableOption "enable virtual machines using qemu-kvm";
+  config = lib.mkIf cfg.enable {
     virtualisation = {
       spiceUSBRedirection.enable = true;
       libvirtd = {

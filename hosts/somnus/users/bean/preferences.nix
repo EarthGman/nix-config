@@ -1,12 +1,12 @@
-{ self, pkgs, icons, ... }:
+{ self, icons, ... }:
 let
-  template = self + /templates/home-manager/bean.nix;
-  theme = self + /modules/home-manager/desktop-configs/themes/faraway.nix;
+  profile = self + /profiles/home-manager/bean.nix;
+  theme = self + /profiles/home-manager/desktop-themes/faraway.nix;
 in
 {
   imports = [
     theme
-    template
+    profile
   ];
 
   programs = {
@@ -22,12 +22,10 @@ in
     pipes.enable = true;
     sl.enable = true;
 
+    # alacritty as backup since kitty acts weird on this PC
     alacritty.enable = true;
     kitty.enable = true;
   };
-
-  # use alacritty because kitty will not work on this PC
-  # mysteriously crashes every time any icon is loaded for any reason and I cannot fix it
 
   wayland.windowManager.hyprland.mainMod = "SUPER";
 
@@ -36,7 +34,7 @@ in
   };
   home.file."bin/liquidctl-profile" = {
     executable = true;
-    text = ''
+    text = '' 
       #!/usr/bin/env bash
       liquidctl --match kraken set external color fixed 2f18d6
       liquidctl --match kraken set lcd screen gif ${builtins.fetchurl icons.pluto-expanded}

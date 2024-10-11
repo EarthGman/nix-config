@@ -11,7 +11,7 @@
     "usbhid"
     "sd_mod"
   ];
-  custom.steam.enable = true;
+  modules.steam.enable = true;
   # display manager customization
   services.displayManager.sddm.themeConfig = {
     Background = builtins.fetchurl wallpapers.survivors;

@@ -32,9 +32,9 @@
             else
               inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares.nix";
           qemu-guest = inputs.nixpkgs + "/nixos/modules/profiles/qemu-guest.nix";
-          desktop-setup = self + /templates/nixos/desktop.nix;
-          iso-setup = self + /templates/nixos/iso.nix;
-          server-setup = self + /templates/nixos/server;
+          desktop-setup = self + /profiles/nixos/desktop.nix;
+          iso-setup = self + /profiles/nixos/iso.nix;
+          server-setup = self + /profiles/nixos/server;
         in
         [ ../hosts ]
         ++ optionals (isISO) [ cd-dvd iso-setup ]

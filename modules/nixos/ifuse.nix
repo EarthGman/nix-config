@@ -1,7 +1,7 @@
 { pkgs, lib, config, ... }:
 {
-  options.custom.ifuse.enable = lib.mkEnableOption "enable ifuse for iphones";
-  config = lib.mkIf config.custom.ifuse.enable {
+  options.modules.ifuse.enable = lib.mkEnableOption "enable usbmuxd using ifuse for iphones";
+  config = lib.mkIf config.modules.ifuse.enable {
     services.usbmuxd = {
       enable = true;
       package = pkgs.usbmuxd2;

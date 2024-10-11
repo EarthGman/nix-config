@@ -16,7 +16,7 @@ in
     ./hyprland.nix
   ];
 
-  custom = {
+  modules.desktops = {
     gnome.enable = gnome;
     i3.enable = i3;
     hyprland.enable = hyprland;

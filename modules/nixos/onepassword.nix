@@ -1,10 +1,10 @@
 { lib, config, users, myLib, ... }:
 let
-  usernames = myLib.splitToList users;
+  usernames = if (users != "") then myLib.splitToList users else [ ];
 in
 {
-  options.custom.onepassword.enable = lib.mkEnableOption "enable 1password";
-  config = lib.mkIf config.custom.onepassword.enable {
+  options.modules.onepassword.enable = lib.mkEnableOption "enable 1password";
+  config = lib.mkIf config.modules.onepassword.enable {
     programs = {
       _1password.enable = true;
       _1password-gui = {

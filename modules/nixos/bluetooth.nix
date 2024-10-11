@@ -1,7 +1,7 @@
 { config, lib, ... }:
 {
-  options.custom.bluetooth.enable = lib.mkEnableOption "enable bluetooth module";
-  config = lib.mkIf config.custom.bluetooth.enable {
+  options.modules.bluetooth.enable = lib.mkEnableOption "enable bluetooth module";
+  config = lib.mkIf config.modules.bluetooth.enable {
     hardware.bluetooth.enable = true;
     services.blueman.enable = true;
   };

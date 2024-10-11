@@ -1,10 +1,10 @@
 { self, wallpapers, ... }:
 let
-  template = self + /templates/home-manager/minimal-desktop.nix;
+  profile = self + /profiles/home-manager/minimal.nix;
 in
 {
   imports = [
-    template
+    profile
   ];
 
   stylix.image = builtins.fetchurl wallpapers.scarlet-tree-dark;

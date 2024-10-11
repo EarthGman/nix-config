@@ -28,6 +28,7 @@ in
     excludePackages = with pkgs; [ xterm ];
   };
 
+  # sets up a default desktop portal backend
   xdg.portal = {
     enable = true;
     extraPortals = mkDefault [ pkgs.xdg-desktop-portal ];
@@ -40,13 +41,14 @@ in
     style = "adwaita-dark";
   };
 
-  custom = {
+  modules = {
     sound = enabled;
     bluetooth = enabled;
     printing = enabled;
     ifuse = enabled;
-    grub = enabled;
+    bootloaders.grub = enabled;
   };
+
   # decorate shell ~2.5GB of bloat
   programs = {
     zsh = {

@@ -5,7 +5,7 @@ let
 in
 {
   options = {
-    custom.grub.enable = mkEnableOption "enable grub boot loader";
+    modules.bootloaders.grub.enable = mkEnableOption "enable grub boot loader";
     boot.loader.grub = {
       themeConfig = mkOption {
         description = "extra config options for grub themes";
@@ -25,7 +25,7 @@ in
         inherit (cfg) themeConfig;
       };
     in
-    mkIf config.custom.grub.enable {
+    mkIf config.modules.bootloaders.grub.enable {
       boot = {
         extraModulePackages = [
           # for obs virtual camera
@@ -38,9 +38,7 @@ in
         ];
         tmp.cleanOnBoot = true;
         loader = {
-          efi = {
-            canTouchEfiVariables = true;
-          };
+          efi.canTouchEfiVariables = true;
           grub = {
             enable = true;
             inherit theme;

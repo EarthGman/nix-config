@@ -1,9 +1,11 @@
 { pkgs, config, lib, ... }:
+let
+  cfg = config.modules.desktops.gnome;
+in
 {
-  options.custom.gnome.enable = lib.mkEnableOption "enable gnome desktop";
-  config = lib.mkIf config.custom.gnome.enable {
+  options.modules.desktops.gnome.enable = lib.mkEnableOption "enable custom gnome desktop module";
+  config = lib.mkIf cfg.enable {
     services.xserver.desktopManager.gnome.enable = true;
-
     environment.systemPackages = with pkgs; [
       gnome-tilingShell
     ];

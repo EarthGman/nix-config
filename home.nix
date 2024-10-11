@@ -7,9 +7,9 @@ let
 in
 {
   imports = [
-    ./modules/home-manager/common.nix
+    ./modules/home-manager/shared.nix
     ./modules/home-manager/stylix
-    ./modules/home-manager/desktop-configs
+    ./modules/home-manager/desktop-settings
     ./hosts/${hostName}/users/${username}/preferences.nix
   ]
   ++ programs
