@@ -10,6 +10,10 @@
       url = "github:nixos/nixpkgs";
     };
 
+    nixpkgs-stable = {
+      url = "github:nixos/nixpkgs/nixos-24.05";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,6 +47,11 @@
       flake = false;
     };
 
+    fonts = {
+      url = "https://raw.githubusercontent.com/EarthGman/personal-cache/master/fonts.json";
+      flake = false;
+    };
+
     binaries = {
       url = "https://raw.githubusercontent.com/EarthGman/personal-cache/master/binaries.json";
       flake = false;
@@ -64,7 +73,7 @@
         let
           pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
         in
-        import ./pkgs { inherit pkgs myLib; }
+        import ./pkgs { inherit pkgs inputs; }
       );
 
       nixosConfigurations = {

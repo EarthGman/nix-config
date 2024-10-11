@@ -36,7 +36,6 @@
     "dialog.Style" = "custom";
     "titleBarStyle" = "custom";
     "zoomLevel" = 0;
-
   };
 
   "extensions.ignoreRecommendations" = true;

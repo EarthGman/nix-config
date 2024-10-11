@@ -1,8 +1,15 @@
-{ lib, config, ... }:
+{ pkgs, lib, config, ... }:
 {
+  # ensure the meslo font is properly installed
+  home.packages = lib.mkIf config.programs.kitty.enable [
+    (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; })
+  ];
   programs.kitty = {
+    package = pkgs.stable.kitty;
     enable = lib.mkDefault (config.custom.terminal == "kitty" || config.custom.terminal == "Kitty");
     settings = {
+      # kitty is so freaking sensitive with fonts so just force this one since it works well
+      font_family = "MesloLGS Nerd Font";
       update_check_interval = 0;
       tab_bar_style = "powerline";
       tab_powerline_style = "slanted";

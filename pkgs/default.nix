@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 let
   inherit (pkgs) callPackage;
 in
@@ -9,4 +9,5 @@ in
   gnome-tilingShell = callPackage ./tilingshell.nix { };
   userchrome-toggle-extended = callPackage ./uct-extended.nix { };
   shyfox = callPackage ./firefox-themes/shyfox.nix { };
+  omori-font = callPackage ./fonts/omori-2.nix { inherit inputs; };
 }

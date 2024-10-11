@@ -7,10 +7,17 @@
     };
   };
 
+  nixpkgs-stable = final: _: {
+    stable = import inputs.nixpkgs-stable {
+      inherit (final) system;
+      config.allowUnfree = true;
+    };
+  };
+
   nur = inputs.nur.overlay;
 
   # additional packages added to the package set
-  packages = final: _prev: import ./pkgs { pkgs = final; inherit myLib; };
+  packages = final: _prev: import ./pkgs { pkgs = final; inherit myLib inputs; };
 
   # cuts out roughly 600Mb of bloat
   disable-mbrola-voices = final: prev: {

@@ -135,6 +135,18 @@
         "type": "github"
       }
     },
+    "fonts": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-sOs0a6D9Xacxl7Gy4k6NNcW32am0Pr0xFf9kK3hatws=",
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/EarthGman/personal-cache/master/fonts.json"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/EarthGman/personal-cache/master/fonts.json"
+      }
+    },
     "fromYaml": {
       "flake": false,
       "locked": {
@@ -254,6 +266,22 @@
     },
     "nixpkgs-stable": {
       "locked": {
+        "lastModified": 1728500571,
+        "narHash": "sha256-dOymOQ3AfNI4Z337yEwHGohrVQb4yPODCW9MDUyAc4w=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "d51c28603def282a24fa034bcb007e2bcb5b5dd0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-24.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-stable_2": {
+      "locked": {
         "lastModified": 1725762081,
         "narHash": "sha256-vNv+aJUW5/YurRy1ocfvs4q/48yVESwlC/yHzjkZSP8=",
         "owner": "NixOS",
@@ -303,10 +331,12 @@
       "inputs": {
         "binaries": "binaries",
         "disko": "disko",
+        "fonts": "fonts",
         "home-manager": "home-manager",
         "icons": "icons",
         "nixpkgs": "nixpkgs",
         "nixpkgs-master": "nixpkgs-master",
+        "nixpkgs-stable": "nixpkgs-stable",
         "nur": "nur",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
@@ -318,7 +348,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "nixpkgs-stable": "nixpkgs-stable"
+        "nixpkgs-stable": "nixpkgs-stable_2"
       },
       "locked": {
         "lastModified": 1727734513,
