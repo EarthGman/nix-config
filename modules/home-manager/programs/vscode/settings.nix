@@ -9,7 +9,7 @@
     "inlayHints.enabled" = false;
     "find.addExtraSpaceOnTop" = false;
     "fontSize" = 20;
-    "fontFamily" = "'SauceCodePro Nerd Font', 'monospace'";
+    "fontFamily" = "'MesloLGS Nerd Font', monospace";
     "largeFileOptimizations" = false;
     "maxTokenizationLineLength" = 60000;
     "linkedEditing" = true;

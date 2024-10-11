@@ -3,9 +3,6 @@ let
   inherit (lib) mkDefault;
 in
 {
-  home.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
-  ];
   programs.vscode = {
     enable =
       let
