@@ -71,7 +71,7 @@ in
     enable = true;
     shellAliases =
       let
-        has-nh = config.modules.nh.enable;
+        has-nh = config.programs.nh.enable;
       in
       {
         l = "ls -al";
@@ -81,8 +81,8 @@ in
         gco = "g checkout";
         gba = "g branch -a";
         cat = "${getExe pkgs.bat}";
-        nrs = if (has-nh) then "${getExe pkgs.nh} os switch $(readlink -f /etc/nixos)" else "sudo nixos-rebuild switch";
-        nrt = if (has-nh) then "${getExe pkgs.nh} os test $(readlink -f /etc/nixos)" else "sudo nixos-rebuild test";
+        nrs = if (has-nh) then "${getExe pkgs.nh} os switch $(readlink -f /etc/nixos)" else "sudo nixos-rebuild switch --flake $(readlink -f /etc/nixos)";
+        nrt = if (has-nh) then "${getExe pkgs.nh} os test $(readlink -f /etc/nixos)" else "sudo nixos-rebuild test --flake $(readlink -f /etc/nixos)";
         nrb = "nixos-rebuild build";
         ncg = if (has-nh) then "${getExe pkgs.nh} clean all" else "sudo nix-collect-garbage -d";
       };

@@ -12,10 +12,10 @@ in
   # "${mod}+d" = "exec --no-startup-id dmenu_run";
   "${mod}+space" = "exec ${getExe pkgs.rofi} -show";
 
-  "${mod}+h" = "focus left";
-  "${mod}+j" = "focus down";
-  "${mod}+k" = "focus up";
-  "${mod}+l" = "focus right";
+  # "${mod}+h" = "focus left";
+  # "${mod}+j" = "focus down";
+  # "${mod}+k" = "focus up";
+  # "${mod}+l" = "focus right";
 
   "${mod}+Left" = "focus left";
   "${mod}+Down" = "focus down";
@@ -23,10 +23,10 @@ in
   "${mod}+Right" = "focus right";
 
   # move focused window
-  "${mod}+Shift+h" = "move left";
-  "${mod}+Shift+j" = "move down";
-  "${mod}+Shift+k" = "move up";
-  "${mod}+Shift+l" = "move right";
+  # "${mod}+Shift+h" = "move left";
+  # "${mod}+Shift+j" = "move down";
+  # "${mod}+Shift+k" = "move up";
+  # "${mod}+Shift+l" = "move right";
 
   "${mod}+Shift+Left" = "move left";
   "${mod}+Shift+Down" = "move down";
