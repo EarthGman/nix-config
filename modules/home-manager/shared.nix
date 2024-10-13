@@ -30,6 +30,7 @@ in
         userName = mkDefault "";
         userEmail = mkDefault "";
       };
+      bat.enable = true;
     };
 
     nixpkgs = {
