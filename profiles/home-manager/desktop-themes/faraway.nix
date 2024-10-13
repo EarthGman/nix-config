@@ -1,4 +1,4 @@
-{ pkgs, lib, wallpapers, icons, ... }:
+{ pkgs, lib, config, wallpapers, icons, ... }:
 let
   inherit (builtins) fetchurl;
   inherit (lib) mkForce;
@@ -8,14 +8,17 @@ in
     firefox.theme.name = "shyfox";
     firefox.theme.config.wallpaper = fetchurl wallpapers.a-home-for-flowers;
     fastfetch.image = fetchurl icons.oops;
-    waybar.theme = "faraway";
+    waybar = {
+      theme = "faraway";
+      # settings = [ ];
+    };
     vscode.userSettings = {
       editor = {
-        "fontFamily" = mkForce "'OMORI_GAME'";
-        "fontSize" = mkForce "32";
+        "fontFamily" = "'OMORI_GAME'";
+        "fontSize" = "32";
       };
       window = {
-        "zoomLevel" = mkForce 1;
+        "zoomLevel" = 1;
       };
     };
   };

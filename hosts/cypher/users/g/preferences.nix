@@ -1,5 +1,6 @@
-{ self, ... }:
+{ self, lib, ... }:
 let
+  inherit (lib) mkForce;
   profile = self + /profiles/home-manager/g.nix;
   theme = self + /profiles/home-manager/desktop-themes/faraway.nix;
 in
@@ -18,6 +19,13 @@ in
     looking-glass.version = "B6";
     obs-studio.enable = true;
     ygo-omega.enable = true;
+
+    vscode.userSettings = {
+      editor = {
+        "fontFamily" = mkForce "'MesloLGS Nerd Font'";
+        "fontSize" = mkForce 20;
+      };
+    };
   };
 
   # monitors for hyprland

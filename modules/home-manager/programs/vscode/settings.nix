@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
+let
+  inherit (lib) mkDefault;
+in
 {
   breadcrumbs.enabled = false;
   files.autosave = "off";
@@ -8,8 +11,8 @@
     "cursorSmoothCaretAnimation" = "on";
     "inlayHints.enabled" = false;
     "find.addExtraSpaceOnTop" = false;
-    "fontSize" = 20;
-    "fontFamily" = "'MesloLGS Nerd Font', monospace";
+    "fontSize" = mkDefault 20;
+    "fontFamily" = mkDefault "'MesloLGS Nerd Font', monospace";
     "largeFileOptimizations" = false;
     "maxTokenizationLineLength" = 60000;
     "linkedEditing" = true;
@@ -35,7 +38,7 @@
   window = {
     "dialog.Style" = "custom";
     "titleBarStyle" = "custom";
-    "zoomLevel" = 0;
+    "zoomLevel" = mkDefault 0;
   };
 
   "extensions.ignoreRecommendations" = true;

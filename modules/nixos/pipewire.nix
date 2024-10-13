@@ -1,10 +1,10 @@
 { config, lib, ... }:
 let
   inherit (lib) mkDefault mkIf;
-  cfg = config.modules.sound;
+  cfg = config.modules.pipewire;
 in
 {
-  options.modules.sound.enable = lib.mkEnableOption "enable sound with pipewire";
+  options.modules.pipewire.enable = lib.mkEnableOption "enable sound with pipewire";
   config = mkIf cfg.enable {
     hardware = {
       pulseaudio.enable = false;

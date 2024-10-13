@@ -54,6 +54,7 @@ in
     file
     ncdu
     hstr
+    inxi
     zip
     unzip
     usbutils

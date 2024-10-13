@@ -22,6 +22,11 @@ in
     backupFileExtension = "bak";
   };
 
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
   services.xserver = {
     enable = true;
     xkb.layout = mkDefault "us";
@@ -42,7 +47,7 @@ in
   };
 
   modules = {
-    sound = enabled;
+    pipewire = enabled;
     bluetooth = enabled;
     printing = enabled;
     ifuse = enabled;

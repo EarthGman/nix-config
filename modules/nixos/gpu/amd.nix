@@ -13,5 +13,10 @@ in
       "radeon-profile" = radeon-profile;
     };
     services.xserver.videoDrivers = [ "amdgpu" ];
+    hardware.graphics = {
+      extraPackages = with pkgs; [
+        libvdpau-va-gl
+      ];
+    };
   };
 }
