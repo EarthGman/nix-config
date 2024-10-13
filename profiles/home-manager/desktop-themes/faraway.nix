@@ -1,4 +1,4 @@
-{ pkgs, lib, config, wallpapers, icons, ... }:
+{ pkgs, lib, wallpapers, icons, ... }:
 let
   inherit (builtins) fetchurl;
   inherit (lib) mkForce;
@@ -10,12 +10,18 @@ in
     fastfetch.image = fetchurl icons.oops;
     waybar = {
       theme = "faraway";
-      # settings = [ ];
+      bottomBar.settings = {
+        "cpu".format = mkForce "  {usage}%";
+        "memory".format = mkForce "  {percentage}%";
+        "disk".format = mkForce "  {percentage_used}%";
+        "clock".format = mkForce "  {:%R   %m.%d.%Y}";
+        "pulseaudio".format = mkForce "{icon}  {volume}%";
+      };
     };
     vscode.userSettings = {
       editor = {
-        "fontFamily" = "'OMORI_GAME'";
-        "fontSize" = "32";
+        "fontFamily" = "'OMORI_GAME' ";
+        "fontSize" = " 32 ";
       };
       window = {
         "zoomLevel" = 1;
@@ -52,3 +58,5 @@ in
     };
   };
 }
+
+

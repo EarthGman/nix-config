@@ -1,10 +1,11 @@
-{ pkgs, lib, config, hostName, ... }:
+{ pkgs, config, lib, hostName, ... }:
 let
   inherit (lib) getExe;
   wallpaper-switcher = import ./hyprpaper.nix { inherit pkgs config; };
   theme-switcher = import ./theme-switcher.nix { inherit pkgs lib config hostName; };
+
 in
-[{
+{
   name = "bottom";
   layer = "bottom";
   position = "bottom";
@@ -209,23 +210,4 @@ in
     on-click = "${getExe pkgs.pamixer} -t";
     on-click-right = "${getExe pkgs.pwvucontrol}";
   };
-
 }
-  {
-    name = "top";
-    layer = "bottom";
-    position = "top";
-    modules-left = [ "wlr/taskbar" ];
-
-    "wlr/taskbar" = {
-      format = "{icon} {title:.17}";
-      icon-size = 28;
-      spacing = 3;
-      on-click-middle = "close";
-      on-click = "activate";
-      tooltip-format = "{title}";
-      ignore-list = [ ];
-    };
-  }]
-
-

@@ -1,4 +1,7 @@
 { pkgs, lib, config, hostName, ... }:
+let
+  cfg = config.programs.waybar;
+in
 {
   options.programs.waybar = {
     theme = lib.mkOption {
@@ -6,10 +9,22 @@
       type = lib.types.str;
       default = "default";
     };
+    topBar.settings = lib.mkOption {
+      description = "configuration for the top waybar";
+      type = lib.types.anything;
+      default = { };
+    };
+    bottomBar.settings = lib.mkOption {
+      description = "configuration for the bottom waybar";
+      type = lib.types.anything;
+      default = { };
+    };
   };
   config = {
     programs.waybar = {
-      settings = import ./settings.nix { inherit pkgs lib config hostName; };
+      topBar.settings = import ./top-bar.nix;
+      bottomBar.settings = import ./bottom-bar.nix { inherit pkgs config lib hostName; };
+      settings = [ cfg.topBar.settings cfg.bottomBar.settings ];
       style = builtins.readFile ./themes/${config.programs.waybar.theme}/style.css;
     };
     home.packages = lib.mkIf config.programs.waybar.enable (with pkgs; [
