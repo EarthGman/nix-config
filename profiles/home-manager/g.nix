@@ -26,6 +26,7 @@ in
 
     audacity = enabled;
     ardour = enabled;
+    autokey = enabled;
     bottles = enabled;
     clipgrab = enabled;
     firefox = enabled;
