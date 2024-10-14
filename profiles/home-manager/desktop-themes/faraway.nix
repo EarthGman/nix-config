@@ -20,8 +20,8 @@ in
     };
     vscode.userSettings = {
       editor = {
-        "fontFamily" = "'OMORI_GAME' ";
-        "fontSize" = " 32 ";
+        "fontFamily" = "'OMORI_GAME'";
+        "fontSize" = "24";
       };
       window = {
         "zoomLevel" = 1;
