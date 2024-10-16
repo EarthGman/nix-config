@@ -46,6 +46,7 @@ in
     style = "adwaita-dark";
   };
 
+  # some features most desktops would probably want
   modules = {
     pipewire = enabled;
     bluetooth = enabled;
@@ -69,8 +70,4 @@ in
     # required for some stylix to work properly (gtk)
     dconf.enable = true;
   };
-
-  # mouse control gui
-  services.ratbagd.enable = true;
-  environment.systemPackages = [ pkgs.piper ];
 }

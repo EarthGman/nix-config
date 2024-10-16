@@ -1,6 +1,7 @@
-{ wallpapers, ... }:
+{ self, wallpapers, ... }:
 {
   imports = [
+    (self + /profiles/nixos/gaming-pc.nix)
     ./disko.nix
   ];
   boot.initrd.availableKernelModules = [
@@ -11,7 +12,6 @@
     "usbhid"
     "sd_mod"
   ];
-  modules.steam.enable = true;
   # display manager customization
   services.displayManager.sddm.themeConfig = {
     Background = builtins.fetchurl wallpapers.survivors;

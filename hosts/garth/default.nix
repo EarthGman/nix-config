@@ -1,7 +1,8 @@
-{ pkgs, wallpapers, ... }:
+{ self, pkgs, wallpapers, ... }:
 {
   imports = [
     ./fs.nix
+    (self + /profiles/nixos/workstation.nix)
   ];
   boot.initrd.availableKernelModules = [
     "xhci_pci"
@@ -44,7 +45,6 @@
     package = pkgs.wireshark;
   };
 
-  services.nordvpn.enable = true;
   services.zerotierone = {
     enable = true;
     joinNetworks = [

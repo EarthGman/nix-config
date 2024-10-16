@@ -1,7 +1,8 @@
-{ pkgs, ... }:
+{ self, pkgs, ... }:
 {
   imports = [
     ./disko.nix
+    (self + /profiles/nixos/workstation.nix)
   ];
   boot.initrd.availableKernelModules = [
     "ahci"

@@ -1,7 +1,8 @@
-{ wallpapers, pkgs, ... }:
+{ self, wallpapers, pkgs, ... }:
 {
   imports = [
     ./disko
+    (self + /profiles/nixos/gaming-pc.nix)
   ];
 
   services.displayManager.sddm.themeConfig = {
@@ -21,7 +22,6 @@
   };
 
   modules = {
-    steam.enable = true;
     sops.enable = true;
   };
 

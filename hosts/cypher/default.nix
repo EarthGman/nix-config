@@ -1,6 +1,9 @@
-{ pkgs, lib, displayManager, wallpapers, ... }:
+{ self, pkgs, lib, displayManager, wallpapers, ... }:
 {
-  imports = [ ./fs.nix ] ++ lib.optionals (displayManager == "sddm") [ ./sddm.nix ];
+  imports = [
+    ./fs.nix
+    (self + /profiles/nixos/gaming-pc.nix)
+  ] ++ lib.optionals (displayManager == "sddm") [ ./sddm.nix ];
   boot.initrd.availableKernelModules = [
     "nvme"
     "ahci"
@@ -32,9 +35,10 @@
     # required for sins of a solar empire lag bug in multiplayer
     extraHosts = ''66.79.209.80 ico-reb.stardock.com'';
   };
+
+  services.keyd.enable = true;
   services.zerotierone = {
     enable = true;
-
     joinNetworks = [
       # personal darkweb
       "d5e5fb653723b80e"
@@ -69,8 +73,6 @@
     enable = true;
     package = pkgs.wireshark;
   };
-
-  services.udev.packages = [ pkgs.dolphin-emu ];
 
   environment.etc = {
     "ssh/ssh_host_ed25519_key.pub".source = ./ssh_host_ed25519_key.pub;
