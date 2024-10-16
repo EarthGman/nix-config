@@ -1,5 +1,5 @@
 EarthGman's nix flake ❄️ version 4
-Now with (hopefully) finalized framework
+Theoretical infinitely expandable configuration framework
 
 Changes from v3:
 - revamped framework
@@ -9,40 +9,21 @@ Changes from v3:
 - externel repo for assets (wallpapers, binaries, etc)
 
 Some Notes:
-It is possible to enable multiple desktops at once but this is not recommended.
-"gnome"
-"i3"
-"hyprland"
-These can all be enabled by setting desktop = "gnome,i3,hyprland" in flake.nix
-The first desktop in this string will be set as the default session within the display manager.
+- While this should theoretically work for nixos systems with aarch64-linux It is completely untested. for now only x86_64-linux is supported.
+- It is possible to enable multiple desktops at once, However I do not recommend this with gnome and any other desktop as it is very large, sets many conflicting options behind the scenes, and causes a lot of weirdness when paired with other desktops. As of now i3 and hyprland can be enabled together as a dual-boot/log setup with wayland and x11.
 
 Multiple users can be enabled on each system, each has its own nixos and home-manager configuration located under 
 hostname/users.
-ex. users = "alice,bob" in flake.nix
+enable an arbitrary amount of users assuming that configuration for each is present:
 
-The first user in this list is by default considered the power user.
-Some modules will give this user extra permissions or add it to certain groups automatically.
-Ex. modules/nixos/docker.nix 
-
-Supported desktops:
-- gnome on xorg
-- gnome on wayland
-- i3
-- hyprland
-
-Supported display managers:
-- sddm:
-  - themes:
-    - sddm-astronaut
-
-supported bootloaders:
-- grub:
-  - themes:
-    - nixos
+```nix
+# flake.nix
+users = "alice,bob";
+```
 
 Installation guide (mostly personal notes)
 Pre-install:
-- flake entry
+- flake entry with intended hostname as the key
 - hosts folder with extra config and disko
 
 Install:
@@ -50,7 +31,8 @@ Install:
 - run disko
 - mkdir /mnt/etc
 - mv nix-config /mnt/etc/nixos
-- nixos-install --flake .#yourhostname /etc/nixos
+- If sops secrets is used do not forget to move private key into /mnt/var/lib/sops-nix/keys.txt
+- nixos-install --flake .#yourhostname /mnt/etc/nixos
 
 Post Install:
 - firefox extension configuration
@@ -61,8 +43,8 @@ Post Install:
 #TODO: in order of priority
 - [x] ssh keys
 - [x] hyprland
-- [ ] remote building
-- [ ] install scripts
-- [ ] drive encryption
 - [ ] vim
+- [ ] remote building
 - [ ] zfs
+- [ ] drive encryption
+- [ ] autoinstall scripts
