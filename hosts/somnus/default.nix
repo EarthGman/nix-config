@@ -6,7 +6,7 @@
   ];
 
   services.displayManager.sddm.themeConfig = {
-    Background = builtins.fetchurl wallpapers.the-gang-headspace-2;
+    Background = builtins.fetchurl wallpapers.the-gang-grouphug;
     ScreenWidth = "2560";
     ScreenHeight = "1440";
     FullBlur = "false";
