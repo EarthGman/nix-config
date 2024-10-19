@@ -5,7 +5,7 @@
     (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; })
   ];
   programs.kitty = {
-    enable = lib.mkDefault (config.custom.terminal == "kitty" || config.custom.terminal == "Kitty");
+    enable = lib.mkDefault (config.custom.terminal == "kitty");
     settings = {
       # kitty is so freaking sensitive with fonts so just force this one since it works well
       font_family = "MesloLGS Nerd Font";

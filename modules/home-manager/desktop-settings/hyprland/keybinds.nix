@@ -2,14 +2,15 @@
 let
   inherit (lib) getExe;
   terminal = getExe pkgs.${config.custom.terminal};
-  fileManager = "nautilus";
+  fileManager = config.custom.fileManager;
+  browser = config.custom.browser;
   pamixer = getExe pkgs.pamixer;
   brightnessctl = getExe pkgs.brightnessctl;
   menu = "${lib.getExe config.programs.rofi.package}";
 in
 [
   "${mainMod}, Return, exec, ${terminal}"
-  "${mainMod}, E, exec, ${fileManager}"
+  "${mainMod}, M, exec, ${fileManager}"
   "${mainMod}, Space, exec, ${menu} -show"
 
   "${mainMod}, Q, killactive"
@@ -69,7 +70,7 @@ in
 
   ", Print, exec, ${getExe pkgs.grim} -g \"$(${getExe pkgs.slurp})\" - | ${pkgs.wl-clipboard}/bin/wl-copy && ${pkgs.wl-clipboard}/bin/wl-paste > ${config.home.homeDirectory}/Pictures/Screenshots/Screenshot-$(date +%F_%T).png"
   "SHIFT, Print, exec, ${getExe pkgs.grim} - | ${pkgs.wl-clipboard}/bin/wl-copy && ${pkgs.wl-clipboard}/bin/wl-paste > ${config.home.homeDirectory}/Pictures/Screenshots/Screenshot-$(date +%F_%T).png"
-  "${mainMod} SHIFT, Z, exec, ${getExe pkgs.hyprpicker}"
+  "${mainMod}, B, exec, ${browser}"
 
   ",XF86AudioRaiseVolume, exec, ${pamixer} -i 5"
   ",XF86AudioLowerVolume, exec, ${pamixer} -d 5"

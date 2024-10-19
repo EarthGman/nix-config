@@ -3,6 +3,8 @@ let
   mod = config.xsession.windowManager.i3.config.modifier;
   pamixer = "${getExe pkgs.pamixer}";
   brightnessctl = "${getExe pkgs.brightnessctl}";
+  fileManager = config.custom.fileManager;
+  browser = config.custom.browser;
   maim = "${getExe pkgs.maim}";
   xclip = "${getExe pkgs.xclip}";
 in
@@ -11,6 +13,8 @@ in
   "${mod}+q" = "kill";
   # "${mod}+d" = "exec --no-startup-id dmenu_run";
   "${mod}+space" = "exec ${getExe pkgs.rofi} -show";
+  "${mod}+b" = "exec ${browser}";
+  "${mod}+m" = "exec ${fileManager}";
 
   # "${mod}+h" = "focus left";
   # "${mod}+j" = "focus down";

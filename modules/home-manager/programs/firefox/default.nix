@@ -1,7 +1,7 @@
 { icons, pkgs, lib, config, ... }:
 # uses betterfox user.js by default
 let
-  inherit (lib) types mkIf mkDefault mkOption mkEnableOption;
+  inherit (lib) types mkIf mkDefault mkOption;
   profile = ".mozilla/firefox/default";
   cfg = config.programs.firefox;
   betterfox = pkgs.fetchFromGitHub {
