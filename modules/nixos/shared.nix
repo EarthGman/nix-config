@@ -12,6 +12,8 @@ in
     nh.enable = mkDefault true;
     neovim.enable = mkDefault true;
   };
+  # goodbye bloat
+  documentation.nixos.enable = mkDefault false;
 
   # other module boilerplate, applied by default to all configurations
   users.users."root".shell = pkgs.zsh;
@@ -56,6 +58,9 @@ in
     ncdu
     hstr
     inxi
+    killall
+    pamixer
+    brightnessctl
     zip
     unzip
     usbutils
