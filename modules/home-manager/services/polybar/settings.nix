@@ -36,7 +36,8 @@
     module-margin = mkDefault 1;
     separator = mkDefault "";
     separator-foreground = mkDefault "#a7a7a7";
-    font-0 = mkDefault "MesloLGS Nerd Font Mono:size=16;6";
+    font-0 = mkDefault "MesloLGS Nerd Font Mono:size=18;6";
+
     cursor-click = mkDefault "pointer";
     cursor-scroll = mkDefault "ns-resize";
     enable-ipc = mkDefault true;
@@ -48,8 +49,9 @@
 
   "module/systray" = {
     type = "internal/tray";
-    format-margin = "8pt";
+    format-margin = "6pt";
     tray-spacing = "16pt";
+    tray-size = "45%";
   };
 
   "module/xworkspaces" = {
