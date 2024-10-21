@@ -13,6 +13,7 @@ in
     openconnect.enable = true;
     lutris.enable = true;
     moonlight.enable = true;
+    gnome-clocks.enable = true;
   };
 }
 
