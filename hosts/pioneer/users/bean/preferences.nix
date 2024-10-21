@@ -1,7 +1,7 @@
 { self, ... }:
 let
   profile = self + /profiles/home-manager/bean.nix;
-  theme = self + /profiles/home-manager/desktop-themes/faraway.nix;
+  theme = self + /profiles/home-manager/desktop-themes/determination.nix;
 in
 {
   imports = [
