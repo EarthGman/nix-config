@@ -90,8 +90,8 @@ in
   "${mod}+Shift+e" = "exit i3";
 
   # screenshots
-  "Print" = "exec --no-startup-id \"${maim} | ${xclip} -selection clipboard -t image/png; ${xclip} -selection clipboard -t image/png -o > ~/Pictures/Screenshots/$(date +%F-%H:%M:%S).png\"";
-  "Shift+Print" = "exec --no-startup-id \"${maim} -s | ${xclip} -selection clipboard -t image/png; ${xclip} -selection clipboard -t image/png -o > ~/Pictures/Screenshots/$(date +%F-%H:%M:%S).png\"";
+  "Shift+Print" = "exec --no-startup-id \"${maim} | ${xclip} -selection clipboard -t image/png; ${xclip} -selection clipboard -t image/png -o > ~/Pictures/Screenshots/$(date +%F-%H:%M:%S).png\"";
+  "Print" = "exec --no-startup-id \"${maim} -s | ${xclip} -selection clipboard -t image/png; ${xclip} -selection clipboard -t image/png -o > ~/Pictures/Screenshots/$(date +%F-%H:%M:%S).png\"";
   "Control+Print" = "exec --no-startup-id \"${maim} -i $(${pkgs.xdotool}/bin/xdotool getactivewindow) | ${xclip} -selection clipboard -t image/png; ${xclip} -selection clipboard -t image/png -o > ~/Pictures/Screenshots/$(date +%F-%H:%M:%S).png\"";
 
   "XF86AudioRaiseVolume" = "exec ${pamixer} -i 5";
