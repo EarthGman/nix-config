@@ -83,6 +83,7 @@
         nixos = mkHost { hostName = "nixos"; vm = "yes"; users = "test"; desktop = "i3"; displayManager = "sddm"; };
 
         somnus = mkHost { hostName = "somnus"; cpu = "amd"; gpu = "amd"; users = "bean"; desktop = "hyprland,i3"; displayManager = "sddm"; };
+        pioneer = mkHost { hostName = "pioneer"; cpu = "intel"; gpu = "intel-igpu"; users = "bean"; desktop = "i3"; displayManager = "sddm"; };
 
         petrichor = mkHost { hostName = "petrichor"; cpu = "amd"; gpu = "amd"; users = "iron"; desktop = "hyprland,i3"; displayManager = "sddm"; };
 

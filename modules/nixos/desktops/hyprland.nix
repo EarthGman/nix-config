@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ pkgs, lib, config, ... }:
 let
   cfg = config.modules.desktops.hyprland;
 in
@@ -8,6 +8,7 @@ in
     programs.hyprland = {
       enable = true;
     };
+    xdg.portal.configPackages = [ pkgs.xdg-desktop-portal-hyprland ];
     environment.sessionVariables = {
       WLR_NO_HARDWARE_CURSORS = "1";
       # NIXOS_OZONE_WL = "1";
