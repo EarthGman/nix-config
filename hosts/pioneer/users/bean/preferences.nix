@@ -8,9 +8,11 @@ in
     profile
     theme
   ];
+
   services.polybar.settings = {
     "bar/bottom" = {
       font-0 = "MesloLGS Nerd Font Mono:size = 12;4";
+      modules-left = "wlan cpu memory";
     };
   };
 }
