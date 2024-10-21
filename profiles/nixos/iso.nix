@@ -32,5 +32,8 @@
       # "zfs"
     ];
   };
+
+  # debloat
+  documentation.enable = false;
 }
 
