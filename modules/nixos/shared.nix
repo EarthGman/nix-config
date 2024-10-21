@@ -52,6 +52,7 @@ in
     sysz
     git
     file
+    cifs-utils
     ncdu
     hstr
     inxi

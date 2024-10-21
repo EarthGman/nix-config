@@ -27,6 +27,8 @@ in
     enable32Bit = true;
   };
 
+  # mounting network drives in file managers
+  services.gvfs.enable = mkDefault true;
   services.xserver = {
     enable = true;
     xkb.layout = mkDefault "us";
