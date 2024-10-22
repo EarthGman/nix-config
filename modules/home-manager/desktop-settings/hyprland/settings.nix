@@ -26,6 +26,7 @@ in
   exec-once = [
     "${waybar}"
     "systemctl --user start hyprpaper.service"
+    "systemctl --user start blueman-applet.service"
   ];
 
   exec = [
