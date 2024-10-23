@@ -1,7 +1,7 @@
 { self, ... }:
 let
   profile = self + /profiles/home-manager/g.nix;
-  theme = self + /profiles/home-manager/desktop-themes/nightmare.nix;
+  theme = self + /profiles/home-manager/desktop-themes/faraway.nix;
 in
 {
   imports = [
