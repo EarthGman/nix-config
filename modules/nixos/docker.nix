@@ -12,10 +12,9 @@ in
         setSocketVariable = true;
       };
     };
-    # portainer
-    networking.firewall.allowedTCPPorts = [
-      8080
-      9443
+    services.homepage-dashboard.enable = true;
+    networking.firewall.allowedTCPPorts = lib.mkIf config.services.homepage-dashboard.openFirewall [
+      (config.services.homepage-dashboard.listenPort)
     ];
     # adds all users  to the docker group
     users.users = lib.genAttrs usernames {
