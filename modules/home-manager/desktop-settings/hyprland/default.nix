@@ -12,8 +12,7 @@ in
   };
   config = {
     services = {
-      mako = enabled;
-      dunst.enable = lib.mkForce false;
+      dunst = enabled;
       hyprpaper = enabled;
       network-manager-applet = enabled;
     };

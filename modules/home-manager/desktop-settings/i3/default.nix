@@ -25,7 +25,7 @@ in
     network-manager-applet = enabled;
     polybar = enabled;
     picom = enabled;
-    mako = enabled;
+    dunst = enabled;
   };
 
   xsession.enable = true;

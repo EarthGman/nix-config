@@ -7,6 +7,25 @@ let
   pamixer = getExe pkgs.pamixer;
   brightnessctl = getExe pkgs.brightnessctl;
   menu = "${lib.getExe config.programs.rofi.package}";
+
+  take-screenshot-selection = pkgs.writeScript "take-screenshot-selection-wayland.sh" ''
+    timestamp=$(date +%F_%T)
+    output="${config.home.homeDirectory}/Pictures/Screenshots/Screenshot-''${timestamp}.png"
+
+    if selection=$(${getExe pkgs.slurp}) && ${getExe pkgs.grim} -g "$selection" - | ${pkgs.wl-clipboard}/bin/wl-copy; then
+      ${pkgs.wl-clipboard}/bin/wl-paste > "$output"
+      dunstify "Screenshot saved to ~/Pictures/Screenshots"
+    fi
+  '';
+  take-screenshot = pkgs.writeScript "take-screenshot-wayland.sh" ''
+    timestamp=$(date +%F_%T)
+    output="${config.home.homeDirectory}/Pictures/Screenshots/Screenshot-''${timestamp}.png"
+    
+    if ${getExe pkgs.grim} - | ${pkgs.wl-clipboard}/bin/wl-copy; then
+      ${pkgs.wl-clipboard}/bin/wl-paste > "$output"
+      dunstify 'Screenshot saved to ~/Pictures/Screenshots'
+    fi
+  '';
 in
 [
   "${mainMod}, Return, exec, ${terminal}"
@@ -68,8 +87,9 @@ in
   # "${mainMod}, mouse_down, workspace, e+1"
   # "${mainMod}, mouse_up, workspace, e-1"
 
-  ", Print, exec, ${getExe pkgs.grim} -g \"$(${getExe pkgs.slurp})\" - | ${pkgs.wl-clipboard}/bin/wl-copy && ${pkgs.wl-clipboard}/bin/wl-paste > ${config.home.homeDirectory}/Pictures/Screenshots/Screenshot-$(date +%F_%T).png"
-  "SHIFT, Print, exec, ${getExe pkgs.grim} - | ${pkgs.wl-clipboard}/bin/wl-copy && ${pkgs.wl-clipboard}/bin/wl-paste > ${config.home.homeDirectory}/Pictures/Screenshots/Screenshot-$(date +%F_%T).png"
+  ", Print, exec, ${take-screenshot-selection}"
+  "SHIFT, Print, exec, ${take-screenshot}"
+
   "${mainMod}, B, exec, ${browser}"
 
   ",XF86AudioRaiseVolume, exec, ${pamixer} -i 5"
