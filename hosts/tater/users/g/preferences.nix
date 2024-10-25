@@ -1,6 +1,6 @@
-{ self, ... }:
+{ self, lib, ... }:
 let
-  profile = self + /templates/home-manager/g.nix;
+  profile = self + /profiles/home-manager/g.nix;
   theme = self + /profiles/home-manager/desktop-themes/faraway.nix;
 in
 {
@@ -9,17 +9,18 @@ in
     profile
   ];
   stylix.fonts.sizes = {
-    terminal = 12;
+    terminal = lib.mkForce 12;
   };
 
   services.polybar.settings = {
     "bar/bottom" = {
       height = "16pt";
       font-0 = "MesloLGS Nerd Font Mono:size=12;4";
+      modules-left = "wlan cpu memory";
     };
   };
 
-  #modules
+  #respondus BS
   programs = {
     google-chrome.enable = true;
   };
