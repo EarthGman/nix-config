@@ -7,6 +7,8 @@ in
   imports = [
     ./disko.nix
   ];
+  # debloat
+  hardware.enableRedistributableFirmware = false;
   # use systemd boot, might use UKI later?
   modules.bootloaders.systemd-boot.enable = true;
   boot = {
