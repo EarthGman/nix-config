@@ -9,6 +9,12 @@ in
   ];
   # debloat
   hardware.enableRedistributableFirmware = false;
+
+  # make sure clean doesn't leave any unnecessary nixos configurations
+  programs.nh = {
+    clean.extraArgs = "--keep-since 1d --keep 1";
+  };
+
   # use systemd boot, might use UKI later?
   modules.bootloaders.systemd-boot.enable = true;
   boot = {
