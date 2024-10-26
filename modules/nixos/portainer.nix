@@ -5,7 +5,7 @@ let
   initalize-script = pkgs.writeScriptBin "portainer-initalize" ''
     #!/usr/bin/env bash
     docker volume create portainer_data &&
-    docker run -d -p ${cfg.port}:${cfg.port} --name portainer --restart = always - v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:2.21.1
+    docker run -d -p ${toString cfg.port}:${toString cfg.port} --name portainer --restart = always - v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:2.21.1
   '';
 in
 {
