@@ -36,7 +36,10 @@ in
     networkmanager.enable = true;
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    auto-optimise-store = true;
+  };
   nixpkgs = {
     overlays = (builtins.attrValues outputs.overlays);
     config.allowUnfree = true;
