@@ -51,30 +51,42 @@ in
     inherit stateVersion;
   };
 
-  environment.systemPackages = with pkgs; [
-    btop
-    powertop
-    sysz
-    git
-    file
-    cifs-utils
-    ncdu
-    hstr
-    inxi
-    killall
-    pamixer
-    brightnessctl
-    zip
-    unzip
-    usbutils
-    pciutils
-    lshw
-    lsof
-    fd
-    lynx
-    ripgrep
-    zoxide # must be on path
-  ];
+  environment.systemPackages =
+    let
+      remote-build = pkgs.writeScriptBin "remote-build" ''
+        hostnames=(server-corekeeper server-mc112 server-mc121 server-mc-blueprints)
+        hostname=$(printf "%s\n" "''${hostnames[@]}" | fzf)
+        pushd /etc/nixos
+        nixos-rebuild switch --flake ".#$hostname" --target-host $hostname --use-remote-sudo
+        popd
+      '';
+    in
+    with pkgs; [
+      btop
+      powertop
+      fzf
+      sysz
+      git
+      file
+      cifs-utils
+      ncdu
+      hstr
+      inxi
+      killall
+      pamixer
+      brightnessctl
+      zip
+      unzip
+      usbutils
+      pciutils
+      lshw
+      lsof
+      fd
+      lynx
+      ripgrep
+      zoxide # must be on path
+      remote-build
+    ];
 
   # root level shell
   programs.zsh = {
