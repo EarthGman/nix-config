@@ -90,7 +90,7 @@
         server-mc112 = mkHost { hostName = "server-mc112"; vm = "yes"; users = "g"; };
         server-mc-blueprints = mkHost { hostName = "server-mc-blueprints"; vm = "yes"; users = "g"; };
         server-mc121 = mkHost { hostName = "server-mc121"; vm = "yes"; users = "g"; };
-        server-corekeeper = mkHost { hostName = "server-corekeeper"; vm = "yes"; users = "g"; };
+        server-game-containers = mkHost { hostName = "server-game-containers"; vm = "yes"; users = "g"; };
 
         iso-headless-x86_64 = mkHost { hostName = "iso-headless"; platform = "x86_64-linux"; };
       };
