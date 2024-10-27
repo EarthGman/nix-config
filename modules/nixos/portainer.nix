@@ -11,7 +11,7 @@ let
       --restart=always \
       -v /var/run/docker.sock:/var/run/docker.sock \
       -v portainer_data:/data portainer/portainer-ce:2.21.1'' else ""} ${if cfg.agent.enable then ''&&
-      docker run -d \
+      sudo docker run -d \
         -p ${toString cfg.agent.port}:9001 \
         --name portainer_agent \
         --restart=always \
