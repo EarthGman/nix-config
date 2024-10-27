@@ -44,6 +44,12 @@
       "d5e5fb653723b80e"
     ];
   };
+  services.portainer = {
+    gui = {
+      enable = true;
+      openFirewall = true;
+    };
+  };
 
   boot.loader.grub.themeConfig = {
     background = builtins.fetchurl wallpapers.april-red;
@@ -58,6 +64,7 @@
   };
 
   modules = {
+    docker.enable = true;
     steam.enable = true;
     onepassword.enable = true;
     sunshine.enable = true;

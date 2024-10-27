@@ -18,6 +18,7 @@ in
       "libvirtd"
       "qemu-libvirtd"
       "wireshark"
+      "docker"
     ];
   };
 }

@@ -10,6 +10,5 @@
         setSocketVariable = true;
       };
     };
-    programs.portainer.enable = lib.mkDefault true;
   };
 }
