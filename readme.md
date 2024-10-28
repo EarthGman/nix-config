@@ -44,7 +44,8 @@ Post Install:
 - [x] ssh keys
 - [x] hyprland
 - [ ] vim
-- [ ] remote building
+- [x] remote building
+- [x] docker/portainer
 - [ ] zfs
 - [ ] drive encryption
 - [ ] autoinstall scripts
