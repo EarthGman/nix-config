@@ -1,5 +1,5 @@
-# UEFI, Q35, Qemu proxmox virtual machine
-{ pkgs, ... }:
+# profile designed to trim out unncessary fluff for servers running nixos
+{ modulesPath, pkgs, lib, ... }:
 let
   ssh-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKNRHd6NLt4Yd9y5Enu54fJ/a2VCrRgbvfMuom3zn5zg";
 in
@@ -8,7 +8,15 @@ in
     ./disko.nix
   ];
   # debloat
-  hardware.enableRedistributableFirmware = false;
+  disabledModules = [ (modulesPath + "/profiles/all-hardware.nix") ];
+  documentation.man.enable = lib.mkDefault false;
+  environment.defaultPackages = [ ];
+  boot.initrd.includeDefaultModules = false;
+  xdg = {
+    icons.enable = false;
+    mime.enable = false;
+    sounds.enable = false;
+  };
 
   # make sure clean doesn't leave any unnecessary nixos configurations
   programs.nh = {
