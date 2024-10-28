@@ -10,7 +10,7 @@ let
       --name portainer \
       --restart=always \
       -v /var/run/docker.sock:/var/run/docker.sock \
-      -v portainer_data:/data portainer/portainer-ce:2.21.1'' else ""} ${if cfg.agent.enable then ''&&
+      -v portainer_data:/data portainer/portainer-ce:${cfg.version}'' else ""} ${if cfg.agent.enable then ''&&
       sudo docker run -d \
         -p ${toString cfg.agent.port}:9001 \
         --name portainer_agent \
@@ -18,12 +18,17 @@ let
         -v /var/run/docker.sock:/var/run/docker.sock \
         -v /var/lib/docker/volumes:/var/lib/docker/volumes \
         -v /:/host \
-        portainer/agent:2.21.1
+        portainer/agent:${cfg.version}
     '' else ""}
   '';
 in
 {
   options.services.portainer = {
+    version = mkOption {
+      description = "container version";
+      type = types.str;
+      default = "2.21.4";
+    };
     gui = {
       enable = mkEnableOption "enable portainer, a gui for docker";
       port = mkOption {
