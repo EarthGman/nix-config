@@ -1,6 +1,7 @@
 # profile designed to trim out unncessary fluff for servers running nixos
 { modulesPath, pkgs, lib, ... }:
 let
+  inherit (lib) mkDefault;
   ssh-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKNRHd6NLt4Yd9y5Enu54fJ/a2VCrRgbvfMuom3zn5zg";
 in
 {
@@ -9,9 +10,15 @@ in
   ];
   # debloat
   disabledModules = [ (modulesPath + "/profiles/all-hardware.nix") ];
-  documentation.man.enable = lib.mkDefault false;
   environment.defaultPackages = [ ];
   boot.initrd.includeDefaultModules = false;
+  hardware.enableRedistributableFirmware = false;
+  documentation = {
+    enable = mkDefault false;
+    man.enable = mkDefault false;
+    doc.enable = mkDefault false;
+    info.enable = mkDefault false;
+  };
   xdg = {
     icons.enable = false;
     mime.enable = false;
