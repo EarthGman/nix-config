@@ -20,38 +20,38 @@ in
     obs-studio.enable = true;
     ygo-omega.enable = true;
 
-    vscode.userSettings = {
-      editor = {
-        "fontFamily" = mkForce "'MesloLGS Nerd Font'";
-        "fontSize" = mkForce 20;
-      };
-    };
+    # vscode.userSettings = {
+    #   editor = {
+    #     "fontFamily" = mkForce "'MesloLGS Nerd Font'";
+    #     "fontSize" = mkForce 20;
+    #   };
+    # };
   };
 
-  stylix.fonts = {
-    sizes = {
-      applications = mkForce 12;
-      desktop = mkForce 12;
-      popups = mkForce 10;
-      terminal = mkForce 14;
-    };
-    sansSerif = mkForce {
-      name = "MesloLGS Nerd Font";
-      package = (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; });
-    };
-    serif = mkForce {
-      name = "MesloLGS Nerd Font";
-      package = (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; });
-    };
-    monospace = mkForce {
-      name = "MesloLGS Nerd Font";
-      package = (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; });
-    };
-    emoji = mkForce {
-      name = "MesloLGS Nerd Font";
-      package = (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; });
-    };
-  };
+  # stylix.fonts = {
+  #   sizes = {
+  #     applications = mkForce 12;
+  #     desktop = mkForce 12;
+  #     popups = mkForce 10;
+  #     terminal = mkForce 14;
+  #   };
+  #   sansSerif = mkForce {
+  #     name = "MesloLGS Nerd Font";
+  #     package = (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; });
+  #   };
+  #   serif = mkForce {
+  #     name = "MesloLGS Nerd Font";
+  #     package = (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; });
+  #   };
+  #   monospace = mkForce {
+  #     name = "MesloLGS Nerd Font";
+  #     package = (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; });
+  #   };
+  #   emoji = mkForce {
+  #     name = "MesloLGS Nerd Font";
+  #     package = (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; });
+  #   };
+  # };
 
   # monitors for hyprland
   wayland.windowManager.hyprland.settings.monitor = [
