@@ -37,6 +37,8 @@ in
     gimp = enabled;
     gcolor = enabled;
     musescore = enabled;
+    # openshot = enabled; borked atm
+    video-trimmer = enabled;
     nautilus = enabled;
     fastfetch = enabled;
     evince = enabled;
