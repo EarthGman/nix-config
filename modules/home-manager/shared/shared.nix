@@ -2,7 +2,7 @@
 # the reason this file exists is because of a weird behavior with the config top level argument if used in home.nix
 { lib, outputs, config, ... }:
 let
-  inherit (lib) mkDefault mkOption mkEnableOption types;
+  inherit (lib) mkDefault mkOption types;
   cfg = config.custom;
 in
 {
@@ -29,36 +29,9 @@ in
         default = "firefox";
       };
     };
-    xsession = {
-      dpms = {
-        enable = mkEnableOption "enable dpms, a screensaving feature for x11";
-        standby = mkOption {
-          description = "time in seconds until dpms standby activation";
-          type = types.int;
-          default = 600;
-        };
-        suspend = mkOption {
-          description = "time in seconds until dpms suspend activation";
-          type = types.int;
-          default = 600;
-        };
-        off = mkOption {
-          description = "time in seconds until dpms powers off the monitors";
-          type = types.int;
-          default = 600;
-        };
-      };
-    };
   };
 
   config = {
-    xsession = let cfg = config.xsession; in {
-      profileExtra = (if cfg.dpms.enable then "" else ''
-        xset -dpms
-      '') + (if cfg.dpms.enable then ''
-        xset dpms ${toString cfg.dpms.standby} ${toString cfg.dpms.suspend} ${toString cfg.dpms.poweroff}
-      '' else "");
-    };
     programs = {
       gh = {
         enable = true;

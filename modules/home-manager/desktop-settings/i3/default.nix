@@ -3,7 +3,7 @@ let
   inherit (lib) mkDefault mkForce optionals getExe;
   enabled = { enable = mkDefault true; };
   wp = config.stylix.image;
-  polybar_sh = pkgs.writeScript "polybar.sh" ''
+  polybar = pkgs.writeScript "polybar.sh" ''
     ${getExe pkgs.killall} polybar
     sleep 0.1
     if type "xrandr"; then
@@ -79,7 +79,7 @@ in
 
       startup = [
         {
-          command = "${polybar_sh}";
+          command = "${polybar}";
           always = true;
           notification = false;
         }

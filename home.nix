@@ -4,14 +4,15 @@ let
   inherit (myLib) autoImport;
   programs = autoImport ./modules/home-manager/programs;
   services = autoImport ./modules/home-manager/services;
+  shared = autoImport ./modules/home-manager/shared;
 in
 {
   imports = [
-    ./modules/home-manager/shared.nix
     ./modules/home-manager/stylix
     ./modules/home-manager/desktop-settings
     ./hosts/${hostName}/users/${username}/preferences.nix
   ]
+  ++ shared
   ++ programs
   ++ services;
 
