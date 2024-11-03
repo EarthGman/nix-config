@@ -46,6 +46,8 @@ Post Install:
 - [ ] vim
 - [x] remote building
 - [x] docker/portainer
+- [ ] i3, hyprland synchronization:
+  - [ ] fix systemd environments - attach polybar to systemd
 - [ ] zfs
 - [ ] drive encryption
 - [ ] autoinstall scripts

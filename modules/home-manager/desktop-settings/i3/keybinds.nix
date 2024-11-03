@@ -38,7 +38,7 @@ in
   "${mod}+Shift+Right" = "move right";
 
   # split in horizontal orientation
-  # "${mod}+h" = "split h";
+  "${mod}+h" = "split h";
 
   # split in vertical orientation
   "${mod}+v" = "split v";
