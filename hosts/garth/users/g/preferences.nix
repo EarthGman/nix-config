@@ -10,20 +10,15 @@ in
     theme
   ];
 
+  xsession.screensaver = {
+    enable = true;
+  };
+
   programs = {
     openconnect.enable = true;
     lutris.enable = true;
     moonlight.enable = true;
     gnome-clocks.enable = true;
-
-    fastfetch.imageRandomizer = {
-      enable = true;
-      images = [
-        (fetchurl icons.oops)
-        (fetchurl icons.nixos-clean)
-        (fetchurl icons.kaori)
-      ];
-    };
   };
 }
 
