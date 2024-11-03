@@ -82,6 +82,7 @@ in
       lshw
       lsof
       fd
+      jq
       lynx
       ripgrep
       zoxide # must be on path
