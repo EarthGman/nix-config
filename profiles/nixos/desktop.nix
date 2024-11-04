@@ -57,6 +57,10 @@ in
     bootloaders.grub = enabled;
   };
 
+  environment.systemPackages = with pkgs; [
+    imagemagick
+  ];
+
   # decorate shell ~2.5GB of bloat
   programs = {
     zsh = {

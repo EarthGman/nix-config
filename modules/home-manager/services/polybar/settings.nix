@@ -1,4 +1,4 @@
-{ pkgs, mkDefault, getExe, ... }:
+{ pkgs, mkDefault, config, getExe, ... }:
 {
   # "bar/top" = {
   #   monitor = "\${env:MONITOR:}";
@@ -199,7 +199,7 @@
     menu-0-2 = "";
     menu-0-2-exec = "shutdown now";
     menu-0-3 = "";
-    menu-0-3-exec = "loginctl lock-session";
+    menu-0-3-exec = "${config.xdg.configHome}/i3/i3lock.sh";
     format = "<menu>  <label-toggle>";
     label-open = "";
     # label-close = "";

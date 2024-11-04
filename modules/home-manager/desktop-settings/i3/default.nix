@@ -6,13 +6,12 @@ let
   scripts = import ./scripts.nix { inherit pkgs lib; };
 in
 {
-  home.packages = with pkgs; [
-    inotify-tools
-  ];
-
   programs = {
     pwvucontrol = enabled;
     rofi = enabled;
+    i3lock.settings = {
+      ignoreEmptyPassword = mkDefault true;
+    };
   };
 
   services = {
