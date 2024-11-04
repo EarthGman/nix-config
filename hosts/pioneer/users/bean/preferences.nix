@@ -9,6 +9,10 @@ in
     theme
   ];
 
+  xsession.screensaver = {
+    enable = true;
+  };
+
   programs = {
     discord.enable = true;
   };
