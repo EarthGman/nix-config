@@ -1,8 +1,8 @@
-{ lib, config, ... }:
+{ pkgs, lib, config, ... }:
 # enabling i3 enables i3lock by default
 let
-  cfg = config.programs.i3lock.settings;
   inherit (lib) mkIf mkOption mkEnableOption types;
+  i3lock = import ./script.nix { inherit pkgs lib config; };
 in
 {
   options.programs.i3lock.settings = {
@@ -30,24 +30,7 @@ in
   };
 
   config = mkIf config.xsession.windowManager.i3.enable {
-    xdg.configFile."i3/i3lock.sh" = {
-      enable = true;
-      executable = true;
-      text = ''
-        #!/usr/bin/env bash
-        i3lock \
-        ${if cfg.image != "" then "-i ${cfg.image}" else ""} \
-        -c ${cfg.color} \
-        ${if cfg.noFork then "-n" else ""} \
-        ${if cfg.beep then "-b" else ""} \
-        ${if cfg.noUnlockIndicator then "-u" else ""} \
-        ${if cfg.tiling then "-t" else ""} \
-        ${if cfg.windowsPointer then "-p win" else "-p default"} \
-        ${if cfg.ignoreEmptyPassword then "-e" else ""} \
-        ${if cfg.showFailedAttempts then "-f" else ""} \
-        ${if cfg.showKeyboardLayout then "-k" else ""} \
-      '';
-    };
+    home.packages = [ i3lock ];
   };
 }
 

@@ -36,7 +36,7 @@
     module-margin = mkDefault 1;
     separator = mkDefault "";
     separator-foreground = mkDefault "#a7a7a7";
-    font-0 = mkDefault "MesloLGS Nerd Font Mono:size=18;6";
+    font-0 = mkDefault "MesloLGS Nerd Font Mono:size=16;6";
 
     cursor-click = mkDefault "pointer";
     cursor-scroll = mkDefault "ns-resize";
@@ -49,24 +49,24 @@
 
   "module/systray" = {
     type = "internal/tray";
-    format-margin = "6pt";
-    tray-spacing = "16pt";
-    tray-size = "45%";
+    format-margin = mkDefault "6pt";
+    tray-spacing = mkDefault "16pt";
+    tray-size = mkDefault "45%";
   };
 
   "module/xworkspaces" = {
     type = "internal/xworkspaces";
     label-active = "%name%";
-    label-active-background = "#a7a7a7";
-    label-active-foreground = "#11111b";
-    label-active-padding = 1;
+    label-active-background = mkDefault "#a7a7a7";
+    label-active-foreground = mkDefault "#11111b";
+    label-active-padding = mkDefault 1;
     label-occupied = "%name%";
-    label-occupied-padding = 1;
+    label-occupied-padding = mkDefault 1;
     label-urgent = "%name%";
-    label-urgent-background = "#f38ba8";
-    label-urgent-padding = 1;
+    label-urgent-background = mkDefault "#f38ba8";
+    label-urgent-padding = mkDefault 1;
     label-empty = "%name%";
-    label-empty-padding = 1;
+    label-empty-padding = mkDefault 1;
   };
 
   "module/xwindow" = {
@@ -77,33 +77,33 @@
   "module/xkeyboard" = {
     type = "internal/keyboard";
     blacklist-0 = "num lock";
-    label-layout-foreground = "#a7a7a7";
-    label-indicator-padding = 2;
-    label-indicator-margin = 1;
-    label-indicator-foreground = "#101010";
-    label-indicator-background = "#1d1d1d";
+    label-layout-foreground = mkDefault "#a7a7a7";
+    label-indicator-padding = mkDefault 2;
+    label-indicator-margin = mkDefault 1;
+    label-indicator-foreground = mkDefault "#101010";
+    label-indicator-background = mkDefault "#1d1d1d";
   };
 
   "module/memory" = {
     type = "internal/memory";
-    interval = 2;
-    format-prefix = " ";
-    format-prefix-foreground = "#a7a7a7";
+    interval = mkDefault 2;
+    format-prefix = mkDefault " ";
+    format-prefix-foreground = mkDefault "#a7a7a7";
     label = "%percentage_used:2%%";
   };
 
   "module/cpu" = {
     type = "internal/cpu";
-    interval = 2;
-    format-prefix = " ";
-    format-prefix-foreground = "#a7a7a7";
+    interval = mkDefault 2;
+    format-prefix = mkDefault " ";
+    format-prefix-foreground = mkDefault "#a7a7a7";
     label = "%percentage:2%%";
   };
 
   "module/volume" = {
     type = "custom/script";
-    interval = 0.1;
-    format-background = "#101010";
+    interval = mkDefault 0.1;
+    format-background = mkDefault "#101010";
 
     exec = pkgs.writeScript "volume levels" ''
       percent="%"
@@ -139,7 +139,7 @@
         echo " $current_volume"
       fi
     '';
-    interval = 0.1;
+    interval = mkDefault 0.1;
 
     click-left = "${getExe pkgs.pamixer} -t --default-source";
     click-right = "${getExe pkgs.pwvucontrol} &";
@@ -156,7 +156,7 @@
   "module/battery" = {
     type = "internal/battery";
     format-prefix = "BAT ";
-    format-prefix-foreground = "#a7a7a7";
+    format-prefix-foreground = mkDefault "#a7a7a7";
     full-at = 99;
     format-charging = "<animation-charging> <label-charging>";
     animation-charging-0 = "";
@@ -164,18 +164,18 @@
     animation-charging-2 = "";
     animation-charging-3 = "";
     animation-charging-4 = "";
-    animation-charging-framerate = 750;
-    animation-charging-foreground = "#fab387";
+    animation-charging-framerate = mkDefault 750;
+    animation-charging-foreground = mkDefault "#fab387";
     format-discharging = "<ramp-capacity> <label-discharging>";
     ramp-capacity-0 = "";
     ramp-capacity-1 = "";
     ramp-capacity-2 = "";
     ramp-capacity-3 = "";
     ramp-capacity-4 = "";
-    low-at = 5;
+    low-at = mkDefault 10;
     battery = "BAT1";
     adapter = "ACAD";
-    poll-interval = 5;
+    poll-interval = mkDefault 5;
   };
 
   # "module/tools" = {
@@ -199,10 +199,9 @@
     menu-0-2 = "";
     menu-0-2-exec = "shutdown now";
     menu-0-3 = "";
-    menu-0-3-exec = "${config.xdg.configHome}/i3/i3lock.sh";
+    menu-0-3-exec = "i3lock";
     format = "<menu>  <label-toggle>";
     label-open = "";
-    # label-close = "";
     label-close = " Close";
     label-separator = "  ";
   };
@@ -210,21 +209,21 @@
   "module/wlan" = {
     type = "internal/network";
     interface-type = "wireless";
-    interval = 3;
+    interval = mkDefault 3;
 
     format-connected = "󰖩 <label-connected>";
-    format-connected-foreground = "#a7a7a7";
+    format-connected-foreground = mkDefault "#a7a7a7";
     label-connected = "%essid%  %downspeed%  %upspeed%";
 
     format-disconnected = "󰖪 <label-disconnected>";
-    format-disconnected-foreground = "#a7a7a7";
+    format-disconnected-foreground = mkDefault "#a7a7a7";
     label-disconnected = "Disconnected";
   };
 
   "module/eth" = {
     type = "internal/network";
     interface-type = "wired";
-    interval = 3;
+    interval = mkDefault 3;
 
     format-connected = "󰈁 <label-connected>";
     format-connected-foreground = "#a7a7a7";
@@ -237,16 +236,16 @@
 
   "module/date" = {
     type = "internal/date";
-    interval = 1;
+    interval = mkDefault 1;
     date = " %Y-%m-%d   %H:%M";
     date-alt = " %Y-%m-%d   %H:%M:%S";
 
     label = "%date%";
-    label-foreground = "#a7a7a7";
+    label-foreground = mkDefault "#a7a7a7";
   };
 
   "settings" = {
-    screenchange-reload = true;
-    pseudo-transparency = true;
+    screenchange-reload = mkDefault true;
+    pseudo-transparency = mkDefault true;
   };
 }
