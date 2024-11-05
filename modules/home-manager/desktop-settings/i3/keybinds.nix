@@ -27,15 +27,18 @@ in
   "${mod}+Right" = "focus right";
 
   # move focused window
-  # "${mod}+Shift+h" = "move left";
-  # "${mod}+Shift+j" = "move down";
-  # "${mod}+Shift+k" = "move up";
-  # "${mod}+Shift+l" = "move right";
+  "Mod4+h" = "move left";
+  "Mod4+j" = "move down";
+  "Mod4+k" = "move up";
+  "Mod4+l" = "move right";
 
-  "${mod}+Shift+Left" = "move left";
-  "${mod}+Shift+Down" = "move down";
-  "${mod}+Shift+Up" = "move up";
-  "${mod}+Shift+Right" = "move right";
+  "${mod}+Shift+Left" = ''mark --add "swapee"; focus left; swap container with mark "swapee"; focus left; unmark "swapee"'';
+  # Swap with window to the right
+  "${mod}+Shift+Right" = ''mark --add "swapee"; focus right; swap container with mark "swapee"; focus right; unmark "swapee"'';
+  # Swap with window above
+  "${mod}+Shift+Up" = ''mark --add "swapee"; focus up; swap container with mark "swapee"; focus up; unmark "swapee"'';
+  # Swap with window below
+  "${mod}+Shift+Down" = ''mark --add "swapee"; focus down; swap container with mark "swapee"; focus down; unmark "swapee"'';
 
   # split in horizontal orientation
   "${mod}+h" = "split h";
