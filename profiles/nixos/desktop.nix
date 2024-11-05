@@ -15,7 +15,7 @@ in
   # creates a home manager config for every user specificed in users string
   home-manager = {
     users = genAttrs usernames (username:
-      import home { inherit pkgs username hostName myLib stateVersion; });
+      import home { inherit pkgs username myLib stateVersion; });
     extraSpecialArgs = {
       inherit self inputs outputs wallpapers icons hostName desktop myLib;
     };

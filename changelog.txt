@@ -1,10 +1,16 @@
 11-05-2024:
 - polybar: 
 add more mkDefault for more flexible configuration
-change default font size from 18 to 16
+change polybar default font size from 18 to 16
 - i3lock:
 now writes a script binary for the user's shell path instead of running a xdg config file.
 binary called "i3lock" and will replace the default created by nixos option services.xserver.windowManager.i3.enable when run as a normal user
+home-manager refactor:
+  - rename minimal.nix to essentials.nix and is the default profile for home-manager. It contains many apps that are very useful and most profiles should import this
+  - profiles are now required for each username and will contain important information shared between all of the users with that name on every machine (such as git email and username)
+  these profiles can include some extra configuration under /hosts/hostname/users/username/preferences.nix that will be exclusive to that machine. (this file is no longer required)
+Assigned the proper git config to iron
+readd thePumpkinPatch to the army
 
 
 11-04-2024:

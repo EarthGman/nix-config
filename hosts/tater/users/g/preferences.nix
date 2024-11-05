@@ -1,12 +1,10 @@
 { self, lib, ... }:
 let
-  profile = self + /profiles/home-manager/g.nix;
   theme = self + /profiles/home-manager/desktop-themes/faraway.nix;
 in
 {
   imports = [
     theme
-    profile
   ];
   stylix.fonts.sizes = {
     terminal = lib.mkForce 12;

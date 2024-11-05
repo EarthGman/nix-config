@@ -87,6 +87,8 @@
 
         petrichor = mkHost { hostName = "petrichor"; cpu = "amd"; gpu = "amd"; users = "iron"; desktop = "gnome"; displayManager = "sddm"; };
 
+        thePumpkinPatch = mkHost { hostName = "thePumpkinPatch"; cpu = "amd"; gpu = "nvidia"; users = "pumpkinking"; desktop = "gnome"; displayManager = "sddm"; };
+
         server-mc112 = mkHost { hostName = "server-mc112"; vm = "yes"; users = "g"; };
         server-mc-blueprints = mkHost { hostName = "server-mc-blueprints"; vm = "yes"; users = "g"; };
         server-mc121 = mkHost { hostName = "server-mc121"; vm = "yes"; users = "g"; };
