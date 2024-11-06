@@ -44,8 +44,8 @@ in
   # forces qt dark theme since qt apps dont work well with stylix
   qt = {
     enable = true;
-    platformTheme = "gnome";
-    style = "adwaita-dark";
+    platformTheme = mkDefault "gnome";
+    style = mkDefault "adwaita-dark";
   };
 
   # some features most desktops would probably want
@@ -58,7 +58,9 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    imagemagick
+    imagemagick # image manipulation
+    pamixer # audio
+    brightnessctl # brightness
   ];
 
   # decorate shell ~2.5GB of bloat

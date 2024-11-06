@@ -40,24 +40,4 @@ in
       systemd-boot.enable = true;
     };
   };
-
-  # join zerotier network
-  services.zerotierone = {
-    enable = true;
-    joinNetworks = [
-      "d5e5fb653723b80e"
-    ];
-  };
-
-  # admin
-  users.users.g = {
-    hashedPassword = "$y$j9T$za3lM.azPMASkrasWaw1M/$mkRlFSsS1gZUb2rBEtGRMGK9v.9MRFMdokJh292H2LA";
-    password = null;
-    isNormalUser = true;
-    shell = pkgs.zsh;
-    openssh.authorizedKeys.keys = [ ssh-key ];
-    extraGroups = [
-      "wheel"
-    ];
-  };
 }
