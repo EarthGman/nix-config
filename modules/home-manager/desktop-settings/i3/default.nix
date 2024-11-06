@@ -14,6 +14,8 @@ in
     };
   };
 
+  home.packages = [ pkgs.xorg.xmodmap ];
+
   services = {
     network-manager-applet = enabled;
     polybar = enabled;
