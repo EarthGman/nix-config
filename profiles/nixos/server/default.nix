@@ -1,8 +1,7 @@
 # profile designed to trim out unncessary fluff for servers running nixos
-{ modulesPath, pkgs, lib, ... }:
+{ modulesPath, lib, ... }:
 let
   inherit (lib) mkDefault;
-  ssh-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKNRHd6NLt4Yd9y5Enu54fJ/a2VCrRgbvfMuom3zn5zg";
 in
 {
   imports = [
@@ -11,7 +10,7 @@ in
   # debloat
   disabledModules = [ (modulesPath + "/profiles/all-hardware.nix") ];
   environment.defaultPackages = [ ];
-  boot.initrd.includeDefaultModules = false;
+  #boot.initrd.includeDefaultModules = false;
   hardware.enableRedistributableFirmware = false;
   documentation = {
     enable = mkDefault false;
@@ -39,25 +38,5 @@ in
       efi.canTouchEfiVariables = true;
       systemd-boot.enable = true;
     };
-  };
-
-  # join zerotier network
-  services.zerotierone = {
-    enable = true;
-    joinNetworks = [
-      "d5e5fb653723b80e"
-    ];
-  };
-
-  # admin
-  users.users.g = {
-    hashedPassword = "$y$j9T$za3lM.azPMASkrasWaw1M/$mkRlFSsS1gZUb2rBEtGRMGK9v.9MRFMdokJh292H2LA";
-    password = null;
-    isNormalUser = true;
-    shell = pkgs.zsh;
-    openssh.authorizedKeys.keys = [ ssh-key ];
-    extraGroups = [
-      "wheel"
-    ];
   };
 }

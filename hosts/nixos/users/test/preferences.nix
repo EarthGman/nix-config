@@ -1,6 +1,6 @@
 { self, wallpapers, ... }:
 let
-  profile = self + /profiles/home-manager/minimal.nix;
+  profile = self + /profiles/home-manager/essentials.nix;
 in
 {
   imports = [
@@ -8,8 +8,4 @@ in
   ];
 
   stylix.image = builtins.fetchurl wallpapers.scarlet-tree-dark;
-
-  programs = {
-    yazi.enable = true;
-  };
 }

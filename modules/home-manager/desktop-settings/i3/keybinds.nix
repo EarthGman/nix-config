@@ -1,12 +1,10 @@
-{ pkgs, config, getExe, ... }:
+{ pkgs, config, getExe, scripts, ... }:
 let
   mod = config.xsession.windowManager.i3.config.modifier;
   pamixer = "${getExe pkgs.pamixer}";
   brightnessctl = "${getExe pkgs.brightnessctl}";
   fileManager = config.custom.fileManager;
   browser = config.custom.browser;
-  maim = "${getExe pkgs.maim}";
-  xclip = "${getExe pkgs.xclip}";
 in
 {
   "${mod}+Return" = "exec ${config.xsession.windowManager.i3.config.terminal}";
@@ -27,15 +25,18 @@ in
   "${mod}+Right" = "focus right";
 
   # move focused window
-  # "${mod}+Shift+h" = "move left";
-  # "${mod}+Shift+j" = "move down";
-  # "${mod}+Shift+k" = "move up";
-  # "${mod}+Shift+l" = "move right";
+  "Mod4+h" = "move left";
+  "Mod4+j" = "move down";
+  "Mod4+k" = "move up";
+  "Mod4+l" = "move right";
 
-  "${mod}+Shift+Left" = "move left";
-  "${mod}+Shift+Down" = "move down";
-  "${mod}+Shift+Up" = "move up";
-  "${mod}+Shift+Right" = "move right";
+  "${mod}+Shift+Left" = ''mark --add "swapee"; focus left; swap container with mark "swapee"; focus left; unmark "swapee"'';
+  # Swap with window to the right
+  "${mod}+Shift+Right" = ''mark --add "swapee"; focus right; swap container with mark "swapee"; focus right; unmark "swapee"'';
+  # Swap with window above
+  "${mod}+Shift+Up" = ''mark --add "swapee"; focus up; swap container with mark "swapee"; focus up; unmark "swapee"'';
+  # Swap with window below
+  "${mod}+Shift+Down" = ''mark --add "swapee"; focus down; swap container with mark "swapee"; focus down; unmark "swapee"'';
 
   # split in horizontal orientation
   "${mod}+h" = "split h";
@@ -90,9 +91,9 @@ in
   "${mod}+Shift+e" = "exit i3";
 
   # screenshots
-  "Shift+Print" = "exec --no-startup-id \"${maim} | ${xclip} -selection clipboard -t image/png; ${xclip} -selection clipboard -t image/png -o > ~/Pictures/Screenshots/$(date +%F-%H:%M:%S).png\"";
-  "Print" = "exec --no-startup-id \"${maim} -s | ${xclip} -selection clipboard -t image/png; ${xclip} -selection clipboard -t image/png -o > ~/Pictures/Screenshots/$(date +%F-%H:%M:%S).png\"";
-  "Control+Print" = "exec --no-startup-id \"${maim} -i $(${pkgs.xdotool}/bin/xdotool getactivewindow) | ${xclip} -selection clipboard -t image/png; ${xclip} -selection clipboard -t image/png -o > ~/Pictures/Screenshots/$(date +%F-%H:%M:%S).png\"";
+  "Shift+Print" = "exec --no-startup-id ${scripts.take_screenshot}";
+  "Print" = "exec --no-startup-id ${scripts.take_screenshot_selection}";
+  "Control+Print" = "exec --no-startup-id ${scripts.take_screenshot_window}";
 
   "XF86AudioRaiseVolume" = "exec ${pamixer} -i 5";
   "XF86AudioLowerVolume" = "exec ${pamixer} -d 5";

@@ -21,7 +21,7 @@ in
 
   hardware = {
     enableRedistributableFirmware = mkDefault true;
-    cpu.${cpu}.updateMicrocode = mkIf (vm == "no")
+    cpu.${cpu}.updateMicrocode = mkIf (!vm)
       (mkDefault config.hardware.enableRedistributableFirmware);
   };
 
@@ -73,8 +73,6 @@ in
       hstr
       inxi
       killall
-      pamixer
-      brightnessctl
       zip
       unzip
       usbutils

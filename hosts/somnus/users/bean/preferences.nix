@@ -1,12 +1,10 @@
 { self, icons, ... }:
 let
-  profile = self + /profiles/home-manager/bean.nix;
   theme = self + /profiles/home-manager/desktop-themes/faraway.nix;
 in
 {
   imports = [
     theme
-    profile
   ];
 
   programs = {
@@ -21,10 +19,6 @@ in
     cbonsai.enable = true;
     pipes.enable = true;
     sl.enable = true;
-
-    # alacritty as backup since kitty acts weird on this PC
-    alacritty.enable = true;
-    kitty.enable = true;
   };
 
   wayland.windowManager.hyprland.mainMod = "SUPER";

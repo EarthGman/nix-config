@@ -11,6 +11,7 @@ in
         enable = true;
         qemu = {
           ovmf = {
+            # UEFI firmware
             enable = true;
             packages = [ pkgs.OVMFFull.fd ];
           };
@@ -22,7 +23,7 @@ in
     programs.virt-manager.enable = true;
     boot.kernelModules = [ "kvm-${cpu}" ];
     environment.systemPackages = with pkgs; [
-      qemu_kvm # virtual machines
+      qemu_kvm
       virtiofsd # file system sharing with VMs
     ];
   };

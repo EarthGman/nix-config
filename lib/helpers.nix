@@ -6,7 +6,8 @@
     , gpu ? null
     , users ? "" # string of custom defined users sperated by a comma. First element is the power user.
     , desktop ? null
-    , vm ? "no"
+    , server ? false
+    , vm ? false
     , displayManager ? null
     , platform ? "x86_64-linux"
     }:
@@ -18,14 +19,14 @@
     in
     lib.nixosSystem {
       specialArgs = {
-        inherit self platform inputs outputs myLib wallpapers icons binaries hostName cpu gpu users desktop displayManager vm stateVersion;
+        inherit self platform inputs outputs myLib wallpapers icons binaries hostName cpu gpu users desktop displayManager server vm stateVersion;
       };
       modules =
         let
           inherit (lib) optionals;
           isISO = (builtins.substring 0 4 hostName == "iso-");
-          isVM = (vm == "yes");
-          isServer = (builtins.substring 0 7 hostName == "server-");
+          isVM = vm;
+          isServer = server;
           cd-dvd =
             if (desktop == null) then
               inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"

@@ -77,20 +77,26 @@
       );
 
       nixosConfigurations = {
+        # Earth's desktops
         cypher = mkHost { hostName = "cypher"; cpu = "amd"; gpu = "amd"; users = "g"; desktop = "hyprland,i3"; displayManager = "sddm"; };
         garth = mkHost { hostName = "garth"; cpu = "intel"; gpu = "intel-igpu"; users = "g"; desktop = "hyprland,i3"; displayManager = "sddm"; };
         tater = mkHost { hostName = "tater"; cpu = "intel"; gpu = "intel-igpu"; users = "g"; desktop = "hyprland,i3"; displayManager = "sddm"; };
-        nixos = mkHost { hostName = "nixos"; vm = "yes"; users = "test"; desktop = "i3"; displayManager = "sddm"; };
+        nixos = mkHost { hostName = "nixos"; vm = true; users = "test"; desktop = "i3"; displayManager = "sddm"; };
 
+        # Thunder's desktops
         somnus = mkHost { hostName = "somnus"; cpu = "amd"; gpu = "amd"; users = "bean"; desktop = "hyprland,i3"; displayManager = "sddm"; };
         pioneer = mkHost { hostName = "pioneer"; cpu = "intel"; gpu = "intel-igpu"; users = "bean"; desktop = "i3"; displayManager = "sddm"; };
 
+        # Iron's desktops
         petrichor = mkHost { hostName = "petrichor"; cpu = "amd"; gpu = "amd"; users = "iron"; desktop = "gnome"; displayManager = "sddm"; };
 
-        server-mc112 = mkHost { hostName = "server-mc112"; vm = "yes"; users = "g"; };
-        server-mc-blueprints = mkHost { hostName = "server-mc-blueprints"; vm = "yes"; users = "g"; };
-        server-mc121 = mkHost { hostName = "server-mc121"; vm = "yes"; users = "g"; };
-        server-game-containers = mkHost { hostName = "server-game-containers"; vm = "yes"; users = "g"; };
+        # pumpkin's desktops
+        thePumpkinPatch = mkHost { hostName = "thePumpkinPatch"; cpu = "amd"; gpu = "nvidia"; users = "pumpkinking"; desktop = "gnome"; displayManager = "sddm"; };
+
+        # servers
+        mc112 = mkHost { hostName = "mc112"; server = true; vm = true; }; # main world
+        mc-blueprints = mkHost { hostName = "mc-blueprints"; server = true; vm = true; }; # creative blueprints server
+        mc121 = mkHost { hostName = "mc121"; server = true; vm = true; }; # private 1.21 server for friends
 
         iso-headless-x86_64 = mkHost { hostName = "iso-headless"; platform = "x86_64-linux"; };
       };

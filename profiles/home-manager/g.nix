@@ -1,10 +1,15 @@
-{ config, pkgs, lib, ... }:
+{ self, config, pkgs, lib, hostName, ... }:
 let
   enabled = { enable = lib.mkDefault true; };
   signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKNRHd6NLt4Yd9y5Enu54fJ/a2VCrRgbvfMuom3zn5zg";
   LHmouse = builtins.toFile "lh-mouse.xmodmap" "pointer = 3 2 1";
 in
 {
+  imports = [
+    (self + /hosts/${hostName}/users/g/preferences.nix)
+    ./essentials.nix
+  ];
+
   custom = {
     editor = "codium";
   };
@@ -24,35 +29,16 @@ in
       };
     };
 
-    audacity = enabled;
     ardour = enabled;
     autokey = enabled;
     bottles = enabled;
-    clipgrab = enabled;
-    firefox = enabled;
     freetube = enabled;
-    gnome-calculator = enabled;
-    gnome-system-monitor = enabled;
-    gthumb = enabled;
-    gimp = enabled;
     gcolor = enabled;
     musescore = enabled;
-    # openshot = enabled; borked atm
-    video-trimmer = enabled;
-    nautilus = enabled;
-    fastfetch = enabled;
-    evince = enabled;
-    vlc = enabled;
-    libreoffice = enabled;
     museeks = enabled;
-    obsidian = enabled;
     prismlauncher = enabled;
-    pwvucontrol = enabled;
-    thunderbird = enabled;
-    switcheroo = enabled;
     discord = enabled;
     xclicker = enabled;
-    yazi = enabled;
 
     # fun and useless
     pipes = enabled;

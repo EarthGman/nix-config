@@ -1,4 +1,4 @@
-{ pkgs, username, myLib, hostName, stateVersion, ... }:
+{ pkgs, username, myLib, stateVersion, ... }:
 
 let
   inherit (myLib) autoImport;
@@ -10,7 +10,7 @@ in
   imports = [
     ./modules/home-manager/stylix
     ./modules/home-manager/desktop-settings
-    ./hosts/${hostName}/users/${username}/preferences.nix
+    ./profiles/home-manager/${username}.nix
   ]
   ++ shared
   ++ programs

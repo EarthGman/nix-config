@@ -14,7 +14,7 @@ let
 
     if selection=$(${getExe pkgs.slurp}) && ${getExe pkgs.grim} -g "$selection" - | ${pkgs.wl-clipboard}/bin/wl-copy; then
       ${pkgs.wl-clipboard}/bin/wl-paste > "$output"
-      dunstify "Screenshot saved to ~/Pictures/Screenshots"
+      dunstify 'Screenshot saved to ~/Pictures/Screenshots'
     fi
   '';
   take-screenshot = pkgs.writeScript "take-screenshot-wayland.sh" ''

@@ -15,7 +15,7 @@ in
   # creates a home manager config for every user specificed in users string
   home-manager = {
     users = genAttrs usernames (username:
-      import home { inherit pkgs username hostName myLib stateVersion; });
+      import home { inherit pkgs username myLib stateVersion; });
     extraSpecialArgs = {
       inherit self inputs outputs wallpapers icons hostName desktop myLib;
     };
@@ -44,8 +44,8 @@ in
   # forces qt dark theme since qt apps dont work well with stylix
   qt = {
     enable = true;
-    platformTheme = "gnome";
-    style = "adwaita-dark";
+    platformTheme = mkDefault "gnome";
+    style = mkDefault "adwaita-dark";
   };
 
   # some features most desktops would probably want
@@ -56,6 +56,12 @@ in
     ifuse = enabled;
     bootloaders.grub = enabled;
   };
+
+  environment.systemPackages = with pkgs; [
+    imagemagick # image manipulation
+    pamixer # audio
+    brightnessctl # brightness
+  ];
 
   # decorate shell ~2.5GB of bloat
   programs = {
