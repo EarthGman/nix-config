@@ -32,6 +32,7 @@ in
   };
 
   config = {
+    xdg.userDirs.enable = mkDefault true;
     programs = {
       gh = {
         enable = true;
