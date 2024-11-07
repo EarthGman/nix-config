@@ -32,7 +32,10 @@ in
   };
 
   config = {
-    xdg.userDirs.enable = mkDefault true;
+    xdg.userDirs = {
+      enable = mkDefault true;
+      createDirectories = mkDefault true;
+    };
     programs = {
       gh = {
         enable = true;
