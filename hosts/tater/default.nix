@@ -21,6 +21,11 @@
     onepassword.enable = true;
   };
 
+  programs.wireshark = {
+    enable = true;
+    package = pkgs.wireshark;
+  };
+
   custom = {
     decreased-security.nixos-rebuild = true;
   };
