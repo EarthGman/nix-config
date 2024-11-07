@@ -1,3 +1,11 @@
+11-06-2024:
+- redeployed, mc112 and mc-blueprints
+- add "server" flag to mkNixosSystem
+- changed vm special flag from string to boolean
+- removed the "server-" hostname requirement for servers
+- re-enabled default kernel modules for servers because they were unable to boot after install
+
+
 11-05-2024:
 - polybar: 
 add more mkDefault for more flexible configuration
