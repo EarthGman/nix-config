@@ -247,5 +247,6 @@
   "settings" = {
     screenchange-reload = mkDefault true;
     pseudo-transparency = mkDefault true;
+    icon-theme = mkDefault "hicolor";
   };
 }
