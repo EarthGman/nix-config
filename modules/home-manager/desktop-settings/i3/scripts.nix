@@ -51,6 +51,10 @@ in
 
   take_screenshot_selection = writeScript "take-screenshot-selection-xorg.sh" ''
       output="${screenshot_output}"
+      if [ ! -d ${config.home.homeDirectory}/Pictures/Screenshots ]; then
+        mkdir -p ${config.home.homeDirectory}/Pictures/Screenshots
+      fi
+
       ${getExe pkgs.maim} -s | ${getExe pkgs.xclip} -selection clipboard -t image/png
       ${getExe pkgs.xclip} -selection clipboard -t image/png -o > $output
 
@@ -64,15 +68,23 @@ in
   take_screenshot = writeScript "take_screenshot_xorg.sh" ''
     output="${screenshot_output}"
 
+    if [ ! -d ${config.home.homeDirectory}/Pictures/Screenshots ]; then
+      mkdir -p ${config.home.homeDirectory}/Pictures/Screenshots
+    fi
+
     if ${getExe pkgs.maim} | ${getExe pkgs.xclip} -selection clipboard -t image/png; ${getExe pkgs.xclip} -selection clipboard -t image/png -o > $output; then
       dunstify 'Screenshot saved to ~/Pictures/Screenshots'
     fi
   '';
 
   take_screenshot_window = writeScript "take_screenshot_window_xorg.sh" ''
-     output="${screenshot_output}"
+    output="${screenshot_output}"
 
-     if ${getExe pkgs.maim} -i $(${getExe pkgs.xdotool} getactivewindow) | ${getExe pkgs.xclip} -selection clipboard -t image/png; ${getExe pkgs.xclip} -selection clipboard -t image/png -o > $output; then
+    if [ ! -d ${config.home.homeDirectory}/Pictures/Screenshots ]; then
+      mkdir -p ${config.home.homeDirectory}/Pictures/Screenshots
+    fi
+
+    if ${getExe pkgs.maim} -i $(${getExe pkgs.xdotool} getactivewindow) | ${getExe pkgs.xclip} -selection clipboard -t image/png; ${getExe pkgs.xclip} -selection clipboard -t image/png -o > $output; then
       dunstify 'Screenshot saved to ~/Pictures/Screenshots'
     fi
   '';
