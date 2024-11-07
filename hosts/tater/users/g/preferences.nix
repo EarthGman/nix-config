@@ -20,6 +20,8 @@ in
     };
   };
 
+  wayland.windowManager.hyprland.settings.input.left_handed = lib.mkForce false;
+
   #respondus BS
   programs = {
     google-chrome.enable = true;

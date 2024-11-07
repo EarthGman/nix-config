@@ -5,7 +5,7 @@ in
 {
   users.users.g = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "wireshark" ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [ ssh-key ];
     hashedPassword = "$y$j9T$7tYxxNPgxLhrPDjHKj8nh/$8YcqgeeJMWnXGVP9VH0Tnzf/rkeWMZJ6VRZIWSEan94";
