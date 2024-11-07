@@ -3,7 +3,7 @@ let
   inherit (lib) mkDefault mkForce optionals getExe;
   enabled = { enable = mkDefault true; };
   wp = config.stylix.image;
-  scripts = import ./scripts.nix { inherit pkgs lib; };
+  scripts = import ./scripts.nix { inherit pkgs lib config; };
 in
 {
   programs = {
@@ -32,7 +32,7 @@ in
       floating.modifier = mkDefault "Mod4"; # window
       terminal = config.custom.terminal;
       workspaceAutoBackAndForth = true;
-      keybindings = import ./keybinds.nix { inherit pkgs config getExe; };
+      keybindings = import ./keybinds.nix { inherit pkgs config getExe scripts; };
       gaps = {
         inner = 2;
         outer = 2;

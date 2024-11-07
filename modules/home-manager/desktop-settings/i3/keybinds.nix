@@ -1,12 +1,10 @@
-{ pkgs, config, getExe, ... }:
+{ pkgs, config, getExe, scripts, ... }:
 let
   mod = config.xsession.windowManager.i3.config.modifier;
   pamixer = "${getExe pkgs.pamixer}";
   brightnessctl = "${getExe pkgs.brightnessctl}";
   fileManager = config.custom.fileManager;
   browser = config.custom.browser;
-  maim = "${getExe pkgs.maim}";
-  xclip = "${getExe pkgs.xclip}";
 in
 {
   "${mod}+Return" = "exec ${config.xsession.windowManager.i3.config.terminal}";
@@ -93,9 +91,9 @@ in
   "${mod}+Shift+e" = "exit i3";
 
   # screenshots
-  "Shift+Print" = "exec --no-startup-id \"${maim} | ${xclip} -selection clipboard -t image/png; ${xclip} -selection clipboard -t image/png -o > ~/Pictures/Screenshots/$(date +%F-%H:%M:%S).png\"";
-  "Print" = "exec --no-startup-id \"${maim} -s | ${xclip} -selection clipboard -t image/png; ${xclip} -selection clipboard -t image/png -o > ~/Pictures/Screenshots/$(date +%F-%H:%M:%S).png\"";
-  "Control+Print" = "exec --no-startup-id \"${maim} -i $(${pkgs.xdotool}/bin/xdotool getactivewindow) | ${xclip} -selection clipboard -t image/png; ${xclip} -selection clipboard -t image/png -o > ~/Pictures/Screenshots/$(date +%F-%H:%M:%S).png\"";
+  "Shift+Print" = "exec --no-startup-id ${scripts.take_screenshot}";
+  "Print" = "exec --no-startup-id ${scripts.take_screenshot_selection}";
+  "Control+Print" = "exec --no-startup-id ${scripts.take_screenshot_window}";
 
   "XF86AudioRaiseVolume" = "exec ${pamixer} -i 5";
   "XF86AudioLowerVolume" = "exec ${pamixer} -d 5";
