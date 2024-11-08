@@ -20,19 +20,19 @@ in
   networking = {
     nat = {
       enable = true;
-      externalInterface = "eth0";
+      externalInterface = "enp6s18";
       internalInterfaces = [ "wg0" ];
     };
     firewall.allowedUDPPorts = [ 51820 ];
     wireguard.interfaces = {
       wg0 = {
-        ips = [ "10.100.0.1/24" ];
+        ips = [ "10.100.0.1/32" ];
         listenPort = 51820;
         postSetup = ''
-          ${iptables} -t nat -A POSTROUTING -s 10.100.0.0/24 -o eth0 -j MASQUERADE
+          ${iptables} -t nat -A POSTROUTING -s 10.100.0.0/32 -o enp6s18 -j MASQUERADE
         '';
         postShutdown = ''
-          ${iptables} -t nat -D POSTROUTING -s 10.100.0.0/24 -o eth0 -j MASQUERADE
+          ${iptables} -t nat -D POSTROUTING -s 10.100.0.0/32 -o enp6s18 -j MASQUERADE
         '';
         privateKeyFile = config.sops.secrets.private_key.path;
         peers = [
