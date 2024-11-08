@@ -54,7 +54,7 @@ in
   environment.systemPackages =
     let
       remote-build = pkgs.writeScriptBin "remote-build" ''
-        hostnames=(server-game-containers server-mc112 server-mc121 server-mc-blueprints)
+        hostnames=(mc112 mc121 mc-blueprints wireguard)
         hostname=$(printf "%s\n" "''${hostnames[@]}" | fzf)
         pushd /etc/nixos
         nixos-rebuild switch --flake ".#$hostname" --target-host $hostname --use-remote-sudo

@@ -38,13 +38,14 @@
   };
 
   services.keyd.enable = true;
-  services.zerotierone = {
-    enable = true;
-    joinNetworks = [
-      # personal darkweb
-      "d5e5fb653723b80e"
-    ];
-  };
+
+  # services.zerotierone = {
+  #   enable = true;
+  #   joinNetworks = [
+  #     # personal darkweb
+  #     "d5e5fb653723b80e"
+  #   ];
+  # };
 
   boot.loader.grub.themeConfig = {
     background = builtins.fetchurl wallpapers.april-red;

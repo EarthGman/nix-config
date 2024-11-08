@@ -13,6 +13,10 @@
       "usbhid"
       "sd_mod"
     ];
+    kernelModules = [ "iwlwifi" ];
+    extraModprobeConfig = ''
+      options iwlwifi disable_11ax=1
+    '';
   };
   services = {
     nordvpn.enable = true;

@@ -13,11 +13,11 @@
         {
           publicKey = "PMxNloIPW9xEROdyZAbPl6CtkrCqSRIZmkcqj9MK5lk=";
           allowedIPs = [ "0.0.0.0/0" ];
+          name = "cypher";
           # Or forward only particular subnets
           #allowedIPs = [ "10.100.0.1" "91.108.12.0/22" ];
 
-          # local ip of the prox server node
-          endpoint = "192.168.24.32:51820";
+          endpoint = "192.168.24.159:51820";
           persistentKeepalive = 25;
         }
       ];
