@@ -1,6 +1,7 @@
 { pkgs, lib, config, ... }:
 let
   enabled = { enable = lib.mkDefault true; };
+  scripts = import ./scripts.nix { inherit pkgs lib config; };
 in
 {
   options = {
@@ -27,7 +28,7 @@ in
       enable = true;
       systemd.enable = true;
       xwayland.enable = true;
-      settings = import ./settings.nix { inherit pkgs lib config; };
+      settings = import ./settings.nix { inherit pkgs lib config scripts; };
     };
   };
 }

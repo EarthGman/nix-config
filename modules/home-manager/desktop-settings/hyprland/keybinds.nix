@@ -1,4 +1,4 @@
-{ pkgs, lib, config, mainMod, ... }:
+{ pkgs, lib, config, scripts, mainMod, ... }:
 let
   inherit (lib) getExe;
   terminal = getExe pkgs.${config.custom.terminal};
@@ -7,25 +7,6 @@ let
   pamixer = getExe pkgs.pamixer;
   brightnessctl = getExe pkgs.brightnessctl;
   menu = "${lib.getExe config.programs.rofi.package}";
-
-  take-screenshot-selection = pkgs.writeScript "take-screenshot-selection-wayland.sh" ''
-    timestamp=$(date +%F_%T)
-    output="${config.home.homeDirectory}/Pictures/Screenshots/Screenshot-''${timestamp}.png"
-
-    if selection=$(${getExe pkgs.slurp}) && ${getExe pkgs.grim} -g "$selection" - | ${pkgs.wl-clipboard}/bin/wl-copy; then
-      ${pkgs.wl-clipboard}/bin/wl-paste > "$output"
-      dunstify 'Screenshot saved to ~/Pictures/Screenshots'
-    fi
-  '';
-  take-screenshot = pkgs.writeScript "take-screenshot-wayland.sh" ''
-    timestamp=$(date +%F_%T)
-    output="${config.home.homeDirectory}/Pictures/Screenshots/Screenshot-''${timestamp}.png"
-    
-    if ${getExe pkgs.grim} - | ${pkgs.wl-clipboard}/bin/wl-copy; then
-      ${pkgs.wl-clipboard}/bin/wl-paste > "$output"
-      dunstify 'Screenshot saved to ~/Pictures/Screenshots'
-    fi
-  '';
 in
 [
   "${mainMod}, Return, exec, ${terminal}"
@@ -87,8 +68,8 @@ in
   # "${mainMod}, mouse_down, workspace, e+1"
   # "${mainMod}, mouse_up, workspace, e-1"
 
-  ", Print, exec, ${take-screenshot-selection}"
-  "SHIFT, Print, exec, ${take-screenshot}"
+  ", Print, exec, ${scripts.take-screenshot-selection}"
+  "SHIFT, Print, exec, ${scripts.take-screenshot}"
 
   "${mainMod}, B, exec, ${browser}"
 

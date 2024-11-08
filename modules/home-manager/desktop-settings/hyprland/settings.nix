@@ -1,14 +1,9 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, scripts, ... }:
 # universal config for hyprland
 let
   inherit (lib) mkDefault;
   inherit (builtins) toString;
   mainMod = config.wayland.windowManager.hyprland.mainMod;
-  waybar = pkgs.writeScript "waybar.sh" ''
-    ${lib.getExe pkgs.killall} .waybar-wrapped
-    ${lib.getExe pkgs.waybar} &
-    exit 0
-  '';
 in
 {
   # env
@@ -24,7 +19,7 @@ in
 
   # autostart
   exec-once = [
-    "${waybar}"
+    "${scripts.waybar}"
     "systemctl --user start hyprpaper.service"
     "systemctl --user start blueman-applet.service"
   ];
@@ -34,7 +29,7 @@ in
   ];
 
   #keybinds
-  bind = import ./keybinds.nix { inherit pkgs lib config mainMod; };
+  bind = import ./keybinds.nix { inherit pkgs lib config scripts mainMod; };
   bindm = [
     "SUPER, mouse:272, movewindow"
     "SUPER, mouse:273, resizewindow"
