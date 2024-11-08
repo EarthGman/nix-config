@@ -97,6 +97,7 @@
         mc112 = mkHost { hostName = "mc112"; server = true; vm = true; }; # main world
         mc-blueprints = mkHost { hostName = "mc-blueprints"; server = true; vm = true; }; # creative blueprints server
         mc121 = mkHost { hostName = "mc121"; server = true; vm = true; }; # private 1.21 server for friends
+        wireguard = mkHost { hostName = "wireguard"; server = true; vm = true; };
 
         iso-headless-x86_64 = mkHost { hostName = "iso-headless"; platform = "x86_64-linux"; };
       };

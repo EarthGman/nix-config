@@ -1,7 +1,8 @@
-{ self, pkgs, lib, displayManager, wallpapers, ... }:
+{ self, pkgs, lib, config, displayManager, wallpapers, ... }:
 {
   imports = [
     ./fs.nix
+    ./wireguard.nix
     (self + /profiles/nixos/gaming-pc.nix)
   ] ++ lib.optionals (displayManager == "sddm") [ ./sddm.nix ];
   boot.initrd.availableKernelModules = [
@@ -88,5 +89,6 @@
   sops.secrets = {
     ssh_host_ed25519_key.path = "/etc/ssh/ssh_host_ed25519_key";
     ssh_host_rsa_key.path = "/etc/ssh/ssh_host_rsa_key";
+    wireguard_private.path = "/etc/wireguard/private_key";
   };
 }
