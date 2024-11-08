@@ -1,3 +1,12 @@
+11-07-2024:
+- dunst will now display notifications in i3 when taking screenshots
+- xdg.userDirs are now enabled by default
+- refactored i3 setup: seperated config into seperate file.
+- seperate scripts file for hyprland.
+- cleanup omori-calendar-project service: seperate script file
+- omori-calendar-project will now issue a warning if gnome is enabled at the same time
+
+
 11-06-2024:
 - redeployed, mc112 and mc-blueprints
 - add "server" flag to mkNixosSystem
