@@ -13,12 +13,13 @@
         # school wireguard server
         {
           publicKey = keys.wireguard_server_school;
-          allowedIPs = [ "0.0.0.0/0" ];
+          allowedIPs = [ "10.0.0.0/24" ];
           name = "School";
           # Or forward only particular subnets
           #allowedIPs = [ "10.100.0.1" "91.108.12.0/22" ];
 
-          endpoint = "192.168.24.159:51820";
+          # TODO: conceal public ip in a secret
+          # endpoint = "my-ip:51820";
           persistentKeepalive = 25;
         }
       ];
