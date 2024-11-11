@@ -5,7 +5,7 @@ let
 in
 {
   bars = mkForce [ ];
-  modifier = mkDefault "Mod1"; # alt
+  modifier = mkDefault "Mod4"; # window
   floating.modifier = mkDefault "Mod4"; # window
   terminal = config.custom.terminal;
   workspaceAutoBackAndForth = true;

@@ -14,10 +14,10 @@ in
   "${mod}+b" = "exec ${browser}";
   "${mod}+m" = "exec ${fileManager}";
 
-  # "${mod}+h" = "focus left";
-  # "${mod}+j" = "focus down";
-  # "${mod}+k" = "focus up";
-  # "${mod}+l" = "focus right";
+  "${mod}+h" = "focus left";
+  "${mod}+j" = "focus down";
+  "${mod}+k" = "focus up";
+  "${mod}+l" = "focus right";
 
   "${mod}+Left" = "focus left";
   "${mod}+Down" = "focus down";
@@ -25,24 +25,33 @@ in
   "${mod}+Right" = "focus right";
 
   # move focused window
-  "Mod4+h" = "move left";
-  "Mod4+j" = "move down";
-  "Mod4+k" = "move up";
-  "Mod4+l" = "move right";
+  "${mod}+Control+h" = "move left";
+  "${mod}+Control+j" = "move down";
+  "${mod}+Control+k" = "move up";
+  "${mod}+Control+l" = "move right";
 
+  "${mod}+Control+Left" = "move left";
+  "${mod}+Control+Down" = "move down";
+  "${mod}+Control+Up" = "move up";
+  "${mod}+Control+Right" = "move right";
+
+  # Swap with window to the left
+  "${mod}+Shift+h" = ''mark --add "swapee"; focus left; swap container with mark "swapee"; focus left; unmark "swapee"'';
   "${mod}+Shift+Left" = ''mark --add "swapee"; focus left; swap container with mark "swapee"; focus left; unmark "swapee"'';
   # Swap with window to the right
+  "${mod}+Shift+l" = ''mark --add "swapee"; focus right; swap container with mark "swapee"; focus right; unmark "swapee"'';
   "${mod}+Shift+Right" = ''mark --add "swapee"; focus right; swap container with mark "swapee"; focus right; unmark "swapee"'';
   # Swap with window above
-  "${mod}+Shift+Up" = ''mark --add "swapee"; focus up; swap container with mark "swapee"; focus up; unmark "swapee"'';
+  "${mod}+Shift+k" = ''mark --add "swapee"; focus up; swap container with mark "swapee"; focus up; unmark "swapee"'';
+  "${mod}+Shift+k" = ''mark --add "swapee"; focus up; swap container with mark "swapee"; focus up; unmark "swapee"'';
   # Swap with window below
+  "${mod}+Shift+j" = ''mark --add "swapee"; focus down; swap container with mark "swapee"; focus down; unmark "swapee"'';
   "${mod}+Shift+Down" = ''mark --add "swapee"; focus down; swap container with mark "swapee"; focus down; unmark "swapee"'';
-
   # split in horizontal orientation
-  "${mod}+h" = "split h";
+  # "${mod}+h" = "split h";
 
-  # split in vertical orientation
-  "${mod}+v" = "split v";
+  #split in vertical orientation
+  # "${mod}+v" = "split v";
 
   # enter fullscreen mode for the focused container
   "${mod}+f" = "fullscreen toggle";
