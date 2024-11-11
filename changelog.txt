@@ -1,3 +1,8 @@
+11-10-2024:
+- keyd: remap caps lock to escape when tapped and meta when held instead of control
+- new keybind layout for i3 using the new meta
+
+
 11-07-2024:
 - dunst will now display notifications in i3 when taking screenshots
 - xdg.userDirs are now enabled by default
@@ -8,11 +13,8 @@
 
 
 11-06-2024:
-- redeployed, mc112 and mc-blueprints
-- add "server" flag to mkNixosSystem
-- changed vm special flag from string to boolean
-- removed the "server-" hostname requirement for servers
-- re-enabled default kernel modules for servers because they were unable to boot after install
+- removed game-container server in favor of alpine linux LXC containers instead
+- reincluded the default kernel modules for servers after alot of pain where the OS couldn't mount the root drive due to missing modules
 
 
 11-05-2024:
@@ -28,8 +30,6 @@ home-manager refactor:
   these profiles can include some extra configuration under /hosts/hostname/users/username/preferences.nix that will be exclusive to that machine. (this file is no longer required)
 Assigned the proper git config to iron
 readd thePumpkinPatch to the army
-- isolate portainer from cypher
-- add xmodmap to shell path for i3
 
 
 11-04-2024:
