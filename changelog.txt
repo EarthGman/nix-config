@@ -1,3 +1,10 @@
+11-11-2024
+- remove wireguard server as its just easier to do it on the actual router. the configuration will still be present although unused
+- isolate public keys into a file for ease of access throughout the config. (use "keys" special argument)
+- remove zerotier from all machines in favor of wireguard (no reliance on random chinese or russian nodes)
+- remove the security rule for nixos rebuild (I will be rewriting the theme switching thing in the future)
+
+
 11-10-2024:
 - keyd: remap caps lock to escape when tapped and meta when held instead of control
 - new keybind layout for i3 using the new meta

@@ -1,7 +1,6 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, keys, ... }:
 let
   username = "g";
-  ssh-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKNRHd6NLt4Yd9y5Enu54fJ/a2VCrRgbvfMuom3zn5zg";
 in
 {
   sops.secrets.${username}.neededForUsers = true;
@@ -11,7 +10,7 @@ in
     password = null;
     isNormalUser = true;
     shell = pkgs.zsh;
-    openssh.authorizedKeys.keys = [ ssh-key ];
+    openssh.authorizedKeys.keys = [ keys.g_pub ];
     extraGroups = [
       "networkmanager"
       "wheel"

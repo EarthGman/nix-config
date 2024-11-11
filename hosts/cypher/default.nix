@@ -1,4 +1,4 @@
-{ self, pkgs, lib, config, displayManager, wallpapers, ... }:
+{ self, pkgs, lib, displayManager, wallpapers, ... }:
 {
   imports = [
     ./fs.nix
@@ -67,9 +67,9 @@
     sops.enable = true;
   };
 
-  custom = {
-    decreased-security.nixos-rebuild = true;
-  };
+  #  custom = {
+  #    decreased-security.nixos-rebuild = true;
+  #  };
 
   programs.wireshark = {
     enable = true;

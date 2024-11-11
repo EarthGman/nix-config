@@ -26,7 +26,7 @@
     package = pkgs.wireshark;
   };
 
-  custom = {
-    decreased-security.nixos-rebuild = true;
-  };
+ # custom = {
+ #   decreased-security.nixos-rebuild = true;
+ # };
 }

@@ -1,7 +1,7 @@
-{ self, config, pkgs, lib, hostName, ... }:
+{ self, config, pkgs, lib, keys, hostName, ... }:
 let
   enabled = { enable = lib.mkDefault true; };
-  signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKNRHd6NLt4Yd9y5Enu54fJ/a2VCrRgbvfMuom3zn5zg";
+  signingkey = keys.g_pub;
   LHmouse = builtins.toFile "lh-mouse.xmodmap" "pointer = 3 2 1";
 in
 {

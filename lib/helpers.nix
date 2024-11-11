@@ -16,10 +16,11 @@
       wallpapers = builtins.fromJSON (builtins.readFile inputs.wallpapers.outPath);
       icons = builtins.fromJSON (builtins.readFile inputs.icons.outPath);
       binaries = builtins.fromJSON (builtins.readFile inputs.binaries.outPath);
+      keys = import ../keys.nix;
     in
     lib.nixosSystem {
       specialArgs = {
-        inherit self platform inputs outputs myLib wallpapers icons binaries hostName cpu gpu users desktop displayManager server vm stateVersion;
+        inherit self platform inputs outputs myLib wallpapers icons binaries keys hostName cpu gpu users desktop displayManager server vm stateVersion;
       };
       modules =
         let

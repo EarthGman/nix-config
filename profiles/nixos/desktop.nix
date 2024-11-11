@@ -1,4 +1,4 @@
-{ self, inputs, outputs, hostName, pkgs, lib, myLib, wallpapers, icons, desktop, users, stateVersion, ... }:
+{ self, inputs, outputs, hostName, pkgs, lib, myLib, wallpapers, icons, keys, desktop, users, stateVersion, ... }:
 let
   inherit (lib) mkDefault genAttrs;
   enabled = { enable = mkDefault true; };
@@ -17,7 +17,7 @@ in
     users = genAttrs usernames (username:
       import home { inherit pkgs username myLib stateVersion; });
     extraSpecialArgs = {
-      inherit self inputs outputs wallpapers icons hostName desktop myLib;
+      inherit self inputs outputs wallpapers icons keys hostName desktop myLib;
     };
     backupFileExtension = "bak";
   };

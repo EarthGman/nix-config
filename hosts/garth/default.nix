@@ -36,20 +36,12 @@
     sops.enable = true;
   };
 
-  custom = {
-    decreased-security.nixos-rebuild = true;
-  };
+  # custom = {
+  #   decreased-security.nixos-rebuild = true;
+  # };
 
   programs.wireshark = {
     enable = true;
     package = pkgs.wireshark;
-  };
-
-  services.zerotierone = {
-    enable = true;
-    joinNetworks = [
-      # personal darkweb
-      "d5e5fb653723b80e"
-    ];
   };
 }

@@ -1,17 +1,7 @@
-{ pkgs, lib, binaries, ... }:
+{ pkgs, lib, binaries, keys, ... }:
 {
-  # join zerotier network
-  services.zerotierone = {
-    enable = true;
-    joinNetworks = [
-      "d5e5fb653723b80e"
-    ];
-  };
-
   users.users."root" = {
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKNRHd6NLt4Yd9y5Enu54fJ/a2VCrRgbvfMuom3zn5zg"
-    ];
+    openssh.authorizedKeys.keys = [ keys.g_pub ];
   };
 
   networking.firewall.allowedTCPPorts = [ 25566 ];
