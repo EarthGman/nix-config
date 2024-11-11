@@ -13,7 +13,7 @@
         {
           publicKey = "PMxNloIPW9xEROdyZAbPl6CtkrCqSRIZmkcqj9MK5lk=";
           allowedIPs = [ "0.0.0.0/0" ];
-          name = "cypher";
+          name = "Home2";
           # Or forward only particular subnets
           #allowedIPs = [ "10.100.0.1" "91.108.12.0/22" ];
 

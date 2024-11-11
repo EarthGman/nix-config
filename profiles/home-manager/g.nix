@@ -46,6 +46,7 @@ in
     cmatrix = enabled;
     cava = enabled;
     sl = enabled;
+    sparrow = enabled;
   };
 
   programs.ssh = {

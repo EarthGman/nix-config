@@ -23,7 +23,7 @@ in
       externalInterface = "enp6s18";
       internalInterfaces = [ "wg0" ];
     };
-    firewall.allowedUDPPorts = [ 51820 ];
+    firewall.allowedUDPPorts = [ config.networking.wireguard.interfaces.wg0.listenPort ];
     wireguard.interfaces = {
       wg0 = {
         ips = [ "10.100.0.1/32" ];
