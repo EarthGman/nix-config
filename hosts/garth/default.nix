@@ -45,6 +45,8 @@
     package = pkgs.wireshark;
   };
 
+  sops.secrets.wg0_conf.path = "/etc/wireguard/wg0.conf";
+
   networking.firewall.allowedUDPPorts = [ 51820 ];
   networking.wg-quick.interfaces = {
     wg0 = {
