@@ -1,4 +1,4 @@
-{ self, pkgs, wallpapers, ... }:
+{ self, pkgs, config, wallpapers, ... }:
 {
   imports = [
     ./fs.nix
@@ -43,5 +43,12 @@
   programs.wireshark = {
     enable = true;
     package = pkgs.wireshark;
+  };
+
+  networking.firewall.allowedUDPPorts = [ 51820 ];
+  networking.wg-quick.interfaces = {
+    wg0 = {
+      configFile = config.sops.secrets.wg0_conf.path;
+    };
   };
 }

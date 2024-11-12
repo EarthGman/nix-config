@@ -1,8 +1,7 @@
-{ self, pkgs, lib, displayManager, wallpapers, ... }:
+{ self, pkgs, lib, config, displayManager, wallpapers, ... }:
 {
   imports = [
     ./fs.nix
-    ./wireguard.nix
     (self + /profiles/nixos/gaming-pc.nix)
   ] ++ lib.optionals (displayManager == "sddm") [ ./sddm.nix ];
   boot.initrd.availableKernelModules = [
@@ -38,14 +37,6 @@
   };
 
   services.keyd.enable = true;
-
-  # services.zerotierone = {
-  #   enable = true;
-  #   joinNetworks = [
-  #     # personal darkweb
-  #     "d5e5fb653723b80e"
-  #   ];
-  # };
 
   boot.loader.grub.themeConfig = {
     background = builtins.fetchurl wallpapers.april-red;
@@ -90,6 +81,14 @@
   sops.secrets = {
     ssh_host_ed25519_key.path = "/etc/ssh/ssh_host_ed25519_key";
     ssh_host_rsa_key.path = "/etc/ssh/ssh_host_rsa_key";
-    wireguard_private.path = "/etc/wireguard/private_key";
+    wg0_conf.path = "/etc/wireguard/wg0.conf";
+  };
+
+  # networking.firewall.trustedInterfaces = [ "wg0" ];
+  networking.firewall.allowedUDPPorts = [ 51820 ];
+  networking.wg-quick.interfaces = {
+    wg0 = {
+      configFile = config.sops.secrets.wg0_conf.path;
+    };
   };
 }
