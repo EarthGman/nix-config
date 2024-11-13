@@ -1,3 +1,7 @@
+11-13-2024
+- added tcpdump and traceroute commands to all machines
+
+
 11-11-2024
 - remove wireguard server as its just easier to do it on the actual router. the configuration will still be present although unused
 - isolate public keys into a file for ease of access throughout the config. (use "keys" special argument)

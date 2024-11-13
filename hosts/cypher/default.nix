@@ -84,16 +84,12 @@
     wg0_conf.path = "/etc/wireguard/wg0.conf";
   };
 
-  # boot.kernel.sysctl."net.ipv4.conf.all.forwarding" = true;
   networking = {
+    # allows forwarding of the subnet traffic 10.10.0.0/24 to the wg0 gateway 10.0.0.1 on my router
+    localCommands = ''
+      ip route add 10.10.0.0/24 via 10.0.0.1 dev wg0
+    '';
     firewall.allowedUDPPorts = [ 51820 ];
-    # interfaces.default.ipv4.routes = [
-    #   {
-    #     address = "10.10.0.0";
-    #     prefixLength = 24;
-    #     via = "10.0.0.1";
-    #   }
-    #];
     wg-quick.interfaces = {
       wg0 = {
         configFile = config.sops.secrets.wg0_conf.path;
