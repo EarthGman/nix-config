@@ -84,11 +84,20 @@
     wg0_conf.path = "/etc/wireguard/wg0.conf";
   };
 
-  # networking.firewall.trustedInterfaces = [ "wg0" ];
-  networking.firewall.allowedUDPPorts = [ 51820 ];
-  networking.wg-quick.interfaces = {
-    wg0 = {
-      configFile = config.sops.secrets.wg0_conf.path;
+  # boot.kernel.sysctl."net.ipv4.conf.all.forwarding" = true;
+  networking = {
+    firewall.allowedUDPPorts = [ 51820 ];
+    # interfaces.default.ipv4.routes = [
+    #   {
+    #     address = "10.10.0.0";
+    #     prefixLength = 24;
+    #     via = "10.0.0.1";
+    #   }
+    #];
+    wg-quick.interfaces = {
+      wg0 = {
+        configFile = config.sops.secrets.wg0_conf.path;
+      };
     };
   };
 }
