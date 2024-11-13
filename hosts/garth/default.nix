@@ -47,6 +47,9 @@
 
   sops.secrets.wg0_conf.path = "/etc/wireguard/wg0.conf";
 
+  networking.localCommands = ''
+    ip route add 10.10.0.0/24 via 10.0.0.1 dev wg0
+  '';
   networking.firewall.allowedUDPPorts = [ 51820 ];
   networking.wg-quick.interfaces = {
     wg0 = {
