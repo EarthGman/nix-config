@@ -5,7 +5,10 @@
     openssh.authorizedKeys.keys = [ keys.g_pub ];
   };
 
-  networking.firewall.allowedTCPPorts = [ 25565 ]; # minecraft port
+  networking = {
+    nameservers = [ "8.8.8.8" "1.1.1.1" ]; # WG network did not have DNS capability
+    firewall.allowedTCPPorts = [ 25565 ]; # minecraft port
+  };
   services.minecraft-server = {
     enable = true;
     eula = true;

@@ -1,3 +1,11 @@
+11-15-2024
+- finished wireguard setup
+- enable DNS for servers routing through the tunnel
+- remove wireguard server from configuration
+- installed arch on tater
+- enabled google-chrome on garth (temporary)
+
+
 11-13-2024
 - added tcpdump and traceroute commands to all machines
 

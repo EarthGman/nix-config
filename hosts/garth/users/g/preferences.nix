@@ -13,6 +13,7 @@ in
   };
 
   programs = {
+    google-chrome.enable = true;
     openconnect.enable = true;
     lutris.enable = true;
     moonlight.enable = true;
