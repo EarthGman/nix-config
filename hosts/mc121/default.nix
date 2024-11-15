@@ -7,9 +7,10 @@
   networking.firewall.allowedTCPPorts = [ 25567 ];
   services.minecraft-server = {
     enable = true;
-    package = pkgs.minecraftServers.vanilla-1-21.overrideAttrs (old: {
-      src = builtins.fetchurl binaries.purpur-121;
-    });
+    package = pkgs.minecraftServers.vanilla-1-21;
+    # package = pkgs.minecraftServers.vanilla-1-21.overrideAttrs (old: {
+    #   src = builtins.fetchurl binaries.purpur-121;
+    # });
     eula = true;
     declarative = true;
     dataDir = "/opt/minecraft/server";
