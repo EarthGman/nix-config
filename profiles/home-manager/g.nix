@@ -33,6 +33,7 @@ in
     autokey = enabled;
     bottles = enabled;
     freetube = enabled;
+    filezilla = enabled;
     gcolor = enabled;
     musescore = enabled;
     museeks = enabled;

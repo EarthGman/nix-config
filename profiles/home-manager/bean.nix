@@ -16,6 +16,7 @@ in
       userName = "ThunderBean290";
       userEmail = "156272091+Thunderbean290@users.noreply.github.com";
     };
+    filezilla = enabled;
     gcolor = enabled;
     obs-studio = enabled;
   };
