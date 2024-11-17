@@ -37,6 +37,7 @@ in
     gcolor = enabled;
     musescore = enabled;
     museeks = enabled;
+    sparrow = enabled;
     prismlauncher = enabled;
     discord = enabled;
     xclicker = enabled;
@@ -47,7 +48,6 @@ in
     cmatrix = enabled;
     cava = enabled;
     sl = enabled;
-    sparrow = enabled;
   };
 
   programs.ssh = {

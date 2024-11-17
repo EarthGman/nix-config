@@ -1,10 +1,19 @@
 11-16-2024
+- fix dates in changelog.txt (whoops)
+- added a small ledger module for ledger crypto wallets (udev rules and leger live desktop)
+- enabled brave for cypher due to metamask not being supported on firefox
+- enabled filezilla for FTP transfers
+- fixed yazi, (shell alias is "yy") will now properly shell into the directory left off in yazi
+- replaced traceroute package with busybox (includes traceroute alongside some more tools)
+
+
+11-15-2024
 - lost the mc121 world while reinstalling (whoops)
 - DNS for all servers
 - add alts to blueprints whitelist
 
 
-11-15-2024
+11-14-2024
 - finished wireguard setup
 - enable DNS for servers routing through the tunnel
 - remove wireguard server from configuration

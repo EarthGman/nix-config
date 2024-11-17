@@ -9,6 +9,7 @@ in
   ];
 
   programs = {
+    brave.enable = true;
     dolphin-emu.enable = true;
     lutris.enable = true;
     davinci-resolve.enable = true;

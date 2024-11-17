@@ -56,6 +56,7 @@
     sunshine.enable = true;
     qemu-kvm.enable = true;
     sops.enable = true;
+    ledger.enable = true;
   };
 
   #  custom = {

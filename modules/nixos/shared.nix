@@ -63,6 +63,7 @@ in
     in
     with pkgs; [
       btop
+      busybox
       powertop
       fzf
       sysz
@@ -82,7 +83,6 @@ in
       fd
       jq
       lynx
-      traceroute
       tcpdump
       ripgrep
       zoxide # must be on path
