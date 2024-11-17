@@ -19,7 +19,6 @@ in
     gnome-system-monitor = enabled; # cool task manager
     gnome-calculator = enabled; # calculator
     thunderbird = enabled; # email client
-    yazi = enabled; # terminal based file browser
     switcheroo = enabled; # super easy image format conversion
     video-trimmer = enabled; # easy way to edit and trim videos
     obsidian = enabled; # note taking

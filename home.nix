@@ -1,16 +1,17 @@
 { pkgs, username, myLib, stateVersion, ... }:
 
+# basic wrapper for HM. Shouldn't be edited.
 let
   inherit (myLib) autoImport;
-  programs = autoImport ./modules/home-manager/programs;
-  services = autoImport ./modules/home-manager/services;
-  shared = autoImport ./modules/home-manager/shared;
+  programs = autoImport ./modules/home-manager/programs; # anything under the "programs" attribute set or software I define as a program.
+  services = autoImport ./modules/home-manager/services; # anything under the "services" attribute set or any added systemd units.
+  shared = autoImport ./modules/home-manager/shared; # category consisting of many miscellanous default options and settings.
 in
 {
   imports = [
-    ./modules/home-manager/stylix
-    ./modules/home-manager/desktop-settings
-    ./profiles/home-manager/${username}.nix
+    ./modules/home-manager/stylix # default stylix configuration
+    ./modules/home-manager/desktop-settings # default configuration for the chosen desktop(s)
+    ./profiles/home-manager/${username}.nix # required file! Sets all aspects exclusive to your user accross all machines, EX: git username and email.
   ]
   ++ shared
   ++ programs

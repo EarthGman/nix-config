@@ -1,3 +1,10 @@
+11-17-2024
+- documented some Hm modules
+- switched to neovim
+- neovim configuration for HM (#not copied)
+- update flake input "icons"
+
+
 11-16-2024
 - fix dates in changelog.txt (whoops)
 - added a small ledger module for ledger crypto wallets (udev rules and leger live desktop)

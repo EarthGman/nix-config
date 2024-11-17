@@ -3,16 +3,8 @@ let
   inherit (lib) mkDefault;
 in
 {
-  imports = [ ./zed.nix ];
+  imports = [ ./zed.nix ]; # define zed options since HM doesn't provide them by default
   programs.zed = {
-    enable =
-      let
-        cfg = config.custom.editor;
-      in
-      (
-        cfg == "zed" ||
-        cfg == "Zed"
-      );
     settings = {
       theme = mkDefault "Ayu Dark";
       vim_mode = mkDefault false;

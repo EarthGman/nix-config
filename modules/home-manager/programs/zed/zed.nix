@@ -1,4 +1,5 @@
 { config, lib, pkgs, ... }:
+# WIP and discontinued for now, Zed is kind of bad
 let
   inherit (lib) literalExpression mkEnableOption mkOption mkIf types;
   cfg = config.programs.zed;

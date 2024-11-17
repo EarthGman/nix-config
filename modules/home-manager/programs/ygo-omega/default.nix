@@ -1,11 +1,11 @@
 { pkgs, lib, config, icons, ... }:
 # does not provide game files, they must be installed already
 let
-  inherit (lib) mkEnableOption mkOption types mkIf;
+  inherit (lib) mkEnableOption mkOption types mkIf getExe;
   inherit (builtins) toPath;
   cfg = config.programs.ygo-omega;
   home = config.home.homeDirectory;
-  launch = "${pkgs.steam-run}/bin/steam-run ${cfg.gameFileDir}/OmegaUpdater";
+  launch = "${getExe pkgs.steam-run} ${cfg.gameFileDir}/OmegaUpdater";
 in
 {
   options.programs.ygo-omega = {
@@ -14,16 +14,6 @@ in
       description = "path to the ygo omega game files";
       type = types.path;
       default = toPath "${home}/games/ygo-omega";
-    };
-    executablePath = mkOption {
-      description = ''
-        places a version of the launch script on your shell path
-        set this option to the path where that executable will be stored
-        default = ~/bin/ygo-omega
-        make sure the directory is on your shell path
-      '';
-      type = types.path;
-      default = toPath "${home}/bin";
     };
   };
   config = mkIf cfg.enable {
@@ -39,15 +29,6 @@ in
         Type=Application
         Categories=Game
       '';
-    };
-    home.file = {
-      "${cfg.executablePath}/ygo-omega" = {
-        executable = true;
-        text = ''
-          #!/usr/bin/env bash
-          ${launch}
-        '';
-      };
     };
   };
 }

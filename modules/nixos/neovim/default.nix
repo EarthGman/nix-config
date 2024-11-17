@@ -1,4 +1,6 @@
 { pkgs, lib, config, ... }:
+# default nvim config applied to all users and machines accross the configuration.
+# extra configuration such as LSPs, plugins, and styles are configured with home-manager
 let
   cfg = config.modules.neovim;
 in
@@ -16,7 +18,7 @@ in
           start = [
             plenary-nvim
             telescope-nvim
-            vim-nix
+            vim-nix # for editing nix files for installers
           ];
         };
       };

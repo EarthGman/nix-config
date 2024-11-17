@@ -1,15 +1,15 @@
-# extension of home.nix, a gigantic custom HM module
-# the reason this file exists is because of a weird behavior with the config top level argument if used in home.nix
+# this modules defines a few custom options and shared configuration among all users on all machines
 { lib, outputs, config, ... }:
 let
   inherit (lib) mkDefault mkOption types;
-  cfg = config.custom;
 in
 {
   options = {
+    # custom option allows various configuration to reference your preferred program to execute.
+    # for example keybinds for Tiling Window Managers will open a browser or file manager based on what you set here.
     custom = {
       editor = mkOption {
-        description = "string exported as EDITOR env variable";
+        description = "String that will be exported 1:1 to your EDITOR env variable in your shell";
         type = types.str;
         default = "nvim";
       };
@@ -19,7 +19,7 @@ in
         default = "kitty";
       };
       fileManager = mkOption {
-        description = "preferred gui based fileManager";
+        description = "preferred fileManager";
         type = types.str;
         default = "nautilus";
       };
@@ -33,26 +33,31 @@ in
 
   config = {
     xdg.userDirs = {
+      # enable and create common Directories (Downloads, Documents, Music, etc)
       enable = mkDefault true;
       createDirectories = mkDefault true;
     };
-    programs = {
+    programs = let cfg = config.custom; in {
       gh = {
         enable = true;
         gitCredentialHelper.enable = true;
       };
-      git = {
-        enable = true;
-        userName = mkDefault "";
-        userEmail = mkDefault "";
-      };
-      # allows bat to inherit the stylix theme
-      bat.enable = true;
+      git.enable = true; # enable user level git configuration (do not forget to set programs.git.userName and programs.git.userEmail in your profile under /profiles/home-manager)
+      bat.enable = true; # allow bat to be themed by stylix
+      zsh.enable = true; # force zsh since it is the best shell after all
 
-      zsh.enable = mkDefault true;
+      # enable various programs based on the user's preferences
+      neovim.enable = mkDefault (cfg.editor == "nvim");
+      vscode.enable = mkDefault (cfg.editor == "codium");
+      zed.enable = mkDefault (cfg.editor == "zed");
+
+      # browsers
       firefox.enable = mkDefault (cfg.browser == "firefox");
       brave.enable = mkDefault (cfg.browser == "brave");
+
+      # file managers
       nautilus.enable = mkDefault (cfg.fileManager == "nautilus");
+      yazi.enable = mkDefault (cfg.fileManager == "yazi");
     };
 
     nixpkgs = {

@@ -10,9 +10,7 @@ in
     ./essentials.nix
   ];
 
-  custom = {
-    editor = "codium";
-  };
+  custom.fileManager = "yazi";
 
   programs = {
     git = {
@@ -37,6 +35,7 @@ in
     gcolor = enabled;
     musescore = enabled;
     museeks = enabled;
+    nautilus.enable = true;
     sparrow = enabled;
     prismlauncher = enabled;
     discord = enabled;

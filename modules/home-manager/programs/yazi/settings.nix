@@ -20,10 +20,7 @@
     }];
     reveal = [
       {
-        run = ''
-          ${
-            lib.getExe pkgs.exiftool
-          } "$1"; echo "Press <enter> to exit"; read _'';
+        run = ''${lib.getExe pkgs.exiftool} "$1"; echo "Press <enter> to exit"; read _'';
         desc = "Show EXIF";
         block = true;
         for = "unix";
@@ -37,8 +34,7 @@
     extract = [
       {
         desc = "Extract with atool";
-        run = ''
-          ${lib.getExe pkgs.atool} --extract --each --subdir --quiet -- "$@"'';
+        run = ''${lib.getExe pkgs.atool} --extract --each --subdir --quiet -- "$@"'';
         block = true;
       }
       {
