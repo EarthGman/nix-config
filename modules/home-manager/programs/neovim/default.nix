@@ -1,61 +1,34 @@
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
+let
+  cfg = config.programs.neovim;
+  inherit (lib) mkIf mkDefault;
+in
 {
   programs.neovim = {
-    enable = true;
     package = pkgs.neovim-unwrapped;
 
     vimAlias = true;
     viAlias = true;
 
     plugins = with pkgs.vimPlugins; [
-      alpha-nvim
-      bufferline-nvim
-      cmp-buffer
-      cmp-nvim-lsp
-      cmp-path
-      cmp-spell
-      cmp-treesitter
-      cmp-vsnip
-      fidget-nvim
-      gitsigns-nvim
-      lsp-format-nvim
-      lspkind-nvim
-      lualine-nvim
-      none-ls-nvim
-      nvim-autopairs
-      nvim-cmp
-      nvim-colorizer-lua
-      nvim-dap
-      nvim-dap-ui
-      nvim-lspconfig
-      nvim-tree-lua
       plenary-nvim
-      rainbow-delimiters-nvim
-      telescope-fzy-native-nvim
       telescope-nvim
-      which-key-nvim
+      vim-nix
+      nvim-lspconfig
     ];
 
     extraPackages = with pkgs; [
       nil
-      gcc
       ripgrep
       fd
       nixpkgs-fmt
     ];
-    extraLuaConfig = ''
-      _G.map = vim.keymap.set
-      _G.P = vim.print
 
-      require("core.util")
-      require("core.options")
-      require("core.keymaps")
-      require("ui.theme")
-      require("lsp")
-      require("plugs")
-    '';
+    extraLuaConfig = builtins.readFile ./init.lua;
   };
-  xdg.configFile."nvim/lua" = {
+
+  stylix.targets.neovim.enable = mkIf cfg.enable (mkDefault false);
+  xdg.configFile."nvim/lua" = mkIf cfg.enable {
     source = ./lua;
   };
 }
