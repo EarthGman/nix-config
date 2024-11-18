@@ -12,7 +12,8 @@ in
   # "${mod}+d" = "exec --no-startup-id dmenu_run";
   "${mod}+space" = "exec ${getExe pkgs.rofi} -show";
   "${mod}+b" = "exec ${browser}";
-  "${mod}+m" = "exec ${fileManager}";
+  # special case for yazi to launch properly
+  "${mod}+m" = if fileManager == "yazi" then "exec ${config.custom.terminal} -e yazi" else "exec ${fileManager}";
 
   "${mod}+h" = "focus left";
   "${mod}+j" = "focus down";
