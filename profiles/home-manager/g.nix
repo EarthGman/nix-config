@@ -10,7 +10,10 @@ in
     ./essentials.nix
   ];
 
-  custom.fileManager = "yazi";
+  custom = {
+    fileManager = "yazi";
+    editor = "codium";
+  };
 
   programs = {
     git = {
@@ -27,6 +30,7 @@ in
       };
     };
 
+    neovim.enable = true;
     ardour = enabled;
     autokey = enabled;
     bottles = enabled;

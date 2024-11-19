@@ -1,3 +1,8 @@
+11-19-2024
+- bit off way more than I could ever chew with neovim so going back to vscode and working on vim on the side.
+- add a todo list to vim in readme
+
+
 11-18-2024
 - fixed error with yazi launching using the FM keybind $Mod+m in i3
 

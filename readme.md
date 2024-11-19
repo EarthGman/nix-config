@@ -44,10 +44,22 @@ Post Install:
 - [x] ssh keys
 - [x] hyprland
 - [ ] vim
-- [x] remote building
+  - [x] telescope
+  - [ ] learn and configure all basic keybinds
+  - [ ] core options
+  - [ ] essential plugins
+    - [ ] treesitter
+    - [ ] harpoon
+    - [ ] undo tree
+    - [ ] vim-fugitive
+  - [ ] language server configuration
+  - [ ] debugger
+  - [ ] themes and styling
+  - [ ] reimplement in nixvim using only nix
+- [ ] remote building
+  - [ ] rewrite remote building script
 - [x] docker/portainer
-- [ ] i3, hyprland synchronization:
-  - [ ] fix systemd environments - attach polybar to systemd
+- [ ] i3, hyprland synchronization
 - [ ] zfs
 - [ ] drive encryption
 - [ ] autoinstall scripts
