@@ -1,8 +1,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-require("core.keymaps")
-
 local opt = vim.opt
 opt.relativenumber = true
 opt.number = true
@@ -27,6 +25,9 @@ opt.foldlevel = 20
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 
---vim.keymap.set("n", "<leader>fb", tbi.buffers, { desc = "Find Buffers" })
---vim.keymap.set("n", "<leader>fh", tbi.help_tags, { desc = "Find Help" })
-
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader><Space>', builtin.find_files, {})
+vim.keymap.set('n', '<C-p>', builtin.git_files, {})
+vim.keymap.set('n', '<leader>lg', function()
+  builtin.grep_string({ search = vim.fn.input("Grep > ") });
+end)
