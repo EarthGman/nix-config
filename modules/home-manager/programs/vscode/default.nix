@@ -4,7 +4,7 @@ let
 in
 {
   programs.vscode = {
-    package = mkDefault pkgs.master.vscodium-fhs;
+    package = mkDefault pkgs.vscodium-fhs;
     enableExtensionUpdateCheck = false;
     enableUpdateCheck = false;
     extensions = import ./extensions.nix { inherit pkgs; };

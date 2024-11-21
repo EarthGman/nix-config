@@ -1,3 +1,11 @@
+11-21-2024
+- working treesitter
+- working nix and lua lsp and formatter for neovim
+- rocking gruvbox theme for neovim
+- fixed clipboard issue in vim by place xclip on shell path
+- moved desktop specific tools to nixos instead of HM, specifically xmodmap, and xclip are now global packages if i3 is enabled
+
+
 11-19-2024
 - bit off way more than I could ever chew with neovim so going back to vscode and working on vim on the side.
 - add a todo list to vim in readme

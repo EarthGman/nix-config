@@ -48,13 +48,13 @@ Post Install:
   - [ ] learn and configure all basic keybinds
   - [ ] core options
   - [ ] essential plugins
-    - [ ] treesitter
+    - [-] treesitter - dont include all languages
     - [ ] harpoon
     - [ ] undo tree
     - [ ] vim-fugitive
-  - [ ] language server configuration
+  - [x] language server configuration
   - [ ] debugger
-  - [ ] themes and styling
+  - [-] themes and styling - gruvbox works for now might change later
   - [ ] reimplement in nixvim using only nix
 - [ ] remote building
   - [ ] rewrite remote building script
