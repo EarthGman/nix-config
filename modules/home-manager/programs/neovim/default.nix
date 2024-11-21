@@ -13,6 +13,11 @@ in
     plugins = with pkgs.vimPlugins; [
       telescope-nvim
       plenary-nvim
+
+      nvim-treesitter
+      nvim-treesitter.withAllGrammars
+		  
+			gruvbox
     ];
 
     # extraPackages = with pkgs; [ ]
