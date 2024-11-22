@@ -30,14 +30,14 @@ in
       stylua # opionated Lua code formatter
     ];
     # TODO: uncommenting will make vim config truly declarative
-    # extraLuaConfig = builtins.readFile ./init.lua
+    extraLuaConfig = builtins.readFile ./init.lua;
   };
 
   # by default dont let stylix style vim since it is kind of jank
   stylix.targets.neovim.enable = mkIf cfg.enable (mkDefault false);
 
   # TODO: uncomment alongside extraLuaConfig for truly declarative configuration
-  # xdg.configFile."nvim/lua" = mkIf cfg.enable {
-  #   source = ./lua;
-  # }
+  xdg.configFile."nvim/lua" = mkIf cfg.enable {
+     source = ./lua;
+  };
 }
