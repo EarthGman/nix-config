@@ -34,6 +34,11 @@ in
     wireless.enable = mkForce false;
     inherit hostName;
     networkmanager.enable = true;
+    nameservers = [
+      # Make sure that everybody gets a global DNS server, wireguard dns servers override values in /etc/resolvd.conf for some reason	
+      "8.8.8.8"
+      "1.1.1.1"
+    ];
   };
 
   nix.settings = {

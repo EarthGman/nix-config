@@ -91,6 +91,7 @@
       ip route add 10.10.0.0/24 via 10.0.0.1 dev wg0
     '';
     firewall.allowedUDPPorts = [ 51820 ];
+    nameservers = [ "10.0.0.1" ]; # wireguard nameserver
     wg-quick.interfaces = {
       wg0 = {
         configFile = config.sops.secrets.wg0_conf.path;

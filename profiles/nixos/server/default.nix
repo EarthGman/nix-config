@@ -30,8 +30,6 @@ in
     clean.extraArgs = "--keep-since 1d --keep 1";
   };
 
-  networking.nameservers = [ "8.8.8.8" "1.1.1.1" ]; # Make sure that all servers running WG get a proper DNS server
-
   # use systemd boot, might use UKI later?
   modules.bootloaders.systemd-boot.enable = true;
   boot = {
