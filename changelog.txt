@@ -1,3 +1,8 @@
+11-22-2024
+- added battery monitor service for dunst
+- configuration for hostname resolution on the wireguard server
+
+
 11-21-2024
 - working treesitter
 - working nix and lua lsp and formatter for neovim
