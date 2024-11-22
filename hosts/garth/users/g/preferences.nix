@@ -19,5 +19,7 @@ in
     moonlight.enable = true;
     gnome-clocks.enable = true;
   };
+
+  services.dunst.battery-monitor.enable = true;
 }
 
