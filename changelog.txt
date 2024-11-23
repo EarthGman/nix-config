@@ -1,6 +1,8 @@
 11-22-2024
 - added battery monitor service for dunst
 - configuration for hostname resolution on the wireguard server
+- telescope now can find buffers <leader>fb
+- add lazygit
 
 
 11-21-2024
