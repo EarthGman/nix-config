@@ -9,6 +9,7 @@ in
   programs = {
     pwvucontrol = enabled; # volume control
     fastfetch = enabled; # you know
+    lazygit = enabled; # git tool
     clipgrab = enabled; # video downloader
     audacity = enabled; # audio editor
     libreoffice = enabled; # free version of office

@@ -16,6 +16,7 @@ in
       plenary-nvim # popular dependency needed by most vim plugins
       nvim-treesitter # treesitter configuration
       nvim-treesitter.withAllGrammars # TODO: add only needed languages (will save ~200Mb of disk)
+      windows-nvim # window management
       lspkind-nvim # plugin to provide icons for various lsps 
       nvim-lspconfig # allow configuration of an lsp using lua
       gruvbox # pretty good theme
@@ -29,15 +30,13 @@ in
       nixpkgs-fmt # nix formatter
       stylua # opionated Lua code formatter
     ];
-    # TODO: uncommenting will make vim config truly declarative
     extraLuaConfig = builtins.readFile ./init.lua;
   };
 
   # by default dont let stylix style vim since it is kind of jank
   stylix.targets.neovim.enable = mkIf cfg.enable (mkDefault false);
 
-  # TODO: uncomment alongside extraLuaConfig for truly declarative configuration
   xdg.configFile."nvim/lua" = mkIf cfg.enable {
-     source = ./lua;
+    source = ./lua;
   };
 }
