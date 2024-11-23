@@ -16,7 +16,7 @@ in
       plenary-nvim # popular dependency needed by most vim plugins
       nvim-treesitter # treesitter configuration
       nvim-treesitter.withAllGrammars # TODO: add only needed languages (will save ~200Mb of disk)
-      windows-nvim # window management
+      nvim-autopairs # auto match braces
       lspkind-nvim # plugin to provide icons for various lsps 
       nvim-lspconfig # allow configuration of an lsp using lua
       gruvbox # pretty good theme

@@ -12,7 +12,7 @@ in
 
   custom = {
     fileManager = "yazi";
-    editor = "codium";
+    editor = "nvim";
   };
 
   programs = {
