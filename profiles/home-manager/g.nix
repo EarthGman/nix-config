@@ -12,7 +12,6 @@ in
 
   custom = {
     fileManager = "yazi";
-    editor = "nvim";
   };
 
   programs = {
@@ -30,7 +29,6 @@ in
       };
     };
 
-    neovim.enable = true;
     ardour = enabled;
     autokey = enabled;
     bottles = enabled;

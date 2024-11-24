@@ -54,8 +54,8 @@ Post Install:
     - [x] vim-fugitive
   - [x] language server configuration
   - [ ] debugger
-  - [-] themes and styling - gruvbox works for now might change later
-  - [ ] reimplement in nixvim using only nix
+  - [x] themes and styling
+  - [ ] reimplement in using only nix and some customization options
 - [ ] remote building
   - [ ] rewrite remote building script
 - [x] docker/portainer
