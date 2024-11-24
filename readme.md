@@ -46,12 +46,12 @@ Post Install:
 - [ ] vim
   - [x] telescope
   - [ ] learn and configure all basic keybinds
-  - [ ] core options
-  - [ ] essential plugins
+  - [-] core options
+  - [x] essential plugins
     - [-] treesitter - dont include all languages
-    - [ ] harpoon
-    - [ ] undo tree
-    - [ ] vim-fugitive
+    - [x] harpoon
+    - [x] undo tree
+    - [x] vim-fugitive
   - [x] language server configuration
   - [ ] debugger
   - [-] themes and styling - gruvbox works for now might change later

@@ -76,6 +76,7 @@ in
       file
       cifs-utils
       ncdu
+      nix-prefetch-git
       hstr
       inxi
       killall

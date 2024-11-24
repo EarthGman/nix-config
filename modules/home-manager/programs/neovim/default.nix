@@ -19,8 +19,14 @@ in
       nvim-autopairs # auto match braces
       lspkind-nvim # plugin to provide icons for various lsps 
       nvim-lspconfig # allow configuration of an lsp using lua
-      gruvbox # pretty good theme
-    ];
+      #gruvbox # pretty good theme
+      harpoon # customizable file finder
+      undotree # view undo history
+      vim-fugitive # git stuff
+    ] ++ (with pkgs.extraVimPlugins; [
+      # locally derived vim plugings
+      nvim-vauge
+    ]);
 
     extraPackages = with pkgs; [
       # packages accessible to vim but not placed on the main shell path
