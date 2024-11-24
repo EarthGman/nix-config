@@ -40,7 +40,7 @@ in
   };
 
   # by default dont let stylix style vim since it is kind of jank
-  stylix.targets.neovim.enable = mkIf cfg.enable (mkDefault false);
+  stylix.targets.neovim.enable = mkDefault false;
 
   xdg.configFile."nvim/lua" = mkIf cfg.enable {
     source = ./lua;

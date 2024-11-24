@@ -1,4 +1,4 @@
-{ lib, pkgs }:
+{ lib, pkgs, config, ... }:
 # not copied ;)
 {
   manager = {
@@ -14,8 +14,8 @@
 
   opener = {
     edit = [{
-      run = ''$EDITOR "$@"'';
-      desc = "$EDITOR";
+      run = ''${config.custom.editor} "$@"'';
+      desc = "Open with $EDITOR";
       block = true;
     }];
     reveal = [

@@ -4,6 +4,8 @@
 	- vim-fugitive
 	- undotree
 - new vim theme "vague"
+- add scan software gscan2pdf
+- fix weird error in yazi with the $EDITOR variable
 
 
 11-23-2024
