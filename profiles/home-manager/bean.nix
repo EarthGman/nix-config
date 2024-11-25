@@ -7,9 +7,9 @@ in
     (self + /hosts/${hostName}/users/bean/preferences.nix)
     ./essentials.nix
   ];
-  custom = {
-    editor = "codium";
-  };
+  # custom = {
+  #   editor = "codium";
+  # };
 
   programs = {
     git = {

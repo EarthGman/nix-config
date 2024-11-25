@@ -21,6 +21,7 @@ in
     museeks.enable = true;
     obs-studio.enable = true;
     totem.enable = true;
+    xivlauncher.enable = true;
   };
   # no printscreen, use mainMod + f1 instead
   wayland.windowManager.hyprland.extraConfig = ''
