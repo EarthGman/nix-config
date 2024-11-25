@@ -69,6 +69,7 @@ in
     with pkgs; [
       btop
       busybox
+      dig
       powertop
       fzf
       sysz
