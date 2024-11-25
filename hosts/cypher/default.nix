@@ -3,6 +3,7 @@
   imports = [
     ./fs.nix
     (self + /profiles/nixos/gaming-pc.nix)
+    (self + /profiles/nixos/wg0.nix)
   ] ++ lib.optionals (displayManager == "sddm") [ ./sddm.nix ];
   boot.initrd.availableKernelModules = [
     "nvme"
@@ -82,20 +83,5 @@
   sops.secrets = {
     ssh_host_ed25519_key.path = "/etc/ssh/ssh_host_ed25519_key";
     ssh_host_rsa_key.path = "/etc/ssh/ssh_host_rsa_key";
-    wg0_conf.path = "/etc/wireguard/wg0.conf";
-  };
-
-  networking = {
-    # allows forwarding of the subnet traffic 10.10.0.0/24 to the wg0 gateway 10.0.0.1 on my router
-    localCommands = ''
-      ip route add 10.10.0.0/24 via 10.0.0.1 dev wg0
-    '';
-    firewall.allowedUDPPorts = [ 51820 ];
-    nameservers = [ "10.0.0.1" ]; # wireguard nameserver
-    wg-quick.interfaces = {
-      wg0 = {
-        configFile = config.sops.secrets.wg0_conf.path;
-      };
-    };
   };
 }

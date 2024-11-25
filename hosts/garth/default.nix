@@ -3,6 +3,7 @@
   imports = [
     ./fs.nix
     (self + /profiles/nixos/workstation.nix)
+    (self + /profiles/nixos/wg0.nix)
   ];
   boot.initrd.availableKernelModules = [
     "xhci_pci"
@@ -43,18 +44,5 @@
   programs.wireshark = {
     enable = true;
     package = pkgs.wireshark;
-  };
-
-  sops.secrets.wg0_conf.path = "/etc/wireguard/wg0.conf";
-
-  networking.localCommands = ''
-    ip route add 10.10.0.0/24 via 10.0.0.1 dev wg0
-  '';
-  networking.firewall.allowedUDPPorts = [ 51820 ];
-  networking.nameservers = [ "10.0.0.1" ]; # wg nameserver
-  networking.wg-quick.interfaces = {
-    wg0 = {
-      configFile = config.sops.secrets.wg0_conf.path;
-    };
   };
 }
