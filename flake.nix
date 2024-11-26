@@ -78,7 +78,7 @@
 
       nixosConfigurations = {
         # Earth's desktops
-        cypher = mkHost { hostName = "cypher"; cpu = "amd"; gpu = "amd"; users = "g"; desktop = "hyprland,i3"; displayManager = "sddm"; };
+        cypher = mkHost { hostName = "cypher"; cpu = "amd"; gpu = "amd"; users = "g"; desktop = "i3"; displayManager = "sddm"; };
         garth = mkHost { hostName = "garth"; cpu = "intel"; gpu = "intel-igpu"; users = "g"; desktop = "hyprland,i3"; displayManager = "sddm"; };
         tater = mkHost { hostName = "tater"; cpu = "intel"; gpu = "intel-igpu"; users = "g"; desktop = "hyprland,i3"; displayManager = "sddm"; };
         nixos = mkHost { hostName = "nixos"; vm = true; users = "test"; desktop = "i3"; displayManager = "sddm"; };

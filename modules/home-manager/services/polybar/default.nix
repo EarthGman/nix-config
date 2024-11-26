@@ -1,6 +1,6 @@
 { pkgs, lib, config, ... }:
 let
-  inherit (lib) mkDefault getExe;
+  inherit (lib) mkDefault getExe mkForce;
 in
 {
   # make sure meslo font is installed
@@ -9,9 +9,11 @@ in
   ]);
 
   services.polybar = {
-    # the systemd unit cannot find user level packages such as: brightnessctl, pamixer, etc
-    # home-manager will complain if this is not set so it is forced to do nothing
-    script = "";
+    script = import ./script.nix { inherit pkgs lib; };
     settings = import ./settings.nix { inherit pkgs mkDefault config getExe; };
   };
+  systemd.user.services.polybar.Service.Environment = mkForce [
+    # needs commands from /run/current-system. default did not provide path
+    "PATH=/run/current-system/sw/bin:${pkgs.polybar}/bin:/run/wrappers/bin"
+  ];
 }

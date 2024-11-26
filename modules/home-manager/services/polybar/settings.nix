@@ -102,24 +102,23 @@
 
   "module/volume" = {
     type = "custom/script";
-    interval = mkDefault 0.1;
+    interval = mkDefault 0.2;
     format-background = mkDefault "#101010";
 
-    exec = pkgs.writeScript "volume levels" ''
-      percent="%"
+    exec = pkgs.writeScript "volume-output-ramp" ''
       current_volume=$(${getExe pkgs.pamixer} --get-volume-human | sed 's/%//')
 
       if [ $current_volume == "muted" ]; then
-        echo " $current_volume"
+        echo " ''${current_volume}%"
 
       elif [ $current_volume -lt 25 ]; then
-        echo " $current_volume$percent"
+        echo " ''${current_volume}%"
 
       elif [ $current_volume -lt 75 ]; then
-        echo " $current_volume$percent"
+        echo " ''${current_volume}%"
   
       else
-        echo " $current_volume$percent"
+        echo " ''${current_volume}%"
       fi
     '';
     click-right = "${getExe pkgs.pwvucontrol} &";
@@ -130,7 +129,7 @@
 
   "module/microphone" = {
     type = "custom/script";
-    exec = pkgs.writeScript "input volume level" ''
+    exec = pkgs.writeScript "volume-input-ramp" ''
       current_volume=$(${getExe pkgs.pamixer} --default-source --get-volume-human)
 
       if [ $current_volume == "muted" ] || [ $current_volume == "0%" ]; then
@@ -139,7 +138,7 @@
         echo " $current_volume"
       fi
     '';
-    interval = mkDefault 0.1;
+    interval = mkDefault 0.2;
 
     click-left = "${getExe pkgs.pamixer} -t --default-source";
     click-right = "${getExe pkgs.pwvucontrol} &";

@@ -3,6 +3,7 @@
   - Now a systemd service
 	- removed unncessary while loop
 	- throw systemd output into the void instead of spamming the journal
+- proper polybar integration with systemd
 
 
 11-25-2024

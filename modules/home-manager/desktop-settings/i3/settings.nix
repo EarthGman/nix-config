@@ -21,8 +21,7 @@ in
 
   startup = [
     {
-      #TODO systemd unit
-      command = "${scripts.polybar}";
+      command = "systemctl --user restart polybar";
       always = true;
       notification = false;
     }
