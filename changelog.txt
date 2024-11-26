@@ -4,7 +4,6 @@
 	- removed unncessary while loop
 	- throw systemd output into the void instead of spamming the journal
 - proper polybar integration with systemd
-- wireguard restart script for NM dispatcher
 
 
 11-25-2024
