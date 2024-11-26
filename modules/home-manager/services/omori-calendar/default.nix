@@ -23,7 +23,7 @@ in
     };
     systemd.user.services."omori-calendar-project" = {
       Unit = {
-        description = ''
+        Description = ''
           every day at Midnight, the current month is checked
           sets the wallpaper from the omori calendar project corresponding to the month
         '';

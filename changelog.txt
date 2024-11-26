@@ -1,3 +1,10 @@
+11-26-2024
+- Fixed nasty bug with the i3-hyprland-windows
+  - Now a systemd service
+	- removed unncessary while loop
+	- throw systemd output into the void instead of spamming the journal
+
+
 11-25-2024
 - add dig utility
 

@@ -5,6 +5,7 @@ let
   scripts = import ./scripts.nix { inherit pkgs lib config; };
 in
 {
+  imports = [ ./hyprland-windows.nix ];
   programs = {
     pwvucontrol = enabled;
     rofi = enabled;
@@ -14,15 +15,18 @@ in
   };
 
   services = {
+    hyprland-windows-for-i3 = enabled;
     network-manager-applet = enabled;
     polybar = enabled;
     picom = enabled;
     dunst = enabled;
   };
 
-  xsession.enable = true;
-  xsession.windowManager.i3 = {
+  xsession = {
     enable = true;
-    config = import ./settings.nix { inherit pkgs lib config scripts; };
+    windowManager.i3 = {
+      enable = true;
+      config = import ./settings.nix { inherit pkgs lib config scripts; };
+    };
   };
 }

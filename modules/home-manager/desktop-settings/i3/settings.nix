@@ -11,8 +11,8 @@ in
   workspaceAutoBackAndForth = true;
   keybindings = import ./keybinds.nix { inherit pkgs config getExe scripts; };
   gaps = {
-    inner = 2;
-    outer = 2;
+    inner = mkDefault 2;
+    outer = mkDefault 2;
   };
   window = {
     hideEdgeBorders = "none";
@@ -21,17 +21,18 @@ in
 
   startup = [
     {
+      #TODO systemd unit
       command = "${scripts.polybar}";
       always = true;
       notification = false;
     }
     {
-      command = "${scripts.hyprland_windows}";
+      command = "systemctl --user start hyprland-windows-for-i3";
       always = false;
       notification = false;
     }
     {
-      command = "systemctl --user start blueman-applet.service";
+      command = "systemctl --user start blueman-applet";
       always = false;
       notification = false;
     }

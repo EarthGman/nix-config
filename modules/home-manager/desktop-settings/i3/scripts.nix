@@ -18,35 +18,34 @@ in
       ${getExe pkgs.polybar} --reload bottom &
     fi 
   '';
+
   hyprland_windows = writeScript "hyprland-window-creation-emulator.sh" ''
-    adjust_split_mode() {
-        eval $(i3-msg -t get_tree | jq -r '
-            .. | 
-            select(.focused? == true) | 
-            { width: .rect.width, height: .rect.height } | 
-            to_entries | 
-            .[] | 
-            "\(.key)=\(.value)"
+    #!${getExe pkgs.bash}
+      adjust_split_mode() {
+      eval $(i3-msg -t get_tree | jq -r '
+        .. | 
+        select(.focused? == true) | 
+        { width: .rect.width, height: .rect.height } | 
+        to_entries | 
+        .[] | 
+        "\(.key)=\(.value)"
         ')
 
         if [ -z "$width" ] || [ -z "$height" ]; then
-            echo "Error: Unable to retrieve focused window dimensions."
-            return
+          echo "Error: Unable to retrieve focused window dimensions."
+          return
         fi
 
         if (( width < height )); then
-            i3-msg split v
+          i3-msg split v > /dev/null
         else
-            i3-msg split h
+          i3-msg split h > /dev/null
         fi
-    }
-
-    while true; do
-        i3-msg -t subscribe '[ "window", "workspace" ]' | while read -r _; do
-            adjust_split_mode
-        done
-        sleep 0.1
-    done
+      }
+        
+      i3-msg -t subscribe -m '[ "window" ]' | while read -r _; do
+        adjust_split_mode
+      done
   '';
 
   take_screenshot_selection = writeScript "take-screenshot-selection-xorg.sh" ''
