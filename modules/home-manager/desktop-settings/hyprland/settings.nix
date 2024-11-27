@@ -19,12 +19,13 @@ in
 
   # autostart
   exec-once = [
-    "${scripts.waybar}"
+    "systemctl --user start waybar.service"
     "systemctl --user start hyprpaper.service"
     "systemctl --user start blueman-applet.service"
   ];
 
   exec = [
+    "systemctl --user restart waybar.service"
     "systemctl --user restart hyprpaper.service"
   ];
 

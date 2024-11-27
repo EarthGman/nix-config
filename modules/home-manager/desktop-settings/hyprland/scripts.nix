@@ -3,12 +3,6 @@ let
   inherit (lib) getExe;
 in
 {
-  waybar = pkgs.writeScript "waybar.sh" ''
-    ${lib.getExe pkgs.killall} .waybar-wrapped
-    ${lib.getExe pkgs.waybar} &
-    exit 0
-  '';
-
   take-screenshot-selection = pkgs.writeScript "take-screenshot-selection-wayland.sh" ''
     if [ ! -d ${config.home.homeDirectory}/Pictures/Screenshots ]; then
       mkdir -p ${config.home.homeDirectory}/Pictures/Screenshots
