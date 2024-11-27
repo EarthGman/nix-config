@@ -24,12 +24,12 @@ in
     systemd.user.services."omori-calendar-project" = {
       Unit = {
         Description = ''
-          every day at Midnight, the current month is checked
-          sets the wallpaper from the omori calendar project corresponding to the month
+          Omori-Calendar-Project: set wallpaper
         '';
         After = [ "graphical-session.target" ];
       };
       Service = {
+        Environment = "PATH=/run/current-system/sw/bin";
         Type = "oneshot";
         ExecStart = "${script}";
       };

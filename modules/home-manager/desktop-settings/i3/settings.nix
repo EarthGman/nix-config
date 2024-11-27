@@ -35,6 +35,11 @@ in
       always = false;
       notification = false;
     }
+    {
+      command = "systemctl --user import-environment XDG_CURRENT_DESKTOP PATH";
+      always = false;
+      notification = false;
+    }
   ] ++ optionals (!(config.services.omori-calendar-project.enable)) [
     {
       # custom case where the omori calendar project is enabled, disable this
