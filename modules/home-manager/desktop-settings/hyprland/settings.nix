@@ -1,7 +1,7 @@
 { pkgs, lib, config, scripts, ... }:
-# universal config for hyprland
+# default config for hyprland
 let
-  inherit (lib) mkDefault;
+  inherit (lib) mkDefault optionals;
   inherit (builtins) toString;
   mainMod = config.wayland.windowManager.hyprland.mainMod;
 in
@@ -17,16 +17,19 @@ in
     ", preferred, auto, 1"
   ];
 
-  # autostart
+  # exec only at hyprland startup
   exec-once = [
-    "systemctl --user start waybar.service"
     "systemctl --user start hyprpaper.service"
     "systemctl --user start blueman-applet.service"
+  ] ++ optionals config.programs.waybar.enable [
+    "systemctl --user start waybar.enable"
   ];
 
+  # exec at every reload (Mod+r) by default
   exec = [
-    "systemctl --user restart waybar.service"
     "systemctl --user restart hyprpaper.service"
+  ] ++ optionals config.programs.waybar.enable [
+    "systemctl --user restart waybar.service"
   ];
 
   #keybinds

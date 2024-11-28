@@ -21,11 +21,6 @@ in
 
   startup = [
     {
-      command = "systemctl --user restart polybar";
-      always = true;
-      notification = false;
-    }
-    {
       command = "systemctl --user start hyprland-windows-for-i3";
       always = false;
       notification = false;
@@ -36,8 +31,15 @@ in
       notification = false;
     }
     {
+      # give some settings to systemd
       command = "systemctl --user import-environment XDG_CURRENT_DESKTOP PATH";
       always = false;
+      notification = false;
+    }
+  ] ++ optionals config.services.polybar.enable [
+    {
+      command = "systemctl --user restart polybar";
+      always = true;
       notification = false;
     }
   ] ++ optionals (!(config.services.omori-calendar-project.enable)) [

@@ -1,6 +1,5 @@
-{ pkgs, self, lib, ... }:
+{ self, ... }:
 let
-  inherit (lib) mkForce;
   theme = self + /profiles/home-manager/desktop-themes/faraway.nix;
 in
 {
