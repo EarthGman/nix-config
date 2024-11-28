@@ -21,8 +21,6 @@ in
     sl.enable = true;
   };
 
-  wayland.windowManager.hyprland.mainMod = "SUPER";
-
   programs.zsh.shellAliases = {
     "lctl" = "sudo -E liquidctl-profile";
   };

@@ -8,7 +8,7 @@ in
     wayland.windowManager.hyprland.mainMod = lib.mkOption {
       description = "main mod for the hyprland tiling window manager";
       type = lib.types.str;
-      default = "Alt";
+      default = "SUPER";
     };
   };
   config = {
