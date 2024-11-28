@@ -2,6 +2,8 @@
 - update changelog
 - waybar service will now only attempt to execute on hyprland if waybar enabled
 - polybar will also only activate on i3 if it is enabled
+- DNS resolution for wg0 on garth
+- Update Hyprland keybinds
 
 
 11-26-2024
