@@ -25,7 +25,9 @@
       modules =
         let
           inherit (lib) optionals;
-          isISO = (builtins.substring 0 4 hostName == "iso-");
+          inherit (myLib) autoImport;
+          inherit (builtins) pathExists substring;
+          isISO = (substring 0 4 hostName == "iso-");
           isVM = vm;
           isServer = server;
           cd-dvd =
@@ -37,8 +39,24 @@
           desktop-setup = self + /profiles/nixos/desktop.nix;
           iso-setup = self + /profiles/nixos/iso.nix;
           server-setup = self + /profiles/nixos/server;
+          host =
+            # has extra configuration?
+            if (pathExists ../hosts/${hostName})
+            then
+              [ ../hosts/${hostName} ]
+            else
+              [ ];
+          nixosModules = autoImport ../modules/nixos;
+          nixosUsers =
+            # has user?
+            if (pathExists ../hosts/${hostName}/users)
+            then
+              autoImport ../hosts/${hostName}/users
+            else [ ];
         in
-        [ ../hosts ]
+        nixosModules
+        ++ nixosUsers
+        ++ host
         ++ optionals (isISO) [ cd-dvd iso-setup ]
         ++ optionals (isVM) [ qemu-guest ]
         ++ optionals (desktop != null) [ desktop-setup ]
