@@ -9,6 +9,7 @@ in
       shellAliases = {
         l = "${getExe pkgs.eza} -al --icons";
         ls = "${getExe pkgs.eza} --icons";
+        lg = "${getExe pkgs.lazygit}";
         edit-config = "cd ~/src/nix-config && $EDITOR .";
         edit-preferences = "cd ~/src/nix-config/hosts/${hostName}/users/${config.home.username} && $EDITOR preferences.nix";
       };

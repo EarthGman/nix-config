@@ -3,6 +3,7 @@
 {
   manager = {
     layout = [ 1 3 4 ];
+    ratio = [ 1 3 4 ];
     linemode = "size";
     show_hidden = true;
     show_symlink = true;

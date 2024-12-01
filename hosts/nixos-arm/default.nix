@@ -10,4 +10,9 @@
     "virtio_blk"
   ];
   hardware.graphics.enable32Bit = false;
+  time.timeZone = "America/Los_Angeles";
+  services.openssh.settings.PasswordAuthentication = true;
+  modules = {
+    onepassword.enable = true;
+  };
 }

@@ -82,7 +82,7 @@
         garth = mkHost { hostName = "garth"; cpu = "intel"; gpu = "intel-igpu"; users = "g"; desktop = "hyprland,i3"; displayManager = "sddm"; };
         tater = mkHost { hostName = "tater"; cpu = "intel"; gpu = "intel-igpu"; users = "g"; desktop = "hyprland,i3"; displayManager = "sddm"; };
         nixos = mkHost { hostName = "nixos"; vm = true; users = "test"; desktop = "hyprland"; displayManager = "sddm"; };
-        nixos-arm = mkHost { hostName = "nixos-arm"; vm = true; users = "test"; desktop = "hyprland"; displayManager = "sddm"; platform = "aarch64-linux"; };
+        nixos-arm = mkHost { hostName = "nixos-arm"; vm = true; users = "test,k"; desktop = "hyprland"; displayManager = "sddm"; platform = "aarch64-linux"; };
 
         # Thunder's desktops
         somnus = mkHost { hostName = "somnus"; cpu = "amd"; gpu = "amd"; users = "bean"; desktop = "hyprland,i3"; displayManager = "sddm"; };
