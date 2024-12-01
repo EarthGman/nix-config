@@ -8,7 +8,7 @@ let
     owner = "yokoffing";
     repo = "Betterfox";
     rev = "main";
-    sha256 = "sha256-nw+vgGJK6DiMiXpjeiWXUOPRbyOnk3XlXiVkUiLqqaE=";
+    sha256 = "sha256-CxPZxo9G44lRocNngjfwTBHSqL5dEJ5MNO5Iauoxp2Y=";
   };
   user_js = "${betterfox}/user.js";
 in
