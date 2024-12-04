@@ -10,5 +10,4 @@ in
   userchrome-toggle-extended = callPackage ./uct-extended.nix { };
   shyfox = callPackage ./firefox-themes/shyfox.nix { };
   omori-font = callPackage ./fonts/omori-font.nix { inherit inputs; };
-  extraVimPlugins.nvim-vauge = callPackage ./vim-plugins/nvim-vauge.nix { };
 }

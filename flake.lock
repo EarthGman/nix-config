@@ -340,6 +340,7 @@
         "nur": "nur",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
+        "vim-config": "vim-config",
         "wallpapers": "wallpapers"
       }
     },
@@ -455,6 +456,26 @@
       "original": {
         "owner": "tinted-theming",
         "repo": "tinted-tmux",
+        "type": "github"
+      }
+    },
+    "vim-config": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1733284063,
+        "narHash": "sha256-4X/bOjdZbiKpc9qCKQf/YtwyNmrcgGlIxplmpQyYebI=",
+        "owner": "EarthGman",
+        "repo": "vim-config",
+        "rev": "a2c2376ea8764bfe44b8018381f08b41e41ddc9a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "EarthGman",
+        "repo": "vim-config",
         "type": "github"
       }
     },
