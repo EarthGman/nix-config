@@ -1,7 +1,4 @@
-{ lib, config, users, myLib, ... }:
-let
-  usernames = if (users != "") then myLib.splitToList users else [ ];
-in
+{ lib, config, users, ... }:
 {
   options.modules.onepassword.enable = lib.mkEnableOption "enable 1password";
   config = lib.mkIf config.modules.onepassword.enable {
@@ -9,7 +6,7 @@ in
       _1password.enable = true;
       _1password-gui = {
         enable = true;
-        polkitPolicyOwners = usernames;
+        polkitPolicyOwners = lib.mkDefault users;
       };
     };
   };

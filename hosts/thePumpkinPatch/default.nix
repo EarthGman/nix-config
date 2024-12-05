@@ -2,7 +2,7 @@
 {
   imports = [
     ./disko.nix
-    (self + /profiles/nixos/gaming-pc.nix)
+    (self + /profiles/nixos/gaming.nix)
   ];
   boot = {
     initrd.availableKernelModules = [

@@ -1,4 +1,4 @@
-{ inputs, myLib, ... }:
+{ inputs, ... }:
 {
   nixpkgs-master = final: _: {
     master = import inputs.nixpkgs-master {
@@ -17,7 +17,7 @@
   nur = inputs.nur.overlay;
 
   # additional packages added to the package set
-  packages = final: _prev: import ./pkgs { pkgs = final; inherit myLib inputs; };
+  packages = final: _prev: import ./pkgs { pkgs = final; inherit inputs; };
 
   # cuts out roughly 600Mb of bloat
   disable-mbrola-voices = final: prev: {

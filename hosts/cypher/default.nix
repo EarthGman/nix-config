@@ -1,10 +1,11 @@
-{ self, pkgs, lib, config, displayManager, wallpapers, ... }:
+{ self, pkgs, lib, config, wallpapers, ... }:
 {
   imports = [
     ./fs.nix
-    (self + /profiles/nixos/gaming-pc.nix)
+    ./sddm.nix
+    (self + /profiles/nixos/gaming.nix)
     (self + /profiles/nixos/wg0.nix)
-  ] ++ lib.optionals (displayManager == "sddm") [ ./sddm.nix ];
+  ];
   boot.initrd.availableKernelModules = [
     "nvme"
     "ahci"
@@ -52,7 +53,6 @@
   };
 
   modules = {
-    steam.enable = true;
     onepassword.enable = true;
     sunshine.enable = true;
     qemu-kvm.enable = true;

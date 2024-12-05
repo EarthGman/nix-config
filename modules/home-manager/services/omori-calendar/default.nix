@@ -1,4 +1,4 @@
-{ pkgs, lib, myLib, config, desktop, wallpapers, ... }:
+{ pkgs, lib, config, desktop, wallpapers, ... }:
 let
   inherit (lib) getExe;
   inherit (builtins) fetchurl;
@@ -65,7 +65,7 @@ in
     # if gnome is enabled give a warning
     warnings =
       let
-        desktops = myLib.splitToList desktop;
+        desktops = lib.stringToList desktop ",";
         gnome = builtins.elem "gnome" desktops;
       in
       if gnome then

@@ -1,8 +1,8 @@
-{ pkgs, lib, myLib, config, desktop, ... }:
+{ pkgs, lib, config, desktop, ... }:
 let
   cfg = config.services.displayManager.sddm;
   inherit (lib) types mkOption mkIf;
-  desktops = myLib.splitToList desktop;
+  desktops = lib.stringToList desktop ",";
   preferredDesktop = builtins.elemAt desktops 0;
 
   # handle some weird edge cases with session names

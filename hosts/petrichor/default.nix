@@ -1,7 +1,7 @@
 { self, wallpapers, ... }:
 {
   imports = [
-    (self + /profiles/nixos/gaming-pc.nix)
+    (self + /profiles/nixos/gaming.nix)
     ./disko.nix
   ];
   boot.initrd.availableKernelModules = [

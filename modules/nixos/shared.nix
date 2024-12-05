@@ -12,6 +12,12 @@ in
     nh.enable = mkDefault true;
     neovim.enable = mkDefault true;
   };
+
+  programs.direnv = {
+    enable = mkDefault true;
+    nix-direnv.enable = true;
+  };
+
   # goodbye bloat
   documentation.nixos.enable = mkDefault false;
 

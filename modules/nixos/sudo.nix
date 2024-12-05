@@ -1,6 +1,5 @@
-{ config, lib, myLib, users, ... }:
+{ config, lib, users, ... }:
 let
-  usernames = myLib.splitToList users;
   cfg = config.custom.decreased-security;
 in
 {
@@ -9,7 +8,7 @@ in
     security.sudo.extraRules = [
       {
         # for all users might change later idk
-        users = usernames;
+        inherit users;
         commands = lib.optionals cfg.nixos-rebuild [
           {
             command = "/run/current-system/sw/bin/nixos-rebuild";

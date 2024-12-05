@@ -66,14 +66,13 @@
   outputs = { self, nixpkgs, ... }@inputs:
     let
       inherit (self) outputs;
-      stateVersion = "24.05";
-      lib = nixpkgs.lib;
-      myLib = import ./lib/helpers.nix { inherit self inputs outputs lib stateVersion; };
-      inherit (myLib) mkHost forAllSystems;
+      lib = nixpkgs.lib.extend
+        (final: prev: import ./lib { inherit self inputs outputs; });
+      inherit (lib) mkHost forAllSystems;
     in
     {
-      inherit myLib;
-      overlays = import ./overlays.nix { inherit inputs myLib; };
+      inherit lib;
+      overlays = import ./overlays.nix { inherit inputs; };
       packages = forAllSystems (system:
         let
           pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
@@ -83,28 +82,28 @@
 
       nixosConfigurations = {
         # Earth's desktops
-        cypher = mkHost { hostName = "cypher"; cpu = "amd"; gpu = "amd"; users = "g"; desktop = "i3"; displayManager = "sddm"; };
-        garth = mkHost { hostName = "garth"; cpu = "intel"; gpu = "intel-igpu"; users = "g"; desktop = "hyprland,i3"; displayManager = "sddm"; };
-        tater = mkHost { hostName = "tater"; cpu = "intel"; gpu = "intel-igpu"; users = "g"; desktop = "hyprland,i3"; displayManager = "sddm"; };
-        nixos = mkHost { hostName = "nixos"; vm = true; users = "test"; desktop = "hyprland"; displayManager = "sddm"; };
-        nixos-arm = mkHost { hostName = "nixos-arm"; vm = true; users = "test,k"; desktop = "hyprland"; displayManager = "sddm"; platform = "aarch64-linux"; };
+        cypher = mkHost { hostName = "cypher"; cpu = "amd"; gpu = "amd"; users = [ "g" ]; desktop = "i3"; stateVersion = "24.05"; };
+        garth = mkHost { hostName = "garth"; cpu = "intel"; gpu = "intel-igpu"; users = [ "g" ]; desktop = "hyprland,i3"; stateVersion = "24.05"; };
+        tater = mkHost { hostName = "tater"; cpu = "intel"; gpu = "intel-igpu"; users = [ "g" ]; desktop = "hyprland,i3"; stateVersion = "24.11"; };
+        nixos = mkHost { hostName = "nixos"; vm = true; users = [ "test" ]; desktop = "hyprland"; stateVersion = "24.11"; };
+        nixos-arm = mkHost { hostName = "nixos-arm"; vm = true; users = [ "test" "k" ]; desktop = "hyprland"; platform = "aarch64-linux"; stateVersion = "24.11"; };
 
         # Thunder's desktops
-        somnus = mkHost { hostName = "somnus"; cpu = "amd"; gpu = "amd"; users = "bean"; desktop = "hyprland,i3"; displayManager = "sddm"; };
-        pioneer = mkHost { hostName = "pioneer"; cpu = "intel"; gpu = "intel-igpu"; users = "bean"; desktop = "i3"; displayManager = "sddm"; };
+        somnus = mkHost { hostName = "somnus"; cpu = "amd"; gpu = "amd"; users = [ "bean" ]; desktop = "hyprland,i3"; stateVersion = "24.05"; };
+        pioneer = mkHost { hostName = "pioneer"; cpu = "intel"; gpu = "intel-igpu"; users = [ "bean" ]; desktop = "i3"; stateVersion = "24.11"; };
 
         # Iron's desktops
-        petrichor = mkHost { hostName = "petrichor"; cpu = "amd"; gpu = "amd"; users = "iron"; desktop = "gnome"; displayManager = "sddm"; };
+        petrichor = mkHost { hostName = "petrichor"; cpu = "amd"; gpu = "amd"; users = [ "iron" ]; desktop = "gnome"; stateVersion = "24.05"; };
 
         # pumpkin's desktops
-        thePumpkinPatch = mkHost { hostName = "thePumpkinPatch"; cpu = "amd"; gpu = "nvidia"; users = "pumpkinking"; desktop = "gnome"; displayManager = "sddm"; };
+        thePumpkinPatch = mkHost { hostName = "thePumpkinPatch"; cpu = "amd"; gpu = "nvidia"; users = [ "pumpkinking" ]; desktop = "gnome"; stateVersion = "24.05"; };
 
         # servers
-        mc112 = mkHost { hostName = "mc112"; server = true; vm = true; }; # main world
-        mc-blueprints = mkHost { hostName = "mc-blueprints"; server = true; vm = true; }; # creative blueprints server
-        mc121 = mkHost { hostName = "mc121"; server = true; vm = true; }; # private 1.21 server for friends
+        mc112 = mkHost { hostName = "mc112"; server = true; vm = true; stateVersion = "24.11"; }; # main world
+        mc-blueprints = mkHost { hostName = "mc-blueprints"; server = true; vm = true; stateVersion = "24.11"; }; # creative blueprints server
+        mc121 = mkHost { hostName = "mc121"; server = true; vm = true; stateVersion = "24.11"; }; # private 1.21 server for friends
 
-        iso-headless-x86_64 = mkHost { hostName = "iso-headless"; platform = "x86_64-linux"; };
+        headless-x86_64-iso = mkHost { hostName = "Nixos Installer"; iso = true; platform = "x86_64-linux"; };
       };
     };
 }

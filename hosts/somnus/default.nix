@@ -2,7 +2,7 @@
 {
   imports = [
     ./disko
-    (self + /profiles/nixos/gaming-pc.nix)
+    (self + /profiles/nixos/gaming.nix)
   ];
 
   services.displayManager.sddm.themeConfig = {

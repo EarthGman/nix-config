@@ -1,8 +1,8 @@
-{ pkgs, username, myLib, stateVersion, ... }:
+{ pkgs, username, lib, stateVersion, ... }:
 
 # basic wrapper for HM. Shouldn't be edited.
 let
-  inherit (myLib) autoImport;
+  inherit (lib) autoImport;
   programs = autoImport ./modules/home-manager/programs; # anything under the "programs" attribute set or software I define as a program.
   services = autoImport ./modules/home-manager/services; # anything under the "services" attribute set or any added systemd units.
   shared = autoImport ./modules/home-manager/shared; # category consisting of many miscellanous default options and settings.

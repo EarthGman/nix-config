@@ -1,9 +1,8 @@
-{ self, inputs, outputs, hostName, pkgs, lib, myLib, wallpapers, icons, keys, desktop, users, stateVersion, ... }:
+{ self, inputs, outputs, hostName, pkgs, lib, wallpapers, icons, keys, desktop, users, stateVersion, ... }:
 let
   inherit (lib) mkDefault genAttrs;
   enabled = { enable = mkDefault true; };
   home = self + /home.nix;
-  usernames = myLib.splitToList users;
 
 in
 {
@@ -12,12 +11,12 @@ in
   ];
 
   # only import home-manager for users with a desktop
-  # creates a home manager config for every user specificed in users string
+  # creates a home manager config for every user specificed in users list
   home-manager = {
-    users = genAttrs usernames (username:
-      import home { inherit pkgs username myLib stateVersion; });
+    users = genAttrs users (username:
+      import home { inherit pkgs username lib stateVersion; });
     extraSpecialArgs = {
-      inherit self inputs outputs wallpapers icons keys hostName desktop myLib;
+      inherit self inputs outputs wallpapers icons keys hostName desktop;
     };
     backupFileExtension = "bak";
   };
@@ -50,6 +49,7 @@ in
 
   # some features most desktops would probably want
   modules = {
+    display-managers.sddm = enabled;
     pipewire = enabled;
     bluetooth = enabled;
     printing = enabled;
@@ -69,10 +69,6 @@ in
       enableCompletion = mkDefault true;
       syntaxHighlighting = enabled;
       autosuggestions.enable = mkDefault true;
-    };
-    direnv = {
-      enable = true;
-      nix-direnv.enable = true;
     };
 
     # required for some stylix to work properly (gtk)
