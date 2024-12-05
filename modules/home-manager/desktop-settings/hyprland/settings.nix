@@ -55,10 +55,6 @@ in
     rounding = mkDefault 10;
     active_opacity = mkDefault 1.0;
     inactive_opacity = mkDefault 1.0;
-    drop_shadow = mkDefault true;
-    shadow_range = mkDefault 4;
-    shadow_render_power = mkDefault 3;
-    "col.shadow" = mkDefault "rgba(1a1a1aee)";
 
     blur = {
       enabled = mkDefault true;
