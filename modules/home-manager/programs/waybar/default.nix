@@ -28,7 +28,7 @@ in
       style = builtins.readFile ./themes/${config.programs.waybar.theme}/style.css;
     };
     home.packages = lib.mkIf config.programs.waybar.enable (with pkgs; [
-      (nerdfonts.override { fonts = [ "Meslo" ]; })
+      nerd-fonts.meslo-lg
     ]);
     # settings menu
     xdg.configFile = {

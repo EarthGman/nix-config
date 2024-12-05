@@ -3,7 +3,7 @@ let
   inherit (lib) mkOption types mkIf;
   cfg = config.programs.looking-glass;
   looking-glass-client =
-    if (cfg.version != "B7-rc1") then
+    if (cfg.version != "latest") then
       (pkgs.looking-glass-client.overrideAttrs rec {
         version = cfg.version;
         patches = [ ];
@@ -24,10 +24,10 @@ in
     version = mkOption {
       description = "set version of looking glass";
       type = types.str;
-      default = "B7-rc1";
+      default = "latest";
     };
   };
-  config = {
-    home.packages = mkIf cfg.enable [ looking-glass-client ];
+  config = mkIf cfg.enable {
+    home.packages = [ looking-glass-client ];
   };
 }

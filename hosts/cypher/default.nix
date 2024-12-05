@@ -44,14 +44,6 @@
     background = builtins.fetchurl wallpapers.april-red;
   };
 
-  # for davinci resolve ~4GB of bloat
-  hardware.graphics = {
-    extraPackages = with pkgs; [
-      rocm-opencl-icd
-      rocm-opencl-runtime
-    ];
-  };
-
   modules = {
     onepassword.enable = true;
     sunshine.enable = true;
@@ -63,6 +55,20 @@
   #  custom = {
   #    decreased-security.nixos-rebuild = true;
   #  };
+
+  virtualisation.libvirtd.hooks.qemu = {
+    "looking-glass-hook" = lib.getExe (pkgs.writeShellApplication {
+      name = "looking-glass-hook";
+      runtimeInputs = [ pkgs.bash ];
+      text = ''
+        if [ "$2" = "started" ]; then
+          sleep 1
+          chown g:users /dev/shm/looking-glass
+          chmod 660 /dev/shm/looking-glass
+        fi
+      '';
+    });
+  };
 
   programs.wireshark = {
     enable = true;

@@ -43,19 +43,19 @@ in
         };
         sansSerif = mkDefault {
           name = "MesloLGS Nerd Font";
-          package = (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; });
+          package = pkgs.nerd-fonts.meslo-lg;
         };
         serif = mkDefault {
           name = "MesloLGS Nerd Font";
-          package = (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; });
+          package = pkgs.nerd-fonts.meslo-lg;
         };
         monospace = mkDefault {
           name = "MesloLGS Nerd Font";
-          package = (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; });
+          package = pkgs.nerd-fonts.meslo-lg;
         };
         emoji = mkDefault {
           name = "MesloLGS Nerd Font";
-          package = (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; });
+          package = pkgs.nerd-fonts.meslo-lg;
         };
       };
     };

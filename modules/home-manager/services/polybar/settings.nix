@@ -1,26 +1,5 @@
-{ pkgs, mkDefault, config, getExe, ... }:
+{ pkgs, mkDefault, getExe, ... }:
 {
-  # "bar/top" = {
-  #   monitor = "\${env:MONITOR:}";
-  #   width = mkDefault "100%";
-  #   height = mkDefault "22pt";
-  #   radius = mkDefault 0;
-  #   background = mkDefault "#101010";
-  #   foreground = mkDefault "#c4c4c4";
-  #   bottom = false;
-  #   line-size = mkDefault "6pt";
-  #   boarder-color = mkDefault "#000000";
-  #   padding-left = mkDefault 0;
-  #   padding-right = mkDefault 1;
-  #   module-margin = mkDefault 1;
-  #   separator = mkDefault "";
-  #   separator-foreground = mkDefault "#a7a7a7";
-  #   font-0 = mkDefault "MesloLGS Nerd Font Mono:size=20;6";
-  #   cursor-click = mkDefault "pointer";
-  #   cursor-scroll = mkDefault "ns-resize";
-  #   enable-ipc = mkDefault true;
-  # };
-
   "bar/bottom" = {
     monitor = "\${env:MONITOR:}";
     width = mkDefault "100%";

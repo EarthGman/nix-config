@@ -5,7 +5,7 @@ in
 {
   # make sure meslo font is installed
   home.packages = lib.mkIf config.services.polybar.enable (with pkgs; [
-    (nerdfonts.override { fonts = [ "Meslo" ]; })
+    nerd-fonts.meslo-lg
   ]);
 
   services.polybar = {

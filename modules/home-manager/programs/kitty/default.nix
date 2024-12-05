@@ -2,8 +2,9 @@
 {
   # ensure the meslo font is properly installed
   home.packages = lib.mkIf config.programs.kitty.enable [
-    (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; })
+    pkgs.nerd-fonts.meslo-lg
   ];
+
   programs.kitty = {
     enable = lib.mkDefault (config.custom.terminal == "kitty");
     settings = {

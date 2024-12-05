@@ -6,12 +6,12 @@ stdenvNoCC.mkDerivation rec {
   src = pkgs.fetchFromGitHub {
     owner = "Naezr";
     repo = "ShyFox";
-    rev = "bd41f885f19771b12e23c522ccaafe33af59a1c7";
-    hash = "sha256-w4kaOjz51FYYS58TrPVI/OgZ8At9mbPXj2G3X/N7Lu8=";
+    rev = "main";
+    hash = "sha256-7H+DU4o3Ao8qAgcYDHVScR3pDSOpdETFsEMiErCQSA8=";
   };
 
   wallpaper =
-    if (builtins.hasAttr "wallpaper" themeConfig) then
+    if (builtins.isAttrs themeConfig && builtins.hasAttr "wallpaper" themeConfig) then
       themeConfig.wallpaper
     else
       null;

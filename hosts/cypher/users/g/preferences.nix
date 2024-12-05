@@ -1,4 +1,4 @@
-{ self, ... }:
+{ self, lib, ... }:
 let
   theme = self + /profiles/home-manager/desktop-themes/faraway.nix;
 in
@@ -16,7 +16,6 @@ in
     looking-glass.version = "B6";
     obs-studio.enable = true;
     ygo-omega.enable = true;
-
   };
 
   # monitors for hyprland
