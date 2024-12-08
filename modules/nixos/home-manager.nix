@@ -12,7 +12,7 @@ in
     modules.home-manager.enable = mkEnableOption "enable home-manager integration with nixos";
     home-manager.profilesDir = mkOption {
       description = "relative path to the profiles for your home-manager users";
-      type = types.str;
+      type = types.path;
       default = self + /profiles/home-manager;
     };
   };
