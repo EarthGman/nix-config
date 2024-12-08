@@ -71,11 +71,11 @@
       "locked": {
         "narHash": "sha256-9AeTvFherknZ2lfPF1W6VHGJkfIPJ+w/3MNK04SZFpk=",
         "type": "file",
-        "url": "https://raw.githubusercontent.com/EarthGman/personal-cache/master/binaries.json"
+        "url": "https://raw.githubusercontent.com/EarthGman/assets/master/binaries.json"
       },
       "original": {
         "type": "file",
-        "url": "https://raw.githubusercontent.com/EarthGman/personal-cache/master/binaries.json"
+        "url": "https://raw.githubusercontent.com/EarthGman/assets/master/binaries.json"
       }
     },
     "disko": {
@@ -140,11 +140,11 @@
       "locked": {
         "narHash": "sha256-sOs0a6D9Xacxl7Gy4k6NNcW32am0Pr0xFf9kK3hatws=",
         "type": "file",
-        "url": "https://raw.githubusercontent.com/EarthGman/personal-cache/master/fonts.json"
+        "url": "https://raw.githubusercontent.com/EarthGman/assets/master/fonts.json"
       },
       "original": {
         "type": "file",
-        "url": "https://raw.githubusercontent.com/EarthGman/personal-cache/master/fonts.json"
+        "url": "https://raw.githubusercontent.com/EarthGman/assets/master/fonts.json"
       }
     },
     "fromYaml": {
@@ -226,11 +226,11 @@
       "locked": {
         "narHash": "sha256-lo5p9tugsl/mirQfz/JMtAnDX6pppm2Jt9+SazYMpoQ=",
         "type": "file",
-        "url": "https://raw.githubusercontent.com/EarthGman/personal-cache/master/icons.json"
+        "url": "https://raw.githubusercontent.com/EarthGman/assets/master/icons.json"
       },
       "original": {
         "type": "file",
-        "url": "https://raw.githubusercontent.com/EarthGman/personal-cache/master/icons.json"
+        "url": "https://raw.githubusercontent.com/EarthGman/assets/master/icons.json"
       }
     },
     "nixpkgs": {
@@ -468,11 +468,11 @@
       "locked": {
         "narHash": "sha256-ySteIaVMJdzUdLh6ZdsWFeJs0A2Ru6S1IVamgq2Rw5k=",
         "type": "file",
-        "url": "https://raw.githubusercontent.com/EarthGman/personal-cache/master/wallpapers.json"
+        "url": "https://raw.githubusercontent.com/EarthGman/assets/master/wallpapers.json"
       },
       "original": {
         "type": "file",
-        "url": "https://raw.githubusercontent.com/EarthGman/personal-cache/master/wallpapers.json"
+        "url": "https://raw.githubusercontent.com/EarthGman/assets/master/wallpapers.json"
       }
     }
   },

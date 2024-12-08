@@ -43,22 +43,22 @@
     };
 
     wallpapers = {
-      url = "https://raw.githubusercontent.com/EarthGman/personal-cache/master/wallpapers.json";
+      url = "https://raw.githubusercontent.com/EarthGman/assets/master/wallpapers.json";
       flake = false;
     };
 
     icons = {
-      url = "https://raw.githubusercontent.com/EarthGman/personal-cache/master/icons.json";
+      url = "https://raw.githubusercontent.com/EarthGman/assets/master/icons.json";
       flake = false;
     };
 
     fonts = {
-      url = "https://raw.githubusercontent.com/EarthGman/personal-cache/master/fonts.json";
+      url = "https://raw.githubusercontent.com/EarthGman/assets/master/fonts.json";
       flake = false;
     };
 
     binaries = {
-      url = "https://raw.githubusercontent.com/EarthGman/personal-cache/master/binaries.json";
+      url = "https://raw.githubusercontent.com/EarthGman/assets/master/binaries.json";
       flake = false;
     };
   };
