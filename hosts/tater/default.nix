@@ -3,6 +3,7 @@
   imports = [
     ./disko.nix
     (self + /profiles/nixos/workstation.nix)
+    (self + /profiles/nixos/keyd/gmans-keymap.nix)
   ];
   boot.initrd.availableKernelModules = [
     "ahci"
@@ -21,12 +22,14 @@
     onepassword.enable = true;
   };
 
+  services.keyd.enable = true;
+
   programs.wireshark = {
     enable = true;
     package = pkgs.wireshark;
   };
 
- # custom = {
- #   decreased-security.nixos-rebuild = true;
- # };
+  # custom = {
+  #   decreased-security.nixos-rebuild = true;
+  # };
 }

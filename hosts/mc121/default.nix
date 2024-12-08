@@ -1,7 +1,7 @@
-{ pkgs, lib, binaries, keys, ... }:
+{ pkgs, lib, outputs, ... }:
 {
   users.users."root" = {
-    openssh.authorizedKeys.keys = [ keys.g_pub ];
+    openssh.authorizedKeys.keys = [ outputs.keys.g_pub ];
   };
 
   networking.firewall.allowedTCPPorts = [ 25567 ];

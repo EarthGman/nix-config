@@ -1,5 +1,4 @@
-# maps caps lock to escape by default
-{ pkgs, lib, config, ... }:
+# caps lock = escape when tapped and META when held
 {
   services.keyd = {
     keyboards = {
@@ -13,5 +12,4 @@
       };
     };
   };
-  environment.systemPackages = lib.mkIf (config.services.keyd.enable) [ pkgs.keyd ];
 }

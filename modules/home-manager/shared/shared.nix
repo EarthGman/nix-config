@@ -1,5 +1,5 @@
 # this modules defines a few custom options and shared configuration among all users on all machines
-{ lib, outputs, config, ... }:
+{ pkgs, lib, outputs, config, ... }:
 let
   inherit (lib) mkDefault mkOption types;
 in
@@ -32,12 +32,16 @@ in
   };
 
   config = {
+    home.packages = with pkgs; [
+      home-manager
+    ];
     xdg.userDirs = {
       # enable and create common Directories (Downloads, Documents, Music, etc)
       enable = mkDefault true;
       createDirectories = mkDefault true;
     };
     programs = let cfg = config.custom; in {
+      home-manager.enable = true;
       gh = {
         enable = true;
         gitCredentialHelper.enable = true;

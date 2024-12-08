@@ -1,7 +1,6 @@
-{ self, icons, ... }:
+{ outputs, ... }:
 let
-  inherit (builtins) fetchurl;
-  theme = self + /profiles/home-manager/desktop-themes/faraway.nix;
+  theme = outputs.homeProfiles.desktopThemes.faraway;
 in
 {
   imports = [

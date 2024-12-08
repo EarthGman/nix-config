@@ -1,6 +1,6 @@
-{ self, pkgs, lib, config, ... }:
+{ outputs, pkgs, lib, config, ... }:
 let
-  theme = self + /profiles/home-manager/desktop-themes/vibrant-cool.nix;
+  theme = outputs.homeProfiles.desktopThemes.vibrant-cool;
 in
 {
   imports = [

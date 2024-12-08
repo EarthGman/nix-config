@@ -1,7 +1,7 @@
-{ self, config, pkgs, lib, keys, hostName, ... }:
+{ self, outputs, config, pkgs, lib, hostName, ... }:
 let
   enabled = { enable = lib.mkDefault true; };
-  signingkey = keys.g_pub;
+  signingkey = outputs.keys.g_pub;
   LHmouse = builtins.toFile "lh-mouse.xmodmap" "pointer = 3 2 1";
 in
 {

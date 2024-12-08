@@ -5,6 +5,7 @@
     ./sddm.nix
     (self + /profiles/nixos/gaming.nix)
     (self + /profiles/nixos/wg0.nix)
+    (self + /profiles/nixos/keyd/gmans-keymap.nix)
   ];
   boot.initrd.availableKernelModules = [
     "nvme"

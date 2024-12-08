@@ -1,6 +1,6 @@
-{ self, icons, ... }:
+{ outputs, icons, ... }:
 let
-  theme = self + /profiles/home-manager/desktop-themes/faraway.nix;
+  theme = outputs.homeProfiles.desktopThemes.faraway;
 in
 {
   imports = [

@@ -1,6 +1,6 @@
-{ self, ... }:
+{ outputs, ... }:
 let
-  theme = self + /profiles/home-manager/desktop-themes/nightmare.nix;
+  theme = outputs.homeProfiles.desktopThemes.nightmare;
 in
 {
   imports = [ theme ];

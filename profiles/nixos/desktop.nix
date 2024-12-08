@@ -1,25 +1,9 @@
-{ self, inputs, outputs, hostName, pkgs, lib, wallpapers, icons, keys, desktop, users, stateVersion, ... }:
+{ pkgs, lib, ... }:
 let
   inherit (lib) mkDefault genAttrs;
   enabled = { enable = mkDefault true; };
-  home = self + /home.nix;
-
 in
 {
-  imports = [
-    inputs.home-manager.nixosModules.default
-  ];
-
-  # only import home-manager for users with a desktop
-  # creates a home manager config for every user specificed in users list
-  home-manager = {
-    users = genAttrs users (username:
-      import home { inherit pkgs username lib stateVersion; });
-    extraSpecialArgs = {
-      inherit self inputs outputs wallpapers icons keys hostName desktop;
-    };
-    backupFileExtension = "bak";
-  };
 
   hardware.graphics = {
     enable = true;

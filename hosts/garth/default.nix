@@ -4,6 +4,7 @@
     ./fs.nix
     (self + /profiles/nixos/workstation.nix)
     (self + /profiles/nixos/wg0.nix)
+    (self + /profiles/nixos/keyd/gmans-keymap.nix)
   ];
   boot.initrd.availableKernelModules = [
     "xhci_pci"

@@ -1,13 +1,15 @@
-{ inputs, outputs, pkgs, lib, config, hostName, cpu, vm, platform, stateVersion, ... }:
+{ inputs, outputs, pkgs, users, lib, config, hostName, cpu, vm, platform, stateVersion, ... }:
 let
-  inherit (lib) mkDefault mkIf mkForce getExe optionalString;
+  inherit (lib) mkDefault mkIf optionals mkForce getExe optionalString;
 in
 {
-  # use disko disk paritioning scheme for all machines
-  imports = [ inputs.disko.nixosModules.disko ];
+  imports = [
+    inputs.disko.nixosModules.disko
+  ];
 
   # default profile for all machines
   modules = {
+    home-manager.enable = mkDefault users != [ ];
     ssh.enable = mkDefault true;
     nh.enable = mkDefault true;
     neovim.enable = mkDefault true;
@@ -46,6 +48,7 @@ in
     experimental-features = [ "nix-command" "flakes" ];
     auto-optimise-store = true;
   };
+
   nixpkgs = {
     overlays = (builtins.attrValues outputs.overlays);
     config.allowUnfree = true;
@@ -95,6 +98,10 @@ in
       ripgrep
       zoxide # must be on path
       remote-build
+    ]
+    ++ optionals (config.services.keyd.enable) [
+      # idk why services.keyd.enable doesn't install this cli
+      pkgs.keyd
     ];
 
   # root level shell

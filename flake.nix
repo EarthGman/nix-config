@@ -68,10 +68,11 @@
       inherit (self) outputs;
       lib = nixpkgs.lib.extend
         (final: prev: import ./lib { inherit self inputs outputs; });
-      inherit (lib) mkHost forAllSystems;
+      inherit (lib) forAllSystems autoImport;
     in
     {
       inherit lib;
+      keys = import ./keys.nix;
       overlays = import ./overlays.nix { inherit inputs; };
       packages = forAllSystems (system:
         let
@@ -80,30 +81,34 @@
         import ./pkgs { inherit pkgs inputs; }
       );
 
-      nixosConfigurations = {
-        # Earth's desktops
-        cypher = mkHost { hostName = "cypher"; cpu = "amd"; gpu = "amd"; users = [ "g" ]; desktop = "i3"; stateVersion = "24.05"; };
-        garth = mkHost { hostName = "garth"; cpu = "intel"; gpu = "intel-igpu"; users = [ "g" ]; desktop = "hyprland,i3"; stateVersion = "24.05"; };
-        tater = mkHost { hostName = "tater"; cpu = "intel"; gpu = "intel-igpu"; users = [ "g" ]; desktop = "hyprland,i3"; stateVersion = "24.11"; };
-        nixos = mkHost { hostName = "nixos"; vm = true; users = [ "test" ]; desktop = "hyprland"; stateVersion = "24.11"; };
-        nixos-arm = mkHost { hostName = "nixos-arm"; vm = true; users = [ "test" "k" ]; desktop = "hyprland"; platform = "aarch64-linux"; stateVersion = "24.11"; };
-
-        # Thunder's desktops
-        somnus = mkHost { hostName = "somnus"; cpu = "amd"; gpu = "amd"; users = [ "bean" ]; desktop = "hyprland,i3"; stateVersion = "24.05"; };
-        pioneer = mkHost { hostName = "pioneer"; cpu = "intel"; gpu = "intel-igpu"; users = [ "bean" ]; desktop = "i3"; stateVersion = "24.11"; };
-
-        # Iron's desktops
-        petrichor = mkHost { hostName = "petrichor"; cpu = "amd"; gpu = "amd"; users = [ "iron" ]; desktop = "gnome"; stateVersion = "24.05"; };
-
-        # pumpkin's desktops
-        thePumpkinPatch = mkHost { hostName = "thePumpkinPatch"; cpu = "amd"; gpu = "nvidia"; users = [ "pumpkinking" ]; desktop = "gnome"; stateVersion = "24.05"; };
-
-        # servers
-        mc112 = mkHost { hostName = "mc112"; server = true; vm = true; stateVersion = "24.11"; }; # main world
-        mc-blueprints = mkHost { hostName = "mc-blueprints"; server = true; vm = true; stateVersion = "24.11"; }; # creative blueprints server
-        mc121 = mkHost { hostName = "mc121"; server = true; vm = true; stateVersion = "24.11"; }; # private 1.21 server for friends
-
-        headless-x86_64-iso = mkHost { hostName = "Nixos Installer"; iso = true; platform = "x86_64-linux"; };
+      nixosModules = {
+        imports = autoImport ./modules/nixos;
       };
+
+      nixosProfiles = {
+        desktop = import ./profiles/nixos/desktop.nix;
+        server = import ./profiles/nixos/server;
+        iso = import ./profiles/nixos/iso.nix;
+        gaming = import ./profiles/nixos/gaming.nix;
+        workstation = import ./profiles/nixos/workstation.nix;
+      };
+
+      homeManagerModules = import ./modules/home-manager { inherit lib; };
+
+      homeProfiles = {
+        essentials = import ./profiles/home-manager/essentials.nix;
+        desktopThemes = {
+          april = import ./profiles/home-manager/desktop-themes/april.nix;
+          ashes = import ./profiles/home-manager/desktop-themes/ashes.nix;
+          faraway = import ./profiles/home-manager/desktop-themes/faraway.nix;
+          headspace = import ./profiles/home-manager/desktop-themes/headspace.nix;
+          determination = import ./profiles/home-manager/desktop-themes/determination.nix;
+          inferno = import ./profiles/home-manager/desktop-themes/inferno.nix;
+          nightmare = import ./profiles/home-manager/desktop-themes/nightmare.nix;
+          vibrant-cool = import ./profiles/home-manager/desktop-themes/vibrant-cool.nix;
+        };
+      };
+
+      nixosConfigurations = import ./hosts { inherit lib; };
     };
 }

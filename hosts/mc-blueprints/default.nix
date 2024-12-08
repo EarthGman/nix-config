@@ -1,7 +1,7 @@
-{ pkgs, lib, binaries, keys, ... }:
+{ pkgs, outputs, lib, binaries, ... }:
 {
   users.users."root" = {
-    openssh.authorizedKeys.keys = [ keys.g_pub ];
+    openssh.authorizedKeys.keys = [ outputs.keys.g_pub ];
   };
 
   networking = {

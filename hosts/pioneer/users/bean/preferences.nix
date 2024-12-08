@@ -1,6 +1,6 @@
-{ self, ... }:
+{ outputs, ... }:
 let
-  theme = self + /profiles/home-manager/desktop-themes/determination.nix;
+  theme = outputs.homeProfiles.desktopThemes.determination;
 in
 {
   imports = [
@@ -17,7 +17,7 @@ in
 
   services.polybar.settings = {
     "bar/bottom" = {
-      font-0 = "MesloLGS Nerd Font Mono:size = 12;4";
+      font-0 = "MesloLGL Nerd Font Mono:size = 12;4";
       modules-left = "wlan cpu memory";
     };
   };

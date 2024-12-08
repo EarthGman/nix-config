@@ -1,8 +1,8 @@
 # Vanilla MC 1.12.2
-{ pkgs, lib, keys, ... }:
+{ outputs, pkgs, lib, ... }:
 {
   users.users."root" = {
-    openssh.authorizedKeys.keys = [ keys.g_pub ];
+    openssh.authorizedKeys.keys = [ outputs.keys.g_pub ];
   };
 
   networking = {
