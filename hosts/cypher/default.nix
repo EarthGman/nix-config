@@ -62,7 +62,7 @@
       name = "looking-glass-hook";
       runtimeInputs = [ pkgs.bash ];
       text = ''
-        if [ "$2" = "started" ]; then
+        if [ "$1" = "windows" ] && [ "$2" = "started" ]; then
           sleep 1
           chown g:users /dev/shm/looking-glass
           chmod 660 /dev/shm/looking-glass
