@@ -123,7 +123,7 @@ in
 
   # isos
   headless-x86_64-iso = mkHost {
-    hostName = "Nixos Installer";
+    hostName = "nixos-installer";
     iso = true;
     platform = "x86_64-linux";
   };
