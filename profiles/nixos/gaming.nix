@@ -1,4 +1,3 @@
-# extension of desktop.nix for gaming environments
 { pkgs, ... }:
 {
   modules.steam.enable = true;

@@ -1,18 +1,10 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 let
-  inherit (lib) getExe mkDefault;
+  inherit (lib) getExe;
 in
 {
   programs.fzf = {
     enableZshIntegration = true;
     defaultCommand = "${getExe pkgs.fd} -f";
-  };
-  programs.fd = {
-    enable = mkDefault config.programs.fzf.enable;
-    ignores = [
-      ".git/"
-      ".bak"
-      ".direnv/"
-    ];
   };
 }
