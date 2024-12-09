@@ -224,7 +224,7 @@
     "icons": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-lo5p9tugsl/mirQfz/JMtAnDX6pppm2Jt9+SazYMpoQ=",
+        "narHash": "sha256-a5nSmANnX4AbyNAS8kYLQCHqvVVrUuoCUljqVv2Qbxs=",
         "type": "file",
         "url": "https://raw.githubusercontent.com/EarthGman/assets/master/icons.json"
       },
