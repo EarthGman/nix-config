@@ -1,3 +1,8 @@
+12-01-2024 - 12-08-2024
+- commit to nixos v5
+- update to nixos 25.05
+- redo readme
+
 11-28-2024
 - update changelog
 - waybar service will now only attempt to execute on hyprland if waybar enabled
