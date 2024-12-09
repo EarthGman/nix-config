@@ -23,5 +23,6 @@ in
     switcheroo = enabled; # super easy image format conversion
     video-trimmer = enabled; # easy way to edit and trim videos
     obsidian = enabled; # note taking
+    fzf = enabled; # shell fuzzy finder
   };
 }
