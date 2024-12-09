@@ -1,16 +1,19 @@
+{ config, lib, ... }:
+let
+  inherit (lib) mkDefault;
+in
 {
-  modi = "window,drun,run,ssh";
-  icon-theme = "Oranchelo";
-  show-icons = true;
-  terminal = "kitty";
-  drun-display-format = "{icon} {name}";
-  location = 0;
-  disable-history = false;
-  hide-scrollbar = true;
-  display-ssh = "  SSH";
-  #display-combi = " 🖥️  All ";
-  display-drun = "🏃  Drun ";
-  display-run = " 🏃  Run ";
-  display-window = " 🪟  Window";
-  sidebar-mode = true;
+  modi = mkDefault "drun,window,run,ssh";
+  icon-theme = mkDefault "Oranchelo";
+  show-icons = mkDefault true;
+  terminal = config.custom.terminal;
+  drun-display-format = mkDefault "{icon} {name}";
+  location = mkDefault 0;
+  disable-history = mkDefault false;
+  hide-scrollbar = mkDefault true;
+  display-ssh = mkDefault "  SSH";
+  display-drun = mkDefault "🏃  Drun ";
+  display-run = mkDefault " 🏃  Run ";
+  display-window = mkDefault " 🪟  Window";
+  sidebar-mode = mkDefault true;
 }
