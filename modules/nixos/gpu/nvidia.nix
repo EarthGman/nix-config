@@ -19,7 +19,7 @@ in
       # accessible via `nvidia-settings`.
       nvidiaSettings = true;
 
-      package = lib.mkDefault config.boot.kernelPackages.nvidiaPackages.latest;
+      package = lib.mkDefault config.boot.kernelPackages.nvidiaPackages.beta;
     };
   };
 }
