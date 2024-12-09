@@ -73,6 +73,7 @@ in
     with pkgs; [
       btop
       busybox
+      efibootmgr
       dig
       powertop
       fzf
