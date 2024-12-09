@@ -6,12 +6,11 @@ let
   browser = config.custom.browser;
   pamixer = getExe pkgs.pamixer;
   brightnessctl = getExe pkgs.brightnessctl;
-  menu = "${lib.getExe config.programs.rofi.package}";
 in
 [
   "${mainMod}, Return, exec, ${terminal}"
   "${mainMod}, M, exec, ${fileManager}"
-  "${mainMod}, Space, exec, ${menu} -show"
+  "${mainMod}, Space, exec, rofi -show"
 
   "${mainMod}, Q, killactive"
   "${mainMod} SHIFT, E, exit"

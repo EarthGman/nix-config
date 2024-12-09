@@ -21,8 +21,6 @@ in
   exec-once = [
     "systemctl --user start hyprpaper.service"
     "systemctl --user start blueman-applet.service"
-  ] ++ optionals config.programs.waybar.enable [
-    "systemctl --user start waybar.enable"
   ];
 
   # exec at every reload (Mod+r) by default
