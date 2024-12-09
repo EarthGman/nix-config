@@ -13,13 +13,15 @@ Features
 -  active support for gnome, i3, and hyprland
 -  access to various images, fonts and more. https://github.com/EarthGman/assets
 
+Note: for shells, only zsh is supported.
+
 ------------------------------------------------------------------------
 
 # Why would I use this?
 
 nix is hard, let somebody else deal with it.
 
-This configuration provides fully configured shells, terminals, editors, desktops, and more so that you can start learning NixOS without going through the pain of creating a functional setup.
+This configuration provides fully configured terminals, editors, desktops, and more so that you can start learning nix and NixOS without simultaneously fighting an unconfigured desktop.
 Most settings will be personalized to myself by default, but they can be easily overwritten using your own NixOS repository.
 
 # Getting Started
@@ -46,7 +48,7 @@ your basic flake.nix should have the following structure.
     in
   {
     nixosConfigurations = {
-      # for default values see mkHost in lib/default.nix
+      # for explaination and default values see mkHost in lib/default.nix
       # for more examples see hosts/default.nix
       nixos = lib.mkHost {
         inherit inputs;
@@ -56,6 +58,7 @@ your basic flake.nix should have the following structure.
         users = [ "bob" ];
         desktop = "hyprland";
         vm = false;
+        iso = false;
         server = false;
         platform = "x86_64-linux";
         stateVersion = "25.05";
@@ -102,18 +105,23 @@ users.users.bob = {
 };
 ```
 
-For some this is all that is needed depending on your use case.
+You now have a basic NixOS configuration.
 
 ------------------------------------------------------------------------
 # NixOS with Home-manager
 
-by default, if the users list is not empty home-manager will install and enable itself using
+by default, if the users list from the mkHost function is not empty, home-manager will enable itself and create a configuration for all users present inside.
+Set
 
 ```
-modules.home-manager.enable = true;
+modules.home-manager.enable = false;
 ```
 
-If you have many machines that all use the same username, you want to define a profile specific to your needs. You will need to feed your flake.nix a path where these profiles will live.
+somewhere in your NixOS configuration if you do not wish to use home-manager with your NixOS configuration.
+
+You must create a user profile for configuration that will be shared with home-manager among all of your machines. You can place this directory anywhere in your flake, but must your flake.nix the path where these profiles will live using the following option. 
+
+Example:
 
 ```nix
 # default.nix
@@ -148,15 +156,24 @@ profiles will need to be files with your username followed by a .nix extension. 
 }
 ```
 
-Personally I like to import another file such as hosts
-/hostname/users/username/extrahm.nix
+You can set and override any default Home-manager configuration and apply it to all machines using this file. Additionally you can create a secondary home-manager configuration file to hosts/hostname/users/username and import this file to specify configuration specific for said user on that one host (such as a multi monitor setup).
 
-This allows you to specify certain configuration specific to that user on that host only, such as monitor setup.
+------------------------------------------------------------------------
+# Home-manager Standalone
+Coming Soon
 
-# Standalone Home-manager
-Coming Soon (lol)
+------------------------------------------------------------------------
 
+# Darwin 
+Coming Soon
 
+------------------------------------------------------------------------
+
+# Known Issues
+- MSI (possibly others) UEFI Firmware unable to find the grub efi file.
+- Missing drivers not included in boot.enableRedistributableFirmware (such as broadcom_sta) see /hosts/tater/default.nix
+- Qemu / kvm is unfinished and quite buggy, Graphical issues are present due to the lack of proper graphics configuration with qemu.
+- lack of support for other shells in nixos and home-manager (zsh only)
 
 # Personal Notes
 
@@ -174,9 +191,18 @@ Imperative actions after install
 - reinstall wine/bottles programs
 
 # TODO
-- [ ] finish readme and upload desktop showcase images
-- [ ] redo rofi, fix rofi bug on hyprland
+- [ ] finish readme and other .github setup
+- [x] redo rofi, fix rofi bug on hyprland
+- [ ] alternative systemd setup for "Hyprland (systemd-session)"
 - [ ] neovim
+  - [ ] Clipboard issues
+  - [ ] standardize keybinds
+  - [ ] nicer interface configuration
+- [ ] Home-manager standalone for Mac and other Linux Distros
+- [ ] Darwin Modules for Kriswill
+- [ ] system security
+ - [ ] secure boot
+ - [ ] drive encryption with LUKS
 - [ ] media server
 - [ ] Nix build server
 - [ ] installation helper scripts

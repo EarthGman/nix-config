@@ -1,6 +1,6 @@
 { self, inputs, outputs, config, hostName, lib, users, icons, wallpapers, desktop, stateVersion, ... }:
 let
-  inherit (lib) mkIf types genAttrs mkOption mkEnableOption;
+  inherit (lib) mkIf optionals types genAttrs mkOption mkEnableOption;
   cfg = config.modules.home-manager;
 in
 {
@@ -23,7 +23,7 @@ in
         (username: {
           imports = [
             outputs.homeManagerModules
-          ] ++ [
+          ] ++ optionals (builtins.pathExists config.home-manager.profilesDir) [
             (config.home-manager.profilesDir + "/${username}.nix")
           ];
           home = {

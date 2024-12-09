@@ -1,5 +1,12 @@
+12-09-2024
+- add fzf and FD to home-manager
+- update nur overlay
+- Hyprland working again (Choose "Hyprland" from SDDM)
+- Switch places for Run and Active windows in rofi
+
+
 12-01-2024 - 12-08-2024
-- commit to nixos v5
+- commit to nix-config v5
 - update to nixos 25.05
 - redo readme
 
