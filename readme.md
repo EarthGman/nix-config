@@ -174,10 +174,10 @@ Imperative actions after install
 - reinstall wine/bottles programs
 
 # TODO
--[ ] finish readme and upload desktop showcase images
--[ ] redo rofi, fix rofi bug on hyprland
--[ ] neovim
--[ ] media server
--[ ] Nix build server
--[ ] installation helper scripts
+- [ ] finish readme and upload desktop showcase images
+- [ ] redo rofi, fix rofi bug on hyprland
+- [ ] neovim
+- [ ] media server
+- [ ] Nix build server
+- [ ] installation helper scripts
 
