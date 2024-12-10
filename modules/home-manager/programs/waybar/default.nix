@@ -24,7 +24,10 @@ in
     programs.waybar = {
       topBar.settings = import ./top-bar.nix;
       bottomBar.settings = import ./bottom-bar.nix { inherit pkgs config lib hostName; };
-      settings = [ cfg.topBar.settings cfg.bottomBar.settings ];
+      settings = [
+        #cfg.topBar.settings
+        cfg.bottomBar.settings
+      ];
       style = builtins.readFile ./themes/${config.programs.waybar.theme}/style.css;
     };
     home.packages = lib.mkIf config.programs.waybar.enable (with pkgs; [
