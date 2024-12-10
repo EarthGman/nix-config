@@ -122,9 +122,17 @@ in
   };
 
   # isos
-  headless-x86_64-iso = mkHost {
+  installer-x86_64-without-firmware = mkHost {
     hostName = "nixos-installer";
     iso = true;
     platform = "x86_64-linux";
+    configDir = ./iso/without-firmware;
+  };
+
+  installer-x86_64-with-firmware = mkHost {
+    hostName = "nixos-installer";
+    iso = true;
+    platform = "x86_64-linux";
+    configDir = ./iso/with-firmware;
   };
 }
