@@ -29,6 +29,9 @@ in
         init.defaultBranch = "main";
       };
     };
+    zsh.shellAliases = {
+      edit-config = "cd ~/src/nix-config && $EDITOR .";
+    };
 
     ardour = enabled;
     autokey = enabled;
