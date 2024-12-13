@@ -1,7 +1,7 @@
 { inputs, lib, ... }:
 let
   inherit (lib) mkDefault;
-  neovim = inputs.vim-config.homeManagerModule;
+  neovim = inputs.vim-config.homeManager;
 in
 {
   imports = [ neovim.default ];
