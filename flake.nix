@@ -24,6 +24,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    my-packages = {
+      url = "github:EarthGman/nix-derivations";
+    };
+
+    my-lib = {
+      url = "github:EarthGman/nix-lib";
+    };
+
     nur = {
       url = "github:nix-community/nur";
     };
@@ -52,34 +60,26 @@
       flake = false;
     };
 
-    fonts = {
-      url = "https://raw.githubusercontent.com/EarthGman/assets/master/fonts.json";
-      flake = false;
-    };
-
     binaries = {
       url = "https://raw.githubusercontent.com/EarthGman/assets/master/binaries.json";
       flake = false;
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { self, nixpkgs, my-packages, my-lib, ... } @ inputs:
     let
       inherit (self) outputs;
-      lib = nixpkgs.lib.extend
-        (final: prev: import ./lib { inherit self inputs outputs; });
-      inherit (lib) forAllSystems autoImport;
+      helpers = import ./lib/helpers.nix { inherit self outputs; };
+      myLib = helpers // my-lib.lib;
+      lib = nixpkgs.lib.extend # must overlay the lib functions like this or else weird stuff happens for some reason
+        (final: prev: myLib);
+      inherit (lib) autoImport;
     in
     {
       inherit lib;
       keys = import ./keys.nix;
       overlays = import ./overlays.nix { inherit inputs; };
-      packages = forAllSystems (system:
-        let
-          pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
-        in
-        import ./pkgs { inherit pkgs inputs; }
-      );
+      packages = my-packages.packages;
 
       nixosModules = {
         imports = autoImport ./modules/nixos;

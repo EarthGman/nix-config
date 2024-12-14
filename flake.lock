@@ -254,6 +254,62 @@
         "url": "https://raw.githubusercontent.com/EarthGman/assets/master/icons.json"
       }
     },
+    "my-lib": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1734209100,
+        "narHash": "sha256-YuLuTlm3g/6bNTqU/eRa9lTN4S2aDYqrpcLf5ZzuDUs=",
+        "owner": "EarthGman",
+        "repo": "nix-lib",
+        "rev": "a9d13505d2213c9cd5540100aa65c1c872b4529d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "EarthGman",
+        "repo": "nix-lib",
+        "type": "github"
+      }
+    },
+    "my-lib_2": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1734209100,
+        "narHash": "sha256-YuLuTlm3g/6bNTqU/eRa9lTN4S2aDYqrpcLf5ZzuDUs=",
+        "owner": "EarthGman",
+        "repo": "nix-lib",
+        "rev": "a9d13505d2213c9cd5540100aa65c1c872b4529d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "EarthGman",
+        "repo": "nix-lib",
+        "type": "github"
+      }
+    },
+    "my-packages": {
+      "inputs": {
+        "fonts": "fonts",
+        "my-lib": "my-lib_2",
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1734210505,
+        "narHash": "sha256-A9OJPj4LqIUZsX1/9E/sb4wr78TK5atnmddJqbjlqrQ=",
+        "owner": "EarthGman",
+        "repo": "nix-derivations",
+        "rev": "380b0d7a3bb1fc5f2adb6a84121e6210b2816c2a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "EarthGman",
+        "repo": "nix-derivations",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1733940404,
@@ -319,6 +375,54 @@
     },
     "nixpkgs_3": {
       "locked": {
+        "lastModified": 1733940404,
+        "narHash": "sha256-Pj39hSoUA86ZePPF/UXiYHHM7hMIkios8TYG29kQT4g=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "5d67ea6b4b63378b9c13be21e2ec9d1afc921713",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_4": {
+      "locked": {
+        "lastModified": 1733940404,
+        "narHash": "sha256-Pj39hSoUA86ZePPF/UXiYHHM7hMIkios8TYG29kQT4g=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "5d67ea6b4b63378b9c13be21e2ec9d1afc921713",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_5": {
+      "locked": {
+        "lastModified": 1733940404,
+        "narHash": "sha256-Pj39hSoUA86ZePPF/UXiYHHM7hMIkios8TYG29kQT4g=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "5d67ea6b4b63378b9c13be21e2ec9d1afc921713",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_6": {
+      "locked": {
         "lastModified": 1732238832,
         "narHash": "sha256-sQxuJm8rHY20xq6Ah+GwIUkF95tWjGRd1X8xF+Pkk38=",
         "owner": "NixOS",
@@ -336,7 +440,7 @@
     "nur": {
       "inputs": {
         "flake-parts": "flake-parts",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_5",
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
@@ -357,10 +461,11 @@
       "inputs": {
         "binaries": "binaries",
         "disko": "disko",
-        "fonts": "fonts",
         "home-manager": "home-manager",
         "icons": "icons",
-        "nixpkgs": "nixpkgs",
+        "my-lib": "my-lib",
+        "my-packages": "my-packages",
+        "nixpkgs": "nixpkgs_4",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-stable": "nixpkgs-stable",
         "nur": "nur",
@@ -400,7 +505,7 @@
         "flake-utils": "flake-utils",
         "gnome-shell": "gnome-shell",
         "home-manager": "home-manager_2",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_6",
         "systems": "systems",
         "tinted-foot": "tinted-foot",
         "tinted-kitty": "tinted-kitty",
