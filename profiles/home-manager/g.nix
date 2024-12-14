@@ -42,6 +42,7 @@ in
     gscan2pdf = enabled;
     musescore = enabled;
     museeks = enabled;
+    mov-cli = enabled;
     nautilus.enable = true;
     sparrow = enabled;
     prismlauncher = enabled;

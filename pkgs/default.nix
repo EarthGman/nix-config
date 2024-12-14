@@ -11,4 +11,5 @@ in
   betterfox = callPackage ./firefox-themes/betterfox.nix { };
   shyfox = callPackage ./firefox-themes/shyfox.nix { };
   omori-font = callPackage ./fonts/omori-font.nix { inherit inputs; };
+  mov-cli-youtube = callPackage ./mov-cli-plugins/youtube.nix { };
 }
