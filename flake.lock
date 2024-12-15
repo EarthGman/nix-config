@@ -260,11 +260,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1734226761,
-        "narHash": "sha256-LHlZqxwqNORZrBtbf9g7jbtCrID87Vxh6RNWmls+/KM=",
+        "lastModified": 1734231813,
+        "narHash": "sha256-2XI0npEmuwQ6J2dhJvLYdaJYa+HseWqYndct0qD+RGE=",
         "owner": "EarthGman",
         "repo": "nix-library",
-        "rev": "39c57f483a1001b3edfe42e4f046b6254ec33d55",
+        "rev": "e8d8bde1628704a981c1e20e4e160a2e43215ea2",
         "type": "github"
       },
       "original": {
@@ -548,11 +548,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1734223229,
-        "narHash": "sha256-1XYLI3IoEbpqOzaH8iO/bfmtP1poBZHPPuqdBM247Ds=",
+        "lastModified": 1734229497,
+        "narHash": "sha256-tmYGH6PqVDHPQzLzYND4ty7ybiDlIrrj1kB48+xfdn8=",
         "owner": "EarthGman",
         "repo": "vim-config",
-        "rev": "e3d31ffc9fb72041e2a49100e6f845e75d94a15d",
+        "rev": "e5016b1482cd56b3c2ef52efc95ebe63cffddfc2",
         "type": "github"
       },
       "original": {
