@@ -132,6 +132,7 @@ in
       in
       ''
         eval "$(${getExe pkgs.zoxide} init --cmd j zsh)"
+        setopt autocd
       '' + optionalString (has-neovim) ''
         export EDITOR=nvim
       '' + optionalString (!(has-neovim)) ''
