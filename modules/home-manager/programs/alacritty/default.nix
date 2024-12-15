@@ -73,7 +73,7 @@ in
         }
       ];
       selection.save_to_clipboard = true;
-      shell.program = "${pkgs.zsh}/bin/zsh";
+      terminal.shell.program = "${pkgs.zsh}/bin/zsh";
       window = {
         decorations = "none";
         opacity = 0.87;
