@@ -65,7 +65,7 @@ in
     # if gnome is enabled give a warning
     warnings =
       let
-        desktops = lib.stringToList desktop ",";
+        desktops = lib.splitString "," desktop;
         gnome = builtins.elem "gnome" desktops;
       in
       if gnome then

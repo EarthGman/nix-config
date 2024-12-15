@@ -24,12 +24,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    my-packages = {
-      url = "github:EarthGman/nix-derivations";
-    };
-
-    my-lib = {
-      url = "github:EarthGman/nix-lib";
+    nix-library = {
+      url = "github:EarthGman/nix-library";
     };
 
     nur = {
@@ -66,11 +62,11 @@
     };
   };
 
-  outputs = { self, nixpkgs, my-packages, my-lib, ... } @ inputs:
+  outputs = { self, nixpkgs, nix-library, ... } @ inputs:
     let
       inherit (self) outputs;
       helpers = import ./lib/helpers.nix { inherit self outputs; };
-      myLib = helpers // my-lib.lib;
+      myLib = helpers // nix-library.lib;
       lib = nixpkgs.lib.extend # must overlay the lib functions like this or else weird stuff happens for some reason
         (final: prev: myLib);
       inherit (lib) autoImport;
@@ -79,7 +75,7 @@
       inherit lib;
       keys = import ./keys.nix;
       overlays = import ./overlays.nix { inherit inputs; };
-      packages = my-packages.packages;
+      packages = nix-library.packages;
 
       nixosModules = {
         imports = autoImport ./modules/nixos;
