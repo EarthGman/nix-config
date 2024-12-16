@@ -1,4 +1,4 @@
-{ self, pkgs, config, wallpapers, ... }:
+{ self, pkgs, wallpapers, ... }:
 {
   imports = [
     ./fs.nix
@@ -26,7 +26,7 @@
   ];
 
   services.displayManager.sddm.themeConfig = {
-    Background = builtins.fetchurl wallpapers.fiery-dragon;
+    Background = builtins.fetchurl wallpapers.celeste-mountain;
     FullBlur = "false";
     PartialBlur = "false";
   };
