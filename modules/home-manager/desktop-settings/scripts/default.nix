@@ -19,36 +19,7 @@ in
     fi 
   '';
 
-  hyprland_windows = writeScript "hyprland-window-creation-emulator.sh" ''
-    #!${getExe pkgs.bash}
-      adjust_split_mode() {
-      eval $(i3-msg -t get_tree | jq -r '
-        .. | 
-        select(.focused? == true) | 
-        { width: .rect.width, height: .rect.height } | 
-        to_entries | 
-        .[] | 
-        "\(.key)=\(.value)"
-        ')
-
-        if [ -z "$width" ] || [ -z "$height" ]; then
-          echo "Error: Unable to retrieve focused window dimensions."
-          return
-        fi
-
-        if (( width < height )); then
-          i3-msg split v > /dev/null
-        else
-          i3-msg split h > /dev/null
-        fi
-      }
-        
-      i3-msg -t subscribe -m '[ "window" ]' | while read -r _; do
-        adjust_split_mode
-      done
-  '';
-
-  take_screenshot_selection = writeScript "take-screenshot-selection-xorg.sh" ''
+  take_screenshot_selection_xorg = writeScript "take-screenshot-selection-xorg.sh" ''
       output="${screenshot_output}"
       if [ ! -d ${config.home.homeDirectory}/Pictures/Screenshots ]; then
         mkdir -p ${config.home.homeDirectory}/Pictures/Screenshots
@@ -64,7 +35,7 @@ in
     fi
   '';
 
-  take_screenshot = writeScript "take_screenshot_xorg.sh" ''
+  take_screenshot_xorg = writeScript "take_screenshot_xorg.sh" ''
     output="${screenshot_output}"
 
     if [ ! -d ${config.home.homeDirectory}/Pictures/Screenshots ]; then
@@ -76,7 +47,7 @@ in
     fi
   '';
 
-  take_screenshot_window = writeScript "take_screenshot_window_xorg.sh" ''
+  take_screenshot_window_xorg = writeScript "take_screenshot_window_xorg.sh" ''
     output="${screenshot_output}"
 
     if [ ! -d ${config.home.homeDirectory}/Pictures/Screenshots ]; then
@@ -87,4 +58,36 @@ in
       dunstify 'Screenshot saved to ~/Pictures/Screenshots'
     fi
   '';
+
+  take_screenshot_selection_wayland = writeScript "take-screenshot-selection-wayland.sh" ''
+    if [ ! -d ${config.home.homeDirectory}/Pictures/Screenshots ]; then
+      mkdir -p ${config.home.homeDirectory}/Pictures/Screenshots
+    fi
+    timestamp=$(date +%F_%T)
+    output="${config.home.homeDirectory}/Pictures/Screenshots/Screenshot-''${timestamp}.png"
+
+    if selection=$(${getExe pkgs.slurp}) && ${getExe pkgs.grim} -g "$selection" - | ${pkgs.wl-clipboard}/bin/wl-copy; then
+      ${pkgs.wl-clipboard}/bin/wl-paste > "$output"
+      dunstify 'Screenshot saved to ~/Pictures/Screenshots'
+    fi
+  '';
+
+  take_screenshot_wayland = writeScript "take-screenshot-wayland.sh" ''
+    if [ ! -d ${config.home.homeDirectory}/Pictures/Screenshots ]; then
+      mkdir -p ${config.home.homeDirectory}/Pictures/Screenshots
+    fi
+    timestamp=$(date +%F_%T)
+    output="${config.home.homeDirectory}/Pictures/Screenshots/Screenshot-''${timestamp}.png"
+    
+    if ${getExe pkgs.grim} - | ${pkgs.wl-clipboard}/bin/wl-copy; then
+      ${pkgs.wl-clipboard}/bin/wl-paste > "$output"
+      dunstify 'Screenshot saved to ~/Pictures/Screenshots'
+    fi
+  '';
+
+  invoke_wallpaper_wayland = writeScript "invoke-wallpaper-wayland.sh" ''
+    WALLPAPER=$1
+    swww img $1
+  '';
 }
+

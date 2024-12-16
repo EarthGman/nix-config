@@ -1,24 +1,16 @@
-{ pkgs, lib, desktop, ... }:
+{ lib, desktop, ... }:
 let
   inherit (lib) optionals mkDefault mkIf;
   inherit (builtins) elem;
   desktops = if (desktop != null) then lib.splitString "," desktop else [ ];
   i3 = elem "i3" desktops;
+  sway = elem "sway" desktops;
   gnome = elem "gnome" desktops;
   hyprland = elem "hyprland" desktops;
 in
 {
-  imports = optionals i3 [ ./i3 ]
-    ++ optionals gnome [ ./gnome ]
-    ++ optionals hyprland [ ./hyprland ];
-  config = mkIf (desktop != null) {
-    # icons for gtk apps
-    gtk = {
-      enable = mkDefault true;
-      iconTheme = {
-        name = mkDefault "Adwaita";
-        package = mkDefault pkgs.adwaita-icon-theme;
-      };
-    };
-  };
+  imports = optionals gnome [ ./gnome ]
+    ++ optionals hyprland [ ./hyprland ]
+    ++ optionals i3 [ ./i3 ]
+    ++ optionals sway [ ./sway ];
 }

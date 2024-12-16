@@ -70,5 +70,12 @@ in
       notification = false;
     }
   ];
-  wayland.windowManager.hyprland.settings.input.left_handed = true;
+  wayland.windowManager = {
+    sway.config.input = {
+      "type:pointer" = {
+        left_handed = "enabled";
+      };
+    };
+    hyprland.settings.input.left_handed = true;
+  };
 }

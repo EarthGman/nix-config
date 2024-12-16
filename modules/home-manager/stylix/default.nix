@@ -7,6 +7,7 @@ in
   imports = [
     inputs.stylix.homeManagerModules.stylix
   ];
+
   options = {
     stylix.colorScheme = mkOption {
       description = ''
@@ -32,6 +33,13 @@ in
         package = mkDefault pkgs.bibata-cursors;
         name = mkDefault "Bibata-Modern-Classic";
         size = mkDefault 24;
+      };
+
+      iconTheme = {
+        enable = mkDefault true;
+        dark = mkDefault "Papirus-Dark";
+        light = mkDefault "Papirus-Light";
+        package = mkDefault pkgs.papirus-icon-theme;
       };
 
       fonts = {

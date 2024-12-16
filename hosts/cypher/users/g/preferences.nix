@@ -37,4 +37,15 @@ in
       notification = false;
     }
   ];
+
+  wayland.windowManager.sway.config.output = {
+    "DP-3" = {
+      scale = "1.0";
+      mode = "2560x1440@59.951Hz";
+    };
+    "HDMI-A-1" = {
+      scale = "1.0";
+      mode = "1920x1080@100.000Hz";
+    };
+  };
 }

@@ -2,7 +2,7 @@
 let
   inherit (lib) getExe;
   inherit (builtins) fetchurl;
-  script = import ./script.nix { inherit pkgs fetchurl wallpapers getExe; };
+  script = import ./script.nix { inherit pkgs config fetchurl wallpapers getExe; };
 in
 {
   options.services.omori-calendar-project.enable = lib.mkEnableOption ''
@@ -42,9 +42,6 @@ in
     wayland.windowManager.hyprland.settings = {
       exec-once = [
         "systemctl --user start omori-calendar-project.service"
-      ];
-      exec = [
-        "systemctl --user restart omori-calendar-project.service"
       ];
     };
     # make sure hyprpaper is clear by default

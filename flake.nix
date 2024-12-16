@@ -46,6 +46,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    swww = {
+      url = "github:LGFae/swww";
+    };
+
     wallpapers = {
       url = "https://raw.githubusercontent.com/EarthGman/assets/master/wallpapers.json";
       flake = false;

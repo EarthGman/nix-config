@@ -1,19 +1,25 @@
-{ pkgs, config, getExe, scripts, ... }:
+{ pkgs, config, lib, desktop, scripts, ... }:
 let
-  mod = config.xsession.windowManager.i3.config.modifier;
+  inherit (lib) getExe;
+  mod =
+    if (desktop == "i3") then
+      config.xsession.windowManager.i3.config.modifier
+    else
+      config.wayland.windowManager.sway.config.modifier;
   pamixer = "${getExe pkgs.pamixer}";
   brightnessctl = "${getExe pkgs.brightnessctl}";
   fileManager = config.custom.fileManager;
   browser = config.custom.browser;
+  terminal = config.custom.terminal;
 in
 {
-  "${mod}+Return" = "exec ${config.xsession.windowManager.i3.config.terminal}";
+  "${mod}+Return" = "exec ${terminal}";
   "${mod}+q" = "kill";
   # "${mod}+d" = "exec --no-startup-id dmenu_run";
   "${mod}+space" = "exec ${getExe pkgs.rofi} -show";
   "${mod}+b" = "exec ${browser}";
   # special case for yazi to launch properly
-  "${mod}+m" = if fileManager == "yazi" then "exec ${config.custom.terminal} -e yazi" else "exec ${fileManager}";
+  "${mod}+m" = if fileManager == "yazi" then "exec ${terminal} -e yazi" else "exec ${fileManager}";
 
   "${mod}+h" = "focus left";
   "${mod}+j" = "focus down";
@@ -95,15 +101,28 @@ in
   "${mod}+Shift+9" = "move container to workspace number 9";
   "${mod}+Shift+0" = "move container to workspace number 10";
 
-  # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
   "${mod}+Shift+r" = "restart";
-  # exit i3 (logs you out of your X session)
-  "${mod}+Shift+e" = "exit i3";
+
+  "${mod}+Shift+e" =
+    if (desktop == "i3") then
+      "exit i3"
+    else
+      "exec --no-startup-id swaymsg exit";
 
   # screenshots
-  "Shift+Print" = "exec --no-startup-id ${scripts.take_screenshot}";
-  "Print" = "exec --no-startup-id ${scripts.take_screenshot_selection}";
-  "Control+Print" = "exec --no-startup-id ${scripts.take_screenshot_window}";
+  "Shift+Print" =
+    if (desktop == "i3") then
+      "exec --no-startup-id ${scripts.take_screenshot_xorg}"
+    else
+      "exec --no-startup-id ${scripts.take_screenshot_wayland}";
+
+  "Print" =
+    if (desktop == "i3") then
+      "exec --no-startup-id ${scripts.take_screenshot_selection_xorg}"
+    else
+      "exec --no-startup-id ${scripts.take_screenshot_selection_wayland}";
+
+  "Control+Print" = lib.mkIf (desktop == "i3") "exec --no-startup-id ${scripts.take_screenshot_window_xorg}";
 
   "XF86AudioRaiseVolume" = "exec ${pamixer} -i 5";
   "XF86AudioLowerVolume" = "exec ${pamixer} -d 5";

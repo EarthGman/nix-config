@@ -4,6 +4,13 @@ let
   inherit (lib) mkDefault optionals;
   inherit (builtins) toString;
   mainMod = config.wayland.windowManager.hyprland.mainMod;
+
+  startupScript = pkgs.writeScript "hyprland-startup.sh" ''
+    sleep 1
+    systemctl --user restart waybar
+    systemctl --user restart network-manager-applet
+    systemctl --user restart blueman-applet
+  '';
 in
 {
   # env
@@ -19,15 +26,14 @@ in
 
   # exec only at hyprland startup
   exec-once = [
-    "systemctl --user start hyprpaper.service"
-    "systemctl --user start blueman-applet.service"
+    "${startupScript}"
+  ] ++ optionals (!(config.services.omori-calendar-project.enable)) [
+    "${scripts.invoke_wallpaper_wayland} ${config.stylix.image}"
   ];
 
   # exec at every reload (Mod+r) by default
   exec = [
-    "systemctl --user restart hyprpaper.service"
-  ] ++ optionals config.programs.waybar.enable [
-    "systemctl --user restart waybar.service"
+    "systemctl --user restart waybar"
   ];
 
   #keybinds
