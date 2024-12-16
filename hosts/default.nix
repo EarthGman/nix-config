@@ -52,7 +52,7 @@ in
     cpu = "amd";
     gpu = "amd";
     users = [ "bean" ];
-    desktop = "hyprland,i3";
+    desktop = "hyprland,i3,sway";
     stateVersion = "24.05";
     platform = "x86_64-linux";
     configDir = ./somnus;

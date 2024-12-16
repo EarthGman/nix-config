@@ -1,6 +1,6 @@
 { outputs, icons, ... }:
 let
-  theme = outputs.homeProfiles.desktopThemes.faraway;
+  theme = outputs.homeProfiles.desktopThemes.determination;
 in
 {
   imports = [

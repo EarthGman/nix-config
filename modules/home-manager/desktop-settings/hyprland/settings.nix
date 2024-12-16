@@ -26,15 +26,16 @@ in
 
   # exec only at hyprland startup
   exec-once = [
+    "swww-daemon --no-cache"
     "${startupScript}"
+  ];
+  # exec at every reload (Mod+r) by default
+  exec = [
+    "systemctl --user restart waybar"
   ] ++ optionals (!(config.services.omori-calendar-project.enable)) [
     "${scripts.invoke_wallpaper_wayland} ${config.stylix.image}"
   ];
 
-  # exec at every reload (Mod+r) by default
-  exec = [
-    "systemctl --user restart waybar"
-  ];
 
   #keybinds
   bind = import ./keybinds.nix { inherit pkgs lib config scripts mainMod; };

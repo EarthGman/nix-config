@@ -29,7 +29,7 @@ in
         After = [ "graphical-session.target" ];
       };
       Service = {
-        Environment = "PATH=/run/current-system/sw/bin";
+        Environment = "PATH=/run/current-system/sw/bin:${config.home.homeDirectory}/.nix-profile/bin";
         Type = "oneshot";
         ExecStart = "${script}";
       };

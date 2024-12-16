@@ -1,4 +1,4 @@
-{ outputs, ... }:
+{ outputs, lib, wallpapers, ... }:
 let
   theme = outputs.homeProfiles.desktopThemes.determination;
 in
@@ -6,6 +6,8 @@ in
   imports = [
     theme
   ];
+
+  stylix.image = lib.mkForce (builtins.fetchurl wallpapers.grillbys);
 
   xsession.screensaver = {
     enable = true;

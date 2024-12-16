@@ -17,33 +17,14 @@ pkgs.writeScript "set-wallpaper-by-month.sh" ''
     MONTH=$(date +"%B")
 
     case "$XDG_CURRENT_DESKTOP" in
-      "Hyprland")
-     	for i in {1..5}; do
-     	hyprctl clients > /dev/null 2>&1
-     	if [ $? -eq 0 ]; then
-     		break
-     	fi
-     	sleep 1
-     	done
-     	if ! hyprctl clients > /dev/null 2>&1; then
-     		exit 1
-     	fi
-
-    	CURRENT_CHECK=$(hyprctl hypaper listloaded | grep -i "omori-''${MONTH}")
-     	if [ -n "$CURRENT_CHECK" ]; then
-     		exit 0
-     	fi
-
-     	hyprctl hyprpaper preload "''${!MONTH}"
-     	hyprctl hyprpaper wallpaper ",''${!MONTH}"
-     	hyprctl hyprpaper unload
-     	exit 0
-     	;;
-     	"none+i3")
-     	  ${getExe pkgs.feh} --bg-scale "''${!MONTH}"
+      "none+i3")
+        ${getExe pkgs.feh} --bg-scale "''${!MONTH}"
         ;;
       "sway")
-  		  swww img --resize crop "''${!MONTH}"
+        swww img --resize crop "''${!MONTH}"
+        ;;
+      "Hyprland")
+        swww img --resize crop "''${!MONTH}"
         ;;
     esac
 

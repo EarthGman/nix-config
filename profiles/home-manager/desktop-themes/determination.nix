@@ -3,14 +3,13 @@ let
   inherit (lib) mkForce;
 in
 {
-  stylix.image = builtins.fetchurl wallpapers.grillbys;
+  stylix.image = builtins.fetchurl wallpapers.home;
   stylix.colorScheme = "faraway";
 
   programs = {
     #tobyfox
     firefox.theme.name = "shyfox";
     firefox.theme.config.wallpaper = builtins.fetchurl wallpapers.mt-ebott-alt;
-    waybar.theme = "headspace";
     vscode.userSettings = {
       editor = {
         "fontFamily" = mkForce "'OMORI_GAME'";
