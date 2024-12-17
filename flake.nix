@@ -106,6 +106,7 @@
           inferno = import ./profiles/home-manager/desktop-themes/inferno.nix;
           nightmare = import ./profiles/home-manager/desktop-themes/nightmare.nix;
           vibrant-cool = import ./profiles/home-manager/desktop-themes/vibrant-cool.nix;
+          celeste = import ./profiles/home-manager/desktop-themes/celeste.nix;
         };
       };
 

@@ -8,8 +8,10 @@ let
     systemctl --user restart polybar
     systemctl --user restart hyprland-windows-for-sway-i3
     ${if config.services.omori-calendar-project.enable then ''
-    systemctl --user restart omori-calendar-project
-    '' else ""}
+      systemctl --user restart omori-calendar-project
+    '' else ''
+      ${lib.getExe pkgs.feh} --bg-scale ${config.stylix.image}
+    ''}
   '';
 in
 {

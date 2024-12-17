@@ -14,6 +14,6 @@
   ];
   # display manager customization
   services.displayManager.sddm.themeConfig = {
-    Background = builtins.fetchurl wallpapers.survivors;
+    Background = builtins.fetchurl wallpapers.celeste-mountain;
   };
 }
