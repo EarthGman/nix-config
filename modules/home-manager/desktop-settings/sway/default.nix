@@ -8,6 +8,7 @@ let
     sleep 1
 
     systemctl --user restart waybar
+    systemctl --user restart hyprland-windows-for-sway-i3
     
     ${if config.services.omori-calendar-project.enable then ''
       systemctl --user start omori-calendar-project
