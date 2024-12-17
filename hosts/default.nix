@@ -20,7 +20,7 @@ in
     cpu = "intel";
     gpu = "intel-igpu";
     users = [ "g" ];
-    desktop = "gnome";
+    desktop = "i3,sway";
     platform = "x86_64-linux";
     stateVersion = "24.05";
     configDir = ./garth;
