@@ -1,9 +1,12 @@
-{ config, ... }:
+{ config, lib, ... }:
+let
+  inherit (lib) mkDefault;
+in
 {
   logo = {
     source = config.programs.fastfetch.image;
-    height = 20;
-    width = 48;
+    height = mkDefault 20;
+    width = mkDefault 48;
   };
   display = {
     separator = " - ";

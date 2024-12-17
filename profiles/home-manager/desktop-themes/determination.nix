@@ -21,17 +21,23 @@ in
       };
     };
 
-    fastfetch.imageRandomizer = {
-      enable = true;
-      images = with icons; [
-        (fetchurl heart-red)
-        (fetchurl heart-blue)
-        (fetchurl heart-orange)
-        (fetchurl heart-pink)
-        (fetchurl heart-green)
-        (fetchurl heart-yellow)
-        (fetchurl heart-teal)
-      ];
+    fastfetch = {
+      settings.logo = {
+        height = 15;
+        width = 36;
+      };
+      imageRandomizer = {
+        enable = true;
+        images = with icons; [
+          (fetchurl heart-red)
+          (fetchurl heart-blue)
+          (fetchurl heart-orange)
+          (fetchurl heart-pink)
+          (fetchurl heart-green)
+          (fetchurl heart-yellow)
+          (fetchurl heart-teal)
+        ];
+      };
     };
   };
   stylix.fonts = {
