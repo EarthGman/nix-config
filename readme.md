@@ -194,6 +194,9 @@ Imperative actions after install
 - [ ] FIX SYSTEMD FOR WAYLAND
   - [ ] learn systemd unit triggers
   - [ ] wait for UWSM docs to release
+- [ ] Fix bugs with sway
+  - [ ] rofi only shows up on 1 monitor ever
+  - [ ] lost transparency when fullscreen
 - [ ] finish readme and other .github setup
 - [x] redo rofi, fix rofi bug on hyprland
 - [ ] alternative systemd setup for "Hyprland (systemd-session)"
