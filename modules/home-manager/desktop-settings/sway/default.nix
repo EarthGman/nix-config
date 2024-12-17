@@ -6,6 +6,8 @@ let
   startup = pkgs.writeScript "sway-startup.sh" ''
     systemctl --user start swww-daemon	
     sleep 1
+
+    systemctl --user restart waybar
     
     ${if config.services.omori-calendar-project.enable then ''
       systemctl --user start omori-calendar-project
