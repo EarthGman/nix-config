@@ -1,10 +1,10 @@
-{ inputs, lib, config, platform, ... }:
+{ inputs, pkgs, lib, config, platform, ... }:
 let
   inherit (lib) mkEnableOption mkOption mkIf types;
-  cfg = config.programs.swww;
+  cfg = config.services.swww;
 in
 {
-  options.programs.swww = {
+  options.services.swww = {
     enable = mkEnableOption "enable swww, a solution to your wayland wallpaper woes";
     package = mkOption {
       description = "package to use";
@@ -74,6 +74,18 @@ in
       "SWWW_TRANSITION_POS" = cfg.settings.transition.pos;
       "INVERT_Y" = cfg.settings.invertY;
       "SWWW_TRANSITION_WAVE" = cfg.settings.transition.wave;
+    };
+
+    systemd.user.services.swww-daemon = {
+      Unit.Description = "start the swww-daemon";
+      Service = {
+        Environment = "PATH=/run/current-system/sw/bin:${config.home.homeDirectory}/.nix-profile/bin";
+        Type = "exec";
+        ExecStart = pkgs.writeScript "swww-init.sh" ''
+          #!${pkgs.bash}/bin/bash
+          pgrep -x swww-daemon || swww-daemon --no-cache
+        '';
+      };
     };
   };
 }

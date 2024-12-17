@@ -84,10 +84,5 @@ in
       dunstify 'Screenshot saved to ~/Pictures/Screenshots'
     fi
   '';
-
-  invoke_wallpaper_wayland = writeScript "invoke-wallpaper-wayland.sh" ''
-    WALLPAPER=$1
-    swww img $1
-  '';
 }
 

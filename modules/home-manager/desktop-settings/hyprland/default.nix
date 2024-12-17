@@ -19,10 +19,13 @@ in
     };
 
     programs = {
-      swww = enabled;
       rofi = enabled;
       waybar = enabled;
       hyprlock = enabled;
+    };
+
+    services = {
+      swww = enabled;
     };
 
     wayland.windowManager.hyprland = {

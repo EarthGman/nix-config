@@ -22,6 +22,9 @@ in
     pwvucontrol = enabled;
     rofi = enabled;
     waybar = enabled;
+  };
+
+  services = {
     swww = enabled;
   };
 
@@ -30,19 +33,6 @@ in
     config = {
       output."*" = lib.mkForce { };
       startup = [
-        {
-          command = "swww-daemon --no-cache";
-          always = false;
-        }
-        {
-          command = "${startupScript}";
-          always = false;
-        }
-      ] ++ optionals (!(config.services.omori-calendar-project.enable)) [
-        {
-          command = "${scripts.invoke_wallpaper_wayland} ${config.stylix.image}";
-          always = true;
-        }
       ];
     };
   };

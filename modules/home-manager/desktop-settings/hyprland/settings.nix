@@ -1,9 +1,22 @@
 { pkgs, lib, config, scripts, ... }:
 # default config for hyprland
 let
-  inherit (lib) mkDefault optionals;
+  inherit (lib) mkDefault;
   inherit (builtins) toString;
   mainMod = config.wayland.windowManager.hyprland.mainMod;
+
+  startup = pkgs.writeScript "hyprland-startup.sh" ''
+    systemctl --user start swww-daemon
+    		
+    sleep 0.5
+    systemctl --user restart network-manager-applet
+
+    ${if config.services.omori-calendar-project.enable then ''
+      systemctl --user restart omori-calendar-project
+    '' else ''
+      swww img ${config.stylix.image}
+    ''}
+  '';
 in
 {
   # env
@@ -19,15 +32,12 @@ in
 
   # exec only at hyprland startup
   exec-once = [
-    "swww-daemon --no-cache"
+    "${startup}"
   ];
   # exec at every reload (Mod+r) by default
   exec = [
     "systemctl --user restart waybar"
-  ] ++ optionals (!(config.services.omori-calendar-project.enable)) [
-    "${scripts.invoke_wallpaper_wayland} ${config.stylix.image}"
   ];
-
 
   #keybinds
   bind = import ./keybinds.nix { inherit pkgs lib config scripts mainMod; };
