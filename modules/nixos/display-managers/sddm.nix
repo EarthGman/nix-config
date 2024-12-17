@@ -10,6 +10,8 @@ let
     if (preferredDesktop == "i3")
     then
       "none+i3"
+    else if (preferredDesktop == "hyprland") then
+      "hyprland-uwsm"
     else
       preferredDesktop;
 in
