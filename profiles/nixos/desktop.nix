@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 let
-  inherit (lib) mkDefault genAttrs;
+  inherit (lib) mkDefault;
   enabled = { enable = mkDefault true; };
 in
 {
