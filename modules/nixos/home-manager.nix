@@ -33,6 +33,7 @@ in
       extraSpecialArgs = {
         inherit self inputs outputs wallpapers icons hostName desktop vm server platform stateVersion;
       };
+      backupFileExtension = "bak";
     };
   };
 }
