@@ -1,7 +1,16 @@
-{ lib, ... }:
+{ pkgs, lib, config, ... }:
 let
   inherit (lib) mkDefault;
   enabled = { enable = mkDefault true; };
+
+  startup = pkgs.writeScript "i3-startup.sh" ''
+    systemctl --user import-environment XDG_CURRENT_DESKTOP PATH
+    systemctl --user restart polybar
+    systemctl --user restart hyprland-windows-for-sway-i3
+    ${if config.services.omori-calendar-project.enable then ''
+    systemctl --user restart omori-calendar-project
+    '' else ""}
+  '';
 in
 {
   imports = [
@@ -25,13 +34,7 @@ in
       enable = true;
       config.startup = [
         {
-          # give some env vars to systemd
-          command = "systemctl --user import-environment XDG_CURRENT_DESKTOP PATH";
-          always = false;
-          notification = false;
-        }
-        {
-          command = "systemctl --user restart polybar.service";
+          command = "${startup}";
           always = false;
           notification = false;
         }

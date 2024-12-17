@@ -38,27 +38,6 @@ in
       };
     };
 
-    # hyprland integration
-    wayland.windowManager.hyprland.settings = {
-      exec-once = [
-        "systemctl --user start omori-calendar-project.service"
-      ];
-    };
-    # make sure hyprpaper is clear by default
-    services.hyprpaper.settings = {
-      preload = lib.mkForce [ ];
-      wallpaper = lib.mkForce [ ];
-    };
-
-    # i3 integration
-    xsession.windowManager.i3.config.startup = [
-      {
-        command = "systemctl --user start omori-calendar-project.service";
-        always = false;
-        notification = false;
-      }
-    ];
-
     # if gnome is enabled give a warning
     warnings =
       let

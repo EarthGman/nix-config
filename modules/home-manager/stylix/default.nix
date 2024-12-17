@@ -37,9 +37,9 @@ in
 
       iconTheme = {
         enable = mkDefault true;
-        dark = mkDefault "Papirus-Dark";
-        light = mkDefault "Papirus-Light";
-        package = mkDefault pkgs.papirus-icon-theme;
+        dark = mkDefault "Adwaita";
+        light = mkDefault "Adwaita";
+        package = mkDefault pkgs.adwaita-icon-theme;
       };
 
       fonts = {
