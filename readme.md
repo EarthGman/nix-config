@@ -191,6 +191,9 @@ Imperative actions after install
 - reinstall wine/bottles programs
 
 # TODO
+- [ ] FIX SYSTEMD FOR WAYLAND
+  - [ ] learn systemd unit triggers
+  - [ ] wait for UWSM docs to release
 - [ ] finish readme and other .github setup
 - [x] redo rofi, fix rofi bug on hyprland
 - [ ] alternative systemd setup for "Hyprland (systemd-session)"
