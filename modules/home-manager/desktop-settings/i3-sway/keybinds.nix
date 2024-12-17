@@ -16,7 +16,7 @@ in
   "${mod}+Return" = "exec ${terminal}";
   "${mod}+q" = "kill";
   # "${mod}+d" = "exec --no-startup-id dmenu_run";
-  "${mod}+space" = "exec ${getExe pkgs.rofi} -show";
+  "${mod}+space" = "exec rofi -show";
   "${mod}+b" = "exec ${browser}";
   # special case for yazi to launch properly
   "${mod}+m" = if fileManager == "yazi" then "exec ${terminal} -e yazi" else "exec ${fileManager}";
@@ -101,7 +101,11 @@ in
   "${mod}+Shift+9" = "move container to workspace number 9";
   "${mod}+Shift+0" = "move container to workspace number 10";
 
-  "${mod}+Shift+r" = "restart";
+  "${mod}+Shift+r" =
+    if (desktop == "i3") then
+      "restart"
+    else
+      "reload";
 
   "${mod}+Shift+e" =
     if (desktop == "i3") then
