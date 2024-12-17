@@ -18,6 +18,7 @@ in
       default = "ashes";
     };
   };
+
   config = {
     stylix = {
       enable = mkDefault true;

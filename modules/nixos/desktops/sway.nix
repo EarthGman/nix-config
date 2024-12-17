@@ -7,6 +7,7 @@ in
   config = mkIf config.modules.desktops.sway.enable {
     programs = {
       sway.enable = true;
+      # this DOES NOT work with sway at the moment
       #   uwsm = {
       #     enable = true;
       #     waylandCompositors = {

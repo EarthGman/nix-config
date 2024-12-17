@@ -1,16 +1,17 @@
 { pkgs, lib, config, ... }:
 let
-  inherit (lib) optionals mkDefault;
+  inherit (lib) mkDefault;
   enabled = { enable = mkDefault true; };
-  scripts = import ../scripts { inherit pkgs lib config; };
 
-  # hackfix until I figure out UWSM
-  startupScript = pkgs.writeScript "sway-startup.sh" ''
+  startup = pkgs.writeScript "sway-startup.sh" ''
+    systemctl --user start swww-daemon	
     sleep 1
-    systemctl --user restart waybar
-    systemctl --user restart network-manager-applet
-    systemctl --user restart blueman-applet
-    systemctl --user restart hyprland-windows-for-sway-i3
+    
+    ${if config.services.omori-calendar-project.enable then ''
+      systemctl --user start omori-calendar-project
+    '' else ''
+      swww img ${config.stylix.image}
+    ''}
   '';
 in
 {
@@ -33,6 +34,10 @@ in
     config = {
       output."*" = lib.mkForce { };
       startup = [
+        {
+          command = "${startup}";
+          always = false;
+        }
       ];
     };
   };
