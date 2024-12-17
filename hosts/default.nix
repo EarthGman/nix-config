@@ -9,7 +9,7 @@ in
     cpu = "amd";
     gpu = "amd";
     users = [ "g" ];
-    desktop = "i3,sway";
+    desktop = "i3,sway,hyprland";
     platform = "x86_64-linux";
     stateVersion = "24.05";
     configDir = ./cypher;
@@ -20,7 +20,7 @@ in
     cpu = "intel";
     gpu = "intel-igpu";
     users = [ "g" ];
-    desktop = "hyprland,i3";
+    desktop = "hyprland,i3,sway";
     platform = "x86_64-linux";
     stateVersion = "24.05";
     configDir = ./garth;

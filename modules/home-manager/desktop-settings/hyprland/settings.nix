@@ -4,13 +4,6 @@ let
   inherit (lib) mkDefault optionals;
   inherit (builtins) toString;
   mainMod = config.wayland.windowManager.hyprland.mainMod;
-
-  startupScript = pkgs.writeScript "hyprland-startup.sh" ''
-    sleep 1
-    systemctl --user restart waybar
-    systemctl --user restart network-manager-applet
-    systemctl --user restart blueman-applet
-  '';
 in
 {
   # env
@@ -27,7 +20,6 @@ in
   # exec only at hyprland startup
   exec-once = [
     "swww-daemon --no-cache"
-    "${startupScript}"
   ];
   # exec at every reload (Mod+r) by default
   exec = [

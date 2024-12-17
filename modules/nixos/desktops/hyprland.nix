@@ -7,6 +7,7 @@ in
   config = lib.mkIf cfg.enable {
     programs.hyprland = {
       enable = true;
+      withUWSM = true;
     };
     xdg.portal.configPackages = [ pkgs.xdg-desktop-portal-hyprland ];
     environment.sessionVariables = {
