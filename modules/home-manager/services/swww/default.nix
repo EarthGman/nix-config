@@ -1,6 +1,6 @@
 { inputs, pkgs, lib, config, platform, ... }:
 let
-  inherit (lib) mkEnableOption mkOption mkIf types;
+  inherit (lib) mkEnableOption mkOption mkIf types getExe;
   cfg = config.services.swww;
 in
 {
@@ -76,17 +76,46 @@ in
       "SWWW_TRANSITION_WAVE" = cfg.settings.transition.wave;
     };
 
-    systemd.user.services.swww-daemon = {
-      Unit.Description = "start the swww-daemon";
-      Service = {
-        Environment = "PATH=/run/current-system/sw/bin:${config.home.homeDirectory}/.nix-profile/bin";
-        Type = "exec";
-        ExecStart = pkgs.writeScript "swww-init.sh" ''
-          #!${pkgs.bash}/bin/bash
-          pgrep -x swww-daemon || swww-daemon --no-cache
-        '';
+    systemd.user.services =
+      let
+        bash = "${getExe pkgs.bash} -c";
+      in
+      {
+        swww-daemon = {
+          Service = {
+            Type = "exec";
+            Environment = "PATH=/run/current-system/sw/bin:${config.home.homeDirectory}/.nix-profile/bin";
+            ExecStart = "${bash} 'pgrep -x swww-daemon || swww-daemon --no-cache'";
+            # ExecStartPost = "${bash} 'systemctl --user start swww-wallpaper'";
+            KillSignal = "SIGTERM";
+            Restart = "on-failure";
+          };
+
+          Unit = {
+            Description = "start the swww-daemon";
+            PartOf = [ "graphical-session.target" ];
+            Requisite = [ "graphical-session.target" ];
+            After = [ "graphical-session.target" ];
+            Requires = [ "graphical-session.target" ];
+            ConditionPathExistsGlob = "/run/user/%U/wayland-*";
+          };
+
+          Install = {
+            WantedBy = [ "graphical-session.target" ];
+          };
+        };
+
+        swww-wallpaper = {
+          Service = {
+            Type = "oneshot";
+            Environment = "PATH=/run/current-system/sw/bin:${config.home.homeDirectory}/.nix-profile/bin";
+            ExecStart = "${bash} 'swww img ${config.stylix.image}'";
+          };
+          Unit = {
+            Description = "Set wallpaper using swww";
+          };
+        };
       };
-    };
   };
 }
 

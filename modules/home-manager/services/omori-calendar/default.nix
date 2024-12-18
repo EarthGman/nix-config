@@ -24,7 +24,7 @@ in
     systemd.user.services."omori-calendar-project" = {
       Unit = {
         Description = ''
-          Omori-Calendar-Project: set wallpaper
+          set wallpaper from the omori calendar project
         '';
         After = [ "graphical-session.target" ];
       };
@@ -37,6 +37,15 @@ in
         WantedBy = [ "graphical-session.target" ];
       };
     };
+
+    # i3 integration
+    xsession.windowManager.i3.config.startup = [
+      {
+        command = "systemctl --user restart omori-calendar-project";
+        always = true;
+        notification = false;
+      }
+    ];
 
     # if gnome is enabled give a warning
     warnings =

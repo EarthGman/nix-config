@@ -2,12 +2,6 @@
 let
   inherit (lib) mkDefault;
   enabled = { enable = mkDefault true; };
-
-  startup = pkgs.writeScript "sway-startup.sh" ''
-    systemctl --user start swww-daemon	
-    sleep 1
-    swww img ${config.stylix.image}
-  '';
 in
 {
   imports = [
@@ -29,10 +23,6 @@ in
     config = {
       output."*" = lib.mkForce { };
       startup = [
-        {
-          command = "${startup}";
-          always = false;
-        }
       ];
     };
   };
