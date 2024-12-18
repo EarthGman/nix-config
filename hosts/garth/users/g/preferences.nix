@@ -1,6 +1,6 @@
 { outputs, ... }:
 let
-  theme = outputs.homeProfiles.desktopThemes.determination;
+  theme = outputs.homeProfiles.desktopThemes.celeste;
 in
 {
   imports = [

@@ -3,16 +3,6 @@ let
   inherit (lib) mkDefault;
   enabled = { enable = mkDefault true; };
 
-  startup = pkgs.writeScript "i3-startup.sh" ''
-    systemctl --user import-environment XDG_CURRENT_DESKTOP PATH
-    systemctl --user restart polybar
-    systemctl --user restart hyprland-windows-for-sway-i3
-    ${if config.services.omori-calendar-project.enable then ''
-      systemctl --user restart omori-calendar-project
-    '' else ''
-      ${lib.getExe pkgs.feh} --bg-scale ${config.stylix.image}
-    ''}
-  '';
 in
 {
   imports = [
@@ -32,12 +22,15 @@ in
 
   xsession = {
     enable = true;
+    initExtra = ''
+      systemctl --user import-environment XDG_CURRENT_DESKTOP PATH
+    '';
     windowManager.i3 = {
       enable = true;
       config.startup = [
         {
-          command = "${startup}";
-          always = false;
+          command = "systemctl --user restart polybar";
+          always = true;
           notification = false;
         }
       ];
