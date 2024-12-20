@@ -1,32 +1,39 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, lib, config, ... }:
 let
   inherit (lib) mkDefault;
   enabled = { enable = mkDefault true; };
-  scripts = import ./scripts.nix { inherit pkgs lib config; };
+
 in
 {
-  imports = [ ./hyprland-windows.nix ];
+  imports = [
+    ../i3-sway
+  ];
+
   programs = {
-    pwvucontrol = enabled;
-    rofi = enabled;
     i3lock.settings = {
       ignoreEmptyPassword = mkDefault true;
     };
   };
 
   services = {
-    hyprland-windows-for-i3 = enabled;
-    network-manager-applet = enabled;
     polybar = enabled;
     picom = enabled;
-    dunst = enabled;
   };
 
   xsession = {
     enable = true;
+    initExtra = ''
+      systemctl --user import-environment XDG_CURRENT_DESKTOP PATH
+    '';
     windowManager.i3 = {
       enable = true;
-      config = import ./settings.nix { inherit pkgs lib config scripts; };
+      config.startup = [
+        {
+          command = "systemctl --user restart polybar";
+          always = true;
+          notification = false;
+        }
+      ];
     };
   };
 }

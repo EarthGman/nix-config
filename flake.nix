@@ -24,6 +24,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-library = {
+      url = "github:EarthGman/nix-library";
+    };
+
     nur = {
       url = "github:nix-community/nur";
     };
@@ -42,6 +46,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    swww = {
+      url = "github:LGFae/swww";
+    };
+
     wallpapers = {
       url = "https://raw.githubusercontent.com/EarthGman/assets/master/wallpapers.json";
       flake = false;
@@ -52,34 +60,26 @@
       flake = false;
     };
 
-    fonts = {
-      url = "https://raw.githubusercontent.com/EarthGman/assets/master/fonts.json";
-      flake = false;
-    };
-
     binaries = {
       url = "https://raw.githubusercontent.com/EarthGman/assets/master/binaries.json";
       flake = false;
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { self, nixpkgs, nix-library, ... } @ inputs:
     let
       inherit (self) outputs;
-      lib = nixpkgs.lib.extend
-        (final: prev: import ./lib { inherit self inputs outputs; });
-      inherit (lib) forAllSystems autoImport;
+      helpers = import ./lib/helpers.nix { inherit self outputs; };
+      myLib = helpers // nix-library.lib;
+      lib = nixpkgs.lib.extend # must overlay the lib functions like this or else weird stuff happens for some reason
+        (final: prev: myLib);
+      inherit (lib) autoImport;
     in
     {
       inherit lib;
       keys = import ./keys.nix;
       overlays = import ./overlays.nix { inherit inputs; };
-      packages = forAllSystems (system:
-        let
-          pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
-        in
-        import ./pkgs { inherit pkgs inputs; }
-      );
+      packages = nix-library.packages;
 
       nixosModules = {
         imports = autoImport ./modules/nixos;
@@ -106,6 +106,7 @@
           inferno = import ./profiles/home-manager/desktop-themes/inferno.nix;
           nightmare = import ./profiles/home-manager/desktop-themes/nightmare.nix;
           vibrant-cool = import ./profiles/home-manager/desktop-themes/vibrant-cool.nix;
+          celeste = import ./profiles/home-manager/desktop-themes/celeste.nix;
         };
       };
 

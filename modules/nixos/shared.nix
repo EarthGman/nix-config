@@ -15,9 +15,12 @@ in
     neovim.enable = mkDefault true;
   };
 
-  programs.direnv = {
-    enable = mkDefault true;
-    nix-direnv.enable = true;
+  programs = {
+    yazi.enable = mkDefault true;
+    direnv = {
+      enable = mkDefault true;
+      nix-direnv.enable = true;
+    };
   };
 
   # goodbye bloat
@@ -132,10 +135,20 @@ in
       in
       ''
         eval "$(${getExe pkgs.zoxide} init --cmd j zsh)"
+        setopt autocd
       '' + optionalString (has-neovim) ''
         export EDITOR=nvim
       '' + optionalString (!(has-neovim)) ''
         export EDITOR=nano
+      '' + optionalString (config.programs.yazi.enable) ''
+         function y() {
+         local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+         yazi "$@" --cwd-file="$tmp"
+         if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+           builtin cd -- "$cwd"
+         fi
+         rm -f -- "$tmp"
+        }
       '';
   };
   # enable starship for everyone

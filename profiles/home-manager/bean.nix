@@ -19,5 +19,9 @@ in
     filezilla = enabled;
     gcolor = enabled;
     obs-studio = enabled;
+
+    zsh.shellAliases = {
+      edit-config = "cd ~/src/nix-config && $EDITOR .";
+    };
   };
 }

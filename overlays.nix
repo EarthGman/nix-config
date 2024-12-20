@@ -17,7 +17,7 @@
   nur = inputs.nur.overlays.default;
 
   # additional packages added to the package set
-  packages = final: _prev: import ./pkgs { pkgs = final; inherit inputs; };
+  packages = inputs.nix-library.overlay.default;
 
   # cuts out roughly 600Mb of bloat
   disable-mbrola-voices = final: prev: {

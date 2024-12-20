@@ -1,6 +1,6 @@
-{ self, inputs, outputs, ... }:
+{ self, outputs, ... }:
 let
-  # expose nixpkgs functions and self defined functions
+  # expose both nixpkgs and self defined lib functions
   inherit (outputs) lib;
 in
 {
@@ -60,23 +60,4 @@ in
         ++ optionals (desktop != null) [ desktop-setup ]
         ++ optionals server [ server-setup ];
     };
-
-  forAllSystems = lib.genAttrs [
-    "aarch64-linux"
-    "aarch64-darwin"
-    "i686-linux"
-    "x86_64-linux"
-    "x86_64-darwin"
-  ];
-
-  # takes a string and seperator. Returns a list of elements split by the seperator
-  # EX stringToList "alice,bob" "," -> [ "alice" "bob" ]
-  stringToList = string: seperator: builtins.filter builtins.isString (builtins.split "${seperator}" string);
-
-  # read a directory and return a list of all filenames inside
-  autoImport = dir:
-    let
-      workingDirectory = dir;
-    in
-    lib.forEach (builtins.attrNames (builtins.readDir workingDirectory)) (dirname: workingDirectory + /${dirname});
 }

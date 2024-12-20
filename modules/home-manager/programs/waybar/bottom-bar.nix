@@ -1,9 +1,6 @@
-{ pkgs, config, lib, hostName, ... }:
+{ pkgs, config, lib, ... }:
 let
-  inherit (lib) getExe;
-  wallpaper-switcher = import ./hyprpaper.nix { inherit pkgs config; };
-  theme-switcher = import ./theme-switcher.nix { inherit pkgs lib config hostName; };
-
+  inherit (lib) getExe mkDefault;
 in
 {
   name = "bottom";
@@ -25,6 +22,7 @@ in
   modules-center = [
     "custom/os_button"
     "hyprland/workspaces"
+    "sway/workspaces"
   ];
   modules-right = [
     "battery"
@@ -47,7 +45,6 @@ in
       shutdown = "shutdown now";
       lockscreen = "hyprlock";
       reboot = "systemctl reboot";
-      inherit theme-switcher wallpaper-switcher;
     };
   };
 
@@ -56,6 +53,11 @@ in
     spacing = 16;
     on-scroll-up = "hyprctl dispatch workspace r+1";
     on-scroll-down = "hyprctl dispatch workspace r-1";
+  };
+
+  "sway/workspaces" = {
+    all-outputs = mkDefault false;
+    disable-scroll = mkDefault true;
   };
 
   "custom/os_button" = {

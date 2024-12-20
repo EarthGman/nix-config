@@ -33,7 +33,7 @@ in
 
   config = mkIf cfg.enable {
     programs.fastfetch = {
-      settings = import ./settings.nix { inherit config; };
+      settings = import ./settings.nix { inherit config lib; };
     };
     # direct the alias to the randomizer script
     programs.zsh.shellAliases =

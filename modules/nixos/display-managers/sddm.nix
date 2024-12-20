@@ -2,7 +2,7 @@
 let
   cfg = config.services.displayManager.sddm;
   inherit (lib) types mkOption mkIf;
-  desktops = lib.stringToList desktop ",";
+  desktops = lib.splitString "," desktop;
   preferredDesktop = builtins.elemAt desktops 0;
 
   # handle some weird edge cases with session names
@@ -10,6 +10,8 @@ let
     if (preferredDesktop == "i3")
     then
       "none+i3"
+    else if (preferredDesktop == "hyprland") then
+      "hyprland-uwsm"
     else
       preferredDesktop;
 in

@@ -1,7 +1,7 @@
 { pkgs, lib, config, ... }:
 let
   enabled = { enable = lib.mkDefault true; };
-  scripts = import ./scripts.nix { inherit pkgs lib config; };
+  scripts = import ../scripts { inherit pkgs lib config; };
 in
 {
   options = {
@@ -11,10 +11,10 @@ in
       default = "SUPER";
     };
   };
+
   config = {
     services = {
       dunst = enabled;
-      hyprpaper = enabled;
       network-manager-applet = enabled;
     };
 
@@ -24,9 +24,18 @@ in
       hyprlock = enabled;
     };
 
+    services = {
+      hyprpaper.enable =
+        if (config.services.swww.enable)
+        then
+          (lib.mkForce false)
+        else true;
+      swww = enabled;
+    };
+
     wayland.windowManager.hyprland = {
       enable = true;
-      systemd.enable = true;
+      systemd.enable = false;
       xwayland.enable = true;
       settings = import ./settings.nix { inherit pkgs lib config scripts; };
     };

@@ -2,7 +2,7 @@
 let
   inherit (lib) getExe;
   inherit (builtins) fetchurl;
-  script = import ./script.nix { inherit pkgs fetchurl wallpapers getExe; };
+  script = import ./script.nix { inherit pkgs config fetchurl wallpapers getExe; };
 in
 {
   options.services.omori-calendar-project.enable = lib.mkEnableOption ''
@@ -24,12 +24,12 @@ in
     systemd.user.services."omori-calendar-project" = {
       Unit = {
         Description = ''
-          Omori-Calendar-Project: set wallpaper
+          set wallpaper from the omori calendar project
         '';
         After = [ "graphical-session.target" ];
       };
       Service = {
-        Environment = "PATH=/run/current-system/sw/bin";
+        Environment = "PATH=/run/current-system/sw/bin:${config.home.homeDirectory}/.nix-profile/bin";
         Type = "oneshot";
         ExecStart = "${script}";
       };
@@ -38,26 +38,11 @@ in
       };
     };
 
-    # hyprland integration
-    wayland.windowManager.hyprland.settings = {
-      exec-once = [
-        "systemctl --user start omori-calendar-project.service"
-      ];
-      exec = [
-        "systemctl --user restart omori-calendar-project.service"
-      ];
-    };
-    # make sure hyprpaper is clear by default
-    services.hyprpaper.settings = {
-      preload = lib.mkForce [ ];
-      wallpaper = lib.mkForce [ ];
-    };
-
     # i3 integration
     xsession.windowManager.i3.config.startup = [
       {
-        command = "systemctl --user start omori-calendar-project.service";
-        always = false;
+        command = "systemctl --user restart omori-calendar-project";
+        always = true;
         notification = false;
       }
     ];
@@ -65,7 +50,7 @@ in
     # if gnome is enabled give a warning
     warnings =
       let
-        desktops = lib.stringToList desktop ",";
+        desktops = lib.splitString "," desktop;
         gnome = builtins.elem "gnome" desktops;
       in
       if gnome then

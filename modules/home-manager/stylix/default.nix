@@ -7,6 +7,7 @@ in
   imports = [
     inputs.stylix.homeManagerModules.stylix
   ];
+
   options = {
     stylix.colorScheme = mkOption {
       description = ''
@@ -17,6 +18,7 @@ in
       default = "ashes";
     };
   };
+
   config = {
     stylix = {
       enable = mkDefault true;
@@ -32,6 +34,13 @@ in
         package = mkDefault pkgs.bibata-cursors;
         name = mkDefault "Bibata-Modern-Classic";
         size = mkDefault 24;
+      };
+
+      iconTheme = {
+        enable = mkDefault true;
+        dark = mkDefault "Adwaita";
+        light = mkDefault "Adwaita";
+        package = mkDefault pkgs.adwaita-icon-theme;
       };
 
       fonts = {

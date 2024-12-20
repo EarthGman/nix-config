@@ -1,6 +1,6 @@
 { outputs, ... }:
 let
-  theme = outputs.homeProfiles.desktopThemes.faraway;
+  theme = outputs.homeProfiles.desktopThemes.celeste;
 in
 {
   imports = [
@@ -25,16 +25,21 @@ in
     "HDMI-A-1, 1920x1080@74.97, -1920x0, 1"
   ];
 
-  # monitors for i3
-  xsession.windowManager.i3.config.startup = [
-    {
-      command = ''
-        xrandr --output DisplayPort-2 --auto --right-of HDMI-A-0 \
-               --output DisplayPort-2 --mode 2560x1440 \
-               --output HDMI-A-0 --mode 1920x1080 --rate 74.97 \
-      '';
-      always = false;
-      notification = false;
-    }
-  ];
+  # monitors for xorg
+  xsession.profileExtra = ''
+    xrandr --output DisplayPort-2 --auto --right-of HDMI-A-0 \
+           --output DisplayPort-2 --mode 2560x1440 \
+           --output HDMI-A-0 --mode 1920x1080 --rate 74.97 \
+  '';
+
+  wayland.windowManager.sway.config.output = {
+    "DP-3" = {
+      scale = "1.0";
+      mode = "2560x1440@59.951Hz";
+    };
+    "HDMI-A-1" = {
+      scale = "1.0";
+      mode = "1920x1080@100.000Hz";
+    };
+  };
 }

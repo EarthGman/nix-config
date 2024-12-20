@@ -1,16 +1,8 @@
 { icons, pkgs, lib, config, ... }:
-# uses betterfox user.js by default
 let
   inherit (lib) types mkIf mkDefault mkOption;
   profile = ".mozilla/firefox/default";
   cfg = config.programs.firefox;
-  betterfox = pkgs.fetchFromGitHub {
-    owner = "yokoffing";
-    repo = "Betterfox";
-    rev = "main";
-    sha256 = "sha256-CxPZxo9G44lRocNngjfwTBHSqL5dEJ5MNO5Iauoxp2Y=";
-  };
-  user_js = "${betterfox}/user.js";
 in
 {
   options.programs.firefox = {
@@ -18,11 +10,11 @@ in
       name = mkOption {
         description = "name of theme";
         type = types.str;
-        default = "";
+        default = "betterfox";
       };
       config = mkOption {
         description = ''
-          extra config passed to theme derivtaion
+          any extra configuration for themes such as setting of wallpapers.
         '';
         default = { };
         type = types.attrsOf types.str;
@@ -31,13 +23,14 @@ in
   };
   config =
     let
-      packageName = cfg.theme.name;
       themePackage =
-        if (packageName != "") then
-          pkgs."${packageName}".override
+        if (builtins.hasAttr "${cfg.theme.name}" pkgs) then
+          pkgs."${cfg.theme.name}".override
             {
               themeConfig = cfg.theme.config;
-            } else null;
+            }
+        else
+          null;
     in
     mkIf cfg.enable {
       programs.firefox = {
@@ -58,13 +51,13 @@ in
               force = true;
             };
             extraConfig =
-              if (themePackage != null) then
-                (builtins.readFile (themePackage + "/user.js"))
-              else builtins.readFile user_js;
+              if builtins.pathExists (themePackage + "/user.js") then
+                themePackage + "/user.js"
+              else "";
           };
         };
       };
-      home.file."${profile}/chrome" = mkIf (themePackage != null) {
+      home.file."${profile}/chrome" = mkIf (builtins.pathExists (themePackage + "/chrome")) {
         source = themePackage + "/chrome";
       };
     };
