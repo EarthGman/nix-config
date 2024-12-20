@@ -25,7 +25,11 @@ in
     };
 
     services = {
-      hyprpaper.enable = lib.mkForce false; # this is getting enabled (IDK by what though)
+      hyprpaper.enable =
+        if (config.services.swww.enable)
+        then
+          (lib.mkForce false)
+        else true;
       swww = enabled;
     };
 
