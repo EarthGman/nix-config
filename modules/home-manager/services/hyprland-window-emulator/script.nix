@@ -10,7 +10,7 @@ writeScript "hyprland-window-creation-emulator.sh" ''
   # Determine the appropriate message command based on $XDG_CURRENT_DESKTOP
   if [ "$XDG_CURRENT_DESKTOP" = "none+i3" ]; then
     msg_cmd="i3-msg"
-  elif [ "$XDG_CURRENT_DESKTOP" = "sway" ]; then
+  elif [ "$XDG_CURRENT_DESKTOP" = "sway:wlroots" ]; then
     msg_cmd="swaymsg"
   else
     echo "Error: Unsupported desktop environment: $XDG_CURRENT_DESKTOP"

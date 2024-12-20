@@ -7,17 +7,16 @@ in
   config = mkIf config.modules.desktops.sway.enable {
     programs = {
       sway.enable = true;
-      # this DOES NOT work with sway at the moment
-      #   uwsm = {
-      #     enable = true;
-      #     waylandCompositors = {
-      #       sway = {
-      #         prettyName = "Sway";
-      #         comment = "sway compositor managed by UWSM";
-      #         binPath = "/run/current-system/sw/bin/sway";
-      #       };
-      #     };
-      #   };
+      uwsm = {
+        enable = true;
+        waylandCompositors = {
+          sway = {
+            prettyName = "Sway";
+            comment = "sway compositor managed by UWSM";
+            binPath = "/run/current-system/sw/bin/sway";
+          };
+        };
+      };
     };
   };
 }

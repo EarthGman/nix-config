@@ -22,6 +22,7 @@ in
   };
   config = {
     programs.waybar = {
+      systemd.enable = true;
       bottomBar.settings = import ./bottom-bar.nix { inherit pkgs config lib hostName; };
       settings = [
         cfg.topBar.settings
@@ -32,6 +33,12 @@ in
     home.packages = lib.mkIf config.programs.waybar.enable (with pkgs; [
       nerd-fonts.meslo-lg
     ]);
+
+    systemd.user.services.waybar = {
+      Unit.After = [ "graphical-session.target" ];
+      Service.Slice = [ "app-graphical.slice" ];
+    };
+
     # settings menu
     xdg.configFile = {
       "waybar/settings-menu.xml" = {

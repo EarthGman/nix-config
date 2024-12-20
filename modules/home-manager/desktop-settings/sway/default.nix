@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ lib, ... }:
 let
   inherit (lib) mkDefault;
   enabled = { enable = mkDefault true; };
@@ -20,9 +20,17 @@ in
 
   wayland.windowManager.sway = {
     enable = true;
+    systemd.enable = false;
     config = {
       output."*" = lib.mkForce { };
       startup = [
+        {
+          command = "uwsm finalize";
+        }
+        {
+          command = "systemctl --user restart waybar";
+          always = true;
+        }
       ];
     };
   };

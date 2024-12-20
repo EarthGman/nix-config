@@ -11,6 +11,7 @@ in
     dolphin-emu.enable = true;
     lutris.enable = true;
     davinci-resolve.enable = true;
+    feh.enable = true;
 
     looking-glass.enable = true;
     looking-glass.version = "B6";
@@ -36,10 +37,12 @@ in
     "DP-3" = {
       scale = "1.0";
       mode = "2560x1440@59.951Hz";
+      position = "0,0";
     };
     "HDMI-A-1" = {
       scale = "1.0";
       mode = "1920x1080@100.000Hz";
+      position = "-1920,0";
     };
   };
 }

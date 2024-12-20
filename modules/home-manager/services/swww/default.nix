@@ -86,7 +86,8 @@ in
             Type = "exec";
             Environment = "PATH=/run/current-system/sw/bin:${config.home.homeDirectory}/.nix-profile/bin";
             ExecStart = "${bash} 'pgrep -x swww-daemon || swww-daemon --no-cache'";
-            # ExecStartPost = "${bash} 'systemctl --user start swww-wallpaper'";
+            ExecStartPost = "${bash} 'systemctl --user start swww-wallpaper'";
+            ExecReload = "swww kill";
             KillSignal = "SIGTERM";
             Restart = "on-failure";
           };
@@ -94,9 +95,7 @@ in
           Unit = {
             Description = "start the swww-daemon";
             PartOf = [ "graphical-session.target" ];
-            Requisite = [ "graphical-session.target" ];
             After = [ "graphical-session.target" ];
-            Requires = [ "graphical-session.target" ];
             ConditionPathExistsGlob = "/run/user/%U/wayland-*";
           };
 
