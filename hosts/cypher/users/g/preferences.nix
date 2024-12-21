@@ -1,5 +1,6 @@
-{ outputs, ... }:
+{ outputs, wallpapers, ... }:
 let
+  inherit (builtins) fetchurl;
   theme = outputs.homeProfiles.desktopThemes.celeste;
 in
 {
@@ -17,6 +18,15 @@ in
     looking-glass.version = "B6";
     obs-studio.enable = true;
     ygo-omega.enable = true;
+  };
+
+  services.fehbg.settings.monitors = {
+    "0" = {
+      image = fetchurl wallpapers.celeste-mountain;
+    };
+    "1" = {
+      image = fetchurl wallpapers.celeste;
+    };
   };
 
   # monitors for hyprland

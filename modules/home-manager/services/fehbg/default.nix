@@ -4,11 +4,9 @@ let
   inherit (lib) mkIf mkEnableOption mkOption types concatStringsSep mapAttrsToList getExe;
   cfg = config.services.fehbg;
 
-  multi-monitor = monitors: concatStringsSep "\n" (mapAttrsToList
-    (monitor: settings: ''
-      feh --no-fehbg --bg-${settings.scale-mode} --xinerama-index ${monitor} "${settings.image}"
-    '')
-    monitors);
+  multi-monitor = monitors: ''
+    feh --no-fehbg --bg-${cfg.settings.scale-mode} ${concatStringsSep " " (mapAttrsToList (monitor: settings: "${settings.image}") monitors)}
+  '';
 
   script = pkgs.writeScript "fehbg.sh" ''
     #!${getExe pkgs.bash}
@@ -43,7 +41,15 @@ in
       monitors = mkOption {
         description = ''
           monitor configuration for feh
-          monitor number ("0") as attrset with 2 options: image and scale-mode
+          monitor number ("0") as attrset with image config for that monitor
+        '';
+        example = ''
+          "0" = {
+            image = "path to my wallpaper";
+          };
+          "1" = {
+            image = "path to another wallpaper";
+          };
         '';
         type = types.attrsOf (types.attrsOf types.str);
         default = { };

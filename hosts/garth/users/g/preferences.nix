@@ -1,4 +1,4 @@
-{ outputs, config, ... }:
+{ outputs, ... }:
 let
   theme = outputs.homeProfiles.desktopThemes.faraway;
 in
@@ -11,13 +11,6 @@ in
     enable = true;
   };
 
-  services.fehbg.settings.monitors = {
-    "0" = {
-      image = "${config.stylix.image}";
-      scale-mode = "${config.stylix.imageScalingMode}";
-    };
-  };
-
   programs = {
     google-chrome.enable = true;
     openconnect.enable = true;
@@ -28,4 +21,3 @@ in
 
   services.dunst.battery-monitor.enable = true;
 }
-
