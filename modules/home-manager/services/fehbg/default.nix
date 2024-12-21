@@ -3,8 +3,6 @@
 let
   inherit (lib) mkIf mkEnableOption mkOption types concatStringsSep mapAttrsToList getExe;
   cfg = config.services.fehbg;
-
-
 in
 {
   options.services.fehbg = {
@@ -67,10 +65,8 @@ in
       script =
         pkgs.writeScript "fehbg.sh" ''
           #!${getExe pkgs.bash}
-          ${if cfg.settings.monitors != { } then ''
-            ${multi-monitor cfg.settings.monitors}
-          ''
-          else if (cfg.slideshow.enable) then '' 
+         
+          ${if (cfg.slideshow.enable) then '' 
           images=(${toString (concatStringsSep " " cfg.slideshow.images)})
           image_count=''${#images[@]}
           current_image=0
@@ -87,6 +83,9 @@ in
             set_wallpaper $current_image
           done
           '' 
+          else if cfg.settings.monitors != { } then ''
+            ${multi-monitor cfg.settings.monitors}
+          ''
           else ''
             feh --no-fehbg --bg-${cfg.settings.scale-mode} ${cfg.settings.image}
           ''}

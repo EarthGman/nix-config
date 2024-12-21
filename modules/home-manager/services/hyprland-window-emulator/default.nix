@@ -14,12 +14,11 @@ in
       };
       Service = {
         Environment = "PATH=/run/current-system/sw/bin:${config.home.homeDirectory}/.nix-profile/bin";
-        Type = "exec";
+        Type = "simple";
         ExecStartPre = "${lib.getExe pkgs.bash} -c 'while ! (i3-msg -t get_version >/dev/null 2>&1 || swaymsg -t get_version >/dev/null 2>&1); do sleep 1; done'";
         ExecStart = "${script}";
         Restart = "on-failure";
         RestartSec = 5;
-        type = "simple";
       };
       Install.WantedBy = [ "graphical-session.target" ];
     };

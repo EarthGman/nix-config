@@ -7,6 +7,7 @@
     (self + /profiles/nixos/wg0.nix)
     (self + /profiles/nixos/keyd/gmans-keymap.nix)
   ];
+
   boot.initrd.availableKernelModules = [
     "nvme"
     "ahci"
@@ -34,6 +35,8 @@
     "aarch64-linux"
   ];
 
+  hardware.amdgpu.opencl.enable = true;
+
   networking = {
     # required for sins of a solar empire lag bug in multiplayer
     extraHosts = ''66.79.209.80 ico-reb.stardock.com'';
@@ -46,6 +49,7 @@
   };
 
   modules = {
+    benchmarking.enable = true;
     onepassword.enable = true;
     sunshine.enable = true;
     qemu-kvm.enable = true;

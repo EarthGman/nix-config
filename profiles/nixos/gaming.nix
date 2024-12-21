@@ -5,5 +5,7 @@
   services.udev.packages = [ pkgs.dolphin-emu ];
   # mouse control gui
   services.ratbagd.enable = true;
-  environment.systemPackages = [ pkgs.piper ];
+  environment.systemPackages = with pkgs; [
+    piper
+  ];
 }
