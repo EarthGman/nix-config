@@ -12,7 +12,7 @@ in
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [ sops age ];
     sops = {
-      defaultSopsFile = self + /hosts/${hostName}/secrets.yaml;
+      defaultSopsFile = lib.mkDefault (self + /hosts/${hostName}/secrets.yaml);
       defaultSopsFormat = "yaml";
       age = {
         inherit keyFile;
