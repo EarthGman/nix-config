@@ -20,12 +20,21 @@ in
     ygo-omega.enable = true;
   };
 
-  services.fehbg.settings.monitors = {
-    "0" = {
-      image = fetchurl wallpapers.celeste-mountain;
-    };
-    "1" = {
-      image = fetchurl wallpapers.celeste;
+  services.fehbg = {
+    # slideshow = {
+    #   enable = true;
+    #   images = with wallpapers; [
+    #     (fetchurl celeste)
+    #     (fetchurl celeste-mountain)
+    #   ];
+    # };
+    settings.monitors = {
+      "0" = {
+        image = fetchurl wallpapers.celeste-mountain;
+      };
+      "1" = {
+        image = fetchurl wallpapers.celeste;
+      };
     };
   };
 

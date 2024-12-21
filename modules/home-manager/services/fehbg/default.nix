@@ -4,19 +4,7 @@ let
   inherit (lib) mkIf mkEnableOption mkOption types concatStringsSep mapAttrsToList getExe;
   cfg = config.services.fehbg;
 
-  multi-monitor = monitors: ''
-    feh --no-fehbg --bg-${cfg.settings.scale-mode} ${concatStringsSep " " (mapAttrsToList (monitor: settings: "${settings.image}") monitors)}
-  '';
 
-  script = pkgs.writeScript "fehbg.sh" ''
-    #!${getExe pkgs.bash}
-    ${if cfg.settings.monitors == { } then ''
-      feh --no-fehbg --bg-${cfg.settings.scale-mode} ${cfg.settings.image}
-    ''
-    else ''
-      ${multi-monitor cfg.settings.monitors} 
-    ''}
-  '';
 in
 {
   options.services.fehbg = {
@@ -55,20 +43,66 @@ in
         default = { };
       };
     };
-  };
-
-  #TODO: add slideshow maker
-  config = mkIf cfg.enable {
-    stylix.targets.feh.enable = false; # prevent stylix from controlling feh
-    programs.feh.enable = true;
-    xsession.initExtra = ''
-      systemctl --user start fehbg
-    '';
-    systemd.user.services.fehbg = {
-      Service = {
-        Type = "oneshot";
-        ExecStart = "${script}";
+    slideshow = {
+      enable = mkEnableOption "enable fehbg slideshow configuration";
+      interval = mkOption {
+        description = "interval in seconds in which the wallpapers should be switched";
+        type = types.int;
+        default = 600; # 10 minutes
+      };
+      images = mkOption {
+        description = "list of images to include in the slideshow";
+        type = types.listOf types.str;
+        default = [ ];
       };
     };
   };
+
+  config =
+    let
+      multi-monitor = monitors: ''
+        feh --no-fehbg --bg-${cfg.settings.scale-mode} ${concatStringsSep " " (mapAttrsToList (monitor: settings: "${settings.image}") monitors)}
+      '';
+
+      script =
+        pkgs.writeScript "fehbg.sh" ''
+          #!${getExe pkgs.bash}
+          ${if cfg.settings.monitors != { } then ''
+            ${multi-monitor cfg.settings.monitors}
+          ''
+          else if (cfg.slideshow.enable) then '' 
+          images=(${toString (concatStringsSep " " cfg.slideshow.images)})
+          image_count=''${#images[@]}
+          current_image=0
+
+          set_wallpaper() {
+            feh --no-fehbg --bg-fill ''${images[$1]}
+          }
+
+          set_wallpaper $current_image
+
+          while true; do
+            sleep ${toString cfg.slideshow.interval}
+            current_image=$((($current_image + 1) % $image_count))
+            set_wallpaper $current_image
+          done
+          '' 
+          else ''
+            feh --no-fehbg --bg-${cfg.settings.scale-mode} ${cfg.settings.image}
+          ''}
+        '';
+    in
+    mkIf cfg.enable {
+      stylix.targets.feh.enable = false; # prevent stylix from controlling feh
+      programs.feh.enable = true;
+      xsession.initExtra = ''
+        systemctl --user start fehbg
+      '';
+      systemd.user.services.fehbg = {
+        Service = {
+          Type = "simple";
+          ExecStart = "${script}";
+        };
+      };
+    };
 }
