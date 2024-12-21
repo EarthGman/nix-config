@@ -43,6 +43,10 @@ in
     services.fehbg.enable = mkForce false;
     programs.feh.enable = mkForce true;
 
+    # for wayland
+    services.swww.enable = mkForce true;
+
+
     xsession.initExtra = ''
       systemctl --user start omori-calendar-project;
     '';

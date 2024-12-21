@@ -7,6 +7,15 @@ in
 {
   options.services.fehbg = {
     enable = mkEnableOption "enable wallpaper service using feh";
+    image = mkOption {
+      description = ''
+        path to the image file as a string
+        if multiple monitors are specified they should be configured seperately
+      '';
+      type = types.str;
+      default = "${config.stylix.image}";
+    };
+
     settings = {
       scale-mode = mkOption {
         description = ''
@@ -15,14 +24,6 @@ in
         '';
         type = types.str;
         default = "${config.stylix.imageScalingMode}";
-      };
-      image = mkOption {
-        description = ''
-          path to the image file as a string
-          if multiple monitors are specified they should be configured seperately
-        '';
-        type = types.str;
-        default = "${config.stylix.image}";
       };
       monitors = mkOption {
         description = ''
@@ -41,6 +42,7 @@ in
         default = { };
       };
     };
+
     slideshow = {
       enable = mkEnableOption "enable fehbg slideshow configuration";
       interval = mkOption {
@@ -87,7 +89,7 @@ in
             ${multi-monitor cfg.settings.monitors}
           ''
           else ''
-            feh --no-fehbg --bg-${cfg.settings.scale-mode} ${cfg.settings.image}
+            feh --no-fehbg --bg-${cfg.settings.scale-mode} ${cfg.image}
           ''}
         '';
     in

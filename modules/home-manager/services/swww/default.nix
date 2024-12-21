@@ -5,55 +5,74 @@ let
 in
 {
   options.services.swww = {
-    enable = mkEnableOption "enable swww, a solution to your wayland wallpaper woes";
+    enable = mkEnableOption ''
+      enable swww, a solution to your wayland wallpaper woes
+      (and the cause of mine)
+    '';
+
     package = mkOption {
-      description = "package to use";
+      description = "swww package to use";
       type = types.package;
       default = inputs.swww.packages.${platform}.swww;
     };
+
+    image = mkOption {
+      description = "the default image swww will use (applied to all monitors) as a string";
+      type = types.str;
+      default = "${config.stylix.image}";
+    };
+
     settings = {
       resizeMode = mkOption {
         description = "the resize mode for swww to use";
         type = types.str;
         default = "crop";
       };
+
       transition = {
         type = mkOption {
           description = "transition mode";
           type = types.str;
           default = "fade";
         };
+
         step = mkOption {
           description = "how fast the transition approaches the new image";
           type = types.int;
           default = 90;
         };
+
         duration = mkOption {
           description = "transition duration in seconds";
           type = types.int;
           default = 2;
         };
+
         fps = mkOption {
           description = "transition fps";
           type = types.int;
           default = 30;
         };
+
         angle = mkOption {
           description = "used for wipe and wave transitions. Rotation of the transition in degrees";
           type = types.int;
           default = 45;
         };
+
         pos = mkOption {
           description = "used for grow, outer. Controls the center of the circle";
           type = types.str;
           default = "center";
         };
+
         wave = mkOption {
           description = "only used for the wave transition to control the width and height of each wave";
           type = types.str;
           default = "20,20";
         };
       };
+
       invertY = mkOption {
         description = "inverts the y position sent in transition_pos";
         type = types.str;
@@ -78,15 +97,24 @@ in
 
     systemd.user.services =
       let
-        bash = "${getExe pkgs.bash} -c";
+        bash = "${getExe pkgs.bash}";
+        set-wallpaper = pkgs.writeScript "swww.sh" ''
+          #!${bash}
+          swww img ${cfg.image}
+        '';
       in
       {
         swww-daemon = {
           Service = {
             Type = "exec";
             Environment = "PATH=/run/current-system/sw/bin:${config.home.homeDirectory}/.nix-profile/bin";
-            ExecStart = "${bash} 'pgrep -x swww-daemon || swww-daemon --no-cache'";
-            ExecStartPost = "${bash} 'systemctl --user start swww-wallpaper'";
+            ExecStart = "${bash} -c 'pgrep -x swww-daemon || swww-daemon --no-cache'";
+            ExecStartPost = ''
+              ${bash} -c '${if (config.services.omori-calendar-project.enable) then
+                "sleep 0.2 && systemctl --user start omori-calendar-project"
+              else
+                "sleep 0.2 && systemctl --user start swww-wallpaper"}'
+            '';
             ExecReload = "swww kill";
             KillSignal = "SIGTERM";
             Restart = "on-failure";
@@ -96,6 +124,7 @@ in
             Description = "start the swww-daemon";
             PartOf = [ "graphical-session.target" ];
             After = [ "graphical-session.target" ];
+            # only trigger if in wayland session
             ConditionPathExistsGlob = "/run/user/%U/wayland-*";
           };
 
@@ -108,7 +137,7 @@ in
           Service = {
             Type = "oneshot";
             Environment = "PATH=/run/current-system/sw/bin:${config.home.homeDirectory}/.nix-profile/bin";
-            ExecStart = "${bash} 'swww img ${config.stylix.image}'";
+            ExecStart = "${set-wallpaper}";
           };
           Unit = {
             Description = "Set wallpaper using swww";
