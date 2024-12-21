@@ -1,6 +1,6 @@
-{ outputs, ... }:
+{ outputs, config, ... }:
 let
-  theme = outputs.homeProfiles.desktopThemes.celeste;
+  theme = outputs.homeProfiles.desktopThemes.faraway;
 in
 {
   imports = [
@@ -9,6 +9,13 @@ in
 
   xsession.screensaver = {
     enable = true;
+  };
+
+  services.fehbg.settings.monitors = {
+    "0" = {
+      image = "${config.stylix.image}";
+      scale-mode = "${config.stylix.imageScalingMode}";
+    };
   };
 
   programs = {

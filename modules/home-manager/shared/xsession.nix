@@ -52,6 +52,9 @@ in
 
   config = {
     xsession = let cfg = config.xsession; in {
+      initExtra = ''
+        systemctl --user import-environment XDG_CURRENT_DESKTOP PATH
+      '';
       profileExtra = (if cfg.dpms.enable then ''
         xset +dpms
         xset dpms ${toString cfg.dpms.standby} ${toString cfg.dpms.suspend} ${toString cfg.dpms.poweroff}

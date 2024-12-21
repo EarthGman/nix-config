@@ -1,5 +1,5 @@
-{ pkgs, config, fetchurl, wallpapers, getExe, ... }:
-pkgs.writeScript "set-wallpaper-by-month.sh" ''
+{ pkgs, config, fetchurl, wallpapers, ... }:
+pkgs.writeScript "omori-calendar-project.sh" ''
   #!${pkgs.bash}/bin/bash
     January="${fetchurl wallpapers.omori-january}"
     Feburary="${fetchurl wallpapers.omori-feburary}"
@@ -18,13 +18,7 @@ pkgs.writeScript "set-wallpaper-by-month.sh" ''
 
     case "$XDG_CURRENT_DESKTOP" in
       "none+i3")
-        ${getExe pkgs.feh} --bg-scale "''${!MONTH}"
-        ;;
-      "sway")
-        swww img --resize crop "''${!MONTH}"
-        ;;
-      "Hyprland")
-        swww img --resize crop "''${!MONTH}"
+        feh --no-fehbg --bg-${config.services.fehbg.settings.scale-mode} "''${!MONTH}"
         ;;
     esac
 

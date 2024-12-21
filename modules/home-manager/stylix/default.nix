@@ -28,6 +28,7 @@ in
 
       targets = {
         vscode.enable = mkDefault false;
+        feh.enable = mkDefault false;
       };
 
       cursor = {
