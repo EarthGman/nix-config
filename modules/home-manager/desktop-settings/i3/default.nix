@@ -16,9 +16,9 @@ in
   };
 
   services = {
-    fehbg = enabled;
-    polybar = enabled;
-    picom = enabled;
+    fehbg = enabled; # background setter for x
+    polybar = enabled; # waybar but for x
+    picom = enabled; # x compositor that stops screen tearing
   };
 
   xsession = {
@@ -31,12 +31,18 @@ in
           always = true;
           notification = false;
         }
+        {
+          command = "i3-msg workspace 1";
+          always = false;
+          notification = false;
+        }
       ] ++ optionals (config.services.fehbg.enable) [
         {
           command = "systemctl --user restart fehbg";
           always = true;
           notification = false;
         }
+
       ] ++ optionals (config.services.omori-calendar-project.enable) [
         {
           command = "systemctl --user restart omori-calendar-project";
