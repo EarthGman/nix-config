@@ -40,6 +40,20 @@ in
       '';
     };
 
+    slideshow = {
+      enable = mkEnableOption "enable slideshow functionality with swww";
+      interval = mkOption {
+        description = "interval in which the slideshow changes images specified in seconds";
+        type = types.int;
+        default = 600;
+      };
+      images = mkOption {
+        description = "list of image paths (as strings) to be included in the slideshow";
+        type = types.listOf types.str;
+        default = [ ];
+      };
+    };
+
     settings = {
       resizeMode = mkOption {
         description = "the resize mode for swww to use";
@@ -126,6 +140,23 @@ in
           ${if cfg.monitors != { } then ''
             ${multi-monitor cfg.monitors}     					 
           ''
+          else if (cfg.slideshow.enable) then ''
+            images=(${toString (concatStringsSep " " cfg.slideshow.images)})
+            image_count=''${#images[@]}
+            current_image=0
+
+            set_wallpaper() {
+              swww img ''${images[$1]}
+            }
+
+            set_wallpaper $current_image
+
+            while true; do
+              sleep ${toString cfg.slideshow.interval}
+              current_image=$((($current_image +1) % $image_count))
+              set_wallpaper $current_image
+            done
+          ''
           else ''
             swww img ${cfg.image}
           ''}
@@ -139,9 +170,9 @@ in
             ExecStart = "${bash} -c 'pgrep -x swww-daemon || swww-daemon --no-cache'";
             ExecStartPost = ''
               ${bash} -c '${if (config.services.omori-calendar-project.enable) then
-                "sleep 0.2 && systemctl --user start omori-calendar-project"
+                "sleep 0.5 && systemctl --user start omori-calendar-project"
               else
-                "sleep 0.2 && systemctl --user start swww-wallpaper"}'
+                "sleep 0.5 && systemctl --user start swww-wallpaper"}'
             '';
             ExecReload = "swww kill";
             KillSignal = "SIGTERM";
@@ -163,7 +194,7 @@ in
 
         swww-wallpaper = {
           Service = {
-            Type = "oneshot";
+            Type = "simple";
             Environment = "PATH=/run/current-system/sw/bin:${config.home.homeDirectory}/.nix-profile/bin";
             ExecStart = "${set-wallpaper}";
           };

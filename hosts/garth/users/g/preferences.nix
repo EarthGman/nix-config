@@ -1,6 +1,7 @@
-{ outputs, ... }:
+{ outputs, wallpapers, ... }:
 let
-  theme = outputs.homeProfiles.desktopThemes.faraway;
+  theme = outputs.homeProfiles.desktopThemes.celeste;
+  inherit (builtins) fetchurl;
 in
 {
   imports = [
@@ -9,6 +10,15 @@ in
 
   xsession.screensaver = {
     enable = true;
+  };
+
+  services.swww.slideshow = {
+    enable = true;
+    images = with wallpapers; [
+      (fetchurl celeste)
+      (fetchurl celeste-mountain)
+      (fetchurl scarlet-tree-dark)
+    ];
   };
 
   programs = {
