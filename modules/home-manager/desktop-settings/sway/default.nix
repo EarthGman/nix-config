@@ -32,6 +32,10 @@ in
           always = true;
         }
         {
+          command = "swaymsg workspace 1";
+          always = false;
+        }
+        {
           command = "systemctl --user restart swww-daemon";
           always = true;
         }

@@ -20,6 +20,15 @@ in
     ygo-omega.enable = true;
   };
 
+  services.swww.monitors = {
+    DP-3 = {
+      image = fetchurl wallpapers.celeste-mountain;
+    };
+    HDMI-A-1 = {
+      image = fetchurl wallpapers.celeste;
+    };
+  };
+
   services.fehbg = {
     # slideshow = {
     #   enable = true;
@@ -52,6 +61,7 @@ in
            --output HDMI-A-0 --mode 1920x1080 --rate 74.97 \
   '';
 
+  # monitors for sway
   wayland.windowManager.sway.config.output = {
     "DP-3" = {
       scale = "1.0";

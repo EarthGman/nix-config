@@ -1,6 +1,6 @@
 { inputs, pkgs, lib, config, platform, ... }:
 let
-  inherit (lib) mkEnableOption mkOption mkIf types getExe;
+  inherit (lib) mkEnableOption mkOption mkIf types concatStringsSep mapAttrsToList getExe;
   cfg = config.services.swww;
 in
 {
@@ -20,6 +20,24 @@ in
       description = "the default image swww will use (applied to all monitors) as a string";
       type = types.str;
       default = "${config.stylix.image}";
+    };
+
+    monitors = mkOption {
+      description = ''
+        image configuration for multi monitor setups (nullifies cfg.image)
+        monitor outputs should be configured based on channel found through
+        hyprctl monitors or swaymsg -t get_outputs
+      '';
+      type = types.attrsOf (types.attrsOf types.str);
+      default = { };
+      example = ''
+        DP1 = {
+          image = "path to wallpaper";
+        };
+        HDMI-A-0 = {
+          image = "path to wallpaper";
+        };
+      '';
     };
 
     settings = {
@@ -98,9 +116,19 @@ in
     systemd.user.services =
       let
         bash = "${getExe pkgs.bash}";
+
+        multi-monitor = monitors: ''
+          ${concatStringsSep "\n" (mapAttrsToList (monitor: settings: "swww img -o ${monitor} ${settings.image}") monitors)}  
+        '';
+
         set-wallpaper = pkgs.writeScript "swww.sh" ''
           #!${bash}
-          swww img ${cfg.image}
+          ${if cfg.monitors != { } then ''
+            ${multi-monitor cfg.monitors}     					 
+          ''
+          else ''
+            swww img ${cfg.image}
+          ''}
         '';
       in
       {

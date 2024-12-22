@@ -28,7 +28,7 @@ in
       monitors = mkOption {
         description = ''
           monitor configuration for feh
-          monitor number ("0") as attrset with image config for that monitor
+          defined as monitor number in x ("0") as attrset with image config for that monitor
         '';
         example = ''
           "0" = {
