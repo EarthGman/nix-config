@@ -1,3 +1,12 @@
+12-22-2024
+- successfully deployed home-manager on arch
+- add standlone home-manager documentation to readme
+
+
+12-21-2024
+- blink.cmp for nvim
+- swww mirror of fehbg for wayland
+
 12-20-2024
 - created a wallpaper daemon for xorg using feh.
 - currently the omori-calendar project only works on xorg as I need to finish swww implementation

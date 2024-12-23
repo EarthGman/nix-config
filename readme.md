@@ -160,7 +160,85 @@ You can set and override any default Home-manager configuration and apply it to 
 
 ------------------------------------------------------------------------
 # Home-manager Standalone
-Coming Soon
+
+For a standalone home-manager installation on Mac or another Linux distribution, home-manager should be used primarily as a means to install your dotfiles and/or user controlled programs. It is likely that it will not work directly out of the box if something is not properly configured on your system (such as the lack of xdg-desktop-portals for example).
+
+start by creating the following flake.nix
+
+```flake.nix
+{
+  description = "my home configurations";
+
+  inputs = {
+    nix-config.url = "github:EarthGman/nix-config";
+  };
+
+  outputs = { self, nix-config, ... } @ inputs:
+    let
+    
+      # merge nixpkgs.lib with my custom lib functions
+      inherit (nix-config) lib
+      
+      # merge my inputs and your inputs
+      inputs = nix-config.inputs // self.inputs;
+    in
+    {
+      homeConfigurations = {
+        "bob@my-hostname" = lib.mkHome {
+          inherit inputs;
+          username = "bob";
+          hostName = "my-hostname";
+          desktop = null # possible values: null "gnome" "sway" "i3" "hyprland"
+          stateVersion = "25.05";
+          platform = "x86_64-linux";
+          profile = ./home/bob.nix;
+        };
+      };
+    }; 
+}
+```
+
+next you will need to create a bob.nix in the path specified in the profile argument to the mkHome function
+
+example bob.nix
+
+```nix
+{ inputs, ... }:
+{
+  imports = [
+    inputs.nix-config.homeProfiles.desktopThemes.inferno
+  ];
+
+  programs = {
+    git = {
+      userName = "Bob";
+      userEmail = "bob@bob.com";
+    };
+
+    discord.enable = true;
+    freetube.enable = true;
+    prismlauncher.enable = true;
+    pipes.enable = true;
+    cava.enable = true;
+    sl.enable = true;
+  };
+  
+  wayland.windowManager.hyprland.settings.input.left_handed = true;
+}
+```
+
+You can also create ./hosts/$yourhostname/bob.nix and import the file from your main bob.nix to import configuration specific to a certain host (such as multi monitor setup)
+just be sure to actually import this file in the imports of bob.nix
+
+example implementation:
+
+```nix
+#bob.nix
+{ hostName, ... }:
+imports = [
+  ../hosts/${hostName}/bob.nix
+];
+```
 
 ------------------------------------------------------------------------
 
@@ -170,11 +248,13 @@ Coming Soon
 ------------------------------------------------------------------------
 
 # Known Issues
+
 - MSI (possibly others) UEFI Firmware unable to find the grub efi file.
 - Missing drivers not included in boot.enableRedistributableFirmware (such as broadcom_sta) see /hosts/tater/default.nix
 - Qemu / kvm is unfinished and quite buggy, Graphical issues are present due to the lack of proper graphics configuration with qemu.
 - lack of support for other shells in nixos and home-manager (zsh only)
-
+- some windows in sway will lose transparency in fullscreen
+- currently, wayland desktops use swww by default to set the desktop wallpapers, so the wallpaper on your monitor will be lost if powered off or disconnected.
 # Personal Notes
 
 Imperative actions after install
@@ -191,20 +271,20 @@ Imperative actions after install
 - reinstall wine/bottles programs
 
 # TODO
-- [ ] FIX SYSTEMD FOR WAYLAND
-  - [ ] learn systemd unit triggers
-  - [ ] wait for UWSM docs to release
-- [ ] Fix bugs with sway
-  - [ ] rofi only shows up on 1 monitor ever
-  - [ ] lost transparency when fullscreen
+- [x] FIX SYSTEMD FOR WAYLAND
+  - [x] learn systemd unit triggers
+- [ ] Fix bugs with wayland WMs
+- [x] rofi only shows up on 1 monitor on sway
+- [ ] fix swww wallpaper loss on monitor poweroff
+  - [ ] lost transparency when fullscreen in sway
 - [ ] finish readme and other .github setup
 - [x] redo rofi, fix rofi bug on hyprland
-- [ ] alternative systemd setup for "Hyprland (systemd-session)"
+- [x] alternative systemd setup for "Hyprland (systemd-session)"
 - [ ] neovim
   - [ ] Clipboard issues
   - [ ] standardize keybinds
   - [ ] nicer interface configuration
-- [ ] Home-manager standalone for Mac and other Linux Distros
+- [x] Home-manager standalone for Mac and other Linux Distros
 - [ ] Darwin Modules for Kriswill
 - [ ] system security
  - [ ] secure boot
