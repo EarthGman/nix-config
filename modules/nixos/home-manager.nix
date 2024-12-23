@@ -13,7 +13,7 @@ in
     home-manager.profilesDir = mkOption {
       description = "relative path to the profiles for your home-manager users";
       type = types.path;
-      default = self + /profiles/home-manager;
+      default = self + /home;
     };
   };
 

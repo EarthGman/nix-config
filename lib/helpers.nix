@@ -2,6 +2,7 @@
 let
   # expose both nixpkgs and self defined lib functions
   inherit (outputs) lib;
+
 in
 {
   mkHost =
@@ -59,5 +60,42 @@ in
         ++ optionals vm [ qemu-guest ]
         ++ optionals (desktop != null) [ desktop-setup ]
         ++ optionals server [ server-setup ];
+    };
+
+  mkHome =
+    { username # your username
+    , hostName # name of the host you are on
+    , desktop ? null # what desktop? "gnome" "i3" "hyprland" or "i3,hyprland" for multiple.
+    , server ? false # is this user on a server
+    , vm ? false # is this user on a virtual machine?
+    , iso ? false # is this user on an ISO?
+    , platform ? "x86_64-linux" # what cpu architecture does your host have?
+    , stateVersion ? "25.05" # what version of home-manager was this user initalized?
+    , profile ? null # directory for your extra user configuration
+    , inputs ? self.inputs # define your flake inputs
+    , outputs ? self.outputs # allow access to your flake outputs
+    }:
+    let
+      inherit (builtins) fromJSON readFile;
+      inherit (lib) optionals;
+      wallpapers = fromJSON (readFile inputs.wallpapers.outPath);
+      icons = fromJSON (readFile inputs.icons.outPath);
+      binaries = fromJSON (readFile inputs.binaries.outPath);
+    in
+    lib.homeManagerConfiguration {
+      pkgs = inputs.nixpkgs.legacyPackages.${platform};
+      modules = [
+        outputs.homeManagerModules
+        {
+          home = {
+            inherit username stateVersion;
+            homeDirectory = "/home/${username}";
+          };
+        }
+      ] ++ optionals (profile != null) [
+        profile
+      ];
+      extraSpecialArgs =
+        { inherit self inputs outputs username hostName desktop wallpapers icons binaries server vm iso platform stateVersion; };
     };
 }

@@ -14,12 +14,20 @@ in
       ls = "${getExe pkgs.eza} --icons";
       lg = "${getExe pkgs.lazygit}";
       man = "${getExe pkgs.bat-extras.batman}";
+      g = "git";
+      ga = "g add .";
+      gco = "g checkout";
+      gba = "g branch -a";
+      hms = "home-manager switch";
+      cat = "${getExe pkgs.bat}";
+      t = "${getExe pkgs.tree}";
     };
     initExtra = ''
       setopt interactivecomments
       compdef batman=man
       export EDITOR=${config.custom.editor}
       export PATH=$(realpath ~/bin):$PATH
+      eval "$(${getExe pkgs.zoxide} init --cmd j zsh)";
     '';
   };
 }

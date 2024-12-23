@@ -7,7 +7,7 @@ in
 {
   imports = [
     (self + /hosts/${hostName}/users/g/preferences.nix)
-    ./essentials.nix
+    (outputs.homeProfiles.essentials)
   ];
 
   custom = {
