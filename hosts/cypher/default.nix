@@ -80,6 +80,10 @@
     package = pkgs.wireshark;
   };
 
+  environment.systemPackages = with pkgs; [
+    samsung-unified-linux-driver
+  ];
+
   environment.etc = {
     "ssh/ssh_host_ed25519_key.pub".source = ./ssh_host_ed25519_key.pub;
     "ssh/ssh_host_rsa_key.pub".source = ./ssh_host_rsa_key.pub;
