@@ -66,13 +66,13 @@
     };
   };
 
-  outputs = { self, nixpkgs, nix-library, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, nix-library, ... } @ inputs:
     let
       inherit (self) outputs;
       helpers = import ./lib/helpers.nix { inherit self outputs; };
       myLib = helpers // nix-library.lib;
       lib = nixpkgs.lib.extend # must overlay the lib functions like this or else weird stuff happens for some reason
-        (final: prev: myLib);
+        (final: prev: myLib // home-manager.lib);
       inherit (lib) autoImport;
     in
     {
@@ -111,5 +111,6 @@
       };
 
       nixosConfigurations = import ./hosts { inherit lib; };
+      homeConfigurations = import ./home { inherit lib; };
     };
 }

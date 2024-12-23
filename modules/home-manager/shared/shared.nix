@@ -33,7 +33,7 @@ in
 
   config = {
     home.packages = with pkgs; [
-      home-manager
+      #home-manager
     ];
     xdg.userDirs = {
       # enable and create common Directories (Downloads, Documents, Music, etc)
@@ -42,6 +42,7 @@ in
     };
     programs = let cfg = config.custom; in {
       home-manager.enable = true;
+      starship.enable = true;
       gh = {
         enable = true;
         gitCredentialHelper.enable = true;

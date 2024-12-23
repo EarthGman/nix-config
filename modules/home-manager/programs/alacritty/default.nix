@@ -1,12 +1,12 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 
 let
   fontSize = 14;
 in
 {
   programs.alacritty = {
-
-    settings = {
+    enable = (config.custom.terminal == "alacritty");
+    settings = lib.mkDefault {
       env.TERM = "xterm-256color";
       bell = {
         animation = "EaseOutExpo";
