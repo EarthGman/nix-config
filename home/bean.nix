@@ -1,11 +1,11 @@
-{ self, hostName, lib, ... }:
+{ self, outputs, hostName, lib, ... }:
 let
   enabled = { enable = lib.mkDefault true; };
 in
 {
   imports = [
     (self + /hosts/${hostName}/users/bean/preferences.nix)
-    ./essentials.nix
+    outputs.homeProfiles.essentials
   ];
   # custom = {
   #   editor = "codium";
