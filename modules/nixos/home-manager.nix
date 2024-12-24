@@ -1,4 +1,4 @@
-{ self, inputs, outputs, config, hostName, vm, server, platform, lib, users, icons, wallpapers, desktop, stateVersion, ... }:
+{ self, inputs, outputs, pkgs, config, hostName, vm, server, platform, lib, users, icons, wallpapers, desktop, stateVersion, ... }:
 let
   inherit (lib) mkIf optionals types genAttrs mkOption mkEnableOption;
   cfg = config.modules.home-manager;
@@ -18,6 +18,7 @@ in
   };
 
   config = mkIf cfg.enable {
+    environment.systemPackages = [ pkgs.home-manager ];
     home-manager = {
       users = genAttrs users
         (username: {
