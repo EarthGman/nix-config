@@ -1,8 +1,8 @@
-{ self, hostName, ... }:
+{ self, outputs, hostName, ... }:
 {
   imports = [
     (self + /hosts/${hostName}/users/pumpkinking/preferences.nix)
-    ./essentials.nix
+    outputs.homeProfiles.essentials
   ];
   programs.git = {
     userName = "PumpkinKing432";

@@ -17,6 +17,7 @@ in
     gthumb = enabled; # image viewer
     evince = enabled; # pdf viewer
     vlc = enabled; # video player
+    gscan2pdf = enabled; # document scanner
     gnome-system-monitor = enabled; # cool task manager
     gnome-calculator = enabled; # calculator
     thunderbird = enabled; # email client

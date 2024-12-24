@@ -39,7 +39,6 @@ in
     freetube = enabled;
     filezilla = enabled;
     gcolor = enabled;
-    gscan2pdf = enabled;
     musescore = enabled;
     museeks = enabled;
     mov-cli = enabled;
