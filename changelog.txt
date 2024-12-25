@@ -1,3 +1,11 @@
+12-24-2024
+- add kanshi configuration for cypher
+
+
+12-23-2024
+- add clang to neovim
+
+
 12-22-2024
 - successfully deployed home-manager on arch
 - add standlone home-manager documentation to readme

@@ -30,13 +30,6 @@ in
   };
 
   services.fehbg = {
-    # slideshow = {
-    #   enable = true;
-    #   images = with wallpapers; [
-    #     (fetchurl celeste)
-    #     (fetchurl celeste-mountain)
-    #   ];
-    # };
     settings.monitors = {
       "0" = {
         image = fetchurl wallpapers.celeste-mountain;
@@ -48,11 +41,33 @@ in
   };
 
   # monitors for hyprland
-  wayland.windowManager.hyprland.settings.monitor = [
-    "DP-3, 2560x1440, 0x0, 1"
-    "DP-2, 2560x1440, 0x0, 1"
-    "HDMI-A-1, 1920x1080@74.97, -1920x0, 1"
-  ];
+  # wayland.windowManager.hyprland.settings.monitor = [
+  #   "DP-3, 2560x1440, 0x0, 1"
+  #   "DP-2, 2560x1440, 0x0, 1"
+  #   "HDMI-A-1, 1920x1080@74.97, -1920x0, 1"
+  # ];
+
+  # kanshi profiles
+  services.kanshi = {
+    enable = true;
+    profiles = {
+      "home" = {
+        outputs = [
+          {
+            criteria = "LG Electronics LG HDR 4K 0x0007B5B9";
+            position = "0,0";
+            mode = "2560x1440@59.951Hz";
+          }
+          {
+            criteria = "Sceptre Tech Inc Sceptre F24 0x01010101";
+            position = "-1920,0";
+            mode = "1920x1080@100Hz";
+          }
+        ];
+      };
+      #TODO add school profile when I get back
+    };
+  };
 
   # monitors for xorg
   xsession.profileExtra = ''
@@ -62,16 +77,16 @@ in
   '';
 
   # monitors for sway
-  wayland.windowManager.sway.config.output = {
-    "DP-3" = {
-      scale = "1.0";
-      mode = "2560x1440@59.951Hz";
-      position = "0,0";
-    };
-    "HDMI-A-1" = {
-      scale = "1.0";
-      mode = "1920x1080@100.000Hz";
-      position = "-1920,0";
-    };
-  };
+  # wayland.windowManager.sway.config.output = {
+  #   "DP-3" = {
+  #     scale = "1.0";
+  #     mode = "2560x1440@59.951Hz";
+  #     position = "0,0";
+  #   };
+  #   "HDMI-A-1" = {
+  #     scale = "1.0";
+  #     mode = "1920x1080@100.000Hz";
+  #     position = "-1920,0";
+  #   };
+  # };
 }

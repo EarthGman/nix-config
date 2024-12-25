@@ -75,6 +75,11 @@ in
         left_handed = "enabled";
       };
     };
-    hyprland.settings.input.left_handed = true;
+    hyprland.settings = {
+      input.left_handed = true;
+      bind = [
+        "Alt, Space, exec, rofi -show window"
+      ];
+    };
   };
 }
