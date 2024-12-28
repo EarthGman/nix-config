@@ -1,3 +1,8 @@
+12-27-2024
+- edit kanshi to not use the deprecated option
+- add zsa keyboard module (includes the keymapp application)
+
+
 12-24-2024
 - add kanshi configuration for cypher
 

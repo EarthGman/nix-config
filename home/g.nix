@@ -77,9 +77,9 @@ in
     };
     hyprland.settings = {
       input.left_handed = true;
-      bind = [
-        "Alt, Space, exec, rofi -show window"
-      ];
+      # bind = [
+      #   "Alt, Space, exec, rofi -show window"
+      # ];
     };
   };
 }

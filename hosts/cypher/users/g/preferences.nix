@@ -50,9 +50,10 @@ in
   # kanshi profiles
   services.kanshi = {
     enable = true;
-    profiles = {
-      "home" = {
-        outputs = [
+    settings = [
+      {
+        profile.name = "home";
+        profile.outputs = [
           {
             criteria = "LG Electronics LG HDR 4K 0x0007B5B9";
             position = "0,0";
@@ -64,9 +65,9 @@ in
             mode = "1920x1080@100Hz";
           }
         ];
-      };
+      }
       #TODO add school profile when I get back
-    };
+    ];
   };
 
   # monitors for xorg

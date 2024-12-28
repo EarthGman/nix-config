@@ -49,6 +49,7 @@
   };
 
   modules = {
+    zsa-keyboard.enable = true;
     benchmarking.enable = true;
     onepassword.enable = true;
     sunshine.enable = true;
