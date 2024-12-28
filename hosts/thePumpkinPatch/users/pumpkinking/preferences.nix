@@ -13,5 +13,6 @@ in
     discord.enable = true;
     lutris.enable = true;
     gcolor.enable = true;
+    prismlauncher.enable = true;
   };
 }
