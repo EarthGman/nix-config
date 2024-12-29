@@ -170,9 +170,9 @@ in
             ExecStart = "${bash} -c 'pgrep -x swww-daemon || swww-daemon --no-cache'";
             ExecStartPost = ''
               ${bash} -c '${if (config.services.omori-calendar-project.enable) then
-                "sleep 0.5 && systemctl --user start omori-calendar-project"
+                "sleep 0.5 && systemctl --user restart omori-calendar-project"
               else
-                "sleep 0.5 && systemctl --user start swww-wallpaper"}'
+                "sleep 0.5 && systemctl --user restart swww-wallpaper"}'
             '';
             ExecReload = "swww kill";
             KillSignal = "SIGTERM";

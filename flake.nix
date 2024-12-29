@@ -50,6 +50,10 @@
       url = "github:LGFae/swww";
     };
 
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+    };
+
     wallpapers = {
       url = "https://raw.githubusercontent.com/EarthGman/assets/master/wallpapers.json";
       flake = false;

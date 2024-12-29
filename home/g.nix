@@ -39,6 +39,7 @@ in
     freetube = enabled;
     filezilla = enabled;
     gcolor = enabled;
+    ghostty = enabled;
     musescore = enabled;
     museeks = enabled;
     mov-cli = enabled;
