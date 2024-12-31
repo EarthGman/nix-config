@@ -153,7 +153,12 @@ in
 
             while true; do
               sleep ${toString cfg.slideshow.interval}
-              current_image=$((($current_image +1) % $image_count))
+              current_image=$(($current_image + 1))
+              if [ "$current_image" -eq "$image_count" ]; then
+                systemctl --user restart swww-daemon
+                exit 0
+              fi
+
               set_wallpaper $current_image
             done
           ''
