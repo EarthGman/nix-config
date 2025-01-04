@@ -40,6 +40,7 @@ in
     filezilla = enabled;
     gcolor = enabled;
     ghostty = enabled;
+    ghex = enabled;
     musescore = enabled;
     museeks = enabled;
     mov-cli = enabled;
