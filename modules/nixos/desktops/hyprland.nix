@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ inputs, pkgs, lib, config, platform, ... }:
 let
   cfg = config.modules.desktops.hyprland;
 in

@@ -255,6 +255,7 @@ Coming Soon
 - lack of support for other shells in nixos and home-manager (zsh only)
 - some windows in sway will lose transparency in fullscreen
 - currently, wayland desktops use swww by default to set the desktop wallpapers, so the wallpaper on your monitor will be lost if powered off or disconnected.
+
 # Personal Notes
 
 Imperative actions after install
@@ -273,8 +274,8 @@ Imperative actions after install
 # TODO
 - [x] FIX SYSTEMD FOR WAYLAND
   - [x] learn systemd unit triggers
-- [ ] Fix bugs with wayland WMs
 - [x] rofi only shows up on 1 monitor on sway
+- [ ] kanshi profile for school setup
 - [ ] fix swww wallpaper loss on monitor poweroff
   - [ ] lost transparency when fullscreen in sway
 - [ ] finish readme and other .github setup
@@ -284,6 +285,9 @@ Imperative actions after install
   - [ ] Clipboard issues
   - [ ] standardize keybinds
   - [ ] nicer interface configuration
+  - [ ] debugger for C and cpp
+  - [ ] lsp and debugger for Go
+  - [ ] lsp and debugger for Rust
 - [x] Home-manager standalone for Mac and other Linux Distros
 - [ ] Darwin Modules for Kriswill
 - [ ] system security

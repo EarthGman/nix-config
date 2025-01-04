@@ -46,6 +46,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+    };
+
     swww = {
       url = "github:LGFae/swww";
     };

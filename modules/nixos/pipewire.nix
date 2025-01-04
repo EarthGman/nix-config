@@ -6,9 +6,6 @@ in
 {
   options.modules.pipewire.enable = lib.mkEnableOption "enable sound with pipewire";
   config = mkIf cfg.enable {
-    hardware = {
-      pulseaudio.enable = mkForce false; # cannot be enabled with pipewire
-    };
     security.rtkit.enable = true; # hands out realtime scheduling priority to user processes on demand. Improves performance of pulse
     services = {
       pipewire = {

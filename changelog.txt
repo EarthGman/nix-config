@@ -1,5 +1,16 @@
+1-04-2024
+- remove custom ghostty option in favor of HM
+- add rolling hyprland input
+- update swww and ghostty
+
+
+1-03-2024
+- add ghex to hm
+
+
 12-30-2024
 - hackfix for swww memory leak with gifs and slideshow
+- swww daemon will be restarted at the end of the slideshow
 
 
 12-27-2024
