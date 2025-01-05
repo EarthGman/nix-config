@@ -10,6 +10,7 @@ in
 
   programs = {
     dolphin-emu.enable = true;
+    cemu.enable = true;
     lutris.enable = true;
     davinci-resolve.enable = true;
     feh.enable = true;
@@ -18,6 +19,7 @@ in
     looking-glass.version = "B6";
     obs-studio.enable = true;
     ygo-omega.enable = true;
+    neovim.imperativeLua = true;
   };
 
   services.swww.monitors = {

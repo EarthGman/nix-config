@@ -1207,11 +1207,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1735104762,
-        "narHash": "sha256-58rE/1kMoQ8UnUR4YhiAnQn8nQpN9Sdn7qvt+6+gk64=",
+        "lastModified": 1736020666,
+        "narHash": "sha256-kRRa+2iv7dBVg5dBe4/Y8HjtYJOzN0rZqCyV3x+3ZrQ=",
         "owner": "EarthGman",
         "repo": "vim-config",
-        "rev": "18c2318c13b78ae6e9292bffa5a53d5ec0c8f60c",
+        "rev": "75dbecc95ff842ea0596b290e71775c6da73cc11",
         "type": "github"
       },
       "original": {

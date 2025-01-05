@@ -8,6 +8,8 @@ in
   ];
 
   programs = {
+    dolphin-emu.enable = true;
+    cemu.enable = true;
     prismlauncher.enable = true;
     discord.enable = true;
     ffxiv-launcher.enable = true;
