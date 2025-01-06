@@ -291,8 +291,8 @@ Imperative actions after install
 - [x] Home-manager standalone for Mac and other Linux Distros
 - [ ] Darwin Modules for Kriswill
 - [ ] system security
- - [ ] secure boot
- - [ ] drive encryption with LUKS
+ - [-] secure boot - discontinued this is completely useless
+ - [x] drive encryption with LUKS
 - [ ] media server
 - [ ] Nix build server
 - [ ] installation helper scripts

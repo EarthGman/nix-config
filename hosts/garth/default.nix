@@ -1,7 +1,7 @@
 { self, pkgs, wallpapers, ... }:
 {
   imports = [
-    ./fs.nix
+    ./disko.nix
     (self + /profiles/nixos/workstation.nix)
     (self + /profiles/nixos/wg0.nix)
     (self + /profiles/nixos/keyd/gmans-keymap.nix)
