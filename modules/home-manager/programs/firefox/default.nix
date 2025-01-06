@@ -52,7 +52,7 @@ in
             };
             extraConfig =
               if builtins.pathExists (themePackage + "/user.js") then
-                themePackage + "/user.js"
+                builtins.readFile (themePackage + "/user.js")
               else "";
           };
         };

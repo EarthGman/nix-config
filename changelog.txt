@@ -1,6 +1,7 @@
 1-05-2025
 - reinstall garth
 - figured out luks encryption with interactive password
+- fix fix bug with userjs having wrong contents for shyfox theme 
 
 
 1-04-2025

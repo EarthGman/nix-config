@@ -1,4 +1,4 @@
-{ outputs, wallpapers, ... }:
+{ outputs, lib, wallpapers, ... }:
 let
   theme = outputs.homeProfiles.desktopThemes.celeste;
   inherit (builtins) fetchurl;
@@ -22,8 +22,7 @@ in
   };
 
   programs = {
-    google-chrome.enable = true;
-    openconnect.enable = true;
+    # openconnect.enable = true;
     lutris.enable = true;
     moonlight.enable = true;
     gnome-clocks.enable = true;
