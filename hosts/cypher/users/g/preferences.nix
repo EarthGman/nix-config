@@ -13,7 +13,6 @@ in
     cemu.enable = true;
     lutris.enable = true;
     davinci-resolve.enable = true;
-    feh.enable = true;
 
     looking-glass.enable = true;
     looking-glass.version = "B6";
