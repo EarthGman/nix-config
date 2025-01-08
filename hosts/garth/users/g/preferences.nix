@@ -26,7 +26,10 @@ in
     lutris.enable = true;
     moonlight.enable = true;
     gnome-clocks.enable = true;
+    gnucash.enable = true;
   };
+
+  # wayland.windowManager.sway.config.input."type:pointer".left_handed = lib.mkForce "disabled";
 
   services.dunst.battery-monitor.enable = true;
 }

@@ -4,6 +4,7 @@
     ./disko.nix
     (self + /profiles/nixos/workstation.nix)
     (self + /profiles/nixos/wg0.nix)
+    (self + /profiles/nixos/wg1.nix)
     (self + /profiles/nixos/keyd/gmans-keymap.nix)
   ];
   boot.initrd.availableKernelModules = [
@@ -32,6 +33,7 @@
   };
 
   modules = {
+    zsa-keyboard.enable = true;
     steam.enable = true;
     onepassword.enable = true;
     qemu-kvm.enable = true;
