@@ -1,3 +1,9 @@
+1-10-2025
+- rebuild cypher
+- remove dnsmasq
+- wg1 network in progress
+
+
 1-05-2025
 - reinstall garth
 - figured out luks encryption with interactive password
