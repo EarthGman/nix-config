@@ -1,5 +1,5 @@
 # EarthGman's client wireguard setup.
-{ config, ... }:
+{ pkgs, config, ... }:
 {
   sops.secrets.wg0_conf.path = "/etc/wireguard/wg0.conf";
   networking = {
@@ -12,6 +12,13 @@
       wg0 = {
         configFile = config.sops.secrets.wg0_conf.path; # store whole file in secrets
       };
+    };
+  };
+  environment.systemPackages = [ pkgs.dnsmasq ];
+  services.dnsmasq = {
+    enable = true;
+    settings = {
+      server = [ "10.0.0.1" ];
     };
   };
 }
