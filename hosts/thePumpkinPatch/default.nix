@@ -13,10 +13,11 @@
       "usbhid"
       "sd_mod"
     ];
-    kernelModules = [ "iwlwifi" ];
-    extraModprobeConfig = ''
-      options iwlwifi disable_11ax=1
-    '';
+
+    loader.grub.themeConfig = {
+      background = builtins.fetchurl wallpapers.the-nightmare-before-grub;
+    };
+
   };
   services = {
     nordvpn.enable = true;

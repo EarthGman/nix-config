@@ -12,6 +12,7 @@
     "nvme"
     "ahci"
     "xhci_pci"
+    "thunderbolt"
     "usb_storage"
     "usbhid"
     "sd_mod"
@@ -26,16 +27,21 @@
     "vfio_iommu_type1"
   ];
 
+  # boot.extraModulePackages = with config.boot.kernelPackages; [ r8125 ];
+
   boot.extraModprobeConfig = ''
     options vfio-pci ids=1002:164e,1002:1640
     softdep amdgpu pre: vfio-pci
   '';
 
-  boot.binfmt.emulatedSystems = [
-    "aarch64-linux"
-  ];
+  # boot.binfmt.emulatedSystems = [
+  #   "aarch64-linux"
+  # ];
 
   hardware.amdgpu.opencl.enable = true;
+  services.hardware.openrgb = {
+    enable = true;
+  };
 
   networking = {
     # required for sins of a solar empire lag bug in multiplayer

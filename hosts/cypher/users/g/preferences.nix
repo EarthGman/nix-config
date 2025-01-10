@@ -22,10 +22,10 @@ in
   };
 
   services.swww.monitors = {
-    DP-3 = {
+    DP-4 = {
       image = fetchurl wallpapers.celeste-mountain;
     };
-    HDMI-A-1 = {
+    HDMI-A-2 = {
       image = fetchurl wallpapers.celeste;
     };
   };
