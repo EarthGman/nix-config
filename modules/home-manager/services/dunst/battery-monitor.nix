@@ -55,18 +55,12 @@ in
     };
     systemd.user.services."battery-monitor" = {
       Unit = {
-        description = ''
-          checks battery remaining over a specified interval
-          will send a notification when battery reaches a specified threshold
-        '';
+        Description = "battery monitor service";
         After = [ "graphical-session.target" ];
       };
       Service = {
         Type = "oneshot";
         ExecStart = "${script}";
-      };
-      Install = {
-        WantedBy = [ "graphical-session.target" ];
       };
     };
   };
