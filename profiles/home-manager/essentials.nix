@@ -17,7 +17,8 @@ in
     gthumb = enabled; # image viewer
     evince = enabled; # pdf viewer
     vlc = enabled; # video player
-    # gscan2pdf = enabled; # document scanner
+    # gscan2pdf = enabled; # document scanner - broken in nixos-unstable 1-10-2025
+    simple-scan = enabled;
     gnome-system-monitor = enabled; # cool task manager
     gnome-calculator = enabled; # calculator
     thunderbird = enabled; # email client

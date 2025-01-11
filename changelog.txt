@@ -2,6 +2,7 @@
 - rebuild cypher
 - remove dnsmasq
 - wg1 network in progress
+- replace gscan2pdf with simple scan as gscan2pdf is broken currently
 
 
 1-05-2025

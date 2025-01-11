@@ -28,7 +28,6 @@
     "vfio_iommu_type1"
   ];
 
-  # boot.kernelPackages = pkgs.linuxKernel.kernels.linux_testing;
   # boot.extraModulePackages = with config.boot.kernelPackages; [ r8125 ];
 
   boot.extraModprobeConfig = ''
