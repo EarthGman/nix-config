@@ -19,6 +19,7 @@
   ];
   boot.kernelParams = [
     "amd_iommu=on"
+    "iommu=pt"
   ];
 
   boot.kernelModules = [
@@ -27,11 +28,13 @@
     "vfio_iommu_type1"
   ];
 
+  # boot.kernelPackages = pkgs.linuxKernel.kernels.linux_testing;
   # boot.extraModulePackages = with config.boot.kernelPackages; [ r8125 ];
 
   boot.extraModprobeConfig = ''
-    options vfio-pci ids=1002:164e,1002:1640
+    options vfio-pci ids=1002:164e,1002:1640,10de:1c02,10de:10f1
     softdep amdgpu pre: vfio-pci
+    softdep nvidia pre: vfio-pci
   '';
 
   # boot.binfmt.emulatedSystems = [

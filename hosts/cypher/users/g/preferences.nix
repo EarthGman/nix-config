@@ -15,17 +15,16 @@ in
     davinci-resolve.enable = true;
 
     looking-glass.enable = true;
-    looking-glass.version = "B6";
     obs-studio.enable = true;
     ygo-omega.enable = true;
     neovim.imperativeLua = true;
   };
 
   services.swww.monitors = {
-    DP-4 = {
+    DP-3 = {
       image = fetchurl wallpapers.celeste-mountain;
     };
-    HDMI-A-2 = {
+    HDMI-A-1 = {
       image = fetchurl wallpapers.celeste;
     };
   };
