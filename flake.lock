@@ -118,11 +118,11 @@
         "nixpkgs": "nixpkgs_8"
       },
       "locked": {
-        "lastModified": 1734622099,
-        "narHash": "sha256-26hEHWoH9tbB2SVyfuwxorCQcntUEFOTxYD99hhp4GY=",
+        "lastModified": 1736694334,
+        "narHash": "sha256-hAkyoj2vMZ8A0pFciUbexMJE8rVwTQhcGg4JRdhNLs0=",
         "owner": "saghen",
         "repo": "blink.cmp",
-        "rev": "07665c3caeba0acb9731a4d7135b92fb2e3e1a88",
+        "rev": "37dbb7325c2917e32cbdf02fd598389be4fcc8b0",
         "type": "github"
       },
       "original": {
@@ -161,11 +161,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1733380458,
-        "narHash": "sha256-H+IQB6cJ7ji/YD537pcSUWlwGGJ49RoYylBonyNW9hk=",
+        "lastModified": 1734676450,
+        "narHash": "sha256-iwcxhTVe4h5TqW0HsNiOQP27eMBmbBshF+q2UjEy5aU=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "08c9e4e29865b60cb81189f8e4de0dccaf297865",
+        "rev": "46e19fa0eb3260b2c3ee5b2cf89e73343c1296ab",
         "type": "github"
       },
       "original": {
@@ -1001,11 +1001,11 @@
     },
     "nixpkgs_8": {
       "locked": {
-        "lastModified": 1733229606,
-        "narHash": "sha256-FLYY5M0rpa5C2QAE3CKLYAM6TwbKicdRK6qNrSHlNrE=",
+        "lastModified": 1736166416,
+        "narHash": "sha256-U47xeACNBpkSO6IcCm0XvahsVXpJXzjPIQG7TZlOToU=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "566e53c2ad750c84f6d31f9ccb9d00f823165550",
+        "rev": "b30f97d8c32d804d2d832ee837d0f1ca0695faa5",
         "type": "github"
       },
       "original": {
@@ -1103,11 +1103,11 @@
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1733330394,
-        "narHash": "sha256-1jwtAQYtErSsfkEQFvZJ9wJBrLGltzlvZKZzPXhpfpE=",
+        "lastModified": 1734622712,
+        "narHash": "sha256-2Oc2LbFypF1EG3zTVIVcuT5XFJ7R3oAwu2tS8B0qQ0I=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "f499faf72bcd2abbfbf3d7171e5191100547a3df",
+        "rev": "fe027d79d22f2a7645da4143f5cc0f5f56239b97",
         "type": "github"
       },
       "original": {
@@ -1363,11 +1363,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1736576592,
-        "narHash": "sha256-tzN3pmbaSTzg65qgJeuDSP9mtMIcg8RsL9yHLG7wulA=",
+        "lastModified": 1736724215,
+        "narHash": "sha256-PWktRUxAsOIPP/DaIJPcfUhPeYhL2iy3KWhF9JKEA+Q=",
         "owner": "EarthGman",
         "repo": "vim-config",
-        "rev": "6c6d63685a3cd06ca5ef74934b4c985153b209fa",
+        "rev": "0031981dd59f1c920f2daf2e4730f618777e67a2",
         "type": "github"
       },
       "original": {
