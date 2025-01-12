@@ -118,11 +118,11 @@
         "nixpkgs": "nixpkgs_8"
       },
       "locked": {
-        "lastModified": 1736694334,
-        "narHash": "sha256-hAkyoj2vMZ8A0pFciUbexMJE8rVwTQhcGg4JRdhNLs0=",
+        "lastModified": 1734622099,
+        "narHash": "sha256-26hEHWoH9tbB2SVyfuwxorCQcntUEFOTxYD99hhp4GY=",
         "owner": "saghen",
         "repo": "blink.cmp",
-        "rev": "37dbb7325c2917e32cbdf02fd598389be4fcc8b0",
+        "rev": "07665c3caeba0acb9731a4d7135b92fb2e3e1a88",
         "type": "github"
       },
       "original": {
@@ -1363,11 +1363,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1736724215,
-        "narHash": "sha256-PWktRUxAsOIPP/DaIJPcfUhPeYhL2iy3KWhF9JKEA+Q=",
+        "lastModified": 1736724915,
+        "narHash": "sha256-ys+iaqGYm7M5Wmqj2RDgCCm0NyEj3q69kpR9KS4bv8k=",
         "owner": "EarthGman",
         "repo": "vim-config",
-        "rev": "0031981dd59f1c920f2daf2e4730f618777e67a2",
+        "rev": "540df6befae69447f47f0743300f699e15102bf5",
         "type": "github"
       },
       "original": {
