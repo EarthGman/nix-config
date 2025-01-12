@@ -58,6 +58,10 @@
       url = "github:ghostty-org/ghostty";
     };
 
+    prismlauncher = {
+      url = "github:PrismLauncher/PrismLauncher";
+    };
+
     wallpapers = {
       url = "https://raw.githubusercontent.com/EarthGman/assets/master/wallpapers.json";
       flake = false;
