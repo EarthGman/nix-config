@@ -20,7 +20,6 @@
 
   };
   services = {
-    nordvpn.enable = true;
     displayManager.sddm.themeConfig = {
       Background = builtins.fetchurl wallpapers.slime-puddle;
       ScreenWidth = "2560";

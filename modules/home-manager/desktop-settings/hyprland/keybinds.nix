@@ -1,8 +1,8 @@
 { pkgs, lib, config, scripts, mainMod, ... }:
 let
   inherit (lib) getExe;
-  terminal = getExe pkgs.${config.custom.terminal};
   fileManager = config.custom.fileManager;
+  terminal = config.custom.terminal;
   browser = config.custom.browser;
   pamixer = getExe pkgs.pamixer;
   brightnessctl = getExe pkgs.brightnessctl;

@@ -13,7 +13,7 @@ in
     cemu.enable = true;
     lutris.enable = true;
     davinci-resolve.enable = true;
-
+    moonlight.enable = true;
     looking-glass.enable = true;
     obs-studio.enable = true;
     ygo-omega.enable = true;
