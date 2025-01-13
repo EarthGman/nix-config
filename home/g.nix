@@ -29,8 +29,13 @@ in
         init.defaultBranch = "main";
       };
     };
-    zsh.shellAliases = {
-      edit-config = "cd ~/src/nix-config && $EDITOR .";
+    zsh = {
+      shellAliases = {
+        edit-config = "cd ~/src/nix-config && $EDITOR .";
+      };
+      initExtra = ''
+        export MANPAGER='nvim +Man!'
+      '';
     };
 
     ardour = enabled;

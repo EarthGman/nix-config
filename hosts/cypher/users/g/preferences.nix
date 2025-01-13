@@ -16,6 +16,7 @@ in
     moonlight.enable = true;
     looking-glass.enable = true;
     obs-studio.enable = true;
+    passmark-performancetest.enable = true;
     ygo-omega.enable = true;
     neovim.imperativeLua = true;
   };

@@ -1,3 +1,11 @@
+11-12-2025
+- flatpak module
+- mini icons for neovim
+- simple benchmark app in home-manager
+- configred man to open in neovim
+- update flake
+
+
 1-10-2025
 - rebuild cypher
 - remove dnsmasq

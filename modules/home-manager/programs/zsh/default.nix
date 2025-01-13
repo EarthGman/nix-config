@@ -13,7 +13,7 @@ in
       l = "${getExe pkgs.eza} -al --icons";
       ls = "${getExe pkgs.eza} --icons";
       lg = "${getExe pkgs.lazygit}";
-      man = "${getExe pkgs.bat-extras.batman}";
+      # man = "${getExe pkgs.bat-extras.batman}";
       g = "git";
       ga = "g add .";
       gco = "g checkout";

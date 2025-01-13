@@ -51,7 +51,6 @@
   };
 
   services.keyd.enable = true;
-
   boot.loader.grub.themeConfig = {
     background = builtins.fetchurl wallpapers.april-red;
   };
@@ -60,6 +59,7 @@
     zsa-keyboard.enable = true;
     benchmarking.enable = true;
     onepassword.enable = true;
+    flatpak.enable = true;
     sunshine.enable = true;
     qemu-kvm.enable = true;
     sops.enable = true;
@@ -90,6 +90,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    gnome-software
     samsung-unified-linux-driver
   ];
 
