@@ -3,6 +3,7 @@
   imports = [
     ./dconf.nix
   ];
+  programs.ghostty.settings.gtk-titlebar = true;
   home.packages = (with pkgs.gnomeExtensions; [
     dash-to-panel
     vitals
