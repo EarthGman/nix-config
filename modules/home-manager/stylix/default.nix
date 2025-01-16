@@ -68,6 +68,10 @@ in
           package = pkgs.nerd-fonts.meslo-lg;
         };
       };
+
+      opacity = {
+        terminal = mkDefault 0.87;
+      };
     };
   };
 }
