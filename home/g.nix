@@ -12,7 +12,6 @@ in
 
   custom = {
     fileManager = "yazi";
-    terminal = "ghostty";
   };
 
   programs = {
