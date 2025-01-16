@@ -12,6 +12,7 @@ in
 
   custom = {
     fileManager = "yazi";
+    terminal = "ghostty";
   };
 
   programs = {
@@ -44,7 +45,6 @@ in
     freetube = enabled;
     filezilla = enabled;
     gcolor = enabled;
-    ghostty = enabled;
     ghex = enabled;
     musescore = enabled;
     museeks = enabled;
