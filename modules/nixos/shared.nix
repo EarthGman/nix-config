@@ -7,7 +7,7 @@ in
     inputs.disko.nixosModules.disko
   ];
 
-  # default profile for all machines
+  # default profile for all machinesshared
   modules = {
     home-manager.enable = mkDefault users != [ ];
     ssh.enable = mkDefault true;
@@ -111,6 +111,9 @@ in
   # root level shell
   programs.zsh = {
     enable = true;
+    enableCompletion = mkDefault true;
+    syntaxHighlighting.enable = mkDefault true;
+    autosuggestions.enable = mkDefault true;
     shellAliases =
       let
         has-nh = config.programs.nh.enable;

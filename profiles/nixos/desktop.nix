@@ -47,15 +47,6 @@ in
     brightnessctl # brightness
   ];
 
-  # decorate shell ~2.5GB of bloat
-  programs = {
-    zsh = {
-      enableCompletion = mkDefault true;
-      syntaxHighlighting = enabled;
-      autosuggestions.enable = mkDefault true;
-    };
-
-    # required for some stylix to work properly (gtk)
-    dconf.enable = true;
-  };
+  # required for some stylix to work properly (gtk)
+  programs.dconf.enable = true;
 }
