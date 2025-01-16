@@ -132,27 +132,19 @@ in
         ncg = if (has-nh) then "${getExe pkgs.nh} clean all" else "sudo nix-collect-garbage -d";
       };
 
-    promptInit =
-      let
-        has-neovim = config.modules.neovim.enable;
-      in
-      ''
-        eval "$(${getExe pkgs.zoxide} init --cmd j zsh)"
-        setopt autocd
-      '' + optionalString (has-neovim) ''
-        export EDITOR=nvim
-      '' + optionalString (!(has-neovim)) ''
-        export EDITOR=nano
-      '' + optionalString (config.programs.yazi.enable) ''
-         function y() {
-         local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
-         yazi "$@" --cwd-file="$tmp"
-         if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-           builtin cd -- "$cwd"
-         fi
-         rm -f -- "$tmp"
-        }
-      '';
+    promptInit = ''
+      eval "$(${getExe pkgs.zoxide} init --cmd j zsh)"
+      setopt autocd
+    '' + optionalString (config.programs.yazi.enable) ''
+       function y() {
+       local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+       yazi "$@" --cwd-file="$tmp"
+       if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+         builtin cd -- "$cwd"
+       fi
+       rm -f -- "$tmp"
+      }
+    '';
   };
   # enable starship for everyone
   programs.starship.enable = mkDefault true;
