@@ -9,9 +9,19 @@ let
 in
 {
   options.programs.ygo-omega = {
-    enable = mkEnableOption "enable ygo-omega desktop";
+    enable = mkEnableOption ''
+      enable ygo-omega desktop
+      DOES NOT give you the game files
+      extract the game files then 'steam-run ./YGO\ Omega.x86_64'
+      the game will launch but will freeze
+      close the game
+      you will now have OmegaUpdater
+      chmod +x OmegaUpdater and the game should launch from the icon
+    '';
     gameFileDir = mkOption {
-      description = "path to the ygo omega game files";
+      description = ''
+        path to the ygo omega game files
+      '';
       type = types.path;
       default = toPath "${home}/games/ygo-omega";
     };

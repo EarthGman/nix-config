@@ -27,6 +27,8 @@ in
     moonlight.enable = true;
     gnome-clocks.enable = true;
     gnucash.enable = true;
+    ghidra.enable = true;
+    ygo-omega.enable = true;
   };
 
   # wayland.windowManager.sway.config.input."type:pointer".left_handed = lib.mkForce "disabled";
