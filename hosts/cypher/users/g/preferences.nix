@@ -67,7 +67,21 @@ in
           }
         ];
       }
-      #TODO add school profile when I get back
+      {
+        profile.name = "school";
+        profile.outputs = [
+          {
+            criteria = "Philips Consumer Electronics Company PHL BDM4350 0x000005E8";
+            position = "0,0";
+            mode = "2560x1440@59.95Hz";
+          }
+          {
+            criteria = "Sceptre Tech Inc E24 0x01010101";
+            position = "-1920,0";
+            mode = "1920x1080@74.97Hz";
+          }
+        ];
+      }
     ];
   };
 
