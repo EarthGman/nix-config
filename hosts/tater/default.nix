@@ -1,4 +1,4 @@
-{ self, pkgs, ... }:
+{ self, config, pkgs, ... }:
 {
   imports = [
     ./disko.nix
@@ -13,16 +13,11 @@
   ];
   boot.kernelModules = [ "wl" ];
 
-  boot.kernelPackages = pkgs.linuxPackages_6_10;
-  boot.extraModulePackages = with pkgs; [
-    linuxKernel.packages.linux_6_10.broadcom_sta
-  ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ]; # needed for this specific PC's wireless card
 
   modules = {
     onepassword.enable = true;
   };
-
-  services.keyd.enable = true;
 
   programs.wireshark = {
     enable = true;

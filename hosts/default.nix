@@ -22,7 +22,7 @@ in
     users = [ "g" ];
     desktop = "sway";
     platform = "x86_64-linux";
-    stateVersion = "24.05";
+    stateVersion = "25.05";
     configDir = ./garth;
   };
 
@@ -31,8 +31,8 @@ in
     cpu = "intel";
     gpu = "intel-igpu";
     users = [ "g" ];
-    desktop = "hyprland,i3";
-    stateVersion = "24.11";
+    desktop = "gnome";
+    stateVersion = "25.05";
     configDir = ./tater;
   };
 
@@ -42,7 +42,7 @@ in
     users = [ "test" ];
     desktop = "hyprland";
     platform = "x86_64-linux";
-    stateVersion = "24.11";
+    stateVersion = "25.05";
     configDir = ./nixos;
   };
 

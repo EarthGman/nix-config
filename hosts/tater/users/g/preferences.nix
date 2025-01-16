@@ -1,16 +1,10 @@
-{ outputs, lib, pkgs, ... }:
+{ outputs, lib, ... }:
 let
   theme = outputs.homeProfiles.desktopThemes.celeste;
 in
 {
   imports = [
     theme
-  ];
-
-  programs.neovim.imperativeLua = true;
-
-  home.packages = with pkgs; [
-    gnome-terminal
   ];
 
   stylix.fonts.sizes = {
