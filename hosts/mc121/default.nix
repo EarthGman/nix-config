@@ -1,9 +1,5 @@
 { pkgs, lib, outputs, ... }:
 {
-  users.users."root" = {
-    openssh.authorizedKeys.keys = [ outputs.keys.g_pub ];
-  };
-
   networking.firewall.allowedTCPPorts = [ 25567 ];
   services.minecraft-server = {
     enable = true;

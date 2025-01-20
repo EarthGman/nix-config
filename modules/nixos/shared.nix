@@ -47,9 +47,12 @@ in
     networkmanager.enable = true;
   };
 
-  nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
-    auto-optimise-store = true;
+  nix = {
+    channel.enable = mkDefault false; # please just use flakes instead
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      auto-optimise-store = true;
+    };
   };
 
   nixpkgs = {

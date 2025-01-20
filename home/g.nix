@@ -48,6 +48,7 @@ in
     musescore = enabled;
     museeks = enabled;
     mov-cli = enabled;
+    kitty.enable = true;
     nautilus.enable = true;
     sparrow = enabled;
     prismlauncher = enabled;

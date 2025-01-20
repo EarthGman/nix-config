@@ -121,6 +121,15 @@ in
     configDir = ./mc121;
   };
 
+  gman-theatre = mkHost {
+    hostName = "gman-theatre";
+    server = true;
+    vm = false;
+    platform = "x86_64-linux";
+    stateVersion = "25.05";
+    configDir = ./gman-theatre;
+  };
+
   # isos
   installer-x86_64-without-firmware = mkHost {
     hostName = "nixos-installer";

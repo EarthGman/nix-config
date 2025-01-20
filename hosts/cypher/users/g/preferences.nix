@@ -14,7 +14,6 @@ in
     lutris.enable = true;
     davinci-resolve.enable = true;
     moonlight.enable = true;
-    ghidra.enable = true;
     looking-glass.enable = true;
     obs-studio.enable = true;
     passmark-performancetest.enable = true;

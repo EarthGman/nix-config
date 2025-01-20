@@ -41,6 +41,10 @@
       url = "github:danth/stylix";
     };
 
+    srvos = {
+      url = "github:nix-community/srvos";
+    };
+
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";

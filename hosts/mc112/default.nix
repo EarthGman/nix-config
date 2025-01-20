@@ -1,10 +1,6 @@
 # Vanilla MC 1.12.2
 { outputs, pkgs, lib, ... }:
 {
-  users.users."root" = {
-    openssh.authorizedKeys.keys = [ outputs.keys.g_pub ];
-  };
-
   networking = {
     firewall.allowedTCPPorts = [ 25565 ]; # minecraft port
   };

@@ -1,9 +1,5 @@
 { pkgs, outputs, lib, binaries, ... }:
 {
-  users.users."root" = {
-    openssh.authorizedKeys.keys = [ outputs.keys.g_pub ];
-  };
-
   networking = {
     firewall.allowedTCPPorts = [ 25566 ]; # use 25566 since 25565 is already used
   };
