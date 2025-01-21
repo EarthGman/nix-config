@@ -16,7 +16,7 @@ in
       terminal = mkOption {
         description = "which terminal emulator is used by default";
         type = types.str;
-        default = "ghostty";
+        default = "kitty";
       };
       fileManager = mkOption {
         description = "preferred fileManager";
