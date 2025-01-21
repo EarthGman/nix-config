@@ -2,7 +2,6 @@
 { inputs, outputs, modulesPath, lib, ... }:
 {
   imports = [
-    ./disko.nix
     # pretty cool repo for servers
     inputs.srvos.nixosModules.server
   ];

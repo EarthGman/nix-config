@@ -67,15 +67,6 @@ in
   };
 
   environment.systemPackages =
-    let
-      remote-build = pkgs.writeScriptBin "remote-build" ''
-        hostnames=(mc112 mc121 mc-blueprints wireguard)
-        hostname=$(printf "%s\n" "''${hostnames[@]}" | fzf)
-        pushd /etc/nixos
-        nixos-rebuild switch --flake ".#$hostname" --target-host $hostname --use-remote-sudo
-        popd
-      '';
-    in
     with pkgs; [
       btop
       busybox
@@ -104,12 +95,13 @@ in
       tcpdump
       ripgrep
       zoxide # must be on path
-      remote-build
     ]
     ++ optionals (config.services.keyd.enable) [
       # idk why services.keyd.enable doesn't install this cli
       pkgs.keyd
     ];
+
+  programs.lazygit.enable = mkDefault true;
 
   # root level shell
   programs.zsh = {
@@ -125,6 +117,7 @@ in
         l = "ls -al";
         g = "${getExe pkgs.git}";
         t = "${getExe pkgs.tree}";
+        lg = mkIf (config.programs.lazygit.enable) "${getExe pkgs.lazygit}";
         ga = "g add .";
         gco = "g checkout";
         gba = "g branch -a";

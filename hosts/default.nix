@@ -123,6 +123,8 @@ in
 
   gman-theatre = mkHost {
     hostName = "gman-theatre";
+    cpu = "intel";
+    gpu = "amd";
     server = true;
     vm = false;
     platform = "x86_64-linux";

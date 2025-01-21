@@ -8,7 +8,10 @@ in
 {
   options.modules.gpu.amd.enable = lib.mkEnableOption "enable amdgpu module for dedicated cards";
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [ pkgs.radeontop ];
+    environment.systemPackages = with pkgs; [
+      radeontop
+      glxinfo
+    ];
     programs.zsh.shellAliases = {
       "radeon-profile" = radeon-profile;
     };
