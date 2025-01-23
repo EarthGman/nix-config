@@ -794,11 +794,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1734231813,
-        "narHash": "sha256-2XI0npEmuwQ6J2dhJvLYdaJYa+HseWqYndct0qD+RGE=",
+        "lastModified": 1737600680,
+        "narHash": "sha256-Bp1Os22/uV8Eg/zf4BhrLGCjLgs7Uakq3lz+6vcJyB8=",
         "owner": "EarthGman",
         "repo": "nix-library",
-        "rev": "e8d8bde1628704a981c1e20e4e160a2e43215ea2",
+        "rev": "7714880e07e74646c237e337b7ba8015f686c439",
         "type": "github"
       },
       "original": {
