@@ -11,6 +11,7 @@ in
     terminal = lib.mkForce 12;
   };
 
+  services.swww.enable = true;
   services.polybar.settings = {
     "bar/bottom" = {
       height = "16pt";

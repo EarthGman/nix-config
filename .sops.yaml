@@ -1,5 +1,6 @@
 keys:
   - &cypher age1f3axcm808wfxm38lg3qfwllytlgmqcjwn4yenlkyqpg3c3ku532s77e48d
+  - &tater age1f3axcm808wfxm38lg3qfwllytlgmqcjwn4yenlkyqpg3c3ku532s77e48d
   - &garth age13mj768x90kcw2m80d0v3px5v2kvhf9dq63a40xxjgyt75kcv0assr0u8eu
   - &somnus age18uzw9yhgjnuy0zg9fajmp75m0r8w93aq0qw453e868mxadflcghqpeqgy4
 
@@ -16,3 +17,7 @@ creation_rules:
     key_groups:
       - age:
         - *somnus
+  - path_regex: hosts/tater/secrets.yaml
+    key_groups:
+      - age:
+        - *tater

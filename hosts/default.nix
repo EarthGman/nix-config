@@ -31,7 +31,7 @@ in
     cpu = "intel";
     gpu = "intel-igpu";
     users = [ "g" ];
-    desktop = "gnome";
+    desktop = "sway";
     stateVersion = "25.05";
     configDir = ./tater;
   };

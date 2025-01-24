@@ -4,6 +4,7 @@
     ./disko.nix
     (self + /profiles/nixos/workstation.nix)
     (self + /profiles/nixos/keyd/gmans-keymap.nix)
+    (self + /profiles/nixos/wg0.nix)
   ];
   boot.initrd.availableKernelModules = [
     "ahci"
@@ -17,6 +18,7 @@
 
   modules = {
     onepassword.enable = true;
+    sops.enable = true;
   };
 
   programs.wireshark = {
