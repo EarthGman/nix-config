@@ -172,7 +172,7 @@ in
           Service = {
             Type = "exec";
             Environment = "PATH=/run/current-system/sw/bin:${config.home.homeDirectory}/.nix-profile/bin";
-            ExecStart = "${bash} -c 'pgrep -x swww-daemon || swww-daemon --no-cache'";
+            ExecStart = "${bash} -c 'pgrep -x swww-daemon || swww-daemon --no-cache -f xrgb'";
             ExecStartPost = ''
               ${bash} -c '${if (config.services.omori-calendar-project.enable) then
                 "sleep 0.5 && systemctl --user restart omori-calendar-project"
