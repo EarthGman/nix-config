@@ -1,6 +1,7 @@
 11-24-2025
 - garth turned to dust so using tater as main laptop
 - fix swww to use xrgb due to a very weird bug on tater
+- add r2modman to home manager
 
 
 11-12-2025
