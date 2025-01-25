@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, scripts, ... }:
 let
   inherit (lib) getExe mkDefault;
 in
@@ -45,6 +45,7 @@ in
       shutdown = "shutdown now";
       lockscreen = "hyprlock";
       reboot = "systemctl reboot";
+      wallpapers = "bash -c ${scripts.wayland_wallpaper_switcher}";
     };
   };
 

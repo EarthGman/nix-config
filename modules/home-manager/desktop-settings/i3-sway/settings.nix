@@ -1,7 +1,7 @@
 { pkgs, lib, config, desktop, ... }:
 let
   inherit (lib) mkDefault mkForce;
-  scripts = import ../scripts { inherit pkgs lib config; };
+  scripts = import ../../scripts { inherit pkgs lib config; };
 in
 {
   bars = mkForce [ ];
