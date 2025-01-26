@@ -93,10 +93,11 @@ in
      "sway")
        focused_monitor=$(swaymsg -t get_outputs | jq -r '.[] | select(.focused).name')
        ;;
-    "Hyprland")
+     "Hyprland")
        focused_monitor=$(hyprctl monitors | /run/current-system/sw/bin/awk '/^Monitor/{name=$2} /focused: yes/{print name}')
        ;;
-    *)
+     *)
+       echo "no desktop detected"
        exit 1
        ;;
      esac
