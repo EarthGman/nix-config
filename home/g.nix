@@ -45,14 +45,10 @@ in
     filezilla = enabled;
     gcolor = enabled;
     ghex = enabled;
-    musescore = enabled;
     museeks = enabled;
-    mov-cli = enabled;
     nautilus.enable = true;
-    sparrow = enabled;
     prismlauncher = enabled;
     discord = enabled;
-    xclicker = enabled;
 
     # fun and useless
     pipes = enabled;

@@ -6,12 +6,12 @@ in
   name = "bottom";
   layer = "bottom";
   position = "bottom";
-  height = 41;
+  height = mkDefault 41;
   exclusive = true;
   mod = "dock";
   gtk-layer-shell = true;
   passthrough = false;
-  modules-left = [
+  modules-left = mkDefault [
     "custom/settings-menu"
     "network"
     "cpu"
@@ -19,12 +19,12 @@ in
     "disk"
     # "temperature"
   ];
-  modules-center = [
+  modules-center = mkDefault [
     "custom/os_button"
     "hyprland/workspaces"
     "sway/workspaces"
   ];
-  modules-right = [
+  modules-right = mkDefault [
     "battery"
     "tray"
     "custom/microphone"

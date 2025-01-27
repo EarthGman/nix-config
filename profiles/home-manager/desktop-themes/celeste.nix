@@ -28,21 +28,21 @@ in
     package = pkgs.candy-icons;
   };
   stylix.fonts = {
-    sansSerif = {
-      name = "Montserrat-Bold";
-      package = pkgs.montserrat;
-    };
-    serif = {
-      name = "Montserrat-Bold";
-      package = pkgs.montserrat;
-    };
-    monospace = {
-      name = "Montserrat-Bold";
-      package = pkgs.montserrat;
-    };
-    emoji = {
-      name = "Montserrat-Bold";
-      package = pkgs.montserrat;
-    };
+    # sansSerif = {
+    #   name = "Montserrat-Bold";
+    #   package = pkgs.montserrat;
+    # };
+    # serif = {
+    #   name = "Montserrat-Bold";
+    #   package = pkgs.montserrat;
+    # };
+    # monospace = {
+    #   name = "Montserrat-Bold";
+    #   package = pkgs.montserrat;
+    # };
+    # emoji = {
+    #   name = "Montserrat-Bold";
+    #   package = pkgs.montserrat;
+    # };
   };
 }

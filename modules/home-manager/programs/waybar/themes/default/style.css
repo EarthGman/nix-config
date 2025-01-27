@@ -1,8 +1,3 @@
- * {
-    font-family: "MesloLGS Nerd Font", DejaVu Sans;
-    font-size: 12pt;
-  }
-
   #window, #network, #cpu, #memory, #disk, #pulseaudio, #custom-microphone,
   #battery, #clock, #tray {
     background-color: #303030;
