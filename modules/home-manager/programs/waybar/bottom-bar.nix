@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, scripts, ... }:
 let
   inherit (lib) getExe mkDefault;
 in
@@ -42,9 +42,10 @@ in
     menu = "on-click";
     menu-file = "${config.xdg.configHome}/waybar/settings-menu.xml";
     menu-actions = {
-      shutdown = "shutdown now";
-      lockscreen = "hyprlock";
+      shutdown = "systemctl poweroff";
+      lockscreen = "hyprlock || swaylock";
       reboot = "systemctl reboot";
+      wallpapers = "bash -c ${scripts.wayland_wallpaper_switcher}";
     };
   };
 

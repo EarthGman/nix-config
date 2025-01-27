@@ -1,7 +1,7 @@
 { pkgs, lib, config, ... }:
 let
   enabled = { enable = lib.mkDefault true; };
-  scripts = import ../scripts { inherit pkgs lib config; };
+  scripts = import ../../scripts { inherit pkgs lib config; };
 in
 {
   options = {

@@ -11,6 +11,10 @@ in
     terminal = lib.mkForce 12;
   };
 
+  programs = {
+    moonlight.enable = true;
+  };
+
   services.swww.enable = true;
   services.polybar.settings = {
     "bar/bottom" = {
