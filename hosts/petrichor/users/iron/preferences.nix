@@ -10,6 +10,7 @@ in
   custom.editor = "codium";
 
   programs = {
+    r2modman.enable = true;
     bottles.enable = true;
     lutris.enable = true;
     prismlauncher.enable = true;
