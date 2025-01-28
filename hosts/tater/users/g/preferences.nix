@@ -18,11 +18,9 @@ in
     moonlight.enable = true;
     google-chrome.enable = true;
     prismlauncher.package = pkgs.prismlauncher;
+    ghidra.enable = true;
     waybar.bottomBar.settings = {
       height = 26;
-      # "cpu".format = lib.mkForce "  {usage}%";
-      # "memory".format = lib.mkForce "  {percentage}%";
-      # "disk".format = lib.mkForce "  {percentage_used}%";
     };
   };
 
