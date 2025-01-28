@@ -16,6 +16,7 @@ in
 
   programs = {
     moonlight.enable = true;
+    john-the-ripper.enable = true;
     google-chrome.enable = true;
     prismlauncher.package = pkgs.prismlauncher;
     ghidra.enable = true;
