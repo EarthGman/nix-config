@@ -45,6 +45,8 @@
     enable = true;
   };
 
+  documentation.dev.enable = true;
+
   networking = {
     # required for sins of a solar empire lag bug in multiplayer
     extraHosts = ''66.79.209.80 ico-reb.stardock.com'';
@@ -90,6 +92,8 @@
   };
 
   environment.systemPackages = with pkgs; [
+    man-pages
+    man-pages-posix
     gnome-software
     samsung-unified-linux-driver
   ];

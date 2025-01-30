@@ -10,6 +10,7 @@ in
 
   programs = {
     musescore.enable = true;
+    john-the-ripper.enable = true;
     ardour.enable = true;
     dolphin-emu.enable = true;
     cemu.enable = true;
