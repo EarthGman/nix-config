@@ -1,10 +1,21 @@
-11-24-2025
+1-30-2025
+- update changelog
+
+
+1-29-2025
+- add posix documentation to workstation
+- add Mod + w to open rofi -show window to sway & i3
+- change keybind for tabbed layout in sway and i3 from Mod + w to Mod + t
+- sway and i3 config are now reloaded with Mod + r instead of Mod + Shift + r
+
+
+1-24-2025
 - garth turned to dust so using tater as main laptop
 - fix swww to use xrgb due to a very weird bug on tater
 - add r2modman to home manager
 
 
-11-12-2025
+1-12-2025
 - flatpak module
 - mini icons for neovim
 - simple benchmark app in home-manager
