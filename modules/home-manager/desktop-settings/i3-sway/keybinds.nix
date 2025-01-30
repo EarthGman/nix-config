@@ -20,6 +20,7 @@ in
   "${mod}+b" = "exec ${browser}";
   # special case for yazi to launch properly
   "${mod}+m" = if fileManager == "yazi" then "exec ${terminal} -e yazi" else "exec ${fileManager}";
+  "${mod}+w" = "exec rofi -show window";
 
   "${mod}+h" = "focus left";
   "${mod}+j" = "focus down";
@@ -65,7 +66,7 @@ in
 
   # change container layout (stacked, tabbed, toggle split)
   "${mod}+s" = "layout stacking";
-  "${mod}+w" = "layout tabbed";
+  "${mod}+t" = "layout tabbed";
   "${mod}+e" = "layout toggle split";
 
   # toggle tiling / floating
@@ -101,7 +102,8 @@ in
   "${mod}+Shift+9" = "move container to workspace number 9";
   "${mod}+Shift+0" = "move container to workspace number 10";
 
-  "${mod}+Shift+r" =
+  "${mod}+r" =
+    # why are these different?
     if (desktop == "i3") then
       "restart"
     else
@@ -126,6 +128,7 @@ in
     else
       "exec --no-startup-id ${scripts.take_screenshot_selection_wayland}";
 
+  # TODO: need to implement a wayland version of this one
   "Control+Print" = lib.mkIf (desktop == "i3") "exec --no-startup-id ${scripts.take_screenshot_window_xorg}";
 
   "XF86AudioRaiseVolume" = "exec ${pamixer} -i 5";
