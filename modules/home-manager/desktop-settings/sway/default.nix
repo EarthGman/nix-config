@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ pkgs, lib, ... }:
 let
   inherit (lib) mkDefault;
   enabled = { enable = mkDefault true; };
@@ -13,6 +13,10 @@ in
     rofi = enabled;
     waybar = enabled;
   };
+
+  home.packages = with pkgs; [
+    wl-clipboard
+  ];
 
   services = {
     swww = enabled;

@@ -24,6 +24,10 @@ in
       hyprlock = enabled;
     };
 
+    home.packages = with pkgs; [
+      wl-clipboard
+    ];
+
     services = {
       hyprpaper.enable =
         if (config.services.swww.enable)
