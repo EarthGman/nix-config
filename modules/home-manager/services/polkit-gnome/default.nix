@@ -8,10 +8,12 @@ in
     systemd = {
       user.services.polkit-gnome-authentication-agent-1 = {
         Unit = {
-          description = "polkit-gnome-authentication-agent-1";
-          wantedBy = [ "graphical-session.target" ];
-          wants = [ "graphical-session.target" ];
-          after = [ "graphical-session.target" ];
+          Description = "polkit-gnome-authentication-agent-1";
+          Wants = [ "graphical-session.target" ];
+          After = [ "graphical-session.target" ];
+        };
+        Install = {
+          WantedBy = [ "graphical-session.target" ];
         };
         Service = {
           Type = "simple";

@@ -11,6 +11,7 @@ in
 
   services = {
     hyprland-window-emulator = enabled;
+    polkit-gnome = enabled;
     dunst = enabled;
     network-manager-applet = enabled;
     blueman-applet = enabled;

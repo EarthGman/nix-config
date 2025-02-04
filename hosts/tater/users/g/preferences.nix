@@ -12,6 +12,7 @@ in
   };
 
   programs = {
+    obs-studio.enable = true;
     moonlight.enable = true;
   };
 
