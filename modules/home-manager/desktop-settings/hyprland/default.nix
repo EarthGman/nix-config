@@ -35,6 +35,7 @@ in
           (lib.mkForce false)
         else true;
       swww = enabled;
+      polkit-gnome = enabled;
     };
 
     wayland.windowManager.hyprland = {

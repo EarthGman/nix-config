@@ -15,6 +15,7 @@ in
   };
 
   programs = {
+    obs-studio.enable = true;
     moonlight.enable = true;
     john-the-ripper.enable = true;
     google-chrome.enable = true;
