@@ -1,3 +1,13 @@
+2-03-2025
+- fix https://gitlab.freedesktop.org/xorg/xserver/-/issues/899 on my sway multi monitor setup
+
+
+2-02-2025
+- Finally added the polkit service to all desktops
+- new HM service polkit-gnome. Allows apps such as OBS studio to prompt for sudo without a terminal
+- Neovim update, will now show the current line number of the cursor instead of 0.
+
+
 1-30-2025
 - update changelog
 
