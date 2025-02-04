@@ -24,6 +24,8 @@ in
     extraPortals = mkDefault [ pkgs.xdg-desktop-portal ];
   };
 
+  security.polkit.enable = true; # graphical prompt for sudo
+
   # forces qt dark theme since qt apps dont work well with stylix
   qt = {
     enable = true;
