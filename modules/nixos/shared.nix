@@ -91,6 +91,7 @@ in
       lsof
       fd
       jq
+      tldr
       lynx
       tcpdump
       ripgrep
