@@ -52,17 +52,18 @@ in
   services.kanshi = {
     enable = true;
     settings = [
+      # https://gitlab.freedesktop.org/xorg/xserver/-/issues/899 It is impressive how screwed up xwayland is
       {
         profile.name = "home";
         profile.outputs = [
           {
             criteria = "LG Electronics LG HDR 4K 0x0007B5B9";
-            position = "0,0";
+            position = "1920,0";
             mode = "2560x1440@59.951Hz";
           }
           {
             criteria = "Sceptre Tech Inc Sceptre F24 0x01010101";
-            position = "-1920,0";
+            position = "0,0";
             mode = "1920x1080@100Hz";
           }
         ];
@@ -72,12 +73,12 @@ in
         profile.outputs = [
           {
             criteria = "Philips Consumer Electronics Company PHL BDM4350 0x000005E8";
-            position = "0,0";
+            position = "1920,0";
             mode = "2560x1440@59.95Hz";
           }
           {
             criteria = "Sceptre Tech Inc E24 0x01010101";
-            position = "-1920,0";
+            position = "0,0";
             mode = "1920x1080@74.97Hz";
           }
         ];
