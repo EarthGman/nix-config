@@ -1,6 +1,8 @@
 { inputs, pkgs, lib, config, platform, ... }:
 let
   inherit (lib) mkEnableOption mkOption mkIf types concatStringsSep mapAttrsToList getExe;
+  inherit (pkgs) writeScript;
+
   cfg = config.services.swww;
 in
 {
@@ -135,7 +137,21 @@ in
           ${concatStringsSep "\n" (mapAttrsToList (monitor: settings: "swww img -o ${monitor} ${settings.image}") monitors)}  
         '';
 
-        set-wallpaper = pkgs.writeScript "swww.sh" ''
+        daemon-postup = writeScript "swww-daemon-postup.sh" ''
+          #!${bash}
+          userid=$(id -u)
+          socket_path="/run/user/$userid/swww-wayland-1.sock"
+
+          for (( i=1; i<=30; i++ )); do
+            if [ -e "$socket_path" ]; then
+              systemctl --user restart swww-wallpaper
+              exit 0
+            fi
+            sleep 0.1
+          done
+        '';
+
+        set-wallpaper = writeScript "swww.sh" ''
           #!${bash}
           ${if cfg.monitors != { } then ''
             ${multi-monitor cfg.monitors}     					 
@@ -173,12 +189,7 @@ in
             Type = "exec";
             Environment = "PATH=/run/current-system/sw/bin:${config.home.homeDirectory}/.nix-profile/bin";
             ExecStart = "${bash} -c 'pgrep -x swww-daemon || swww-daemon --no-cache -f xrgb'";
-            ExecStartPost = ''
-              ${bash} -c '${if (config.services.omori-calendar-project.enable) then
-                "sleep 0.5 && systemctl --user restart omori-calendar-project"
-              else
-                "sleep 0.5 && systemctl --user restart swww-wallpaper"}'
-            '';
+            ExecStartPost = "${daemon-postup}";
             ExecReload = "swww kill";
             KillSignal = "SIGTERM";
             Restart = "on-failure";
