@@ -1,6 +1,6 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 let
-  inherit (lib) mkDefault;
+  inherit (lib) mkDefault optionals;
   enabled = { enable = mkDefault true; };
 in
 {
@@ -41,6 +41,12 @@ in
         }
         {
           command = "systemctl --user restart swww-daemon";
+          always = true;
+        }
+        # dont know why but kanshi seems to not restart properly when sway is reloaded
+      ] ++ optionals (config.services.kanshi.enable) [
+        {
+          command = "systemctl --user restart kanshi";
           always = true;
         }
       ];

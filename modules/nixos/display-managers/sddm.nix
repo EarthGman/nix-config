@@ -9,9 +9,11 @@ let
   defaultSession =
     if (preferredDesktop == "i3")
     then
-      "none+i3"
+      "i3"
     else if (preferredDesktop == "hyprland") then
       "hyprland-uwsm"
+    else if (preferredDesktop == "sway") then
+      "sway-uwsm"
     else
       preferredDesktop;
 in
