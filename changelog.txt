@@ -1,3 +1,15 @@
+2-06-2025
+- revert sway and i3 reload to Mod+Shift+r
+- Mod+r enters resize mode
+- h j k l and left down up right will resize windows
+- press escape to exit resize mode
+
+
+2-05-2025
+- rewrite swww-daemon postup script.
+- instead of sleeping for 0.5 the script will actively check for the socket 30 times over a 3 second period
+
+
 2-03-2025
 - fix https://gitlab.freedesktop.org/xorg/xserver/-/issues/899 on my sway multi monitor setup
 
