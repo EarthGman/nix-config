@@ -26,6 +26,10 @@
     package = pkgs.wireshark;
   };
 
+  zramSwap = {
+    enable = true;
+  };
+
   # custom = {
   #   decreased-security.nixos-rebuild = true;
   # };
