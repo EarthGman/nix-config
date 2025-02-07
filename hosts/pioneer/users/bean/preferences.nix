@@ -7,14 +7,16 @@ in
     theme
   ];
 
-  stylix.image = lib.mkForce (builtins.fetchurl wallpapers.grillbys);
-
   xsession.screensaver = {
     enable = true;
   };
 
   programs = {
     discord.enable = true;
+    sl.enable = true;
+    cmatrix.enable = true;
+    cbonsai.enable = true;
+    zoom.enable = true; # yay school
   };
 
   services.polybar.settings = {
