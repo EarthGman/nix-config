@@ -27,4 +27,6 @@
     FontSize = "10";
     HourFormat = "hh:mm A";
   };
+  zramSwap.enable = true;
 }
+
