@@ -1,5 +1,6 @@
 { outputs, lib, wallpapers, ... }:
 let
+  inherit (lib) mkForce;
   theme = outputs.homeProfiles.desktopThemes.determination;
 in
 {
@@ -24,5 +25,11 @@ in
       font-0 = "MesloLGL Nerd Font Mono:size = 12;4";
       modules-left = "wlan cpu memory";
     };
+  };
+  stylix.fonts.sizes = {
+    terminal = mkForce 12;
+    applications = mkForce 12;
+    popups = mkForce 12;
+    desktop = mkForce 12;
   };
 }

@@ -63,7 +63,7 @@ in
     cpu = "intel";
     gpu = "intel-igpu";
     users = [ "bean" ];
-    desktop = "i3,sway";
+    desktop = "sway";
     platform = "x86_64-linux";
     stateVersion = "24.11";
     configDir = ./pioneer;
