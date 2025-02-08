@@ -2,7 +2,7 @@
 pkgs.writeScript "omori-calendar-project.sh" ''
   #!${pkgs.bash}/bin/bash
   January="${fetchurl wallpapers.omori-january}"
-  Feburary="${fetchurl wallpapers.omori-feburary}"
+  February="${fetchurl wallpapers.omori-february}"
   March="${fetchurl wallpapers.omori-march}"
   April="${fetchurl wallpapers.omori-april}"
   May="${fetchurl wallpapers.omori-may}"
