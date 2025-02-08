@@ -352,7 +352,7 @@
     "fonts": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-sOs0a6D9Xacxl7Gy4k6NNcW32am0Pr0xFf9kK3hatws=",
+        "narHash": "sha256-hSW36y0sytiWVUF//a4Tul2LZoRkCGw/KmHvioZXc3g=",
         "type": "file",
         "url": "https://raw.githubusercontent.com/EarthGman/assets/master/fonts.json"
       },
@@ -834,11 +834,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1737600680,
-        "narHash": "sha256-Bp1Os22/uV8Eg/zf4BhrLGCjLgs7Uakq3lz+6vcJyB8=",
+        "lastModified": 1738994792,
+        "narHash": "sha256-eJq9nO8CcJnVtOBYTls9b5H8ioxuKYY0TNPMKo8oe7U=",
         "owner": "EarthGman",
         "repo": "nix-library",
-        "rev": "7714880e07e74646c237e337b7ba8015f686c439",
+        "rev": "34381f89e3a0987e62a0a6049b8db05454442027",
         "type": "github"
       },
       "original": {
@@ -940,11 +940,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1733940404,
-        "narHash": "sha256-Pj39hSoUA86ZePPF/UXiYHHM7hMIkios8TYG29kQT4g=",
+        "lastModified": 1738824222,
+        "narHash": "sha256-U3SNq+waitGIotmgg/Et3J7o4NvUtP2gb2VhME5QXiw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "5d67ea6b4b63378b9c13be21e2ec9d1afc921713",
+        "rev": "550e11f27ba790351d390d9eca3b80ad0f0254e7",
         "type": "github"
       },
       "original": {

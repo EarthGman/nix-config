@@ -42,26 +42,27 @@ in
   };
   stylix.fonts = {
     sansSerif = {
-      name = "OMORI_GAME";
-      package = pkgs.omori-font;
+      name = "8\-bit Operator+";
+      package = pkgs."8-bit-operator-font";
     };
     serif = {
-      name = "OMORI_GAME";
-      package = pkgs.omori-font;
+      name = "8\-bit Operator+";
+      package = pkgs."8-bit-operator-font";
     };
     monospace = {
-      name = "OMORI_GAME";
-      package = pkgs.omori-font;
+      name = "8\-bit Operator+";
+      package = pkgs."8-bit-operator-font";
     };
     emoji = {
-      name = "OMORI_GAME";
-      package = pkgs.omori-font;
+      name = "8\-bit Operator+";
+      package = pkgs."8-bit-operator-font";
     };
+
     sizes = {
-      applications = 24;
-      desktop = 18;
-      popups = 16;
-      terminal = 14;
+      applications = 20;
+      desktop = 12;
+      popups = 14;
+      terminal = 16;
     };
   };
 }
