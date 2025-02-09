@@ -1,7 +1,7 @@
-{ outputs, wallpapers, ... }:
+{ outputs, wallpapers, pkgs, ... }:
 let
   inherit (builtins) fetchurl;
-  theme = outputs.homeProfiles.desktopThemes.celeste;
+  theme = outputs.homeProfiles.desktopThemes.determination;
 in
 {
   imports = [
@@ -10,7 +10,6 @@ in
 
   programs = {
     musescore.enable = true;
-    john-the-ripper.enable = true;
     ardour.enable = true;
     dolphin-emu.enable = true;
     cemu.enable = true;
@@ -21,25 +20,25 @@ in
     ygo-omega.enable = true;
   };
 
-  services.swww.monitors = {
-    DP-3 = {
-      image = fetchurl wallpapers.celeste-mountain;
-    };
-    HDMI-A-1 = {
-      image = fetchurl wallpapers.celeste;
-    };
-  };
-
-  services.fehbg = {
-    settings.monitors = {
-      "0" = {
-        image = fetchurl wallpapers.celeste-mountain;
-      };
-      "1" = {
-        image = fetchurl wallpapers.celeste;
-      };
-    };
-  };
+  # services.swww.monitors = {
+  #   DP-3 = {
+  #     image = fetchurl wallpapers.celeste-mountain;
+  #   };
+  #   HDMI-A-1 = {
+  #     image = fetchurl wallpapers.celeste;
+  #   };
+  # };
+  #
+  # services.fehbg = {
+  #   settings.monitors = {
+  #     "0" = {
+  #       image = fetchurl wallpapers.celeste-mountain;
+  #     };
+  #     "1" = {
+  #       image = fetchurl wallpapers.celeste;
+  #     };
+  #   };
+  # };
 
   # monitors for hyprland
   # wayland.windowManager.hyprland.settings.monitor = [
