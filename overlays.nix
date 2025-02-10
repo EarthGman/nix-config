@@ -18,7 +18,7 @@
 
   extraVimPlugins = inputs.vim-config.overlay.default;
   # additional packages added to the package set
-  packages = inputs.nix-library.overlay.default;
+  packages = inputs.nix-library.overlays.default;
 
   # cuts out roughly 600Mb of bloat
   disable-mbrola-voices = final: prev: {

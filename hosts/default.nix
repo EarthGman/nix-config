@@ -9,7 +9,7 @@ in
     cpu = "amd";
     gpu = "amd";
     users = [ "g" ];
-    desktop = "sway";
+    desktop = "sway,i3";
     platform = "x86_64-linux";
     stateVersion = "24.05";
     configDir = ./cypher;
@@ -63,7 +63,7 @@ in
     cpu = "intel";
     gpu = "intel-igpu";
     users = [ "bean" ];
-    desktop = "i3";
+    desktop = "sway";
     platform = "x86_64-linux";
     stateVersion = "24.11";
     configDir = ./pioneer;
