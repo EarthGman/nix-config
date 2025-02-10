@@ -39,7 +39,6 @@ in
     };
 
     ardour = enabled;
-    autokey = enabled;
     bottles = enabled;
     freetube = enabled;
     filezilla = enabled;
