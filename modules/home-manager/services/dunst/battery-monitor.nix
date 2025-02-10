@@ -36,14 +36,14 @@ in
     };
     threshold = mkOption {
       type = types.int;
-      description = "value of the battery in which the notification is triggered";
+      description = "percentage of the battery in which the notification is triggered as an integer";
       default = 10;
     };
   };
   config = mkIf (cfg.enable && cfg.battery-monitor.enable) {
     systemd.user.timers."battery-monitor" = {
       Unit = {
-        Description = "trigger battery check";
+        Description = "battery check";
       };
       Timer = {
         Persistent = true;
