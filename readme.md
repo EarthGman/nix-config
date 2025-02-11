@@ -268,6 +268,7 @@ Imperative actions after install
 - install protonup for steam
 - /etc/nixos -> ~/src/nix-config
 - Pictures/wallpapers -> ~/src/assets/wallpapers
+- Install the English Dictionary extension for libreoffice (otherwise the spell checker wont work)
 - setup any VMs
 - reinstall wine/bottles programs
 
