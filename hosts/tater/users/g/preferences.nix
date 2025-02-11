@@ -1,6 +1,7 @@
 { outputs, pkgs, lib, ... }:
 let
-  theme = outputs.homeProfiles.desktopThemes.celeste;
+  theme = outputs.homeProfiles.desktopThemes.determination;
+  inherit (lib) mkForce;
 in
 {
   imports = [
@@ -8,10 +9,10 @@ in
   ];
 
   stylix.fonts.sizes = {
-    terminal = 12;
-    applications = 10;
-    popups = 8;
-    desktop = 10;
+    terminal = mkForce 12;
+    applications = mkForce 10;
+    popups = mkForce 8;
+    desktop = mkForce 10;
   };
 
   programs = {
