@@ -11,15 +11,6 @@ in
     #tobyfox
     firefox.theme.name = "shyfox";
     firefox.theme.config.wallpaper = fetchurl wallpapers.mt-ebott-alt;
-    vscode.userSettings = {
-      editor = {
-        "fontFamily" = mkForce "'OMORI_GAME'";
-        "fontSize" = mkForce "32";
-      };
-      window = {
-        "zoomLevel" = mkForce 1;
-      };
-    };
 
     fastfetch = {
       settings.logo = {

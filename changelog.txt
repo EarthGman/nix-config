@@ -1,3 +1,28 @@
+2-12-2025
+- revamped all home-manager modules to include a package option.
+- redid a few comments for home manager program modules
+- add a program-module.nix to /templates. Serves as a simple base for installing programs as a home-manager module
+- added Leader + bd to vim for buffer delete
+- changed alpha.lua menu plugin to have the same keybinds as the rest of neovim
+- removed the old neovim configuration stored in programs/neovim
+- removed remmina remote desktop program, completely useless in favor of sunshine/moonlight
+- removed the omori font from vscode for the comfy undertale theme 
+- update ghidra to latest version (it builds again)
+- update changelog
+
+
+2-09-2025
+- fix the warning message that would appear when yazi launches due to an outdated config.
+- use pkgs.stable branch for vesktop. (the unstable vesktop does not properly communicate with wayland desktop portals)
+
+
+2-08-2025
+- added the 8 bit operator font used in the game Undertale
+- labeled as pkgs."8-bit-operator-font"; (note the quotes)
+- adjust the font size for the undertale theme
+- fixed a bug in the omori calendar project where "February" was mispelled
+
+
 2-06-2025
 - revert sway and i3 reload to Mod+Shift+r
 - Mod+r enters resize mode
