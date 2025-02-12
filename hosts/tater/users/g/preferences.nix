@@ -26,6 +26,8 @@ in
     };
   };
 
+  services.dunst.battery-monitor.enable = true;
+
   services.polybar.settings = {
     "bar/bottom" = {
       height = "16pt";

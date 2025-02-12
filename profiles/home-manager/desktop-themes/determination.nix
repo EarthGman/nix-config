@@ -65,4 +65,7 @@ in
       terminal = 16;
     };
   };
+  programs.waybar.bottomBar.settings."memory".format = "  {percentage}%";
 }
+
+

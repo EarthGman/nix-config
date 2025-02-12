@@ -1,9 +1,22 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, lib, config, ... }:
+let
+  inherit (lib) mkIf mkEnableOption mkOption types;
+  cfg = config.programs.xclicker;
+in
 {
-  options.programs.xclicker.enable = lib.mkEnableOption "enable xclicker";
-  config = lib.mkIf config.programs.xclicker.enable {
-    home.packages = with pkgs; [
-      xclicker
+  options.programs.xclicker = {
+    enable = mkEnableOption "enable xclicker, an autoclicker for x";
+
+    package = mkOption {
+      description = "package for xclicker";
+      type = types.package;
+      default = pkgs.xclicker;
+    };
+  };
+
+  config = mkIf cfg.enable {
+    home.packages = [
+      cfg.package
     ];
   };
 }

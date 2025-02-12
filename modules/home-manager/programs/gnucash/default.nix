@@ -1,7 +1,21 @@
 { pkgs, lib, config, ... }:
+let
+  inherit (lib) mkIf mkEnableOption mkOption types;
+  cfg = config.programs.gnucash;
+in
 {
-  options.programs.gnucash.enable = lib.mkEnableOption "enable gnucash, a finance app for personal use or small businesses";
-  config = lib.mkIf config.programs.gnucash.enable {
-    home.packages = [ pkgs.gnucash ];
+  options.programs.gnucash = {
+    enable = mkEnableOption "enable gnucash, a finance app for personal use or small businesses";
+    package = mkOption {
+      description = "package for gnucash";
+      types = types.package;
+      default = pkgs.gnucash;
+    };
+  };
+
+  config = mkIf cfg.enable {
+    home.packages = [
+      cfg.package
+    ];
   };
 }

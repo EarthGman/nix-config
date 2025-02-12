@@ -1,9 +1,22 @@
 { pkgs, config, lib, ... }:
+let
+  inherit (lib) mkIf mkEnableOption mkOption types;
+  cfg = config.programs.cmatrix;
+in
 {
-  options.programs.cmatrix.enable = lib.mkEnableOption "enable cmatrix a command line random bonsai tree generator";
-  config = lib.mkIf config.programs.cmatrix.enable {
-    home.packages = with pkgs; [
-      cmatrix
+  options.programs.cmatrix = {
+    enable = mkEnableOption "enable cmatrix, a fun terminal program that draws a colored matrix";
+
+    package = mkOption {
+      description = "package for cmatrix";
+      type = types.package;
+      default = pkgs.cmatrix;
+    };
+  };
+
+  config = mkIf cfg.enable {
+    home.packages = [
+      cfg.package
     ];
   };
 }

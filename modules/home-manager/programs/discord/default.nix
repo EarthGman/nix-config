@@ -12,6 +12,7 @@ in
       default = pkgs.vesktop;
     };
   };
+
   config = mkIf cfg.enable {
     home.packages = [
       cfg.package

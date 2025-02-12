@@ -1,9 +1,22 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, lib, config, ... }:
+let
+  inherit (lib) mkIf mkEnableOption mkOption types;
+  cfg = config.programs.cbonsai;
+in
 {
-  options.programs.cbonsai.enable = lib.mkEnableOption "enable cbonsai a command line random bonsai tree generator";
-  config = lib.mkIf config.programs.cbonsai.enable {
-    home.packages = with pkgs; [
-      cbonsai
+  options.programs.cbonsai = {
+    enable = mkEnableOption "enable cbonsai a command line random bonsai tree generator";
+
+    package = mkOption {
+      description = "enable cbonsai, a fun app that grows bonsai trees in your terminal";
+      type = types.package;
+      default = pkgs.cbonsai;
+    };
+  };
+
+  config = mkIf cfg.enable {
+    home.packages = [
+      cfg.package
     ];
   };
 }

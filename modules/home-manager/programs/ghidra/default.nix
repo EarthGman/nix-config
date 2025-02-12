@@ -9,7 +9,7 @@ in
     package = mkOption {
       description = "ghidra package";
       type = types.package;
-      default = pkgs.stable.ghidra; # nixpkgs unstable fails to build 1-21-2025
+      default = pkgs.ghidra;
     };
   };
   config = mkIf cfg.enable {

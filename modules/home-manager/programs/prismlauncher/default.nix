@@ -6,6 +6,7 @@ in
 {
   options.programs.prismlauncher = {
     enable = mkEnableOption "enable prismlauncher";
+
     package = mkOption {
       description = "package for prismlauncher to use";
       type = types.package;

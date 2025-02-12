@@ -122,13 +122,13 @@ in
 
   "cpu" = {
     interval = 5;
-    format = " {usage}%";
+    format = mkDefault " {usage}%";
     max-length = 10;
   };
 
   "disk" = {
     interval = 30;
-    format = " {percentage_used}%";
+    format = mkDefault " {percentage_used}%";
     path = "/";
     tooltip = true;
     unit = "GB";
@@ -137,7 +137,7 @@ in
 
   "memory" = {
     interval = 10;
-    format = " {percentage}%";
+    format = mkDefault " {percentage}%";
     max-length = 10;
     tooltip = true;
     tooltip-format = "RAM - {used:0.1f}GiB used";

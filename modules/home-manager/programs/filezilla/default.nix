@@ -1,9 +1,22 @@
 { pkgs, config, lib, ... }:
+let
+  inherit (lib) mkIf mkEnableOption mkOption types;
+  cfg = config.programs.filezilla;
+in
 {
-  options.programs.filezilla.enable = lib.mkEnableOption "enable filezilla";
-  config = lib.mkIf config.programs.filezilla.enable {
-    home.packages = with pkgs; [
-      filezilla
+  options.programs.filezilla = {
+    enable = mkEnableOption "enable filezilla";
+
+    package = mkOption {
+      description = "package for filezilla";
+      type = types.package;
+      default = pkgs.filezilla;
+    };
+  };
+
+  config = mkIf cfg.enable {
+    home.packages = [
+      cfg.package
     ];
   };
 }

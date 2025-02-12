@@ -1,16 +1,16 @@
 { pkgs, lib, config, ... }:
 let
   inherit (lib) mkIf mkEnableOption mkOption types;
-  cfg = config.programs.john;
+  cfg = config.programs.program-name;
 in
 {
-  options.programs.john = {
-    enable = mkEnableOption "enable john-the-ripper a password cracker";
+  options.programs.program-name = {
+    enable = mkEnableOption "enable program-name";
 
     package = mkOption {
-      description = "package for john the ripper";
+      description = "package for program-name";
       type = types.package;
-      default = pkgs.john;
+      default = pkgs.program-name;
     };
   };
 

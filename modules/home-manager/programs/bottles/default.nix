@@ -1,9 +1,23 @@
 { pkgs, config, lib, ... }:
+let
+  inherit (lib) mkIf mkEnableOption mkOption types;
+  cfg = config.programs.bottles;
+in
+
 {
-  options.programs.bottles.enable = lib.mkEnableOption "enable wine and bottles";
-  config = lib.mkIf config.programs.bottles.enable {
-    home.packages = with pkgs; [
-      bottles
+  options.programs.bottles = {
+    enable = mkEnableOption "enable wine and bottles";
+
+    package = mkOption {
+      description = "package for bottles";
+      type = types.package;
+      default = pkgs.bottles;
+    };
+  };
+
+  config = mkIf cfg.enable {
+    home.packages = [
+      cfg.package
     ];
   };
 }
