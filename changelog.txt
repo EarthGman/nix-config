@@ -8,6 +8,7 @@
 - removed remmina remote desktop program, completely useless in favor of sunshine/moonlight
 - removed the omori font from vscode for the comfy undertale theme 
 - update ghidra to latest version (it builds again)
+- update flake (linux 6.13.2)
 - update changelog
 
 
