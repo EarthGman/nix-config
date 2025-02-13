@@ -14,7 +14,7 @@ in
     dolphin-emu.enable = true;
     cemu.enable = true;
     lutris.enable = true;
-    davinci-resolve.enable = true;
+    # davinci-resolve.enable = true;
     ghidra.enable = true;
     obs-studio.enable = true;
     ygo-omega.enable = true;

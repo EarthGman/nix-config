@@ -1,3 +1,7 @@
+2-13-2025
+- remove vim-fugutive (just use lazy git)
+
+
 2-12-2025
 - revamped all home-manager modules to include a package option.
 - redid a few comments for home manager program modules
