@@ -21,6 +21,7 @@ in
     ghidra.enable = true;
     bottles.enable = false;
     ardour.enable = false;
+    rpi-imager.enable = true;
     waybar.bottomBar.settings = {
       height = 26;
     };
