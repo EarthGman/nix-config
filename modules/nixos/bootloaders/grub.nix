@@ -32,17 +32,16 @@ in
           config.boot.kernelPackages.v4l2loopback
         ];
         kernelParams = [
-          "video=1920x1080"
           "quiet"
           "noatime"
         ];
         tmp.cleanOnBoot = true;
         loader = {
-          efi.canTouchEfiVariables = true;
+          efi.canTouchEfiVariables = mkDefault true;
           grub = {
             enable = true;
             inherit theme;
-            efiSupport = true;
+            efiSupport = mkDefault true;
             devices = [ "nodev" ];
             gfxmodeEfi = "1920x1080";
             extraEntries = ''

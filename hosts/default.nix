@@ -4,6 +4,7 @@ let
 in
 {
   # Earth's desktops
+  # custom built gaming desktop and workstation
   cypher = mkHost {
     hostName = "cypher";
     cpu = "amd";
@@ -15,6 +16,18 @@ in
     configDir = ./cypher;
   };
 
+  # Corebooted Thinkpad x230
+  twilight = mkHost {
+    hostName = "twilight";
+    cpu = "intel";
+    gpu = "intel-igpu";
+    users = [ "g" ];
+    desktop = "sway";
+    platform = "x86_64-linux";
+    configDir = ./twilight;
+  };
+
+  # broken HP Envy x360
   garth = mkHost {
     hostName = "garth";
     cpu = "intel";
@@ -26,6 +39,7 @@ in
     configDir = ./garth;
   };
 
+  # still working HP pavilion x360 potato
   tater = mkHost {
     hostName = "tater";
     cpu = "intel";
@@ -36,6 +50,7 @@ in
     configDir = ./tater;
   };
 
+  # generic VM for testing purposes only
   nixos = mkHost {
     hostName = "nixos";
     vm = true;

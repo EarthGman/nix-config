@@ -3,11 +3,13 @@ let
   enabled = { enable = lib.mkDefault true; };
   signingkey = outputs.keys.g_pub;
   LHmouse = builtins.toFile "lh-mouse.xmodmap" "pointer = 3 2 1";
+  extraHM = self + /hosts/${hostName}/users/g/preferences.nix;
 in
 {
   imports = [
-    (self + /hosts/${hostName}/users/g/preferences.nix)
     (outputs.homeProfiles.essentials)
+  ] ++ lib.optionals (builtins.pathExists extraHM) [
+    extraHM
   ];
 
   custom = {
