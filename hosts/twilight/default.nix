@@ -36,6 +36,7 @@
   modules = {
     onepassword.enable = true;
     sops.enable = true;
+		steam.enable = true;
   };
 
   programs.wireshark = {
