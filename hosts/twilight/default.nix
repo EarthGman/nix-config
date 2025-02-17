@@ -1,6 +1,11 @@
-{ pkgs, ... }:
+{ self, outputs, pkgs, ... }:
 {
-  imports = [ ./disko.nix ];
+  imports = [
+    ./disko.nix
+    (self + /profiles/nixos/keyd/gmans-keymap.nix)
+    (self + /profiles/nixos/wg0.nix)
+    outputs.nixosProfiles.workstation
+  ];
 
   boot.initrd.availableKernelModules = [
     "xhci_pci"
@@ -37,4 +42,6 @@
     enable = true;
     package = pkgs.wireshark;
   };
+
+  zramSwap.enable = true;
 }

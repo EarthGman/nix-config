@@ -40,7 +40,6 @@ in
       '';
     };
 
-    ardour = enabled;
     bottles = enabled;
     freetube = enabled;
     filezilla = enabled;

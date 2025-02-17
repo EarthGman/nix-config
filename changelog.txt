@@ -1,3 +1,8 @@
+2-16-2025
+- remove garth config, replaced with twilight, a lenovo thinkpad x230 with coreboot skulls.
+- new cosmos theme
+
+
 2-13-2025
 - remove vim-fugutive (just use lazy git)
 

@@ -116,6 +116,7 @@
         desktopThemes = {
           april = import ./profiles/home-manager/desktop-themes/april.nix;
           ashes = import ./profiles/home-manager/desktop-themes/ashes.nix;
+          cosmos = import ./profiles/home-manager/desktop-themes/cosmos.nix;
           faraway = import ./profiles/home-manager/desktop-themes/faraway.nix;
           headspace = import ./profiles/home-manager/desktop-themes/headspace.nix;
           determination = import ./profiles/home-manager/desktop-themes/determination.nix;

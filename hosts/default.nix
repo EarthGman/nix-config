@@ -27,18 +27,6 @@ in
     configDir = ./twilight;
   };
 
-  # broken HP Envy x360
-  garth = mkHost {
-    hostName = "garth";
-    cpu = "intel";
-    gpu = "intel-igpu";
-    users = [ "g" ];
-    desktop = "sway";
-    platform = "x86_64-linux";
-    stateVersion = "25.05";
-    configDir = ./garth;
-  };
-
   # still working HP pavilion x360 potato
   tater = mkHost {
     hostName = "tater";
