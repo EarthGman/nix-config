@@ -1,4 +1,3 @@
-# caps lock = escape when tapped and META when held
 {
   services.keyd = {
     enable = true;
@@ -8,6 +7,13 @@
         settings = {
           main = {
             capslock = "overload(meta, esc)";
+            leftalt = "layer(nav)";
+          };
+          nav = {
+            h = "left";
+            j = "down";
+            k = "up";
+            l = "right";
           };
         };
       };

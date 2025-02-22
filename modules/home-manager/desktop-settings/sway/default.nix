@@ -9,6 +9,7 @@ in
   ];
 
   programs = {
+    swaylock = enabled;
     pwvucontrol = enabled;
     rofi = enabled;
     waybar = enabled;
@@ -42,6 +43,10 @@ in
         {
           command = "systemctl --user restart swww-daemon";
           always = true;
+        }
+        {
+          command = "swayidle -w before-sleep 'swaylock -f'";
+          always = false;
         }
         # dont know why but kanshi seems to not restart properly when sway is reloaded
       ] ++ optionals (config.services.kanshi.enable) [

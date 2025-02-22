@@ -13,7 +13,7 @@ in
 
   stylix = {
     colorScheme = "ashes";
-    image = fetchurl wallpapers.black-hole;
+    image = fetchurl wallpapers.space-piano;
   };
 
   services.swww.slideshow = {
@@ -22,7 +22,7 @@ in
     images = mkDefault (with wallpapers; [
       (fetchurl black-hole)
       (fetchurl pixel-galaxy)
-      (fetchurl galaxy-2)
+      (fetchurl space-piano)
       (fetchurl galaxy)
       (fetchurl nebula)
       (fetchurl nebula-2)

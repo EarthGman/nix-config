@@ -11,7 +11,15 @@
 				 <property name="label"> Lock Screen</property>
 			 </object>
 		</child>
-		 <child>
+    <child>
+			 <object class="GtkMenuItem" id="logout">
+				 <property name="label">󰍃 Logout</property>
+			 </object>
+		</child>
+    <child>
+			 <object class="GtkSeparatorMenuItem" id="delimiter1"/>
+		 </child>
+		<child>
 		 <object class="GtkMenuItem" id="reboot">
 			 <property name="label"> Reboot</property>
 		 </object>
@@ -20,9 +28,6 @@
 			 <object class="GtkMenuItem" id="sleep">
 				 <property name="label">⏾ Sleep</property>
 			 </object>
-		 </child>
-		 <child>
-			 <object class="GtkSeparatorMenuItem" id="delimiter1"/>
 		 </child>
 		 <child>
 			 <object class="GtkMenuItem" id="shutdown">

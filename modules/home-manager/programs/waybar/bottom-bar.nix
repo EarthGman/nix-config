@@ -44,8 +44,9 @@ in
     menu-actions = {
       shutdown = "systemctl poweroff";
       sleep = "systemctl suspend";
-      lockscreen = "hyprlock || swaylock";
+      lockscreen = "hyprlock || swaylock -f";
       reboot = "systemctl reboot";
+      logout = "swaymsg exit";
       wallpapers = "bash -c ${scripts.wayland_wallpaper_switcher}";
     };
   };

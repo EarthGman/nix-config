@@ -10,7 +10,7 @@ in
     ghidra.enable = true;
     moonlight.enable = true;
     waybar.bottomBar.settings = {
-      height = 26;
+      height = 36;
     };
   };
   stylix.fonts.sizes = {
