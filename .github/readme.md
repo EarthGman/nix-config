@@ -242,19 +242,44 @@ imports = [
 
 ------------------------------------------------------------------------
 
-# Darwin 
-Coming Soon
+# Known Issues - Last updated: 2-23-2025
 
-------------------------------------------------------------------------
+- Modded Discord Client, Vesktop, on the unstable branch is unable to properly communicate with wayland xdg-desktop-portals.
+  This means it is impossible to share your screen on wayland sessions using the latest version of vesktop.
+  A temporary fix has been implemented by simply using the stable nixpkgs-24.11 version of vesktop.
+  Will probably break in the future (high priority bug).
 
-# Known Issues
+- On sway (possibly other wayland sessions that use the wlroots xdg-desktop-portal) If you have multiple monitors and want to screenshare via vesktop. It will ask you to pick a monitor.
+  Pressing escape at this point to cancel the process crashes discord.
 
-- MSI (possibly others) UEFI Firmware unable to find the grub efi file.
-- Missing drivers not included in boot.enableRedistributableFirmware (such as broadcom_sta) see /hosts/tater/default.nix
+- using nixos rebuild will complain about channels being removed and that some directories should be removed. You have to manually rm these directories to remove the warning.
+ 
+- Missing firmware drivers for bluetooth or wireless. Sometimes you will have to add additional firmware packages. see /hosts/tater/default.nix
+
 - Qemu / kvm is unfinished and quite buggy, Graphical issues are present due to the lack of proper graphics configuration with qemu.
-- lack of support for other shells in nixos and home-manager (zsh only)
-- some windows in sway will lose transparency in fullscreen
-- currently, wayland desktops use swww by default to set the desktop wallpapers, so the wallpaper on your monitor will be lost if powered off or disconnected.
+
+- Terminal transparency (such as with kitty or ghostty) is lost when fullscreen is activated on sway. This is a feature of the wm and cannot be fixed.
+
+- in sway and hyprland sessions, the current wallpaper will be lost if a monitor is powered off or disconnected.
+
+- Sway will not launch with an Nvidia GPU.
+
+- When launching using UWSM, XDG_CURRENT_DESKTOP is set to "sway:wlroots" while initalizing services in Sway. It is then later changed to "sway". 
+  Two home manager services, hyprland window creation, and the wallpaper chooser for waybar are affected by this behavior.
+  This bug is completely un-noticable to users but could cause these 2 services to break in the future.
+
+- The networkmanager applet service does not autolaunch on startup under UWSM wayland sessions (Hyprland and Sway). It must be manually restarted.
+  If manually restarted the applet will not have an icon.
+
+- Your display manager (prelogin screen) will contain 2 Sway sessions if you pick sway as your desktop: Sway and Sway (UWSM). You should pick the UWSM option.
+  This is caused by underlying logic in nixpkgs and cannot be cleanly fixed.
+
+- xwayland apps within wayland sessions have a bug in which the mouse will not be able to interact with the window if your monitor position contains a negative coordinate.
+  This bug only affects setups with more than 1 monitor.
+
+- Steam on i3 has a weird issue where you will sometimes not be able to interact with the window until resizing or moving it.
+
+- Nixpkgs fmt in Neovim contains an issue with formatting of multi line strings in which the entire string is indented for no reason.
 
 # Personal Notes
 
@@ -273,28 +298,13 @@ Imperative actions after install
 - reinstall wine/bottles programs
 
 # TODO
-- [x] FIX SYSTEMD FOR WAYLAND
-  - [x] learn systemd unit triggers
-- [x] rofi only shows up on 1 monitor on sway
-- [ ] kanshi profile for school setup
 - [ ] fix swww wallpaper loss on monitor poweroff
-  - [ ] lost transparency when fullscreen in sway
 - [ ] finish readme and other .github setup
-- [x] redo rofi, fix rofi bug on hyprland
-- [x] alternative systemd setup for "Hyprland (systemd-session)"
 - [ ] neovim
-  - [ ] Clipboard issues
-  - [ ] standardize keybinds
-  - [ ] nicer interface configuration
-  - [ ] debugger for C and cpp
+  - [ ] nvim snacks and other QOL
   - [ ] lsp and debugger for Go
   - [ ] lsp and debugger for Rust
-- [x] Home-manager standalone for Mac and other Linux Distros
 - [ ] Darwin Modules for Kriswill
-- [ ] system security
- - [-] secure boot - discontinued this is completely useless
- - [x] drive encryption with LUKS
-- [ ] media server
 - [ ] Nix build server
 - [ ] installation helper scripts
 

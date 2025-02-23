@@ -1,6 +1,7 @@
 2-23-2025
 - Fixed keymap to not interfere with games
 - updated home-manager module option names
+- make the logout button work for hyprland (hopefully)
 
 
 2-22-2025

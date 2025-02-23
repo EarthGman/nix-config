@@ -90,7 +90,7 @@ in
      WALLPAPERS="$(realpath ${config.home.homeDirectory}/Pictures/wallpapers)"
 
      case "$XDG_CURRENT_DESKTOP" in
-     "sway")
+     "sway:wlroots")
        focused_monitor=$(swaymsg -t get_outputs | jq -r '.[] | select(.focused).name')
        ;;
      "Hyprland")
