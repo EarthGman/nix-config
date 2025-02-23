@@ -23,7 +23,7 @@ in
       signing = {
         key = signingkey;
         signByDefault = true;
-        gpgPath = "";
+        signer = "";
       };
       extraConfig = {
         gpg.format = "ssh";

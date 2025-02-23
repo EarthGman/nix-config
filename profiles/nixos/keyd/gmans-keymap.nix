@@ -9,7 +9,7 @@
             capslock = "overload(meta, esc)";
             leftalt = "layer(nav)";
           };
-          nav = {
+          "nav:A" = {
             h = "left";
             j = "down";
             k = "up";

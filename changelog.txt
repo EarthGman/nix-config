@@ -1,3 +1,8 @@
+2-23-2025
+- Fixed keymap to not interfere with games
+- updated home-manager module option names
+
+
 2-22-2025
 - update changelog
 
