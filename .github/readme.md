@@ -17,6 +17,9 @@ Features
 
 # Showcase
 
+![gnome](https://raw.githubusercontent.com/EarthGman/nix-config/refs/heads/main/.github/ror-gnome.png)
+
+![sway](https://raw.githubusercontent.com/EarthGman/nix-config/refs/heads/main/.github/undertale-sway.png)
 
 ------------------------------------------------------------------------
 
