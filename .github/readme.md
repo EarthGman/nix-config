@@ -10,16 +10,15 @@ Features
 -  extremely modular
 -  support for multiple users on a single machine
 -  sops support
--  active support for gnome, i3, and hyprland
+-  active support for gnome, i3, sway, and hyprland
 -  access to various images, fonts and more. https://github.com/EarthGman/assets
-
-Note: for shells, only zsh is supported.
 
 ------------------------------------------------------------------------
 
-# Why would I use this?
+# Showcase
 
-nix is hard, let somebody else deal with it.
+
+------------------------------------------------------------------------
 
 This configuration provides fully configured terminals, editors, desktops, and more so that you can start learning nix and NixOS without simultaneously fighting an unconfigured desktop.
 Most settings will be personalized to myself by default, but they can be easily overwritten using your own NixOS repository.
@@ -307,4 +306,3 @@ Imperative actions after install
 - [ ] Darwin Modules for Kriswill
 - [ ] Nix build server
 - [ ] installation helper scripts
-
