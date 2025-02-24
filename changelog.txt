@@ -3,6 +3,13 @@
 - updated home-manager module option names
 - make the logout button work for hyprland (hopefully)
 
+- major neovim update
+- replace telescope with snacks.picker
+- remove bloated plugins
+- space lg will now launch lazygit inside of neovim
+- space / for find text
+- new splash screen
+
 
 2-22-2025
 - update changelog

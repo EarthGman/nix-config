@@ -264,7 +264,7 @@ imports = [
 
 - in sway and hyprland sessions, the current wallpaper will be lost if a monitor is powered off or disconnected.
 
-- Sway will not launch with an Nvidia GPU.
+- Sway will not launch with an Nvidia GPU by Default. Add ```programs.sway.extraOptions = [ "--unsupported-gpu" ];``` to your nixos configuration.
 
 - When launching using UWSM, XDG_CURRENT_DESKTOP is set to "sway:wlroots" while initalizing services in Sway. It is then later changed to "sway". 
   Two home manager services, hyprland window creation, and the wallpaper chooser for waybar are affected by this behavior.
@@ -306,6 +306,5 @@ Imperative actions after install
   - [ ] nvim snacks and other QOL
   - [ ] lsp and debugger for Go
   - [ ] lsp and debugger for Rust
-- [ ] Darwin Modules for Kriswill
 - [ ] Nix build server
 - [ ] installation helper scripts
