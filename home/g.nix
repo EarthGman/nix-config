@@ -48,6 +48,7 @@ in
     ghex = enabled;
     museeks = enabled;
     nautilus.enable = true;
+    okular.enable = true;
     prismlauncher = enabled;
     discord = enabled;
 
