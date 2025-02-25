@@ -7,12 +7,13 @@ in
     inputs.disko.nixosModules.disko
   ];
 
-  # default profile for all machinesshared
+  # default profile for all machines
   modules = {
     home-manager.enable = mkDefault users != [ ];
     ssh.enable = mkDefault true;
     nh.enable = mkDefault true;
     neovim.enable = mkDefault true;
+    tmux.enable = mkDefault true;
   };
 
   programs = {
