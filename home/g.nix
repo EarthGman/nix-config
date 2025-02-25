@@ -40,6 +40,7 @@ in
       '';
     };
 
+    neovim.imperativeLua = true;
     bottles = enabled;
     freetube = enabled;
     filezilla = enabled;

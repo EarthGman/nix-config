@@ -18,8 +18,6 @@ in
     ghidra.enable = true;
     obs-studio.enable = true;
     ygo-omega.enable = true;
-
-    neovim.imperativeLua = true;
   };
 
   # services.swww.monitors = {
