@@ -10,7 +10,7 @@ in
     cpu = "amd";
     gpu = "amd";
     users = [ "g" ];
-    desktop = "sway,i3";
+    desktop = "sway";
     platform = "x86_64-linux";
     stateVersion = "24.05";
     configDir = ./cypher;
