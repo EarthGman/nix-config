@@ -15,7 +15,7 @@ in
       themeName = mkOption {
         description = "name of the grub theme from pkgs/themes/grub. Name must match exactly minus .nix";
         type = types.str;
-        default = "nixos";
+        default = "nixos-grub";
       };
     };
   };

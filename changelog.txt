@@ -9,6 +9,8 @@
 	- downgrade blink-cmp 13.0 > 12.4
 - add LACT an amdgpu control gui
 - rename workstation profile to laptop
+- redo sddm module
+- use astronaut theme in nixpkgs
 
 
 2-23-2025
