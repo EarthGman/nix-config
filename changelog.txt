@@ -1,6 +1,12 @@
 2-27-2025
 - direnv seperated into its own module
 - removed the stupid warning message from direnv
+- vim update:
+  - cleanup dashboard
+	- change flake structure
+	- repo flake will now create a temporary neovim with the config (still kind of buggy)
+	- remove some old vim plugins that I dont use at all such as gruvbox and gdb
+	- downgrade blink-cmp 13.0 > 12.4
 
 
 2-23-2025
