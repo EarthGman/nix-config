@@ -10,6 +10,7 @@ in
   # default profile for all machines
   modules = {
     home-manager.enable = mkDefault users != [ ];
+    direnv.enable = mkDefault true;
     ssh.enable = mkDefault true;
     nh.enable = mkDefault true;
     neovim.enable = mkDefault true;
@@ -18,10 +19,6 @@ in
 
   programs = {
     yazi.enable = mkDefault true;
-    direnv = {
-      enable = mkDefault true;
-      nix-direnv.enable = true;
-    };
   };
 
   # goodbye bloat
