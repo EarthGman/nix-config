@@ -2,17 +2,17 @@
   description = "Gman's nix config";
 
   inputs = {
-    nixpkgs = {
-      url = "github:nixos/nixpkgs/nixos-unstable";
-    };
-
-    nixpkgs-master = {
-      url = "github:nixos/nixpkgs";
-    };
-
-    nixpkgs-stable = {
-      url = "github:nixos/nixpkgs/nixos-24.11";
-    };
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-master.url = "github:nixos/nixpkgs";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+    hyprland.url = "github:hyprwm/Hyprland";
+    swww.url = "github:LGFae/swww";
+    ghostty.url = "github:ghostty-org/ghostty";
+    prismlauncher.url = "github:PrismLauncher/PrismLauncher";
+    stylix.url = "github:danth/stylix";
+    srvos.url = "github:nix-community/srvos";
+    nix-library.url = "github:EarthGman/nix-library";
+    nur.url = "github:nix-community/nur";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -24,46 +24,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-library = {
-      url = "github:EarthGman/nix-library";
-    };
-
-    nur = {
-      url = "github:nix-community/nur";
-    };
-
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix = {
-      url = "github:danth/stylix";
-    };
-
-    srvos = {
-      url = "github:nix-community/srvos";
-    };
-
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-    };
-
-    swww = {
-      url = "github:LGFae/swww";
-    };
-
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-    };
-
-    prismlauncher = {
-      url = "github:PrismLauncher/PrismLauncher";
     };
 
     wallpapers = {
@@ -106,7 +74,8 @@
         server = import ./profiles/nixos/server;
         iso = import ./profiles/nixos/iso.nix;
         gaming = import ./profiles/nixos/gaming.nix;
-        workstation = import ./profiles/nixos/workstation.nix;
+        laptop = import ./profiles/nixos/laptop.nix;
+        gmans-keymap = import ./profiles/nixos/keyd/gmans-keymap.nix;
       };
 
       homeManagerModules = import ./modules/home-manager { inherit lib; };

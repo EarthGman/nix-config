@@ -1,11 +1,5 @@
-{ pkgs, lib, ... }:
+{ lib, ... }:
 {
-  documentation.dev.enable = lib.mkDefault true;
-  environment.systemPackages = with pkgs; [
-    man-pages
-    man-pages-posix
-  ];
-  services.keyd.enable = lib.mkDefault true;
   services.power-profiles-daemon.enable = lib.mkForce false;
   services.tlp = {
     enable = lib.mkDefault true;

@@ -1,9 +1,9 @@
-{ self, config, pkgs, ... }:
+{ self, outputs, config, pkgs, ... }:
 {
   imports = [
     ./disko.nix
-    (self + /profiles/nixos/workstation.nix)
-    (self + /profiles/nixos/keyd/gmans-keymap.nix)
+    outputs.nixosProfiles.laptop
+    outputs.nixosProfiles.gmans-keymap
     (self + /profiles/nixos/wg0.nix)
   ];
   boot.initrd.availableKernelModules = [
@@ -14,7 +14,7 @@
   ];
   boot.kernelModules = [ "wl" ];
 
-  boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ]; # needed for this specific PC's wireless card
+  boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ]; # needed for this specific wireless card
 
   modules = {
     onepassword.enable = true;

@@ -1,8 +1,8 @@
-{ self, wallpapers, ... }:
+{ self, outputs, wallpapers, ... }:
 {
   imports = [
     ./disko.nix
-    (self + /profiles/nixos/workstation.nix)
+    outputs.nixosProfiles.laptop
   ];
   boot.initrd.availableKernelModules = [
     "ahci"

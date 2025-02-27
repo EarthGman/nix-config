@@ -7,6 +7,8 @@
 	- repo flake will now create a temporary neovim with the config (still kind of buggy)
 	- remove some old vim plugins that I dont use at all such as gruvbox and gdb
 	- downgrade blink-cmp 13.0 > 12.4
+- add LACT an amdgpu control gui
+- rename workstation profile to laptop
 
 
 2-23-2025

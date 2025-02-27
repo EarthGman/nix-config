@@ -1,11 +1,11 @@
-{ self, pkgs, lib, config, wallpapers, ... }:
+{ self, outputs, pkgs, lib, config, wallpapers, ... }:
 {
   imports = [
     ./fs.nix
     ./sddm.nix
-    (self + /profiles/nixos/gaming.nix)
+    outputs.nixosProfiles.gaming
+    outputs.nixosProfiles.gmans-keymap
     (self + /profiles/nixos/wg0.nix)
-    (self + /profiles/nixos/keyd/gmans-keymap.nix)
   ];
 
   boot.initrd.availableKernelModules = [
