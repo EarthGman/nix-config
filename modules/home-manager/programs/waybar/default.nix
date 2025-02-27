@@ -1,23 +1,25 @@
 { pkgs, lib, config, hostName, ... }:
 let
+  inherit (lib) mkIf mkOption mkEnableOption types;
   cfg = config.programs.waybar;
-  scripts = import ../../scripts/default.nix { inherit pkgs lib config; };
+  scripts = import ../../scripts { inherit pkgs lib config; };
 in
 {
   options.programs.waybar = {
-    theme = lib.mkOption {
+    imperativeConfig = mkEnableOption "enable imperative configuration for waybar";
+    theme = mkOption {
       description = "theme for waybar";
-      type = lib.types.str;
+      type = types.str;
       default = "default";
     };
-    topBar.settings = lib.mkOption {
+    topBar.settings = mkOption {
       description = "configuration for the top waybar";
-      type = lib.types.anything;
+      type = types.anything;
       default = { };
     };
-    bottomBar.settings = lib.mkOption {
+    bottomBar.settings = mkOption {
       description = "configuration for the bottom waybar";
-      type = lib.types.anything;
+      type = types.anything;
       default = { };
     };
   };
@@ -25,20 +27,15 @@ in
     programs.waybar = {
       systemd.enable = true;
       bottomBar.settings = import ./bottom-bar.nix { inherit pkgs config lib hostName scripts; };
-      settings = [
+      settings = mkIf (!cfg.imperativeConfig) [
         cfg.topBar.settings
         cfg.bottomBar.settings
       ];
       style = builtins.readFile ./themes/${config.programs.waybar.theme}/style.css;
     };
 
-    systemd.user.services.waybar = {
-      Unit.After = [ "graphical-session.target" ];
-      Service.Slice = [ "app-graphical.slice" ];
-    };
-
     # settings menu
-    xdg.configFile = {
+    xdg.configFile = mkIf (!cfg.imperativeConfig) {
       "waybar/settings-menu.xml" = {
         enable = cfg.enable;
         text = builtins.readFile ./settings-menu.xml;

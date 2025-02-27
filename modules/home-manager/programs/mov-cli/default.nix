@@ -20,18 +20,29 @@ in
       type = tomlFormat.type;
       default = { };
     };
+
+    plugins = mkOption {
+      description = "plugins for mov-cli";
+      type = types.listOf types.package;
+      default = [ ];
+    };
   };
 
   config = mkIf cfg.enable {
-    home.packages = [
-      cfg.package
-    ];
+    home.packages = [ cfg.package ];
 
     # import some default settings identical to those that mov-cli -e generates
     programs.mov-cli.settings = import ./settings.nix { inherit lib; };
-
     xdg.configFile."mov-cli/config.toml" = mkIf (cfg.settings != { }) {
-      source = tomlFormat.generate "mov-cli-settings" cfg.settings;
+      source = tomlFormat.generate "config.toml" cfg.settings;
     };
+
+    programs.mov-cli.package =
+      if (cfg.plugins != [ ]) then
+        pkgs.mov-cli
+      else
+        pkgs.mov-cli.overrideAttrs (old: {
+          propagatedBuildInputs = old.propagatedBuildInputs ++ cfg.plugins;
+        });
   };
 }

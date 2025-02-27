@@ -15,6 +15,7 @@ let
 in
 {
   options.programs.fastfetch = {
+    imperativeConfig = mkEnableOption "imperative config for fastfetch";
     image = mkOption {
       description = "image used for fastfetch";
       type = types.str;
@@ -33,7 +34,7 @@ in
 
   config = mkIf cfg.enable {
     programs.fastfetch = {
-      settings = import ./settings.nix { inherit config lib; };
+      settings = mkIf (!cfg.imperativeConfig) (import ./settings.nix { inherit config lib; });
     };
     # direct the alias to the randomizer script
     programs.zsh.shellAliases =

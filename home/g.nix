@@ -40,8 +40,9 @@ in
       '';
     };
 
-    neovim.imperativeLua = true;
+    neovim.imperativeConfig = true;
     bottles = enabled;
+    bustle = enabled;
     freetube = enabled;
     filezilla = enabled;
     gcolor = enabled;
@@ -51,6 +52,11 @@ in
     okular.enable = true;
     prismlauncher = enabled;
     discord = enabled;
+
+    mov-cli = {
+      enable = true;
+      plugins = [ pkgs.mov-cli-youtube ];
+    };
 
     # fun and useless
     pipes = enabled;
