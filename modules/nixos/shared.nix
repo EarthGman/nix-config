@@ -13,7 +13,6 @@ in
     direnv.enable = mkDefault true;
     ssh.enable = mkDefault true;
     nh.enable = mkDefault true;
-    neovim.enable = mkDefault true;
     tmux.enable = mkDefault true;
   };
 

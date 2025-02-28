@@ -40,7 +40,6 @@ in
       '';
     };
 
-    neovim.imperativeConfig = true;
     bottles = enabled;
     bustle = enabled;
     freetube = enabled;

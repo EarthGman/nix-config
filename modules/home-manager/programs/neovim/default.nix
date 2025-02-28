@@ -1,9 +1,8 @@
-{ inputs, lib, ... }:
+{ inputs, lib, platform, ... }:
 let
-  inherit (lib) mkDefault;
-  neovim = inputs.vim-config.homeManager;
+  inherit (lib) mkDefault mkForce;
 in
 {
-  imports = [ neovim.default ];
-  stylix.targets.neovim.enable = mkDefault false;
+  programs.neovim.enable = false;
+  home.packages = [ inputs.vim-config.packages.${platform}.default ];
 }
