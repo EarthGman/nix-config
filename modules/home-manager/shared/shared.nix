@@ -56,7 +56,7 @@ in
       zsh.enable = true; # force zsh since it is the best shell after all
 
       # enable various programs based on the user's preferences
-      neovim.enable = mkDefault (cfg.editor == "nvim");
+      neovim-custom.enable = mkDefault (cfg.editor == "nvim");
       vscode.enable = mkDefault (cfg.editor == "codium");
       zed.enable = mkDefault (cfg.editor == "zed");
 

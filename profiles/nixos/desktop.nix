@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, users, ... }:
 let
   inherit (lib) mkDefault;
   enabled = { enable = mkDefault true; };
@@ -35,6 +35,7 @@ in
 
   # some features most desktops would probably want
   modules = {
+    home-manager.enable = mkDefault users != [ ];
     display-managers.sddm = enabled;
     pipewire = enabled;
     bluetooth = enabled;

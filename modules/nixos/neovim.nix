@@ -1,6 +1,6 @@
 { inputs, lib, config, platform, ... }:
 let
-  inherit (lib) mkEnableOption mkIf mkOption types;
+  inherit (lib) mkOption mkEnableOption mkIf types;
   cfg = config.programs.neovim-custom;
 in
 {
@@ -14,6 +14,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ cfg.package ];
+    environment.systemPackages = [ cfg.package ];
   };
 }

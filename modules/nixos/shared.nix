@@ -1,4 +1,4 @@
-{ inputs, outputs, pkgs, users, lib, config, hostName, cpu, vm, platform, stateVersion, ... }:
+{ inputs, outputs, pkgs, lib, config, hostName, cpu, vm, platform, stateVersion, ... }:
 let
   inherit (lib) mkDefault mkIf optionals mkForce getExe optionalString;
 in
@@ -9,7 +9,6 @@ in
 
   # default profile for all machines
   modules = {
-    home-manager.enable = mkDefault users != [ ];
     direnv.enable = mkDefault true;
     ssh.enable = mkDefault true;
     nh.enable = mkDefault true;
@@ -18,6 +17,7 @@ in
 
   programs = {
     yazi.enable = mkDefault true;
+    neovim-custom.enable = mkDefault true;
   };
 
   # goodbye bloat
