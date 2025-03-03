@@ -39,7 +39,10 @@ in
         export MANPAGER='nvim +Man!'
       '';
     };
-
+    neovim-custom = {
+      viAlias = true;
+      vimAlias = true;
+    };
     bottles = enabled;
     bustle = enabled;
     freetube = enabled;

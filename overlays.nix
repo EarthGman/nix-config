@@ -16,7 +16,6 @@
 
   nur = inputs.nur.overlays.default;
 
-  extraVimPlugins = inputs.vim-config.overlay.default;
   # additional packages added to the package set
   packages = inputs.nix-library.overlays.default;
 

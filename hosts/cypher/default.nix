@@ -8,6 +8,8 @@
     (self + /profiles/nixos/wg0.nix)
   ];
 
+  programs.adb.enable = true;
+
   boot.initrd.availableKernelModules = [
     "nvme"
     "ahci"
@@ -97,20 +99,4 @@
     gnome-software
     samsung-unified-linux-driver
   ];
-
-  environment.etc = {
-    "ssh/ssh_host_ed25519_key.pub".source = ./ssh_host_ed25519_key.pub;
-    "ssh/ssh_host_rsa_key.pub".source = ./ssh_host_rsa_key.pub;
-  };
-
-  # use ed25519 key
-  sops.gnupg.sshKeyPaths = [
-    "/etc/ssh/ssh_host_ed25519_key"
-    "/etc/ssh/ssh_host_rsa_key"
-  ];
-
-  sops.secrets = {
-    ssh_host_ed25519_key.path = "/etc/ssh/ssh_host_ed25519_key";
-    ssh_host_rsa_key.path = "/etc/ssh/ssh_host_rsa_key";
-  };
 }

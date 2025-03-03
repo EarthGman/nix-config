@@ -18,6 +18,7 @@ in
       "qemu-libvirtd"
       "wireshark"
       "docker"
+      "adbusers"
     ];
   };
 }
