@@ -44,5 +44,7 @@
     package = pkgs.wireshark;
   };
 
+  programs.adb.enable = true;
+
   zramSwap.enable = true;
 }

@@ -14,10 +14,9 @@ in
     extraGroups = [
       "networkmanager"
       "wheel"
-      "libvirtd"
-      "qemu-libvirtd"
       "wireshark"
       "keyd"
+      "adbusers"
     ];
   };
 }

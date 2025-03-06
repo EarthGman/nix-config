@@ -1,6 +1,6 @@
 { inputs, lib, config, platform, ... }:
 let
-  inherit (lib) mkOption mkEnableOption mkIf types;
+  inherit (lib) mkOption mkEnableOption mkIf types mkDefault;
   cfg = config.programs.neovim-custom;
 in
 {
@@ -11,9 +11,21 @@ in
       type = types.package;
       default = inputs.vim-config.packages.${platform}.default;
     };
+    viAlias = mkEnableOption "enable vi alias";
+    vimAlias = mkEnableOption "enable vim alias";
   };
 
   config = mkIf cfg.enable {
     environment.systemPackages = [ cfg.package ];
+    programs.neovim-custom = {
+      viAlias = mkDefault true;
+      vimAlias = mkDefault true;
+    };
+
+    # ah hackfixes
+    programs.zsh.shellAliases = {
+      vi = mkIf (cfg.viAlias) "nvim";
+      vim = mkIf (cfg.vimAlias) "nvim";
+    };
   };
 }
