@@ -2,9 +2,8 @@
 {
   imports = [
     ./disko.nix
-    (self + /profiles/nixos/wg0.nix)
     outputs.nixosProfiles.laptop
-    outputs.nixosProfiles.gmans-keymap
+    outputs.nixosProfiles.gman-pc
   ];
 
   boot.initrd.availableKernelModules = [
@@ -34,17 +33,8 @@
   };
 
   modules = {
-    onepassword.enable = true;
-    sops.enable = true;
     steam.enable = true;
   };
-
-  programs.wireshark = {
-    enable = true;
-    package = pkgs.wireshark;
-  };
-
-  programs.adb.enable = true;
 
   zramSwap.enable = true;
 }

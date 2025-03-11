@@ -76,6 +76,8 @@
         gaming = import ./profiles/nixos/gaming.nix;
         laptop = import ./profiles/nixos/laptop.nix;
         gmans-keymap = import ./profiles/nixos/keyd/gmans-keymap.nix;
+        gman-pc = import ./profiles/nixos/gman-pc.nix;
+        hacker-mode = import ./profiles/nixos/hacker-mode.nix;
       };
 
       homeManagerModules = import ./modules/home-manager { inherit lib; };

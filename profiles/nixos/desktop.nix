@@ -18,8 +18,6 @@ in
     excludePackages = with pkgs; [ xterm ];
   };
 
-  services.cpupower-gui.enable = true;
-
   # sets up a default desktop portal backend
   xdg.portal = {
     enable = true;

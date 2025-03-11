@@ -43,6 +43,8 @@ in
       viAlias = true;
       vimAlias = true;
     };
+    burpsuite = enabled;
+    ghidra = enabled;
     bottles = enabled;
     bustle = enabled;
     freetube = enabled;
@@ -52,6 +54,7 @@ in
     museeks = enabled;
     nautilus.enable = true;
     okular.enable = true;
+    obs-studio = enabled;
     prismlauncher = enabled;
     discord = enabled;
 

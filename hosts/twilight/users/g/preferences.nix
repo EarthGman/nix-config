@@ -7,7 +7,6 @@ in
   imports = [ theme ];
   programs = {
     prismlauncher.package = pkgs.prismlauncher; # dont build newest version locally
-    ghidra.enable = true;
     moonlight.enable = true;
     waybar.bottomBar.settings = {
       height = 36;

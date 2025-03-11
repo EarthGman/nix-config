@@ -66,9 +66,7 @@ in
   environment.systemPackages =
     with pkgs; [
       btop
-      busybox
       efibootmgr
-      dig
       powertop
       fzf
       sysz
@@ -90,7 +88,6 @@ in
       jq
       tldr
       lynx
-      tcpdump
       ripgrep
       zoxide # must be on path
     ]
