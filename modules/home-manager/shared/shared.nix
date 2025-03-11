@@ -1,7 +1,7 @@
 # this modules defines a few custom options and shared configuration among all users on all machines
 { pkgs, lib, outputs, config, ... }:
 let
-  inherit (lib) mkDefault mkOption types;
+  inherit (lib) mkDefault mkOption mkIf types;
 in
 {
   options = {
@@ -32,8 +32,10 @@ in
   };
 
   config = {
-    home.packages = with pkgs; [
-      #home-manager
+    home.packages = mkIf (config.services.network-manager-applet.enable) [
+      # why this doesn't just install into home.packages by default baffles me
+      # if waybar runs as a service without this installed the icon will be missing
+      pkgs.networkmanagerapplet
     ];
     xdg.userDirs = {
       # enable and create common Directories (Downloads, Documents, Music, etc)

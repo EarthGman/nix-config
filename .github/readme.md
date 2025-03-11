@@ -270,9 +270,6 @@ imports = [
   Two home manager services, hyprland window creation, and the wallpaper chooser for waybar are affected by this behavior.
   This bug is completely un-noticable to users but could cause these 2 services to break in the future.
 
-- The networkmanager applet service does not autolaunch on startup under UWSM wayland sessions (Hyprland and Sway). It must be manually restarted.
-  If manually restarted the applet will not have an icon.
-
 - Your display manager (prelogin screen) will contain 2 Sway sessions if you pick sway as your desktop: Sway and Sway (UWSM). You should pick the UWSM option.
   This is caused by underlying logic in nixpkgs and cannot be cleanly fixed.
 
@@ -301,10 +298,7 @@ Imperative actions after install
 
 # TODO
 - [ ] fix swww wallpaper loss on monitor poweroff
-- [ ] finish readme and other .github setup
 - [ ] neovim
-  - [ ] nvim snacks and other QOL
-  - [ ] lsp and debugger for Go
   - [ ] lsp and debugger for Rust
 - [ ] Nix build server
 - [ ] installation helper scripts

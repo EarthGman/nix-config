@@ -9,9 +9,24 @@ in
     prismlauncher.package = pkgs.prismlauncher; # dont build newest version locally
     moonlight.enable = true;
     waybar.bottomBar.settings = {
+      temperature = {
+        hwmon-path = "/sys/class/hwmon/hwmon3/temp1_input";
+        format = " {icon} {temperatureC}°C";
+        format-icons = [
+          ""
+          ""
+          ""
+        ];
+      };
+
+      network = {
+        format-wifi = " {icon} {essid}";
+        format-ethernet = " 󰈁 {ifname}";
+      };
       height = 36;
     };
   };
+
   stylix.fonts.sizes = {
     terminal = mkForce 12;
     applications = mkForce 10;

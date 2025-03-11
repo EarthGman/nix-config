@@ -24,6 +24,7 @@ in
     };
   };
   config = {
+    home.packages = [ pkgs.networkmanagerapplet ];
     programs.waybar = {
       systemd.enable = true;
       bottomBar.settings = import ./bottom-bar.nix { inherit pkgs config lib hostName scripts; };

@@ -17,7 +17,7 @@ in
     "cpu"
     "memory"
     "disk"
-    # "temperature"
+    "temperature"
   ];
   modules-center = mkDefault [
     "custom/os_button"
@@ -69,17 +69,6 @@ in
     tooltip = false;
   };
 
-  # "temperature" = {
-  #   thermal-zone = 3;
-  #   hwmon-path = "/sys/class/hwmon/hwmon3/temp1_input";
-  #   critical-threshold = 80;
-  #   format = "GPU {icon} {temperatureC}°C";
-  #   format-icons = [
-  #     ""
-  #     ""
-  #     ""
-  #   ];
-  # };
 
   "battery" = {
     states = {
@@ -107,9 +96,9 @@ in
   };
 
   "network" = {
-    format-wifi = " {icon} {essid} 󰛀 {bandwidthDownBytes} 󰛃 {bandwidthUpBytes} ";
-    format-ethernet = " 󰈁 {ifname} 󰛀 {bandwidthDownBytes} 󰛃 {bandwidthUpBytes} ";
-    format-disconnected = "󰤭  Disconnected ";
+    format-wifi = mkDefault " {icon} {essid} 󰛀 {bandwidthDownBytes} 󰛃 {bandwidthUpBytes} ";
+    format-ethernet = mkDefault " 󰈁 {ifname} 󰛀 {bandwidthDownBytes} 󰛃 {bandwidthUpBytes} ";
+    format-disconnected = mkDefault "󰤭  Disconnected ";
     format-icons = [
       "󰤯 "
       "󰤟 "
