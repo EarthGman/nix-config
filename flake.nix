@@ -12,6 +12,7 @@
     stylix.url = "github:danth/stylix";
     srvos.url = "github:nix-community/srvos";
     nix-library.url = "github:EarthGman/nix-library";
+    nix-gaming.url = "github:fufexan/nix-gaming";
     nur.url = "github:nix-community/nur";
 
     home-manager = {

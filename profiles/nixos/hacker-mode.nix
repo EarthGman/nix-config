@@ -1,5 +1,4 @@
-# installs a number of cybersecurity tools installed at the system level
-# for larger programs other than wireshark (ghidra, burpsuite, etc) add them through home-manager
+# provides a number of cybersecurity tools installed at the system level
 { pkgs, lib, desktop, ... }:
 {
   programs.wireshark = {
@@ -10,7 +9,6 @@
   environment.systemPackages = with pkgs; [
     gcc
     python3
-
     binutils
     busybox
     nmap
