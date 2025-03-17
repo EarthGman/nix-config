@@ -17,7 +17,6 @@ in
     "cpu"
     "memory"
     "disk"
-    "temperature"
   ];
   modules-center = mkDefault [
     "custom/os_button"
