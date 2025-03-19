@@ -912,11 +912,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1742360479,
-        "narHash": "sha256-BxNu8FPlqB777bZuivgtUDzRnjVZIFa/sWg8Y94iJpI=",
+        "lastModified": 1742361755,
+        "narHash": "sha256-82ccvw1atSNBR6KLdTWaYgGLUT73SlLGkjxq3cZlyjc=",
         "owner": "EarthGman",
         "repo": "nix-library",
-        "rev": "f13a6ee7e1be20cedfb2d6290a747fb2f55ad288",
+        "rev": "597952b7385ea75da6b7ff0c589ab98de914e562",
         "type": "github"
       },
       "original": {
