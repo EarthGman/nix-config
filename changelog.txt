@@ -1,3 +1,11 @@
+3-23-2025
+- update flake
+- redid swww module. Home manager finally added their own service.
+Should still function as before
+- removed polkit-gnome as home-manager added the module to the default
+- added optional bios argument to makehost: Can take "legacy" or "UEFI" and sets the appropriate boot options.
+
+
 3-10-2025
 - added hacker-mode nixos profile
 - created the "gman-pc" profile to sync preferences among all machines

@@ -7,6 +7,7 @@ in
   # custom built gaming desktop and workstation
   cypher = mkHost {
     hostName = "cypher";
+    bios = "UEFI";
     cpu = "amd";
     gpu = "amd";
     users = [ "g" ];
@@ -19,6 +20,7 @@ in
   # Corebooted Thinkpad x230
   twilight = mkHost {
     hostName = "twilight";
+    bios = "legacy";
     cpu = "intel";
     gpu = "intel-igpu";
     users = [ "g" ];
@@ -30,6 +32,7 @@ in
   # still working HP pavilion x360 potato
   tater = mkHost {
     hostName = "tater";
+    bios = "UEFI";
     cpu = "intel";
     gpu = "intel-igpu";
     users = [ "g" ];
@@ -41,6 +44,7 @@ in
   # generic VM for testing purposes only
   nixos = mkHost {
     hostName = "nixos";
+    bios = "legacy";
     vm = true;
     users = [ "test" ];
     desktop = "hyprland";
@@ -52,6 +56,7 @@ in
   # Thunder's desktops
   somnus = mkHost {
     hostName = "somnus";
+    bios = "UEFI";
     cpu = "amd";
     gpu = "amd";
     users = [ "bean" ];
@@ -63,6 +68,7 @@ in
 
   pioneer = mkHost {
     hostName = "pioneer";
+    bios = "UEFI";
     cpu = "intel";
     gpu = "intel-igpu";
     users = [ "bean" ];
@@ -75,6 +81,7 @@ in
   # Iron's desktops
   petrichor = mkHost {
     hostName = "petrichor";
+    bios = "UEFI";
     cpu = "amd";
     gpu = "amd";
     users = [ "iron" ];
@@ -87,6 +94,7 @@ in
   # pumpkin's desktops
   thePumpkinPatch = mkHost {
     hostName = "thePumpkinPatch";
+    bios = "UEFI";
     cpu = "amd";
     gpu = "nvidia";
     users = [ "pumpkinking" ];

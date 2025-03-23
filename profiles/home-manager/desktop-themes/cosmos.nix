@@ -24,6 +24,7 @@ in
       (fetchurl pixel-galaxy)
       (fetchurl space-piano)
       (fetchurl galaxy)
+      (fetchurl out-of-this-whirl)
       (fetchurl nebula)
       (fetchurl nebula-2)
       (fetchurl blue-marble)

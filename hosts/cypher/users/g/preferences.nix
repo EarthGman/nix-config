@@ -1,7 +1,7 @@
 { outputs, wallpapers, pkgs, ... }:
 let
   inherit (builtins) fetchurl;
-  theme = outputs.homeProfiles.desktopThemes.determination;
+  theme = outputs.homeProfiles.desktopThemes.cosmos;
 in
 {
   imports = [
@@ -10,6 +10,7 @@ in
 
   programs = {
     musescore.enable = true;
+    lutris.enable = true;
     cute-ntr.enable = true;
     ardour.enable = true;
     dolphin-emu.enable = true;

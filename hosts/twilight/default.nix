@@ -17,15 +17,10 @@
 
   boot.kernelParams = [ "video=1366x768" ];
 
+  # bad intel
   boot.extraModprobeConfig = ''
     blacklist mei_me
   '';
-
-  boot.loader = {
-    # remove efi from grub since we are booting from SeaBIOS
-    efi.canTouchEfiVariables = false;
-    grub.efiSupport = false;
-  };
 
   services.displayManager.sddm.themeConfig = {
     FullBlur = "false";

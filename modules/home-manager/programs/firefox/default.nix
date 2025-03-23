@@ -46,7 +46,7 @@ in
               userchrome-toggle-extended
             ]);
             search = {
-              default = mkDefault "DuckDuckGo";
+              default = mkDefault "ddg"; # DuckDuckGo
               engines = import ./search-engines.nix { inherit pkgs icons; };
               force = true;
             };

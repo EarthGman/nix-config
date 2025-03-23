@@ -1,23 +1,12 @@
 { inputs, pkgs, lib, config, platform, ... }:
 let
-  inherit (lib) mkEnableOption mkOption mkIf types concatStringsSep mapAttrsToList getExe;
+  inherit (lib) mkEnableOption mkOption mkIf mkForce types concatStringsSep mapAttrsToList getExe;
   inherit (pkgs) writeScript;
 
   cfg = config.services.swww;
 in
 {
   options.services.swww = {
-    enable = mkEnableOption ''
-      enable swww, a solution to your wayland wallpaper woes
-      (and the cause of mine)
-    '';
-
-    package = mkOption {
-      description = "swww package to use";
-      type = types.package;
-      default = inputs.swww.packages.${platform}.swww;
-    };
-
     image = mkOption {
       description = "the default image swww will use (applied to all monitors) as a string";
       type = types.str;
@@ -116,8 +105,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ cfg.package ];
-
+    services.swww.package = inputs.swww.packages.${platform}.default;
     home.sessionVariables = {
       "SWWW_TRANSITION" = cfg.settings.transition.type;
       "SWWW_TRANSITION_STEP" = cfg.settings.transition.step;
@@ -184,28 +172,11 @@ in
         '';
       in
       {
-        swww-daemon = {
-          Service = {
-            Type = "exec";
-            Environment = "PATH=/run/current-system/sw/bin:${config.home.homeDirectory}/.nix-profile/bin";
-            ExecStart = "${bash} -c 'pgrep -x swww-daemon || swww-daemon --no-cache -f xrgb'";
-            ExecStartPost = "${daemon-postup}";
-            ExecReload = "swww kill";
-            KillSignal = "SIGTERM";
-            Restart = "on-failure";
-          };
-
-          Unit = {
-            Description = "start the swww-daemon";
-            PartOf = [ "graphical-session.target" ];
-            After = [ "graphical-session.target" ];
-            # only trigger if in wayland session
-            ConditionPathExistsGlob = "/run/user/%U/wayland-*";
-          };
-
-          Install = {
-            WantedBy = [ "graphical-session.target" ];
-          };
+        swww.Service = {
+          # Incorporate the HM service with my addons
+          ExecStart = mkForce "${cfg.package}/bin/swww-daemon --no-cache -f xrgb";
+          ExecStartPost = "${daemon-postup}";
+          Environment = "PATH=/run/current-system/sw/bin:${config.home.homeDirectory}/.nix-profile/bin";
         };
 
         swww-wallpaper = {

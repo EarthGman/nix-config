@@ -1,10 +1,16 @@
-{ pkgs, lib, users, ... }:
+{ pkgs, lib, config, users, ... }:
 let
   inherit (lib) mkDefault;
   enabled = { enable = mkDefault true; };
 in
 {
-
+  boot = {
+    tmp.cleanOnBoot = true;
+    extraModulePackages = [
+      # for obs virtual camera
+      config.boot.kernelPackages.v4l2loopback
+    ];
+  };
   hardware.graphics = {
     enable = true;
     enable32Bit = mkDefault true;
@@ -12,6 +18,7 @@ in
 
   # mounting network drives in file managers
   services.gvfs.enable = mkDefault true;
+
   services.xserver = {
     enable = true;
     xkb.layout = mkDefault "us";
@@ -40,7 +47,6 @@ in
     pipewire = enabled;
     bluetooth = enabled;
     printing = enabled;
-    ifuse = enabled;
     bootloaders.grub = enabled;
   };
 

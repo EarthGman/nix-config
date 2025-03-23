@@ -7,6 +7,7 @@ in
 {
   mkHost =
     { hostName # name your PC
+    , bios ? "UEFI" # bios type: one of "legacy" or "UEFI"
     , cpu ? null # cpu brand (amd, intel)
     , gpu ? null # gpu brand (amd, intel, nvidia)
     , users ? [ ] # list of self defined users as strings [ "alice" "bob"]
@@ -28,7 +29,7 @@ in
     in
     lib.nixosSystem {
       specialArgs = {
-        inherit self platform inputs outputs lib wallpapers icons binaries hostName cpu gpu users desktop server vm stateVersion;
+        inherit self platform inputs outputs lib wallpapers icons binaries hostName bios cpu gpu users desktop server vm stateVersion;
       };
       modules =
         let

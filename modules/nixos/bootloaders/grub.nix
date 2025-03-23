@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, bios, ... }:
 let
   inherit (lib) mkOption types mkDefault mkEnableOption mkIf;
   cfg = config.boot.loader.grub;
@@ -27,21 +27,16 @@ in
     in
     mkIf config.modules.bootloaders.grub.enable {
       boot = {
-        extraModulePackages = [
-          # for obs virtual camera
-          config.boot.kernelPackages.v4l2loopback
-        ];
         kernelParams = [
           "quiet"
           "noatime"
         ];
-        tmp.cleanOnBoot = true;
         loader = {
-          efi.canTouchEfiVariables = mkDefault true;
+          efi.canTouchEfiVariables = mkDefault (bios == "UEFI");
           grub = {
             enable = true;
             inherit theme;
-            efiSupport = mkDefault true;
+            efiSupport = (bios == "UEFI");
             devices = [ "nodev" ];
             gfxmodeEfi = "1920x1080";
             extraEntries = ''
