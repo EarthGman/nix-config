@@ -159,7 +159,7 @@ in
               sleep ${toString cfg.slideshow.interval}
               current_image=$(($current_image + 1))
               if [ "$current_image" -eq "$image_count" ]; then
-                systemctl --user restart swww-daemon
+                systemctl --user restart swww
                 exit 0
               fi
 

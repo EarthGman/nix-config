@@ -1,3 +1,7 @@
+3-24-2025
+- finally managed to install the mov-cli-youtube plugin
+
+
 3-23-2025
 - update flake
 - redid swww module. Home manager finally added their own service.

@@ -4,6 +4,10 @@ let
   tomlFormat = pkgs.formats.toml { };
   cfg = config.programs.mov-cli;
   inherit (lib) mkEnableOption mkOption mkIf types mkDefault;
+
+  mov-cli = cfg.package.overrideAttrs (old: {
+    propagatedBuildInputs = old.propagatedBuildInputs ++ cfg.plugins;
+  });
 in
 {
   options.programs.mov-cli = {
@@ -29,20 +33,19 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ cfg.package ];
+    home.packages = [
+      mov-cli
+    ];
+
+    programs.mov-cli.plugins = mkDefault (with pkgs; [
+      mov-cli-youtube
+    ]);
 
     # import some default settings identical to those that mov-cli -e generates
     programs.mov-cli.settings = import ./settings.nix { inherit lib; };
+
     xdg.configFile."mov-cli/config.toml" = mkIf (cfg.settings != { }) {
       source = tomlFormat.generate "config.toml" cfg.settings;
     };
-
-    programs.mov-cli.package =
-      if (cfg.plugins != [ ]) then
-        pkgs.mov-cli
-      else
-        pkgs.mov-cli.overrideAttrs (old: {
-          propagatedBuildInputs = old.propagatedBuildInputs ++ cfg.plugins;
-        });
   };
 }

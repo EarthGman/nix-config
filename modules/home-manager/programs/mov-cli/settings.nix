@@ -13,6 +13,11 @@ in
     hide_ip = mkDefault true;
   };
 
+  mov-cli.plugins = mkDefault {
+    test = "mov-cli-test";
+    youtube = "mov-cli-youtube";
+  };
+
   mov-cli.ui = {
     preview = mkDefault true;
     watch_options = mkDefault true;
