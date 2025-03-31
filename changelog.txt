@@ -1,3 +1,8 @@
+3-31-2025
+- changed default wallpaper for omori theme
+- added temperature module coloring for omori waybar theme
+
+
 3-24-2025
 - finally managed to install the mov-cli-youtube plugin
 

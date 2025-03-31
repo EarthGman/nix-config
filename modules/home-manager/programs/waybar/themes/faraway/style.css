@@ -4,7 +4,7 @@
 }
 
 #window, #network, #cpu, #memory, #disk, #pulseaudio, #custom-microphone,
-#battery, #clock, #tray {
+#battery, #clock, #tray, #temperature {
   background-color: #303030;
   color: #cecece;
   border-radius: 5px;  

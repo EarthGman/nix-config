@@ -1,7 +1,7 @@
 { outputs, pkgs, lib, ... }:
 let
   inherit (lib) mkForce;
-  theme = outputs.homeProfiles.desktopThemes.cosmos;
+  theme = outputs.homeProfiles.desktopThemes.faraway;
 in
 {
   imports = [ theme ];
@@ -9,6 +9,15 @@ in
     prismlauncher.package = pkgs.prismlauncher; # dont build newest version locally
     moonlight.enable = true;
     waybar.bottomBar.settings = {
+      modules-left = [
+        "custom/settings-menu"
+        "network"
+        "cpu"
+        "memory"
+        "disk"
+        "temperature"
+      ];
+
       temperature = {
         hwmon-path = "/sys/class/hwmon/hwmon3/temp1_input";
         format = " {icon} {temperatureC}°C";
