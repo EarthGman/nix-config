@@ -17,7 +17,17 @@ pkgs.writeScript "omori-calendar-project.sh" ''
   MONTH=$(date +"%B")
 
   if [ -n "$WAYLAND_DISPLAY" ]; then
-  	swww img "''${!MONTH}"
+    userid=$(id -u)
+    socket_path="/run/user/$userid/swww-wayland-1.sock"
+
+    for ((i=1; i<=30; i++ )); do
+      if [ -e "$socket_path" ]; then
+        swww img "''${!MONTH}"
+        exit 0
+      fi
+      sleep 0.1
+    done
+
   else
     feh --no-fehbg --bg-${config.services.fehbg.settings.scale-mode} "''${!MONTH}"
   fi
