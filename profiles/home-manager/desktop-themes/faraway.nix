@@ -30,8 +30,10 @@ in
   };
 
   services.omori-calendar-project.enable = true;
+  programs.swaylock.settings.effect-blur = "";
 
   stylix.colorScheme = "faraway";
+  stylix.image = builtins.fetchurl (wallpapers.the-gang-grouphug);
 
   stylix.fonts = {
     sansSerif = {

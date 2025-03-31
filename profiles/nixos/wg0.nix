@@ -26,9 +26,6 @@
       wg0 = {
         autostart = false;
         configFile = config.sops.secrets.wg0_conf.path; # store whole file in secrets
-        postUp = ''
-          ip route add 10.10.0.0/24 via 10.0.0.1 dev wg0
-        '';
       };
     };
   };
