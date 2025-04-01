@@ -15,7 +15,6 @@ in
     ffxiv-launcher.enable = true;
     lutris.enable = true;
     bottles.enable = true;
-    davinci-resolve.enable = true;
 
     cmatrix.enable = true;
     cbonsai.enable = true;
