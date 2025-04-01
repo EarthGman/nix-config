@@ -1619,11 +1619,11 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1742764438,
-        "narHash": "sha256-ec6XP8xqGfx7yCUsHWmA3hIafqu6EfUtPg/fWM208Mw=",
+        "lastModified": 1743538343,
+        "narHash": "sha256-mVqBDPVKD9O80Z31Yq02z50uLMmxD88uO7By3k/910s=",
         "owner": "EarthGman",
         "repo": "vim-config",
-        "rev": "89c4f5b08f006e7955bfdc8815b71b293bdf390d",
+        "rev": "e8f3dba5a25cb7beddee7546ad5354ffe79f9551",
         "type": "github"
       },
       "original": {
