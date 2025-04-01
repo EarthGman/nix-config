@@ -26,7 +26,6 @@
 
     vim-config = {
       url = "github:EarthGman/vim-config";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     disko = {
