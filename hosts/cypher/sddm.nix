@@ -37,7 +37,6 @@ in
       compositorCommand = weston-command;
     };
     themeConfig = {
-      Background = builtins.fetchurl wallpapers.celeste-mountain;
       FullBlur = "false";
       PartialBlur = "false";
     };
