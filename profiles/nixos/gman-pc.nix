@@ -9,14 +9,12 @@
   ];
 
   modules = {
+    android.enable = true;
     zsa-keyboard.enable = true;
     onepassword.enable = true;
     sops.enable = true;
     ledger.enable = true;
   };
-
-
-  programs.adb.enable = true; # android stuff
 
   # some extra man pages
   documentation.dev.enable = true;
