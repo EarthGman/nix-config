@@ -1,7 +1,7 @@
 { outputs, pkgs, lib, ... }:
 let
   inherit (lib) mkForce;
-  theme = outputs.homeProfiles.desktopThemes.faraway;
+  theme = outputs.homeProfiles.desktopThemes.cosmos;
 in
 {
   imports = [ theme ];

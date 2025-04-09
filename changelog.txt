@@ -1,3 +1,8 @@
+4-09-2025
+- yazi will now use evince by default when opening .pdf files
+- removed kde target from stylix
+
+
 3-31-2025
 - changed default wallpaper for omori theme
 - added temperature module coloring for omori waybar theme
