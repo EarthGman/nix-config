@@ -104,6 +104,18 @@ in
     configDir = ./thePumpkinPatch;
   };
 
+  juno = mkHost {
+    hostName = "juno";
+    bios = "UEFI";
+    cpu = "amd";
+    gpu = "amd";
+    users = [ "maliglord" ];
+    desktop = "gnome";
+    platform = "x86_64-linux";
+    stateVersion = "25.05";
+    configDir = ./juno;
+  };
+
   # servers
   mc112 = mkHost {
     hostName = "mc112";
