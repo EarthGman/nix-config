@@ -1,4 +1,4 @@
-{ outputs, ... }:
+{ outputs, wallpapers, lib, ... }:
 let
   theme = outputs.homeProfiles.desktopThemes.cosmos;
 in
@@ -7,6 +7,7 @@ in
     theme
   ];
 
+  stylix.image = lib.mkForce (builtins.fetchurl wallpapers.pik);
   programs = {
     discord.enable = true;
     audacity.enable = false;
