@@ -69,9 +69,7 @@
       overlays = import ./overlays.nix { inherit inputs; };
       packages = nix-library.packages;
 
-      nixosModules = {
-        imports = autoImport ./modules/nixos;
-      };
+      nixosModules = import ./modules/nixos { inherit lib; };
 
       nixosProfiles = {
         desktop = import ./profiles/nixos/desktop.nix;
