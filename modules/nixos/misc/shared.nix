@@ -12,7 +12,6 @@ in
     direnv.enable = mkDefault true;
     ssh.enable = mkDefault true;
     nh.enable = mkDefault true;
-    tmux.enable = mkDefault true;
   };
 
   programs = {
@@ -97,6 +96,7 @@ in
     ];
 
   programs.lazygit.enable = mkDefault true;
+  programs.tmux.enable = mkDefault true;
 
   # root level shell
   programs.zsh = {

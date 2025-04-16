@@ -1,10 +1,13 @@
-{ pkgs, lib, config, ... }:
+{ lib, config, ... }:
+let
+  inherit (lib) mkDefault;
+in
 {
   options.modules.benchmarking.enable = lib.mkEnableOption "enable benchmarking module";
   config = lib.mkIf config.modules.benchmarking.enable {
-    environment.systemPackages = with pkgs; [
-      phoronix-test-suite
-      kdiskmark
-    ];
+    programs = {
+      phoronix.enable = mkDefault true;
+      kdiskmark.enable = mkDefault true;
+    };
   };
 }

@@ -11,8 +11,8 @@ in
 
     # additional utilities
     programs = {
-      helvum.enable = true;
-      easyeffects.enable = true;
+      helvum.enable = mkDefault true;
+      easyeffects.enable = mkDefault true;
     };
 
     services = {
