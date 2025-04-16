@@ -7,7 +7,7 @@ in
 {
   options.programs.${program-name} = {
     enable = mkEnableOption program-name;
-    package = mkPackageOption pkgs program-name;
+    package = mkPackageOption pkgs program-name { };
   };
 
   config = mkIf cfg.enable {
