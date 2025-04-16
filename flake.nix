@@ -71,7 +71,6 @@
 
       nixosModules = import ./modules/nixos { inherit lib; };
       homeManagerModules = import ./modules/home-manager { inherit lib; };
-      sharedModules = import ./modules/shared { inherit lib; };
 
       nixosProfiles = {
         desktop = import ./profiles/nixos/desktop.nix;

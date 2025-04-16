@@ -1,12 +1,13 @@
 { pkgs, lib, config, ... }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf mkDefault;
   cfg = config.modules.steam;
 in
 {
   options.modules.steam.enable = mkEnableOption "enable steam module";
   config = mkIf cfg.enable {
     programs = {
+      mangohud.enable = mkDefault true;
       gamemode.enable = true;
       steam = {
         enable = true;
@@ -17,7 +18,6 @@ in
     };
     environment = {
       systemPackages = with pkgs; [
-        mangohud
         protonup
       ];
       sessionVariables = {

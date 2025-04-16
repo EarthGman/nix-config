@@ -1,11 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
+let
+  inherit (lib) mkDefault;
+in
 {
   modules.steam.enable = true;
-  # udev rules for dolphinbar and GC controller adapters
-  services.udev.packages = [ pkgs.dolphin-emu ];
-  # mouse control gui
-  services.ratbagd.enable = true;
-  environment.systemPackages = with pkgs; [
-    piper
-  ];
+  programs = {
+    dolphin-emu.enable = mkDefault true;
+    # mouse control gui
+    piper.enable = mkDefault true;
+  };
 }

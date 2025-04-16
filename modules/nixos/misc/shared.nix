@@ -14,10 +14,6 @@ in
     nh.enable = mkDefault true;
   };
 
-  programs = {
-    yazi.enable = mkDefault true;
-    neovim-custom.enable = mkDefault true;
-  };
 
   # goodbye bloat
   documentation.nixos.enable = mkDefault false;
@@ -69,14 +65,13 @@ in
       powertop
       fzf
       sysz
-      git
       file
       cifs-utils
       ncdu
       nix-prefetch-git
       hstr
       inxi
-      killall
+      psmisc
       zip
       unzip
       usbutils
@@ -88,55 +83,21 @@ in
       tldr
       lynx
       ripgrep
-      zoxide # must be on path
-    ]
-    ++ optionals (config.services.keyd.enable) [
-      # idk why services.keyd.enable doesn't install this cli
-      pkgs.keyd
     ];
 
-  programs.lazygit.enable = mkDefault true;
-  programs.tmux.enable = mkDefault true;
-
-  # root level shell
-  programs.zsh = {
-    enable = true;
-    enableCompletion = mkDefault true;
-    syntaxHighlighting.enable = mkDefault true;
-    autosuggestions.enable = mkDefault true;
-    shellAliases =
-      let
-        has-nh = config.programs.nh.enable;
-      in
-      {
-        l = "ls -al";
-        g = "${getExe pkgs.git}";
-        t = "${getExe pkgs.tree}";
-        lg = mkIf (config.programs.lazygit.enable) "${getExe pkgs.lazygit}";
-        ga = "g add .";
-        gco = "g checkout";
-        gba = "g branch -a";
-        cat = "${getExe pkgs.bat}";
-        nrs = if (has-nh) then "${getExe pkgs.nh} os switch $(readlink -f /etc/nixos)" else "sudo nixos-rebuild switch --flake $(readlink -f /etc/nixos)";
-        nrt = if (has-nh) then "${getExe pkgs.nh} os test $(readlink -f /etc/nixos)" else "sudo nixos-rebuild test --flake $(readlink -f /etc/nixos)";
-        nrb = "nixos-rebuild build";
-        ncg = if (has-nh) then "${getExe pkgs.nh} clean all" else "sudo nix-collect-garbage -d";
-      };
-
-    promptInit = ''
-      eval "$(${getExe pkgs.zoxide} init --cmd j zsh)"
-      setopt autocd
-    '' + optionalString (config.programs.yazi.enable) ''
-       function y() {
-       local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
-       yazi "$@" --cwd-file="$tmp"
-       if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-         builtin cd -- "$cwd"
-       fi
-       rm -f -- "$tmp"
-      }
-    '';
+  programs = {
+    yazi.enable = mkDefault true;
+    neovim-custom.enable = mkDefault true;
+    lazygit.enable = mkDefault true;
+    tmux.enable = mkDefault true;
+    starship.enable = mkDefault true;
+    bat.enable = mkDefault true;
+    zsh.enable = mkDefault true;
+    zoxide = {
+      enable = mkDefault true;
+      flags = mkDefault [
+        "--cmd j"
+      ];
+    };
   };
-  # enable starship for everyone
-  programs.starship.enable = mkDefault true;
 }

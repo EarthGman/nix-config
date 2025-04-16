@@ -7,7 +7,6 @@
     outputs.nixosProfiles.gman-pc
   ];
 
-
   boot.initrd.availableKernelModules = [
     "nvme"
     "ahci"
@@ -43,8 +42,6 @@
   networking = {
     # required for sins of a solar empire lag bug in multiplayer
     extraHosts = ''66.79.209.80 ico-reb.stardock.com'';
-
-    firewall.allowedUDPPorts = [ 8001 ];
   };
 
   boot.loader.grub.themeConfig = {
@@ -54,31 +51,15 @@
   modules = {
     benchmarking.enable = true;
     flatpak.enable = true;
-    sunshine.enable = true;
     qemu-kvm.enable = true;
   };
 
-  #  custom = {
-  #    decreased-security.nixos-rebuild = true;
-  #  };
-
-  virtualisation.libvirtd.hooks.qemu = {
-    "looking-glass-hook" = lib.getExe (pkgs.writeShellApplication {
-      name = "looking-glass-hook";
-      runtimeInputs = [ pkgs.bash ];
-      text = ''
-        if [ "$1" = "windows" ] && [ "$2" = "started" ]; then
-          sleep 1
-          chown g:users /dev/shm/looking-glass
-          chmod 660 /dev/shm/looking-glass
-        fi
-      '';
-    });
+  programs = {
+    cutentr.enable = true;
+    piper.enable = false;
   };
 
-  environment.systemPackages = with pkgs; [
-    gnome-software
-  ];
+  services.sunshine.enable = true;
 
   environment.etc = {
     "ssh/ssh_host_ed25519_key.pub".source = ./ssh_host_ed25519_key.pub;

@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, desktop, ... }:
 let
   inherit (lib) mkDefault;
 in
@@ -7,7 +7,7 @@ in
   config = lib.mkIf config.modules.benchmarking.enable {
     programs = {
       phoronix.enable = mkDefault true;
-      kdiskmark.enable = mkDefault true;
+      kdiskmark.enable = mkDefault desktop != null;
     };
   };
 }
