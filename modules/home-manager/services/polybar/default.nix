@@ -9,16 +9,14 @@ in
   ]);
 
   services.polybar = {
-    script = import ./script.nix { inherit pkgs lib; };
+    script = import ./script.nix;
     settings = import ./settings.nix { inherit pkgs mkDefault config getExe; };
   };
 
-  #TODO figure out how to stop polybar if waybar wants to launch first
   systemd.user.services.polybar = {
     Service = {
       Environment = mkForce [
-        # needs commands from /run/current-system. default did not provide path
-        "PATH=/run/current-system/sw/bin:${pkgs.polybar}/bin:/run/wrappers/bin"
+        "PATH=${config.home.homeDirectory}/.nix-profile/bin:/run/wrappers/bin"
       ];
     };
 

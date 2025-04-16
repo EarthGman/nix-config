@@ -18,7 +18,7 @@ writeScript "hyprland-window-creation-emulator.sh" ''
   fi
 
   adjust_split_mode() {
-    eval $($msg_cmd -t get_tree | jq -r '
+    eval $($msg_cmd -t get_tree | ${getExe pkgs.jq} -r '
       .. | 
       select(.focused? == true) | 
       { width: .rect.width, height: .rect.height } | 

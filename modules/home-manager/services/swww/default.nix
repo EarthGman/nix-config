@@ -176,13 +176,13 @@ in
           # Incorporate the HM service with my addons
           ExecStart = mkForce "${cfg.package}/bin/swww-daemon --no-cache -f xrgb";
           ExecStartPost = "${daemon-postup}";
-          Environment = "PATH=/run/current-system/sw/bin:${config.home.homeDirectory}/.nix-profile/bin";
+          Environment = "PATH=${config.home.homeDirectory}/.nix-profile/bin";
         };
 
         swww-wallpaper = {
           Service = {
             Type = "simple";
-            Environment = "PATH=/run/current-system/sw/bin:${config.home.homeDirectory}/.nix-profile/bin";
+            Environment = "PATH=${config.home.homeDirectory}/.nix-profile/bin";
             ExecStart =
               if config.services.omori-calendar-project.enable then
                 "systemctl --user restart omori-calendar-project"
