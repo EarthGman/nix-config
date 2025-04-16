@@ -7,6 +7,7 @@ in
 {
   imports = [
     outputs.nixosProfiles.default
+    outputs.sharedModules
     ./bootloaders
     ./desktops
     ./display-managers

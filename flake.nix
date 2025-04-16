@@ -70,6 +70,7 @@
 
       nixosModules = import ./modules/nixos { inherit outputs lib; };
       homeManagerModules = import ./modules/home-manager { inherit outputs lib; };
+      sharedModules = import ./modules/shared { inherit lib; };
 
       nixosProfiles = {
         default = import ./profiles/nixos;

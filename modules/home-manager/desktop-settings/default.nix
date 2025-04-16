@@ -1,6 +1,6 @@
 { lib, desktop, ... }:
 let
-  inherit (lib) optionals mkDefault mkIf;
+  inherit (lib) optionals;
   inherit (builtins) elem;
   desktops = if (desktop != null) then lib.splitString "," desktop else [ ];
   i3 = elem "i3" desktops;

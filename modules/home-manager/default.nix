@@ -8,6 +8,7 @@ in
 {
   imports = [
     outputs.homeProfiles.default
+    outputs.sharedModules
     ./stylix
     ./desktop-settings
   ]

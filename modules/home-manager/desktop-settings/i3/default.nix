@@ -2,11 +2,15 @@
 let
   inherit (lib) mkDefault optionals;
   enabled = { enable = mkDefault true; };
-
 in
 {
   imports = [
     ../i3-sway
+  ];
+
+  home.packages = with pkgs; [
+    xclip
+    xorg.xmodmap
   ];
 
   programs = {
