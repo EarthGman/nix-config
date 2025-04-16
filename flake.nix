@@ -70,6 +70,8 @@
       packages = nix-library.packages;
 
       nixosModules = import ./modules/nixos { inherit lib; };
+      homeManagerModules = import ./modules/home-manager { inherit lib; };
+      sharedModules = import ./modules/shared { inherit lib; };
 
       nixosProfiles = {
         desktop = import ./profiles/nixos/desktop.nix;
@@ -81,8 +83,6 @@
         gman-pc = import ./profiles/nixos/gman-pc.nix;
         hacker-mode = import ./profiles/nixos/hacker-mode.nix;
       };
-
-      homeManagerModules = import ./modules/home-manager { inherit lib; };
 
       homeProfiles = {
         essentials = import ./profiles/home-manager/essentials.nix;

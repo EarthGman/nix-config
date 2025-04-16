@@ -10,10 +10,11 @@ in
     security.rtkit.enable = true; # hands out realtime scheduling priority to user processes on demand. Improves performance of pulse
 
     # additional utilities
-    environment.systemPackages = with pkgs; [
-      easyeffects
-      helvum
-    ];
+    programs = {
+      helvum.enable = true;
+      easyeffects.enable = true;
+    };
+
     services = {
       pipewire = {
         # enables alsa, pulseaudio, and jack support by default

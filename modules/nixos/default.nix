@@ -2,6 +2,7 @@
 let
   inherit (lib) autoImport;
   other = autoImport ./misc;
+  programs = autoImport ./programs;
 in
 {
   imports = [
@@ -9,5 +10,7 @@ in
     ./desktops
     ./display-managers
     ./gpu
-  ] ++ other;
+  ]
+  ++ other
+  ++ programs;
 }
