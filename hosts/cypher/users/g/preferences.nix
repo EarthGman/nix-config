@@ -11,7 +11,6 @@ in
   programs = {
     musescore.enable = true;
     lutris.enable = true;
-    cute-ntr.enable = true;
     ardour.enable = true;
     dolphin-emu.enable = true;
     cemu.enable = true;

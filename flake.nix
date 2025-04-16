@@ -61,7 +61,6 @@
       myLib = helpers // nix-library.lib;
       lib = nixpkgs.lib.extend # must overlay the lib functions like this or else weird stuff happens for some reason
         (final: prev: myLib // home-manager.lib);
-      inherit (lib) autoImport;
     in
     {
       inherit lib;
@@ -69,10 +68,11 @@
       overlays = import ./overlays.nix { inherit inputs; };
       packages = nix-library.packages;
 
-      nixosModules = import ./modules/nixos { inherit lib; };
-      homeManagerModules = import ./modules/home-manager { inherit lib; };
+      nixosModules = import ./modules/nixos { inherit outputs lib; };
+      homeManagerModules = import ./modules/home-manager { inherit outputs lib; };
 
       nixosProfiles = {
+        default = import ./profiles/nixos;
         desktop = import ./profiles/nixos/desktop.nix;
         server = import ./profiles/nixos/server;
         iso = import ./profiles/nixos/iso.nix;
@@ -84,6 +84,7 @@
       };
 
       homeProfiles = {
+        default = import ./profiles/home-manager;
         essentials = import ./profiles/home-manager/essentials.nix;
         desktopThemes = {
           april = import ./profiles/home-manager/desktop-themes/april.nix;

@@ -1,16 +1,17 @@
-{ lib, ... }:
+{ lib, outputs, ... }:
 let
   inherit (lib) autoImport;
   programs = autoImport ./programs;
   services = autoImport ./services;
-  shared = autoImport ./shared;
+  other = autoImport ./misc;
 in
 {
   imports = [
+    outputs.homeProfiles.default
     ./stylix
     ./desktop-settings
   ]
-  ++ shared
+  ++ other
   ++ programs
   ++ services;
 }

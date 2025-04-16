@@ -3,14 +3,14 @@ let
   inherit (lib) mkEnableOption mkOption mkIf types getExe;
   cfg = config.programs.fastfetch;
   image-randomizer = pkgs.writeScript "fastfetch-image-randomizer.sh" ''
-    #!/usr/bin/env bash
+    #!${getExe pkgs.bash}
 
     images=(${toString (lib.concatStringsSep " " cfg.imageRandomizer.images)})
     image_count=''${#images[@]}
     random_index=$((RANDOM % image_count))
     selected_image=''${images[$random_index]}
 
-    fastfetch -l "$selected_image"
+    ${cfg.package} -l "$selected_image"
   '';
 in
 {
@@ -37,12 +37,16 @@ in
       settings = mkIf (!cfg.imperativeConfig) (import ./settings.nix { inherit config lib; });
     };
     # direct the alias to the randomizer script
-    programs.zsh.shellAliases =
-      if (cfg.imageRandomizer.enable)
-      then
-        { ff = "${image-randomizer}"; }
-      else
-        { ff = "${getExe pkgs.fastfetch}  "; };
+    programs.zsh.shellAliases = {
+      ff = "fastfetch";
+    } //
+    (if (cfg.imageRandomizer.enable)
+    then
+      {
+        fastfetch = "${image-randomizer}";
+      }
+    else
+      { fastfetch = "${getExe cfg.package}"; });
   };
 }
 

@@ -1,33 +1,33 @@
 { pkgs, config, lib, ... }:
 let
   inherit (lib) getExe mkIf;
-  cfg = config.programs.zsh;
+  cfg = config.programs;
 in
 {
-  programs.zsh = mkIf cfg.enable {
+  programs.zsh = {
     autosuggestion.enable = true;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
     autocd = true;
-    shellAliases = {
-      l = "${getExe pkgs.eza} -al --icons";
-      ls = "${getExe pkgs.eza} --icons";
-      lg = "${getExe pkgs.lazygit}";
-      # man = "${getExe pkgs.bat-extras.batman}";
-      g = "git";
-      ga = "g add .";
-      gco = "g checkout";
-      gba = "g branch -a";
-      hms = "home-manager switch";
-      cat = "${getExe pkgs.bat}";
-      t = "${getExe pkgs.tree}";
-    };
+    shellAliases =
+      let
+        has-git = cfg.git.enable;
+      in
+      {
+        l = if cfg.eza.enable then "${getExe cfg.eza.package} -al --icons" else "ls -al";
+        ls = mkIf cfg.eza.enable "${getExe cfg.eza.package} --icons";
+        lg = mkIf has-git "${getExe cfg.lazygit.package}";
+        g = mkIf has-git "${getExe cfg.git.package}";
+        ga = mkIf has-git "${cfg.git.package} add .";
+        gco = mkIf has-git "${cfg.git.package} checkout";
+        hms = "home-manager switch";
+        cat = mkIf cfg.bat.enable "${getExe cfg.bat.package}";
+        t = "${getExe pkgs.tree}";
+      };
     initExtra = ''
       setopt interactivecomments
       compdef batman=man
       export EDITOR=${config.custom.editor}
-      export PATH=$(realpath ~/bin):$PATH
-      eval "$(${getExe pkgs.zoxide} init --cmd j zsh)";
     '';
   };
 }

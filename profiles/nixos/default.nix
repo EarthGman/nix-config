@@ -1,24 +1,20 @@
 { inputs, outputs, pkgs, lib, config, hostName, cpu, vm, platform, stateVersion, ... }:
 let
-  inherit (lib) mkDefault mkIf optionals mkForce getExe optionalString;
+  inherit (lib) mkDefault mkIf mkForce;
 in
 {
   imports = [
     inputs.disko.nixosModules.disko
   ];
 
-  # default profile for all machines
   modules = {
     direnv.enable = mkDefault true;
     ssh.enable = mkDefault true;
     nh.enable = mkDefault true;
   };
 
-
-  # goodbye bloat
   documentation.nixos.enable = mkDefault false;
 
-  # other module boilerplate, applied by default to all configurations
   users.users."root".shell = pkgs.zsh;
   users.mutableUsers = mkDefault false;
 
@@ -33,14 +29,13 @@ in
   };
 
   networking = {
-    # forces wireless off since I use networkmanager for all systems
     wireless.enable = mkForce false;
     inherit hostName;
     networkmanager.enable = true;
   };
 
   nix = {
-    channel.enable = mkDefault false; # please just use flakes instead
+    channel.enable = mkDefault false; # causes a weird error about symlinks being present just rm them manually and it goes away 
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;

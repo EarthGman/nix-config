@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, outputs, ... }:
 let
   inherit (lib) autoImport;
   other = autoImport ./misc;
@@ -6,6 +6,7 @@ let
 in
 {
   imports = [
+    outputs.nixosProfiles.default
     ./bootloaders
     ./desktops
     ./display-managers
