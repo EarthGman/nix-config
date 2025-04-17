@@ -82,7 +82,12 @@ in
 
   programs = {
     yazi.enable = mkDefault true;
-    neovim-custom.enable = mkDefault true;
+    neovim-custom = {
+      enable = mkDefault true;
+      viAlias = mkDefault true;
+      vimAlias = mkDefault true;
+      defaultEditor = mkDefault true;
+    };
     lazygit.enable = mkDefault true;
     tmux.enable = mkDefault true;
     starship.enable = mkDefault true;
