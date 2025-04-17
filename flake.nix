@@ -2,9 +2,8 @@
   description = "Gman's nix config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # nixpkgs-master.url = "github:nixos/nixpkgs";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.0.tar.gz";
+    nixpkgs-stable.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
     hyprland.url = "github:hyprwm/Hyprland";
     swww.url = "github:LGFae/swww";
     ghostty.url = "github:ghostty-org/ghostty";
@@ -20,7 +19,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "https://flakehub.com/f/nix-community/home-manager/0.1.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
