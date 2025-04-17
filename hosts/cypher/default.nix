@@ -1,4 +1,4 @@
-{ outputs, pkgs, lib, wallpapers, ... }:
+{ outputs, wallpapers, ... }:
 {
   imports = [
     ./fs.nix

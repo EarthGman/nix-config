@@ -1,5 +1,5 @@
 { pkgs, ... }:
-with pkgs.master.vscode-extensions; [
+with pkgs.vscode-extensions; [
   # nix
   bbenoist.nix
   jnoortheen.nix-ide

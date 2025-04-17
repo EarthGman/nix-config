@@ -1,6 +1,9 @@
 # Vanilla MC 1.12.2
-{ outputs, pkgs, lib, ... }:
+{ self, pkgs, lib, ... }:
 {
+  imports = [
+    (self + /profiles/nixos/server/disko.nix)
+  ];
   networking = {
     firewall.allowedTCPPorts = [ 25565 ]; # minecraft port
   };

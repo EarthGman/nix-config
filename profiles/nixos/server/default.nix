@@ -1,5 +1,8 @@
 # profile designed to trim out unncessary fluff for servers running nixos
-{ inputs, outputs, modulesPath, lib, ... }:
+{ inputs, outputs, modulesPath, lib, platform, bios, ... }:
+let
+  inherit (lib) mkDefault;
+in
 {
   imports = [
     # pretty cool repo for servers
@@ -15,11 +18,14 @@
   hardware.enableRedistributableFirmware = false;
 
   users.users."root" = {
-    openssh.authorizedKeys.keys = lib.mkDefault [ outputs.keys.g_pub ];
+    openssh.authorizedKeys.keys = mkDefault [ outputs.keys.g_pub ];
   };
 
   # make sure clean doesn't leave any unnecessary nixos configurations
   programs = {
+    neovim-custom = {
+      package = mkDefault inputs.vim-config.packages.${platform}.nvim-lite;
+    };
     vim = {
       # srvos assumes im using vim instead of neovim
       enable = false;
@@ -30,13 +36,13 @@
     };
   };
 
-  # use systemd boot, less bloated than grub (plus who needs to theme a server?)
+  # use systemd boot, less bloated than grub
   modules.bootloaders.systemd-boot.enable = true;
   boot = {
     kernelParams = [ "quiet" "noatime" ];
     tmp.cleanOnBoot = true;
     loader = {
-      efi.canTouchEfiVariables = true;
+      efi.canTouchEfiVariables = mkDefault (bios == "UEFI");
       systemd-boot.enable = true;
     };
   };

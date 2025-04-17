@@ -643,11 +643,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1744818541,
-        "narHash": "sha256-DHegSmqvGE8MsVtL8HYTEi2+fg2K5o8pUpb3mgPkyb0=",
+        "lastModified": 1744849150,
+        "narHash": "sha256-eaKqF4Oc7atN7Y2yTTeAOLN05q+G2YY0597ukgAD2Cs=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "3fa6320a391ed60779702e058f67649beb787962",
+        "rev": "225e13c3cc83308175f0a9aa18cfa31324155034",
         "type": "github"
       },
       "original": {
@@ -951,21 +951,6 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/072a6db25e947df2f31aab9eccd0ab75d5b2da11.tar.gz"
       }
     },
-    "nixpkgs-master": {
-      "locked": {
-        "lastModified": 1744847212,
-        "narHash": "sha256-lU+YwTa3MQE0ouNcMlgVmrzKws6kRs84i4nf7Dm2LAk=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "6c037d6bb4d142493810c82e8664269f2357025a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1741992157,
@@ -1165,11 +1150,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1744838537,
-        "narHash": "sha256-u/t5S8PeLTUTfX5IkzMNtkLoM6dJBT5j34YdXUbdRL8=",
+        "lastModified": 1744852214,
+        "narHash": "sha256-uQcBj+DRMn+l1dAB5kj5uxuanBmrAyOjGL2z0kaHdAI=",
         "owner": "nix-community",
         "repo": "nur",
-        "rev": "a9bac75c59fbe2825f7a21d061ba5c23344daebf",
+        "rev": "af985d60a69c6c1a1e758581224531087fe34aa6",
         "type": "github"
       },
       "original": {
@@ -1254,7 +1239,6 @@
         "nix-gaming": "nix-gaming",
         "nix-library": "nix-library",
         "nixpkgs": "nixpkgs_3",
-        "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-stable": "nixpkgs-stable_2",
         "nur": "nur",
         "prismlauncher": "prismlauncher",
