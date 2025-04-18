@@ -1,10 +1,13 @@
-{ pkgs, lib, ... }:
+{ self, pkgs, lib, ... }:
 {
 
   imports = [
     ./disko.nix
+    (self + /profiles/nixos/wg0.nix)
   ];
   modules.nh.enable = false;
+  modules.sops.enable = true;
+
 
   hardware.enableRedistributableFirmware = lib.mkForce true;
 

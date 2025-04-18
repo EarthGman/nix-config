@@ -3,15 +3,40 @@
 
   inputs = {
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.0.tar.gz";
-    nixpkgs-stable.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
-    hyprland.url = "github:hyprwm/Hyprland";
-    swww.url = "github:LGFae/swww";
-    ghostty.url = "github:ghostty-org/ghostty";
-    prismlauncher.url = "github:PrismLauncher/PrismLauncher";
-    stylix.url = "github:danth/stylix";
-    srvos.url = "github:nix-community/srvos";
-    nix-gaming.url = "github:fufexan/nix-gaming";
-    nur.url = "github:nix-community/nur";
+
+    swww = {
+      url = "github:LGFae/swww";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+    };
+
+    prismlauncher = {
+      url = "github:PrismLauncher/PrismLauncher";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    srvos = {
+      url = "github:nix-community/srvos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-gaming = {
+      url = "github:fufexan/nix-gaming";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nur = {
+      url = "github:nix-community/nur";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-library = {
       url = "github:EarthGman/nix-library";

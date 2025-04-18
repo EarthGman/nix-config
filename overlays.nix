@@ -7,13 +7,13 @@
   #   };
   # };
 
-  nixpkgs-stable = final: _: {
-    stable = import inputs.nixpkgs-stable {
-      inherit (final) system;
-      config.allowUnfree = true;
-    };
-  };
-
+  # nixpkgs-stable = final: _: {
+  #   stable = import inputs.nixpkgs-stable {
+  #     inherit (final) system;
+  #     config.allowUnfree = true;
+  #   };
+  # };
+  #
   nur = inputs.nur.overlays.default;
 
   # additional packages added to the package set

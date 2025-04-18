@@ -2,6 +2,7 @@ keys:
   - &cypher age1f3axcm808wfxm38lg3qfwllytlgmqcjwn4yenlkyqpg3c3ku532s77e48d
   - &tater age1f3axcm808wfxm38lg3qfwllytlgmqcjwn4yenlkyqpg3c3ku532s77e48d
   - &twilight age13mj768x90kcw2m80d0v3px5v2kvhf9dq63a40xxjgyt75kcv0assr0u8eu
+  - &gman-theatre age199auly5hkukg7zqp57y9gycxtlwl8g89k82q6v37a8fzs2ewkaus5jwv80
   - &somnus age18uzw9yhgjnuy0zg9fajmp75m0r8w93aq0qw453e868mxadflcghqpeqgy4
 
 creation_rules:
@@ -21,3 +22,7 @@ creation_rules:
     key_groups:
       - age:
         - *tater
+  - path_regex: hosts/gman-theatre/secrets.yaml
+    key_groups:
+      - age:
+        - *gman-theatre

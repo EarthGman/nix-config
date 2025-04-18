@@ -20,7 +20,6 @@ in
   programs = let cfg = config.custom; in {
 
     # the current vesktop release does not properly communicate with wayland portals for screensharing
-    discord.package = pkgs.stable.vesktop;
 
     home-manager.enable = mkDefault true;
     starship.enable = mkDefault true;
