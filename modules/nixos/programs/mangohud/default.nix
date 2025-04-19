@@ -1,13 +1,13 @@
 { pkgs, lib, config, ... }:
 let
-  inherit (lib) mkIf mkEnableOption mkPackageOption;
-  program-name = "mangohud";
-  cfg = config.programs.${program-name};
+  inherit (lib) mkIf mkProgramOption;
+  cfg = config.programs.mangohud;
 in
 {
-  options.programs.${program-name} = {
-    enable = mkEnableOption program-name;
-    package = mkPackageOption pkgs program-name { };
+  options.programs.mangohud = mkProgramOption {
+    programName = "mangohud";
+    description = "monitoring overlay for games";
+    inherit pkgs;
   };
 
   config = mkIf cfg.enable {

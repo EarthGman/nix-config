@@ -9,6 +9,7 @@ in
   imports = [
     outputs.homeProfiles.default
     outputs.sharedModules
+    outputs.sharedProfiles.tmux
     ./stylix
     ./desktop-settings
   ]

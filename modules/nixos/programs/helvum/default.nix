@@ -1,15 +1,9 @@
-{ pkgs, lib, config, ... }:
+{ lib, config, ... }:
 let
-  inherit (lib) mkIf mkEnableOption mkPackageOption;
-  program-name = "helvum";
+  inherit (lib) mkIf;
   cfg = config.programs.helvum;
 in
 {
-  options.programs.${program-name} = {
-    enable = mkEnableOption program-name;
-    package = mkPackageOption pkgs program-name { };
-  };
-
   config = mkIf cfg.enable {
     environment.systemPackages = [ cfg.package ];
   };

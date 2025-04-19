@@ -1,6 +1,6 @@
 { pkgs, lib, config, users, ... }:
 let
-  inherit (lib) mkDefault;
+  inherit (lib) mkDefault optionals;
   enabled = { enable = mkDefault true; };
 in
 {
@@ -51,9 +51,9 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    imagemagick # image manipulation
-    pamixer # audio
     brightnessctl # brightness
+  ] ++ optionals (config.modules.pipewire.enable) [
+    pamixer
   ];
 
   # required for some stylix to work properly (gtk)

@@ -1,6 +1,6 @@
-{ inputs, pkgs, config, lib, ... }:
+{ inputs, config, lib, desktop, ... }:
 let
-  inherit (lib) mkDefault mkIf mkForce;
+  inherit (lib) mkDefault mkIf;
   cfg = config.modules.pipewire;
 in
 {
@@ -11,8 +11,8 @@ in
 
     # additional utilities
     programs = {
-      helvum.enable = mkDefault true;
-      easyeffects.enable = mkDefault true;
+      helvum.enable = mkDefault (desktop != null);
+      easyeffects.enable = mkDefault (desktop != null);
     };
 
     services = {

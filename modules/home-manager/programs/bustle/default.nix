@@ -1,20 +1,9 @@
-{ pkgs, config, lib, ... }:
+{ config, lib, ... }:
 let
-  inherit (lib) mkIf mkEnableOption mkOption types;
+  inherit (lib) mkIf;
   cfg = config.programs.bustle;
 in
-
 {
-  options.programs.bustle = {
-    enable = mkEnableOption "enable bustle, a dbus viewer and recorder";
-
-    package = mkOption {
-      description = "package for bustle";
-      type = types.package;
-      default = pkgs.bustle;
-    };
-  };
-
   config = mkIf cfg.enable {
     home.packages = [
       cfg.package

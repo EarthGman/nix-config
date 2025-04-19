@@ -6,8 +6,8 @@ in
   programs.tmux = {
     shortcut = mkDefault "space";
     keyMode = mkDefault "vi";
-    clock24 = mkDefault true; # military time is better
-    baseIndex = mkDefault 1; # lua has corrupted me
+    clock24 = mkDefault true;
+    baseIndex = mkDefault 1;
     plugins = with pkgs.tmuxPlugins; [
       catppuccin
     ];

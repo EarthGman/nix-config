@@ -1,17 +1,15 @@
 { pkgs, config, lib, ... }:
 let
-  inherit (lib) mkIf mkEnableOption mkOption types;
+  inherit (lib) mkIf mkProgramOption;
   cfg = config.programs.evince;
 in
 {
-  options.programs.evince = {
-    enable = mkEnableOption "enable evince, a lightweight and useful pdf viewer from GNOME";
-    package = mkOption {
-      description = "package for evince";
-      type = types.package;
-      default = pkgs.evince;
-    };
+  options.programs.evince = mkProgramOption {
+    programName = "evince";
+    description = "PDF viewer for GNOME";
+    inherit pkgs;
   };
+
 
   config = mkIf cfg.enable {
     home.packages = [

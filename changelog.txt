@@ -1,3 +1,14 @@
+4-18-2025
+- reorganized all program modules
+- many custom program options are now shared between nixos and home-manager.
+- added shared tmux profile.
+- new mkProgramOption function: returns enable and package options for program
+- patched up several old modules:
+  - removed all references to /run/current-system/sw/bin or nixos specific paths from home-manager services
+	- made heavier use of program.package options for modules and scripts instead of hardcoding the path from pkgs.
+- removed other nixpkgs inputs and ensure that all inputs follow nixpkgs to mitigate the very prominant disk usage isssue with cloning nixpkgs by flakes.
+
+
 4-09-2025
 - yazi will now use evince by default when opening .pdf files
 - removed kde target from stylix

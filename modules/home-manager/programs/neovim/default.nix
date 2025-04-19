@@ -1,20 +1,9 @@
-{ inputs, lib, config, platform, ... }:
+{ lib, config, ... }:
 let
-  inherit (lib) mkEnableOption mkIf mkOption types;
+  inherit (lib) mkIf;
   cfg = config.programs.neovim-custom;
 in
 {
-  options.programs.neovim-custom = {
-    enable = mkEnableOption "enable my custom neovim";
-    package = mkOption {
-      description = "package for custom neovim";
-      type = types.package;
-      default = inputs.vim-config.packages.${platform}.default;
-    };
-    viAlias = mkEnableOption "enable vi alias for custom neovim";
-    vimAlias = mkEnableOption "enable vim alias for custom neovim";
-  };
-
   config = mkIf cfg.enable {
     home.packages = [ cfg.package ];
 

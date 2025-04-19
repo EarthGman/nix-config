@@ -96,6 +96,10 @@
       homeManagerModules = import ./modules/home-manager { inherit outputs lib; };
       sharedModules = import ./modules/shared { inherit lib; };
 
+      sharedProfiles = {
+        tmux = import ./profiles/shared/tmux.nix;
+      };
+
       nixosProfiles = {
         default = import ./profiles/nixos;
         desktop = import ./profiles/nixos/desktop.nix;

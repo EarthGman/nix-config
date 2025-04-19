@@ -100,3 +100,4 @@ in
         { inherit self inputs outputs username hostName desktop wallpapers icons binaries server vm iso platform stateVersion; };
     };
 }
+

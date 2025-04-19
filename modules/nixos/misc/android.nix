@@ -8,7 +8,9 @@ in
   config = mkIf cfg.enable {
     programs = {
       adb.enable = mkDefault true;
-      kdeconnect.enable = mkDefault true;
+      kdeconnect = {
+        enable = mkDefault true;
+      };
       scrcpy.enable = mkDefault true;
     };
 

@@ -1,15 +1,9 @@
-{ pkgs, lib, config, ... }:
+{ lib, config, ... }:
 let
-  inherit (lib) mkIf mkEnableOption mkPackageOption;
-  program-name = "phoronix";
-  cfg = config.programs.${program-name};
+  inherit (lib) mkIf;
+  cfg = config.programs.phoronix;
 in
 {
-  options.programs.${program-name} = {
-    enable = mkEnableOption program-name;
-    package = mkPackageOption pkgs "phoronix-test-suite" { };
-  };
-
   config = mkIf cfg.enable {
     environment.systemPackages = [ cfg.package ];
   };

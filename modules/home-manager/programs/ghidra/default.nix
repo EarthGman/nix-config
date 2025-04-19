@@ -1,17 +1,15 @@
 { pkgs, lib, config, ... }:
 let
-  inherit (lib) mkOption mkEnableOption mkIf types;
+  inherit (lib) mkIf mkProgramOption;
   cfg = config.programs.ghidra;
 in
 {
-  options.programs.ghidra = {
-    enable = mkEnableOption "enable ghidra a set of software reverse engineering tools";
-    package = mkOption {
-      description = "ghidra package";
-      type = types.package;
-      default = pkgs.ghidra;
-    };
+  options.programs.ghidra = mkProgramOption {
+    programName = "ghidra";
+    description = "software reverse engineering suite written in java";
+    inherit pkgs;
   };
+
   config = mkIf cfg.enable {
     home.packages = [ cfg.package ];
     home.sessionVariables = {

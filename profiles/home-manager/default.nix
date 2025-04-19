@@ -8,6 +8,9 @@ in
     coreutils-full
     psmisc
     gnused
+    brightnessctl
+    pamixer
+    imagemagick
   ] ++ optionals (config.services.network-manager-applet.enable) [
     networkmanagerapplet
   ];

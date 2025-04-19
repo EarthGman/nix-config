@@ -1,8 +1,6 @@
-{ lib, ... }:
-let
-  inherit (lib) autoImport;
-  programs = autoImport ./programs;
-in
+{ ... }:
 {
-  imports = programs;
+  imports = [
+    ./programs.nix
+  ];
 }

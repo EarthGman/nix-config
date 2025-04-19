@@ -8,6 +8,7 @@ in
   imports = [
     outputs.nixosProfiles.default
     outputs.sharedModules
+    outputs.sharedProfiles.tmux
     ./bootloaders
     ./desktops
     ./display-managers

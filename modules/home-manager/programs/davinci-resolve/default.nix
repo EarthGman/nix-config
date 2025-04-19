@@ -1,19 +1,9 @@
-{ icons, pkgs, config, lib, ... }:
+{ icons, config, lib, ... }:
 let
-  inherit (lib) mkIf mkEnableOption mkOption types;
+  inherit (lib) mkIf;
   cfg = config.programs.davinci-resolve;
 in
 {
-  options.programs.davinci-resolve = {
-    enable = mkEnableOption "enable davinci-resolve, a paid professional video editor that works on linux";
-
-    package = mkOption {
-      description = "package for davinci-resolve";
-      type = types.package;
-      default = pkgs.davinci-resolve;
-    };
-  };
-
   config = mkIf cfg.enable {
     home.packages = [
       cfg.package
