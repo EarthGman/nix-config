@@ -3,6 +3,7 @@ let
   inherit (lib) autoImport;
   other = autoImport ./misc;
   programs = autoImport ./programs;
+  services = autoImport ./services;
 in
 {
   imports = [
@@ -15,5 +16,6 @@ in
     ./gpu
   ]
   ++ other
-  ++ programs;
+  ++ programs
+  ++ services;
 }
