@@ -1,9 +1,9 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, ... }:
 {
   environment.systemPackages = with pkgs; [
     disko
   ];
-  users.users.nixos = {
+  users.users.root = {
     # for SSH
     password = "123";
   };

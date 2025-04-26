@@ -11,6 +11,7 @@ in
   programs = {
     prismlauncher.package = inputs.prismlauncher.packages.${platform}.default;
     musescore.enable = true;
+    gnome-clocks.enable = true;
     lutris.enable = true;
     ardour.enable = true;
     dolphin-emu.enable = true;
