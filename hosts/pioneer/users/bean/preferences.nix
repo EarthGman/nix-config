@@ -28,8 +28,8 @@ in
   };
   stylix.fonts.sizes = {
     terminal = mkForce 12;
-    applications = mkForce 12;
-    popups = mkForce 12;
-    desktop = mkForce 12;
+    applications = mkForce 9;
+    popups = mkForce 9;
+    desktop = mkForce 9;
   };
 }
