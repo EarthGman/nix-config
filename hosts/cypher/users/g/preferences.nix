@@ -18,6 +18,7 @@ in
     cemu.enable = true;
     # davinci-resolve.enable = true;
     obs-studio.enable = true;
+    ryujinx.enable = true;
     # vinegar.enable = true;
     ygo-omega.enable = true;
   };

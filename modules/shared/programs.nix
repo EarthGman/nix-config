@@ -325,6 +325,12 @@ in
       inherit pkgs;
     };
 
+    ryujinx = mkProgramOption {
+      programName = "ryujinx";
+      description = "nintendo switch emulator";
+      inherit pkgs;
+    };
+
     scrcpy = mkProgramOption {
       programName = "scrcpy";
       description = "android screen sharing via USB debugging";

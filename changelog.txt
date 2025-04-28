@@ -1,3 +1,15 @@
+4-27-2025
+- add ryujinx switch emulator
+
+
+4-26-2025
+- add vinegar for roblox studio
+
+
+4-25-2025
+- fix conflicting hyprland option for stylix.
+
+
 4-18-2025
 - reorganized all program modules
 - many custom program options are now shared between nixos and home-manager.
