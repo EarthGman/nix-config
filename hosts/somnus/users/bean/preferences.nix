@@ -19,6 +19,7 @@ in
     cmatrix.enable = true;
     cbonsai.enable = true;
     pipes.enable = true;
+    ryujinx.enable = true;
     sl.enable = true;
   };
 
