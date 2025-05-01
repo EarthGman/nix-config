@@ -16,6 +16,7 @@
     ledger.enable = true;
   };
 
+  nix.settings.trusted-users = [ "g" ];
   # some extra man pages
   documentation.dev.enable = true;
   environment.systemPackages = with pkgs; [
