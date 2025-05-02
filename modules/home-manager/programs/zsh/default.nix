@@ -24,7 +24,7 @@ in
         cat = mkIf cfg.bat.enable "${getExe cfg.bat.package}";
         t = "${getExe pkgs.tree}";
       };
-    initExtra = ''
+    initContent = ''
       setopt interactivecomments
       compdef batman=man
       export EDITOR=${config.custom.editor}

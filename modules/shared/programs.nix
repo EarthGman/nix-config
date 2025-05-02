@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, platform, ... }:
+{ inputs, pkgs, lib, system, ... }:
 let
   inherit (lib)
     mkProgramOption
@@ -69,7 +69,7 @@ in
 
     cutentr = mkProgramOption {
       programName = "cutentr";
-      packageName = "cute-ntr";
+      packageName = "cutentr";
       description = "3ds streaming client for NTR CFW";
       inherit pkgs;
     };
@@ -250,7 +250,7 @@ in
       package = mkOption {
         description = "package for portable neovim";
         type = types.package;
-        default = inputs.vim-config.packages.${platform}.default;
+        default = inputs.vim-config.packages.${system}.default;
       };
       viAlias = mkEnableOption "viAlias";
       vimAlias = mkEnableOption "VimAlias";

@@ -35,7 +35,7 @@ in
       shellAliases = {
         edit-config = "cd ~/src/nix-config && $EDITOR .";
       };
-      initExtra = ''
+      initContent = ''
         export MANPAGER='nvim +Man!'
       '';
     };

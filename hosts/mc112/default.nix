@@ -1,17 +1,8 @@
 # Vanilla MC 1.12.2
-{ self, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 {
-  imports = [
-    (self + /profiles/nixos/server/disko.nix)
-  ];
-  networking = {
-    firewall.allowedTCPPorts = [ 25565 ]; # minecraft port
-  };
   services.minecraft-server = {
-    enable = true;
-    eula = true;
     declarative = true;
-    dataDir = "/opt/minecraft/server";
     # overrides jre_headless to use jre8 instead. This is because attempting to load server-icon.png causes a server crash from a missing library.
     package = pkgs.minecraftServers.vanilla-1-12.override { jre_headless = pkgs.jre8; };
     serverProperties = import ./server-properties.nix;

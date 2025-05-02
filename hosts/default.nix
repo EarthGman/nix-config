@@ -12,7 +12,7 @@ in
     gpu = "amd";
     users = [ "g" ];
     desktop = "sway";
-    platform = "x86_64-linux";
+    system = "x86_64-linux";
     stateVersion = "24.05";
     configDir = ./cypher;
   };
@@ -25,7 +25,7 @@ in
     gpu = "intel-igpu";
     users = [ "g" ];
     desktop = "sway";
-    platform = "x86_64-linux";
+    system = "x86_64-linux";
     configDir = ./twilight;
   };
 
@@ -37,6 +37,7 @@ in
     gpu = "intel-igpu";
     users = [ "g" ];
     desktop = "sway";
+    system = "x86_64-linux";
     stateVersion = "25.05";
     configDir = ./tater;
   };
@@ -48,7 +49,7 @@ in
     vm = true;
     users = [ "test" ];
     desktop = "hyprland";
-    platform = "x86_64-linux";
+    system = "x86_64-linux";
     stateVersion = "25.05";
     configDir = ./nixos;
   };
@@ -62,7 +63,7 @@ in
     users = [ "bean" ];
     desktop = "hyprland,i3,sway";
     stateVersion = "24.05";
-    platform = "x86_64-linux";
+    system = "x86_64-linux";
     configDir = ./somnus;
   };
 
@@ -73,7 +74,7 @@ in
     gpu = "intel-igpu";
     users = [ "bean" ];
     desktop = "sway";
-    platform = "x86_64-linux";
+    system = "x86_64-linux";
     stateVersion = "24.11";
     configDir = ./pioneer;
   };
@@ -86,7 +87,7 @@ in
     gpu = "amd";
     users = [ "iron" ];
     desktop = "gnome";
-    platform = "x86_64-linux";
+    system = "x86_64-linux";
     stateVersion = "24.05";
     configDir = ./petrichor;
   };
@@ -99,7 +100,7 @@ in
     gpu = "nvidia";
     users = [ "pumpkinking" ];
     desktop = "gnome";
-    platform = "x86_64-linux";
+    system = "x86_64-linux";
     stateVersion = "24.05";
     configDir = ./thePumpkinPatch;
   };
@@ -111,26 +112,17 @@ in
     gpu = "amd";
     users = [ "maliglord" ];
     desktop = "gnome";
-    platform = "x86_64-linux";
+    system = "x86_64-linux";
     stateVersion = "25.05";
     configDir = ./juno;
   };
 
   # servers
-  mc112 = mkHost {
-    hostName = "mc112";
-    server = true;
-    vm = true;
-    platform = "x86_64-linux";
-    stateVersion = "25.05";
-    configDir = ./mc112;
-  };
-
   mc-blueprints = mkHost {
     hostName = "mc-blueprints";
     server = true;
     vm = true;
-    platform = "x86_64-linux";
+    system = "x86_64-linux";
     stateVersion = "24.11";
     configDir = ./mc-blueprints;
   };
@@ -139,7 +131,7 @@ in
     hostName = "mc121";
     server = true;
     vm = true;
-    platform = "x86_64-linux";
+    system = "x86_64-linux";
     stateVersion = "24.11";
     configDir = ./mc121;
   };
@@ -150,7 +142,7 @@ in
     gpu = "amd";
     server = true;
     vm = false;
-    platform = "x86_64-linux";
+    system = "x86_64-linux";
     stateVersion = "25.05";
     configDir = ./gman-theatre;
   };
@@ -159,14 +151,14 @@ in
   installer-x86_64-without-firmware = mkHost {
     hostName = "nixos-installer";
     iso = true;
-    platform = "x86_64-linux";
+    system = "x86_64-linux";
     configDir = ./iso/without-firmware;
   };
 
   installer-x86_64-with-firmware = mkHost {
     hostName = "nixos-installer";
     iso = true;
-    platform = "x86_64-linux";
+    system = "x86_64-linux";
     configDir = ./iso/with-firmware;
   };
 }

@@ -1,4 +1,4 @@
-{ inputs, outputs, pkgs, lib, config, hostName, cpu, vm, platform, stateVersion, ... }:
+{ inputs, outputs, pkgs, lib, config, hostName, cpu, vm, system, stateVersion, ... }:
 let
   inherit (lib) mkDefault mkIf mkForce;
 in
@@ -45,7 +45,7 @@ in
   nixpkgs = {
     overlays = (builtins.attrValues outputs.overlays);
     config.allowUnfree = true;
-    hostPlatform = platform;
+    hostPlatform = system;
   };
 
   time.timeZone = mkDefault "America/Chicago";

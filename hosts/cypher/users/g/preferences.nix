@@ -1,4 +1,4 @@
-{ outputs, inputs, platform, ... }:
+{ outputs, inputs, system, ... }:
 let
   inherit (builtins) fetchurl;
   theme = outputs.homeProfiles.desktopThemes.cosmos;
@@ -9,7 +9,7 @@ in
   ];
 
   programs = {
-    prismlauncher.package = inputs.prismlauncher.packages.${platform}.default;
+    prismlauncher.package = inputs.prismlauncher.packages.${system}.default;
     musescore.enable = true;
     gnome-clocks.enable = true;
     lutris.enable = true;

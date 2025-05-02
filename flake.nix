@@ -4,6 +4,11 @@
   inputs = {
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.0.tar.gz";
 
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     determinate = {
       url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -83,10 +88,10 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-library, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, nix-library, nixos-generators, ... } @ inputs:
     let
       inherit (self) outputs;
-      helpers = import ./lib/helpers.nix { inherit self outputs; };
+      helpers = import ./lib/helpers.nix { inherit self outputs nixos-generators; };
       myLib = helpers // nix-library.lib;
       lib = nixpkgs.lib.extend # must overlay the lib functions like this or else weird stuff happens for some reason
         (final: prev: myLib // home-manager.lib);
@@ -95,7 +100,6 @@
       inherit lib;
       keys = import ./keys.nix;
       overlays = import ./overlays.nix { inherit inputs; };
-      packages = nix-library.packages;
 
       nixosModules = import ./modules/nixos { inherit outputs lib; };
       homeManagerModules = import ./modules/home-manager { inherit outputs lib; };
@@ -110,6 +114,7 @@
         desktop = import ./profiles/nixos/desktop.nix;
         server = import ./profiles/nixos/server;
         iso = import ./profiles/nixos/iso.nix;
+        lxc = import ./profiles/nixos/lxc.nix;
         gaming = import ./profiles/nixos/gaming.nix;
         laptop = import ./profiles/nixos/laptop.nix;
         gmans-keymap = import ./profiles/nixos/keyd/gmans-keymap.nix;
@@ -136,5 +141,19 @@
 
       nixosConfigurations = import ./hosts { inherit lib; };
       homeConfigurations = import ./home { inherit lib; };
+
+      lxcTemplates = import ./templates/lxc;
+
+      packages."x86_64-linux" = {
+        mc112 = lib.mkLXC {
+          template = "minecraft";
+          extraConfig = ./hosts/mc112;
+        };
+
+        mc112-blueprints = lib.mkLXC {
+          template = "minecraft";
+          extraConfig = ./hosts/mc-blueprints;
+        };
+      };
     };
 }

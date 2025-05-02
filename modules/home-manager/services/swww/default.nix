@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, config, platform, ... }:
+{ inputs, pkgs, lib, config, system, ... }:
 let
   inherit (lib) mkEnableOption mkOption mkIf mkForce types concatStringsSep mapAttrsToList getExe;
   inherit (pkgs) writeScript;
@@ -105,7 +105,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    services.swww.package = inputs.swww.packages.${platform}.default;
+    services.swww.package = inputs.swww.packages.${system}.default;
     home.sessionVariables = {
       "SWWW_TRANSITION" = cfg.settings.transition.type;
       "SWWW_TRANSITION_STEP" = cfg.settings.transition.step;

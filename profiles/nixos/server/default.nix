@@ -1,5 +1,5 @@
-# profile designed to trim out unncessary fluff for servers running nixos
-{ inputs, outputs, modulesPath, lib, platform, bios, ... }:
+# Virtual Machine, for lxc use mkLXC instead of mkHost
+{ inputs, outputs, modulesPath, lib, system, bios, ... }:
 let
   inherit (lib) mkDefault;
 in
@@ -24,7 +24,7 @@ in
   # make sure clean doesn't leave any unnecessary nixos configurations
   programs = {
     neovim-custom = {
-      package = mkDefault inputs.vim-config.packages.${platform}.nvim-lite;
+      package = mkDefault inputs.vim-config.packages.${system}.nvim-lite;
     };
     vim = {
       # srvos assumes im using vim instead of neovim

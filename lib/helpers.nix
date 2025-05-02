@@ -1,7 +1,8 @@
-{ self, outputs, ... }:
+{ self, outputs, nixos-generators, ... }:
 let
   # expose both nixpkgs and self defined lib functions
   inherit (outputs) lib;
+  inherit (nixos-generators) nixosGenerate;
 
 in
 {
@@ -15,7 +16,7 @@ in
     , server ? false # is this machine a server
     , vm ? false # is this a virtual machine?
     , iso ? false # is this an ISO?
-    , platform ? "x86_64-linux" # what cpu architecture?
+    , system ? "x86_64-linux" # what cpu architecture?
     , stateVersion ? "25.05" # what version of nixos was this machine initalized?
     , configDir ? null # directory for extra host configuration
     , inputs ? self.inputs # define your flake inputs
@@ -29,7 +30,7 @@ in
     in
     lib.nixosSystem {
       specialArgs = {
-        inherit self platform inputs outputs lib wallpapers icons binaries hostName bios cpu gpu users desktop server vm stateVersion;
+        inherit self system inputs outputs lib wallpapers icons binaries hostName bios cpu gpu users desktop server vm stateVersion;
       };
       modules =
         let
@@ -70,7 +71,7 @@ in
     , server ? false # is this user on a server
     , vm ? false # is this user on a virtual machine?
     , iso ? false # is this user on an ISO?
-    , platform ? "x86_64-linux" # what cpu architecture does your host have?
+    , system ? "x86_64-linux" # what cpu architecture does your host have?
     , stateVersion ? "25.05" # what version of home-manager was this user initalized?
     , profile ? null # directory for your extra user configuration
     , inputs ? self.inputs # define your flake inputs
@@ -84,7 +85,7 @@ in
       binaries = fromJSON (readFile inputs.binaries.outPath);
     in
     lib.homeManagerConfiguration {
-      pkgs = inputs.nixpkgs.legacyPackages.${platform};
+      pkgs = inputs.nixpkgs.legacyPackages.${system};
       modules = [
         outputs.homeManagerModules
         {
@@ -97,7 +98,33 @@ in
         profile
       ];
       extraSpecialArgs =
-        { inherit self inputs outputs username hostName desktop wallpapers icons binaries server vm iso platform stateVersion; };
+        { inherit self inputs outputs username hostName desktop wallpapers icons binaries server vm iso system stateVersion; };
+    };
+
+  mkLXC =
+    { inputs ? self.inputs
+    , template ? null
+    , extraConfig ? null
+    , system ? "x86_64-linux"
+    , stateVersion ? "25.05"
+    , format ? "proxmox-lxc"
+    , ...
+    }:
+    let
+      inherit (lib) optionals;
+    in
+    nixosGenerate {
+      inherit format system;
+      specialArgs = {
+        inherit inputs outputs lib system stateVersion;
+      };
+      modules = [
+        (outputs.nixosProfiles.lxc)
+        ../modules/nixos/programs/neovim
+        ../modules/shared/programs.nix
+      ] ++
+      optionals (template != null) [ outputs.lxcTemplates.${template} ] ++
+      optionals (extraConfig != null) [ extraConfig ];
     };
 }
 
