@@ -16,6 +16,7 @@ in
     ardour.enable = true;
     dolphin-emu.enable = true;
     cemu.enable = true;
+    mcrcon.enable = true;
     # davinci-resolve.enable = true;
     obs-studio.enable = true;
     ryujinx.enable = true;

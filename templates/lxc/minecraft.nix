@@ -3,6 +3,8 @@ let
   inherit (lib) mkDefault;
 in
 {
+  programs.mcrcon.enable = mkDefault true;
+
   services.minecraft-server = {
     enable = true;
     eula = true;

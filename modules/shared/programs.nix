@@ -219,6 +219,12 @@ in
       inherit pkgs;
     };
 
+    mcrcon = mkProgramOption {
+      programName = "mcrcon";
+      description = "minecraft remote control client";
+      inherit pkgs;
+    };
+
     moonlight = mkProgramOption {
       programName = "moonlight";
       packageName = "moonlight-qt";
