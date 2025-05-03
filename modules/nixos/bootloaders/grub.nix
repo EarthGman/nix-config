@@ -1,5 +1,6 @@
-{ pkgs, lib, config, bios, ... }:
+{ pkgs, lib, config, ... }@args:
 let
+  bios = if args ? bios then args.bios else null;
   inherit (lib) mkOption types mkDefault mkEnableOption mkIf;
   cfg = config.boot.loader.grub;
 in

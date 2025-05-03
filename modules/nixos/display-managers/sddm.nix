@@ -1,7 +1,8 @@
-{ pkgs, lib, config, desktop, ... }:
+{ pkgs, lib, config, ... }@args:
 let
   cfg = config.services.displayManager.sddm;
   inherit (lib) types mkOption mkIf mkDefault;
+  desktop = if args ? desktop then args.desktop else "";
   desktops = lib.splitString "," desktop;
   preferredDesktop = builtins.elemAt desktops 0;
 

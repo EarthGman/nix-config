@@ -1,5 +1,6 @@
-{ lib, config, desktop, ... }:
+{ lib, config, ... }@args:
 let
+  desktop = if args ? desktop then args.desktop else null;
   inherit (lib) mkDefault;
 in
 {

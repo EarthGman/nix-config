@@ -1,5 +1,6 @@
-{ desktop, lib, ... }:
+{ lib, ... }@args:
 let
+  desktop = if args ? desktop then args.desktop else null;
   inherit (builtins) elem;
   desktops = if (desktop != null) then lib.splitString "," desktop else [ ];
 

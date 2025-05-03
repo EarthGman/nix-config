@@ -1,6 +1,7 @@
-{ cpu, pkgs, lib, config, ... }:
+{ pkgs, lib, config, ... }@args:
 let
   cfg = config.modules.qemu-kvm;
+  cpu = if args ? cpu then args.cpu else "";
 in
 {
   options.modules.qemu-kvm.enable = lib.mkEnableOption "enable virtual machines using qemu-kvm";
@@ -21,7 +22,7 @@ in
       };
     };
     programs.virt-manager.enable = true;
-    boot.kernelModules = [ "kvm-${cpu}" ];
+    boot.kernelModules = lib.mkIf (cpu != "") [ "kvm-${cpu}" ];
     environment.systemPackages = with pkgs; [
       qemu_kvm
       virtiofsd # file system sharing with VMs

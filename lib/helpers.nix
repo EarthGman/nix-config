@@ -36,7 +36,7 @@ in
         let
           inherit (lib) optionals autoImport;
           inherit (builtins) pathExists;
-          inherit (outputs) nixosProfiles;
+          inherit (outputs) sharedModules sharedProfiles nixosModules nixosProfiles;
           cd-dvd =
             if (desktop == null) then
               inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
@@ -47,7 +47,6 @@ in
           iso-setup = nixosProfiles.iso;
           server-setup = nixosProfiles.server;
           host = if configDir != null then [ configDir ] else [ ];
-          nixosModules = [ outputs.nixosModules ];
           nixosUsers =
             if configDir != null then
               if pathExists (configDir + /users) then
@@ -55,7 +54,12 @@ in
               else [ ]
             else [ ];
         in
-        nixosModules
+        [
+          nixosModules
+          nixosProfiles.default
+          sharedModules
+          sharedProfiles.tmux
+        ]
         ++ nixosUsers
         ++ host
         ++ optionals iso [ cd-dvd iso-setup ]
@@ -103,8 +107,8 @@ in
 
   mkLXC =
     { inputs ? self.inputs
-    , template ? null
-    , extraConfig ? null
+    , template ? null # exact name of the .nix file found under templates/lxc
+    , extraConfig ? null # Path to additional modules file
     , system ? "x86_64-linux"
     , stateVersion ? "25.05"
     , format ? "proxmox-lxc"
@@ -116,12 +120,12 @@ in
     nixosGenerate {
       inherit format system;
       specialArgs = {
-        inherit inputs outputs lib system stateVersion;
+        inherit self inputs outputs lib system stateVersion;
       };
       modules = [
         (outputs.nixosProfiles.lxc)
-        ../modules/nixos/programs/neovim
-        ../modules/shared/programs.nix
+        (outputs.nixosModules)
+        (outputs.sharedModules)
       ] ++
       optionals (template != null) [ outputs.lxcTemplates.${template} ] ++
       optionals (extraConfig != null) [ extraConfig ];

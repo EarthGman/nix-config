@@ -1,6 +1,7 @@
-{ config, lib, users, ... }:
+{ config, lib, ... }@args:
 let
   cfg = config.custom.decreased-security;
+  users = if args ? users then args.users else [ ];
 in
 {
   options.custom.decreased-security.nixos-rebuild = lib.mkEnableOption "allow nixos-rebuild without a password";

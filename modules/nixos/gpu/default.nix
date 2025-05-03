@@ -1,7 +1,6 @@
-{ gpu, ... }:
+{ ... }@args:
 let
-  amd = (gpu == "amd");
-  nvidia = (gpu == "nvidia");
+  gpu = if args ? gpu then args.gpu else null;
 in
 {
   imports = [
@@ -9,6 +8,6 @@ in
     ./nvidia.nix
   ];
 
-  modules.gpu.amd.enable = amd;
-  modules.gpu.nvidia.enable = nvidia;
+  modules.gpu.amd.enable = (gpu == "amd");
+  modules.gpu.nvidia.enable = (gpu == "nvidia");
 }

@@ -1,5 +1,5 @@
 # provides a number of cybersecurity tools installed at the system level
-{ pkgs, lib, desktop, ... }:
+{ pkgs, lib, desktop ? null, ... }:
 let
   inherit (lib) mkIf;
 in

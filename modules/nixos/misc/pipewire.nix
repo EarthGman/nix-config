@@ -1,7 +1,8 @@
-{ inputs, config, lib, desktop, ... }:
+{ inputs, config, lib, ... }@args:
 let
   inherit (lib) mkDefault mkIf;
   cfg = config.modules.pipewire;
+  desktop = if args ? desktop then args.desktop else null;
 in
 {
   imports = [ inputs.nix-gaming.nixosModules.pipewireLowLatency ];
