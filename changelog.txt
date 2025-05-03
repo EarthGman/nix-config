@@ -1,3 +1,13 @@
+5-02-2025
+- move some modules from /modules to /profiles
+- add mcrcon program option
+- add defaults to some special args for nixos modules (no longer required to use mkHost to consume)
+
+
+5-01-2025
+- add lxc templates and profile
+
+
 4-27-2025
 - add ryujinx switch emulator
 
