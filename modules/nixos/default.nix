@@ -14,7 +14,6 @@ in
     ./display-managers
     ./gpu
   ] ++ (with outputs.nixosProfiles; [
-    default
     zsh
   ])
   ++ other

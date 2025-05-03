@@ -50,10 +50,8 @@ in
 
   config = mkIf (cfg.gui.enable || cfg.agent.enable) {
     # issue a warning if docker is not enabled
-    warnings =
-      if !config.modules.docker.enable then
-        [ "Portainer enabled without docker. Make sure to set option modules.docker.enable = true" ]
-      else [ ];
+    warnings = mkIf (!(config.modules.docker.enable))
+      [ "Portainer enabled without docker. Make sure to set option modules.docker.enable = true" ];
     networking.firewall.allowedTCPPorts = [ ]
       ++ optionals cfg.gui.openFirewall [ cfg.gui.port ]
       ++ optionals cfg.agent.enable [ cfg.agent.port ];

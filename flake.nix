@@ -157,6 +157,10 @@
           template = "minecraft";
           extraConfig = ./hosts/mc-blueprints;
         };
+
+        docker-env = lib.mkLXC {
+          template = "docker-env";
+        };
       };
     };
 }

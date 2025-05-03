@@ -54,7 +54,7 @@ in
               else [ ]
             else [ ];
         in
-        [ nixosModules ]
+        [ nixosModules nixosProfiles.default ]
         ++ nixosUsers
         ++ host
         ++ optionals iso [ cd-dvd iso-setup ]
