@@ -1,6 +1,6 @@
 { pkgs, config, lib, ... }:
 let
-  inherit (lib) getExe mkIf;
+  inherit (lib) getExe mkIf optionalString;
   cfg = config.programs;
 in
 {
@@ -27,6 +27,7 @@ in
     initContent = ''
       setopt interactivecomments
       compdef batman=man
+    '' + optionalString (config ? custom.editor) ''
       export EDITOR=${config.custom.editor}
     '';
   };

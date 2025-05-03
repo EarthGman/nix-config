@@ -4,6 +4,10 @@ let
   inherit (lib) mkDefault optionals;
 in
 {
+  imports = with outputs.homeProfiles; [
+    zsh
+  ];
+
   home.packages = with pkgs; [
     coreutils-full
     psmisc

@@ -120,11 +120,14 @@
         gmans-keymap = import ./profiles/nixos/keyd/gmans-keymap.nix;
         gman-pc = import ./profiles/nixos/gman-pc.nix;
         hacker-mode = import ./profiles/nixos/hacker-mode.nix;
+        zsh = import ./profiles/nixos/zsh;
       };
 
       homeProfiles = {
         default = import ./profiles/home-manager;
         essentials = import ./profiles/home-manager/essentials.nix;
+        zsh = import ./profiles/home-manager/zsh;
+        alacritty = import ./profiles/home-manager/alacritty;
         desktopThemes = {
           april = import ./profiles/home-manager/desktop-themes/april.nix;
           ashes = import ./profiles/home-manager/desktop-themes/ashes.nix;

@@ -1,4 +1,4 @@
-{ inputs, outputs, pkgs, lib, config, system, stateVersion, ... }:
+{ inputs, outputs, pkgs, lib, system, stateVersion, ... }:
 let
   inherit (lib) mkDefault;
 in

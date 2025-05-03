@@ -7,12 +7,15 @@ let
 in
 {
   imports = [
-    outputs.homeProfiles.default
     outputs.sharedModules
     outputs.sharedProfiles.tmux
     ./stylix
     ./desktop-settings
-  ]
+  ] ++ (with outputs.homeProfiles; [
+    default
+    alacritty
+    zsh
+  ])
   ++ other
   ++ programs
   ++ services;

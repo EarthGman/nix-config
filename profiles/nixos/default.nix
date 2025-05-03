@@ -45,7 +45,7 @@ in
   nixpkgs = {
     overlays = (builtins.attrValues outputs.overlays);
     config.allowUnfree = true;
-    hostPlatform = system;
+    hostPlatform = "${system}";
   };
 
   time.timeZone = mkDefault "America/Chicago";

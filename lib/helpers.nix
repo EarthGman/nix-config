@@ -36,7 +36,7 @@ in
         let
           inherit (lib) optionals autoImport;
           inherit (builtins) pathExists;
-          inherit (outputs) sharedModules sharedProfiles nixosModules nixosProfiles;
+          inherit (outputs) nixosModules nixosProfiles;
           cd-dvd =
             if (desktop == null) then
               inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
@@ -54,12 +54,7 @@ in
               else [ ]
             else [ ];
         in
-        [
-          nixosModules
-          nixosProfiles.default
-          sharedModules
-          sharedProfiles.tmux
-        ]
+        [ nixosModules ]
         ++ nixosUsers
         ++ host
         ++ optionals iso [ cd-dvd iso-setup ]
@@ -84,6 +79,7 @@ in
     let
       inherit (builtins) fromJSON readFile;
       inherit (lib) optionals;
+      inherit (outputs) homeManagerModules;
       wallpapers = fromJSON (readFile inputs.wallpapers.outPath);
       icons = fromJSON (readFile inputs.icons.outPath);
       binaries = fromJSON (readFile inputs.binaries.outPath);
@@ -91,7 +87,7 @@ in
     lib.homeManagerConfiguration {
       pkgs = inputs.nixpkgs.legacyPackages.${system};
       modules = [
-        outputs.homeManagerModules
+        homeManagerModules
         {
           home = {
             inherit username stateVersion;
