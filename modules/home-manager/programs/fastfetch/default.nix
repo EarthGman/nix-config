@@ -10,7 +10,7 @@ let
     random_index=$((RANDOM % image_count))
     selected_image=''${images[$random_index]}
 
-    ${cfg.package} -l "$selected_image"
+    ${getExe cfg.package} -l "$selected_image"
   '';
 in
 {
