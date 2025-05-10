@@ -1,9 +1,5 @@
 { outputs, ... }:
-let
-  theme = outputs.homeProfiles.desktopThemes.nightmare;
-in
 {
-  imports = [ theme ];
   custom = {
     editor = "codium";
   };

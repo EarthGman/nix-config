@@ -134,6 +134,7 @@
           cosmos = import ./profiles/home-manager/desktop-themes/cosmos.nix;
           faraway = import ./profiles/home-manager/desktop-themes/faraway.nix;
           headspace = import ./profiles/home-manager/desktop-themes/headspace.nix;
+          hollow-knight = import ./profiles/home-manager/desktop-themes/hollow-knight.nix;
           determination = import ./profiles/home-manager/desktop-themes/determination.nix;
           inferno = import ./profiles/home-manager/desktop-themes/inferno.nix;
           nightmare = import ./profiles/home-manager/desktop-themes/nightmare.nix;

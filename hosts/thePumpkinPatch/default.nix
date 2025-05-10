@@ -15,13 +15,13 @@
     ];
 
     loader.grub.themeConfig = {
-      background = builtins.fetchurl wallpapers.the-nightmare-before-grub;
+      background = builtins.fetchurl wallpapers.hollow-knight-minimal;
     };
 
   };
   services = {
     displayManager.sddm.themeConfig = {
-      Background = builtins.fetchurl wallpapers.slime-puddle;
+      Background = builtins.fetchurl wallpapers.hallownest;
       ScreenWidth = "2560";
       ScreenHeight = "1440";
       FullBlur = "false";

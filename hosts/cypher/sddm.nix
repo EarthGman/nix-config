@@ -24,7 +24,8 @@ let
     name=HDMI-A-0
     mode=off
   '';
-  weston-command = lib.concatStringsSep " " [
+
+  compositorCommand = lib.concatStringsSep " " [
     "${lib.getExe pkgs.weston}"
     "--shell=kiosk"
     "-c ${weston-ini}"
@@ -34,7 +35,7 @@ in
   services.displayManager.sddm = {
     wayland = {
       compositor = lib.mkForce "weston";
-      compositorCommand = weston-command;
+      inherit compositorCommand;
     };
     themeConfig = {
       FullBlur = "false";
