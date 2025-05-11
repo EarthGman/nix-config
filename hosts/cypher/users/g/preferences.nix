@@ -11,6 +11,7 @@ in
   programs = {
     prismlauncher.package = inputs.prismlauncher.packages.${system}.default;
     musescore.enable = true;
+    ghostty.enable = true;
     gnome-clocks.enable = true;
     lutris.enable = true;
     ardour.enable = true;
