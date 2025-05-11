@@ -8,7 +8,8 @@ in
   config = mkIf cfg.enable {
     programs = {
       mangohud.enable = mkDefault true;
-      gamemode.enable = true;
+      gamemode.enable = mkDefault true;
+      protonup-qt.enable = mkDefault true;
       steam = {
         enable = true;
         gamescopeSession = {
@@ -18,7 +19,7 @@ in
     };
     environment = {
       systemPackages = with pkgs; [
-        protonup
+        protonup-ng
       ];
       sessionVariables = {
         STEAM_EXTRA_COMPAT_TOOLS_PATHS = "~/.steam/root/compatibilitytools.d";

@@ -313,6 +313,12 @@ in
       inherit pkgs;
     };
 
+    protonup-qt = mkProgramOption {
+      programName = "protonup-qt";
+      description = "a qt interface for protonup";
+      inherit pkgs;
+    };
+
     pwvucontrol = mkProgramOption {
       programName = "pwvucontrol";
       description = "pipewire volume control";
