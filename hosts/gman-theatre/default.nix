@@ -10,6 +10,7 @@
 
 
   hardware.enableRedistributableFirmware = lib.mkForce true;
+  networking.interfaces."eno1".wakeOnLan.enable = true;
 
   services.jellyfin = {
     enable = true;
