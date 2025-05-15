@@ -1,5 +1,10 @@
 { lib, ... }:
+let
+  inherit (lib) mkDefault;
+in
 {
+  programs.batmon.enable = mkDefault true;
+
   services.power-profiles-daemon.enable = lib.mkForce false;
   services.tlp = {
     enable = lib.mkDefault true;

@@ -26,6 +26,12 @@ in
       inherit pkgs;
     };
 
+    batmon = mkProgramOption {
+      programName = "batmon";
+      description = "interactive battery viewer";
+      inherit pkgs;
+    };
+
     bottles = mkProgramOption {
       programName = "bottles";
       description = "wine prefix manager";
