@@ -18,8 +18,8 @@ in
         ls = mkIf cfg.eza.enable "${getExe cfg.eza.package} --icons";
         lg = mkIf has-git "${getExe cfg.lazygit.package}";
         g = mkIf has-git "${getExe cfg.git.package}";
-        ga = mkIf has-git "${cfg.git.package} add .";
-        gco = mkIf has-git "${cfg.git.package} checkout";
+        ga = mkIf has-git "${getExe cfg.git.package} add .";
+        gco = mkIf has-git "${getExe cfg.git.package} checkout";
         hms = "home-manager switch";
         cat = mkIf cfg.bat.enable "${getExe cfg.bat.package}";
         t = "${getExe pkgs.tree}";
