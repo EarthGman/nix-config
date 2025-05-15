@@ -1,3 +1,13 @@
+5-15-2025
+- add batmon
+- add sysbench
+- add glmark2
+
+
+5-14-2025
+- add intel gpu module
+
+
 5-02-2025
 - move some modules from /modules to /profiles
 - add mcrcon program option

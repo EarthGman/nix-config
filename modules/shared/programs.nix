@@ -150,6 +150,12 @@ in
       inherit pkgs;
     };
 
+    glmark2 = mkProgramOption {
+      programName = "glmark2";
+      description = "gpu benchmark";
+      inherit pkgs;
+    };
+
     gnome-calculator = mkProgramOption {
       programName = "gnome-calculator";
       inherit pkgs;
@@ -376,6 +382,12 @@ in
     switcheroo = mkProgramOption {
       programName = "switcheroo";
       description = "app for quick image format conversion";
+      inherit pkgs;
+    };
+
+    sysbench = mkProgramOption {
+      programName = "sysbench";
+      description = "benchmarking suite for linux";
       inherit pkgs;
     };
 

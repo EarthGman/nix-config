@@ -14,7 +14,6 @@ in
     glxinfo
     libva-utils
     vulkan-tools
-    glmark2
   ]);
 
   modules.gpu.amd.enable = (gpu == "amd");
