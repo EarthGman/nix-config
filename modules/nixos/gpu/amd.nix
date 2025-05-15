@@ -3,11 +3,10 @@ let
   cfg = config.modules.gpu.amd;
 in
 {
-  options.modules.gpu.amd.enable = lib.mkEnableOption "enable amdgpu module for dedicated cards";
+  options.modules.gpu.amd.enable = lib.mkEnableOption "amdgpu module";
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       radeontop
-      glxinfo
       lact
     ];
     services.xserver.videoDrivers = [ "amdgpu" ];
@@ -19,7 +18,7 @@ in
     };
     hardware.graphics = {
       extraPackages = with pkgs; [
-        libvdpau-va-gl # hardware acceleration
+        libvdpau-va-gl
       ];
     };
   };

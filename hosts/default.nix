@@ -22,7 +22,7 @@ in
     hostName = "twilight";
     bios = "legacy";
     cpu = "intel";
-    gpu = "intel-igpu";
+    gpu = "intel";
     users = [ "g" ];
     desktop = "sway";
     system = "x86_64-linux";
@@ -34,7 +34,7 @@ in
     hostName = "tater";
     bios = "UEFI";
     cpu = "intel";
-    gpu = "intel-igpu";
+    gpu = "intel";
     users = [ "g" ];
     desktop = "sway";
     system = "x86_64-linux";
@@ -71,7 +71,7 @@ in
     hostName = "pioneer";
     bios = "UEFI";
     cpu = "intel";
-    gpu = "intel-igpu";
+    gpu = "intel";
     users = [ "bean" ];
     desktop = "sway";
     system = "x86_64-linux";
