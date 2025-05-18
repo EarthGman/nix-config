@@ -225,12 +225,6 @@ in
       inherit pkgs;
     };
 
-    lutris = mkProgramOption {
-      programName = "lutris";
-      description = "game manager for linux";
-      inherit pkgs;
-    };
-
     mcrcon = mkProgramOption {
       programName = "mcrcon";
       description = "minecraft remote control client";

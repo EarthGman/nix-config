@@ -63,7 +63,11 @@
   services.sunshine.enable = true;
 
   environment = {
-    systemPackages = with pkgs; [ nixos-generators ];
+    systemPackages = with pkgs; [
+      nixos-generators
+      rojo
+    ];
+
     etc = {
       "ssh/ssh_host_ed25519_key.pub".source = ./ssh_host_ed25519_key.pub;
       "ssh/ssh_host_rsa_key.pub".source = ./ssh_host_rsa_key.pub;

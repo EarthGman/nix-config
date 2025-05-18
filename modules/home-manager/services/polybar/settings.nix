@@ -1,4 +1,4 @@
-{ pkgs, mkDefault, getExe, ... }:
+{ pkgs, config, mkDefault, getExe, ... }:
 {
   "bar/bottom" = {
     monitor = "\${env:MONITOR:}";
@@ -100,7 +100,7 @@
         echo " ''${current_volume}%"
       fi
     '';
-    click-right = "${getExe pkgs.pwvucontrol} &";
+    click-right = "${getExe config.programs.pwvucontrol.package} &";
     click-left = "${getExe pkgs.pamixer} -t";
     scroll-up = "${getExe pkgs.pamixer} -i 1";
     scroll-down = "${getExe pkgs.pamixer} -d 1";
@@ -120,7 +120,7 @@
     interval = mkDefault 0.2;
 
     click-left = "${getExe pkgs.pamixer} -t --default-source";
-    click-right = "${getExe pkgs.pwvucontrol} &";
+    click-right = "${getExe config.programs.pwvucontrol.package} &";
     scroll-up = "${getExe pkgs.pamixer} -i 1 --default-source";
     scroll-down = "${getExe pkgs.pamixer} -d 1 --default-source";
   };

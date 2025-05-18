@@ -176,7 +176,7 @@ in
     interval = 1;
     format = "{}";
     on-click = "${getExe pkgs.pamixer} -t --default-source";
-    on-click-right = "${getExe pkgs.pwvucontrol}";
+    on-click-right = "${getExe config.programs.pwvucontrol.package}";
     on-scroll-up = "${getExe pkgs.pamixer} -i 1 --default-source";
     on-scroll-down = "${getExe pkgs.pamixer} -d 1 --default-source";
     tooltip = false;
@@ -201,6 +201,6 @@ in
       ];
     };
     on-click = "${getExe pkgs.pamixer} -t";
-    on-click-right = "${getExe pkgs.pwvucontrol}";
+    on-click-right = "${getExe config.programs.pwvucontrol.package}";
   };
 }
