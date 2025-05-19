@@ -42,6 +42,19 @@ in
     configDir = ./tater;
   };
 
+  # dell optiplex 380
+  optiplex-380 = mkHost {
+    hostName = "optiplex-380";
+    cpu = "intel";
+    gpu = "intel";
+    bios = "legacy";
+    users = [ "g" ];
+    desktop = "sway";
+    system = "x86_64-linux";
+    stateVersion = "25.05";
+    configDir = ./optiplex-380;
+  };
+
   # generic VM for testing purposes only
   nixos = mkHost {
     hostName = "nixos";
