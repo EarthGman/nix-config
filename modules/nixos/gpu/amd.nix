@@ -1,5 +1,6 @@
 { pkgs, lib, config, ... }:
 let
+  inherit (lib) mkDefault;
   cfg = config.modules.gpu.amd;
 in
 {
@@ -7,14 +8,10 @@ in
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       radeontop
-      lact
     ];
-    services.xserver.videoDrivers = [ "amdgpu" ];
-    # nixpkgs doesn't ship with the systemd unit
-    # https://github.com/NixOS/nixpkgs/issues/317544
-    systemd = {
-      packages = with pkgs; [ lact ];
-      services.lact.enable = true;
+    services = {
+      xserver.videoDrivers = [ "amdgpu" ];
+      lact.enable = mkDefault true; # somehow not in nixpkgs, found in /modules/nixos/services/lact
     };
     hardware.graphics = {
       extraPackages = with pkgs; [

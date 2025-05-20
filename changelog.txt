@@ -1,3 +1,13 @@
+5-20-2025
+- create the lact service under services.lact.enable
+- add proper kernel flag for fan control on amdgpus
+- service should now start automatically
+
+
+5-19-2025
+- add configuration for dell optiplex 380
+
+
 5-15-2025
 - add batmon
 - add sysbench
