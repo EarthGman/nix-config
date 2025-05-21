@@ -9,8 +9,19 @@
     "sd_mod"
   ];
 
+  nix.settings.trusted-users = [ "g" ];
+
   modules = {
     onepassword.enable = true;
     sops.enable = true;
+  };
+
+  profiles = {
+    gmans-keymap.enable = true;
+  };
+
+  programs = {
+    easyeffects.enable = false;
+    helvum.enable = false;
   };
 }

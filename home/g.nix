@@ -1,6 +1,7 @@
 { self, outputs, config, pkgs, lib, hostName, ... }:
 let
-  enabled = { enable = lib.mkDefault true; };
+  inherit (lib) mkDefault;
+  enabled = { enable = mkDefault true; };
   signingkey = outputs.keys.g_pub;
   LHmouse = builtins.toFile "lh-mouse.xmodmap" "pointer = 3 2 1";
   extraHM = self + /hosts/${hostName}/users/g/preferences.nix;
@@ -11,12 +12,12 @@ in
   ];
 
   profiles = {
-    essentials.enable = true;
+    essentials.enable = mkDefault true;
   };
 
-  custom = {
-    fileManager = "yazi";
-  };
+  # custom = {
+  #   fileManager = "yazi";
+  # };
 
   programs = {
     git = {

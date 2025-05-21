@@ -30,6 +30,7 @@ in
         vscode.enable = mkDefault false;
         feh.enable = mkDefault false;
         kde.enable = mkDefault false;
+        firefox.enable = mkDefault false;
       };
 
       cursor = {

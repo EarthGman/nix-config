@@ -10,7 +10,7 @@ in
     profiles = {
       gmans-keymap.enable = true;
       hacker-mode.enable = mkDefault true;
-      wg0.enable = true;
+      wg0.enable = mkDefault true;
     };
 
     modules = {
