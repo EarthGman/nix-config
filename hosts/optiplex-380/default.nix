@@ -10,6 +10,7 @@
   ];
 
   nix.settings.trusted-users = [ "g" ];
+  zramSwap.enable = true;
 
   modules = {
     onepassword.enable = true;
