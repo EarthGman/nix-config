@@ -46,8 +46,6 @@ in
       viAlias = true;
       vimAlias = true;
     };
-    burpsuite = enabled;
-    ghidra = enabled;
     bottles = enabled;
     bustle = enabled;
     freetube = enabled;
