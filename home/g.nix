@@ -6,11 +6,13 @@ let
   extraHM = self + /hosts/${hostName}/users/g/preferences.nix;
 in
 {
-  imports = [
-    (outputs.homeProfiles.essentials)
-  ] ++ lib.optionals (builtins.pathExists extraHM) [
+  imports = lib.optionals (builtins.pathExists extraHM) [
     extraHM
   ];
+
+  profiles = {
+    essentials.enable = true;
+  };
 
   custom = {
     fileManager = "yazi";

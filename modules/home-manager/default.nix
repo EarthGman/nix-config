@@ -4,19 +4,16 @@ let
   programs = autoImport ./programs;
   services = autoImport ./services;
   other = autoImport ./misc;
+  profiles = autoImport ./profiles;
 in
 {
   imports = [
     outputs.sharedModules
-    outputs.sharedProfiles.tmux
     ./stylix
     ./desktop-settings
-  ] ++ (with outputs.homeProfiles; [
-    default
-    alacritty
-    zsh
-  ])
+  ]
   ++ other
   ++ programs
-  ++ services;
+  ++ services
+  ++ profiles;
 }

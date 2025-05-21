@@ -3,8 +3,10 @@
 
   imports = [
     ./disko.nix
-    (self + /profiles/nixos/wg0.nix)
   ];
+
+  profiles.wg0.enable = true;
+
   modules.nh.enable = false;
   modules.sops.enable = true;
 

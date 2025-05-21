@@ -2,8 +2,10 @@
 {
   imports = [
     (self + /hosts/${hostName}/users/iron/preferences.nix)
-    outputs.homeProfiles.essentials
   ];
+
+  profiles.essentials.enable = true;
+
   programs.git = {
     userName = "IronCutlass";
     userEmail = "nogreenink@gmail.com";

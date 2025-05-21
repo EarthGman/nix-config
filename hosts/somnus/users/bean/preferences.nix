@@ -1,11 +1,17 @@
-{ outputs, icons, ... }:
+{ pkgs, lib, icons, ... }:
 let
-  theme = outputs.homeProfiles.desktopThemes.determination;
+  inherit (lib) getExe;
+  liquidctl-profile = pkgs.writeScriptBin "liquidctl-profile" ''
+    #${getExe pkgs.bash}
+     liquidctl --match kraken set external color fixed 2f18d6
+     liquidctl --match kraken set lcd screen gif ${builtins.fetchurl icons.pluto-expanded}
+     liquidctl --match kraken set pump speed 70
+     liquidctl --match kraken set fan speed 70
+  '';
 in
 {
-  imports = [
-    theme
-  ];
+  home.packages = [ liquidctl-profile ];
+  profiles.desktopThemes.undertale.enable = true;
 
   programs = {
     dolphin-emu.enable = true;
@@ -21,19 +27,5 @@ in
     pipes.enable = true;
     ryujinx.enable = true;
     sl.enable = true;
-  };
-
-  programs.zsh.shellAliases = {
-    "lctl" = "sudo -E liquidctl-profile";
-  };
-  home.file."bin/liquidctl-profile" = {
-    executable = true;
-    text = '' 
-      #!/usr/bin/env bash
-      liquidctl --match kraken set external color fixed 2f18d6
-      liquidctl --match kraken set lcd screen gif ${builtins.fetchurl icons.pluto-expanded}
-      liquidctl --match kraken set pump speed 70
-      liquidctl --match kraken set fan speed 70
-    '';
   };
 }

@@ -1,12 +1,9 @@
-{ outputs, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 let
-  theme = outputs.homeProfiles.desktopThemes.determination;
   inherit (lib) mkForce;
 in
 {
-  imports = [
-    theme
-  ];
+  profiles.desktopThemes.undertale.enable = true;
 
   stylix.fonts.sizes = {
     terminal = mkForce 12;

@@ -1,11 +1,6 @@
-{ outputs, pkgs, lib, config, ... }:
-let
-  theme = outputs.homeProfiles.desktopThemes.celeste;
-in
+{ pkgs, lib, config, ... }:
 {
-  imports = [
-    theme
-  ];
+  profiles.desktopThemes.celeste.enable = true;
 
   custom.editor = "codium";
 

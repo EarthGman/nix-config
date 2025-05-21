@@ -4,9 +4,12 @@
     ./fs.nix
     ./sddm.nix
     inputs.determinate.nixosModules.default
-    outputs.nixosProfiles.gaming
-    outputs.nixosProfiles.gman-pc
   ];
+
+  profiles = {
+    gman-pc.enable = true;
+    gaming.enable = true;
+  };
 
   boot.initrd.availableKernelModules = [
     "nvme"

@@ -5,11 +5,12 @@ in
 {
   imports = [
     (self + /hosts/${hostName}/users/bean/preferences.nix)
-    outputs.homeProfiles.essentials
   ];
   # custom = {
   #   editor = "codium";
   # };
+
+  profiles.essentials.enable = true;
 
   programs = {
     git = {

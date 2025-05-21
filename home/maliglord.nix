@@ -4,7 +4,6 @@ let
 in
 {
   imports = [
-    (outputs.homeProfiles.essentials)
   ] ++ lib.optionals (builtins.pathExists extraHM) [
     extraHM
   ];

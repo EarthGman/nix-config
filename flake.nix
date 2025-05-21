@@ -31,6 +31,7 @@
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
 
     srvos = {
@@ -93,7 +94,7 @@
       inherit (self) outputs;
       helpers = import ./lib/helpers.nix { inherit self outputs nixos-generators; };
       myLib = helpers // nix-library.lib;
-      lib = nixpkgs.lib.extend # must overlay the lib functions like this or else weird stuff happens for some reason
+      lib = nixpkgs.lib.extend
         (final: prev: myLib // home-manager.lib);
     in
     {
@@ -104,44 +105,6 @@
       nixosModules = import ./modules/nixos { inherit outputs lib; };
       homeManagerModules = import ./modules/home-manager { inherit outputs lib; };
       sharedModules = import ./modules/shared { inherit lib; };
-
-      sharedProfiles = {
-        tmux = import ./profiles/shared/tmux.nix;
-      };
-
-      nixosProfiles = {
-        default = import ./profiles/nixos;
-        desktop = import ./profiles/nixos/desktop.nix;
-        server = import ./profiles/nixos/server;
-        iso = import ./profiles/nixos/iso.nix;
-        lxc = import ./profiles/nixos/lxc.nix;
-        gaming = import ./profiles/nixos/gaming.nix;
-        laptop = import ./profiles/nixos/laptop.nix;
-        gmans-keymap = import ./profiles/nixos/keyd/gmans-keymap.nix;
-        gman-pc = import ./profiles/nixos/gman-pc.nix;
-        hacker-mode = import ./profiles/nixos/hacker-mode.nix;
-        zsh = import ./profiles/nixos/zsh;
-      };
-
-      homeProfiles = {
-        default = import ./profiles/home-manager;
-        essentials = import ./profiles/home-manager/essentials.nix;
-        zsh = import ./profiles/home-manager/zsh;
-        alacritty = import ./profiles/home-manager/alacritty;
-        desktopThemes = {
-          april = import ./profiles/home-manager/desktop-themes/april.nix;
-          ashes = import ./profiles/home-manager/desktop-themes/ashes.nix;
-          cosmos = import ./profiles/home-manager/desktop-themes/cosmos.nix;
-          faraway = import ./profiles/home-manager/desktop-themes/faraway.nix;
-          headspace = import ./profiles/home-manager/desktop-themes/headspace.nix;
-          hollow-knight = import ./profiles/home-manager/desktop-themes/hollow-knight.nix;
-          determination = import ./profiles/home-manager/desktop-themes/determination.nix;
-          inferno = import ./profiles/home-manager/desktop-themes/inferno.nix;
-          nightmare = import ./profiles/home-manager/desktop-themes/nightmare.nix;
-          vibrant-cool = import ./profiles/home-manager/desktop-themes/vibrant-cool.nix;
-          celeste = import ./profiles/home-manager/desktop-themes/celeste.nix;
-        };
-      };
 
       nixosConfigurations = import ./hosts { inherit lib; };
       homeConfigurations = import ./home { inherit lib; };

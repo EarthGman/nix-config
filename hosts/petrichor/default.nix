@@ -1,9 +1,11 @@
-{ self, wallpapers, ... }:
+{ wallpapers, ... }:
 {
   imports = [
-    (self + /profiles/nixos/gaming.nix)
     ./disko.nix
   ];
+
+  profiles.gaming.enable = true;
+
   boot.initrd.availableKernelModules = [
     "nvme"
     "ahci"

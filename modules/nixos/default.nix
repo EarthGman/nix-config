@@ -4,19 +4,18 @@ let
   other = autoImport ./misc;
   programs = autoImport ./programs;
   services = autoImport ./services;
+  profiles = autoImport ./profiles;
 in
 {
   imports = [
     outputs.sharedModules
-    outputs.sharedProfiles.tmux
     ./bootloaders
     ./desktops
     ./display-managers
     ./gpu
-  ] ++ (with outputs.nixosProfiles; [
-    zsh
-  ])
+  ]
   ++ other
   ++ programs
-  ++ services;
+  ++ services
+  ++ profiles;
 }

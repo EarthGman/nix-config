@@ -24,12 +24,13 @@ in
         (username: {
           imports = [
             outputs.homeManagerModules
-          ] ++ optionals (builtins.pathExists config.home-manager.profilesDir) [
+          ] ++ optionals (builtins.pathExists (config.home-manager.profilesDir + "/${username}.nix")) [
             (config.home-manager.profilesDir + "/${username}.nix")
           ];
           home = {
-            inherit username stateVersion;
+            inherit stateVersion;
           };
+          profiles.common.enable = true;
         });
       extraSpecialArgs = {
         inherit self inputs outputs wallpapers icons hostName desktop vm server system stateVersion;

@@ -2,8 +2,10 @@
 {
   imports = [
     ./disko.nix
-    (self + /profiles/nixos/gaming.nix)
   ];
+
+  profiles.gaming.enable = true;
+
   boot = {
     initrd.availableKernelModules = [
       "nvme"

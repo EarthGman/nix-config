@@ -130,25 +130,6 @@ in
     configDir = ./juno;
   };
 
-  # servers
-  mc-blueprints = mkHost {
-    hostName = "mc-blueprints";
-    server = true;
-    vm = true;
-    system = "x86_64-linux";
-    stateVersion = "24.11";
-    configDir = ./mc-blueprints;
-  };
-
-  mc121 = mkHost {
-    hostName = "mc121";
-    server = true;
-    vm = true;
-    system = "x86_64-linux";
-    stateVersion = "24.11";
-    configDir = ./mc121;
-  };
-
   gman-theatre = mkHost {
     hostName = "gman-theatre";
     cpu = "intel";

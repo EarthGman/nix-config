@@ -1,9 +1,10 @@
-{ self, wallpapers, pkgs, ... }:
+{ wallpapers, pkgs, ... }:
 {
   imports = [
     ./disko
-    (self + /profiles/nixos/gaming.nix)
   ];
+
+  profiles.gaming.enable = true;
 
   services.displayManager.sddm.themeConfig = {
     Background = builtins.fetchurl wallpapers.the-gang-grouphug;

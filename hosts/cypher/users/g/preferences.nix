@@ -1,12 +1,6 @@
 { outputs, inputs, system, ... }:
-let
-  inherit (builtins) fetchurl;
-  theme = outputs.homeProfiles.desktopThemes.cosmos;
-in
 {
-  imports = [
-    theme
-  ];
+  profiles.desktopThemes.cosmos.enable = true;
 
   programs = {
     prismlauncher.package = inputs.prismlauncher.packages.${system}.default;

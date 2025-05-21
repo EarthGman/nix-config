@@ -1,12 +1,9 @@
 { outputs, lib, wallpapers, ... }:
 let
   inherit (lib) mkForce;
-  theme = outputs.homeProfiles.desktopThemes.determination;
 in
 {
-  imports = [
-    theme
-  ];
+  profiles.desktopThemes.undertale.enable = true;
 
   xsession.screensaver = {
     enable = true;

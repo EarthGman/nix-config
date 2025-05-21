@@ -1,12 +1,10 @@
 { outputs, pkgs, lib, ... }:
 let
   inherit (lib) mkForce;
-  theme = outputs.homeProfiles.desktopThemes.cosmos;
 in
 {
-  imports = [ theme ];
+  profiles.desktopThemes.cosmos.enable = true;
   programs = {
-    prismlauncher.package = pkgs.prismlauncher; # dont build newest version locally
     moonlight.enable = true;
     waybar.bottomBar.settings = {
       modules-left = [

@@ -1,0 +1,32 @@
+# personalized wrapper of modules and options for my PCs
+{ pkgs, lib, config, ... }:
+let
+  inherit (lib) mkIf mkEnableOption mkDefault;
+  cfg = config.profiles.gman-pc;
+in
+{
+  options.profiles.gman-pc.enable = mkEnableOption "my custom pc module";
+  config = mkIf cfg.enable {
+    profiles = {
+      gmans-keymap.enable = true;
+      hacker-mode.enable = mkDefault true;
+      wg0.enable = true;
+    };
+
+    modules = {
+      android.enable = true;
+      zsa-keyboard.enable = true;
+      onepassword.enable = true;
+      sops.enable = true;
+      ledger.enable = true;
+    };
+
+    nix.settings.trusted-users = [ "g" ];
+    # some extra man pages
+    documentation.dev.enable = true;
+    environment.systemPackages = with pkgs; [
+      man-pages
+      man-pages-posix
+    ];
+  };
+}

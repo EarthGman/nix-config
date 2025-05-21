@@ -17,7 +17,7 @@ in
     , vm ? false # is this a virtual machine?
     , iso ? false # is this an ISO?
     , system ? "x86_64-linux" # what cpu architecture?
-    , stateVersion ? "25.05" # what version of nixos was this machine initalized?
+    , stateVersion ? "25.11" # what version of nixos was this machine initalized?
     , configDir ? null # directory for extra host configuration
     , inputs ? self.inputs # define your flake inputs
     , outputs ? self.outputs # allow access to your flake outputs
@@ -30,22 +30,15 @@ in
     in
     lib.nixosSystem {
       specialArgs = {
-        inherit self system inputs outputs lib wallpapers icons binaries hostName bios cpu gpu users desktop server vm stateVersion;
+        inherit self system inputs outputs lib wallpapers icons binaries hostName bios cpu gpu users desktop server vm iso stateVersion;
       };
       modules =
         let
-          inherit (lib) optionals autoImport;
+          inherit (lib) autoImport;
           inherit (builtins) pathExists;
-          inherit (outputs) nixosModules nixosProfiles;
-          cd-dvd =
-            if (desktop == null) then
-              inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-            else
-              inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares.nix";
-          qemu-guest = inputs.nixpkgs + "/nixos/modules/profiles/qemu-guest.nix";
-          desktop-setup = nixosProfiles.desktop;
-          iso-setup = nixosProfiles.iso;
-          server-setup = nixosProfiles.server;
+          inherit (outputs) nixosModules;
+
+          # import specific host configuration
           host = if configDir != null then [ configDir ] else [ ];
           nixosUsers =
             if configDir != null then
@@ -54,13 +47,13 @@ in
               else [ ]
             else [ ];
         in
-        [ nixosModules nixosProfiles.default ]
+        [
+          nixosModules
+          (self + /modules/nixos/unexposed/hardware.nix)
+          { profiles.common.enable = true; }
+        ]
         ++ nixosUsers
-        ++ host
-        ++ optionals iso [ cd-dvd iso-setup ]
-        ++ optionals vm [ qemu-guest ]
-        ++ optionals (desktop != null) [ desktop-setup ]
-        ++ optionals server [ server-setup ];
+        ++ host;
     };
 
   mkHome =
@@ -93,6 +86,7 @@ in
             inherit username stateVersion;
             homeDirectory = "/home/${username}";
           };
+          profiles.common.enable = true;
         }
       ] ++ optionals (profile != null) [
         profile
@@ -119,9 +113,13 @@ in
         inherit self inputs outputs lib system stateVersion;
       };
       modules = [
-        (outputs.nixosProfiles.lxc)
         (outputs.nixosModules)
-        (outputs.sharedModules)
+        {
+          profiles = {
+            proxmox-lxc.enable = true;
+            common.enable = true;
+          };
+        }
       ] ++
       optionals (template != null) [ outputs.lxcTemplates.${template} ] ++
       optionals (extraConfig != null) [ extraConfig ];

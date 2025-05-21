@@ -1,10 +1,11 @@
-{ self, outputs, hostName, ... }:
+{ self, hostName, ... }:
 {
   imports = [
     (self + /hosts/${hostName}/users/pumpkinking/preferences.nix)
-    outputs.homeProfiles.essentials
-    outputs.homeProfiles.desktopThemes.hollow-knight
   ];
+
+  profiles.essentials.enable = true;
+
   programs.git = {
     userName = "PumpkinKing432";
     userEmail = "trombonekidd17@gmail.com";

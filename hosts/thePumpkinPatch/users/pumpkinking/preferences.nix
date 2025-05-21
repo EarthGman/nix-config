@@ -1,5 +1,7 @@
-{ outputs, ... }:
+{ ... }:
 {
+  profiles.desktopThemes.hollow-knight.enable = true;
+
   custom = {
     editor = "codium";
   };

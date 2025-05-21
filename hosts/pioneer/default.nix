@@ -2,8 +2,10 @@
 {
   imports = [
     ./disko.nix
-    outputs.nixosProfiles.laptop
   ];
+
+  profiles.laptop.enable = true;
+
   boot.initrd.availableKernelModules = [
     "ahci"
     "xhci_pci"

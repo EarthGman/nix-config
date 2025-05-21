@@ -1,3 +1,16 @@
+5-21-2025
+- massive update to the modules structure
+- profiles directory is now removed and merged into modules
+- removed many redundant flake outputs that weren't consumable by other flakes anyway
+- added a profiles toplevel for both nixos and home-manager
+- modules are less dependent on lib.mkHost and can be applied in a less instrusive manner
+- update nix-library/lib.autoImport function to exclude any file named default.nix. 
+  Can now import files within the current directory without causing infinite recursion
+- make stylix home-manager input follow mine as weird issues came up with home-manager version mismatches
+- remove installation instructions from readme. Will update this tomorrow (probably)
+- update readme
+
+
 5-20-2025
 - create the lact service under services.lact.enable
 - add proper kernel flag for fan control on amdgpus

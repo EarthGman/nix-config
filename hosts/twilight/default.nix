@@ -2,9 +2,9 @@
 {
   imports = [
     ./disko.nix
-    outputs.nixosProfiles.laptop
-    outputs.nixosProfiles.gman-pc
   ];
+
+  profiles.gman-pc.enable = true;
 
   boot.initrd.availableKernelModules = [
     "xhci_pci"

@@ -1,9 +1,10 @@
-{ outputs, pkgs, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./disko.nix
-    outputs.nixosProfiles.gaming
   ];
+
+  profiles.gaming.enable = true;
 
   boot.initrd.availableKernelModules = [
     "nvme"
