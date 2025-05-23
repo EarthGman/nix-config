@@ -55,18 +55,6 @@ in
     configDir = ./optiplex-380;
   };
 
-  # generic VM for testing purposes only
-  nixos = mkHost {
-    hostName = "nixos";
-    bios = "legacy";
-    vm = true;
-    users = [ "test" ];
-    desktop = "hyprland";
-    system = "x86_64-linux";
-    stateVersion = "25.05";
-    configDir = ./nixos;
-  };
-
   # Thunder's desktops
   somnus = mkHost {
     hostName = "somnus";

@@ -7,6 +7,7 @@ in
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [ pkgs.nvtopPackages.nvidia ];
     services.xserver.videoDrivers = [ "nvidia" ];
+    programs.sway.extraOptions = [ "--unsupported-gpu" ]; # sway will not launch on nvidia without this set
     hardware.nvidia = {
       # Modesetting is needed most of the time
       modesetting.enable = true;

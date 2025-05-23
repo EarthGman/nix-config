@@ -1,3 +1,9 @@
+5-23-2025
+- add gparted, zint, and glabels to programs
+- remove default packages install by the programs.sway nixos option if home-manager is present
+- add [ "--unsupported-gpu" ]; to programs.sway.extraOptions for nvidia gpus
+
+
 5-21-2025
 - massive update to the modules structure
 - profiles directory is now removed and merged into modules

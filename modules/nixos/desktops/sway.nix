@@ -8,6 +8,8 @@ in
     programs = {
       sway = {
         enable = true;
+        # if home-manager is enabled, let it manage sway
+        extraPackages = mkIf (config ? home-manager && (config.home-manager.users != { })) [ ];
       };
       uwsm = {
         enable = true;

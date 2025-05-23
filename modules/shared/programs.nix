@@ -150,6 +150,19 @@ in
       inherit pkgs;
     };
 
+    glabels = mkProgramOption {
+      programName = "glabels";
+      packageName = "glabels-qt";
+      description = "label maker for linux";
+      inherit pkgs;
+    };
+
+    gparted = mkProgramOption {
+      programName = "gparted";
+      description = "GUI disk partitioning tool";
+      inherit pkgs;
+    };
+
     glmark2 = mkProgramOption {
       programName = "glmark2";
       description = "gpu benchmark";
@@ -406,6 +419,12 @@ in
     xclicker = mkProgramOption {
       programName = "xclicker";
       description = "a simple autoclicker for X11";
+      inherit pkgs;
+    };
+
+    zint = mkProgramOption {
+      programName = "zint";
+      description = "barcode generator";
       inherit pkgs;
     };
 

@@ -37,13 +37,13 @@ I will rewrite this section tomorrow - (5-21-2025)
  
 - Missing firmware drivers for bluetooth or wireless. Sometimes you will have to add additional firmware packages. see /hosts/tater/default.nix
 
+- gparted doesn't seem to work on wayland when launched normally. Use sudo -E gparted to launch the program from a terminal.
+
 - Qemu / kvm is unfinished and quite buggy, Graphical issues are present due to the lack of proper graphics configuration with qemu.
 
 - Terminal transparency is lost when fullscreen is activated on sway. This is a feature of the wm and cannot be fixed.
 
 - when using swww for wallpaper management, the current wallpaper will be lost if a monitor is powered off or disconnected.
-
-- Sway will not launch with an Nvidia GPU by Default. Add ```programs.sway.extraOptions = [ "--unsupported-gpu" ];``` to your nixos configuration.
 
 - When launching using UWSM, XDG_CURRENT_DESKTOP is set to "sway:wlroots" while initalizing services in Sway. It is then later changed to "sway". 
   Two home manager services, hyprland window creation, and the wallpaper tester for waybar are affected by this behavior.

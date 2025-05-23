@@ -60,6 +60,8 @@ in
       brightnessctl # brightness
     ] ++ optionals (config.modules.pipewire.enable) [
       pamixer
+    ] ++ optionals (config.services.xserver.enable) [
+      xorg.xhost
     ];
 
     # required for some stylix to work properly (gtk)

@@ -4,8 +4,10 @@
 
   programs = {
     prismlauncher.package = inputs.prismlauncher.packages.${system}.default;
+    zint.enable = true;
+    gparted.enable = true;
+    glabels.enable = true;
     musescore.enable = true;
-    ghostty.enable = true;
     gnome-clocks.enable = true;
     lutris.enable = true;
     ardour.enable = true;
