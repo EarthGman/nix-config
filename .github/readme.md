@@ -23,8 +23,121 @@ Sway with Undertale theme:
 
 ------------------------------------------------------------------------
 # Getting Started
+**Note**: This configuration is specifically designed with NixOS in mind. It has been tested on x86_64-linux and aarch64-linux, but as of now, nix-darwin has no support. It is possible to create standalone home-manager configurations using my home-manager modules on other Linux distributions or MacOS. I do not recommend this however, as home-manager on its own is not that great. The reasoning behind this statement will be explained later.
 
-I will rewrite this section tomorrow - (5-21-2025)
+**Prerequisites**:
+- Basic experience with Linux and knowledge of many Linux terms.
+
+- experience with an editor such as: vscode, zed, neovim, emacs, etc as you will be working with many configuration files.
+
+- A fresh NixOS installation. Download the graphical ISO from nixos.org and begin the installation process. Ensure that you allow unfree software.
+
+- Time, patience, and the ability to learn a functional programming language with bad documentation. 
+# Installation
+
+From your freshly installed NixOS run 'sudo su' to gain root privileges. Navigate to the /etc/nixos directory and create a new file there called "flake.nix". For this I'll be using vim but nano is also acceptable. NixOS doesn't come preinstalled with Vim, but you can temporarily install it with
+
+```bash
+nix-shell -p vim
+```
+
+Inside of your flake.nix paste the following code:
+
+```nix
+{
+    description = "my nix configurations";
+    
+	inputs = {
+	  nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+	
+	  nix-config = {
+	    url = "github:earthgman/nix-config";
+	    inputs.nixpkgs.follows = "nixpkgs";
+	  };
+	};
+	
+	outputs = { nix-config, ... }:
+	  let
+	    inherit (nix-config) lib;
+	  in
+	  {
+	    nixosConfigurations = { 
+	      nixos = lib.mkHost {
+	      
+	      };
+	    };
+	  };
+}
+```
+
+You will then need to add various arguments to the mkHost function depending on the purpose or type of machine you are configuring. Here are the possible keys and values:
+
+```nix
+  {
+    hostName # any string
+    cpu # "amd" or "intel"
+    gpu # "amd" "nvidia" or "intel"
+    bios # "legacy" or "UEFI"
+    users # array consisting of all "normal" users on the system
+    desktop # "gnome" "i3" "sway" or "hyprland"
+    server # true or false
+    iso # true or false
+    vm # true or false
+    system # "x86_64-linux"
+    stateVersion # "25.11"
+    configDir # nix path to the configuration directory for this host
+  }
+```
+
+This function serves as a high level wrapper for lib.nixosSystem which is the function responsible for reading nix configurations and building your system. The values passed into this function are used to toggle various modules based on the values specified.
+
+Example:
+```nix
+nixos = lib.mkHost {
+  hostName = "nixos";
+  bios = "UEFI"; # double check which firmware your VM uses
+  users = [ "bob" ];
+  desktop = "gnome";
+  vm = true;
+  system = "x86_64-linux";
+  stateVersion = "25.11";
+  configDir = ./hosts/nixos;
+};
+```
+
+Here we have created a default configuration template for a qemu/kvm x86_64 virtual machine running NixOS 25.11 and UEFI firmware with 1 user "bob".
+
+Next you will need to:
+- rm the configuration.nix file
+- mkdir -p hosts/nixos (or the hostname of your choosing, must match exactly)
+- mv hardware-configuration.nix hosts/nixos/default.nix
+- If you specificed anything under the users key: mkdir -p hosts/nixos/users/bob (or your user's name) and then create a default.nix in this directory.
+- Now use your editor to create the user:
+
+```nix
+{ pkgs, ...}:
+{
+  users.users.bob = {
+    isNormalUser = true; # must be set for non system users
+    extraGroups = [ "wheel" ]; # allow sudo for this user
+    shell = pkgs.zsh; # better than bash
+    password = "super-secure-password"; 
+  };
+}
+```
+
+If for some reason the hardware-configuration.nix file does not exist, you can run nixos-generate-config to regenerate it.
+
+ The important parts of this file are "boot.initrd.availableKernelModules" and "filesystems"
+because they are options specific to this host's hardware. The other options aren't important and can be removed or just left alone as they will be overwritten by the nix-config modules anyway.
+
+And that is all you need for the basic setup. Now run
+
+```bash
+nixos-rebuild switch --flake /etc/nixos
+```
+
+# End of basic setup - write the rest of this later
 
 ------------------------------------------------------------------------
 # Known Issues - Last updated: 5-21-2025
