@@ -1,4 +1,4 @@
-{ wallpapers, ... }:
+{ pkgs, wallpapers, ... }:
 {
   imports = [
     ./disko.nix
@@ -18,4 +18,6 @@
   services.displayManager.sddm.themeConfig = {
     Background = builtins.fetchurl wallpapers.celeste-mountain;
   };
+
+  environment.systemPackages = [ pkgs.jre ];
 }
