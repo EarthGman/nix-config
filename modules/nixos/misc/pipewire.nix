@@ -12,8 +12,7 @@ in
 
     # additional utilities
     programs = {
-      helvum.enable = mkDefault (desktop != null);
-      easyeffects.enable = mkDefault (desktop != null);
+      pwvucontrol.enable = true;
     };
 
     services = {

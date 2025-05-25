@@ -1,6 +1,6 @@
 { pkgs, lib, config, ... }:
 let
-  inherit (lib) mkDefault mkEnableOption mkIf;
+  inherit (lib) mkDefault mkForce mkEnableOption mkIf;
   cfg = config.programs.vscode;
 in
 {
@@ -8,12 +8,14 @@ in
   config = {
     programs.vscode = {
       package = mkDefault pkgs.vscodium-fhs;
-      profiles.default = mkIf (!cfg.imperativeConfig) {
-        enableExtensionUpdateCheck = false;
-        enableUpdateCheck = false;
-        extensions = import ./extensions.nix { inherit pkgs; };
-        userSettings = import ./settings.nix { inherit pkgs lib; };
-      };
+      profiles.default =
+        if cfg.imperativeConfig then
+          mkForce { }
+        else
+          {
+            enableExtensionUpdateCheck = false;
+            enableUpdateCheck = false;
+          };
     };
   };
 }

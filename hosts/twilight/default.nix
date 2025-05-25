@@ -6,6 +6,8 @@
 
   profiles.gman-pc.enable = true;
 
+  programs.fastfetch.enable = true;
+
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "ehci_pci"

@@ -1,8 +1,7 @@
-{ pkgs, lib, config, hostName, ... }:
+{ pkgs, lib, config, ... }:
 let
-  inherit (lib) mkIf mkOption mkEnableOption types;
+  inherit (lib) mkIf mkOption mkDefault mkEnableOption mkForce types;
   cfg = config.programs.waybar;
-  scripts = import ../../scripts { inherit pkgs lib config; };
 in
 {
   options.programs.waybar = {
@@ -26,21 +25,15 @@ in
   config = {
     home.packages = [ pkgs.networkmanagerapplet ];
     programs.waybar = {
-      systemd.enable = true;
-      bottomBar.settings = import ./bottom-bar.nix { inherit pkgs config lib hostName scripts; };
-      settings = mkIf (!cfg.imperativeConfig) [
-        cfg.topBar.settings
-        cfg.bottomBar.settings
-      ];
-      style = builtins.readFile ./themes/${config.programs.waybar.theme}/style.css;
-    };
-
-    # settings menu
-    xdg.configFile = mkIf (!cfg.imperativeConfig) {
-      "waybar/settings-menu.xml" = {
-        enable = cfg.enable;
-        text = builtins.readFile ./settings-menu.xml;
-      };
+      systemd.enable = mkDefault true;
+      settings =
+        if cfg.imperativeConfig
+        then mkForce [ ]
+        else [
+          cfg.topBar.settings
+          cfg.bottomBar.settings
+        ];
+      style = builtins.readFile ./themes/${cfg.theme}/style.css;
     };
   };
 }

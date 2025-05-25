@@ -1,6 +1,6 @@
 { pkgs, lib, config, ... }:
 let
-  inherit (lib) mkEnableOption mkOption mkIf types getExe;
+  inherit (lib) mkEnableOption mkOption mkIf types getExe mkForce;
   cfg = config.programs.fastfetch;
   image-randomizer = pkgs.writeScript "fastfetch-image-randomizer.sh" ''
     #!${getExe pkgs.bash}
@@ -34,7 +34,7 @@ in
 
   config = mkIf cfg.enable {
     programs.fastfetch = {
-      settings = mkIf (!cfg.imperativeConfig) (import ./settings.nix { inherit config lib; });
+      settings = (mkIf (cfg.imperativeConfig)) (mkForce { });
     };
     # direct the alias to the randomizer script
     programs.zsh.shellAliases = {

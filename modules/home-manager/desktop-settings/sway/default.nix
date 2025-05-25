@@ -10,13 +10,13 @@ in
 
   programs = {
     swaylock = enabled;
-    pwvucontrol = enabled;
-    rofi = enabled;
     waybar = enabled;
+    rofi = enabled;
   };
 
   home.packages = with pkgs; [
     wl-clipboard
+    swayidle
   ];
 
   services = {

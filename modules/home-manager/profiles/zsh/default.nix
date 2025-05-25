@@ -4,10 +4,9 @@ let
   cfg = config.programs;
 in
 {
-  options.profiles.zsh.enable = mkEnableOption "zsh profile";
-  config = mkIf config.profiles.zsh.enable {
+  options.profiles.zsh.default.enable = mkEnableOption "default zsh profile";
+  config = mkIf config.profiles.zsh.default.enable {
     programs.zsh = {
-      enable = true;
       autosuggestion.enable = true;
       enableCompletion = true;
       syntaxHighlighting.enable = true;

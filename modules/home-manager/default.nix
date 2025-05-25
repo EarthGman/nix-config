@@ -3,7 +3,7 @@ let
   inherit (lib) autoImport;
   programs = autoImport ./programs;
   services = autoImport ./services;
-  other = autoImport ./misc;
+  common = autoImport ./common;
   profiles = autoImport ./profiles;
 in
 {
@@ -12,7 +12,7 @@ in
     ./stylix
     ./desktop-settings
   ]
-  ++ other
+  ++ common
   ++ programs
   ++ services
   ++ profiles;

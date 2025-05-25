@@ -1,11 +1,10 @@
-{ inputs, lib, config, system, ... }:
+{ inputs, lib, system, ... }:
 let
   inherit (lib) mkDefault;
 in
 {
   #latest version of ghostty
   programs.ghostty = {
-    enable = mkDefault (config.custom.terminal == "ghostty");
     package = mkDefault inputs.ghostty.packages.${system}.default;
     settings = {
       gtk-titlebar = mkDefault false;

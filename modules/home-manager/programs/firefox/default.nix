@@ -10,7 +10,7 @@ in
       name = mkOption {
         description = "name of theme";
         type = types.str;
-        default = "betterfox";
+        default = "";
       };
       config = mkOption {
         description = ''
