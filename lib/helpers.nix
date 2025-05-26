@@ -50,7 +50,7 @@ in
         [
           nixosModules
           (self + /modules/nixos/unexposed/hardware.nix)
-          { profiles.common.enable = true; }
+          { profiles.default.enable = true; }
         ]
         ++ nixosUsers
         ++ host;
@@ -72,7 +72,7 @@ in
     let
       inherit (builtins) fromJSON readFile;
       inherit (lib) optionals;
-      inherit (outputs) homeManagerModules;
+      inherit (outputs) homeModules;
       wallpapers = fromJSON (readFile inputs.wallpapers.outPath);
       icons = fromJSON (readFile inputs.icons.outPath);
       binaries = fromJSON (readFile inputs.binaries.outPath);
@@ -80,7 +80,7 @@ in
     lib.homeManagerConfiguration {
       pkgs = inputs.nixpkgs.legacyPackages.${system};
       modules = [
-        homeManagerModules
+        homeModules
         {
           home = {
             inherit username stateVersion;
@@ -117,7 +117,7 @@ in
         {
           profiles = {
             proxmox-lxc.enable = true;
-            common.enable = true;
+            default.enable = true;
           };
         }
       ] ++

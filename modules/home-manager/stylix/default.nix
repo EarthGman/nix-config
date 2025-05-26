@@ -21,7 +21,6 @@ in
 
   config = {
     stylix = {
-      enable = mkDefault true;
       image = mkDefault (builtins.fetchurl wallpapers.default);
       base16Scheme = mkIf (cfg.colorScheme != "") (./. + "/color-palettes/${cfg.colorScheme}.yaml");
       polarity = mkDefault "dark";

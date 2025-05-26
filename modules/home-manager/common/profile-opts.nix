@@ -38,6 +38,12 @@ in
     description = "waybar profile to use";
     default = "";
   };
+  rmpc = mkOption {
+    type = types.str;
+    description = "rmpc profile to use";
+    default = "";
+  };
+
   zsh = mkOption {
     type = types.str;
     description = "zsh profile to use";

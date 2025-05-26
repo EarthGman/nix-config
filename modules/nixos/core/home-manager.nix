@@ -23,7 +23,7 @@ in
       users = genAttrs users
         (username: {
           imports = [
-            outputs.homeManagerModules
+            outputs.homeModules
           ] ++ optionals (builtins.pathExists (config.home-manager.profilesDir + "/${username}.nix")) [
             (config.home-manager.profilesDir + "/${username}.nix")
           ];

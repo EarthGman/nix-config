@@ -80,6 +80,7 @@ in
       swaylock = enableProfile "swaylock";
       tmux = enableProfile "tmux";
       vscode = enableProfile "vscode";
+      rmpc = enableProfile "rmpc";
       waybar = enableProfile "waybar";
       zsh = enableProfile "zsh";
 

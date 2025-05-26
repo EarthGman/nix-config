@@ -1,21 +1,20 @@
-{ lib, outputs, ... }:
+{ lib, outputs, inputs, ... }:
 let
   inherit (lib) autoImport;
-  other = autoImport ./misc;
   programs = autoImport ./programs;
   services = autoImport ./services;
-  profiles = autoImport ./profiles;
 in
 {
   imports = [
+    inputs.disko.nixosModules.default
     outputs.sharedModules
+    ./profiles
     ./bootloaders
     ./desktops
     ./display-managers
     ./gpu
+    ./core
   ]
-  ++ other
   ++ programs
-  ++ services
-  ++ profiles;
+  ++ services;
 }

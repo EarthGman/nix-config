@@ -1,14 +1,12 @@
-{ inputs, outputs, pkgs, lib, config, ... }:
+{ outputs, pkgs, lib, config, ... }:
 let
-  inherit (lib) mkIf mkEnableOption mkForce mkDefault;
-  cfg = config.profiles.common;
+  inherit (lib) mkIf mkEnableOption mkForce mkDefault autoImport;
+  cfg = config.profiles.default;
 in
 {
-  imports = [
-    inputs.disko.nixosModules.disko
-  ];
+  imports = autoImport ./.;
 
-  options.profiles.common.enable = mkEnableOption "default nixos profile";
+  options.profiles.default.enable = mkEnableOption "default nixos profile";
   config = mkIf cfg.enable {
     modules = {
       direnv.enable = mkDefault true;

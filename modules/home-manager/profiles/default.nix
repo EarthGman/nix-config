@@ -26,11 +26,15 @@ in
           swaylock = default;
           vscode = default;
           waybar = default;
+          rmpc = default;
           zsh = default;
           tmux = default;
           desktopTheme = mkDefault "cosmos";
         };
     };
+
+    # pretty colors
+    stylix.enable = mkDefault true;
 
     xdg.userDirs = {
       # enable and create common Directories (Downloads, Documents, Music, etc)
