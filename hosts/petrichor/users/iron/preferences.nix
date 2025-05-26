@@ -2,7 +2,7 @@
 let
   inherit (lib) getExe;
   kl-script = pkgs.writeScript "knight-launcher.sh" ''
-    cd ~/.steam/steamapps/common/Spiral\ Knights
+    cd ~/.steam/steam/steamapps/common/Spiral\ Knights
     ${getExe pkgs.steam-run} ${getExe pkgs.jre} -jar ./KnightLauncher.jar
   '';
 in
