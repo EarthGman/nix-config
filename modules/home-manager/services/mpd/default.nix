@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf mkDefault;
   cfg = config.services.mpd;
 in
 {
@@ -9,14 +9,14 @@ in
   };
 
   services.mpd = {
-    enable = config.programs.rmpc.enable;
+    enable = mkDefault config.programs.rmpc.enable;
     network = {
       listenAddress = "/tmp/mpd_socket";
     };
     extraConfig = ''
       audio_output {
-        type            "pipewire"
-        name            "PipeWire Sound Server"
+        type "pipewire"
+        name "PipeWire Sound Server"
       }
     '';
   };
