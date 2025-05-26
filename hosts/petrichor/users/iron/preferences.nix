@@ -1,9 +1,9 @@
 { pkgs, lib, config, ... }:
 {
-  profiles.desktopThemes.celeste.enable = true;
-
-  custom.editor = "codium";
-
+  custom = {
+    editor = "codium";
+    profiles.desktopTheme = "celeste";
+  };
   programs = {
     r2modman.enable = true;
     bottles.enable = true;

@@ -4,8 +4,8 @@ let
   cfg = config.programs;
 in
 {
-  options.profiles.zsh.enable = mkEnableOption "zsh profie for nixos";
-  config = mkIf config.profiles.zsh.enable {
+  options.profiles.zsh.default.enable = mkEnableOption "zsh profie for nixos";
+  config = mkIf config.profiles.zsh.default.enable {
     programs.zsh = {
       enable = true;
       enableCompletion = mkDefault true;

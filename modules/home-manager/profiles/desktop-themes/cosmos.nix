@@ -16,7 +16,7 @@ in
 
     stylix = {
       colorScheme = "ashes";
-      image = fetchurl wallpapers.space-piano;
+      image = (fetchurl wallpapers.space-piano);
     };
 
     services.swww.slideshow = {

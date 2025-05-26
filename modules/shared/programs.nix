@@ -75,7 +75,6 @@ in
 
     cutentr = mkProgramOption {
       programName = "cutentr";
-      packageName = "cutentr";
       description = "3ds streaming client for NTR CFW";
       inherit pkgs;
     };

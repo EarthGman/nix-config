@@ -11,7 +11,7 @@ let
 in
 {
   home.packages = [ liquidctl-profile ];
-  profiles.desktopThemes.undertale.enable = true;
+  custom.profiles.desktopTheme = "undertale";
 
   programs = {
     dolphin-emu.enable = true;

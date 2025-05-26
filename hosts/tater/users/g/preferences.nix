@@ -3,8 +3,6 @@ let
   inherit (lib) mkForce;
 in
 {
-  profiles.desktopThemes.undertale.enable = true;
-
   stylix.fonts.sizes = {
     terminal = mkForce 12;
     applications = mkForce 10;

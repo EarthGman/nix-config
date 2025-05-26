@@ -1,6 +1,45 @@
 {
   description = "Gman's nix config";
 
+  outputs = { self, nixpkgs, home-manager, nix-library, nixos-generators, ... } @ inputs:
+    let
+      inherit (self) outputs;
+      helpers = import ./lib/helpers.nix { inherit self outputs nixos-generators; };
+      myLib = helpers // nix-library.lib;
+      lib = nixpkgs.lib.extend
+        (final: prev: myLib // home-manager.lib);
+    in
+    {
+      inherit lib;
+      keys = import ./keys.nix;
+      overlays = import ./overlays.nix { inherit inputs; };
+
+      nixosModules = import ./modules/nixos { inherit outputs lib; };
+      homeManagerModules = import ./modules/home-manager { inherit outputs lib; };
+      sharedModules = import ./modules/shared { inherit lib; };
+
+      nixosConfigurations = import ./hosts { inherit lib; };
+      homeConfigurations = import ./home { inherit lib; };
+
+      lxcTemplates = import ./templates/lxc;
+
+      packages."x86_64-linux" = {
+        mc112 = lib.mkLXC {
+          template = "minecraft";
+          extraConfig = ./hosts/mc112;
+        };
+
+        mc112-blueprints = lib.mkLXC {
+          template = "minecraft";
+          extraConfig = ./hosts/mc-blueprints;
+        };
+
+        docker-env = lib.mkLXC {
+          template = "docker-env";
+        };
+      };
+    };
+
   inputs = {
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.0.tar.gz";
 
@@ -89,42 +128,4 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-library, nixos-generators, ... } @ inputs:
-    let
-      inherit (self) outputs;
-      helpers = import ./lib/helpers.nix { inherit self outputs nixos-generators; };
-      myLib = helpers // nix-library.lib;
-      lib = nixpkgs.lib.extend
-        (final: prev: myLib // home-manager.lib);
-    in
-    {
-      inherit lib;
-      keys = import ./keys.nix;
-      overlays = import ./overlays.nix { inherit inputs; };
-
-      nixosModules = import ./modules/nixos { inherit outputs lib; };
-      homeManagerModules = import ./modules/home-manager { inherit outputs lib; };
-      sharedModules = import ./modules/shared { inherit lib; };
-
-      nixosConfigurations = import ./hosts { inherit lib; };
-      homeConfigurations = import ./home { inherit lib; };
-
-      lxcTemplates = import ./templates/lxc;
-
-      packages."x86_64-linux" = {
-        mc112 = lib.mkLXC {
-          template = "minecraft";
-          extraConfig = ./hosts/mc112;
-        };
-
-        mc112-blueprints = lib.mkLXC {
-          template = "minecraft";
-          extraConfig = ./hosts/mc-blueprints;
-        };
-
-        docker-env = lib.mkLXC {
-          template = "docker-env";
-        };
-      };
-    };
 }

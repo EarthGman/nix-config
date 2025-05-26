@@ -1,8 +1,8 @@
 { ... }:
 {
-  profiles.desktopThemes.hollow-knight.enable = true;
 
   custom = {
+    profiles.desktopTheme = "hollow-knight";
     editor = "codium";
   };
 

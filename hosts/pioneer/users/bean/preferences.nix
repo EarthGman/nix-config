@@ -3,7 +3,8 @@ let
   inherit (lib) mkForce;
 in
 {
-  profiles.desktopThemes.undertale.enable = true;
+
+  custom.profiles.desktopTheme = "undertale";
 
   xsession.screensaver = {
     enable = true;

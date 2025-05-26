@@ -1,10 +1,11 @@
-{ wallpapers, ... }:
+{ wallpapers, lib, ... }:
 let
+  inherit (lib) mkForce;
   inherit (builtins) fetchurl;
 in
 {
   profiles.essentials.enable = false;
-  stylix.image = fetchurl wallpapers.windows-11;
+  stylix.image = mkForce (fetchurl wallpapers.windows-11);
   custom.terminal = "alacritty";
 
   programs = {

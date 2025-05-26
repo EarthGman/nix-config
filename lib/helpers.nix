@@ -86,7 +86,7 @@ in
             inherit username stateVersion;
             homeDirectory = "/home/${username}";
           };
-          profiles.common.enable = true;
+          profiles.default.enable = true;
         }
       ] ++ optionals (profile != null) [
         profile

@@ -46,6 +46,7 @@ in
       viAlias = true;
       vimAlias = true;
     };
+    rmpc = enabled;
     bottles = enabled;
     bustle = enabled;
     freetube = enabled;

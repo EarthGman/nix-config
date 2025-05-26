@@ -1,10 +1,10 @@
 { pkgs, lib, config, ... }:
 let
   inherit (lib) mkDefault getExe mkIf mkEnableOption;
-  cfg = config.profiles.tmux;
+  cfg = config.profiles.tmux.default;
 in
 {
-  options.profiles.tmux.enable = mkEnableOption "gman's tmux configuration";
+  options.profiles.tmux.default.enable = mkEnableOption "gman's tmux configuration";
   config = mkIf cfg.enable {
     programs.tmux = {
       enable = true;

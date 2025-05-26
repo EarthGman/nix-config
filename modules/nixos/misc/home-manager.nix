@@ -30,7 +30,7 @@ in
           home = {
             inherit stateVersion;
           };
-          profiles.common.enable = true;
+          profiles.default.enable = true;
         });
       extraSpecialArgs = {
         inherit self inputs outputs wallpapers icons hostName desktop vm server system stateVersion;

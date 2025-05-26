@@ -1,8 +1,11 @@
-{ outputs, inputs, system, ... }:
+{ pkgs, outputs, inputs, system, ... }:
 {
-  profiles.desktopThemes.cosmos.enable = true;
+  home.packages = [
+    pkgs.yt-dlp
+  ];
 
   programs = {
+    alacritty.enable = true;
     prismlauncher.package = inputs.prismlauncher.packages.${system}.default;
     zint.enable = true;
     gparted.enable = true;

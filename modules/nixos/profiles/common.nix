@@ -17,8 +17,8 @@ in
     };
 
     profiles = {
-      tmux.enable = mkDefault true;
-      zsh.enable = mkDefault true;
+      tmux.default.enable = mkDefault true;
+      zsh.default.enable = mkDefault true;
     };
 
     documentation.nixos.enable = mkDefault false;

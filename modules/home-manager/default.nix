@@ -3,17 +3,15 @@ let
   inherit (lib) autoImport;
   programs = autoImport ./programs;
   services = autoImport ./services;
-  common = autoImport ./common;
-  profiles = autoImport ./profiles;
 in
 {
   imports = [
     outputs.sharedModules
     ./stylix
     ./desktop-settings
+    ./profiles
+    ./common
   ]
-  ++ common
   ++ programs
-  ++ services
-  ++ profiles;
+  ++ services;
 }

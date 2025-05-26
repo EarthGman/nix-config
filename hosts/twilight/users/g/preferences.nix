@@ -3,7 +3,6 @@ let
   inherit (lib) mkForce;
 in
 {
-  profiles.desktopThemes.cosmos.enable = true;
   programs = {
     moonlight.enable = true;
     waybar.bottomBar.settings = {
