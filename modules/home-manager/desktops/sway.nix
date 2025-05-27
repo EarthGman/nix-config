@@ -6,7 +6,6 @@ in
   config = mkIf config.wayland.windowManager.sway.enable {
     home.packages = with pkgs; [
       wl-clipboard
-      swayidle
     ];
 
     home.sessionVariables = {

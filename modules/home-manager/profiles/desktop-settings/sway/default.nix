@@ -1,6 +1,6 @@
-{ pkgs, lib, config, ... }:
+{ lib, config, ... }:
 let
-  inherit (lib) mkIf mkDefault optionals mkEnableOption;
+  inherit (lib) mkIf mkDefault optionals mkEnableOption getExe;
   cfg = config.profiles.desktops.sway.default;
   enabled = { enable = mkDefault true; };
 in
@@ -17,6 +17,15 @@ in
 
     services = mkIf config.wayland.windowManager.sway.enable {
       swww = enabled;
+      swayidle = {
+        enable = mkDefault true;
+        settings = {
+          swaylock = {
+            before-sleep = true;
+          };
+          dpms.timeout = mkDefault 300;
+        };
+      };
     };
 
     wayland.windowManager.sway = {
@@ -38,10 +47,6 @@ in
           {
             command = "systemctl --user restart swww-daemon";
             always = true;
-          }
-          {
-            command = "swayidle -w before-sleep 'swaylock -f'";
-            always = false;
           }
           # dont know why but kanshi seems to not restart properly when sway is reloaded
         ] ++ optionals (config.services.kanshi.enable) [

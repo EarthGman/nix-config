@@ -11,7 +11,7 @@ in
         used to convert a simple string into a path for easier config management
       '';
       type = types.str;
-      default = "default";
+      default = "ashes";
     };
   };
   config.stylix = {

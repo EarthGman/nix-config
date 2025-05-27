@@ -7,6 +7,7 @@ in
   options.profiles.swaylock.default.enable = mkEnableOption " default swaylock profile";
 
   config = mkIf cfg.enable {
+    stylix.targets.swaylock.enable = true;
     programs.swaylock = {
       package = mkDefault pkgs.swaylock-effects;
       settings = {

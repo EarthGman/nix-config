@@ -20,6 +20,8 @@
     ygo-omega.enable = true;
   };
 
+  services.swayidle.settings.dpms.timeout = 3600; # 1 hour
+
   # kanshi profiles
   services.kanshi = {
     enable = true;

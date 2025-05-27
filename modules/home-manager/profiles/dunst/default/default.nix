@@ -6,6 +6,7 @@ in
 {
   options.profiles.dunst.default.enable = mkEnableOption "default dunst profile";
   config = mkIf cfg.enable {
+    stylix.targets.dunst.enable = true;
     services.dunst.settings = {
       global = {
         monitor = mkDefault 0;
