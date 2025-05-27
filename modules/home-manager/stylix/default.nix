@@ -32,6 +32,8 @@ in
           enabled = { enable = mkDefault true; };
         in
         {
+          # NOTE: gnome must be enabled for electron apps such as obsidian and 1password for example to properly follow stylix.polarity
+          gnome = enabled;
           bat = enabled;
           rofi = enabled;
           kitty = enabled;
@@ -47,6 +49,7 @@ in
           sway = enabled;
           hyprland = enabled;
           vesktop = enabled;
+          waybar = enabled;
         };
 
       cursor = {
