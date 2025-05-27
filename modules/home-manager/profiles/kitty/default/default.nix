@@ -11,6 +11,8 @@ in
       pkgs.nerd-fonts.meslo-lg
     ];
 
+    stylix.targets.kitty.enable = true;
+
     programs.kitty = {
       settings = {
         # kitty is so freaking sensitive with fonts so just force this one since it works well

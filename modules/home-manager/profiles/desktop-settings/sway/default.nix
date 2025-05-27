@@ -7,6 +7,8 @@ in
 {
   options.profiles.desktops.sway.default.enable = mkEnableOption "default sway config";
   config = mkIf cfg.enable {
+    stylix.targets.sway.enable = true;
+
     programs = mkIf config.wayland.windowManager.sway.enable {
       swaylock = enabled;
       waybar = enabled;

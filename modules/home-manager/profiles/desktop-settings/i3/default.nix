@@ -7,6 +7,8 @@ in
 {
   options.profiles.desktops.i3.default.enable = mkEnableOption "default i3 profile";
   config = mkIf cfg.enable {
+    stylix.targets.i3.enable = true;
+
     programs = {
       i3lock.settings = {
         ignoreEmptyPassword = mkDefault true;

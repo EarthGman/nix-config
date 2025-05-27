@@ -8,6 +8,8 @@ in
 {
   options.profiles.desktops.hyprland.default.enable = mkEnableOption "default hyprland config";
   config = mkIf cfg.enable {
+    stylix.targets.hyprland.enable = true;
+
     programs = mkIf config.wayland.windowManager.hyprland.enable {
       rofi = enabled;
       waybar = enabled;

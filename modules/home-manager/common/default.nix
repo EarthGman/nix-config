@@ -89,14 +89,20 @@ in
     # enable the profile requested by config.custom.profiles
     profiles = {
       alacritty = enableProfile "alacritty";
+      bat = enableProfile "bat";
+      dunst = enableProfile "dunst";
       fastfetch = enableProfile "fastfetch";
       kitty = enableProfile "kitty";
       rofi = enableProfile "rofi";
       swaylock = enableProfile "swaylock";
+      stylix = enableProfile "stylix";
+      starship = enableProfile "starship";
+      lazygit = enableProfile "lazygit";
       tmux = enableProfile "tmux";
       vscode = enableProfile "vscode";
       rmpc = enableProfile "rmpc";
       polybar = enableProfile "polybar";
+      yazi = enableProfile "yazi";
       waybar = enableProfile "waybar";
       zsh = enableProfile "zsh";
 

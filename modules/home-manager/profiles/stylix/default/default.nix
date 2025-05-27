@@ -1,0 +1,67 @@
+{ pkgs, config, lib, ... }:
+let
+  inherit (lib) mkEnableOption mkIf mkDefault types;
+  cfg = config.profiles.stylix.default;
+in
+{
+  options.profiles.stylix.default.enable = mkEnableOption "default stylix configuration";
+  config = mkIf cfg.enable {
+    stylix = {
+      polarity = mkDefault "dark";
+
+      targets =
+        let
+          enabled = { enable = mkDefault true; };
+        in
+        {
+          # NOTE: gnome must be enabled for electron apps such as obsidian and 1password for example to properly follow stylix.polarity
+          gnome = enabled;
+          gtk = enabled;
+          qt = enabled;
+          vesktop = enabled;
+        };
+
+      cursor = {
+        package = mkDefault pkgs.bibata-cursors;
+        name = mkDefault "Bibata-Modern-Classic";
+        size = mkDefault 24;
+      };
+
+      iconTheme = {
+        enable = mkDefault true;
+        dark = mkDefault "Adwaita";
+        light = mkDefault "Adwaita";
+        package = mkDefault pkgs.adwaita-icon-theme;
+      };
+
+      fonts = {
+        sizes = {
+          applications = mkDefault 12;
+          desktop = mkDefault 12;
+          popups = mkDefault 10;
+          terminal = mkDefault 14;
+        };
+        sansSerif = mkDefault {
+          name = "MesloLGS Nerd Font";
+          package = pkgs.nerd-fonts.meslo-lg;
+        };
+        serif = mkDefault {
+          name = "MesloLGS Nerd Font";
+          package = pkgs.nerd-fonts.meslo-lg;
+        };
+        monospace = mkDefault {
+          name = "MesloLGS Nerd Font";
+          package = pkgs.nerd-fonts.meslo-lg;
+        };
+        emoji = mkDefault {
+          name = "MesloLGS Nerd Font";
+          package = pkgs.nerd-fonts.meslo-lg;
+        };
+      };
+
+      opacity = {
+        terminal = mkDefault 0.87;
+      };
+    };
+  };
+}

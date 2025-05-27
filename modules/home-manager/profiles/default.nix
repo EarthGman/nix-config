@@ -20,16 +20,23 @@ in
           default = mkDefault "default";
         in
         {
+          alacritty = default;
+          bat = default;
           fastfetch = default;
+          dunst = default;
           kitty = default;
           rofi = default;
           swaylock = default;
+          starship = default;
+          lazygit = default;
           vscode = default;
           polybar = default;
           waybar = default;
           rmpc = default;
           zsh = default;
+          yazi = default;
           tmux = default;
+          stylix = default;
           desktopTheme = mkDefault "cosmos";
 
           desktops = {

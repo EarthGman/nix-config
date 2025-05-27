@@ -11,56 +11,7 @@ in
       theme = import ./theme.nix { inherit config; };
       package = pkgs.rofi-wayland;
     };
-    xdg.configFile."rofi/wallpapers.rasi".text = ''
-      /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-      /* Main Config (wallpaper) */
-
-      @import "~/.config/rofi/config.rasi"  
-
-      /* ---- Configuration ---- */ 
-      configuration {
-        modi: "drun";
-      }
-
-      window {
-        width: 60%;
-      }
-
-      /* ---- Imagebox ---- */
-      imagebox {
-        orientation: vertical;
-        children:
-          [ "entry", "listbox"];
-      }
-
-
-      entry {
-        expand: false;
-      }
-
-      /* ---- Listview ---- */
-      listview {
-        columns: 5;
-        lines: 3;
-        flow: horizontal;
-      }
-
-      /* ---- Element ---- */
-      element {
-        orientation: vertical;
-        padding: 0px;
-        spacing: 0px;
-        border-radius: 12px;
-      }
-
-      element-icon {
-        size: 15%;
-      }
-
-      element-text {
-        vertical-align: 0.5;
-        horizontal-align: 0.5;
-      }
-    '';
+    stylix.targets.rofi.enable = true;
+    xdg.configFile."rofi/wallpapers.rasi".text = builtins.readFile ./wallpapers.rasi;
   };
 }

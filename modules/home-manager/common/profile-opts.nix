@@ -9,6 +9,19 @@ in
     default = "";
   };
 
+  bat = mkOption {
+    type = types.str;
+    description = "bat profile to use";
+    default = "";
+  };
+
+  dunst = mkOption {
+    type = types.str;
+    description = "dunst profile to use";
+    default = "";
+  };
+
+
   fastfetch = mkOption {
     type = types.str;
     description = "fastfetch profile to use";
@@ -33,6 +46,24 @@ in
     default = "";
   };
 
+  stylix = mkOption {
+    type = types.str;
+    description = "stylix profile to use";
+    default = "";
+  };
+
+  starship = mkOption {
+    type = types.str;
+    description = "starship profile to use";
+    default = "";
+  };
+
+  lazygit = mkOption {
+    type = types.str;
+    description = "lazygit profile to use";
+    default = "";
+  };
+
   vscode = mkOption {
     type = types.str;
     description = "vscode profile to use";
@@ -54,6 +85,12 @@ in
   rmpc = mkOption {
     type = types.str;
     description = "rmpc profile to use";
+    default = "";
+  };
+
+  yazi = mkOption {
+    type = types.str;
+    description = "yazi profile to use";
     default = "";
   };
 

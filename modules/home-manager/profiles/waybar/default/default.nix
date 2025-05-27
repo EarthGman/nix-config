@@ -8,6 +8,7 @@ in
   options.profiles.waybar.default.enable = mkEnableOption "default waybar profile";
 
   config = mkIf cfg.enable {
+    stylix.targets.waybar.enable = true;
     programs.waybar = {
       bottomBar.settings = import ./bottom.nix { inherit pkgs lib config scripts; };
     };

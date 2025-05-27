@@ -15,7 +15,7 @@
       overlays = import ./overlays.nix { inherit inputs; };
 
       nixosModules = import ./modules/nixos { inherit inputs outputs lib; };
-      homeModules = import ./modules/home-manager { inherit outputs lib; };
+      homeModules = import ./modules/home-manager { inherit inputs outputs lib; };
       sharedModules = import ./modules/shared { inherit lib; };
 
       nixosConfigurations = import ./hosts { inherit lib; };
