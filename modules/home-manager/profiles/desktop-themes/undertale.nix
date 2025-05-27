@@ -7,7 +7,7 @@ in
 {
   options.profiles.desktopThemes.undertale.enable = mkEnableOption "cozy undertale desktop theme";
   config = mkIf cfg.enable {
-    stylix.image = fetchurl wallpapers.home;
+    custom.wallpaper = fetchurl wallpapers.home;
     stylix.colorScheme = "faraway";
 
     programs = {

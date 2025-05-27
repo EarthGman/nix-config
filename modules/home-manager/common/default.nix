@@ -1,4 +1,4 @@
-{ outputs, pkgs, lib, config, ... }:
+{ outputs, pkgs, lib, config, wallpapers, ... }:
 let
   inherit (lib) optionals mkOption types mkIf mkDefault;
   # alacritty =
@@ -6,12 +6,21 @@ let
   #       ${cfg.alacritty}.enable = true;
   #    } else { };
   #
+  enableDesktopProfile = profile:
+    let
+      cfg = config.custom.profiles.desktops;
+    in
+    if (cfg.${profile} != "" && cfg.${profile} != null) then
+      {
+        ${cfg.${profile}}.enable = true;
+      }
+    else { };
 
   enableProfile = profile:
     let
       cfg = config.custom.profiles;
     in
-    if cfg.${profile} != "" then
+    if (cfg.${profile} != "" && cfg.${profile} != null) then
       {
         ${cfg.${profile}}.enable = true;
       }
@@ -49,6 +58,12 @@ in
         default = "";
       };
 
+      wallpaper = mkOption {
+        description = "path to preferred default wallpaper";
+        type = types.path;
+        default = builtins.fetchurl wallpapers.default;
+      };
+
       profiles = import ./profile-opts.nix { inherit lib; };
     };
   };
@@ -81,6 +96,7 @@ in
       tmux = enableProfile "tmux";
       vscode = enableProfile "vscode";
       rmpc = enableProfile "rmpc";
+      polybar = enableProfile "polybar";
       waybar = enableProfile "waybar";
       zsh = enableProfile "zsh";
 
@@ -90,6 +106,12 @@ in
           ${config.custom.profiles.desktopTheme}.enable = true;
         }
         else { };
+
+      desktops = {
+        i3 = enableDesktopProfile "i3";
+        sway = enableDesktopProfile "sway";
+        hyprland = enableDesktopProfile "hyprland";
+      };
     };
 
     # enable programs using the custom user preferences

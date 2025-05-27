@@ -25,11 +25,18 @@ in
           rofi = default;
           swaylock = default;
           vscode = default;
+          polybar = default;
           waybar = default;
           rmpc = default;
           zsh = default;
           tmux = default;
           desktopTheme = mkDefault "cosmos";
+
+          desktops = {
+            i3 = default;
+            sway = default;
+            hyprland = default;
+          };
         };
     };
 

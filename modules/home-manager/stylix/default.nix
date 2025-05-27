@@ -1,4 +1,4 @@
-{ inputs, wallpapers, pkgs, config, lib, ... }:
+{ inputs, pkgs, config, lib, ... }:
 let
   inherit (lib) mkOption mkIf mkDefault types;
   cfg = config.stylix;
@@ -21,16 +21,33 @@ in
 
   config = {
     stylix = {
-      image = mkDefault (builtins.fetchurl wallpapers.default);
+      # only allow stylix to manage what I tell it to
+      autoEnable = mkDefault false;
+      image = mkDefault config.custom.wallpaper;
       base16Scheme = mkIf (cfg.colorScheme != "") (./. + "/color-palettes/${cfg.colorScheme}.yaml");
       polarity = mkDefault "dark";
 
-      targets = {
-        vscode.enable = mkDefault false;
-        feh.enable = mkDefault false;
-        kde.enable = mkDefault false;
-        firefox.enable = mkDefault false;
-      };
+      targets =
+        let
+          enabled = { enable = mkDefault true; };
+        in
+        {
+          bat = enabled;
+          rofi = enabled;
+          kitty = enabled;
+          alacritty = enabled;
+          dunst = enabled;
+          wezterm = enabled;
+          gtk = enabled;
+          qt = enabled;
+          yazi = enabled;
+          starship = enabled;
+          lazygit = enabled;
+          i3 = enabled;
+          sway = enabled;
+          hyprland = enabled;
+          vesktop = enabled;
+        };
 
       cursor = {
         package = mkDefault pkgs.bibata-cursors;

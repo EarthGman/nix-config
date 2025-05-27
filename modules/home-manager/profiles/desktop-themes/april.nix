@@ -6,8 +6,8 @@ in
 {
   options.profiles.desktopThemes.april.enable = mkEnableOption "enable april desktop theme";
   config = mkIf cfg.enable {
+    custom.wallpaper = builtins.fetchurl wallpapers.kaori;
     stylix = {
-      image = builtins.fetchurl wallpapers.kaori;
       colorScheme = "april";
     };
 

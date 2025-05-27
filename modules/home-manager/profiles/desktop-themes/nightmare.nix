@@ -7,7 +7,7 @@ in
 {
   options.profiles.desktopThemes.nightmare.enable = mkEnableOption "nightmare desktop theme";
   config = mkIf cfg.enable {
-    stylix.image = fetchurl wallpapers.the-pumpkin-patch;
+    custom.wallpaper = fetchurl wallpapers.the-pumpkin-patch;
     stylix.colorScheme = "ashes";
 
     programs.firefox.theme = {

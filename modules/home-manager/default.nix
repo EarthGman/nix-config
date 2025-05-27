@@ -8,8 +8,8 @@ in
   imports = [
     outputs.sharedModules
     ./stylix
-    ./desktop-settings
     ./profiles
+    ./desktops
     ./common
   ]
   ++ programs

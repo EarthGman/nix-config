@@ -1,28 +1,5 @@
 { pkgs, outputs, lib, inputs, system, icons, ... }:
 {
-  # let
-  #   inherit (lib) getExe;
-  #   kl-script = pkgs.writeScript "knight-launcher.sh" ''
-  #     cd ~/.steam/steamapps/common/Spiral\ Knights
-  #     ${getExe pkgs.steam-run} ${getExe pkgs.jre} -jar ~/.steam/steam/steamapps/common/Spiral\ Knights/KnightLauncher.jar
-  #   '';
-  # in
-  # {
-  #   xdg.dataFile."applications/knight-launcher.desktop" = {
-  #     enable = true;
-  #     text = ''
-  #       [Desktop Entry]
-  #       Name=Knight Launcher
-  #       Comment=poorly written 3rd party spiral knights launcher and manager
-  #       Icon=${builtins.fetchurl icons.knight-launcher}
-  #       Termimal=true
-  #       Exec=${kl-script}
-  #       Type=Application
-  #       Categories=Game
-  #     '';
-  #   };
-
-
   programs = {
     alacritty.enable = true;
     prismlauncher.package = inputs.prismlauncher.packages.${system}.default;

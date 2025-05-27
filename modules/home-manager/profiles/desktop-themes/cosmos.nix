@@ -14,9 +14,9 @@ in
       };
     };
 
+    custom.wallpaper = fetchurl wallpapers.space-piano;
     stylix = {
       colorScheme = "ashes";
-      image = (fetchurl wallpapers.space-piano);
     };
 
     services.swww.slideshow = {

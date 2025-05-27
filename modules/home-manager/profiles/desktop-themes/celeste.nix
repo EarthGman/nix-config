@@ -24,7 +24,7 @@ in
       };
     };
 
-    stylix.image = fetchurl wallpapers.celeste;
+    custom.wallpaper = fetchurl wallpapers.celeste;
     stylix.colorScheme = "ashes";
     stylix.iconTheme = {
       dark = "candy-icons";

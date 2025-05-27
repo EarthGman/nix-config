@@ -1,18 +1,9 @@
-{ pkgs, lib, config, ... }:
+{ lib, config, ... }:
 let
-  inherit (lib) mkDefault mkIf getExe mkForce;
+  inherit (lib) mkForce mkDefault;
 in
 {
-  # make sure meslo font is installed
-  home.packages = mkIf config.services.polybar.enable (with pkgs; [
-    nerd-fonts.meslo-lg
-  ]);
-
-  services.polybar = {
-    script = import ./script.nix;
-    settings = import ./settings.nix { inherit pkgs mkDefault config getExe; };
-  };
-
+  services.polybar.script = mkDefault (import ./script.nix);
   systemd.user.services.polybar = {
     Service = {
       Environment = mkForce [
@@ -21,6 +12,7 @@ in
     };
 
     # forces the service to be manually invoked by xorg desktops
+    # the reason I want this is so that sway and i3 can be enabled at the same time without have 2 bars
     Install.WantedBy = mkForce [ ];
   };
 }

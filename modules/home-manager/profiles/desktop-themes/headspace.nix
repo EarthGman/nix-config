@@ -6,7 +6,7 @@ in
 {
   options.profiles.desktopThemes.headspace.enable = mkEnableOption "headspace desktop theme from omori";
   config = mkIf cfg.enable {
-    stylix.image = builtins.fetchurl wallpapers.the-gang-headspace;
+    custom.wallpaper = builtins.fetchurl wallpapers.the-gang-headspace;
     stylix.colorScheme = "headspace";
 
     programs = {

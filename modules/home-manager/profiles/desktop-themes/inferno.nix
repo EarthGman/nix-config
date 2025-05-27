@@ -6,8 +6,9 @@ in
 {
   options.profiles.desktopThemes.inferno.enable = mkEnableOption "inferno theme";
   config = mkIf cfg.enable {
+
+    custom.wallpaper = builtins.fetchurl wallpapers.fiery-dragon;
     stylix = {
-      image = builtins.fetchurl wallpapers.fiery-dragon;
       colorScheme = "inferno";
     };
 

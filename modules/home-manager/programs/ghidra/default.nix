@@ -12,8 +12,5 @@ in
 
   config = mkIf cfg.enable {
     home.packages = [ cfg.package ];
-    home.sessionVariables = {
-      "_JAVA_AWT_WM_NONREPARENTING" = "1"; # fix white screen bug on sway
-    };
   };
 }

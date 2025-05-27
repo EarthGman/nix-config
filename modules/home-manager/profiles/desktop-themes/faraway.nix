@@ -36,7 +36,7 @@ in
     programs.swaylock.settings.effect-blur = "";
 
     stylix.colorScheme = "faraway";
-    stylix.image = builtins.fetchurl (wallpapers.the-gang-grouphug);
+    custom.wallpaper = builtins.fetchurl wallpapers.the-gang-grouphug;
 
     stylix.fonts = {
       sansSerif = {
