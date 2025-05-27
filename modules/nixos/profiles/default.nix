@@ -14,6 +14,8 @@ in
       nh.enable = mkDefault true;
     };
 
+    services.dbus.implementation = "broker";
+
     profiles = {
       tmux.default.enable = mkDefault true;
       zsh.default.enable = mkDefault true;

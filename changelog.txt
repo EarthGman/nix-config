@@ -1,3 +1,12 @@
+5-27-2025
+- add more profiles to home-manager
+- add custom.wallpaper option to home-manager
+- stylix is now inverted such that targets must be included rather than excluded
+- update rmpc theme.ron
+- set dbus-broker as the default dbus implementation for all systems
+- fix logout button on waybar with hyprland
+
+
 5-23-2025
 - add gparted, zint, and glabels to programs
 - remove default packages install by the programs.sway nixos option if home-manager is present
