@@ -8,10 +8,15 @@ in
   stylix.image = mkForce (fetchurl wallpapers.windows-11);
   custom.terminal = "alacritty";
 
+  services.swww.slideshow.enable = false;
+
   programs = {
     museeks.enable = false;
     ghex.enable = false;
     discord.enable = false;
     obs-studio.enable = false;
+
+    glabels.enable = true;
+    zint.enable = true;
   };
 }
