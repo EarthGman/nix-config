@@ -11,7 +11,7 @@ in
     cpu = "amd";
     gpu = "amd";
     users = [ "g" ];
-    desktop = "sway";
+    desktop = "hyprland";
     system = "x86_64-linux";
     stateVersion = "24.05";
     configDir = ./cypher;

@@ -13,7 +13,6 @@ in
             {
               name = "vi";
               paths = [ cfg.package ];
-              buildInputs = [ pkgs.makeWrapper ];
 
               postBuild = ''
                 rm -f $out/bin/vi
@@ -29,7 +28,6 @@ in
             {
               name = "vim";
               paths = [ cfg.package ];
-              buildInputs = [ pkgs.makeWrapper ];
 
               postBuild = ''
                 rm -f $out/bin/vim

@@ -1,4 +1,7 @@
 { pkgs, outputs, lib, inputs, system, icons, ... }:
+let
+  inherit (builtins) fetchurl;
+in
 {
   programs = {
     alacritty.enable = true;
@@ -18,11 +21,6 @@
     ryujinx.enable = true;
     # vinegar.enable = true;
     ygo-omega.enable = true;
-
-
-    fastfetch.imageRandomizer = {
-      enable = true;
-    };
   };
 
   services.swayidle.settings.dpms.timeout = 3600;
