@@ -18,9 +18,14 @@
     ryujinx.enable = true;
     # vinegar.enable = true;
     ygo-omega.enable = true;
+
+
+    fastfetch.imageRandomizer = {
+      enable = true;
+    };
   };
 
-  services.swayidle.settings.dpms.timeout = 3600; # 1 hour
+  services.swayidle.settings.dpms.timeout = 3600;
   services.hypridle.dpms.timeout = 3600;
 
   # kanshi profiles

@@ -276,8 +276,8 @@ in
         type = types.package;
         default = inputs.vim-config.packages.${system}.default;
       };
-      viAlias = mkEnableOption "viAlias";
-      vimAlias = mkEnableOption "VimAlias";
+      viAlias = mkEnableOption "vi alias";
+      vimAlias = mkEnableOption "vim alias";
     };
 
     okular = mkProgramOption {

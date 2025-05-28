@@ -4,6 +4,9 @@
 - hypridle is not compatable with sway
 - each desktop will stop the other idle service if enabled at the same time
 - add basic abstraction layers for each service for easily programmable idle times
+- fix dpms on bug for multi-monitor setup in sway # https://github.com/swaywm/sway/issues/5101
+- swww reloads again on both sway and hyprland reload - name of service changed
+- utilize symlink join instead of programs.zsh.shellAliases for both neovim vi and vim aliases
 
 
 5-27-2025

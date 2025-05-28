@@ -45,7 +45,7 @@ in
             always = false;
           }
           {
-            command = "systemctl --user restart swww-daemon";
+            command = "systemctl --user restart swww";
             always = true;
           }
           # dont know why but kanshi seems to not restart properly when sway is reloaded

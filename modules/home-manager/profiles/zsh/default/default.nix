@@ -19,6 +19,7 @@ in
           l = if cfg.eza.enable then "${getExe cfg.eza.package} -al --icons" else "ls -al";
           ls = mkIf cfg.eza.enable "${getExe cfg.eza.package} --icons";
           lg = mkIf has-git "${getExe cfg.lazygit.package}";
+          ff = "fastfetch";
           g = mkIf has-git "${getExe cfg.git.package}";
           ga = mkIf has-git "${getExe cfg.git.package} add .";
           gco = mkIf has-git "${getExe cfg.git.package} checkout";

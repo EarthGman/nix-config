@@ -1,17 +1,44 @@
-{ lib, config, ... }:
+{ pkgs, lib, config, ... }:
 let
-  inherit (lib) mkIf mkForce;
+  inherit (lib) mkIf mkForce optionals;
   cfg = config.programs.neovim-custom;
 in
 {
   config = mkIf cfg.enable {
-    environment.systemPackages = [ cfg.package ];
-
     environment.variables.EDITOR = mkIf cfg.defaultEditor (mkForce "nvim");
-    # ah hackfixes
-    programs.zsh.shellAliases = {
-      vi = mkIf (cfg.viAlias) "nvim";
-      vim = mkIf (cfg.vimAlias) "nvim";
-    };
+
+    environment.systemPackages = [ cfg.package ]
+      ++ optionals cfg.viAlias
+      [
+        (
+          pkgs.symlinkJoin
+            {
+              name = "vi";
+              paths = [ cfg.package ];
+              buildInputs = [ pkgs.makeWrapper ];
+
+              postBuild = ''
+                rm -f $out/bin/vi
+                ln -s $out/bin/nvim $out/bin/vi
+              '';
+            }
+        )
+      ]
+      ++ optionals cfg.vimAlias
+      [
+        (
+          pkgs.symlinkJoin
+            {
+              name = "vim";
+              paths = [ cfg.package ];
+              buildInputs = [ pkgs.makeWrapper ];
+
+              postBuild = ''
+                rm -f $out/bin/vim
+                ln -s $out/bin/nvim $out/bin/vim
+              '';
+            }
+        )
+      ];
   };
 }

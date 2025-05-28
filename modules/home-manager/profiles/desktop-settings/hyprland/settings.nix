@@ -19,7 +19,7 @@ in
 
   # exec at every reload (Mod+r) by default
   exec = [
-    "systemctl --user restart swww-daemon"
+    "systemctl --user restart swww"
     "systemctl --user restart waybar"
   ];
 
