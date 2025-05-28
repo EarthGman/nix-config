@@ -15,6 +15,7 @@
   modules = {
     onepassword.enable = true;
     sops.enable = true;
+    bluetooth.enable = false;
   };
 
   profiles = {
@@ -24,5 +25,7 @@
   programs = {
     easyeffects.enable = false;
     helvum.enable = false;
+    glabels.enable = true;
+    zint.enable = true;
   };
 }

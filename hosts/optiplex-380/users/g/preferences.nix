@@ -15,8 +15,5 @@ in
     ghex.enable = false;
     discord.enable = false;
     obs-studio.enable = false;
-
-    glabels.enable = true;
-    zint.enable = true;
   };
 }
