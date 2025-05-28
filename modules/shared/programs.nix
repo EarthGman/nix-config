@@ -280,12 +280,6 @@ in
       vimAlias = mkEnableOption "VimAlias";
     };
 
-    obsidian = mkProgramOption {
-      programName = "obsidian";
-      description = "Note storage vault for .md";
-      inherit pkgs;
-    };
-
     okular = mkProgramOption {
       programName = "okular";
       packageName = "okular";
