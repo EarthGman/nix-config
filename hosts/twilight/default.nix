@@ -1,7 +1,8 @@
-{ self, outputs, pkgs, ... }:
+{ inputs, ... }:
 {
   imports = [
     ./disko.nix
+    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x230
   ];
 
   profiles.gman-pc.enable = true;
