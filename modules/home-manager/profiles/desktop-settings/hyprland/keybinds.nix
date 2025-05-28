@@ -50,7 +50,7 @@ in
   "${mainMod}, 7, workspace, 7"
   "${mainMod}, 8, workspace, 8"
   "${mainMod}, 9, workspace, 9"
-  "${mainMod}, 0, workspace, 0"
+  "${mainMod}, 0, workspace, 10"
 
   "${mainMod} SHIFT, 1, movetoworkspacesilent, 1"
   "${mainMod} SHIFT, 2, movetoworkspacesilent, 2"
