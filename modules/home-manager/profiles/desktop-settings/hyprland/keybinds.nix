@@ -61,7 +61,7 @@ in
   "${mainMod} SHIFT, 7, movetoworkspacesilent, 7"
   "${mainMod} SHIFT, 8, movetoworkspacesilent, 8"
   "${mainMod} SHIFT, 9, movetoworkspacesilent, 9"
-  "${mainMod} SHIFT, 0, movetoworkspacesilent, 0"
+  "${mainMod} SHIFT, 0, movetoworkspacesilent, 10"
 
   # "${mainMod}, S, togglespecialworkspace, magic"
   "${mainMod} SHIFT, S, movetoworkspace, special:magic"
