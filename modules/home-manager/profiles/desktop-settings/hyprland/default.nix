@@ -22,6 +22,7 @@ in
         dpms.timeout = mkDefault 300;
 
         settings.general = {
+          before_sleep_cmd = "hyprlock";
           after_sleep_cmd = "hyprctl dispatch dpms on";
           ignore_dbus_inhibit = false;
           lock_cmd = "hyprlock";
