@@ -1,6 +1,6 @@
 { pkgs, lib, config, ... }:
 let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf mkDefault;
 in
 {
   config = mkIf config.wayland.windowManager.sway.enable {
@@ -9,8 +9,15 @@ in
     ];
 
     home.sessionVariables = {
-      "_JAVA_AWT_WM_NONREPARENTING" = "1"; # fix white screen bug on sway
+      "_JAVA_AWT_WM_NONREPARENTING" = mkDefault "1"; # fix white screen bug for ghidra on sway
     };
+
+    wayland.windowManager.sway.config.startup = mkIf config.services.hypridle.enable
+      [
+        {
+          command = "systemctl --user stop hypridle";
+        }
+      ];
   };
 
 }

@@ -5,7 +5,6 @@ let
   inherit (lib) mkOption optionals getExe types mkEnableOption;
   cfg = config.services.swayidle;
   swaylock = getExe config.programs.swaylock.package;
-  swaymsg = "${config.wayland.windowManager.sway.package}/bin/swaymsg";
 in
 {
   options.services.swayidle.settings = {
@@ -36,39 +35,43 @@ in
   };
 
   config = {
-    services.swayidle = {
-      events =
-        optionals (cfg.settings.swaylock.before-sleep)
-          [
-            {
-              event = "before-sleep";
-              command = "${swaylock} -fF";
-            }
-          ];
-      timeouts =
-        optionals (cfg.settings.swaylock.timeout > 0)
-          [
-            {
-              timeout = cfg.settings.swaylock.timeout;
-              command = "${swaylock} -fF";
-            }
-          ] ++
-        optionals (cfg.settings.dpms.timeout > 0)
-          [
-            {
-              timeout = cfg.settings.dpms.timeout;
-              command = "${swaymsg} 'output * dpms off'";
-              resumeCommand = "${swaymsg} 'output * dpms on'";
-            }
-          ] ++
-        optionals
-          (cfg.settings.suspend.timeout > 0)
-          [
-            {
-              timeout = cfg.settings.suspend.timeout;
-              command = "${pkgs.systemd}/bin/systemctl suspend";
-            }
-          ];
-    };
+    services.swayidle =
+      let
+        swaymsg = "${config.wayland.windowManager.sway.package}/bin/swaymsg";
+      in
+      {
+        events =
+          optionals (cfg.settings.swaylock.before-sleep)
+            [
+              {
+                event = "before-sleep";
+                command = "${swaylock} -fF";
+              }
+            ];
+        timeouts =
+          optionals (cfg.settings.swaylock.timeout > 0)
+            [
+              {
+                timeout = cfg.settings.swaylock.timeout;
+                command = "${swaylock} -fF";
+              }
+            ] ++
+          optionals (cfg.settings.dpms.timeout > 0)
+            [
+              {
+                timeout = cfg.settings.dpms.timeout;
+                command = "${swaymsg} 'output * dpms off'";
+                resumeCommand = "${swaymsg} 'output * dpms on'";
+              }
+            ] ++
+          optionals
+            (cfg.settings.suspend.timeout > 0)
+            [
+              {
+                timeout = cfg.settings.suspend.timeout;
+                command = "${pkgs.systemd}/bin/systemctl suspend";
+              }
+            ];
+      };
   };
 }

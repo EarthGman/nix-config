@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ config, lib, ... }:
 let
   inherit (lib) mkOption types mkDefault mkIf;
   cfg = config.stylix;

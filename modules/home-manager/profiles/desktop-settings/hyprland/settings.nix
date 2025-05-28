@@ -56,7 +56,7 @@ in
   };
 
   animations = {
-    enabled = true;
+    enabled = mkDefault true;
     bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
 
     animation = [

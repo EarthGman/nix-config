@@ -6,12 +6,12 @@ let
 in
 {
   config = mkIf (cfg.sway.default.enable || cfg.i3.default.enable) {
-    programs = {
+    programs = mkIf (config.xsession.windowManager.i3.enable || config.wayland.windowManager.sway.enable) {
       pwvucontrol = enabled;
       rofi = enabled;
     };
 
-    services = {
+    services = mkIf (config.xsession.windowManager.i3.enable || config.wayland.windowManager.sway.enable) {
       hyprland-window-emulator = enabled;
       polkit-gnome = enabled;
       dunst = enabled;

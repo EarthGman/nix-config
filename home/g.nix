@@ -94,6 +94,7 @@ in
       };
     };
     hyprland.settings = {
+      animations.enabled = false;
       input.left_handed = true;
       # bind = [
       #   "Alt, Space, exec, rofi -show window"

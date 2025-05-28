@@ -24,7 +24,7 @@ in
     cpu = "intel";
     gpu = "intel";
     users = [ "g" ];
-    desktop = "sway";
+    desktop = "hyprland";
     system = "x86_64-linux";
     configDir = ./twilight;
   };

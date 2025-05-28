@@ -8,6 +8,8 @@ in
   options.profiles.waybar.default.enable = mkEnableOption "default waybar profile";
 
   config = mkIf cfg.enable {
+    services.network-manager-applet.enable = true;
+    services.blueman-applet.enable = true;
     stylix.targets.waybar.enable = true;
     programs.waybar = {
       bottomBar.settings = import ./bottom.nix { inherit pkgs lib config scripts; };

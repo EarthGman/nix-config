@@ -1,3 +1,11 @@
+5-28-2025
+- add swayidle and hypridle
+- swayidle is not compatable with hyprland
+- hypridle is not compatable with sway
+- each desktop will stop the other idle service if enabled at the same time
+- add basic abstraction layers for each service for easily programmable idle times
+
+
 5-27-2025
 - add more profiles to home-manager
 - add custom.wallpaper option to home-manager

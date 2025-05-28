@@ -21,6 +21,7 @@
   };
 
   services.swayidle.settings.dpms.timeout = 3600; # 1 hour
+  services.hypridle.dpms.timeout = 3600;
 
   # kanshi profiles
   services.kanshi = {

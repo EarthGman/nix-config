@@ -15,5 +15,11 @@ in
     home.packages = with pkgs; [
       wl-clipboard
     ];
+
+    # if swayidle is somehow enabled on hyprland then stop it
+    wayland.windowManager.hyprland.settings.exec-once = mkIf config.services.swayidle.enable
+      [
+        "systemctl --user stop swayidle"
+      ];
   };
 }
