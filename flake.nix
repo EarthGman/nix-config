@@ -21,8 +21,6 @@
       nixosConfigurations = import ./hosts { inherit lib; };
       homeConfigurations = import ./home { inherit lib; };
 
-      lxcTemplates = import ./templates/lxc;
-
       packages."x86_64-linux" = {
         mc112 = lib.mkLXC {
           template = "minecraft";
@@ -131,5 +129,4 @@
       flake = false;
     };
   };
-
 }

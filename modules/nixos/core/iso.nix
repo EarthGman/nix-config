@@ -4,7 +4,7 @@ let
   iso = if args ? iso then args.iso else false;
   desktop = if args ? desktop then args.desktop else null;
   inherit (lib) mkEnableOption mkIf;
-  cfg = config.profiles.iso;
+  cfg = config.modules.iso;
 
   installerProfile =
     if iso then
@@ -17,7 +17,7 @@ let
 in
 {
   imports = installerProfile;
-  options.profiles.iso.enable = mkEnableOption "installer module";
+  options.modules.iso.enable = mkEnableOption "installer module";
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       disko

@@ -29,6 +29,7 @@ in
       binaries = fromJSON (readFile inputs.binaries.outPath);
     in
     lib.nixosSystem {
+      inherit system;
       specialArgs = {
         inherit self system inputs outputs lib wallpapers icons binaries hostName bios cpu gpu users desktop server vm iso stateVersion;
       };
@@ -49,7 +50,6 @@ in
         in
         [
           nixosModules
-          (self + /modules/nixos/unexposed/hardware.nix)
           { profiles.default.enable = true; }
         ]
         ++ nixosUsers
@@ -97,7 +97,7 @@ in
 
   mkLXC =
     { inputs ? self.inputs
-    , template ? null # exact name of the .nix file found under templates/lxc
+    , template ? "default" # server profile to enable from modules/nixos/profiles/server
     , extraConfig ? null # Path to additional modules file
     , system ? "x86_64-linux"
     , stateVersion ? "25.05"
@@ -105,7 +105,7 @@ in
     , ...
     }:
     let
-      inherit (lib) optionals;
+      inherit (lib) optionals mkForce;
     in
     nixosGenerate {
       inherit format system;
@@ -115,13 +115,17 @@ in
       modules = [
         (outputs.nixosModules)
         {
+          modules.bootloaders = {
+            grub.enable = mkForce false;
+            systemd-boot.enable = mkForce false;
+          };
           profiles = {
-            proxmox-lxc.enable = true;
             default.enable = true;
+            server.default.enable = true;
+            server.${template}.enable = true;
           };
         }
       ] ++
-      optionals (template != null) [ outputs.lxcTemplates.${template} ] ++
       optionals (extraConfig != null) [ extraConfig ];
     };
 }

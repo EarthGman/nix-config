@@ -2,7 +2,7 @@
 let
   server = if args ? server then args.server else false;
   inherit (lib) mkDefault mkEnableOption mkIf;
-  cfg = config.profiles.server;
+  cfg = config.profiles.server.default;
   srvos =
     if server then
       [ inputs.srvos.nixosModules.server ]
@@ -12,10 +12,9 @@ in
 {
   imports = srvos;
 
-  options.profiles.server.enable = mkEnableOption "my personal default server profile";
+  options.profiles.server.default.enable = mkEnableOption "my personal default server profile";
 
   config = mkIf cfg.enable {
-    time.timeZone = "America/Chicago";
 
     # debloat
     environment.defaultPackages = [ ];
@@ -42,14 +41,6 @@ in
     };
 
     # use systemd boot, less bloated than grub
-    modules.bootloaders.systemd-boot.enable = true;
-    boot = {
-      kernelParams = [ "quiet" "noatime" ];
-      tmp.cleanOnBoot = true;
-      loader = {
-        efi.canTouchEfiVariables = mkDefault (bios == "UEFI");
-        systemd-boot.enable = true;
-      };
-    };
+    modules.bootloaders.systemd-boot.enable = mkDefault true;
   };
 }

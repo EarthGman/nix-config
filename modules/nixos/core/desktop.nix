@@ -5,13 +5,12 @@ let
   inherit (lib) mkDefault optionals;
   enabled = { enable = mkDefault true; };
   inherit (lib) mkEnableOption mkIf;
-  cfg = config.profiles.desktop;
+  cfg = config.modules.desktop;
 in
 {
-  options.profiles.desktop.enable = mkEnableOption "desktop module";
+  options.modules.desktop.enable = mkEnableOption "desktop module";
   config = mkIf cfg.enable {
     boot = {
-      tmp.cleanOnBoot = true;
       extraModulePackages = [
         # for obs virtual camera
         config.boot.kernelPackages.v4l2loopback
@@ -40,7 +39,6 @@ in
 
     security.polkit.enable = mkDefault true; # graphical prompt for sudo
 
-    # forces qt dark theme since qt apps dont work well with stylix
     qt = {
       enable = mkDefault true;
       platformTheme = mkDefault "gnome";

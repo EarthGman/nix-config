@@ -1,5 +1,14 @@
-{ outputs, pkgs, lib, config, ... }:
+{ outputs, pkgs, lib, config, ... }@args:
 let
+  hostName = if args ? hostName then args.hostName else "";
+  cpu = if args ? cpu then args.cpu else null;
+  vm = if args ? vm then args.vm else false;
+  server = if args ? server then args.server else false;
+  iso = if args ? iso then args.iso else false;
+  desktop = if args ? desktop then args.desktop else null;
+  stateVersion = if args ? stateVersion then args.stateVersion else "";
+  system = if args ? system then args.system else null;
+
   inherit (lib) mkIf mkEnableOption mkForce mkDefault autoImport;
   cfg = config.profiles.default;
 in
@@ -12,27 +21,40 @@ in
       direnv.enable = mkDefault true;
       ssh.enable = mkDefault true;
       nh.enable = mkDefault true;
+
+      iso.enable = iso;
+      desktop.enable = desktop != null;
+      qemu-guest.enable = vm;
     };
 
-    services.dbus.implementation = "broker";
+    system = mkIf (stateVersion != "") {
+      inherit stateVersion;
+    };
 
     profiles = {
-      tmux.default.enable = mkDefault true;
+      tmux. default. enable = mkDefault true;
       zsh.default.enable = mkDefault true;
+
+      server.default.enable = mkDefault server;
     };
 
     documentation.nixos.enable = mkDefault false;
+    services.dbus.implementation = "broker";
 
     users.users."root".shell = pkgs.zsh;
     users.mutableUsers = mkDefault false;
 
     hardware.enableRedistributableFirmware = mkDefault true;
 
+    hardware.cpu.${cpu}.updateMicrocode = mkIf (!vm)
+      (mkDefault config.hardware.enableRedistributableFirmware);
+
     boot.kernelPackages = mkDefault pkgs.linuxPackages_latest;
 
     networking = {
       wireless.enable = mkForce false;
       networkmanager.enable = true;
+      hostName = mkIf (hostName != "") hostName;
     };
 
     nix = {
@@ -44,8 +66,9 @@ in
     };
 
     nixpkgs = {
-      overlays = (builtins.attrValues outputs.overlays);
+      overlays = builtins.attrValues outputs.overlays;
       config.allowUnfree = true;
+      hostPlatform = mkIf (system != null) system;
     };
 
     time.timeZone = mkDefault "America/Chicago";

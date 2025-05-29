@@ -25,6 +25,8 @@
     blacklist mei_me
   '';
 
+  boot.loader.grub.gfxmodeBios = "1366x768";
+
   services.displayManager.sddm.themeConfig = {
     FullBlur = "false";
     PartialBlur = "false";
