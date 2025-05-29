@@ -35,6 +35,7 @@ in
     xdg.portal = {
       enable = mkDefault true;
       extraPortals = mkDefault [ pkgs.xdg-desktop-portal ];
+      xdgOpenUsePortal = true;
     };
 
     security.polkit.enable = mkDefault true; # graphical prompt for sudo

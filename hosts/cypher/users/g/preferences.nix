@@ -3,8 +3,13 @@ let
   inherit (builtins) fetchurl;
 in
 {
+  stylix.targets = {
+    cava = {
+      enable = true;
+      rainbow.enable = true;
+    };
+  };
   programs = {
-    alacritty.enable = true;
     prismlauncher.package = inputs.prismlauncher.packages.${system}.default;
     zint.enable = true;
     gparted.enable = true;
@@ -23,7 +28,7 @@ in
     ygo-omega.enable = true;
   };
 
-  services.swayidle.settings.dpms.timeout = 3600;
+  services.swayidle.settings.dpms.timeout = 0;
   services.hypridle.dpms.timeout = 3600;
 
   # kanshi profiles
