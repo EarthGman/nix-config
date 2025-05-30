@@ -32,7 +32,7 @@ in
     };
 
     profiles = {
-      tmux. default. enable = mkDefault true;
+      tmux.default.enable = mkDefault true;
       zsh.default.enable = mkDefault true;
 
       server.default.enable = mkDefault server;
@@ -75,12 +75,9 @@ in
 
     environment.systemPackages = with pkgs; [
       btop
-      efibootmgr
-      powertop
       fzf
       sysz
       file
-      cifs-utils
       ncdu
       nix-prefetch-git
       hstr

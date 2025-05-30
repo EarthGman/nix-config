@@ -97,11 +97,12 @@ in
 
   mkLXC =
     { inputs ? self.inputs
-    , template ? "default" # server profile to enable from modules/nixos/profiles/server
+    , template # server profile to enable from modules/nixos/profiles/server
     , extraConfig ? null # Path to additional modules file
     , system ? "x86_64-linux"
     , stateVersion ? "25.05"
     , format ? "proxmox-lxc"
+    , personal ? false # whether to enable my personal server profile
     , ...
     }:
     let
@@ -114,6 +115,7 @@ in
       };
       modules = [
         (outputs.nixosModules)
+        (inputs.srvos.nixosModules.server)
         {
           modules.bootloaders = {
             grub.enable = mkForce false;
@@ -123,6 +125,7 @@ in
             default.enable = true;
             server.default.enable = true;
             server.${template}.enable = true;
+            server.personal.enable = personal;
           };
         }
       ] ++

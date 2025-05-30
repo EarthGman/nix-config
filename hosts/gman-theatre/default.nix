@@ -1,4 +1,4 @@
-{ self, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 {
 
   imports = [
@@ -6,6 +6,7 @@
   ];
 
   profiles.wg0.enable = true;
+  profiles.server.personal.enable = true;
 
   modules.nh.enable = false;
   modules.sops.enable = true;
@@ -18,6 +19,7 @@
     enable = true;
     openFirewall = true;
   };
+
   services.jellyseerr = {
     enable = true;
     openFirewall = true;

@@ -1,7 +1,8 @@
-{ inputs, outputs, config, modulesPath, lib, system, bios, ... }@args:
+{ inputs, config, lib, ... }@args:
 let
   server = if args ? server then args.server else false;
-  inherit (lib) mkDefault mkEnableOption mkIf;
+  system = if args ? system then args.system else "x86_64-linux";
+  inherit (lib) mkDefault mkOverride mkEnableOption mkIf;
   cfg = config.profiles.server.default;
   srvos =
     if server then
@@ -12,21 +13,20 @@ in
 {
   imports = srvos;
 
-  options.profiles.server.default.enable = mkEnableOption "my personal default server profile";
+  options.profiles.server.default.enable = mkEnableOption "default server profile";
 
   config = mkIf cfg.enable {
 
     # debloat
     environment.defaultPackages = [ ];
     #boot.initrd.includeDefaultModules = false;
-    hardware.enableRedistributableFirmware = mkDefault false;
-
-    users.users."root" = {
-      openssh.authorizedKeys.keys = mkDefault [ outputs.keys.g_pub ];
-    };
+    hardware.enableRedistributableFirmware = false;
 
     # make sure clean doesn't leave any unnecessary nixos configurations
     programs = {
+      git.enable = mkOverride 800 false;
+      lazygit.enable = mkOverride 800 false;
+      nh.enable = mkOverride 800 false;
       neovim-custom = {
         package = mkDefault inputs.vim-config.packages.${system}.nvim-lite;
       };

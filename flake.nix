@@ -25,15 +25,18 @@
         mc112 = lib.mkLXC {
           template = "minecraft";
           extraConfig = ./hosts/mc112;
+          personal = true;
         };
 
         mc112-blueprints = lib.mkLXC {
           template = "minecraft";
           extraConfig = ./hosts/mc-blueprints;
+          personal = true;
         };
 
         docker-env = lib.mkLXC {
           template = "docker-env";
+          personal = true;
         };
       };
     };
@@ -42,7 +45,7 @@
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.0.tar.gz";
 
     nixos-generators = {
-      url = "github:nix-community/nixos-generators";
+      url = "https://flakehub.com/f/nix-community/nixos-generators/*";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -66,7 +69,7 @@
     };
 
     stylix = {
-      url = "github:danth/stylix";
+      url = "https://flakehub.com/f/nix-community/stylix/*";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
@@ -102,15 +105,16 @@
 
     vim-config = {
       url = "github:EarthGman/vim-config";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     disko = {
-      url = "github:nix-community/disko";
+      url = "https://flakehub.com/f/nix-community/disko/*";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     sops-nix = {
-      url = "github:Mic92/sops-nix";
+      url = "https://flakehub.com/f/Mic92/sops-nix/*";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
