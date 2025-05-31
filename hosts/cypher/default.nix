@@ -1,8 +1,8 @@
 { pkgs, inputs, outputs, wallpapers, ... }:
 {
   imports = [
-    ./fs.nix
     ./sddm.nix
+    ./disko
     inputs.determinate.nixosModules.default
   ];
 
