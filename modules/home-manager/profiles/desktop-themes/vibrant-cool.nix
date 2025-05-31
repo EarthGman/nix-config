@@ -10,8 +10,7 @@ in
     stylix.colorScheme = "vibrant-cool";
 
     programs = {
-      firefox.theme.name = "shyfox";
-      firefox.theme.config.wallpaper = builtins.fetchurl wallpapers.get-mooned;
+      firefox.themes.shyfox.config.wallpaper = builtins.fetchurl wallpapers.get-mooned;
     };
   };
 }

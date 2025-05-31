@@ -92,6 +92,7 @@ in
       bat = enableProfile "bat";
       dunst = enableProfile "dunst";
       fastfetch = enableProfile "fastfetch";
+      firefox = enableProfile "firefox";
       kitty = enableProfile "kitty";
       rofi = enableProfile "rofi";
       swaylock = enableProfile "swaylock";
@@ -135,6 +136,7 @@ in
         # browsers
         firefox.enable = mkDefault (cfg.browser == "firefox");
         brave.enable = mkDefault (cfg.browser == "brave");
+
         # file managers
         nautilus.enable = mkDefault (cfg.fileManager == "nautilus");
         yazi.enable = mkDefault (cfg.fileManager == "yazi");

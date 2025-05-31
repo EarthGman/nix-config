@@ -9,9 +9,6 @@ in
   config = mkIf cfg.enable {
     custom.wallpaper = mkForce (fetchurl wallpapers.hallownest-bench);
 
-    programs.firefox.theme = {
-      name = "shyfox";
-      config.wallpaper = fetchurl wallpapers.ghost-and-hornet;
-    };
+    programs.firefox.themes.shyfox.config.wallpaper = fetchurl wallpapers.ghost-and-hornet;
   };
 }

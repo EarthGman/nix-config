@@ -15,9 +15,9 @@ in
     essentials.enable = mkDefault true;
   };
 
-  # custom = {
-  #   fileManager = "yazi";
-  # };
+  custom = {
+    profiles.firefox = "shyfox";
+  };
 
   programs = {
     git = {

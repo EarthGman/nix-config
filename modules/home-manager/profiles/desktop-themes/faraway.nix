@@ -8,8 +8,7 @@ in
   options.profiles.desktopThemes.faraway.enable = mkEnableOption "faraway desktop theme from OMORI";
   config = mkIf cfg.enable {
     programs = {
-      firefox.theme.name = "shyfox";
-      firefox.theme.config.wallpaper = fetchurl wallpapers.a-home-for-flowers;
+      firefox.themes.shyfox.config.wallpaper = fetchurl wallpapers.a-home-for-flowers;
       fastfetch.image = fetchurl icons.oops;
       waybar = {
         theme = "faraway";

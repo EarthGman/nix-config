@@ -9,7 +9,7 @@ in
   options.profiles.alacritty.tranq.enable = mkEnableOption "tranq's alacritty config";
   config = mkIf cfg.enable {
     stylix.targets.alacritty.enable = mkForce false;
-    home.packages = with pkgs; [ nerd-fonts.sauce-code-pro ];
+    home.packages = mkIf config.programs.alacritty.enable (with pkgs; [ nerd-fonts.sauce-code-pro ]);
     programs.alacritty = {
       enable = true;
       settings = lib.mkDefault {

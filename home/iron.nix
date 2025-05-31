@@ -6,6 +6,8 @@
 
   profiles.essentials.enable = true;
 
+  custom.profiles.firefox = "shyfox";
+
   programs.git = {
     userName = "IronCutlass";
     userEmail = "nogreenink@gmail.com";

@@ -23,6 +23,7 @@ in
           alacritty = default;
           bat = default;
           fastfetch = default;
+          firefox = default;
           dunst = default;
           kitty = default;
           rofi = default;

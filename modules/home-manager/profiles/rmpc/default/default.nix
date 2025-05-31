@@ -8,7 +8,7 @@ in
   options.profiles.rmpc.default.enable = mkEnableOption "default rmpc profile";
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ nerd-fonts.meslo-lg ];
+    home.packages = mkIf config.programs.rmpc.enable (with pkgs; [ nerd-fonts.meslo-lg ]);
 
     programs.rmpc.config = readFile ./config.ron;
 

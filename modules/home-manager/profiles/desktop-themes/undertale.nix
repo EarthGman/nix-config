@@ -11,9 +11,7 @@ in
     stylix.colorScheme = "faraway";
 
     programs = {
-      #tobyfox
-      firefox.theme.name = "shyfox";
-      firefox.theme.config.wallpaper = fetchurl wallpapers.mt-ebott-alt;
+      firefox.themes.shyfox.config.wallpaper = fetchurl wallpapers.mt-ebott-alt;
 
       fastfetch = {
         settings.logo = {

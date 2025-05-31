@@ -10,8 +10,7 @@ in
     stylix.colorScheme = "headspace";
 
     programs = {
-      firefox.theme.name = "shyfox";
-      firefox.theme.config.wallpaper = builtins.fetchurl wallpapers.headspace-dark;
+      firefox.themes.shyfox.config.wallpaper = builtins.fetchurl wallpapers.headspace-dark;
       waybar.theme = "headspace";
       vscode.userSettings = {
         editor = {

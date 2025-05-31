@@ -13,8 +13,7 @@ in
 
     programs = {
       fastfetch.image = builtins.fetchurl icons.kaori;
-      firefox.theme.name = "shyfox";
-      firefox.theme.config.wallpaper = builtins.fetchurl wallpapers.april-night;
+      firefox.themes.shyfox.config.wallpaper = builtins.fetchurl wallpapers.april-night;
 
       waybar.theme = "april";
     };

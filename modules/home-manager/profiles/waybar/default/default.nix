@@ -8,6 +8,7 @@ in
   options.profiles.waybar.default.enable = mkEnableOption "default waybar profile";
 
   config = mkIf cfg.enable {
+    home.packages = mkIf config.programs.waybar.enable (with pkgs; [ nerd-fonts.meslo-lg ]);
     services.network-manager-applet.enable = true;
     services.blueman-applet.enable = true;
     stylix.targets.waybar.enable = true;

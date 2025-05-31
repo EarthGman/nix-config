@@ -7,7 +7,7 @@ in
   options.profiles.kitty.default.enable = mkEnableOption "default kitty profile";
   config = mkIf cfg.enable {
     # ensure font is installed
-    home.packages = [
+    home.packages = mkIf config.programs.kitty.enable [
       pkgs.nerd-fonts.meslo-lg
     ];
 

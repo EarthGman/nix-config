@@ -13,8 +13,7 @@ in
     };
 
     programs = {
-      firefox.theme.name = "shyfox";
-      firefox.theme.config.wallpaper = builtins.fetchurl wallpapers.fire-and-flames;
+      firefox.themes.shyfox.config.wallpaper = builtins.fetchurl wallpapers.fire-and-flames;
 
       waybar.theme = "inferno";
     };

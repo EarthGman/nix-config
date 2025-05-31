@@ -8,10 +8,7 @@ in
   options.profiles.desktopThemes.cosmos.enable = mkEnableOption "cosmos desktop theme";
   config = mkIf cfg.enable {
     programs = {
-      firefox.theme = {
-        name = "shyfox";
-        config.wallpaper = fetchurl wallpapers.pixel-earth;
-      };
+      firefox.themes.shyfox.config.wallpaper = fetchurl wallpapers.pixel-earth;
     };
 
     custom.wallpaper = fetchurl wallpapers.space-piano;

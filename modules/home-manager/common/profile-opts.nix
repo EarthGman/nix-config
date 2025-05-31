@@ -28,6 +28,12 @@ in
     default = "";
   };
 
+  firefox = mkOption {
+    type = types.str;
+    description = "firefox profile to use";
+    default = "";
+  };
+
   kitty = mkOption {
     type = types.str;
     description = "kitty profile to use";

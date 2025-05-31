@@ -8,10 +8,7 @@ in
   options.profiles.desktopThemes.celeste.enable = mkEnableOption "celeste desktop theme";
   config = mkIf cfg.enable {
     programs = {
-      firefox.theme = {
-        name = "shyfox";
-        config.wallpaper = fetchurl wallpapers.celeste-chill;
-      };
+      firefox.themes.shyfox.config.wallpaper = fetchurl wallpapers.celeste-chill;
 
       fastfetch.imageRandomizer = {
         enable = true;
