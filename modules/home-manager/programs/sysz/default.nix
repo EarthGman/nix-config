@@ -1,17 +1,17 @@
 { pkgs, lib, config, ... }:
 let
   inherit (lib) mkProgramOption mkIf;
-  program-name = "program-name";
+  program-name = "sysz";
   cfg = config.programs.${program-name};
 in
 {
   options.programs.${program-name} = mkProgramOption {
     programName = program-name;
-    description = "describe program-name";
+    description = "systemd fuzzy finder";
     inherit pkgs;
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [ cfg.package ];
+    home.packages = [ cfg.package ];
   };
 }

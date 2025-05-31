@@ -34,6 +34,8 @@ in
     profiles = {
       tmux.default.enable = mkDefault true;
       zsh.default.enable = mkDefault true;
+      cli-tools.enable = mkDefault true;
+      hardware-tools.enable = mkDefault true;
 
       server.default.enable = mkDefault server;
     };
@@ -74,26 +76,12 @@ in
     time.timeZone = mkDefault "America/Chicago";
 
     environment.systemPackages = with pkgs; [
-      btop
-      fzf
-      sysz
       file
-      ncdu
       nix-prefetch-git
-      hstr
-      inxi
       psmisc
       zip
       unzip
-      usbutils
-      pciutils
-      lshw
       lsof
-      fd
-      jq
-      tldr
-      lynx
-      ripgrep
     ];
 
     programs = {

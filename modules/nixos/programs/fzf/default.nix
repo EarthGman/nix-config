@@ -1,13 +1,13 @@
 { pkgs, lib, config, ... }:
 let
   inherit (lib) mkProgramOption mkIf;
-  program-name = "program-name";
+  program-name = "fzf";
   cfg = config.programs.${program-name};
 in
 {
   options.programs.${program-name} = mkProgramOption {
     programName = program-name;
-    description = "describe program-name";
+    description = "fuzzy finder";
     inherit pkgs;
   };
 

@@ -122,6 +122,7 @@ in
             systemd-boot.enable = mkForce false;
           };
           profiles = {
+            hardware-tools.enable = false;
             default.enable = true;
             server.default.enable = true;
             server.${template}.enable = true;

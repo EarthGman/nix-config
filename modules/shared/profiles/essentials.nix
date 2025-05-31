@@ -8,7 +8,7 @@ in
 {
   options.profiles.essentials.enable = mkEnableOption "essentials for linux desktop";
   config = mkIf cfg.enable {
-
+    profiles.cli-tools.enable = true;
     # browser, file manager, and terminal are enabled using the custom attribute set
     # by default these enable: firefox, nautilus, and kitty
     programs = {
