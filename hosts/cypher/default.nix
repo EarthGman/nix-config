@@ -2,7 +2,7 @@
 {
   imports = [
     ./sddm.nix
-    ./disko
+    ./disko.nix
     inputs.determinate.nixosModules.default
   ];
 
@@ -36,6 +36,11 @@
     softdep amdgpu pre: vfio-pci
     softdep nvidia pre: vfio-pci
   '';
+
+  fileSystems."/home/g/games" = {
+    device = "/dev/disk/by-label/games";
+    fsType = "ext4";
+  };
 
   # boot.binfmt.emulatedSystems = [
   #   "aarch64-linux"

@@ -51,7 +51,10 @@ in
     hardware.cpu.${cpu}.updateMicrocode = mkIf (!vm)
       (mkDefault config.hardware.enableRedistributableFirmware);
 
-    boot.kernelPackages = mkDefault pkgs.linuxPackages_latest;
+    boot = {
+      kernelPackages = mkDefault pkgs.linuxPackages_latest;
+      tmp.cleanOnBoot = mkDefault true;
+    };
 
     networking = {
       wireless.enable = mkForce false;

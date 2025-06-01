@@ -17,6 +17,7 @@ in
       search = {
         default = mkDefault "ddg"; # DuckDuckGo
         engines = import ./search-engines.nix { inherit pkgs icons; };
+        force = true;
       };
 
       extraConfig = builtins.readFile (pkgs.betterfox + "/user.js");

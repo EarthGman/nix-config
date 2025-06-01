@@ -49,9 +49,9 @@ in
     gpu = "intel";
     bios = "legacy";
     users = [ "g" ];
-    desktop = "sway";
+    desktop = "hyprland";
     system = "x86_64-linux";
-    stateVersion = "25.05";
+    stateVersion = "25.11";
     configDir = ./optiplex-380;
   };
 

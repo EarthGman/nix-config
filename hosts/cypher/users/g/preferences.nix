@@ -1,14 +1,8 @@
-{ pkgs, outputs, lib, inputs, system, icons, ... }:
+{ inputs, config, system, ... }:
 let
-  inherit (builtins) fetchurl;
+  mkOutOfStoreSymlink = config.lib.file.mkOutOfStoreSymlink;
 in
 {
-  stylix.targets = {
-    cava = {
-      enable = true;
-      rainbow.enable = true;
-    };
-  };
   programs = {
     prismlauncher.package = inputs.prismlauncher.packages.${system}.default;
     zint.enable = true;
@@ -28,6 +22,16 @@ in
     ygo-omega.enable = true;
   };
 
+  xdg.dataFile = {
+    "PrismLauncher".source = mkOutOfStoreSymlink "/home/g/games/PrismLauncher";
+    "Terraria".source = mkOutOfStoreSymlink "/home/g/games/SteamLibrary/game-saves/Terraria";
+  };
+
+  xdg.configFile = {
+    "StardewValley".source = mkOutOfStoreSymlink "/home/g/games/SteamLibrary/game-saves/StardewValley";
+    "unity3d/Pugstorm/Core\ Keeper".source = mkOutOfStoreSymlink "/home/g/games/SteamLibrary/game-saves/Core\ Keeper";
+  };
+
   services.swayidle.settings.dpms.timeout = 0;
   services.hypridle.dpms.timeout = 3600;
 
@@ -35,7 +39,7 @@ in
   services.kanshi = {
     enable = true;
     settings = [
-      # https://gitlab.freedesktop.org/xorg/xserver/-/issues/899 It is impressive how screwed up xwayland is
+      # https://gitlab.freedesktop.org/xorg/xserver/-/issues/899
       {
         profile.name = "home";
         profile.outputs = [
