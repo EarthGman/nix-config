@@ -23,10 +23,12 @@ in
         bind -n S-Right next-window
 
         set -g @dracula-show-powerline true
-        set -g @dracula-show-edge-icons true
         set -g @dracula-show-left-icon " #h"
-        set -g @dracula-plugins "cpu-usage ram-usage time"
+        set -g @dracula-plugins "battery cpu-usage ram-usage time"
         set -g @dracula-military-time true
+        set -g @dracula-no-battery-label false
+        set -g @dracula-battery-label false
+        set -g @dracula-show-battery-status true
 
         # Smart pane switching with awareness of Vim splits.
         # See: https://github.com/christoomey/vim-tmux-navigator
