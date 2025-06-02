@@ -55,7 +55,6 @@ in
     ghex = enabled;
     museeks = enabled;
     moonlight = enabled;
-    nautilus.enable = true;
     okular.enable = true;
     obs-studio = enabled;
     prismlauncher = enabled;

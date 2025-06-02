@@ -10,7 +10,7 @@ in
   config = mkIf config.profiles.default.enable {
     custom = {
       terminal = mkDefault "kitty";
-      fileManager = mkDefault "nautilus";
+      fileManager = mkDefault "dolphin";
       editor = mkDefault "nvim";
       browser = mkDefault "firefox";
 
@@ -64,6 +64,7 @@ in
       };
       starship.enable = mkDefault true;
       git.enable = mkDefault true;
+      tmux.enable = mkDefault true;
       bat.enable = mkDefault true;
       eza.enable = mkDefault true;
       zsh.enable = mkDefault true;

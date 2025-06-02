@@ -12,18 +12,22 @@ in
       clock24 = mkDefault true;
       baseIndex = mkDefault 1;
       plugins = with pkgs.tmuxPlugins; [
-        catppuccin
+        dracula
         # vim-tmux-navigator
       ];
       extraConfig = ''
         set -g mouse on
         set -g allow-passthrough on
-        unbind r
-        bind r source-file /etc/tmux.conf
         set-option -g status-position top
         bind -n S-Left previous-window
         bind -n S-Right next-window
-    
+
+        set -g @dracula-show-powerline true
+        set -g @dracula-show-edge-icons true
+        set -g @dracula-show-left-icon " #h"
+        set -g @dracula-plugins "cpu-usage ram-usage time"
+        set -g @dracula-military-time true
+
         # Smart pane switching with awareness of Vim splits.
         # See: https://github.com/christoomey/vim-tmux-navigator
         is_vim="ps -o state= -o comm= -t '#{pane_tty}' \

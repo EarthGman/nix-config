@@ -139,6 +139,7 @@ in
 
         # file managers
         nautilus.enable = mkDefault (cfg.fileManager == "nautilus");
+        dolphin.enable = mkDefault (cfg.fileManager == "dolphin");
         yazi.enable = mkDefault (cfg.fileManager == "yazi");
 
         #terminals

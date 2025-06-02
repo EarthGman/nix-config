@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ pkgs, lib, config, ... }:
 let
   inherit (lib) mkIf mkEnableOption;
 in
@@ -22,5 +22,8 @@ in
         };
       };
     };
+    environment.systemPackages = with pkgs; [
+      wl-clipboard
+    ];
   };
 }

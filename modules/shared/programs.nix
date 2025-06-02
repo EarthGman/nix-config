@@ -97,6 +97,12 @@ in
       inherit pkgs;
     };
 
+    dolphin = mkProgramOption {
+      programName = "dolphin";
+      description = "kde file manager";
+      pkgs = pkgs.kdePackages;
+    };
+
     dosbox = mkProgramOption {
       programName = "dosbox";
       description = "emulator for DOS";

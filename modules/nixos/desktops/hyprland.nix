@@ -10,9 +10,12 @@ in
       withUWSM = true;
     };
     xdg.portal.configPackages = [ pkgs.xdg-desktop-portal-hyprland ];
-    environment.sessionVariables = {
-      WLR_NO_HARDWARE_CURSORS = "1";
-      # NIXOS_OZONE_WL = "1";
+    environment = {
+      systemPackages = [ pkgs.wl-clipboard ];
+      sessionVariables = {
+        WLR_NO_HARDWARE_CURSORS = "1";
+        # NIXOS_OZONE_WL = "1";
+      };
     };
   };
 }
