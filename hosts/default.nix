@@ -49,7 +49,7 @@ in
     gpu = "intel";
     bios = "legacy";
     users = [ "g" ];
-    desktop = "hyprland";
+    desktop = "sway";
     system = "x86_64-linux";
     stateVersion = "25.11";
     configDir = ./optiplex-380;
