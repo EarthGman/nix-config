@@ -12,6 +12,8 @@
   nix.settings.trusted-users = [ "g" ];
   zramSwap.enable = true;
 
+  services.openssh.settings.PasswordAuthentication = true;
+
   modules = {
     onepassword.enable = true;
     sops.enable = true;
