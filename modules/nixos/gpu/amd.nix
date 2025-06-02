@@ -11,12 +11,15 @@ in
     ];
     services = {
       xserver.videoDrivers = [ "amdgpu" ];
-      lact.enable = mkDefault true; # somehow not in nixpkgs, found in /modules/nixos/services/lact
+      lact.enable = mkDefault true;
     };
-    hardware.graphics = {
-      extraPackages = with pkgs; [
-        libvdpau-va-gl
-      ];
+    hardware = {
+      amdgpu.overdrive.enable = mkDefault true;
+      graphics = {
+        extraPackages = with pkgs; [
+          libvdpau-va-gl
+        ];
+      };
     };
   };
 }

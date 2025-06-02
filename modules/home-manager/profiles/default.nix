@@ -10,7 +10,7 @@ in
   config = mkIf config.profiles.default.enable {
     custom = {
       terminal = mkDefault "kitty";
-      fileManager = mkDefault "dolphin";
+      fileManager = mkDefault "nautilus";
       editor = mkDefault "nvim";
       browser = mkDefault "firefox";
 

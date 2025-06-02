@@ -7,5 +7,9 @@
       clean.enable = true;
       clean.extraArgs = lib.mkDefault "--keep-since 4d --keep 3";
     };
+    environment.variables = {
+      # https://github.com/nix-community/nh/issues/305
+      NH_NO_CHECKS = "1";
+    };
   };
 }

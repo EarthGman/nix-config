@@ -11,7 +11,10 @@ in
     home.packages = mkIf config.programs.waybar.enable (with pkgs; [ nerd-fonts.meslo-lg ]);
     services.network-manager-applet.enable = true;
     services.blueman-applet.enable = true;
-    stylix.targets.waybar.enable = true;
+    stylix.targets.waybar = {
+      enable = true;
+      addCss = false;
+    };
     programs.waybar = {
       bottomBar.settings = import ./bottom.nix { inherit pkgs lib config scripts; };
       style = builtins.readFile ./style.css;

@@ -12,7 +12,7 @@
     {
       inherit lib;
       keys = import ./keys.nix;
-      overlays = import ./overlays.nix { inherit inputs; };
+      overlays = import ./overlays.nix { inherit inputs nixpkgs; };
 
       nixosModules = import ./modules/nixos { inherit inputs outputs lib; };
       homeModules = import ./modules/home-manager { inherit inputs outputs lib; };
