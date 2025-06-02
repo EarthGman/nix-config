@@ -6,11 +6,6 @@ in
 {
   options.programs.waybar = {
     imperativeConfig = mkEnableOption "enable imperative configuration for waybar";
-    theme = mkOption {
-      description = "theme for waybar";
-      type = types.str;
-      default = "default";
-    };
     topBar.settings = mkOption {
       description = "configuration for the top waybar";
       type = types.anything;
@@ -33,7 +28,6 @@ in
           cfg.topBar.settings
           cfg.bottomBar.settings
         ];
-      style = builtins.readFile ./themes/${cfg.theme}/style.css;
     };
   };
 }

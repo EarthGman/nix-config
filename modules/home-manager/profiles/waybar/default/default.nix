@@ -14,6 +14,7 @@ in
     stylix.targets.waybar.enable = true;
     programs.waybar = {
       bottomBar.settings = import ./bottom.nix { inherit pkgs lib config scripts; };
+      style = builtins.readFile ./style.css;
     };
     xdg.configFile = mkIf (!config.programs.waybar.imperativeConfig) {
       "waybar/settings-menu.xml" = {

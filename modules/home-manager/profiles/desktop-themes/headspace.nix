@@ -11,7 +11,6 @@ in
 
     programs = {
       firefox.themes.shyfox.config.wallpaper = builtins.fetchurl wallpapers.headspace-dark;
-      waybar.theme = "headspace";
       vscode.userSettings = {
         editor = {
           "fontFamily" = mkForce "'OMORI_GAME'";

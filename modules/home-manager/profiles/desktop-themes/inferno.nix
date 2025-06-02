@@ -14,8 +14,6 @@ in
 
     programs = {
       firefox.themes.shyfox.config.wallpaper = builtins.fetchurl wallpapers.fire-and-flames;
-
-      waybar.theme = "inferno";
     };
   };
 }

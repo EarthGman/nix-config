@@ -11,7 +11,6 @@ in
       firefox.themes.shyfox.config.wallpaper = fetchurl wallpapers.a-home-for-flowers;
       fastfetch.image = fetchurl icons.oops;
       waybar = {
-        theme = "faraway";
         bottomBar.settings = {
           "cpu".format = mkForce "  {usage}%";
           "memory".format = mkForce "  {percentage}%";

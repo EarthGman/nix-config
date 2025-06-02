@@ -14,8 +14,6 @@ in
     programs = {
       fastfetch.image = builtins.fetchurl icons.kaori;
       firefox.themes.shyfox.config.wallpaper = builtins.fetchurl wallpapers.april-night;
-
-      waybar.theme = "april";
     };
   };
 }
