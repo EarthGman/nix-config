@@ -11,6 +11,10 @@ let
 
   inherit (lib) mkIf mkEnableOption mkForce mkDefault autoImport;
   cfg = config.profiles.default;
+
+  nixos-update = pkgs.writeShellScriptBin "nixos-update" ''
+    sudo nixos-rebuild switch --flake github:earthgman/nix-config
+  '';
 in
 {
   imports = autoImport ./.;
@@ -79,6 +83,7 @@ in
     time.timeZone = mkDefault "America/Chicago";
 
     environment.systemPackages = with pkgs; [
+      nixos-update
       file
       nix-prefetch-git
       psmisc

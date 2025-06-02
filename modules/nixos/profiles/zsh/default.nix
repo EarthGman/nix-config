@@ -29,7 +29,6 @@ in
           nrt = if (has-nh) then "${getExe cfg.nh.package} os test $(readlink -f /etc/nixos)" else "sudo nixos-rebuild test --flake $(readlink -f /etc/nixos)";
           nrb = "nixos-rebuild build";
           ncg = if (has-nh) then "${getExe cfg.nh.package} clean all" else "sudo nix-collect-garbage -d";
-          nixos-update = "sudo nixos-rebuild switch --flake github:earthgman/nix-config";
         };
 
       promptInit = ''

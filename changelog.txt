@@ -1,3 +1,19 @@
+6-02-2025
+- move nixos-update to shellScriptBin instead of a shellAlias for zsh
+
+
+6-01-2025
+- replace catpucchin tmux with dracula tmux
+- add CPU RAM and battery modules to tmux
+- removed old waybar themes
+- prevent stylix from adding unnecessary css to waybar
+- set environment variable NH_NO_CHECKS=1 as a temporary solution to "please enable nix-command and flakes" even if it is enabled
+- update flake to linux 6.15
+- resolved issues with nautilus and gvfs as a result of the flake update
+- added dolphin as a filemanager option to nixos and HM through programs.dolphin.enable
+- replace services.lact for the one in nixpkgs
+
+
 5-28-2025
 - add swayidle and hypridle
 - swayidle is not compatable with hyprland
