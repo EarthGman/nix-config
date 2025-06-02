@@ -28,6 +28,7 @@
     easyeffects.enable = false;
     helvum.enable = false;
     glabels.enable = true;
+    libreoffice.enable = true;
     zint.enable = true;
   };
 }
