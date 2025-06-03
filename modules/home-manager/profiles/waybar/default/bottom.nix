@@ -63,7 +63,7 @@ in
   };
 
   "custom/os_button" = {
-    format = "  ";
+    format = mkDefault "  ";
     on-click = "rofi -show";
     tooltip = false;
   };

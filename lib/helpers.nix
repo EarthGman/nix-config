@@ -92,7 +92,7 @@ in
         profile
       ];
       extraSpecialArgs =
-        { inherit self inputs outputs username hostName desktop wallpapers icons binaries server vm iso system stateVersion; };
+        { inherit self inputs outputs lib username hostName desktop wallpapers icons binaries server vm iso system stateVersion; };
     };
 
   mkLXC =
