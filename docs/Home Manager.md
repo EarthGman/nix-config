@@ -30,7 +30,7 @@ Paste the following into a flake.nix:
 	    inherit (nix-config) lib;
 	  in
 	  {
-	    nixosConfigurations = { 
+	    homeConfigurations = { 
 	      "bob@nixos" = lib.mkHome {
 		    username = "bob";
 		    hostName = "archlinux";
@@ -43,5 +43,9 @@ Paste the following into a flake.nix:
 	  };
 ```
 
+Create the directory path and nix file specified in the "profile" key in the root of your flake.
 
+Here you will specify options that will be consumed by home-manager, and each system can have a different home configuration entirely. Just specify a different.nix file.
 
+**Default config will most likely not work out of the box depending on the distribution.
+Certain system services and packages may need to be installed manually.

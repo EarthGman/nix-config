@@ -37,15 +37,15 @@ Sway with Undertale theme:
 
 If you want to try my config for yourself, Here are two methods of doing so:
 
-NixOS - *insert docs link here*
+NixOS - https://github.com/EarthGman/nix-config/blob/main/docs/NixOS.md
 
-Home-manager standalone - *insert docs link here*
+Home-manager standalone - https://github.com/EarthGman/nix-config/blob/main/docs/Home%20Manager.md
 
 # Extra information
 
-creating and using your own installation media - *insert docs link here*
+creating and using your own installation media - https://github.com/EarthGman/nix-config/blob/main/docs/Install%20media.md
 
-Creating and managing NixOS and home-manager modules and profiles - *insert docs link here*
+Creating and managing NixOS and home-manager modules and profiles - https://github.com/EarthGman/nix-config/blob/main/docs/Profile%20Management.md
 
 ------------------------------------------------------------------------
 # Known Issues - Last updated: 5-21-2025

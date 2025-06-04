@@ -158,3 +158,182 @@ In order to append your own inputs to this key I have added an inputs key to mkH
 ```
 
 If you want to references your own flake "outputs" within your nix modules simply repeat this process replacing the word inputs with outputs. 
+
+------------------------------------------------------------------------
+# Home-manager
+
+My nix config comes with home-manager enabled by default which can be enabled/disable with modules.home-manager.enable in NixOS. Every user specified under the users key of mkHost will have a configuration automatically generated for them.
+
+You can add extra configuration via a home-manager profile. However, in order to do this you will need to set a nixos option "home-manager.profilesDir" which takes a nix path. You should probably put this in a shared module between all of your machines. I have mine set to /home (relative to the nix flake project, not /home on your filesystem). Within the specified directory add a .nix file for any user you want to configure. This file will contain custom configuration for your user. For reference, this is the config for my main user g:
+
+```nix
+{ self, outputs, config, pkgs, lib, hostName, ... }:
+let
+  inherit (lib) mkDefault;
+  enabled = { enable = mkDefault true; };
+  signingkey = outputs.keys.g_pub;
+  LHmouse = builtins.toFile "lh-mouse.xmodmap" "pointer = 3 2 1";
+  extraHM = self + /hosts/${hostName}/users/g/preferences.nix;
+in
+{
+  imports = lib.optionals (builtins.pathExists extraHM) [
+    extraHM
+  ];
+
+  profiles = {
+    essentials.enable = mkDefault true;
+  };
+
+  custom = {
+    profiles.firefox = "shyfox";
+  };
+
+  programs = {
+    git = {
+      userName = "EarthGman";
+      userEmail = "EarthGman@protonmail.com";
+      signing = {
+        key = signingkey;
+        signByDefault = true;
+        signer = "";
+      };
+      extraConfig = {
+        gpg.format = "ssh";
+        gpg."ssh".program = "${pkgs._1password-gui}/bin/op-ssh-sign";
+        init.defaultBranch = "main";
+      };
+    };
+    zsh = {
+      shellAliases = {
+        edit-config = "cd ~/src/nix-config && $EDITOR .";
+      };
+      initContent = ''
+        export MANPAGER='nvim +Man!'
+      '';
+    };
+    neovim-custom = {
+      viAlias = true;
+      vimAlias = true;
+    };
+    rmpc = enabled;
+    bottles = enabled;
+    bustle = enabled;
+    freetube = enabled;
+    filezilla = enabled;
+    gcolor = enabled;
+    ghex = enabled;
+    museeks = enabled;
+    moonlight = enabled;
+    okular.enable = true;
+    obs-studio = enabled;
+    prismlauncher = enabled;
+    discord = enabled;
+
+    mov-cli = {
+      enable = true;
+      plugins = [ pkgs.mov-cli-youtube ];
+    };
+
+    # fun and useless
+    pipes = enabled;
+    cbonsai = enabled;
+    cmatrix = enabled;
+    cava = enabled;
+    sl = enabled;
+  };
+
+  programs.ssh = {
+    enable = true;
+    forwardAgent = true;
+    extraConfig = "IdentityAgent ${config.home.homeDirectory}/.1password/agent.sock";
+  };
+
+  xsession.windowManager.i3.config.startup = [
+    {
+      command = "${lib.getExe pkgs.xorg.xmodmap} ${LHmouse}";
+      always = true;
+      notification = false;
+    }
+  ];
+  wayland.windowManager = {
+    sway.config.input = {
+      "type:pointer" = {
+        left_handed = "enabled";
+      };
+    };
+    hyprland.settings = {
+      animations.enabled = false;
+      input.left_handed = true;
+    };
+  };
+}
+```
+
+You can also specify extra home-manager configuration in your /hosts/(hostname)/users/(username) folder for configuration specific to that host (such as for a multi monitor setup)
+
+```
+{ outputs, pkgs, config, lib, ... }:
+let
+  username = "g";
+in
+{
+  sops.secrets.${username}.neededForUsers = true;
+  users.users.${username} = {
+    initialPassword = "";
+    hashedPasswordFile = lib.mkIf (config.sops.secrets ? ${username}) config.sops.secrets.${username}.path;
+    password = null;
+    isNormalUser = true;
+    openssh.authorizedKeys.keys = [ outputs.keys.g_pub ];
+    shell = pkgs.zsh;
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "libvirtd"
+      "qemu-libvirtd"
+      "wireshark"
+      "docker"
+      "adbusers"
+    ];
+  };
+  
+  home-manager.users.g = {
+    services.kanshi = {
+	    enable = true;
+	    settings = [
+	      # https://gitlab.freedesktop.org/xorg/xserver/-/issues/899
+	      {
+	        profile.name = "home";
+	        profile.outputs = [
+	          {
+	            criteria = "LG Electronics LG HDR 4K 0x0007B5B9";
+	            position = "1920,0";
+	            mode = "2560x1440@59.951Hz";
+	          }
+	          {
+	            criteria = "Sceptre Tech Inc Sceptre F24 0x01010101";
+	            position = "0,0";
+	            mode = "1920x1080@100Hz";
+	          }
+	        ];
+	      }
+	      {
+	        profile.name = "school";
+	        profile.outputs = [
+	          {
+	            criteria = "Philips Consumer Electronics Company PHL BDM4350 0x000005E8";
+	            position = "1920,0";
+	            mode = "2560x1440@59.95Hz";
+	          }
+	          {
+	            criteria = "Sceptre Tech Inc E24 0x01010101";
+	            position = "0,0";
+	            mode = "1920x1080@74.97Hz";
+	          }
+	        ];
+	      }
+	    ];
+	  };
+  };
+}
+
+```
