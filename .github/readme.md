@@ -1,14 +1,17 @@
-^=^=^=^ EarthGman's NixOS flake ❄️ v5 ^=^=^=^
+**EarthGman's NixOS Flake ❄️ V6**
 
 Features
 -  consumable modules
 -  pre-configured zsh, neovim, yazi, tmux, desktops, and others.
 -  sops support
 -  active support for gnome, i3, sway, and hyprland
+-  create and set custom profiles for each host or user in your configuration.
 -  access to various images, fonts and more. https://github.com/EarthGman/assets
--  extended package and lib function set. https://github.com/EarthGman/nix-library
+-  additional packages and nix functions. https://github.com/EarthGman/nix-library
 
-This NixOS configuration is designed to serve as an extension to nixpkgs, providing more lib functions, program, service, module, and profile options for pre-configured desktops, terminals, shells, neovim, and more. Easily consumable by others who are new to NixOS or just want a working system without having to learn nix or maintain a configuration repository themselves. 
+This NixOS configuration is designed to serve as an extension to nixpkgs, providing more lib functions, program, service, module, and profile options for pre-configured desktops, terminals, shells, neovim, and more. Easy to consume and setup from your own nixos flake. 
+
+Good for beginners to NixOS and serves as demo to show just how much can be done with the distribution.
 
 ------------------------------------------------------------------------
 # Showcase
@@ -23,124 +26,30 @@ Sway with Undertale theme:
 
 ------------------------------------------------------------------------
 # Getting Started
-**Note**: This configuration is specifically designed with NixOS in mind. It has been tested on x86_64-linux and aarch64-linux, but as of now, nix-darwin has no support. It is possible to create standalone home-manager configurations using my home-manager modules on other Linux distributions or MacOS. I do not recommend this however, as home-manager on its own is not that great. The reasoning behind this statement will be explained later.
+**Note**: This configuration is specifically designed with NixOS in mind. It has been tested on x86_64-linux and aarch64-linux, but as of now, nix-darwin has no support. It is possible to create standalone home-manager configurations using my home-manager modules on other Linux distributions or MacOS. I do not recommend this however, as home-manager on its own is not that great. The reasoning behind this statement will be explained within the home-manager standalone installation guide.
 
 **Prerequisites**:
-- Basic experience with Linux and knowledge of many Linux terms.
+- Basic experience with Linux and system management.
 
 - experience with an editor such as: vscode, zed, neovim, emacs, etc as you will be working with many configuration files.
 
-- A fresh NixOS installation. Download the graphical ISO from nixos.org and begin the installation process. Ensure that you allow unfree software.
-
 - Time, patience, and the ability to learn a functional programming language with bad documentation. 
-# Installation
 
-From your freshly installed NixOS run 'sudo su' to gain root privileges. Navigate to the /etc/nixos directory and create a new file there called "flake.nix". For this I'll be using vim but nano is also acceptable. NixOS doesn't come preinstalled with Vim, but you can temporarily install it with
+If you want to try my config for yourself, Here are two methods of doing so:
 
-```bash
-nix-shell -p vim
-```
+NixOS - *insert docs link here*
 
-Inside of your flake.nix paste the following code:
+Home-manager standalone - *insert docs link here*
 
-```nix
-{
-    description = "my nix configurations";
-    
-	inputs = {
-	  nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-	
-	  nix-config = {
-	    url = "github:earthgman/nix-config";
-	    inputs.nixpkgs.follows = "nixpkgs";
-	  };
-	};
-	
-	outputs = { nix-config, ... }:
-	  let
-	    inherit (nix-config) lib;
-	  in
-	  {
-	    nixosConfigurations = { 
-	      nixos = lib.mkHost {
-	      
-	      };
-	    };
-	  };
-}
-```
+# Extra information
 
-You will then need to add various arguments to the mkHost function depending on the purpose or type of machine you are configuring. Here are the possible keys and values:
+creating and using your own installation media - *insert docs link here*
 
-```nix
-  {
-    hostName # any string
-    cpu # "amd" or "intel"
-    gpu # "amd" "nvidia" or "intel"
-    bios # "legacy" or "UEFI"
-    users # array consisting of all "normal" users on the system
-    desktop # "gnome" "i3" "sway" or "hyprland"
-    server # true or false
-    iso # true or false
-    vm # true or false
-    system # "x86_64-linux"
-    stateVersion # "25.11"
-    configDir # nix path to the configuration directory for this host
-  }
-```
-
-This function serves as a high level wrapper for lib.nixosSystem which is the function responsible for reading nix configurations and building your system. The values passed into this function are used to toggle various modules based on the values specified.
-
-Example:
-```nix
-nixos = lib.mkHost {
-  hostName = "nixos";
-  bios = "UEFI"; # double check which firmware your VM uses
-  users = [ "bob" ];
-  desktop = "gnome";
-  vm = true;
-  system = "x86_64-linux";
-  stateVersion = "25.11";
-  configDir = ./hosts/nixos;
-};
-```
-
-Here we have created a default configuration template for a qemu/kvm x86_64 virtual machine running NixOS 25.11 and UEFI firmware with 1 user "bob".
-
-Next you will need to:
-- rm the configuration.nix file
-- mkdir -p hosts/nixos (or the hostname of your choosing, must match exactly)
-- mv hardware-configuration.nix hosts/nixos/default.nix
-- If you specificed anything under the users key: mkdir -p hosts/nixos/users/bob (or your user's name) and then create a default.nix in this directory.
-- Now use your editor to create the user:
-
-```nix
-{ pkgs, ...}:
-{
-  users.users.bob = {
-    isNormalUser = true; # must be set for non system users
-    extraGroups = [ "wheel" ]; # allow sudo for this user
-    shell = pkgs.zsh; # better than bash
-    password = "super-secure-password"; 
-  };
-}
-```
-
-If for some reason the hardware-configuration.nix file does not exist, you can run nixos-generate-config to regenerate it.
-
- The important parts of this file are "boot.initrd.availableKernelModules" and "filesystems"
-because they are options specific to this host's hardware. The other options aren't important and can be removed or just left alone as they will be overwritten by the nix-config modules anyway.
-
-And that is all you need for the basic setup. Now run
-
-```bash
-nixos-rebuild switch --flake /etc/nixos
-```
-
-# End of basic setup - write the rest of this later
+Creating and managing NixOS and home-manager modules and profiles - *insert docs link here*
 
 ------------------------------------------------------------------------
 # Known Issues - Last updated: 5-21-2025
+
 - NixOS is kind of bloated, especially if you use a lot of flakes. Flakes often place many copies of source repositories such as nixpkgs or install many copies of a program into the nix store. Each copy of nixpkgs placed into your nix store takes up ~420MB and this will only get worse as the repository grows in size. But then again, you paid for the whole disk right?
 
 - On sway (possibly other wayland sessions that use the wlroots xdg-desktop-portal) If you have multiple monitors and want to screenshare via vesktop. It will ask you to pick a monitor.
