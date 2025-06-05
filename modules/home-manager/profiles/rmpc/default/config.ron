@@ -4,6 +4,7 @@
 (
     cache_dir: Some("/tmp/rmpc-cache"),
     theme: Some("default"),
+    enable_mouse: true,
 
     tabs: [
     (
