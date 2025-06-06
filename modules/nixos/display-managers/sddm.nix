@@ -39,6 +39,9 @@ in
     services.displayManager = {
       inherit defaultSession;
       sddm = {
+        themeConfig = {
+          AllowUppercaseLettersInUsernames = mkDefault "true";
+        };
         enable = true;
         package = pkgs.kdePackages.sddm;
         wayland.enable = true;

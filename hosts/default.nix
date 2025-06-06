@@ -55,6 +55,16 @@ in
     configDir = ./optiplex-380;
   };
 
+  HP-G71340US = mkHost {
+    hostName = "HP-G71340US";
+    cpu = "intel";
+    gpu = "intel";
+    bios = "legacy";
+    users = [ "that1stranger" ];
+    desktop = "gnome";
+    configDir = ./HP-G71340US;
+  };
+
   # Thunder's desktops
   somnus = mkHost {
     hostName = "somnus";
