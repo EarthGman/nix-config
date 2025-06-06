@@ -1,8 +1,9 @@
 # Warning: installerprofile from nixpkgs depends on an iso special argument to import
-{ pkgs, lib, config, modulesPath, ... }@args:
+{ inputs, pkgs, lib, config, modulesPath, ... }@args:
 let
   iso = if args ? iso then args.iso else false;
   desktop = if args ? desktop then args.desktop else null;
+  system = if args ? system then args.system else "x86_64-linux";
   inherit (lib) mkEnableOption mkIf;
   cfg = config.modules.iso;
 
@@ -22,6 +23,7 @@ in
     environment.systemPackages = with pkgs; [
       disko
     ];
+    programs.neovim-custom.package = inputs.vim-config.packages.${system}.nvim-lite;
     users.users.root = {
       # for SSH
       password = "123";

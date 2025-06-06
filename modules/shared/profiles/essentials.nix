@@ -20,6 +20,7 @@ in
       libreoffice = enabled; # free version of office
       gimp = enabled; # image editor
       gthumb = enabled; # image viewer
+      gparted = enabled; # disk partitioning tool
       evince = enabled; # pdf viewer
       vlc = enabled; # video player
       # gscan2pdf = enabled; # document scanner - broken in nixos-unstable 1-10-2025
