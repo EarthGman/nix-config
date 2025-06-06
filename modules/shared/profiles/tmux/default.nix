@@ -12,7 +12,6 @@ in
       clock24 = mkDefault true;
       baseIndex = mkDefault 1;
       plugins = with pkgs.tmuxPlugins; [
-        dracula
         # vim-tmux-navigator
       ];
       extraConfig = ''
@@ -29,6 +28,8 @@ in
         set -g @dracula-no-battery-label false
         set -g @dracula-battery-label false
         set -g @dracula-show-battery-status true
+
+        run-shell ${pkgs.tmuxPlugins.dracula}/share/tmux-plugins/dracula/dracula.tmux
 
         # Smart pane switching with awareness of Vim splits.
         # See: https://github.com/christoomey/vim-tmux-navigator
