@@ -12,10 +12,16 @@ in
 
     programs.rmpc.config = readFile ./config.ron;
 
-    xdg.configFile."rmpc/themes/default.ron" = {
-      enable = true;
-      text = readFile ./theme.ron;
-    };
+    xdg.configFile."rmpc/themes/default.ron" =
+      let
+        cfg = config.programs.rmpc;
+      in
+      mkIf
+        (cfg.enable && !cfg.imperativeConfig)
+        {
+          enable = true;
+          text = readFile ./theme.ron;
+        };
   };
 }
 

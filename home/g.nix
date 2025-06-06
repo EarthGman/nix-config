@@ -53,7 +53,6 @@ in
     filezilla = enabled;
     gcolor = enabled;
     ghex = enabled;
-    museeks = enabled;
     moonlight = enabled;
     okular.enable = true;
     obs-studio = enabled;
