@@ -148,7 +148,6 @@ in
       inherit pkgs;
     };
 
-
     gimp = mkProgramOption {
       programName = "gimp";
       description = "open source image editor";
@@ -291,6 +290,12 @@ in
       packageName = "okular";
       description = "pdf viewer for KDE plasma";
       pkgs = pkgs.kdePackages;
+    };
+
+    openboardview = mkProgramOption {
+      programName = "openboardview";
+      description = "board viewer";
+      pkgs = pkgs;
     };
 
     openconnect = mkProgramOption {
