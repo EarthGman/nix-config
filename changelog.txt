@@ -1,5 +1,9 @@
 6-06-2025
 - fix tmux sourcing issue with the dracula theme plugin
+- install old HP laptop
+- add openboardviewer to programs
+- add disko modules to templates
+- sops module now properly defaults sops.age.keyFile so it can be changed by other flakes
 
 
 6-02-2025
