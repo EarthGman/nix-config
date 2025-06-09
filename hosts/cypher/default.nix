@@ -1,4 +1,4 @@
-{ pkgs, inputs, outputs, wallpapers, ... }:
+{ pkgs, inputs, wallpapers, ... }:
 {
   imports = [
     ./sddm.nix

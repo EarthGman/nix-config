@@ -4,8 +4,11 @@ let
   cfg = config.profiles.desktops.gnome.default;
 in
 {
-  options.profiles.desktops.gnome.default.enable = mkEnableOption "gnome desktop configuration";
-  config = mkIf cfg.enable {
+  options = {
+    modules.desktops.gnome.enable = mkEnableOption "enable gnome module";
+    profiles.desktops.gnome.default.enable = mkEnableOption "gnome desktop configuration";
+  };
+  config = mkIf (cfg.enable && config.modules.desktops.gnome.enable) {
     dconf.settings = import ./dconf.nix;
     programs.ghostty.settings.gtk-titlebar = true;
     home.packages = (with pkgs.gnomeExtensions; [

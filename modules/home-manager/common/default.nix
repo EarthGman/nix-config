@@ -1,20 +1,6 @@
 { outputs, pkgs, lib, config, wallpapers, ... }:
 let
-  inherit (lib) optionals mkOption types mkIf mkDefault;
-  # alacritty =
-  #    if (cfg.alacritty != "") then {
-  #       ${cfg.alacritty}.enable = true;
-  #    } else { };
-  #
-  enableDesktopProfile = profile:
-    let
-      cfg = config.custom.profiles.desktops;
-    in
-    if (cfg.${profile} != "" && cfg.${profile} != null) then
-      {
-        ${cfg.${profile}}.enable = true;
-      }
-    else { };
+  inherit (lib) optionals mkOption types mkDefault;
 
   enableProfile = profile:
     let
@@ -25,7 +11,6 @@ let
         ${cfg.${profile}}.enable = true;
       }
     else { };
-
 in
 {
   imports = [ ./xsession.nix ];
@@ -107,17 +92,12 @@ in
       waybar = enableProfile "waybar";
       zsh = enableProfile "zsh";
 
-      # the one black sheep
-      desktopThemes =
-        if (config.custom.profiles.desktopTheme != "") then {
-          ${config.custom.profiles.desktopTheme}.enable = true;
-        }
-        else { };
+      desktopThemes = enableProfile "desktopTheme";
 
       desktops = {
-        i3 = enableDesktopProfile "i3";
-        sway = enableDesktopProfile "sway";
-        hyprland = enableDesktopProfile "hyprland";
+        i3 = enableProfile "i3";
+        sway = enableProfile "sway";
+        hyprland = enableProfile "hyprland";
       };
     };
 

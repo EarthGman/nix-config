@@ -12,7 +12,7 @@ let
 in
 {
   imports = autoImport ./.;
-  profiles.desktops.gnome.default.enable = mkDefault gnome;
+  modules.desktops.gnome.enable = mkDefault gnome;
   xsession.windowManager.i3.enable = i3;
   wayland.windowManager = {
     sway.enable = sway;

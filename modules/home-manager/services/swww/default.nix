@@ -1,7 +1,7 @@
 { inputs, pkgs, lib, config, system, ... }:
 let
   inherit (lib) mkEnableOption mkOption mkIf mkForce types concatStringsSep mapAttrsToList getExe;
-  inherit (pkgs) writeScript;
+  inherit (pkgs) writeShellScript;
 
   cfg = config.services.swww;
 in
@@ -119,30 +119,26 @@ in
 
     systemd.user.services =
       let
-        bash = "${getExe pkgs.bash}";
-
         multi-monitor = monitors: ''
           ${concatStringsSep "\n" (mapAttrsToList (monitor: settings: "swww img -o ${monitor} ${settings.image}") monitors)}  
         '';
 
-        daemon-postup = writeScript "swww-daemon-postup.sh" ''
-          #!${bash}
+        daemon-postup = writeShellScript "swww-daemon-postup.sh" ''
           userid=$(id -u)
           socket_path="/run/user/$userid/swww-wayland-1.sock"
 
           for (( i=1; i<=30; i++ )); do
             if [ -e "$socket_path" ]; then
-              systemctl --user restart swww-wallpaper
+              systemctl --user restart swww-wallpaper-manager
               exit 0
             fi
             sleep 0.1
           done
         '';
 
-        set-wallpaper = writeScript "swww.sh" ''
-          #!${bash}
+        set-wallpaper = writeShellScript "swww.sh" ''
           ${if cfg.monitors != { } then ''
-            ${multi-monitor cfg.monitors}     					 
+            ${multi-monitor cfg.monitors}
           ''
           else if (cfg.slideshow.enable) then ''
             images=(${toString (concatStringsSep " " cfg.slideshow.images)})
@@ -174,12 +170,14 @@ in
       {
         swww.Service = {
           # Incorporate the HM service with my addons
+          # forces xrgb, not really an issue for me rn but may come up?
           ExecStart = mkForce "${cfg.package}/bin/swww-daemon --no-cache -f xrgb";
           ExecStartPost = "${daemon-postup}";
           Environment = "PATH=${config.home.homeDirectory}/.nix-profile/bin";
         };
 
-        swww-wallpaper = {
+        # kind of hacky but eh it works I guess
+        swww-wallpaper-manager = {
           Service = {
             Type = "simple";
             Environment = "PATH=${config.home.homeDirectory}/.nix-profile/bin";
@@ -190,7 +188,7 @@ in
                 "${set-wallpaper}";
           };
           Unit = {
-            Description = "Set wallpaper using swww";
+            Description = "Manage wallpapers automatically using swww";
           };
         };
       };

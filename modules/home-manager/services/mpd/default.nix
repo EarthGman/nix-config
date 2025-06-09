@@ -4,8 +4,10 @@ let
   cfg = config.services.mpd;
 in
 {
+  # these aren't included by default in the home-manager module and are needed by programs.rmpc
   home.sessionVariables = mkIf cfg.enable {
-    "MPD_HOST" = "/tmp/mpd_socket";
+    "MPD_HOST" = cfg.network.listenAddress;
+    "MPD_PORT" = cfg.network.port;
   };
 
   services.mpd = {

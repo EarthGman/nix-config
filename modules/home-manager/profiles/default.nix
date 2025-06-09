@@ -40,11 +40,10 @@ in
           stylix = default;
           desktopTheme = mkDefault "cosmos";
 
-          desktops = {
-            i3 = default;
-            sway = default;
-            hyprland = default;
-          };
+          i3 = default;
+          sway = default;
+          hyprland = default;
+          gnome = default;
         };
     };
 

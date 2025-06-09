@@ -5,11 +5,7 @@ let
   script = import ./script.nix { inherit pkgs config fetchurl wallpapers getExe; };
 in
 {
-  options.services.omori-calendar-project.enable = lib.mkEnableOption ''
-    enable the omori calendar project service, auto detects the month every day at 12AM and will set a wallpaper from the Omori Calendar Project
-    designed for use by outputs.homeProfiles.desktopThemes.faraway but can be used as a standalone
-    Warning: will overrwrite all other monitor wallpaper configuration slideshows and or multi monitor setups
-  '';
+  options.services.omori-calendar-project.enable = lib.mkEnableOption "omori calendar project service";
   config = lib.mkIf config.services.omori-calendar-project.enable {
     systemd.user.timers."omori-calendar-project" = {
       Unit = {
@@ -44,6 +40,7 @@ in
     programs.feh.enable = mkForce true;
 
     # for wayland
+    # the swww module checks if this service is enabled. If true then it will point to it instead of the default wallpaper managment service
     services.swww.enable = mkForce true;
 
 

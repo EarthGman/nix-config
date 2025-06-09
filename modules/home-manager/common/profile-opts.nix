@@ -112,27 +112,28 @@ in
     default = "";
   };
 
-  desktops = {
-    gnome = mkOption {
-      type = types.str;
-      description = "gnome profile to use";
-      default = "";
-    };
-    i3 = mkOption {
-      type = types.str;
-      description = "i3 profile to use";
-      default = "";
-    };
-    sway = mkOption {
-      type = types.str;
-      description = "sway profile to use";
-      default = "";
-    };
-    hyprland = mkOption {
-      type = types.str;
-      description = "hyprland profile to use";
-      default = "";
-    };
+  gnome = mkOption {
+    type = types.str;
+    description = "gnome profile to use";
+    default = "";
+  };
+
+  i3 = mkOption {
+    type = types.str;
+    description = "i3 profile to use";
+    default = "";
+  };
+
+  sway = mkOption {
+    type = types.str;
+    description = "sway profile to use";
+    default = "";
+  };
+
+  hyprland = mkOption {
+    type = types.str;
+    description = "hyprland profile to use";
+    default = "";
   };
 
   desktopTheme = mkOption {
