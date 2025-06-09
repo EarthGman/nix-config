@@ -1,6 +1,6 @@
-{ pkgs, lib, config, ... }:
+{ self, pkgs, lib, config, ... }:
 let
-  inherit (lib) mkDefault mkEnableOption getExe optionalString mkIf;
+  inherit (lib) mkDefault mkEnableOption optionalString mkIf;
   cfg = config.programs;
 in
 {
@@ -11,25 +11,7 @@ in
       enableCompletion = mkDefault true;
       syntaxHighlighting.enable = mkDefault true;
       autosuggestions.enable = mkDefault true;
-      shellAliases =
-        let
-          has-nh = config.programs.nh.enable;
-          has-git = config.programs.git.enable;
-        in
-        {
-          l = "ls -al";
-          g = mkIf has-git "${getExe cfg.git.package}";
-          t = "${getExe pkgs.tree}";
-          lg = mkIf has-git "${getExe cfg.lazygit.package}";
-          ga = mkIf has-git "g add .";
-          gco = mkIf has-git "g checkout";
-          gba = mkIf has-git "g branch -a";
-          cat = mkIf (cfg.bat.enable) "${getExe cfg.bat.package}";
-          nrs = if (has-nh) then "${getExe cfg.nh.package} os switch $(readlink -f /etc/nixos)" else "sudo nixos-rebuild switch --flake $(readlink -f /etc/nixos)";
-          nrt = if (has-nh) then "${getExe cfg.nh.package} os test $(readlink -f /etc/nixos)" else "sudo nixos-rebuild test --flake $(readlink -f /etc/nixos)";
-          nrb = "nixos-rebuild build";
-          ncg = if (has-nh) then "${getExe cfg.nh.package} clean all" else "sudo nix-collect-garbage -d";
-        };
+      shellAliases = import (self + "/modules/shared/shell-aliases.nix") { inherit pkgs lib config; };
 
       promptInit = ''
         setopt autocd

@@ -24,6 +24,7 @@ in
           bat = default;
           fastfetch = default;
           firefox = default;
+          fish = default;
           dunst = default;
           kitty = default;
           rofi = default;

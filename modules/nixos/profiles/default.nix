@@ -38,6 +38,7 @@ in
     profiles = {
       tmux.default.enable = mkDefault true;
       zsh.default.enable = mkDefault true;
+      fish.default.enable = mkDefault true;
       cli-tools.enable = mkDefault true;
       hardware-tools.enable = mkDefault true;
 
@@ -100,6 +101,7 @@ in
         vimAlias = mkDefault true;
         defaultEditor = mkDefault true;
       };
+      git.enable = mkDefault true;
       lazygit.enable = mkDefault true;
       tmux.enable = mkDefault true;
       starship.enable = mkDefault true;

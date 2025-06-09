@@ -100,6 +100,12 @@ in
     default = "";
   };
 
+  fish = mkOption {
+    type = types.str;
+    description = "fish profile to use";
+    default = "";
+  };
+
   zsh = mkOption {
     type = types.str;
     description = "zsh profile to use";

@@ -78,6 +78,7 @@ in
       dunst = enableProfile "dunst";
       fastfetch = enableProfile "fastfetch";
       firefox = enableProfile "firefox";
+      fish = enableProfile "fish";
       kitty = enableProfile "kitty";
       rofi = enableProfile "rofi";
       swaylock = enableProfile "swaylock";

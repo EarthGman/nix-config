@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ self, pkgs, config, lib, ... }:
 let
   inherit (lib) getExe mkIf mkEnableOption optionalString;
   cfg = config.programs;
@@ -11,22 +11,9 @@ in
       enableCompletion = true;
       syntaxHighlighting.enable = true;
       autocd = true;
-      shellAliases =
-        let
-          has-git = cfg.git.enable;
-        in
-        {
-          l = if cfg.eza.enable then "${getExe cfg.eza.package} -al --icons" else "ls -al";
-          ls = mkIf cfg.eza.enable "${getExe cfg.eza.package} --icons";
-          lg = mkIf has-git "${getExe cfg.lazygit.package}";
-          ff = "fastfetch";
-          g = mkIf has-git "${getExe cfg.git.package}";
-          ga = mkIf has-git "${getExe cfg.git.package} add .";
-          gco = mkIf has-git "${getExe cfg.git.package} checkout";
-          hms = "home-manager switch";
-          cat = mkIf cfg.bat.enable "${getExe cfg.bat.package}";
-          t = "${getExe pkgs.tree}";
-        };
+      shellAliases = import (self + "/modules/shared/shell-aliases.nix") { inherit pkgs lib config; } // {
+        hms = "home-manager switch";
+      };
       initContent = ''
         setopt interactivecomments
         compdef batman=man

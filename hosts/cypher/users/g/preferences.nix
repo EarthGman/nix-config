@@ -4,6 +4,7 @@ let
 in
 {
   programs = {
+    fish.enable = true;
     prismlauncher.package = inputs.prismlauncher.packages.${system}.default;
     zint.enable = true;
     gparted.enable = true;
