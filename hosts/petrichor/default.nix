@@ -15,8 +15,14 @@
     "sd_mod"
   ];
   # display manager customization
-  services.displayManager.sddm.themeConfig = {
-    Background = builtins.fetchurl wallpapers.celeste-mountain;
+  services.displayManager = {
+    gdm.enable = false;
+    sddm = {
+      enable = true;
+      themeConfig = {
+        Background = builtins.fetchurl wallpapers.celeste-mountain;
+      };
+    };
   };
 
   environment.systemPackages = [ pkgs.jre ];

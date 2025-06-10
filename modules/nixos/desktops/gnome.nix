@@ -1,17 +1,20 @@
 { pkgs, config, lib, ... }:
 let
+  inherit (lib) mkDefault mkEnableOption mkIf mkOverride;
   cfg = config.modules.desktops.gnome;
 in
 {
-  options.modules.desktops.gnome.enable = lib.mkEnableOption "enable custom gnome desktop module";
-  config = lib.mkIf cfg.enable {
+  options.modules.desktops.gnome.enable = mkEnableOption "enable custom gnome desktop module";
+  config = mkIf cfg.enable {
     services.desktopManager.gnome.enable = true;
+    modules.display-managers.sddm.enable = mkOverride 800 false;
+    services.displayManager.gdm.enable = mkOverride 800 true;
     environment.systemPackages = with pkgs; [
       gnome-tilingShell
     ];
 
     # exclude all packages built into gnome and allow each user to choose what they want installed
-    programs.geary.enable = false;
+    programs.geary.enable = mkOverride 800 false;
     environment.gnome.excludePackages = with pkgs; [
       gnome-tour
       gedit
