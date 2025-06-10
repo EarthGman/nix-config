@@ -32,6 +32,12 @@ in
       inherit pkgs;
     };
 
+    blender = mkProgramOption {
+      programName = "blender";
+      description = "3D rendering engine";
+      inherit pkgs;
+    };
+
     bottles = mkProgramOption {
       programName = "bottles";
       description = "wine prefix manager";

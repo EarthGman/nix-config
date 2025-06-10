@@ -66,6 +66,7 @@
   programs = {
     cutentr.enable = true;
     piper.enable = false;
+    blender.enable = true;
   };
 
   services.sunshine.enable = true;
