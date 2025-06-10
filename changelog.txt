@@ -1,3 +1,12 @@
+6-09-2025
+- make gdm the default display manager when the gnome nixOS module is enabled.
+
+
+6-08-2025
+- add fish
+- move shell-aliases to shared modules
+
+
 6-06-2025
 - fix tmux sourcing issue with the dracula theme plugin
 - install old HP laptop
