@@ -25,5 +25,5 @@
     };
   };
 
-  environment.systemPackages = [ pkgs.jre ];
+  programs.blender.enable = true;
 }
