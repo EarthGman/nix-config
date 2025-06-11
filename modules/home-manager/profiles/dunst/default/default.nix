@@ -9,11 +9,12 @@ in
     stylix.targets.dunst.enable = true;
     services.dunst.settings = {
       global = {
+        height = mkDefault 300;
         monitor = mkDefault 0;
         origin = mkDefault "bottom-right";
-        timeout = mkDefault 3;
+        timeout = mkDefault 5;
         frame_width = mkDefault 0;
-        gap_size = mkDefault 3; # add small gap between notifications
+        gap_size = mkDefault 5; # add small gap between notifications
         idle_threshold = mkDefault 30;
       };
     };

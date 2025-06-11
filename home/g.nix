@@ -47,6 +47,7 @@ in
       vimAlias = true;
     };
     rmpc = enabled;
+    protonmail-desktop = enabled;
     bottles = enabled;
     bustle = enabled;
     freetube = enabled;
@@ -60,7 +61,7 @@ in
     discord = enabled;
 
     mov-cli = {
-      enable = true;
+      enable = mkDefault true;
       plugins = [ pkgs.mov-cli-youtube ];
     };
 
@@ -94,9 +95,6 @@ in
     hyprland.settings = {
       animations.enabled = false;
       input.left_handed = true;
-      # bind = [
-      #   "Alt, Space, exec, rofi -show window"
-      # ];
     };
   };
 }

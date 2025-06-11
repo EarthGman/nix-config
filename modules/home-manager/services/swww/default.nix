@@ -1,6 +1,6 @@
 { inputs, pkgs, lib, config, system, ... }:
 let
-  inherit (lib) mkEnableOption mkOption mkIf mkForce types concatStringsSep mapAttrsToList getExe;
+  inherit (lib) mkEnableOption mkOption mkIf mkForce types concatStringsSep mapAttrsToList;
   inherit (pkgs) writeShellScript;
 
   cfg = config.services.swww;
@@ -10,7 +10,7 @@ in
     image = mkOption {
       description = "the default image swww will use (applied to all monitors) as a string";
       type = types.str;
-      default = "${config.stylix.image}";
+      default = "${config.custom.wallpaper}";
     };
 
     monitors = mkOption {
@@ -39,7 +39,7 @@ in
         default = 600;
       };
       images = mkOption {
-        description = "list of image paths (as strings) to be included in the slideshow";
+        description = "list of image paths to be included in the slideshow";
         type = types.listOf types.str;
         default = [ ];
       };

@@ -5,7 +5,7 @@ let
 in
 {
   profiles.essentials.enable = false;
-  stylix.image = mkForce (fetchurl wallpapers.windows-11);
+  custom.wallpaper = mkForce (fetchurl wallpapers.windows-11);
   custom.terminal = "alacritty";
 
   services.swww.slideshow.enable = false;

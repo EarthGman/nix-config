@@ -13,7 +13,7 @@ in
         if multiple monitors are specified they should be configured seperately
       '';
       type = types.str;
-      default = "${config.stylix.image}";
+      default = "${config.custom.wallpaper}";
     };
 
     settings = {

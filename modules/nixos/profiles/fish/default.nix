@@ -10,16 +10,24 @@ in
       vendor.completions.enable = true;
       shellAliases = import (self + "/modules/shared/shell-aliases.nix") { inherit pkgs lib config; };
 
-      #   promptInit = mkIf config.programs.yazi.enable ''
-      #      function y() {
-      #      local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
-      #      yazi "$argv" --cwd-file="$tmp"
-      #      if read -z cwd < "$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-      #        builtin cd -- "$cwd"
-      #      fi
-      #      rm -f -- "$tmp"
-      #     }
-      #   '';
+      promptInit = ''
+        function __fish-yazi-wrapper -d 'y wrapper for yazi'
+            set -f tmp (mktemp -t "yazi-cwd.XXXXXX")
+            if not [ -f "$tmp" ]
+                builtin echo "Error: Failed to create cwd-file for yazi"
+                return 1
+            end
+
+            yazi $argv --cwd-file="$tmp"
+
+            set -f cwd (command cat -- "$tmp")
+            if [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+                builtin cd -- "$cwd"
+            end
+
+            command rm -- "$tmp"
+        end
+      '';
     };
   };
 }

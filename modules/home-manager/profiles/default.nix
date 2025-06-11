@@ -62,6 +62,13 @@ in
         enable = mkDefault true;
         gitCredentialHelper.enable = true;
       };
+      nh = {
+        enable = mkDefault true;
+        clean = {
+          enable = mkDefault true;
+          extraArgs = mkDefault "--keep-since 4d --keep 3";
+        };
+      };
       starship.enable = mkDefault true;
       git.enable = mkDefault true;
       tmux.enable = mkDefault true;

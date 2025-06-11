@@ -342,6 +342,12 @@ in
       inherit pkgs;
     };
 
+    protonmail-desktop = mkProgramOption {
+      programName = "protonmail-desktop";
+      description = "a desktop app for protonmail";
+      inherit pkgs;
+    };
+
     protonup-qt = mkProgramOption {
       programName = "protonup-qt";
       description = "a qt interface for protonup";
