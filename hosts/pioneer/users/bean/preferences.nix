@@ -1,14 +1,9 @@
-{ outputs, lib, wallpapers, ... }:
-let
-  inherit (lib) mkForce;
-in
+{ ... }:
 {
 
   custom.profiles.desktopTheme = "undertale";
-
-  xsession.screensaver = {
-    enable = true;
-  };
+  profiles.laptop.enable = true;
+  profiles.smallscreen.enable = true;
 
   programs = {
     discord.enable = true;
@@ -23,11 +18,5 @@ in
       font-0 = "MesloLGL Nerd Font Mono:size = 12;4";
       modules-left = "wlan cpu memory";
     };
-  };
-  stylix.fonts.sizes = {
-    terminal = mkForce 12;
-    applications = mkForce 9;
-    popups = mkForce 9;
-    desktop = mkForce 9;
   };
 }

@@ -1,8 +1,7 @@
-{ lib, ... }:
-let
-  inherit (lib) mkForce;
-in
+{ ... }:
 {
+  profiles.laptop.enable = true;
+  profiles.smallscreen.enable = true;
   programs = {
     moonlight.enable = true;
     waybar.bottomBar.settings = {
@@ -24,20 +23,6 @@ in
           ""
         ];
       };
-
-      network = {
-        format-wifi = " {icon} {essid}";
-        format-ethernet = " 󰈁 {ifname}";
-      };
-      height = 36;
     };
   };
-
-  stylix.fonts.sizes = {
-    terminal = mkForce 12;
-    applications = mkForce 10;
-    popups = mkForce 8;
-    desktop = mkForce 10;
-  };
-  services.dunst.battery-monitor.enable = true;
 }

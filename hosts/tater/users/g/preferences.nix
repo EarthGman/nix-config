@@ -1,28 +1,15 @@
-{ pkgs, lib, ... }:
-let
-  inherit (lib) mkForce;
-in
+{ ... }:
 {
-  stylix.fonts.sizes = {
-    terminal = mkForce 12;
-    applications = mkForce 10;
-    popups = mkForce 8;
-    desktop = mkForce 10;
-  };
+  profiles.laptop.enable = true;
+  profiles.smallscreen.enable = true;
 
   programs = {
     moonlight.enable = true;
-    prismlauncher.package = pkgs.prismlauncher;
     ghidra.enable = true;
     bottles.enable = false;
     ardour.enable = false;
     rpi-imager.enable = true;
-    waybar.bottomBar.settings = {
-      height = 26;
-    };
   };
-
-  services.dunst.battery-monitor.enable = true;
 
   services.polybar.settings = {
     "bar/bottom" = {

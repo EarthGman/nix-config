@@ -1,6 +1,6 @@
 { pkgs, lib, config, ... }:
 let
-  inherit (lib) mkIf mkEnableOption;
+  inherit (lib) mkIf mkDefault mkEnableOption;
   cfg = config.profiles.waybar.default;
   scripts = import ../../../scripts { inherit pkgs lib config; };
 in
@@ -12,8 +12,7 @@ in
     services.network-manager-applet.enable = true;
     services.blueman-applet.enable = true;
     stylix.targets.waybar = {
-      enable = true;
-      addCss = false;
+      addCss = mkDefault false;
     };
     programs.waybar = {
       bottomBar.settings = import ./bottom.nix { inherit pkgs lib config scripts; };
