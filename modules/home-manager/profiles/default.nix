@@ -29,6 +29,7 @@ in
           kitty = default;
           rofi = default;
           swaylock = default;
+          hyprlock = default;
           starship = default;
           lazygit = default;
           vscode = default;

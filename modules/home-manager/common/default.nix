@@ -82,6 +82,7 @@ in
       kitty = enableProfile "kitty";
       rofi = enableProfile "rofi";
       swaylock = enableProfile "swaylock";
+      hyprlock = enableProfile "hyprlock";
       stylix = enableProfile "stylix";
       starship = enableProfile "starship";
       lazygit = enableProfile "lazygit";

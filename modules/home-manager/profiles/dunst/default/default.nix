@@ -9,8 +9,8 @@ in
     stylix.targets.dunst.enable = true;
     services.dunst.settings = {
       global = {
+        monitor = "mouse";
         height = mkDefault 300;
-        monitor = mkDefault 0;
         origin = mkDefault "bottom-right";
         timeout = mkDefault 5;
         frame_width = mkDefault 0;

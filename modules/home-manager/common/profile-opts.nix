@@ -21,7 +21,6 @@ in
     default = "";
   };
 
-
   fastfetch = mkOption {
     type = types.str;
     description = "fastfetch profile to use";
@@ -139,6 +138,12 @@ in
   hyprland = mkOption {
     type = types.str;
     description = "hyprland profile to use";
+    default = "";
+  };
+
+  hyprlock = mkOption {
+    type = types.str;
+    description = "hyprlock profile to use";
     default = "";
   };
 

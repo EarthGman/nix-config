@@ -176,8 +176,9 @@ in
       '';
       interval = 1;
       format = "{}";
-      tooltip = false;
-      on-click-right = ''
+      tooltip = true;
+      tooltip-format = "Do not disturb";
+      on-click = ''
         if [[ $(${dunstctl} is-paused) == "true" ]]; then
           ${dunstctl} set-paused false
         else
