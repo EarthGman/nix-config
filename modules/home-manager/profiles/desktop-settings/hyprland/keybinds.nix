@@ -68,8 +68,9 @@ in
   # "${mainMod}, mouse_down, workspace, e+1"
   # "${mainMod}, mouse_up, workspace, e-1"
 
-  ", Print, exec, ${scripts.take_screenshot_selection_wayland}"
-  "SHIFT, Print, exec, ${scripts.take_screenshot_wayland}"
+  ", Print, exec, ${scripts.take_screenshot_wayland} selection"
+  "SHIFT, Print, exec, ${scripts.take_screenshot_wayland} screen"
+  "Control, Print, exec, ${scripts.take_screenshot_wayland} window"
 
   "${mainMod}, B, exec, ${browser}"
 

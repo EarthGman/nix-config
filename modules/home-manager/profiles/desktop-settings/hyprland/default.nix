@@ -10,6 +10,9 @@ in
   config = mkIf cfg.enable {
     stylix.targets.hyprland.enable = true;
 
+    home.packages = mkIf (config.wayland.windowManager.hyprland.enable)
+      [ pkgs.grimblast ];
+
     programs = mkIf config.wayland.windowManager.hyprland.enable {
       rofi = enabled;
       waybar = enabled;

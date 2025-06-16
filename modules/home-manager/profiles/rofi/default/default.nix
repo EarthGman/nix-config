@@ -12,6 +12,6 @@ in
       package = pkgs.rofi-wayland;
     };
     stylix.targets.rofi.enable = true;
-    xdg.configFile."rofi/wallpapers.rasi".text = builtins.readFile ./wallpapers.rasi;
+    xdg.configFile."rofi/wallpapers.rasi".text = mkIf config.programs.rofi.enable (builtins.readFile ./wallpapers.rasi);
   };
 }

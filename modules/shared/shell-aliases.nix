@@ -9,6 +9,7 @@ in
   l = "ls -al";
   g = mkIf has-git "${getExe cfg.git.package}";
   t = "${getExe pkgs.tree}";
+  ff = "fastfetch";
   lg = mkIf has-git "${getExe cfg.lazygit.package}";
   ga = mkIf has-git "g add .";
   gco = mkIf has-git "g checkout";

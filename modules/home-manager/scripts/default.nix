@@ -2,13 +2,10 @@
 { pkgs, lib, config, ... }:
 let
   inherit (lib) getExe;
-  inherit (pkgs) writeScript;
-
-  screenshot_timestamp = "$(date +%F_%T)";
-  screenshot_output = "${config.home.homeDirectory}/Pictures/Screenshots/Screenshot-${screenshot_timestamp}.png";
+  inherit (pkgs) writeShellScript;
 in
 {
-  polybar = writeScript "polybar.sh" ''
+  polybar = writeShellScript "polybar.sh" ''
     ${getExe pkgs.killall} polybar
     sleep 0.1
     if type "xrandr"; then
@@ -20,73 +17,110 @@ in
     fi 
   '';
 
-  take_screenshot_selection_xorg = writeScript "take-screenshot-selection-xorg.sh" ''
-      output="${screenshot_output}"
-      if [ ! -d ${config.home.homeDirectory}/Pictures/Screenshots ]; then
-        mkdir -p ${config.home.homeDirectory}/Pictures/Screenshots
-      fi
+  take_screenshot_xorg = writeShellScript "take_screenshot_xorg.sh" ''
+    screenshot_dir=$XDG_SCREENSHOTS_DIR
+    saved=false
 
-      ${getExe pkgs.maim} -s | ${getExe pkgs.xclip} -selection clipboard -t image/png
-      ${getExe pkgs.xclip} -selection clipboard -t image/png -o > $output
-
-    if [ -s $output ]; then
-      dunstify 'Screenshot saved to ~/Pictures/Screenshots'
-    else
-      rm $output
+    if [ ! -d $screenshot_dir ]; then
+      mkdir -p $screenshot_dir
     fi
+
+    timestamp=$(${pkgs.coreutils-full}/bin/date +%F_%T)
+    output="$screenshot_dir/''${timestamp}.png"
+    mode="$1"
+
+    case $mode in
+      screen)
+        if ${getExe pkgs.maim} | ${getExe pkgs.xclip} -selection clipboard -t image/png; ${getExe pkgs.xclip} -selection clipboard -t image/png -o > $output; then
+          saved=true
+        fi
+      ;;
+
+      selection)
+        if ${getExe pkgs.maim} -s | ${getExe pkgs.xclip} -selection clipboard -t image/png; ${getExe pkgs.xclip} -selection clipboard -t image/png -o > $output then
+          saved=true
+        fi
+      ;;
+
+      window)
+        if ${getExe pkgs.maim} -i $(${getExe pkgs.xdotool} getactivewindow) | ${getExe pkgs.xclip} -selection clipboard -t image/png; ${getExe pkgs.xclip} -selection clipboard -t image/png -o > $output; then
+          saved=true
+        fi
+      ;;
+    esac
+
+    if [ $saved == "true" ]; then
+      ${pkgs.libnotify}/bin/notify-send "Screenshot saved to ~/Pictures/screenshots
+    ''${timestamp}.png"
+      exit 0
+    fi
+    exit 1
   '';
 
-  take_screenshot_xorg = writeScript "take_screenshot_xorg.sh" ''
-    output="${screenshot_output}"
+  take_screenshot_wayland = writeShellScript "take-screenshot-wayland.sh" ''
+    screenshot_dir=$XDG_SCREENSHOTS_DIR
+    saved=false
 
-    if [ ! -d ${config.home.homeDirectory}/Pictures/Screenshots ]; then
-      mkdir -p ${config.home.homeDirectory}/Pictures/Screenshots
+    if [ ! -d $screenshot_dir ]; then
+    mkdir -p $screenshot_dir
     fi
 
-    if ${getExe pkgs.maim} | ${getExe pkgs.xclip} -selection clipboard -t image/png; ${getExe pkgs.xclip} -selection clipboard -t image/png -o > $output; then
-      dunstify 'Screenshot saved to ~/Pictures/Screenshots'
+    timestamp=$(${pkgs.coreutils-full}/bin/date +%F_%T)
+    output="$screenshot_dir/''${timestamp}.png"
+    mode="$1"
+
+    case $XDG_CURRENT_DESKTOP in
+    Hyprland)
+    	case $mode in
+    		selection)
+    			grimblast --notify copysave area
+    			;;
+    		screen)
+    			grimblast --notify copysave screen
+    			;;
+    		window)
+    			grimblast --notify copysave active
+    			;;
+    	esac
+    	;;
+    *)
+    	case $mode in
+    		selection)
+    			if [ $(${pkgs.procps}/bin/pgrep slurp) ]; then
+    				exit 0
+    			fi
+
+    			if selection=$(${getExe pkgs.slurp}) && ${getExe pkgs.grim} -g "$selection" - | ${pkgs.wl-clipboard}/bin/wl-copy; then
+    				${pkgs.wl-clipboard}/bin/wl-paste > "$output"
+    					saved=true
+    			fi
+    		;;
+
+    		screen)
+    			if ${getExe pkgs.grim} - | ${pkgs.wl-clipboard}/bin/wl-copy; then 
+    				${pkgs.wl-clipboard}/bin/wl-paste > "$output"
+    				saved=true
+    			fi
+    		;;
+
+    		window)
+    		 if ${getExe pkgs.grim} -g "$(swaymsg -t get_tree | jq -j '.. | select(.type?) | select(.focused).rect | "\(.x),\(.y) \(.width)x\(.height)"')" - | ${pkgs.wl-clipboard}/bin/wl-copy; then
+    			 ${pkgs.wl-clipboard}/bin/wl-paste > "$output"
+    			 saved=true
+    		 fi
+    	 esac
+    	 ;;
+    esac
+
+    if [ $saved == "true" ]; then
+      ${pkgs.libnotify}/bin/notify-send "Screenshot saved to ~/Pictures/screenshots
+    ''${timestamp}.png"
+      exit 0
     fi
+    exit 1
   '';
 
-  take_screenshot_window_xorg = writeScript "take_screenshot_window_xorg.sh" ''
-    output="${screenshot_output}"
-
-    if [ ! -d ${config.home.homeDirectory}/Pictures/Screenshots ]; then
-      mkdir -p ${config.home.homeDirectory}/Pictures/Screenshots
-    fi
-
-    if ${getExe pkgs.maim} -i $(${getExe pkgs.xdotool} getactivewindow) | ${getExe pkgs.xclip} -selection clipboard -t image/png; ${getExe pkgs.xclip} -selection clipboard -t image/png -o > $output; then
-      dunstify 'Screenshot saved to ~/Pictures/Screenshots'
-    fi
-  '';
-
-  take_screenshot_selection_wayland = writeScript "take-screenshot-selection-wayland.sh" ''
-    if [ ! -d ${config.home.homeDirectory}/Pictures/Screenshots ]; then
-      mkdir -p ${config.home.homeDirectory}/Pictures/Screenshots
-    fi
-    timestamp=$(date +%F_%T)
-    output="${config.home.homeDirectory}/Pictures/Screenshots/Screenshot-''${timestamp}.png"
-
-    if selection=$(${getExe pkgs.slurp}) && ${getExe pkgs.grim} -g "$selection" - | ${pkgs.wl-clipboard}/bin/wl-copy; then
-      ${pkgs.wl-clipboard}/bin/wl-paste > "$output"
-      dunstify 'Screenshot saved to ~/Pictures/Screenshots'
-    fi
-  '';
-
-  take_screenshot_wayland = writeScript "take-screenshot-wayland.sh" ''
-    if [ ! -d ${config.home.homeDirectory}/Pictures/Screenshots ]; then
-      mkdir -p ${config.home.homeDirectory}/Pictures/Screenshots
-    fi
-    timestamp=$(date +%F_%T)
-    output="${config.home.homeDirectory}/Pictures/Screenshots/Screenshot-''${timestamp}.png"
-    
-    if ${getExe pkgs.grim} - | ${pkgs.wl-clipboard}/bin/wl-copy; then
-      ${pkgs.wl-clipboard}/bin/wl-paste > "$output"
-      dunstify 'Screenshot saved to ~/Pictures/Screenshots'
-    fi
-  '';
-
-  wayland_wallpaper_switcher = writeScript "wayland-wallpaper-switcher.sh" ''
+  wayland_wallpaper_switcher = writeShellScript "wayland-wallpaper-switcher.sh" ''
      WALLPAPERS="$(realpath ${config.home.homeDirectory}/Pictures/wallpapers)"
 
      case "$XDG_CURRENT_DESKTOP" in
@@ -156,4 +190,3 @@ in
     main
   '';
 }
-

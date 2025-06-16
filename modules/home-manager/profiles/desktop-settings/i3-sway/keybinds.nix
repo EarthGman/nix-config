@@ -75,9 +75,9 @@ in
   "${mod}+r" = "mode resize";
 
   # change container layout (stacked, tabbed, toggle split)
-  "${mod}+s" = "layout stacking";
-  "${mod}+t" = "layout tabbed";
-  "${mod}+e" = "layout toggle split";
+  # "${mod}+s" = "layout stacking";
+  # "${mod}+t" = "layout tabbed";
+  # "${mod}+e" = "layout toggle split";
 
   # toggle tiling / floating
   "${mod}+Shift+space" = "floating toggle";
@@ -86,7 +86,7 @@ in
   "${mod}+g" = "focus mode_toggle";
 
   # focus the parent container
-  "${mod}+a" = "focus parent";
+  # "${mod}+a" = "focus parent";
 
   # switch to workspace
   "${mod}+1" = "workspace number 1";
@@ -128,18 +128,21 @@ in
   # screenshots
   "Shift+Print" =
     if (desktop == "i3") then
-      "exec --no-startup-id ${scripts.take_screenshot_xorg}"
+      "exec --no-startup-id ${scripts.take_screenshot_xorg} screen"
     else
-      "exec --no-startup-id ${scripts.take_screenshot_wayland}";
+      "exec --no-startup-id ${scripts.take_screenshot_wayland} screen";
 
   "Print" =
     if (desktop == "i3") then
-      "exec --no-startup-id ${scripts.take_screenshot_selection_xorg}"
+      "exec --no-startup-id ${scripts.take_screenshot_xorg} selection"
     else
-      "exec --no-startup-id ${scripts.take_screenshot_selection_wayland}";
+      "exec --no-startup-id ${scripts.take_screenshot_wayland} selection";
 
-  # TODO: need to implement a wayland version of this one
-  "Control+Print" = lib.mkIf (desktop == "i3") "exec --no-startup-id ${scripts.take_screenshot_window_xorg}";
+  "Control+Print" =
+    if (desktop == "i3") then
+      "exec --no-startup-id ${scripts.take_screenshot_xorg} window"
+    else
+      "exec --no-startup-id ${scripts.take_screenshot_wayland} window";
 
   "XF86AudioRaiseVolume" = "exec ${pamixer} -i 5";
   "XF86AudioLowerVolume" = "exec ${pamixer} -d 5";

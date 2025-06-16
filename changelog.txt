@@ -1,3 +1,11 @@
+6-15-2025
+- rewrite screenshot scripts for TWM desktops
+- set XDG_SCREENSHOTS_DIR to ~/Pictures/screenshots via default home-manager profile
+- Add control + Printscreen keybind to wayland for taking a screenshot of the current active window
+- use grimblast for hyprland
+- Fix a bug where slurp would run multiple times if the screenshot key was pressed while actively taking a screenshot
+
+
 6-09-2025
 - make gdm the default display manager when the gnome nixOS module is enabled.
 

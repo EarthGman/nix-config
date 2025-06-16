@@ -58,6 +58,10 @@ in
       createDirectories = mkDefault true;
     };
 
+    home.sessionVariables = {
+      XDG_SCREENSHOTS_DIR = mkDefault "${config.xdg.userDirs.pictures}/screenshots";
+    };
+
     programs = {
       gh = {
         enable = mkDefault true;
