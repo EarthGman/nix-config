@@ -4,7 +4,7 @@ let
   iso = if args ? iso then args.iso else false;
   desktop = if args ? desktop then args.desktop else null;
   system = if args ? system then args.system else "x86_64-linux";
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf mkForce;
   cfg = config.modules.iso;
 
   installerProfile =
@@ -23,8 +23,24 @@ in
     environment.systemPackages = with pkgs; [
       disko
     ];
+
     programs.neovim-custom.package = inputs.vim-config.packages.${system}.nvim-lite;
+    # Temporary solution until I can figure what to do about the issue with importing the cd-minimal.nix profile from nixpkgs
+    # basically some guy decided to place pkgs.vim into environment.systemPackages instead of using programs.vim.enable
+    # https://github.com/NixOS/nixpkgs/blob/nixos-25.05/nixos/modules/profiles/base.nix
+    programs.zsh = {
+      shellAliases =
+        let
+          cfg = config.programs.neovim-custom;
+        in
+        {
+          vi = mkIf cfg.viAlias ("nvim");
+          vim = mkIf cfg.vimAlias ("nvim");
+        };
+    };
+
     users.users.root = {
+      shell = mkForce pkgs.zsh;
       # for SSH
       password = "123";
       hashedPassword = null;

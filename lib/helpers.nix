@@ -18,7 +18,7 @@ in
     , iso ? false # is this an ISO?
     , system ? "x86_64-linux" # what cpu architecture?
     , stateVersion ? "25.11" # what version of nixos was this machine initalized?
-    , configDir ? null # directory for extra host configuration
+    , configDir # directory for extra host configuration
     , inputs ? self.inputs # define your flake inputs
     , outputs ? self.outputs # allow access to your flake outputs
     }:

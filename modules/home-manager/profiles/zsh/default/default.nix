@@ -1,7 +1,6 @@
 { self, pkgs, config, lib, ... }:
 let
-  inherit (lib) getExe mkIf mkEnableOption optionalString;
-  cfg = config.programs;
+  inherit (lib) mkIf mkEnableOption optionalString;
 in
 {
   options.profiles.zsh.default.enable = mkEnableOption "default zsh profile";
