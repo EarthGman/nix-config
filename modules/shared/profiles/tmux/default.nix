@@ -26,7 +26,7 @@ in
         set -g @dracula-plugins "battery cpu-usage ram-usage time"
         set -g @dracula-military-time true
         set -g @dracula-no-battery-label 󱉝
-        set -g @dracula-battery-label 󰁹
+        set -g @dracula-battery-label " "
         set -g @dracula-show-battery-status true
 
         run-shell ${pkgs.tmuxPlugins.dracula}/share/tmux-plugins/dracula/dracula.tmux
