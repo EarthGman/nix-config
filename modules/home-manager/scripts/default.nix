@@ -34,19 +34,19 @@ in
         if ${getExe pkgs.maim} | ${getExe pkgs.xclip} -selection clipboard -t image/png; ${getExe pkgs.xclip} -selection clipboard -t image/png -o > $output; then
           saved=true
         fi
-      ;;
+        ;;
 
       selection)
-        if ${getExe pkgs.maim} -s | ${getExe pkgs.xclip} -selection clipboard -t image/png; ${getExe pkgs.xclip} -selection clipboard -t image/png -o > $output then
+        if ${getExe pkgs.maim} -s | ${getExe pkgs.xclip} -selection clipboard -t image/png; ${getExe pkgs.xclip} -selection clipboard -t image/png -o > $output; then
           saved=true
         fi
-      ;;
+        ;;
 
       window)
         if ${getExe pkgs.maim} -i $(${getExe pkgs.xdotool} getactivewindow) | ${getExe pkgs.xclip} -selection clipboard -t image/png; ${getExe pkgs.xclip} -selection clipboard -t image/png -o > $output; then
           saved=true
         fi
-      ;;
+        ;;
     esac
 
     if [ $saved == "true" ]; then
@@ -94,14 +94,14 @@ in
     				${pkgs.wl-clipboard}/bin/wl-paste > "$output"
     					saved=true
     			fi
-    		;;
+    		  ;;
 
     		screen)
     			if ${getExe pkgs.grim} - | ${pkgs.wl-clipboard}/bin/wl-copy; then 
     				${pkgs.wl-clipboard}/bin/wl-paste > "$output"
     				saved=true
     			fi
-    		;;
+    		  ;;
 
     		window)
     		 if ${getExe pkgs.grim} -g "$(swaymsg -t get_tree | jq -j '.. | select(.type?) | select(.focused).rect | "\(.x),\(.y) \(.width)x\(.height)"')" - | ${pkgs.wl-clipboard}/bin/wl-copy; then
