@@ -59,11 +59,14 @@ in
       config.allowUnfree = true;
     };
 
-    # things needed for modules to work
+    # things needed for script modules to work
     home.packages = with pkgs; [
       coreutils-full
+      findutils
       psmisc
       gnused
+      procps # pgrep, pkill
+      gawk
       brightnessctl
       pamixer
       imagemagick
@@ -78,6 +81,7 @@ in
       dunst = enableProfile "dunst";
       fastfetch = enableProfile "fastfetch";
       firefox = enableProfile "firefox";
+      fzf = enableProfile "fzf";
       fish = enableProfile "fish";
       kitty = enableProfile "kitty";
       rofi = enableProfile "rofi";

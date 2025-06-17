@@ -1,3 +1,10 @@
+6-17-2025
+- fix fzf config
+- add fzf profile for nixos and home-manager
+- add system utilities that are already present to home-manager's shell path
+- add fzf-edit to nix-library package set. running fzf-edit will open the file selected with $EDITOR
+
+
 6-15-2025
 - rewrite screenshot scripts for TWM desktops
 - set XDG_SCREENSHOTS_DIR to ~/Pictures/screenshots via default home-manager profile

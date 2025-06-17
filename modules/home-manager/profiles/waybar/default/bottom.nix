@@ -177,7 +177,10 @@ in
       interval = 1;
       format = "{}";
       tooltip = true;
-      tooltip-format = "Do not disturb";
+      tooltip-format = ''
+        Left - Do not disturb
+        Middle - Restart dunst daemon
+      '';
       on-click = ''
         if [[ $(${dunstctl} is-paused) == "true" ]]; then
           ${dunstctl} set-paused false
@@ -185,6 +188,7 @@ in
           ${dunstctl} set-paused true
         fi
       '';
+      on-click-middle = "systemctl --user restart dunst";
     };
 
   "custom/microphone" = {

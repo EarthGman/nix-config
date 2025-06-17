@@ -9,7 +9,7 @@ let
   stateVersion = if args ? stateVersion then args.stateVersion else "";
   system = if args ? system then args.system else null;
 
-  inherit (lib) mkIf mkEnableOption mkForce mkDefault autoImport;
+  inherit (lib) mkIf mkEnableOption mkForce mkDefault autoImport getExe;
   cfg = config.profiles.default;
 
   nixos-update = pkgs.writeShellScriptBin "nixos-update" ''
@@ -23,6 +23,7 @@ in
   config = mkIf cfg.enable {
     modules = {
       direnv.enable = mkDefault true;
+      fzf.enable = mkDefault true;
       ssh.enable = mkDefault true;
       nh.enable = mkDefault true;
 
@@ -83,15 +84,18 @@ in
 
     time.timeZone = mkDefault "America/Chicago";
 
-    environment.systemPackages = with pkgs; [
-      nixos-update
-      file
-      nix-prefetch-git
-      psmisc
-      zip
-      unzip
-      lsof
-    ];
+    environment = {
+
+      systemPackages = with pkgs; [
+        nixos-update
+        file
+        nix-prefetch-git
+        psmisc
+        zip
+        unzip
+        lsof
+      ];
+    };
 
     programs = {
       yazi.enable = mkDefault true;
