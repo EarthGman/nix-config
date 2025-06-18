@@ -2,10 +2,10 @@
 let
   inherit (lib) mkDefault optionals mkEnableOption mkIf;
   enabled = { enable = mkDefault true; };
-  cfg = config.profiles.desktops.i3.default;
+  cfg = config.profiles.i3.default;
 in
 {
-  options.profiles.desktops.i3.default.enable = mkEnableOption "default i3 profile";
+  options.profiles.i3.default.enable = mkEnableOption "default i3 profile";
   config = mkIf cfg.enable {
     stylix.targets.i3.enable = true;
 

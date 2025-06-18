@@ -100,11 +100,9 @@ in
 
       desktopThemes = enableProfile "desktopTheme";
 
-      desktops = {
-        i3 = enableProfile "i3";
-        sway = enableProfile "sway";
-        hyprland = enableProfile "hyprland";
-      };
+      i3 = enableProfile "i3";
+      sway = enableProfile "sway";
+      hyprland = enableProfile "hyprland";
     };
 
     # enable programs using the custom user preferences

@@ -1,12 +1,12 @@
 { pkgs, lib, config, ... }:
 let
   inherit (lib) mkEnableOption mkIf;
-  cfg = config.profiles.desktops.gnome.default;
+  cfg = config.profiles.gnome.default;
 in
 {
   options = {
     modules.desktops.gnome.enable = mkEnableOption "enable gnome module";
-    profiles.desktops.gnome.default.enable = mkEnableOption "gnome desktop configuration";
+    profiles.gnome.default.enable = mkEnableOption "gnome desktop configuration";
   };
   config = mkIf (cfg.enable && config.modules.desktops.gnome.enable) {
     dconf.settings = import ./dconf.nix;

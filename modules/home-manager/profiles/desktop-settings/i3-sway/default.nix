@@ -2,7 +2,7 @@
 let
   inherit (lib) mkDefault mkIf;
   enabled = { enable = mkDefault true; };
-  cfg = config.profiles.desktops;
+  cfg = config.profiles;
 in
 {
   config = mkIf (cfg.sway.default.enable || cfg.i3.default.enable) {
