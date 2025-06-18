@@ -100,6 +100,7 @@ in
 
       desktopThemes = enableProfile "desktopTheme";
 
+      gnome = enableProfile "gnome";
       i3 = enableProfile "i3";
       sway = enableProfile "sway";
       hyprland = enableProfile "hyprland";
