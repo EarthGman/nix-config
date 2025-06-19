@@ -42,19 +42,6 @@ in
     configDir = ./tater;
   };
 
-  # dell optiplex 380
-  optiplex-380 = mkHost {
-    hostName = "optiplex-380";
-    cpu = "intel";
-    gpu = "intel";
-    bios = "legacy";
-    users = [ "g" ];
-    desktop = "sway";
-    system = "x86_64-linux";
-    stateVersion = "25.11";
-    configDir = ./optiplex-380;
-  };
-
   HP-G71340US = mkHost {
     hostName = "HP-G71340US";
     cpu = "intel";
