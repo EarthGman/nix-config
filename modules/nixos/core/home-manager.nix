@@ -1,4 +1,4 @@
-{ self, inputs, outputs, pkgs, config, hostName, vm, server, system, lib, users, icons, wallpapers, desktop, stateVersion, ... }:
+{ self, inputs, outputs, pkgs, config, hostName, vm, server, system, lib, users, icons, wallpapers, desktop, keys, stateVersion, ... }:
 let
   inherit (lib) mkIf optionals types genAttrs mkOption mkEnableOption;
   cfg = config.modules.home-manager;
@@ -33,7 +33,7 @@ in
           profiles.default.enable = true;
         });
       extraSpecialArgs = {
-        inherit self inputs outputs wallpapers icons hostName desktop vm server system stateVersion;
+        inherit self inputs outputs wallpapers icons hostName desktop keys vm server system stateVersion;
       };
       backupFileExtension = "bak";
     };

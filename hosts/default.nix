@@ -12,6 +12,7 @@ in
     gpu = "amd";
     users = [ "g" ];
     desktop = "sway";
+    keys = import ../keys.nix;
     secretsFile = ./cypher/secrets.yaml;
     system = "x86_64-linux";
     stateVersion = "24.05";
@@ -26,6 +27,7 @@ in
     gpu = "intel";
     users = [ "g" ];
     desktop = "hyprland";
+    keys = import ../keys.nix;
     secretsFile = ./twilight/secrets.yaml;
     system = "x86_64-linux";
     configDir = ./twilight;
@@ -39,6 +41,7 @@ in
     gpu = "intel";
     users = [ "g" ];
     desktop = "sway";
+    keys = import ../keys.nix;
     secretsFile = ./tater/secrets.yaml;
     system = "x86_64-linux";
     stateVersion = "25.05";
@@ -125,6 +128,7 @@ in
     gpu = "amd";
     server = true;
     vm = false;
+    keys = import ../keys.nix;
     secretsFile = ./gman-theatre/secrets.yaml;
     system = "x86_64-linux";
     stateVersion = "25.05";

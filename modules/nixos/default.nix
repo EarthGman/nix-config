@@ -1,4 +1,4 @@
-{ lib, outputs, inputs, ... }:
+{ lib, inputs, ... }:
 let
   inherit (lib) autoImport;
   programs = autoImport ./programs;
@@ -7,7 +7,7 @@ in
 {
   imports = [
     inputs.disko.nixosModules.default
-    outputs.sharedModules
+    ../shared
     ./profiles
     ./bootloaders
     ./desktops

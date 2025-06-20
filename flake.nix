@@ -11,12 +11,10 @@
     in
     {
       inherit lib;
-      keys = import ./keys.nix;
       overlays = import ./overlays.nix { inherit inputs nixpkgs; };
 
       nixosModules = import ./modules/nixos { inherit inputs outputs lib; };
       homeModules = import ./modules/home-manager { inherit inputs outputs lib; };
-      sharedModules = import ./modules/shared { inherit lib; };
 
       nixosConfigurations = import ./hosts { inherit lib; };
       homeConfigurations = import ./home { inherit lib; };
@@ -26,17 +24,20 @@
           template = "minecraft";
           extraConfig = ./hosts/mc112;
           personal = true;
+          keys = import ./keys.nix;
         };
 
         mc112-blueprints = lib.mkLXC {
           template = "minecraft";
           extraConfig = ./hosts/mc-blueprints;
           personal = true;
+          keys = import ./keys.nix;
         };
 
         docker-env = lib.mkLXC {
           template = "docker-env";
           personal = true;
+          keys = import ./keys.nix;
         };
       };
     };

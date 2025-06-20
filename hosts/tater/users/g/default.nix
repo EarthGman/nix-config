@@ -1,11 +1,11 @@
-{ pkgs, outputs, config, ... }:
+{ pkgs, keys, config, ... }:
 {
   sops.secrets.g.neededForUsers = true;
   users.users.g = {
     isNormalUser = true;
     extraGroups = [ "wheel" "wireshark" ];
     shell = pkgs.zsh;
-    openssh.authorizedKeys.keys = [ outputs.keys.g_pub ];
+    openssh.authorizedKeys.keys = [ keys.g_ssh_pub ];
     hashedPasswordFile = config.sops.secrets.g.path;
   };
 }

@@ -1,4 +1,4 @@
-{ lib, outputs, inputs, ... }:
+{ lib, inputs, ... }:
 let
   inherit (lib) autoImport;
   programs = autoImport ./programs;
@@ -6,8 +6,8 @@ let
 in
 {
   imports = [
-    outputs.sharedModules
     inputs.stylix.homeModules.stylix
+    ../shared
     ./stylix
     ./profiles
     ./desktops

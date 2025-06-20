@@ -167,11 +167,11 @@ My nix config comes with home-manager enabled by default which can be enabled/di
 You can add extra configuration via a home-manager profile. However, in order to do this you will need to set a nixos option "home-manager.profilesDir" which takes a nix path. You should probably put this in a shared module between all of your machines. I have mine set to /home (relative to the nix flake project, not /home on your filesystem). Within the specified directory add a .nix file for any user you want to configure. This file will contain custom configuration for your user. For reference, this is the config for my main user g:
 
 ```nix
-{ self, outputs, config, pkgs, lib, hostName, ... }:
+{ self, config, pkgs, lib, hostName, ... }:
 let
   inherit (lib) mkDefault;
   enabled = { enable = mkDefault true; };
-  signingkey = outputs.keys.g_pub;
+  signingkey = keys.g_ssh_pub;
   LHmouse = builtins.toFile "lh-mouse.xmodmap" "pointer = 3 2 1";
   extraHM = self + /hosts/${hostName}/users/g/preferences.nix;
 in
@@ -272,7 +272,7 @@ in
 You can also specify extra home-manager configuration in your /hosts/(hostname)/users/(username) folder for configuration specific to that host (such as for a multi monitor setup)
 
 ```
-{ outputs, pkgs, config, lib, ... }:
+{ keys, pkgs, config, lib, ... }:
 let
   username = "g";
 in
@@ -283,7 +283,7 @@ in
     hashedPasswordFile = lib.mkIf (config.sops.secrets ? ${username}) config.sops.secrets.${username}.path;
     password = null;
     isNormalUser = true;
-    openssh.authorizedKeys.keys = [ outputs.keys.g_pub ];
+    openssh.authorizedKeys.keys = [ keys.g_ssh_pub ];
     shell = pkgs.zsh;
     extraGroups = [
       "networkmanager"

@@ -1,4 +1,12 @@
+6-20-2025
+- remove unnecessary flake outputs
+- keys argument added to mkHost for ease of access
+
+
 6-19-2025
+- add hostIcon option to profiles.tmux.default
+- move extraVimPlugins from vim-config to nix-library
+- removed "UEFI Firmware Settings" option from grub for legacy bios
 - add a new key to mkHost called secretsFile. It defaults to null and takes a path to a secrets.yaml file
 - when a path is provided the sops module will be enabled with the default sops file set to the path specified.
 
