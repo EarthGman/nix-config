@@ -9,8 +9,6 @@
   profiles.server.personal.enable = true;
 
   modules.nh.enable = false;
-  modules.sops.enable = true;
-
 
   hardware.enableRedistributableFirmware = lib.mkForce true;
   networking.interfaces."eno1".wakeOnLan.enable = true;

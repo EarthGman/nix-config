@@ -1,3 +1,8 @@
+6-19-2025
+- add a new key to mkHost called secretsFile. It defaults to null and takes a path to a secrets.yaml file
+- when a path is provided the sops module will be enabled with the default sops file set to the path specified.
+
+
 6-17-2025
 - fix fzf config
 - add fzf profile for nixos and home-manager

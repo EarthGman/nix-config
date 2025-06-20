@@ -12,6 +12,7 @@ in
     gpu = "amd";
     users = [ "g" ];
     desktop = "sway";
+    secretsFile = ./cypher/secrets.yaml;
     system = "x86_64-linux";
     stateVersion = "24.05";
     configDir = ./cypher;
@@ -25,6 +26,7 @@ in
     gpu = "intel";
     users = [ "g" ];
     desktop = "hyprland";
+    secretsFile = ./twilight/secrets.yaml;
     system = "x86_64-linux";
     configDir = ./twilight;
   };
@@ -37,6 +39,7 @@ in
     gpu = "intel";
     users = [ "g" ];
     desktop = "sway";
+    secretsFile = ./tater/secrets.yaml;
     system = "x86_64-linux";
     stateVersion = "25.05";
     configDir = ./tater;
@@ -60,6 +63,7 @@ in
     gpu = "amd";
     users = [ "bean" ];
     desktop = "hyprland,i3,sway";
+    secretsFile = ./somnus/secrets.yaml;
     stateVersion = "24.05";
     system = "x86_64-linux";
     configDir = ./somnus;
@@ -121,6 +125,7 @@ in
     gpu = "amd";
     server = true;
     vm = false;
+    secretsFile = ./gman-theatre/secrets.yaml;
     system = "x86_64-linux";
     stateVersion = "25.05";
     configDir = ./gman-theatre;

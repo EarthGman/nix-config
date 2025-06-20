@@ -16,6 +16,7 @@ in
     , server ? false # is this machine a server
     , vm ? false # is this a virtual machine?
     , iso ? false # is this an ISO?
+    , secretsFile ? null
     , system ? "x86_64-linux" # what cpu architecture?
     , stateVersion ? "25.11" # what version of nixos was this machine initalized?
     , configDir # directory for extra host configuration
@@ -31,7 +32,7 @@ in
     lib.nixosSystem {
       inherit system;
       specialArgs = {
-        inherit self system inputs outputs lib wallpapers icons binaries hostName bios cpu gpu users desktop server vm iso stateVersion;
+        inherit self system inputs outputs lib wallpapers icons binaries hostName bios cpu gpu users desktop secretsFile server vm iso stateVersion;
       };
       modules =
         let
@@ -50,7 +51,10 @@ in
         in
         [
           nixosModules
-          { profiles.default.enable = true; }
+          {
+            profiles.default.enable = true;
+            modules.sops.enable = (secretsFile != null);
+          }
         ]
         ++ nixosUsers
         ++ host;

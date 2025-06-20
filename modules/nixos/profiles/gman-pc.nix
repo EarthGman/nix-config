@@ -17,7 +17,6 @@ in
       android.enable = true;
       zsa-keyboard.enable = true;
       onepassword.enable = true;
-      sops.enable = true;
       ledger.enable = true;
     };
 

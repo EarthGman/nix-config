@@ -1,8 +1,8 @@
-{ self, inputs, pkgs, config, lib, ... }@args:
+{ inputs, pkgs, config, lib, ... }@args:
 let
   cfg = config.modules.sops;
   inherit (lib) mkDefault mkIf mkEnableOption;
-  hostName = if args ? hostName then args.hostName else "";
+  secretsFile = if args ? secretsFile then args.secretsFile else null;
 in
 {
   imports = [
@@ -13,7 +13,7 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [ sops age ];
     sops = {
-      defaultSopsFile = mkIf (hostName != "") (mkDefault (self + /hosts/${hostName}/secrets.yaml));
+      defaultSopsFile = mkIf (secretsFile != null) secretsFile;
       defaultSopsFormat = "yaml";
       age = {
         keyFile = mkDefault "/var/lib/sops-nix/keys.txt";

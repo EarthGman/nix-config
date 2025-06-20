@@ -23,8 +23,7 @@
   };
 
   modules = {
-    sops.enable = true;
-		flatpak.enable = true;
+    flatpak.enable = true;
   };
 
   custom = {
