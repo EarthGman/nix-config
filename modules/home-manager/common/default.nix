@@ -13,7 +13,10 @@ let
     else { };
 in
 {
-  imports = [ ./xsession.nix ];
+  imports = [
+    ./xsession.nix
+    ./sops.nix
+  ];
 
   options = {
     # custom option allows various configuration to reference your preferred program to execute.
@@ -55,7 +58,6 @@ in
 
   config = {
     nixpkgs = {
-      overlays = builtins.attrValues outputs.overlays;
       config.allowUnfree = true;
     };
 

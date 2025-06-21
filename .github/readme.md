@@ -101,3 +101,4 @@ Imperative actions after install
 - [ ] add some more showcase pictures
 - [ ] Nix build server
 - [ ] installation helper scripts
+- [ ] Docs for sops secrets managment

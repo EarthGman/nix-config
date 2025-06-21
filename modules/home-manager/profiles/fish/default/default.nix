@@ -1,4 +1,4 @@
-{ self, pkgs, lib, config, ... }:
+{ pkgs, lib, config, ... }:
 let
   inherit (lib) mkEnableOption mkIf mkDefault;
   cfg = config.profiles.fish.default;
@@ -8,7 +8,7 @@ in
   config = mkIf cfg.enable {
     stylix.targets.fish.enable = mkDefault true;
     programs.fish = {
-      shellAliases = import (self + "/modules/shared/shell-aliases.nix") { inherit pkgs lib config; } // {
+      shellAliases = import ../../../../shared/shell-aliases.nix { inherit pkgs lib config; } // {
         hms = "home-manager switch";
       };
     };

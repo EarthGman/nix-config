@@ -7,6 +7,7 @@ in
 {
   imports = [
     inputs.stylix.homeModules.stylix
+    inputs.sops-nix.homeManagerModules.sops
     ../shared
     ./stylix
     ./profiles

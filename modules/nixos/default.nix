@@ -7,6 +7,11 @@ in
 {
   imports = [
     inputs.disko.nixosModules.default
+    inputs.nix-gaming.nixosModules.pipewireLowLatency
+    inputs.home-manager.nixosModules.default
+    inputs.determinate.nixosModules.default
+    inputs.sops-nix.nixosModules.sops
+
     ../shared
     ./profiles
     ./bootloaders

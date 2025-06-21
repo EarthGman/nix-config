@@ -6,11 +6,11 @@ in
 {
   options.modules.sops.enable = mkEnableOption "enable sops module";
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ sops age ];
+    home.packages = with pkgs; [ sops age ];
     sops = {
       defaultSopsFormat = mkDefault "yaml";
       age = {
-        keyFile = mkDefault "/var/lib/sops-nix/keys.txt";
+        keyFile = mkDefault "~/.config/sops/age/keys.txt";
       };
     };
   };

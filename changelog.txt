@@ -1,3 +1,15 @@
+6-21-2025
+- more V6 framework overhaul
+- remove all dependence on "self" "inputs" and "outputs" for shared nixosModules.
+- add extraSpecialArgs to mkHost and extraExtraSpecialArgs to mkHome.
+- configurations can now append an undefined number of special arguements to their modules using mkHost and mkHome
+- home-manager configurations within modules/nixos/core/home-manager.nix are now constructed using mkHome instead of a weird fork of the function.
+- add sops-nix to home-manager
+- swww no longer uses the flake input package by default
+- ghostty no longer uses the flake input package by default
+- update docs to reflect changes
+- currently untested thoroughly, will test later (tm)
+
 6-20-2025
 - remove unnecessary flake outputs
 - keys argument added to mkHost for ease of access

@@ -1,4 +1,4 @@
-{ self, pkgs, config, lib, ... }:
+{ pkgs, config, lib, ... }:
 let
   inherit (lib) mkIf mkEnableOption optionalString;
 in
@@ -10,7 +10,7 @@ in
       enableCompletion = true;
       syntaxHighlighting.enable = true;
       autocd = true;
-      shellAliases = import (self + "/modules/shared/shell-aliases.nix") { inherit pkgs lib config; } // {
+      shellAliases = import ../../../../shared/shell-aliases.nix { inherit pkgs lib config; } // {
         hms = "home-manager switch";
       };
       initContent = ''

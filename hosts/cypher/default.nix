@@ -1,9 +1,8 @@
-{ pkgs, inputs, wallpapers, ... }:
+{ pkgs, wallpapers, ... }:
 {
   imports = [
     ./sddm.nix
     ./disko.nix
-    inputs.determinate.nixosModules.default
   ];
 
   profiles = {

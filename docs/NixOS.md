@@ -73,13 +73,13 @@ nixos = lib.mkHost {
 };
 ```
 
-Here we have created a default configuration template for a gnome-desktop, qemu/kvm x86_64 virtual machine running NixOS 25.11 and UEFI firmware with 1 user "bob".
+Here we have created a default configuration template for a gnome-desktop, qemu/kvm x86_64 virtual machine running NixOS 25.11 and UEFI firmware with 1 human controlled user "bob".
 
 Next you will need to:
 - rm the configuration.nix file
 - mkdir -p hosts/nixos (or the hostname of your choosing, must match exactly)
 - mv hardware-configuration.nix hosts/nixos/default.nix
-- If you specified anything under the users key: mkdir -p hosts/nixos/users/bob (or your user's name) and then create a default.nix in this directory.
+- If you specified anything under the users argument: mkdir -p hosts/nixos/users/bob (or your user's name) and then create a default.nix in this directory.
 - Now use your editor to create the user: vim hosts/nixos/users/bob/default.nix
 
 ```nix
@@ -124,26 +124,21 @@ Typically people who use flakes will have their own pinned version of nixpkgs as
 	};
 ```
 
-**Adding additional inputs:
+**Adding additional arguments and inputs
 
-You may want to add additional inputs beyond what exists in my flake. As of now these are accessed via an "inputs" argument passed to all modules which can be called from /hosts/${hostname}/default.nix:
+lib.nixosSystem comes with a "specialArgs" argument which allows for conditional functionality within nix modules without resulting in an infinite recursion error. Arguments of mkHost will pass needed specialArgs to the shared NixOS modules. However, you will probably want to add additional arguments to make your own module configuration easier.
 
-```nix
-{ inputs, ... }:
-```
-
-In order to append your own inputs to this key I have added an inputs key to mkHost and can be achieved like so:
+This is done through the extraSpecialArgs key of the function.
 
 ```
-    outputs = { self, nix-config, ... }:
+    outputs = { self, nix-config, ... } @ inputs:
 	  let
 	    inherit (nix-config) lib;
-	    inputs = self.inputs // nix-config.inputs;
+	    inherit (self) outputs;
 	  in
 	  {
 	    nixosConfigurations = { 
 	      nixos = lib.mkHost {
-	        inherit inputs # concatenate your inputs with mine
 			hostName = "nixos";
 			bios = "UEFI"; # double check which firmware your VM uses
 			users = [ "bob" ];
@@ -152,19 +147,48 @@ In order to append your own inputs to this key I have added an inputs key to mkH
 			system = "x86_64-linux";
 			stateVersion = "25.11";
 			configDir = ./hosts/nixos;
+
+            extraSpecialArgs = { inherit self inputs outputs; };
 	      };
 	    };
 	  };
 ```
 
-If you want to references your own flake "outputs" within your nix modules simply repeat this process replacing the word inputs with outputs. 
+In this example you pass the "self" "inputs" and "outputs" of your own nix flake into your modules, allowing you to directly reference them.
+
+Ex: (Don't blindly Copy paste)
+```
+# hosts/nixos/default.nix
+{ self, inputs, outputs; };
+
+imports = [
+  (self + "/modules/my-module.nix")
+  inputs.cool-repo-you-found.nixosModules.default
+];
+
+nixpkgs.overlays = outputs.overlays 
+```
 
 ------------------------------------------------------------------------
 # Home-manager
 
-My nix config comes with home-manager enabled by default which can be enabled/disable with modules.home-manager.enable in NixOS. Every user specified under the users key of mkHost will have a configuration automatically generated for them.
+My nix config comes with home-manager configured with desktop use in mind. By default it is enabled if a desktop is installed and if a human controlled user exists on the system. However it can be disabled with:
 
-You can add extra configuration via a home-manager profile. However, in order to do this you will need to set a nixos option "home-manager.profilesDir" which takes a nix path. You should probably put this in a shared module between all of your machines. I have mine set to /home (relative to the nix flake project, not /home on your filesystem). Within the specified directory add a .nix file for any user you want to configure. This file will contain custom configuration for your user. For reference, this is the config for my main user g:
+```
+modules.home-manager.enable = false;
+```
+
+in NixOS. Every user specified under the users argument of mkHost will have a configuration automatically generated for them.
+
+Typically, you would want to have user configuration specific to you for various purposes such as git credentials, or sops secrets applied to all users of your name on all machines you own. 
+
+ To do this you can define a (username).nix file. I put all of mine under a /home directory (relative to your nix flake project, not /home on your filesystem). Then, point home-manager to consume the file in that directory using:
+
+``` 
+home-manager.profilesDir = (path to the directory containing your username.nix file);
+```
+
+As an inspiration of what you should add to this file, here is an example of my main home manager profile:
 
 ```nix
 { self, config, pkgs, lib, hostName, ... }:
@@ -271,6 +295,7 @@ in
 
 You can also specify extra home-manager configuration in your /hosts/(hostname)/users/(username) folder for configuration specific to that host (such as for a multi monitor setup)
 
+Ex:
 ```
 { keys, pkgs, config, lib, ... }:
 let

@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, system, ... }:
+{ pkgs, lib, ... }:
 let
   inherit (lib)
     mkProgramOption
@@ -285,7 +285,7 @@ in
       package = mkOption {
         description = "package for portable neovim";
         type = types.package;
-        default = inputs.vim-config.packages.${system}.default;
+        default = pkgs.nvim;
       };
       viAlias = mkEnableOption "vi alias";
       vimAlias = mkEnableOption "vim alias";

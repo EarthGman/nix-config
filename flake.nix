@@ -1,10 +1,10 @@
 {
   description = "Gman's nix config";
 
-  outputs = { self, nixpkgs, home-manager, nix-library, nixos-generators, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, nix-library, ... } @ inputs:
     let
       inherit (self) outputs;
-      helpers = import ./lib/helpers.nix { inherit self outputs nixos-generators; };
+      helpers = import ./lib/helpers.nix { inherit self inputs outputs; };
       myLib = helpers // nix-library.lib;
       lib = nixpkgs.lib.extend
         (final: prev: myLib // home-manager.lib);
@@ -16,30 +16,34 @@
       nixosModules = import ./modules/nixos { inherit inputs outputs lib; };
       homeModules = import ./modules/home-manager { inherit inputs outputs lib; };
 
-      nixosConfigurations = import ./hosts { inherit lib; };
-      homeConfigurations = import ./home { inherit lib; };
+      nixosConfigurations = import ./hosts { inherit self inputs outputs lib; };
+      homeConfigurations = import ./home { inherit self inputs outputs lib; };
 
-      packages."x86_64-linux" = {
-        mc112 = lib.mkLXC {
-          template = "minecraft";
-          extraConfig = ./hosts/mc112;
-          personal = true;
+      packages."x86_64-linux" =
+        let
           keys = import ./keys.nix;
-        };
+        in
+        {
+          mc112 = lib.mkLXC {
+            template = "minecraft";
+            extraConfig = ./hosts/mc112;
+            personal = true;
+            extraSpecialArgs = { inherit keys; };
+          };
 
-        mc112-blueprints = lib.mkLXC {
-          template = "minecraft";
-          extraConfig = ./hosts/mc-blueprints;
-          personal = true;
-          keys = import ./keys.nix;
-        };
+          mc112-blueprints = lib.mkLXC {
+            template = "minecraft";
+            extraConfig = ./hosts/mc-blueprints;
+            personal = true;
+            extraSpecialArgs = { inherit keys; };
+          };
 
-        docker-env = lib.mkLXC {
-          template = "docker-env";
-          personal = true;
-          keys = import ./keys.nix;
+          docker-env = lib.mkLXC {
+            template = "docker-env";
+            personal = true;
+            extraSpecialArgs = { inherit keys; };
+          };
         };
-      };
     };
 
   inputs = {

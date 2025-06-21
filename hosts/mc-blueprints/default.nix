@@ -1,7 +1,4 @@
-{ pkgs, inputs, outputs, lib, ... }:
-let
-  binaries = builtins.fromJSON (builtins.readFile inputs.binaries.outPath);
-in
+{ pkgs, binaries, lib, ... }:
 {
   services.minecraft-server = {
     # overrides jre_headless to use jre8 instead. This is because attempting to load server-icon.png causes a server crash from a missing library.

@@ -77,7 +77,6 @@ in
     };
 
     nixpkgs = {
-      overlays = builtins.attrValues outputs.overlays;
       config.allowUnfree = true;
       hostPlatform = mkIf (system != null) system;
     };
