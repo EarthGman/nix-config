@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, self, ... }:
 let
   inherit (lib) mkHome;
   keys = import ../keys.nix;
@@ -10,7 +10,7 @@ in
     desktop = "hyprland";
     stateVersion = "25.05";
     profile = ./g.nix;
-    extraExtraSpecialArgs = { inherit keys; };
+    extraExtraSpecialArgs = { inherit self keys; };
   };
 
   "g@archlinux" = mkHome {
@@ -19,6 +19,6 @@ in
     desktop = "hyprland";
     stateVersion = "25.11";
     profile = ./g.nix;
-    extraExtraSpecialArgs = { inherit keys; };
+    extraExtraSpecialArgs = { inherit self keys; };
   };
 }

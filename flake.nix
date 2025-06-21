@@ -4,7 +4,7 @@
   outputs = { self, nixpkgs, home-manager, nix-library, ... } @ inputs:
     let
       inherit (self) outputs;
-      helpers = import ./lib/helpers.nix { inherit self inputs outputs; };
+      helpers = import ./lib/helpers.nix { inherit inputs outputs; };
       myLib = helpers // nix-library.lib;
       lib = nixpkgs.lib.extend
         (final: prev: myLib // home-manager.lib);
@@ -17,7 +17,7 @@
       homeModules = import ./modules/home-manager { inherit inputs outputs lib; };
 
       nixosConfigurations = import ./hosts { inherit self inputs outputs lib; };
-      homeConfigurations = import ./home { inherit self inputs outputs lib; };
+      homeConfigurations = import ./home { inherit self lib; };
 
       packages."x86_64-linux" =
         let

@@ -1,4 +1,4 @@
-{ self, outputs, inputs, ... }:
+{ outputs, inputs, ... }:
 let
   # expose both nixpkgs and self defined lib functions
   inherit (outputs) lib;
@@ -120,6 +120,7 @@ in
           ] ++ optionals (profile != null) [
             profile
           ];
+
           extraSpecialArgs = {
             inherit
               lib
