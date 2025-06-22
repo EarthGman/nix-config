@@ -11,6 +11,7 @@ in
     inputs.home-manager.nixosModules.default
     inputs.determinate.nixosModules.default
     inputs.sops-nix.nixosModules.sops
+    # inputs.jovian-nixos.nixosModules.default
 
     ../shared
     ./profiles

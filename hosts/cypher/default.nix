@@ -10,6 +10,8 @@
     gaming.enable = true;
   };
 
+  # jovian.decky-loader.enable = true;
+
   boot.initrd.availableKernelModules = [
     "nvme"
     "ahci"
