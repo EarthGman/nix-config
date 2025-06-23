@@ -2,21 +2,6 @@
 let
   cfg = config.services.displayManager.sddm;
   inherit (lib) types mkOption mkIf mkDefault;
-  desktop = if args ? desktop then args.desktop else "";
-  desktops = lib.splitString "," desktop;
-  preferredDesktop = builtins.elemAt desktops 0;
-
-  # handle some weird edge cases with session names
-  defaultSession =
-    if (preferredDesktop == "i3")
-    then
-      "none+i3"
-    else if (preferredDesktop == "hyprland") then
-      "hyprland-uwsm"
-    else if (preferredDesktop == "sway") then
-      "sway-uwsm"
-    else
-      preferredDesktop;
 in
 {
   options = {
@@ -37,7 +22,6 @@ in
 
   config = mkIf config.modules.display-managers.sddm.enable {
     services.displayManager = {
-      inherit defaultSession;
       sddm = {
         themeConfig = {
           AllowUppercaseLettersInUsernames = mkDefault "true";
