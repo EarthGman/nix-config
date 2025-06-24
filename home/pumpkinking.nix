@@ -5,6 +5,7 @@
   ];
 
   profiles.essentials.enable = true;
+  custom.profiles.firefox = "shyfox";
 
   programs.git = {
     userName = "PumpkinKing432";
