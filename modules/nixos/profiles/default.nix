@@ -103,6 +103,7 @@ in
         viAlias = mkDefault true;
         vimAlias = mkDefault true;
         defaultEditor = mkDefault true;
+        package = mkDefault pkgs.nvim;
       };
       git.enable = mkDefault true;
       lazygit.enable = mkDefault true;

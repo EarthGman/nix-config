@@ -1,5 +1,5 @@
 # default HM profiles for all users
-{ lib, config, ... }@args:
+{ pkgs, lib, config, ... }@args:
 let
   wallpapers = if args ? wallpapers then args.wallpapers else null;
   inherit (lib) autoImport mkDefault mkEnableOption mkIf;
@@ -78,6 +78,7 @@ in
         };
       };
       starship.enable = mkDefault true;
+      neovim-custom.package = mkDefault pkgs.nvim;
       git.enable = mkDefault true;
       tmux.enable = mkDefault true;
       bat.enable = mkDefault true;

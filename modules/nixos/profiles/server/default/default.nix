@@ -18,7 +18,7 @@ in
       lazygit.enable = mkOverride 800 false;
       nh.enable = mkOverride 800 false;
       neovim-custom = {
-        package = mkDefault pkgs.nvim-lite;
+        package = pkgs.nvim-lite;
       };
       vim = {
         # srvos assumes im using vim instead of neovim
