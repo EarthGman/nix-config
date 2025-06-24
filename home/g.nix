@@ -1,10 +1,10 @@
-{ self, outputs, config, pkgs, lib, hostName, ... }:
+{ self, keys, config, pkgs, lib, hostName, ... }:
 let
   inherit (lib) mkDefault;
   enabled = { enable = mkDefault true; };
-  signingkey = outputs.keys.g_pub;
+  signingkey = keys.g_ssh_pub;
   LHmouse = builtins.toFile "lh-mouse.xmodmap" "pointer = 3 2 1";
-  extraHM = self + /hosts/${hostName}/users/g/preferences.nix;
+  extraHM = (self + "/hosts/${hostName}/users/g/preferences.nix");
 in
 {
   imports = lib.optionals (builtins.pathExists extraHM) [

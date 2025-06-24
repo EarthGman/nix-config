@@ -4,7 +4,6 @@ keys:
   - &twilight age13mj768x90kcw2m80d0v3px5v2kvhf9dq63a40xxjgyt75kcv0assr0u8eu
   - &gman-theatre age199auly5hkukg7zqp57y9gycxtlwl8g89k82q6v37a8fzs2ewkaus5jwv80
   - &somnus age18uzw9yhgjnuy0zg9fajmp75m0r8w93aq0qw453e868mxadflcghqpeqgy4
-  - &shop age14jh6py5y6d06grnsjxhj5n66kr3egd4r8ujk7nyn8qtkllwaksmsz0546u
 
 creation_rules:
   - path_regex: hosts/cypher/secrets.yaml
@@ -27,7 +26,3 @@ creation_rules:
     key_groups:
       - age:
         - *gman-theatre
-  - path_regex: hosts/optiplex-380/secrets.yaml
-    key_groups:
-      - age:
-        - *shop

@@ -1,4 +1,4 @@
-{ lib, outputs, inputs, ... }:
+{ lib, inputs, ... }:
 let
   inherit (lib) autoImport;
   programs = autoImport ./programs;
@@ -7,7 +7,13 @@ in
 {
   imports = [
     inputs.disko.nixosModules.default
-    outputs.sharedModules
+    inputs.nix-gaming.nixosModules.pipewireLowLatency
+    inputs.home-manager.nixosModules.default
+    inputs.determinate.nixosModules.default
+    inputs.sops-nix.nixosModules.sops
+    # inputs.jovian-nixos.nixosModules.default
+
+    ../shared
     ./profiles
     ./bootloaders
     ./desktops

@@ -13,7 +13,6 @@
 
   modules = {
     onepassword.enable = true;
-    sops.enable = true;
   };
 
   boot.initrd.availableKernelModules = [

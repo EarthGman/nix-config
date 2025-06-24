@@ -1,4 +1,4 @@
-{ outputs, pkgs, config, lib, ... }:
+{ keys, pkgs, config, lib, ... }:
 let
   username = "g";
 in
@@ -9,7 +9,7 @@ in
     hashedPasswordFile = lib.mkIf (config.sops.secrets ? ${username}) config.sops.secrets.${username}.path;
     password = null;
     isNormalUser = true;
-    openssh.authorizedKeys.keys = [ outputs.keys.g_pub ];
+    openssh.authorizedKeys.keys = [ keys.g_ssh_pub ];
     shell = pkgs.zsh;
     extraGroups = [
       "networkmanager"

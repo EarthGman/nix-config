@@ -1,10 +1,17 @@
 { pkgs, lib, config, ... }:
 let
-  inherit (lib) mkDefault getExe mkIf mkEnableOption;
+  inherit (lib) mkDefault getExe mkIf mkEnableOption mkOption types;
   cfg = config.profiles.tmux.default;
 in
 {
-  options.profiles.tmux.default.enable = mkEnableOption "gman's tmux configuration";
+  options.profiles.tmux.default = {
+    enable = mkEnableOption "gman's tmux configuration";
+    hostIcon = mkOption {
+      description = "icon to use beside the hostname tab";
+      type = types.str;
+      default = " ";
+    };
+  };
   config = mkIf cfg.enable {
     programs.tmux = {
       enable = true;
@@ -22,7 +29,7 @@ in
         bind -n S-Right next-window
 
         set -g @dracula-show-powerline true
-        set -g @dracula-show-left-icon " #h"
+        set -g @dracula-show-left-icon "${cfg.hostIcon}#h"
         set -g @dracula-plugins "battery cpu-usage ram-usage time"
         set -g @dracula-military-time true
         set -g @dracula-no-battery-label 󱉝

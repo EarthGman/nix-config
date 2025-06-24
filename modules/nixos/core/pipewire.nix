@@ -1,11 +1,9 @@
-{ inputs, config, lib, ... }@args:
+{ config, lib, ... }:
 let
   inherit (lib) mkDefault mkIf;
   cfg = config.modules.pipewire;
-  desktop = if args ? desktop then args.desktop else null;
 in
 {
-  imports = [ inputs.nix-gaming.nixosModules.pipewireLowLatency ];
   options.modules.pipewire.enable = lib.mkEnableOption "enable sound with pipewire";
   config = mkIf cfg.enable {
     security.rtkit.enable = true; # hands out realtime scheduling priority to user processes on demand. Improves performance of pulse

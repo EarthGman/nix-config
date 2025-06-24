@@ -1,4 +1,4 @@
-{ self, pkgs, lib, config, ... }:
+{ pkgs, lib, config, ... }:
 let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.profiles.fish.default;
@@ -8,7 +8,7 @@ in
   config = mkIf cfg.enable {
     programs.fish = {
       vendor.completions.enable = true;
-      shellAliases = import (self + "/modules/shared/shell-aliases.nix") { inherit pkgs lib config; };
+      shellAliases = import ../../../shared/shell-aliases.nix { inherit pkgs lib config; };
 
       promptInit = ''
         function __fish-yazi-wrapper -d 'y wrapper for yazi'

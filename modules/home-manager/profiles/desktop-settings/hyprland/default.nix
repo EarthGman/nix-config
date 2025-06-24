@@ -1,12 +1,12 @@
 { pkgs, lib, config, ... }:
 let
   inherit (lib) mkEnableOption mkIf mkDefault;
-  cfg = config.profiles.desktops.hyprland.default;
+  cfg = config.profiles.hyprland.default;
   enabled = { enable = lib.mkDefault true; };
   scripts = import ../../../scripts { inherit pkgs lib config; };
 in
 {
-  options.profiles.desktops.hyprland.default.enable = mkEnableOption "default hyprland config";
+  options.profiles.hyprland.default.enable = mkEnableOption "default hyprland config";
   config = mkIf cfg.enable {
     stylix.targets.hyprland.enable = true;
 

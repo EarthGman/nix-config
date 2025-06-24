@@ -13,7 +13,10 @@ let
     else { };
 in
 {
-  imports = [ ./xsession.nix ];
+  imports = [
+    ./xsession.nix
+    ./sops.nix
+  ];
 
   options = {
     # custom option allows various configuration to reference your preferred program to execute.
@@ -55,15 +58,17 @@ in
 
   config = {
     nixpkgs = {
-      overlays = builtins.attrValues outputs.overlays;
       config.allowUnfree = true;
     };
 
-    # things needed for modules to work
+    # things needed for script modules to work
     home.packages = with pkgs; [
       coreutils-full
+      findutils
       psmisc
       gnused
+      procps # pgrep, pkill
+      gawk
       brightnessctl
       pamixer
       imagemagick
@@ -78,6 +83,7 @@ in
       dunst = enableProfile "dunst";
       fastfetch = enableProfile "fastfetch";
       firefox = enableProfile "firefox";
+      fzf = enableProfile "fzf";
       fish = enableProfile "fish";
       kitty = enableProfile "kitty";
       rofi = enableProfile "rofi";
@@ -96,11 +102,10 @@ in
 
       desktopThemes = enableProfile "desktopTheme";
 
-      desktops = {
-        i3 = enableProfile "i3";
-        sway = enableProfile "sway";
-        hyprland = enableProfile "hyprland";
-      };
+      gnome = enableProfile "gnome";
+      i3 = enableProfile "i3";
+      sway = enableProfile "sway";
+      hyprland = enableProfile "hyprland";
     };
 
     # enable programs using the custom user preferences

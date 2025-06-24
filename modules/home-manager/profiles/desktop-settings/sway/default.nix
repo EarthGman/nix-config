@@ -1,11 +1,11 @@
 { lib, config, ... }:
 let
   inherit (lib) mkIf mkDefault optionals mkEnableOption getExe;
-  cfg = config.profiles.desktops.sway.default;
+  cfg = config.profiles.sway.default;
   enabled = { enable = mkDefault true; };
 in
 {
-  options.profiles.desktops.sway.default.enable = mkEnableOption "default sway config";
+  options.profiles.sway.default.enable = mkEnableOption "default sway config";
   config = mkIf cfg.enable {
     stylix.targets.sway.enable = true;
 

@@ -18,10 +18,10 @@ in
       bottomBar.settings = import ./bottom.nix { inherit pkgs lib config scripts; };
       style = builtins.readFile ./style.css;
     };
-    xdg.configFile = mkIf (!config.programs.waybar.imperativeConfig) {
+    xdg.configFile = {
       "waybar/settings-menu.xml" = {
-        enable = config.programs.waybar.enable;
-        text = builtins.readFile ./settings-menu.xml;
+        enable = config.programs.waybar.enable && !config.programs.waybar.imperativeConfig;
+        text = mkDefault (builtins.readFile ./settings-menu.xml);
       };
     };
   };

@@ -1,7 +1,7 @@
 { pkgs, lib, config, ... }@args:
 let
   bios = if args ? bios then args.bios else null;
-  inherit (lib) mkOption types mkDefault mkEnableOption mkIf;
+  inherit (lib) mkOption types mkDefault mkEnableOption mkIf optionalString;
   cfg = config.boot.loader.grub;
 in
 {
@@ -46,7 +46,8 @@ in
               }
               menuentry "Poweroff" {
                 halt
-              }
+              } 
+            '' + optionalString (bios == "UEFI") ''
               menuentry 'UEFI Firmware Settings' --id 'uefi-firmware' {
                 fwsetup
               }

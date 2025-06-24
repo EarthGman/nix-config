@@ -1,26 +1,28 @@
 { pkgs, config, lib, ... }:
 let
-  inherit (lib) mkDefault mkEnableOption mkIf mkOverride;
+  inherit (lib) mkEnableOption mkIf mkOverride;
   cfg = config.modules.desktops.gnome;
 in
 {
-  options.modules.desktops.gnome.enable = mkEnableOption "enable custom gnome desktop module";
+  options.modules.desktops.gnome = {
+    enable = mkEnableOption "custom gnome module";
+    withDefaultPackages = mkEnableOption "default packages for the gnome desktop environment";
+  };
   config = mkIf cfg.enable {
     services.desktopManager.gnome.enable = true;
-    modules.display-managers.sddm.enable = mkOverride 800 false;
     services.displayManager.gdm.enable = mkOverride 800 true;
-    environment.systemPackages = with pkgs; [
-      gnome-tilingShell
-    ];
+    modules.display-managers.sddm.enable = mkOverride 800 false;
+    modules.desktops.gnome.withDefaultPackages = mkOverride 800 false; # exclude all default gnome packages by default
 
     # exclude all packages built into gnome and allow each user to choose what they want installed
-    programs.geary.enable = mkOverride 800 false;
-    environment.gnome.excludePackages = with pkgs; [
+    programs.geary.enable = mkIf (!cfg.withDefaultPackages) (mkOverride 800 false);
+    environment.gnome.excludePackages = mkIf (!cfg.withDefaultPackages) (with pkgs; [
       gnome-tour
       gedit
       hexchat
       loupe
       snapshot
+      decibels
       gnome-connections
       gnome-text-editor
       gnome-terminal
@@ -47,6 +49,6 @@ in
       atomix
       totem
       yelp
-    ];
+    ]);
   };
 }

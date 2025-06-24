@@ -33,6 +33,12 @@ in
     default = "";
   };
 
+  fzf = mkOption {
+    type = types.str;
+    description = "fzf profile to use";
+    default = "";
+  };
+
   kitty = mkOption {
     type = types.str;
     description = "kitty profile to use";

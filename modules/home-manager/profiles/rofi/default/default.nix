@@ -1,6 +1,6 @@
 { pkgs, lib, config, ... }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf mkDefault;
   cfg = config.profiles.rofi.default;
 in
 {
@@ -12,6 +12,9 @@ in
       package = pkgs.rofi-wayland;
     };
     stylix.targets.rofi.enable = true;
-    xdg.configFile."rofi/wallpapers.rasi".text = mkIf config.programs.rofi.enable (builtins.readFile ./wallpapers.rasi);
+    xdg.configFile."rofi/wallpapers.rasi" = {
+      enable = config.programs.rofi.enable && !config.programs.rofi.imperativeConfig;
+      text = mkDefault (builtins.readFile ./wallpapers.rasi);
+    };
   };
 }

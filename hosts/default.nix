@@ -1,6 +1,7 @@
-{ lib, ... }:
+{ self, inputs, outputs, lib, ... }:
 let
   inherit (lib) mkHost;
+  keys = import ../keys.nix;
 in
 {
   # Earth's desktops
@@ -12,9 +13,11 @@ in
     gpu = "amd";
     users = [ "g" ];
     desktop = "sway";
+    secretsFile = ./cypher/secrets.yaml;
     system = "x86_64-linux";
     stateVersion = "24.05";
     configDir = ./cypher;
+    extraSpecialArgs = { inherit self inputs outputs keys; };
   };
 
   # Corebooted Thinkpad x230
@@ -25,8 +28,10 @@ in
     gpu = "intel";
     users = [ "g" ];
     desktop = "hyprland";
+    secretsFile = ./twilight/secrets.yaml;
     system = "x86_64-linux";
     configDir = ./twilight;
+    extraSpecialArgs = { inherit self inputs outputs keys; };
   };
 
   # still working HP pavilion x360 potato
@@ -37,22 +42,11 @@ in
     gpu = "intel";
     users = [ "g" ];
     desktop = "sway";
+    secretsFile = ./tater/secrets.yaml;
     system = "x86_64-linux";
     stateVersion = "25.05";
     configDir = ./tater;
-  };
-
-  # dell optiplex 380
-  optiplex-380 = mkHost {
-    hostName = "optiplex-380";
-    cpu = "intel";
-    gpu = "intel";
-    bios = "legacy";
-    users = [ "g" ];
-    desktop = "sway";
-    system = "x86_64-linux";
-    stateVersion = "25.11";
-    configDir = ./optiplex-380;
+    extraSpecialArgs = { inherit self inputs outputs keys; };
   };
 
   HP-G71340US = mkHost {
@@ -63,6 +57,7 @@ in
     users = [ "that1stranger" ];
     desktop = "gnome";
     configDir = ./HP-G71340US;
+    extraSpecialArgs = { inherit self inputs outputs; };
   };
 
   # Thunder's desktops
@@ -73,9 +68,11 @@ in
     gpu = "amd";
     users = [ "bean" ];
     desktop = "hyprland,i3,sway";
+    secretsFile = ./somnus/secrets.yaml;
     stateVersion = "24.05";
     system = "x86_64-linux";
     configDir = ./somnus;
+    extraSpecialArgs = { inherit self inputs outputs; };
   };
 
   pioneer = mkHost {
@@ -88,6 +85,7 @@ in
     system = "x86_64-linux";
     stateVersion = "24.11";
     configDir = ./pioneer;
+    extraSpecialArgs = { inherit self inputs outputs; };
   };
 
   # Iron's desktops
@@ -101,6 +99,7 @@ in
     system = "x86_64-linux";
     stateVersion = "24.05";
     configDir = ./petrichor;
+    extraSpecialArgs = { inherit self inputs outputs; };
   };
 
   # pumpkin's desktops
@@ -114,6 +113,7 @@ in
     system = "x86_64-linux";
     stateVersion = "24.05";
     configDir = ./thePumpkinPatch;
+    extraSpecialArgs = { inherit self inputs outputs; };
   };
 
   juno = mkHost {
@@ -126,6 +126,7 @@ in
     system = "x86_64-linux";
     stateVersion = "25.05";
     configDir = ./juno;
+    extraSpecialArgs = { inherit self inputs outputs; };
   };
 
   gman-theatre = mkHost {
@@ -134,9 +135,11 @@ in
     gpu = "amd";
     server = true;
     vm = false;
+    secretsFile = ./gman-theatre/secrets.yaml;
     system = "x86_64-linux";
     stateVersion = "25.05";
     configDir = ./gman-theatre;
+    extraSpecialArgs = { inherit self inputs outputs keys; };
   };
 
   # isos

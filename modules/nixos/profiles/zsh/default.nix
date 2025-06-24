@@ -1,4 +1,4 @@
-{ self, pkgs, lib, config, ... }:
+{ pkgs, lib, config, ... }:
 let
   inherit (lib) mkDefault mkEnableOption optionalString mkIf;
   cfg = config.programs;
@@ -11,7 +11,7 @@ in
       enableCompletion = mkDefault true;
       syntaxHighlighting.enable = mkDefault true;
       autosuggestions.enable = mkDefault true;
-      shellAliases = import (self + "/modules/shared/shell-aliases.nix") { inherit pkgs lib config; };
+      shellAliases = import ../../../shared/shell-aliases.nix { inherit pkgs lib config; };
 
       promptInit = ''
         setopt autocd

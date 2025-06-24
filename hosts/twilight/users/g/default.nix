@@ -1,4 +1,4 @@
-{ outputs, pkgs, config, lib, ... }:
+{ keys, pkgs, config, lib, ... }:
 let
   username = "g";
 in
@@ -10,7 +10,7 @@ in
     password = null;
     isNormalUser = true;
     shell = pkgs.zsh;
-    openssh.authorizedKeys.keys = [ outputs.keys.g_pub ];
+    openssh.authorizedKeys.keys = [ keys.g_ssh_pub ];
     extraGroups = [
       "networkmanager"
       "wheel"

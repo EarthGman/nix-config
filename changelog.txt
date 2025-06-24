@@ -1,3 +1,35 @@
+6-21-2025
+- more V6 framework overhaul
+- remove all dependence on "self" "inputs" and "outputs" for shared nixosModules.
+- add extraSpecialArgs to mkHost and extraExtraSpecialArgs to mkHome.
+- configurations can now append an undefined number of special arguements to their modules using mkHost and mkHome
+- home-manager configurations within modules/nixos/core/home-manager.nix are now constructed using mkHome instead of a weird fork of the function.
+- add sops-nix to home-manager
+- swww no longer uses the flake input package by default
+- ghostty no longer uses the flake input package by default
+- update docs to reflect changes
+- currently untested thoroughly, will test later (tm)
+
+6-20-2025
+- remove unnecessary flake outputs
+- keys argument added to mkHost for ease of access
+
+
+6-19-2025
+- add hostIcon option to profiles.tmux.default
+- move extraVimPlugins from vim-config to nix-library
+- removed "UEFI Firmware Settings" option from grub for legacy bios
+- add a new key to mkHost called secretsFile. It defaults to null and takes a path to a secrets.yaml file
+- when a path is provided the sops module will be enabled with the default sops file set to the path specified.
+
+
+6-17-2025
+- fix fzf config
+- add fzf profile for nixos and home-manager
+- add system utilities that are already present to home-manager's shell path
+- add fzf-edit to nix-library package set. running fzf-edit will open the file selected with $EDITOR
+
+
 6-15-2025
 - rewrite screenshot scripts for TWM desktops
 - set XDG_SCREENSHOTS_DIR to ~/Pictures/screenshots via default home-manager profile
