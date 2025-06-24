@@ -63,18 +63,18 @@ in
 
     # things needed for script modules to work
     home.packages = with pkgs; [
-      coreutils-full
       findutils
       gnused
-      procps # pgrep, pkill
       gawk
-      brightnessctl
-      pamixer
       imagemagick
     ] ++ optionals (config.services.network-manager-applet.enable) [
       networkmanagerapplet
     ] ++ optionals (pkgs.stdenv.isLinux) [
       psmisc
+      brightnessctl
+      pamixer
+      procps # pgrep, pkill
+      coreutils-full
     ];
 
     # enable the profile requested by config.custom.profiles
