@@ -65,7 +65,6 @@ in
     home.packages = with pkgs; [
       coreutils-full
       findutils
-      psmisc
       gnused
       procps # pgrep, pkill
       gawk
@@ -74,6 +73,8 @@ in
       imagemagick
     ] ++ optionals (config.services.network-manager-applet.enable) [
       networkmanagerapplet
+    ] ++ optionals (pkgs.stdenv.isLinux) [
+      psmisc
     ];
 
     # enable the profile requested by config.custom.profiles
