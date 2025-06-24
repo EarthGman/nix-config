@@ -18,7 +18,7 @@ in
     };
   };
   config = {
-    home.packages = [ pkgs.networkmanagerapplet ];
+    home.packages = mkIf (config.programs.waybar.enable) [ pkgs.networkmanagerapplet ];
     programs.waybar = {
       systemd.enable = mkDefault true;
       settings =
