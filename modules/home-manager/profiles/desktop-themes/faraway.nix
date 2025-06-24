@@ -1,5 +1,8 @@
-{ pkgs, lib, config, wallpapers, icons, ... }:
+{ pkgs, lib, config, ... }@args:
 let
+  wallpapers = if args ? wallpapers then args.wallpapers else null;
+  icons = if args ? icons then args.icons else null;
+
   inherit (builtins) fetchurl;
   inherit (lib) mkForce mkEnableOption mkIf;
   cfg = config.profiles.desktopThemes.faraway;

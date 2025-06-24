@@ -1,4 +1,4 @@
-{ outputs, pkgs, lib, config, wallpapers, ... }:
+{ pkgs, lib, config, ... }:
 let
   inherit (lib) optionals mkOption types mkDefault;
 
@@ -46,7 +46,7 @@ in
       wallpaper = mkOption {
         description = "path to preferred default wallpaper";
         type = types.path;
-        default = builtins.fetchurl wallpapers.default;
+        default = null;
       };
 
       profiles = import ./profile-opts.nix { inherit lib; };

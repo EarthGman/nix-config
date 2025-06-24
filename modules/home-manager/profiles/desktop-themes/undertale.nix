@@ -1,6 +1,9 @@
-{ pkgs, lib, config, wallpapers, icons, ... }:
+{ pkgs, lib, config, ... }@args:
 let
-  inherit (lib) mkForce mkIf mkEnableOption;
+  wallpapers = if args ? wallpapers then args.wallpapers else null;
+  icons = if args ? wallpapers then args.icons else null;
+
+  inherit (lib) mkIf mkEnableOption;
   inherit (builtins) fetchurl;
   cfg = config.profiles.desktopThemes.undertale;
 in

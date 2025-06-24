@@ -1,5 +1,6 @@
-{ pkgs, lib, config, wallpapers, ... }:
+{ pkgs, lib, config, ... }@args:
 let
+  wallpapers = if args ? wallpapers then args.wallpapers else null;
   inherit (lib) mkForce mkEnableOption mkIf;
   cfg = config.profiles.desktopThemes.headspace;
 in

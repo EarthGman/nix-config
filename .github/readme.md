@@ -101,3 +101,8 @@ Imperative actions after install
 - [ ] add some more showcase pictures
 - [ ] Nix build server
 - [ ] installation helper scripts
+<<<<<<< Updated upstream
+=======
+- [ ] Docs for sops secrets managment
+- [ ] Move all icons wallpapers to a website rather than the assets repository
+>>>>>>> Stashed changes

@@ -1,6 +1,7 @@
-{ icons, config, lib, ... }:
+{ config, lib, ... }@args:
 let
-  inherit (lib) mkIf;
+  icons = if args ? icons then args.icons else null;
+  inherit (lib) mkIf getExe;
   cfg = config.programs.davinci-resolve;
 in
 {
@@ -10,14 +11,14 @@ in
     ];
 
     # for some reason the default derivation lacks a desktop file
-    xdg.dataFile."applications/davinci-resolve.desktop" = {
+    xdg.dataFile."applications/davinci-resolve.desktop" = mkIf (icons != null) {
       enable = true;
       text = ''
         [Desktop Entry]
         Name=Davinci Resolve
         Comment=Professional Video Editing
         Icon=${builtins.fetchurl icons.davinci-resolve}
-        Exec=${lib.getExe cfg.package}
+        Exec=${getExe cfg.package}
         Terminal=false
         Type=Application
         Categories=Video

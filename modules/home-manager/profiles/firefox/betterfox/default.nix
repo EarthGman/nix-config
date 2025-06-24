@@ -1,5 +1,6 @@
-{ pkgs, lib, config, icons, ... }:
+{ pkgs, lib, config, ... }@args:
 let
+  icons = if args ? icons then args.icons else null;
   inherit (lib) mkDefault mkIf mkEnableOption;
   cfg = config.profiles.firefox.betterfox;
 in
@@ -16,7 +17,7 @@ in
       ]);
       search = {
         default = mkDefault "ddg"; # DuckDuckGo
-        engines = import ./search-engines.nix { inherit pkgs icons; };
+        engines = import ../search-engines.nix { inherit pkgs icons; };
         force = true;
       };
 

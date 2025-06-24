@@ -1,6 +1,7 @@
 # default HM profiles for all users
-{ lib, config, ... }:
+{ lib, config, ... }@args:
 let
+  wallpapers = if args ? wallpapers then args.wallpapers else null;
   inherit (lib) autoImport mkDefault mkEnableOption mkIf;
 in
 {
@@ -13,6 +14,7 @@ in
       fileManager = mkDefault "nautilus";
       editor = mkDefault "nvim";
       browser = mkDefault "firefox";
+      wallpaper = mkDefault (builtins.fetchurl wallpapers.default);
 
       # enable all default profiles
       profiles =

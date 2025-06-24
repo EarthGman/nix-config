@@ -1,5 +1,7 @@
-{ lib, config, wallpapers, icons, ... }:
+{ lib, config, ... }@args:
 let
+  wallpapers = if args ? wallpapers then args.wallpapers else null;
+
   inherit (builtins) fetchurl;
   inherit (lib) mkDefault mkEnableOption mkIf;
   cfg = config.profiles.desktopThemes.cosmos;

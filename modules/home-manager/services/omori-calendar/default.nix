@@ -1,15 +1,21 @@
-{ pkgs, lib, config, wallpapers, ... }:
+{ pkgs, lib, config, ... }@args:
 let
-  inherit (lib) getExe mkForce;
+  wallpapers = if args ? wallpapers then args.wallpapers else null;
+  inherit (lib) getExe mkForce mkEnableOption;
   inherit (builtins) fetchurl;
-  script = import ./script.nix { inherit pkgs config fetchurl wallpapers getExe; };
+
+  script =
+    if (wallpapers != null) then
+      import ./script.nix { inherit pkgs config fetchurl wallpapers getExe; }
+    else
+      "bash -c 'exit 1'";
 in
 {
-  options.services.omori-calendar-project.enable = lib.mkEnableOption "omori calendar project service";
+  options.services.omori-calendar-project.enable = mkEnableOption "omori calendar project service";
   config = lib.mkIf config.services.omori-calendar-project.enable {
     systemd.user.timers."omori-calendar-project" = {
       Unit = {
-        Description = "Check Month at 12:00 AM";
+        Description = "12:00 AM date check";
       };
       Timer = {
         OnCalendar = "*-*-* 00:00:00";

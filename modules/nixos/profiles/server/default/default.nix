@@ -20,7 +20,7 @@ in
     # debloat
     environment.defaultPackages = [ ];
     #boot.initrd.includeDefaultModules = false;
-    hardware.enableRedistributableFirmware = false;
+    hardware.enableRedistributableFirmware = mkDefault false;
 
     # make sure clean doesn't leave any unnecessary nixos configurations
     programs = {

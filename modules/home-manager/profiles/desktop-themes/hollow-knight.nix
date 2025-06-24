@@ -1,13 +1,14 @@
-{ wallpapers, lib, config, ... }:
+{ lib, config, ... }@args:
 let
+  wallpapers = if args ? wallpapers then args.wallpapers else null;
   inherit (builtins) fetchurl;
-  inherit (lib) mkForce mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.profiles.desktopThemes.hollow-knight;
 in
 {
   options.profiles.desktopThemes.hollow-knight.enable = mkEnableOption "hollow knight desktop theme";
   config = mkIf cfg.enable {
-    custom.wallpaper = mkForce (fetchurl wallpapers.hallownest-bench);
+    custom.wallpaper = (fetchurl wallpapers.hallownest-bench);
 
     programs.firefox.themes.shyfox.config.wallpaper = fetchurl wallpapers.ghost-and-hornet;
   };

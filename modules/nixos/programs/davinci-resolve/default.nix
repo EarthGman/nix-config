@@ -1,4 +1,4 @@
-{ icons, config, lib, ... }:
+{ config, lib, ... }:
 let
   inherit (lib) mkIf;
   cfg = config.programs.davinci-resolve;

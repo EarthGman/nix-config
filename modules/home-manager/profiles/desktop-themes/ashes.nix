@@ -1,5 +1,6 @@
-{ wallpapers, lib, config, ... }:
+{ lib, config, ... }@args:
 let
+  wallpapers = if args ? wallpapers then args.wallpapers else null;
   inherit (lib) mkIf mkEnableOption;
   cfg = config.profiles.desktopThemes.ashes;
 in

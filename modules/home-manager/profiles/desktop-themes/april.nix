@@ -1,5 +1,8 @@
-{ wallpapers, icons, lib, config, ... }:
+{ lib, config, ... }@args:
 let
+  wallpapers = if args ? wallpapers then args.wallpapers else null;
+  icons = if args ? icons then args.icons else null;
+
   inherit (lib) mkEnableOption mkIf;
   cfg = config.profiles.desktopThemes.april;
 in

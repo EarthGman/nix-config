@@ -1,6 +1,7 @@
 # warning: the owner of this theme has deprecated the project
-{ pkgs, lib, config, icons, ... }:
+{ pkgs, lib, config, ... }@args:
 let
+  icons = if args ? icons then args.icons else null;
   inherit (lib) mkEnableOption mkIf mkDefault;
   cfg = config.profiles.firefox.shyfox;
 in
@@ -19,7 +20,7 @@ in
       ]);
       search = {
         default = mkDefault "ddg"; # DuckDuckGo
-        engines = import ./search-engines.nix { inherit pkgs icons; };
+        engines = import ../search-engines.nix { inherit pkgs icons; };
         force = true;
       };
       extraConfig = builtins.readFile (pkgs.shyfox + "/user.js");

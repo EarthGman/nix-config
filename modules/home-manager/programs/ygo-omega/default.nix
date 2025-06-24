@@ -1,6 +1,7 @@
-{ pkgs, lib, config, icons, ... }:
+{ pkgs, lib, config, ... }@args:
 # does not provide game files, they must be installed already
 let
+  icons = if args ? icons then args.icons else null;
   inherit (lib) mkEnableOption mkOption types mkIf getExe;
   inherit (builtins) toPath;
   cfg = config.programs.ygo-omega;
@@ -10,13 +11,7 @@ in
 {
   options.programs.ygo-omega = {
     enable = mkEnableOption ''
-      enable ygo-omega desktop
-      DOES NOT give you the game files
-      extract the game files then 'steam-run ./YGO\ Omega.x86_64'
-      the game will launch but will freeze
-      close the game
-      you will now have OmegaUpdater
-      chmod +x OmegaUpdater and the game should launch from the icon
+      the desktop shortcut for ygo-omega
     '';
     gameFileDir = mkOption {
       description = ''
@@ -27,7 +22,7 @@ in
     };
   };
   config = mkIf cfg.enable {
-    xdg.dataFile."applications/ygo-omega.desktop" = {
+    xdg.dataFile."applications/ygo-omega.desktop" = mkIf (icons != null) {
       enable = true;
       text = ''
         [Desktop Entry]
