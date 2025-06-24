@@ -1,8 +1,8 @@
 # basic desktop modules
-{ lib, desktop, ... }@args:
+{ lib, ... }@args:
 let
   desktop = if args ? desktop then args.desktop else null;
-  inherit (lib) optionals splitString autoImport mkDefault;
+  inherit (lib) splitString autoImport mkDefault;
   inherit (builtins) elem;
   desktops = if (desktop != null) then splitString "," desktop else [ ];
   i3 = elem "i3" desktops;
