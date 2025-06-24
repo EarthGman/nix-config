@@ -9,8 +9,8 @@ in
 
   config = mkIf cfg.enable {
     home.packages = mkIf config.programs.waybar.enable (with pkgs; [ nerd-fonts.meslo-lg ]);
-    services.network-manager-applet.enable = true;
-    services.blueman-applet.enable = true;
+    services.network-manager-applet.enable = mkDefault true;
+    services.blueman-applet.enable = mkDefault true;
     stylix.targets.waybar = {
       addCss = mkDefault false;
     };
