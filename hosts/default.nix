@@ -65,7 +65,7 @@ in
     hostName = "somnus";
     bios = "UEFI";
     cpu = "amd";
-    gpu = "amd";
+    gpu = "nvidia";
     users = [ "bean" ];
     desktop = "hyprland,i3,sway";
     secretsFile = ./somnus/secrets.yaml;
