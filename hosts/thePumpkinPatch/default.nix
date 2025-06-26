@@ -21,11 +21,13 @@
     };
 
   };
+
+  modules.display-managers.sddm.enable = true;
+
   services = {
     displayManager = {
       gdm.enable = false;
       sddm = {
-        enable = true;
         themeConfig = {
           Background = builtins.fetchurl wallpapers.hallownest;
           ScreenWidth = "2560";
