@@ -67,7 +67,7 @@ in
     cpu = "amd";
     gpu = "nvidia";
     users = [ "bean" ];
-    desktop = "hyprland,i3,sway";
+    desktop = "gnome";
     secretsFile = ./somnus/secrets.yaml;
     stateVersion = "24.05";
     system = "x86_64-linux";
