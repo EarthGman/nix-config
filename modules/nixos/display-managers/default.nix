@@ -24,7 +24,9 @@ in
     ./sddm.nix
   ];
 
-  services.displayManager = {
-    defaultSession = mkDefault defaultSession;
+  config = {
+    services.displayManager = {
+      defaultSession = mkDefault defaultSession;
+    };
   };
 }

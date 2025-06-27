@@ -1,4 +1,4 @@
-{ outputs, pkgs, lib, config, ... }@args:
+{ pkgs, lib, config, ... }@args:
 let
   hostName = if args ? hostName then args.hostName else "";
   cpu = if args ? cpu then args.cpu else null;
@@ -9,7 +9,7 @@ let
   stateVersion = if args ? stateVersion then args.stateVersion else "";
   system = if args ? system then args.system else null;
 
-  inherit (lib) mkIf mkEnableOption mkForce mkDefault autoImport getExe;
+  inherit (lib) mkIf mkEnableOption mkForce mkDefault autoImport;
   cfg = config.profiles.default;
 
   nixos-update = pkgs.writeShellScriptBin "nixos-update" ''
@@ -40,10 +40,11 @@ in
       tmux.default.enable = mkDefault true;
       zsh.default.enable = mkDefault true;
       fish.default.enable = mkDefault true;
-      cli-tools.enable = mkDefault true;
-      hardware-tools.enable = mkDefault true;
-
       server.default.enable = mkDefault server;
+      sddm.default.enable = mkDefault true;
+
+      hardware-tools.enable = mkDefault true;
+      cli-tools.enable = mkDefault true;
     };
 
     documentation.nixos.enable = mkDefault false;

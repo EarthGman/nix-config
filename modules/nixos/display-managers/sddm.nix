@@ -1,16 +1,15 @@
-{ pkgs, lib, config, ... }@args:
+{ lib, config, ... }:
 let
   cfg = config.services.displayManager.sddm;
-  inherit (lib) types mkOption mkIf mkDefault;
+  inherit (lib) types mkOption mkIf;
 in
 {
   options = {
-    modules.display-managers.sddm.enable = lib.mkEnableOption "enable sddm module";
     services.displayManager.sddm = {
       themePackage = mkOption {
         description = "package for sddm theme";
         type = types.package;
-        default = pkgs.sddm-astronaut.override { inherit (cfg) themeConfig; };
+        default = null;
       };
       themeConfig = mkOption {
         description = "sddm theme configuration written to theme.conf.user";
@@ -20,21 +19,8 @@ in
     };
   };
 
-  config = mkIf config.modules.display-managers.sddm.enable {
-    services.displayManager = {
-      sddm = {
-        themeConfig = {
-          AllowUppercaseLettersInUsernames = mkDefault "true";
-        };
-        enable = true;
-        package = pkgs.kdePackages.sddm;
-        wayland.enable = true;
-        # so sddm can access extra dependencies needed
-        extraPackages = [ cfg.themePackage ];
-        theme = mkDefault "sddm-astronaut-theme"; # I hate this abstraction so much
-      };
-    };
+  config = {
     # places theme in /run/current-system/sw/share/sddm/themes the name of sddm.theme must match the directory exactly
-    environment.systemPackages = [ cfg.themePackage ];
+    environment.systemPackages = mkIf (cfg.themePackage != null) [ cfg.themePackage ];
   };
 }

@@ -24,6 +24,9 @@ in
     # mounting network drives in file managers
     services.gvfs.enable = mkDefault true;
 
+    # setup a display manager
+    services.displayManager.sddm.enable = mkDefault true;
+
     services.xserver = {
       enable = mkDefault true;
       xkb.layout = mkDefault "us";
@@ -48,7 +51,6 @@ in
     # some features most desktops would probably want
     modules = {
       home-manager.enable = mkDefault users != [ ];
-      display-managers.sddm = enabled;
       pipewire = enabled;
       bluetooth = enabled;
       printing = enabled;

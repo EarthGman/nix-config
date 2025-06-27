@@ -10,8 +10,12 @@ in
   };
   config = mkIf cfg.enable {
     services.desktopManager.gnome.enable = true;
-    services.displayManager.gdm.enable = mkOverride 800 true;
-    modules.display-managers.sddm.enable = mkOverride 800 false;
+
+    services.displayManager = {
+      sddm.enable = mkOverride 800 false;
+      gdm.enable = mkOverride 800 true;
+    };
+
     modules.desktops.gnome.withDefaultPackages = mkOverride 800 false; # exclude all default gnome packages by default
 
     # exclude all packages built into gnome and allow each user to choose what they want installed

@@ -1,4 +1,4 @@
-{ self, wallpapers, ... }:
+{ wallpapers, ... }:
 {
   imports = [
     ./disko.nix
@@ -19,10 +19,7 @@
     loader.grub.themeConfig = {
       background = builtins.fetchurl wallpapers.hollow-knight-minimal;
     };
-
   };
-
-  modules.display-managers.sddm.enable = true;
 
   services = {
     displayManager = {
