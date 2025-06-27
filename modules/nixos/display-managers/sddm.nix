@@ -20,7 +20,10 @@ in
   };
 
   config = {
-    # places theme in /run/current-system/sw/share/sddm/themes the name of sddm.theme must match the directory exactly
+    services.displayManager.sddm = {
+      extraPackages = mkIf (cfg.themePackage != null) [ cfg.themePackage ];
+    };
+
     environment.systemPackages = mkIf (cfg.themePackage != null) [ cfg.themePackage ];
   };
 }

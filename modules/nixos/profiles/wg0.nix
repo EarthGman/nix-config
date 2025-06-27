@@ -17,14 +17,9 @@ in
               exit 0
             fi
 
-            case "$2" in
-              up)
-                systemctl restart wg-quick-wg0
-                ;;
-              down)
-               systemctl stop wg-quick-wg0
-               ;;
-            esac
+            if [ "$2" == "up" ]; then
+              systemctl restart wg-quick-wg0
+            fi
           '';
         }
       ];

@@ -1,6 +1,6 @@
 { pkgs, lib, config, ... }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkDefault mkIf;
   cfg = config.profiles.sddm.default;
 in
 
@@ -13,6 +13,8 @@ in
       themePackage = pkgs.sddm-astronaut.override {
         inherit (config.services.displayManager.sddm) themeConfig;
       };
+
+      package = mkDefault pkgs.kdePackages.sddm;
       themeConfig = {
         AllowUppercaseLettersInUsernames = "true";
       };
