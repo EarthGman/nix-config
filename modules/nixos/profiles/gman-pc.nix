@@ -20,6 +20,7 @@ in
       ledger.enable = true;
     };
 
+    services.libinput.mouse.leftHanded = true;
     nix.settings.trusted-users = [ "g" ];
     # some extra man pages
     documentation.dev.enable = true;

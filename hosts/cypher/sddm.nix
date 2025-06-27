@@ -1,4 +1,4 @@
-{ wallpapers, pkgs, lib, config, ... }:
+{ pkgs, lib, config, ... }:
 let
   xcfg = config.services.xserver;
   weston-ini = pkgs.writeText "weston.ini" ''

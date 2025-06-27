@@ -14,6 +14,6 @@ in
       desktop = mkOverride 800 12;
     };
 
-    custom.profiles.waybar = "smallscreen";
+    profiles.waybar.default.small = true;
   };
 }
