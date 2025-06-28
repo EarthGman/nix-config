@@ -9,7 +9,6 @@ in
       enable = true;
       withUWSM = true;
     };
-    xdg.portal.configPackages = [ pkgs.xdg-desktop-portal-hyprland ];
     environment = {
       systemPackages = [ pkgs.wl-clipboard ];
       sessionVariables = {
