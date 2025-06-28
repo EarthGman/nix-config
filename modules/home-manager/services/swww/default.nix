@@ -128,7 +128,7 @@ in
 
           for (( i=1; i<=30; i++ )); do
             if [ -e "$socket_path" ]; then
-              systemctl --user restart swww-wallpaper-manager
+              ${pkgs.systemd}/bin/systemctl --user restart swww-wallpaper-manager
               exit 0
             fi
             sleep 0.1

@@ -1,4 +1,4 @@
-# provides a number of cybersecurity tools installed at the system level
+# provides a number of cybersecurity tools
 { pkgs, lib, config, desktop ? null, ... }:
 let
   inherit (lib) mkEnableOption mkIf;
