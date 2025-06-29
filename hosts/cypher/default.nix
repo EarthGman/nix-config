@@ -68,6 +68,7 @@
     cutentr.enable = true;
     piper.enable = false;
     blender.enable = true;
+    ani-cli.enable = true;
   };
 
   services.sunshine.enable = true;

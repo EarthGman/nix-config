@@ -8,9 +8,15 @@ let
 in
 {
   options.programs = {
+    ani-cli = mkProgramOption {
+      programName = "ani-cli";
+      description = "ani-cli, watch anime in your terminal";
+      inherit pkgs;
+    };
+
     ardour = mkProgramOption {
       programName = "ardour";
-      description = " an open source DAW";
+      description = "an open source DAW";
       inherit pkgs;
     };
 
