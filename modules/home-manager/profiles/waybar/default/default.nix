@@ -56,6 +56,7 @@ in
       addCss = mkDefault false;
     };
     programs.waybar = {
+      package = pkgs.waybar_012;
       bottomBar.settings = import ./bottom.nix { inherit pkgs lib config scripts; } // (if (cfg.small) then
         smallSettings else { });
       style =

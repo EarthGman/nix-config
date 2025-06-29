@@ -5,7 +5,10 @@
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x230
   ];
 
-  profiles.gman-pc.enable = true;
+  profiles = {
+    # wg1.enable = true;
+    gman-pc.enable = true;
+  };
 
   programs.fastfetch.enable = true;
 

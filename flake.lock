@@ -1995,11 +1995,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1750634067,
-        "narHash": "sha256-ozgKEo/XPzgFS+GyJQx/7C9h7ZBmG8ALUPp80NB+ngY=",
+        "lastModified": 1751239261,
+        "narHash": "sha256-pKC6gsyJRp92F9CRaTmbxirWcHsMEcL7NYS+kmDaqvA=",
         "owner": "EarthGman",
         "repo": "nix-library",
-        "rev": "5a070166dabf91cbb397cc4c7a1043a139c6aaff",
+        "rev": "a5ca0b1f2894f1d6598773bd54499bf2e53394c3",
         "type": "github"
       },
       "original": {

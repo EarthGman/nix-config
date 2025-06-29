@@ -1,3 +1,8 @@
+6-29-2025
+- readd personal wg1 config
+- lock waybar to 0.12
+
+
 6-28-2025
 - finally fixed the link opening issue in hyprland.
 

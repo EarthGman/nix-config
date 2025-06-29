@@ -10,10 +10,11 @@ in
     sops.secrets.wg0_conf.path = "/etc/wireguard/wg0.conf";
     networking = {
       firewall.allowedUDPPorts = [ 51820 ];
+      # work around the wireguard endpoint bug
       networkmanager.dispatcherScripts = [
         {
           source = pkgs.writeText "wg0hook" ''
-            if [ "$1" == "wg0" ]; then
+            if [[ "$1" == "wg"* ]]; then
               exit 0
             fi
 
