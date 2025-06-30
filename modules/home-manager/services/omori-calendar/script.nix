@@ -1,6 +1,5 @@
 { pkgs, config, fetchurl, wallpapers, ... }:
-pkgs.writeScript "omori-calendar-project.sh" ''
-  #!${pkgs.bash}/bin/bash
+pkgs.writeShellScript "omori-calendar-project.sh" ''
   January="${fetchurl wallpapers.omori-january}"
   February="${fetchurl wallpapers.omori-february}"
   March="${fetchurl wallpapers.omori-march}"

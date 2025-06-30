@@ -1,3 +1,9 @@
+6-30-2025
+- disable nm-applet for waybar due to severe crashes caused by it
+- fixed swww.sh not finding systemctl
+- added more flexibility to $XDG_CURRENT_DESKTOP for the Hyprland screenshot script to be compatible with jovian nixos
+
+
 6-28-2025
 - finally fixed the link opening issue in hyprland.
 

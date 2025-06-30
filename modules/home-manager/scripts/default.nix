@@ -70,7 +70,7 @@ in
     mode="$1"
 
     case $XDG_CURRENT_DESKTOP in
-    Hyprland)
+    *"Hyprland"*)
     	case $mode in
     		selection)
     			grimblast --notify copysave area
