@@ -61,6 +61,18 @@ in
   };
 
   # Thunder's desktops
+  dynamis = mkHost {
+    hostName = "dynamis";
+    bios = "UEFI";
+    cpu = "amd";
+    gpu = "amd";
+    users = [ "bean" ];
+    desktop = "hyprland";
+    system = "x86_64-linux";
+    configDir = ./dynamis;
+    extraSpecialArgs = { inherit self inputs; };
+  };
+
   somnus = mkHost {
     hostName = "somnus";
     bios = "UEFI";
