@@ -13,7 +13,7 @@ in
   "${mainMod}, Space, exec, rofi -show"
 
   "${mainMod}, Q, killactive"
-  "${mainMod} SHIFT, E, exit"
+  "${mainMod} SHIFT, E, exec, uwsm stop"
   "${mainMod} SHIFT, Space, togglefloating"
   "${mainMod}, P, pseudo"
   "${mainMod}, S, togglesplit"

@@ -35,18 +35,14 @@ in
   config = mkIf cfg.enable {
     home.packages = mkIf config.programs.waybar.enable (with pkgs.nerd-fonts; [ meslo-lg ]);
 
-    # waybar 0.13.0 has a severe crashing issue with nm-applet
-    # disable temporarily until it is fixed
-    services.network-manager-applet.enable = mkIf (config.programs.waybar.enable) false;
-
-    # services.network-manager-applet.enable =
-    #   if (nixosConfig != null && config.programs.waybar.enable) then
-    #     if (nixosConfig.networking.networkmanager.enable) then
-    #       mkDefault true
-    #     else
-    #       false
-    #   else
-    #     false;
+    services.network-manager-applet.enable =
+      if (nixosConfig != null && config.programs.waybar.enable) then
+        if (nixosConfig.networking.networkmanager.enable) then
+          mkDefault true
+        else
+          false
+      else
+        false;
 
     services.blueman-applet.enable =
       if (nixosConfig != null && config.programs.waybar.enable) then
