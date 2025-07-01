@@ -1,1 +1,3 @@
-{ }
+{
+  custom.profiles.desktopTheme = "faraway";
+}
