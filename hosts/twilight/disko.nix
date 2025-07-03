@@ -27,7 +27,7 @@
               size = "100%";
               content = {
                 type = "luks";
-                name = "nixos";
+                name = "nixos-root";
                 settings.allowDiscards = true;
                 passwordFile = "/tmp/secret.key";
                 content = {
