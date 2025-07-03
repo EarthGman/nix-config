@@ -45,6 +45,4 @@
   modules = {
     steam.enable = true;
   };
-
-  zramSwap.enable = true;
 }
