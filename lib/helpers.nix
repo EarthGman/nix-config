@@ -26,8 +26,9 @@ in
     , secretsFile ? null # path to secrets file
     , system ? "x86_64-linux" # what cpu architecture?
     , stateVersion ? "25.11" # what version of nixos was this machine initalized?
-    , configDir # directory for extra host configuration
-    , extraSpecialArgs ? { }
+    , configDir ? null # directory for extra host configuration
+    , extraModules ? [ ] # additional modules from your own flake
+    , extraSpecialArgs ? { } # additional arguments passed to nixosSystem SpecialArgs
     }:
     lib.nixosSystem {
       inherit system;
@@ -79,7 +80,8 @@ in
           }
         ]
         ++ nixosUsers
-        ++ host;
+        ++ host
+        ++ extraModules;
     };
 
   mkHome =
@@ -94,7 +96,8 @@ in
     , profile ? null # file for your extra user configuration
     , secretsFile ? null # path to your secrets.yaml
     , standAlone ? true # DO NOT manually set this value
-    , extraExtraSpecialArgs ? { }
+    , extraModules ? [ ] # additional modules from your own flake
+    , extraExtraSpecialArgs ? { } # extra arguements passed to homeManagerConfiguration extraSpecialArgs
     }:
     let
       inherit (lib) mkDefault optionals mkIf;
@@ -119,7 +122,7 @@ in
             }
           ] ++ optionals (profile != null) [
             profile
-          ];
+          ] ++ extraModules;
 
           extraSpecialArgs = {
             inherit
@@ -161,6 +164,7 @@ in
     , stateVersion ? "25.05"
     , format ? "proxmox-lxc"
     , personal ? false # whether to enable my personal server profile
+    , extraModules ? [ ]
     , extraSpecialArgs ? { }
     , ...
     }:
@@ -193,8 +197,8 @@ in
             server.personal.enable = personal;
           };
         }
-      ] ++
-      optionals (extraConfig != null) [ extraConfig ];
+      ] ++ optionals (extraConfig != null) [ extraConfig ]
+      ++ extraModules;
     };
 }
 

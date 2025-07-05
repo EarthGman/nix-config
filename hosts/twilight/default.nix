@@ -44,5 +44,6 @@
 
   modules = {
     steam.enable = true;
+    flatpak.enable = true;
   };
 }
