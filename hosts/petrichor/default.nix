@@ -26,4 +26,5 @@
   };
 
   programs.blender.enable = true;
+  environment.systemPackages = [ pkgs.steamtinkerlaunch ];
 }
