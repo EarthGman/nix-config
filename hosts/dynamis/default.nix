@@ -12,6 +12,10 @@
     printing.enable = false;
   };
 
+  programs = {
+    prismlauncher.enable = true;
+  };
+
   jovian = {
     steam = {
       enable = true;

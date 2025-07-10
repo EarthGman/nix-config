@@ -1,4 +1,4 @@
-{ self, outputs, hostName, lib, ... }:
+{ self, hostName, lib, ... }:
 let
   enabled = { enable = lib.mkDefault true; };
 in

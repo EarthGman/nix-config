@@ -1,3 +1,7 @@
+{ config, ... }:
+let
+  mkOutOfStoreSymlink = config.lib.file.mkOutOfStoreSymlink;
+in
 {
   custom.profiles.desktopTheme = "faraway";
 
@@ -18,5 +22,15 @@
     cbonsai.enable = true;
     pipes.enable = true;
     sl.enable = true;
+  };
+
+  xdg = {
+    configFile = {
+      "Ryujinx".source = mkOutOfStoreSymlink "/home/bean/games/ryujinx";
+      "Cemu".source = mkOutOfStoreSymlink "/home/bean/games/cemu";
+    };
+    dataFile = {
+      "dolphin-emu".source = mkOutOfStoreSymlink "/home/bean/games/dolphin-emu";
+    };
   };
 }
