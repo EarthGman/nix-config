@@ -24,6 +24,7 @@ in
         {
           alacritty = default;
           bat = default;
+          eww = default;
           fastfetch = default;
           firefox = default;
           fzf = default;

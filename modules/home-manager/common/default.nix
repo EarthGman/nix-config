@@ -82,6 +82,7 @@ in
       alacritty = enableProfile "alacritty";
       bat = enableProfile "bat";
       dunst = enableProfile "dunst";
+      eww = enableProfile "eww";
       fastfetch = enableProfile "fastfetch";
       firefox = enableProfile "firefox";
       fzf = enableProfile "fzf";

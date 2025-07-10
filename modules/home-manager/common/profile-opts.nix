@@ -21,6 +21,12 @@ in
     default = "";
   };
 
+  eww = mkOption {
+    type = types.str;
+    description = "eww profile to use";
+    default = "";
+  };
+
   fastfetch = mkOption {
     type = types.str;
     description = "fastfetch profile to use";
