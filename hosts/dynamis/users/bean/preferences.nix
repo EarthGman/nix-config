@@ -5,10 +5,13 @@ in
 {
   custom.profiles.desktopTheme = "faraway";
 
-  profiles.desktopThemes = {
-    headspace.withOmoriFont = true;
-    faraway.withOmoriFont = true;
+  profiles = {
+    desktopThemes = {
+      headspace.withOmoriFont = true;
+      faraway.withOmoriFont = true;
+    };
   };
+
   programs = {
     dolphin-emu.enable = true;
     cemu.enable = true;
@@ -31,6 +34,7 @@ in
     };
     dataFile = {
       "dolphin-emu".source = mkOutOfStoreSymlink "/home/bean/games/dolphin-emu";
+      "PrismLauncher".source = mkOutOfStoreSymlink "/home/bean/games/prismlauncher";
     };
   };
 }
