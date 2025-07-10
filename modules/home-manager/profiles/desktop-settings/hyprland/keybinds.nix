@@ -19,7 +19,8 @@ in
   "${mainMod}, S, togglesplit"
   "${mainMod}, F, fullscreen"
   "${mainMod}, R, exec, hyprctl reload"
-  "${mainMod}, w, exec, rofi -show window"
+  "${mainMod}, W, exec, rofi -show window"
+  "${mainMod}, N, exec, hyprlock"
 
   "${mainMod}, left, movefocus, l"
   "${mainMod}, right, movefocus, r"
