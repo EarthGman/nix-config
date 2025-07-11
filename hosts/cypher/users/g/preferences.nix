@@ -1,10 +1,9 @@
 { inputs, config, system, ... }:
 let
-  mkOutOfStoreSymlink = config.lib.file.mkOutOfStoreSymlink;
+  ln = config.lib.file.mkOutOfStoreSymlink;
 in
 {
   programs = {
-    fish.enable = true;
     prismlauncher.package = inputs.prismlauncher.packages.${system}.default;
     zint.enable = true;
     gparted.enable = true;
@@ -24,13 +23,16 @@ in
   };
 
   xdg.dataFile = {
-    "PrismLauncher".source = mkOutOfStoreSymlink "/home/g/games/PrismLauncher";
-    "Terraria".source = mkOutOfStoreSymlink "/home/g/games/SteamLibrary/game-saves/Terraria";
+    "PrismLauncher".source = ln "/home/g/games/PrismLauncher";
+    "Terraria".source = ln "/home/g/games/SteamLibrary/game-saves/Terraria";
+    "Cemu".source = ln "/home/g/games/Cemu";
+    "dolphin-emu".source = ln "/home/g/games/dolphin-emu";
   };
 
   xdg.configFile = {
-    "StardewValley".source = mkOutOfStoreSymlink "/home/g/games/SteamLibrary/game-saves/StardewValley";
-    "unity3d/Pugstorm/Core\ Keeper".source = mkOutOfStoreSymlink "/home/g/games/SteamLibrary/game-saves/Core\ Keeper";
+    "Ryujinx".source = ln "/home/g/games/Ryujinx";
+    "StardewValley".source = ln "/home/g/games/SteamLibrary/game-saves/StardewValley";
+    "unity3d/Pugstorm/Core\ Keeper".source = ln "/home/g/games/SteamLibrary/game-saves/Core\ Keeper";
   };
 
   services.swayidle.settings.dpms.timeout = 0;

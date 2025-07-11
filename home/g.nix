@@ -36,7 +36,7 @@ in
     };
     zsh = {
       shellAliases = {
-        edit-config = "cd ~/src/nix-config && $EDITOR .";
+        edit-config = "cd ~/src/github/earthgman/nix-config && $EDITOR .";
       };
       initContent = ''
         export MANPAGER='nvim +Man!'
@@ -59,6 +59,7 @@ in
     obs-studio = enabled;
     prismlauncher = enabled;
     discord = enabled;
+    wofi = enabled;
 
     mov-cli = {
       enable = mkDefault true;

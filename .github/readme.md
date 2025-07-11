@@ -91,8 +91,8 @@ Imperative actions after install
 - login to thunderbird
 - enable firefox extensions
 - install protonup for steam
-- /etc/nixos -> ~/src/nix-config
-- Pictures/wallpapers -> ~/src/assets/wallpapers
+- /etc/nixos -> ~/src/github/earthgman/nix-config
+- Pictures/wallpapers -> ~/src/github/earthgman/assets/wallpapers
 - Install the English Dictionary extension for libreoffice (otherwise the spell checker wont work)
 - setup any VMs
 - reinstall wine/bottles programs
