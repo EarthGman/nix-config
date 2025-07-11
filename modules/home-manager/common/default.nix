@@ -88,6 +88,7 @@ in
       fish = enableProfile "fish";
       kitty = enableProfile "kitty";
       rofi = enableProfile "rofi";
+      wofi = enableProfile "wofi";
       swaylock = enableProfile "swaylock";
       hyprlock = enableProfile "hyprlock";
       stylix = enableProfile "stylix";

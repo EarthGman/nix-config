@@ -31,6 +31,7 @@ in
           dunst = default;
           kitty = default;
           rofi = default;
+          wofi = default;
           swaylock = default;
           hyprlock = default;
           starship = default;

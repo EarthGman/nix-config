@@ -51,6 +51,12 @@ in
     default = "";
   };
 
+  wofi = mkOption {
+    type = types.str;
+    description = "wofi profile to use";
+    default = "";
+  };
+
   swaylock = mkOption {
     type = types.str;
     description = "swaylock profile to use";
