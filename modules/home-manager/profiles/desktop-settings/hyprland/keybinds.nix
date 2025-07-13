@@ -1,4 +1,11 @@
-{ pkgs, lib, config, scripts, mainMod, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  scripts,
+  mainMod,
+  ...
+}:
 let
   inherit (lib) getExe;
   fileManager = config.custom.fileManager;
@@ -20,7 +27,9 @@ in
   "${mainMod}, F, fullscreen"
   "${mainMod}, R, exec, hyprctl reload"
   "${mainMod}, W, exec, rofi -show window"
-  "${mainMod}, N, exec, hyprlock"
+  "${mainMod} SHIFT, N, exec, swaync-client -op"
+  "${mainMod}, N, exec, swaync-client -cp"
+  "${mainMod}, T, exec, hyprlock"
 
   "${mainMod}, left, movefocus, l"
   "${mainMod}, right, movefocus, r"

@@ -15,5 +15,6 @@ in
     };
 
     profiles.waybar.default.small = true;
+    profiles.swaync.default.small = true;
   };
 }

@@ -1,8 +1,18 @@
 # default HM profiles for all users
-{ pkgs, lib, config, ... }@args:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}@args:
 let
   wallpapers = if args ? wallpapers then args.wallpapers else null;
-  inherit (lib) autoImport mkDefault mkEnableOption mkIf;
+  inherit (lib)
+    autoImport
+    mkDefault
+    mkEnableOption
+    mkIf
+    ;
 in
 {
   imports = autoImport ./.;
@@ -32,6 +42,7 @@ in
           kitty = default;
           rofi = default;
           swaylock = default;
+          swaync = default;
           hyprlock = default;
           starship = default;
           lazygit = default;

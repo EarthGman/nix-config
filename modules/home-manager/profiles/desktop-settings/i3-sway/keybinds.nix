@@ -1,11 +1,14 @@
-{ pkgs, config, lib, desktop, scripts, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  desktop,
+  scripts,
+  ...
+}:
 let
-  inherit (lib) getExe;
-  msgcmd =
-    if (desktop == "i3") then
-      "i3msg"
-    else
-      "swaymsg";
+  inherit (lib) getExe mkIf;
+  msgcmd = if (desktop == "i3") then "i3msg" else "swaymsg";
   mod =
     if (desktop == "i3") then
       config.xsession.windowManager.i3.config.modifier
@@ -49,24 +52,26 @@ in
   "${mod}+Control+Right" = "move right";
 
   # Swap with window to the left
-  "${mod}+Shift+h" = ''mark --add "swapee"; focus left; swap container with mark "swapee"; focus left; unmark "swapee"'';
-  "${mod}+Shift+Left" = ''mark --add "swapee"; focus left; swap container with mark "swapee"; focus left; unmark "swapee"'';
+  "${mod}+Shift+h" =
+    ''mark --add "swapee"; focus left; swap container with mark "swapee"; focus left; unmark "swapee"'';
+  "${mod}+Shift+Left" =
+    ''mark --add "swapee"; focus left; swap container with mark "swapee"; focus left; unmark "swapee"'';
 
   # Swap with window to the right
-  "${mod}+Shift+l" = ''mark --add "swapee"; focus right; swap container with mark "swapee"; focus right; unmark "swapee"'';
-  "${mod}+Shift+Right" = ''mark --add "swapee"; focus right; swap container with mark "swapee"; focus right; unmark "swapee"'';
+  "${mod}+Shift+l" =
+    ''mark --add "swapee"; focus right; swap container with mark "swapee"; focus right; unmark "swapee"'';
+  "${mod}+Shift+Right" =
+    ''mark --add "swapee"; focus right; swap container with mark "swapee"; focus right; unmark "swapee"'';
   # Swap with window above
-  "${mod}+Shift+k" = ''mark --add "swapee"; focus up; swap container with mark "swapee"; focus up; unmark "swapee"'';
-  "${mod}+Shift+Up" = ''mark --add "swapee"; focus up; swap container with mark "swapee"; focus up; unmark "swapee"'';
+  "${mod}+Shift+k" =
+    ''mark --add "swapee"; focus up; swap container with mark "swapee"; focus up; unmark "swapee"'';
+  "${mod}+Shift+Up" =
+    ''mark --add "swapee"; focus up; swap container with mark "swapee"; focus up; unmark "swapee"'';
   # Swap with window below
-  "${mod}+Shift+j" = ''mark --add "swapee"; focus down; swap container with mark "swapee"; focus down; unmark "swapee"'';
-  "${mod}+Shift+Down" = ''mark --add "swapee"; focus down; swap container with mark "swapee"; focus down; unmark "swapee"'';
-
-  # split in horizontal orientation
-  "${mod}+n" = "split h";
-
-  #split in vertical orientation
-  "${mod}+v" = "split v";
+  "${mod}+Shift+j" =
+    ''mark --add "swapee"; focus down; swap container with mark "swapee"; focus down; unmark "swapee"'';
+  "${mod}+Shift+Down" =
+    ''mark --add "swapee"; focus down; swap container with mark "swapee"; focus down; unmark "swapee"'';
 
   # enter fullscreen mode for the focused container
   "${mod}+f" = "fullscreen toggle";
@@ -112,18 +117,13 @@ in
   "${mod}+Shift+9" = "move container to workspace number 9";
   "${mod}+Shift+0" = "move container to workspace number 10";
 
+  "${mod}+n" = mkIf (desktop == "sway") "exec --no-startup-id swaync-client -cp";
+  "${mod}+Shift+n" = mkIf (desktop == "sway") "exec --no-startup-id swaync-client -op";
   "${mod}+Shift+r" =
     # why are these different?
-    if (desktop == "i3") then
-      "restart"
-    else
-      "reload";
+    if (desktop == "i3") then "restart" else "reload";
 
-  "${mod}+Shift+e" =
-    if (desktop == "i3") then
-      "exit i3"
-    else
-      "exec --no-startup-id swaymsg exit";
+  "${mod}+Shift+e" = if (desktop == "i3") then "exit i3" else "exec --no-startup-id swaymsg exit";
 
   # screenshots
   "Shift+Print" =

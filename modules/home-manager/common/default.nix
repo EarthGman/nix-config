@@ -1,8 +1,19 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
-  inherit (lib) optionals mkOption types mkDefault;
+  inherit (lib)
+    optionals
+    mkOption
+    types
+    mkDefault
+    ;
 
-  enableProfile = profile:
+  enableProfile =
+    profile:
     let
       cfg = config.custom.profiles;
     in
@@ -10,7 +21,8 @@ let
       {
         ${cfg.${profile}}.enable = true;
       }
-    else { };
+    else
+      { };
 in
 {
   imports = [
@@ -62,20 +74,24 @@ in
     };
 
     # things needed for script modules to work
-    home.packages = with pkgs; [
-      findutils
-      gnused
-      gawk
-      imagemagick
-    ] ++ optionals (config.services.network-manager-applet.enable) [
-      networkmanagerapplet
-    ] ++ optionals (pkgs.stdenv.isLinux) [
-      psmisc
-      brightnessctl
-      pamixer
-      procps # pgrep, pkill
-      coreutils-full
-    ];
+    home.packages =
+      with pkgs;
+      [
+        findutils
+        gnused
+        gawk
+        imagemagick
+      ]
+      ++ optionals (config.services.network-manager-applet.enable) [
+        networkmanagerapplet
+      ]
+      ++ optionals (pkgs.stdenv.isLinux) [
+        psmisc
+        brightnessctl
+        pamixer
+        procps # pgrep, pkill
+        coreutils-full
+      ];
 
     # enable the profile requested by config.custom.profiles
     profiles = {
@@ -89,6 +105,7 @@ in
       kitty = enableProfile "kitty";
       rofi = enableProfile "rofi";
       swaylock = enableProfile "swaylock";
+      swaync = enableProfile "swaync";
       hyprlock = enableProfile "hyprlock";
       stylix = enableProfile "stylix";
       starship = enableProfile "starship";

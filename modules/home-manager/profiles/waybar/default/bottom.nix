@@ -1,4 +1,10 @@
-{ pkgs, config, lib, scripts, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  scripts,
+  ...
+}:
 let
   inherit (lib) getExe mkDefault;
 in
@@ -65,7 +71,6 @@ in
     on-click = "rofi -show";
     tooltip = false;
   };
-
 
   "battery" = {
     states = {
@@ -161,35 +166,23 @@ in
     };
   };
 
-  "custom/notifications" =
-    let
-      dunstctl = "${config.services.dunst.package}/bin/dunstctl";
-    in
-    {
-      exec = ''
-        dunst_state=$(${dunstctl} is-paused)
-        if [[ $dunst_state == "false" ]]; then
-          echo "󰂚"
-        else
-          echo "󰂛"
-        fi
-      '';
-      interval = 1;
-      format = "{}";
-      tooltip = true;
-      tooltip-format = ''
-        Left - Do not disturb
-        Middle - Restart dunst daemon
-      '';
-      on-click = ''
-        if [[ $(${dunstctl} is-paused) == "true" ]]; then
-          ${dunstctl} set-paused false
-        else
-          ${dunstctl} set-paused true
-        fi
-      '';
-      on-click-middle = "systemctl --user restart dunst";
-    };
+  "custom/notifications" = {
+    # check if Do not Distrurb mode is on
+    exec = ''
+      if [[ $(swaync-client -D) == "false" ]]; then
+        echo 󰂚
+      else
+        echo 󰂛
+      fi
+    '';
+    interval = 1;
+    format = "{}";
+    tooltip = true;
+    tooltip-format = "Notifications";
+    on-click = ''
+      swaync-client -op
+    '';
+  };
 
   "custom/microphone" = {
     exec = ''

@@ -6,8 +6,9 @@ in
 {
   options.profiles.laptop.enable = mkEnableOption "laptop profile for HM";
   config = mkIf cfg.enable {
-    # custom script that warns you when battery is low
-    services.dunst.battery-monitor.enable = true;
+    services.batsignal = {
+      enable = true;
+    };
     xsession.screensaver.enable = true;
   };
 }

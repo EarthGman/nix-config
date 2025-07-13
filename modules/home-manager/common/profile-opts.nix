@@ -57,6 +57,12 @@ in
     default = "";
   };
 
+  swaync = mkOption {
+    type = types.str;
+    description = "swaync profile to use";
+    default = "";
+  };
+
   stylix = mkOption {
     type = types.str;
     description = "stylix profile to use";

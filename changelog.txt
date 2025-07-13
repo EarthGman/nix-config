@@ -1,3 +1,11 @@
+7-12-2025
+- update vim, lualine, lsp reconfiguration, and small keybind adjustments
+- replace dunst with swaync for wayland sessions
+- utilize mkMerge on more jankily written modules
+- add default swaync profile with an option for smaller screens.
+- integrate swaync into waybar
+
+
 6-30-2025
 - disable nm-applet for waybar due to severe crashes caused by it
 - fixed swww.sh not finding systemctl
