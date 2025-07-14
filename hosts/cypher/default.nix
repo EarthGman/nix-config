@@ -6,6 +6,7 @@
   ];
 
   profiles = {
+    benchmarking.enable = true;
     gman-pc.enable = true;
     gaming.enable = true;
   };
@@ -59,7 +60,6 @@
   };
 
   modules = {
-    benchmarking.enable = true;
     flatpak.enable = true;
     qemu-kvm.enable = true;
   };

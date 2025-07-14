@@ -1304,11 +1304,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1751241151,
-        "narHash": "sha256-0Sfku5Gv99ahZlcFQc8a0xYTrn7BVVhmSMqLABtuAKU=",
+        "lastModified": 1752449620,
+        "narHash": "sha256-VtAElGSb7SWUmisFXBLn0zAY8NB0DF3sX+noCCOIGpY=",
         "owner": "EarthGman",
         "repo": "nix-library",
-        "rev": "1eb512aa1d22743ae844ee77abeffccf6407bc4f",
+        "rev": "53828508f3118bf4ee6ed9aa4a3ed3bcce07e1e1",
         "type": "github"
       },
       "original": {

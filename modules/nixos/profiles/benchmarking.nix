@@ -5,8 +5,8 @@ let
   inherit (lib) mkDefault;
 in
 {
-  options.modules.benchmarking.enable = lib.mkEnableOption "enable benchmarking module";
-  config = lib.mkIf config.modules.benchmarking.enable {
+  options.profiles.benchmarking.enable = lib.mkEnableOption "enable benchmarking profile";
+  config = lib.mkIf config.profiles.benchmarking.enable {
     programs = {
       phoronix.enable = mkDefault true;
       sysbench.enable = mkDefault true;

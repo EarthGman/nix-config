@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }@args:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}@args:
 let
   hostName = if args ? hostName then args.hostName else "";
   cpu = if args ? cpu then args.cpu else null;
@@ -9,7 +14,13 @@ let
   stateVersion = if args ? stateVersion then args.stateVersion else "";
   system = if args ? system then args.system else null;
 
-  inherit (lib) mkIf mkEnableOption mkForce mkDefault autoImport;
+  inherit (lib)
+    mkIf
+    mkEnableOption
+    mkForce
+    mkDefault
+    autoImport
+    ;
   cfg = config.profiles.default;
 
   nixos-update = pkgs.writeShellScriptBin "nixos-update" ''
@@ -23,7 +34,6 @@ in
   config = mkIf cfg.enable {
     modules = {
       direnv.enable = mkDefault true;
-      fzf.enable = mkDefault true;
       ssh.enable = mkDefault true;
       nh.enable = mkDefault true;
 
@@ -39,6 +49,7 @@ in
     profiles = {
       tmux.default.enable = mkDefault true;
       zsh.default.enable = mkDefault true;
+      fzf.default.enable = mkDefault true;
       fish.default.enable = mkDefault true;
       server.default.enable = mkDefault server;
       sddm.default.enable = mkDefault true;
@@ -55,8 +66,9 @@ in
 
     hardware.enableRedistributableFirmware = mkDefault true;
 
-    hardware.cpu.${cpu}.updateMicrocode = mkIf (!vm)
-      (mkDefault config.hardware.enableRedistributableFirmware);
+    hardware.cpu.${cpu}.updateMicrocode = mkIf (!vm) (
+      mkDefault config.hardware.enableRedistributableFirmware
+    );
 
     boot = {
       kernelPackages = mkDefault pkgs.linuxPackages_latest;
@@ -72,7 +84,10 @@ in
     nix = {
       channel.enable = mkDefault false;
       settings = {
-        experimental-features = [ "nix-command" "flakes" ];
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
         auto-optimise-store = mkDefault true;
       };
     };

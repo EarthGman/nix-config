@@ -1,22 +1,31 @@
-{ pkgs
-, config
-, hostName
-, vm
-, server
-, wallpapers
-, icons
-, binaries
-, system
-, lib
-, users
-, secretsFile
-, desktop
-, stateVersion
-, extraSpecialArgs
-, ...
+{
+  pkgs,
+  config,
+  hostName,
+  vm,
+  server,
+  wallpapers,
+  icons,
+  binaries,
+  system,
+  lib,
+  users,
+  secretsFile,
+  desktop,
+  stateVersion,
+  extraSpecialArgs,
+  ...
 }:
 let
-  inherit (lib) mkDefault mkIf genAttrs types mkOption mkEnableOption mkHome;
+  inherit (lib)
+    mkDefault
+    mkIf
+    genAttrs
+    types
+    mkOption
+    mkEnableOption
+    mkHome
+    ;
   cfg = config.modules.home-manager;
 in
 {
@@ -36,8 +45,10 @@ in
         homeProfilesDir = config.home-manager.profilesDir;
       in
       {
-        users = genAttrs users
-          (username: mkHome {
+        # creates a home-manager configuration using lib/helpers mkHome function for each user specified in users [ ]
+        users = genAttrs users (
+          username:
+          mkHome {
             inherit
               username
               hostName
@@ -46,7 +57,8 @@ in
               vm
               secretsFile
               system
-              stateVersion;
+              stateVersion
+              ;
 
             profile =
               if builtins.pathExists (homeProfilesDir + "/${username}.nix") then
@@ -55,7 +67,8 @@ in
                 null;
 
             standAlone = false;
-          });
+          }
+        );
         extraSpecialArgs = {
           inherit
             hostName
@@ -67,7 +80,8 @@ in
             server
             system
             vm
-            stateVersion;
+            stateVersion
+            ;
         } // extraSpecialArgs;
 
         backupFileExtension = mkDefault "bak";

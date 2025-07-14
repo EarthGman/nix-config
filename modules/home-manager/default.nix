@@ -5,15 +5,16 @@ let
   services = autoImport ./services;
 in
 {
-  imports = [
-    inputs.stylix.homeModules.stylix
-    inputs.sops-nix.homeManagerModules.sops
-    ../shared
-    ./stylix
-    ./profiles
-    ./desktops
-    ./common
-  ]
-  ++ programs
-  ++ services;
+  imports =
+    [
+      inputs.stylix.homeModules.stylix
+      inputs.sops-nix.homeManagerModules.sops
+      ../shared
+      ./stylix
+      ./profiles
+      ./desktops
+      ./core
+    ]
+    ++ programs
+    ++ services;
 }

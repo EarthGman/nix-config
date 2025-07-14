@@ -5,8 +5,11 @@
     inputs.jovian-nixos.nixosModules.jovian
   ];
 
-  modules = {
+  profiles = {
     benchmarking.enable = true;
+  };
+
+  modules = {
     steam.enable = true;
 
     printing.enable = false;
