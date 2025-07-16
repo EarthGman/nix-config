@@ -169,8 +169,16 @@ in
   "custom/notifications" = {
     # check if Do not Distrurb mode is on
     exec = ''
+      UNREAD_NOTIFICATIONS=$(swaync-client --count)
       if [[ $(swaync-client -D) == "false" ]]; then
-        echo 󰂚
+        case $UNREAD_NOTIFICATIONS in
+          0)
+            echo 󰂚
+            ;;
+          *)
+            echo 󰂚 $UNREAD_NOTIFICATIONS
+            ;;
+      esac
       else
         echo 󰂛
       fi
