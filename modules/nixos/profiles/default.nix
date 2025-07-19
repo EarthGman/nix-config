@@ -32,7 +32,9 @@ in
 
   options.profiles.default.enable = mkEnableOption "default nixos profile";
   config = mkIf cfg.enable {
+    determinate.enable = mkDefault false;
     modules = {
+      determinate.enable = mkDefault true;
       direnv.enable = mkDefault true;
       ssh.enable = mkDefault true;
       nh.enable = mkDefault true;
