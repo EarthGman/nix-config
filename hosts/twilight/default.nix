@@ -10,7 +10,10 @@
     gman-pc.enable = true;
   };
 
-  programs.fastfetch.enable = true;
+  programs = {
+    lens.enable = true;
+    fastfetch.enable = true;
+  };
 
   boot.initrd.availableKernelModules = [
     "xhci_pci"

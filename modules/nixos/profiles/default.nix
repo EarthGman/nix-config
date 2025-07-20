@@ -106,7 +106,6 @@ in
       systemPackages = with pkgs; [
         nixos-update
         file
-        nix-prefetch-git
         psmisc
         zip
         unzip

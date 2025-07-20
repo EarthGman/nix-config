@@ -1,5 +1,10 @@
 # personalized wrapper of modules and options for my PCs
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   inherit (lib) mkIf mkEnableOption mkDefault;
   cfg = config.profiles.gman-pc;
@@ -11,6 +16,7 @@ in
       gmans-keymap.enable = true;
       hacker-mode.enable = mkDefault true;
       wg0.enable = mkDefault true;
+      nix-tools.enable = mkDefault true;
     };
 
     modules = {

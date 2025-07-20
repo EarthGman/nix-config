@@ -4,7 +4,8 @@ let
     mkProgramOption
     mkEnableOption
     mkOption
-    types;
+    types
+    ;
 in
 {
   options.programs = {
@@ -245,6 +246,12 @@ in
     keymapp = mkProgramOption {
       programName = "keymapp";
       description = "ZSA keyboard monitoring software";
+      inherit pkgs;
+    };
+
+    lens = mkProgramOption {
+      programName = "lens";
+      description = "ide for kubernetes";
       inherit pkgs;
     };
 
