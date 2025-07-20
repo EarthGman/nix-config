@@ -1,0 +1,39 @@
+(defsrc)
+
+(defvar
+  tap-time 150
+  hold-time 200
+)
+
+(deflayermap base
+  caps esc
+  esc (layer-switch norm)
+  a (multi f24 (tap-hold $tap-time $hold-time a lmet))
+  s (multi f24 (tap-hold $tap-time $hold-time s (layer-while-held nav)))
+  d (multi f24 (tap-hold $tap-time $hold-time d lsft))
+  f (multi f24 (tap-hold $tap-time $hold-time f lctl))
+  j (multi f24 (tap-hold $tap-time $hold-time j rctl))
+  k (multi f24 (tap-hold $tap-time $hold-time k rsft))
+  l (multi f24 (tap-hold $tap-time $hold-time l ralt))
+  ; (multi f24 (tap-hold $tap-time $hold-time ; rmet))
+)
+
+(deflayermap (norm)
+  a a
+  s s
+  d d
+  f f
+  j j
+  k k
+  l l
+  ; ;
+  esc (layer-switch base)
+)
+
+(deflayermap (nav)
+  h left
+  j down
+  k up
+  l right
+)
+

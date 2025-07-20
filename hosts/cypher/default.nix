@@ -1,9 +1,12 @@
 {
-  inputs,
   pkgs,
+  lib,
   wallpapers,
   ...
 }:
+let
+  inherit (lib) mkForce;
+in
 {
   imports = [
     ./sddm.nix
@@ -13,10 +16,9 @@
   profiles = {
     benchmarking.enable = true;
     gman-pc.enable = true;
+    gmans-keymap.enable = mkForce false;
     gaming.enable = true;
   };
-
-  # jovian.decky-loader.enable = true;
 
   boot.initrd.availableKernelModules = [
     "nvme"
