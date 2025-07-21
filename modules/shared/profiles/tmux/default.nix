@@ -1,6 +1,18 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
-  inherit (lib) mkDefault getExe mkIf mkEnableOption mkOption types;
+  inherit (lib)
+    mkDefault
+    getExe
+    mkIf
+    mkEnableOption
+    mkOption
+    types
+    ;
   cfg = config.profiles.tmux.default;
 in
 {
