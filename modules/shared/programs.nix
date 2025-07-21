@@ -252,6 +252,7 @@ in
     lens = mkProgramOption {
       programName = "lens";
       description = "ide for kubernetes";
+      packageName = "freelens";
       inherit pkgs;
     };
 

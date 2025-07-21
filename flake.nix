@@ -62,6 +62,12 @@
   inputs = {
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.0.tar.gz";
 
+    # some guy who packaged freelens
+    matthewpi = {
+      url = "github:matthewpi/nixos-config";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixos-generators = {
       url = "https://flakehub.com/f/nix-community/nixos-generators/*";
       inputs.nixpkgs.follows = "nixpkgs";

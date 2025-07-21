@@ -2,6 +2,11 @@
 {
   nur = inputs.nur.overlays.default;
 
+  # temporary until freelens makes it into nixpkgs
+  freelens-stuff = final: prev: {
+    inherit (inputs.matthewpi.packages.${prev.system}) freelens freelens-k8s-proxy;
+  };
+
   my-neovims = inputs.vim-config.overlays.default;
 
   my-packages = inputs.nix-library.overlays.default;
@@ -12,4 +17,4 @@
       mbrolaSupport = false;
     };
   };
-} 
+}
