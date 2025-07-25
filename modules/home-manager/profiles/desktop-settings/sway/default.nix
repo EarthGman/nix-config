@@ -62,12 +62,10 @@ in
         swaync = enabled;
         swayidle = {
           enable = mkDefault true;
-          settings = {
-            swaylock = {
-              before-sleep = true;
-            };
-            dpms.timeout = mkDefault 300;
+          swaylock = {
+            before-sleep = true;
           };
+          dpms.timeout = mkDefault 300;
         };
       };
     })

@@ -26,7 +26,10 @@ in
       ledger.enable = true;
     };
 
-    services.libinput.mouse.leftHanded = true;
+    services = {
+      libinput.mouse.leftHanded = true;
+      openssh.settings.PasswordAuthentication = false;
+    };
     nix.settings.trusted-users = [ "g" ];
     # some extra man pages
     documentation.dev.enable = true;

@@ -1,6 +1,6 @@
 { lib, config, ... }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf mkDefault;
   cfg = config.profiles.laptop;
 in
 {
@@ -10,5 +10,10 @@ in
       enable = true;
     };
     xsession.screensaver.enable = true;
+    services = {
+      # 30 minutes
+      swayidle.suspend.timeout = mkDefault 1800;
+      hypridle.suspend.timeout = mkDefault 1800;
+    };
   };
 }

@@ -1,4 +1,9 @@
-{ inputs, config, system, ... }:
+{
+  inputs,
+  config,
+  system,
+  ...
+}:
 let
   ln = config.lib.file.mkOutOfStoreSymlink;
 in
@@ -35,7 +40,7 @@ in
     "unity3d/Pugstorm/Core\ Keeper".source = ln "/home/g/games/SteamLibrary/game-saves/Core\ Keeper";
   };
 
-  services.swayidle.settings.dpms.timeout = 0;
+  services.swayidle.dpms.timeout = 0;
   services.hypridle.dpms.timeout = 3600;
 
   # kanshi profiles

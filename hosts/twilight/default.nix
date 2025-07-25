@@ -6,7 +6,7 @@
   ];
 
   profiles = {
-    # wg1.enable = true;
+    wg1.enable = true;
     gman-pc.enable = true;
   };
 

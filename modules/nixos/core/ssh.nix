@@ -7,9 +7,6 @@ in
   config = lib.mkIf cfg.enable {
     services = {
       sshd.enable = true;
-      openssh = {
-        settings.PasswordAuthentication = lib.mkDefault false;
-      };
     };
     networking.firewall.allowedTCPPorts = [ 22 ];
   };
