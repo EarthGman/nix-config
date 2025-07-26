@@ -28,6 +28,7 @@
   l l
   ; ;
   esc (layer-switch base)
+  caps esc
 )
 
 (deflayermap (nav)
