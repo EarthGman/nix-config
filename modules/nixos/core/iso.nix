@@ -1,4 +1,10 @@
-{ pkgs, lib, config, modulesPath, ... }@args:
+{
+  pkgs,
+  lib,
+  config,
+  modulesPath,
+  ...
+}@args:
 let
   inherit (lib) mkEnableOption mkIf mkForce;
   iso = if args ? iso then args.iso else false;
@@ -10,7 +16,8 @@ let
         [ (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix") ]
       else
         [ (modulesPath + "/installer/cd-dvd/installation-cd-graphical-calamares.nix") ]
-    else [ ];
+    else
+      [ ];
 in
 {
   imports = installerProfile;
@@ -20,7 +27,7 @@ in
       disko
     ];
 
-    programs.neovim-custom.package = pkgs.nvim-lite;
+    programs.neovim-custom.package = pkgs.nvim-nix;
     # Temporary solution until I can figure what to do about the issue with importing the cd-minimal.nix profile from nixpkgs
     # basically some guy decided to place pkgs.vim into environment.systemPackages instead of using programs.vim.enable
     # https://github.com/NixOS/nixpkgs/blob/nixos-25.05/nixos/modules/profiles/base.nix
@@ -74,4 +81,3 @@ in
     documentation.enable = false;
   };
 }
-
