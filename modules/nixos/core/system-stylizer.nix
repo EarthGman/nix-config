@@ -13,7 +13,7 @@ let
 
   cfg = config.modules.system-stylizer;
   # set the default user to the first one that appears in the users list
-  primaryUser = if args ? users then builtins.elemAt args.users 0 else "nobody";
+  primaryUser = if args ? users then builtins.elemAt args.users 0 else "";
 
   # handle possible cases of things not existing. Maybe nix has some kind of try catch?
   theme =
@@ -43,7 +43,16 @@ in
   config = mkIf cfg.enable (
     mkMerge (
       [
-        (mkIf (!config.home-manager.users ? "${cfg.user}") {
+        (mkIf (cfg.user == "") {
+          warnings = [
+            ''
+              No user could be detected by modules.system-stylizer.enable.
+              Please specify a username with a valid home-manager configuration (one that contains custom.profiles.desktopThemes)
+              under modules.system-stylizer.users, or disable the module by setting modules.system-stylizer.enable = false in your configuration.nix.
+            ''
+          ];
+        })
+        (mkIf (!config.home-manager.users ? "${cfg.user}" && "${cfg.user}" != "") {
           warnings = [
             ''
               modules.system-stylizer.enable = true, but no home-manager configuration for the user specified under
