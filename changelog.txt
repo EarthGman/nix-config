@@ -1,3 +1,7 @@
+7-25-2025
+- add nix lsp neovim to installer iso
+
+
 7-12-2025
 - update vim, lualine, lsp reconfiguration, and small keybind adjustments
 - replace dunst with swaync for wayland sessions
