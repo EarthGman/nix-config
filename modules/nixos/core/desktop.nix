@@ -1,9 +1,16 @@
 # not to be interpreted as "desktop PC" but module for any machine that has a desktop environment
-{ pkgs, lib, config, ... }@args:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}@args:
 let
   users = if args ? users then args.users else [ ];
   inherit (lib) mkDefault optionals;
-  enabled = { enable = mkDefault true; };
+  enabled = {
+    enable = mkDefault true;
+  };
   inherit (lib) mkEnableOption mkIf;
   cfg = config.modules.desktop;
 in
@@ -51,19 +58,24 @@ in
     # some features most desktops would probably want
     modules = {
       home-manager.enable = mkDefault users != [ ];
+      system-stylizer.enable = mkDefault true;
       pipewire = enabled;
       bluetooth = enabled;
       printing = enabled;
       bootloaders.grub = enabled;
     };
 
-    environment.systemPackages = with pkgs; [
-      brightnessctl # brightness
-    ] ++ optionals (config.modules.pipewire.enable) [
-      pamixer
-    ] ++ optionals (config.services.xserver.enable) [
-      xorg.xhost
-    ];
+    environment.systemPackages =
+      with pkgs;
+      [
+        brightnessctl # brightness
+      ]
+      ++ optionals (config.modules.pipewire.enable) [
+        pamixer
+      ]
+      ++ optionals (config.services.xserver.enable) [
+        xorg.xhost
+      ];
 
     # required for some stylix to work properly (gtk)
     programs.dconf.enable = mkDefault true;

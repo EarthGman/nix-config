@@ -1,9 +1,14 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   inherit (lib) mkIf mkEnableOption;
 in
 {
-  options.modules.desktops.sway.enable = mkEnableOption "enable sway, a wayland implementation of i3";
+  options.modules.desktops.sway.enable = mkEnableOption "sway, a wayland implementation of i3";
   config = mkIf config.modules.desktops.sway.enable {
     programs = {
       sway = {

@@ -6,22 +6,6 @@
 
   profiles.gaming.enable = true;
 
-  services.displayManager.sddm.themeConfig = {
-    Background = builtins.fetchurl wallpapers.the-gang-grouphug;
-    ScreenWidth = "2560";
-    ScreenHeight = "1440";
-    FullBlur = "false";
-    PartialBlur = "false";
-    MainColor = "#FFFFFF";
-    AccentColor = "#f099ff";
-    BackgroundColor = "#ffffff";
-    placeholderColor = "#ffffff";
-    IconColor = "#ffffff";
-    FormPosition = "left";
-    Font = "DejaVuSans 12";
-    HourFormat = "hh:mm A";
-  };
-
   modules = {
     flatpak.enable = true;
   };
@@ -58,7 +42,4 @@
   #     chainloader /efi/Microsoft/Boot/bootmgfw.efi
   #   }
   # '';
-  boot.loader.grub.themeConfig = {
-    background = builtins.fetchurl wallpapers.blackspace;
-  };
 }

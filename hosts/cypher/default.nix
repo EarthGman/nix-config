@@ -65,10 +65,6 @@ in
     extraHosts = ''66.79.209.80 ico-reb.stardock.com'';
   };
 
-  boot.loader.grub.themeConfig = {
-    background = builtins.fetchurl wallpapers.april-red;
-  };
-
   modules = {
     flatpak.enable = true;
     qemu-kvm.enable = true;

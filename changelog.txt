@@ -1,3 +1,7 @@
+7-26-2025
+- add modules.system-stylizer to nixos for automatic theming of sddm and grub based on the current desktop theme in home-manager
+
+
 7-25-2025
 - add nix lsp neovim to installer iso
 - move swayidle options from services.swayidle.settings to services.swayidle
