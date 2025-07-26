@@ -5,10 +5,10 @@
 }:
 let
   inherit (lib) mkIf mkEnableOption;
-  cfg = config.profiles.gmans-keymap;
+  cfg = config.profiles.gman.kanata-keymap;
 in
 {
-  options.profiles.gmans-keymap.enable = mkEnableOption "my personal keymap";
+  options.profiles.gman.kanata-keymap.enable = mkEnableOption "my personal keymap using kanata";
   config = mkIf cfg.enable {
     services.kanata = {
       enable = true;

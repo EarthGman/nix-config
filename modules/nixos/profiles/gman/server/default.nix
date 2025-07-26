@@ -3,10 +3,10 @@
 let
   keys = if args ? keys then args.keys else null;
   inherit (lib) mkIf mkEnableOption;
-  cfg = config.profiles.server.personal;
+  cfg = config.profiles.gman.server;
 in
 {
-  options.profiles.server.personal.enable = mkEnableOption "personal server profile";
+  options.profiles.gman.server.enable = mkEnableOption "personal server profile";
   config = mkIf cfg.enable {
     users.users."root" = {
       openssh.authorizedKeys.keys = mkIf (keys != null) [ keys.g_ssh_pub ];

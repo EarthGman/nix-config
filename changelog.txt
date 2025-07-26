@@ -1,5 +1,9 @@
 7-25-2025
 - add nix lsp neovim to installer iso
+- move swayidle options from services.swayidle.settings to services.swayidle
+- add suspend option for hypridle
+- set suspend timeout to 30 minutes by default for laptops
+- reorganized personal profile set
 
 
 7-12-2025

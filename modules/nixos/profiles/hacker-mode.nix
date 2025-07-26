@@ -1,11 +1,17 @@
 # provides a number of cybersecurity tools
-{ pkgs, lib, config, desktop ? null, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  desktop ? null,
+  ...
+}:
 let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.profiles.hacker-mode;
 in
 {
-  options.profiles.hacker-mode.enable = mkEnableOption "hacker suite";
+  options.profiles.hacker-mode.enable = mkEnableOption "cybersecurity suite";
   config = mkIf cfg.enable {
     programs = {
       tcpdump = {

@@ -6,30 +6,43 @@
   ...
 }:
 let
-  inherit (lib) mkIf mkEnableOption mkDefault;
-  cfg = config.profiles.gman-pc;
+  inherit (lib)
+    mkIf
+    mkEnableOption
+    autoImport
+    mkDefault
+    ;
+  cfg = config.profiles.gman;
 in
 {
-  options.profiles.gman-pc.enable = mkEnableOption "my custom pc module";
+  imports = autoImport ./.;
+
+  options.profiles.gman.enable = mkEnableOption "my personal configuration modules";
   config = mkIf cfg.enable {
     profiles = {
-      gmans-keymap.enable = true;
       hacker-mode.enable = mkDefault true;
-      wg0.enable = mkDefault true;
       nix-tools.enable = mkDefault true;
+      gman = {
+        kanata-keymap.enable = mkDefault true;
+        wireguard.wg0.enable = mkDefault true;
+      };
     };
 
     modules = {
       android.enable = true;
       zsa-keyboard.enable = true;
       onepassword.enable = true;
-      ledger.enable = true;
     };
 
     services = {
       libinput.mouse.leftHanded = true;
       openssh.settings.PasswordAuthentication = false;
     };
+
+    programs = {
+      xclicker.enable = true;
+    };
+
     nix.settings.trusted-users = [ "g" ];
     # some extra man pages
     documentation.dev.enable = true;

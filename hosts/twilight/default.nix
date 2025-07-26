@@ -6,12 +6,14 @@
   ];
 
   profiles = {
-    wg1.enable = true;
-    gman-pc.enable = true;
+    gman = {
+      enable = true;
+      wireguard.wg1.enable = true;
+    };
   };
 
   programs = {
-    lens.enable = true;
+    # lens.enable = true;
     fastfetch.enable = true;
   };
 
@@ -42,7 +44,7 @@
 
   # https://discourse.nixos.org/t/thinkfan-not-working-in-nixos/8260
   systemd.services.thinkfan.preStart = "
-    /run/current-system/sw/bin/modprobe  -r thinkpad_acpi && /run/current-system/sw/bin/modprobe thinkpad_acpi
+    /run/current-system/sw/bin/modprobe -r thinkpad_acpi && /run/current-system/sw/bin/modprobe thinkpad_acpi
   ";
 
   modules = {

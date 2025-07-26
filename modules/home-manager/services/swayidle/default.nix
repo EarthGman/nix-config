@@ -46,7 +46,7 @@ in
 
   config = {
     services.swayidle = {
-      events = optionals (cfg.settings.swaylock.before-sleep) [
+      events = optionals (cfg.swaylock.before-sleep) [
         {
           event = "before-sleep";
           command = "swaylock -fF";

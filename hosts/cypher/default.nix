@@ -15,8 +15,11 @@ in
 
   profiles = {
     benchmarking.enable = true;
-    gman-pc.enable = true;
-    gmans-keymap.enable = mkForce false;
+    gman = {
+      enable = true;
+      # remove conflicts with moonlander
+      kanata-keymap.enable = mkForce false;
+    };
     gaming.enable = true;
   };
 
@@ -69,6 +72,7 @@ in
   modules = {
     flatpak.enable = true;
     qemu-kvm.enable = true;
+    ledger.enable = true;
   };
 
   programs = {

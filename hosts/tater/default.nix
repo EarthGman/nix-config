@@ -6,9 +6,8 @@
 
   profiles = {
     laptop.enable = true;
-    gman-pc.enable = true;
+    gman.enable = true;
     hacker-mode.enable = false;
-    wg0.enable = true;
   };
 
   modules = {

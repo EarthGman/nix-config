@@ -1,11 +1,16 @@
 # Secondary Wireguard client Setup
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   inherit (lib) mkEnableOption mkIf;
-  cfg = config.profiles.wg1;
+  cfg = config.profiles.gman.wireguard.wg1;
 in
 {
-  options.profiles.wg1.enable = mkEnableOption "wg1";
+  options.profiles.gman.wireguard.wg1.enable = mkEnableOption "wg1";
   config = mkIf cfg.enable {
     sops.secrets.wg1_conf.path = "/etc/wireguard/wg1.conf";
     networking = {

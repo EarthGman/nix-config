@@ -5,8 +5,10 @@
     ./disko.nix
   ];
 
-  profiles.wg0.enable = true;
-  profiles.server.personal.enable = true;
+  profiles.gman = {
+    wireguard.wg0.enable = true;
+    server.enable = true;
+  };
 
   modules.nh.enable = false;
 

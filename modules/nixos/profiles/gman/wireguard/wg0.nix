@@ -1,11 +1,16 @@
 # EarthGman's client wireguard setup.
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   inherit (lib) mkEnableOption mkIf;
-  cfg = config.profiles.wg0;
+  cfg = config.profiles.gman.wireguard.wg0;
 in
 {
-  options.profiles.wg0.enable = mkEnableOption "wg0";
+  options.profiles.gman.wireguard.wg0.enable = mkEnableOption "wg0";
   config = mkIf cfg.enable {
     sops.secrets.wg0_conf.path = "/etc/wireguard/wg0.conf";
     networking = {
