@@ -4,6 +4,7 @@
 - changed description of sww-wallpaper-manager.service from "Manage wallpapers automatically using swww" to "automatic wallpaper manager for swww"
 - set waybar's logout menu option command to "uwsm stop" instead of "hyprctl dispatch exit || swaymsg exit"
 - set sway win+shift+e keybind to "uwsm stop" instead of "swaymsg exit"
+- added evince and simple-scan to excluded packages for gnome
 
 
 7-26-2025
