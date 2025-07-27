@@ -123,26 +123,26 @@ in
     # why are these different?
     if (desktop == "i3") then "restart" else "reload";
 
-  "${mod}+Shift+e" = if (desktop == "i3") then "exit i3" else "exec --no-startup-id swaymsg exit";
+  "${mod}+Shift+e" = if (desktop == "i3") then "exit i3" else "uwsm stop";
 
   # screenshots
   "Shift+Print" =
     if (desktop == "i3") then
-      "exec --no-startup-id ${scripts.take_screenshot_xorg} screen"
+      "exec --no-startup-id ${scripts.take-screenshot-xorg} screen"
     else
-      "exec --no-startup-id ${scripts.take_screenshot_wayland} screen";
+      "exec --no-startup-id ${scripts.take-screenshot-wayland} screen";
 
   "Print" =
     if (desktop == "i3") then
-      "exec --no-startup-id ${scripts.take_screenshot_xorg} selection"
+      "exec --no-startup-id ${scripts.take-screenshot-xorg} selection"
     else
-      "exec --no-startup-id ${scripts.take_screenshot_wayland} selection";
+      "exec --no-startup-id ${scripts.take-screenshot-wayland} selection";
 
   "Control+Print" =
     if (desktop == "i3") then
-      "exec --no-startup-id ${scripts.take_screenshot_xorg} window"
+      "exec --no-startup-id ${scripts.take-screenshot-xorg} window"
     else
-      "exec --no-startup-id ${scripts.take_screenshot_wayland} window";
+      "exec --no-startup-id ${scripts.take-screenshot-wayland} window";
 
   "XF86AudioRaiseVolume" = "exec ${pamixer} -i 5";
   "XF86AudioLowerVolume" = "exec ${pamixer} -d 5";

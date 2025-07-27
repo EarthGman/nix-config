@@ -1,7 +1,17 @@
+7-27-2025
+- seperated each script for home-manager into seperate files
+- renamed wayland-wallpaper-switcher.sh to rofi-wallpaper-switcher.sh
+- changed description of sww-wallpaper-manager.service from "Manage wallpapers automatically using swww" to "automatic wallpaper manager for swww"
+- set waybar's logout menu option command to "uwsm stop" instead of "hyprctl dispatch exit || swaymsg exit"
+- set sway win+shift+e keybind to "uwsm stop" instead of "swaymsg exit"
+
+
 7-26-2025
 - add modules.system-stylizer to nixos for automatic theming of sddm and grub based on the current desktop theme in home-manager
 - add space-jelly to swww wallpaper slideshow for cosmos theme
 - update flake to linux 6.15.8
+- remove ghostty flake input
+- set inputs.stylix.nur to follow inputs.nur, removing another copy of nixpkgs.
 
 
 7-25-2025

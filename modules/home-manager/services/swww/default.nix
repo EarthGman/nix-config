@@ -1,6 +1,20 @@
-{ pkgs, lib, config, system, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  system,
+  ...
+}:
 let
-  inherit (lib) mkEnableOption mkOption mkIf mkForce types concatStringsSep mapAttrsToList;
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    mkForce
+    types
+    concatStringsSep
+    mapAttrsToList
+    ;
   inherit (pkgs) writeShellScript;
 
   cfg = config.services.swww;
@@ -119,7 +133,11 @@ in
     systemd.user.services =
       let
         multi-monitor = monitors: ''
-          ${concatStringsSep "\n" (mapAttrsToList (monitor: settings: "swww img -o ${monitor} ${settings.image}") monitors)}  
+          ${
+            concatStringsSep "\n" (
+              mapAttrsToList (monitor: settings: "swww img -o ${monitor} ${settings.image}") monitors
+            )
+          }  
         '';
 
         daemon-postup = writeShellScript "swww-daemon-postup.sh" ''
@@ -136,34 +154,39 @@ in
         '';
 
         set-wallpaper = writeShellScript "swww.sh" ''
-          ${if cfg.monitors != { } then ''
-            ${multi-monitor cfg.monitors}
-          ''
-          else if (cfg.slideshow.enable) then ''
-            images=(${toString (concatStringsSep " " cfg.slideshow.images)})
-            image_count=''${#images[@]}
-            current_image=0
+          ${
+            if cfg.monitors != { } then
+              ''
+                ${multi-monitor cfg.monitors}
+              ''
+            else if (cfg.slideshow.enable) then
+              ''
+                images=(${toString (concatStringsSep " " cfg.slideshow.images)})
+                image_count=''${#images[@]}
+                current_image=0
 
-            set_wallpaper() {
-              swww img ''${images[$1]}
-            }
+                set_wallpaper() {
+                  swww img ''${images[$1]}
+                }
 
-            set_wallpaper $current_image
+                set_wallpaper $current_image
 
-            while true; do
-              sleep ${toString cfg.slideshow.interval}
-              current_image=$(($current_image + 1))
-              if [ "$current_image" -eq "$image_count" ]; then
-                ${pkgs.systemd}/bin/systemctl --user restart swww
-                exit 0
-              fi
+                while true; do
+                  sleep ${toString cfg.slideshow.interval}
+                  current_image=$(($current_image + 1))
+                  if [ "$current_image" -eq "$image_count" ]; then
+                    ${pkgs.systemd}/bin/systemctl --user restart swww
+                    exit 0
+                  fi
 
-              set_wallpaper $current_image
-            done
-          ''
-          else ''
-            swww img ${cfg.image}
-          ''}
+                  set_wallpaper $current_image
+                done
+              ''
+            else
+              ''
+                swww img ${cfg.image}
+              ''
+          }
         '';
       in
       {
@@ -182,15 +205,14 @@ in
             Environment = "PATH=${config.home.homeDirectory}/.nix-profile/bin";
             ExecStart =
               if config.services.omori-calendar-project.enable then
-                "systemctl --user restart omori-calendar-project"
+                "${pkgs.systemd}/bin/systemctl --user restart omori-calendar-project"
               else
                 "${set-wallpaper}";
           };
           Unit = {
-            Description = "Manage wallpapers automatically using swww";
+            Description = "automatic wallpaper manager for swww";
           };
         };
       };
   };
 }
-

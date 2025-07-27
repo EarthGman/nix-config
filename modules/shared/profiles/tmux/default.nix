@@ -30,9 +30,9 @@ in
       shortcut = mkDefault "space";
       clock24 = mkDefault true;
       baseIndex = mkDefault 1;
-      plugins = with pkgs.tmuxPlugins; [
-        # vim-tmux-navigator
-      ];
+      # plugins = with pkgs.tmuxPlugins; [
+      #   vim-tmux-navigator
+      # ];
       extraConfig = ''
         set -g mouse on
         set -g allow-passthrough on

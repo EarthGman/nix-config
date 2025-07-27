@@ -49,8 +49,8 @@ in
       sleep = "systemctl suspend";
       lockscreen = "hyprlock || swaylock -f";
       reboot = "systemctl reboot";
-      logout = "hyprctl dispatch exit || swaymsg exit";
-      wallpapers = "bash -c ${scripts.wayland_wallpaper_switcher}";
+      logout = "uwsm stop";
+      wallpapers = "${scripts.rofi-wallpaper-switcher}";
     };
   };
 
