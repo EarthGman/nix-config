@@ -1,6 +1,7 @@
 7-26-2025
 - add modules.system-stylizer to nixos for automatic theming of sddm and grub based on the current desktop theme in home-manager
 - add space-jelly to swww wallpaper slideshow for cosmos theme
+- update flake to linux 6.15.8
 
 
 7-25-2025

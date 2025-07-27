@@ -1,7 +1,8 @@
 {
+  inputs,
   pkgs,
   lib,
-  wallpapers,
+  system,
   ...
 }:
 let
@@ -73,17 +74,54 @@ in
 
   programs = {
     cutentr.enable = true;
+    prismlauncher = {
+      enable = true;
+      package = inputs.prismlauncher.packages.${system}.default;
+    };
+    gparted.enable = true;
+    musescore.enable = true;
+    lutris.enable = true;
+    ardour.enable = true;
+    dolphin-emu.enable = true;
+    cemu.enable = true;
+    mcrcon.enable = true;
+    obs-studio.enable = true;
+    ryujinx.enable = true;
+    # no compatible mouse :(
     piper.enable = false;
     blender.enable = true;
     ani-cli.enable = true;
   };
 
-  services.sunshine.enable = true;
+  # temporary work-around for hjkl arrow navigation
+  services = {
+    sunshine.enable = true;
+
+    keyd = {
+      enable = true;
+      keyboards = {
+        default = {
+          ids = [ "*" ];
+          settings = {
+            main = {
+              leftalt = "layer(nav)";
+            };
+            "nav:A" = {
+              h = "left";
+              j = "down";
+              k = "up";
+              l = "right";
+            };
+          };
+        };
+      };
+    };
+  };
 
   environment = {
     systemPackages = with pkgs; [
       nixos-generators
-      rojo
+      # rojo
     ];
 
     etc = {

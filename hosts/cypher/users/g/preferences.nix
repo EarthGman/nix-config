@@ -10,9 +10,7 @@ in
 {
   programs = {
     prismlauncher.package = inputs.prismlauncher.packages.${system}.default;
-    zint.enable = true;
     gparted.enable = true;
-    glabels.enable = true;
     musescore.enable = true;
     gnome-clocks.enable = true;
     lutris.enable = true;
@@ -20,10 +18,8 @@ in
     dolphin-emu.enable = true;
     cemu.enable = true;
     mcrcon.enable = true;
-    # davinci-resolve.enable = true;
     obs-studio.enable = true;
     ryujinx.enable = true;
-    # vinegar.enable = true;
     ygo-omega.enable = true;
   };
 

@@ -83,10 +83,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-    };
-
     prismlauncher = {
       url = "github:PrismLauncher/PrismLauncher";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -95,7 +91,7 @@
     stylix = {
       url = "https://flakehub.com/f/nix-community/stylix/*";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
+      inputs.nur.follows = "nur";
     };
 
     srvos = {

@@ -1,7 +1,17 @@
-{ self, keys, config, pkgs, lib, hostName, ... }:
+{
+  self,
+  keys,
+  config,
+  pkgs,
+  lib,
+  hostName,
+  ...
+}:
 let
   inherit (lib) mkDefault;
-  enabled = { enable = mkDefault true; };
+  enabled = {
+    enable = mkDefault true;
+  };
   signingkey = keys.g_ssh_pub;
   LHmouse = builtins.toFile "lh-mouse.xmodmap" "pointer = 3 2 1";
   extraHM = (self + "/hosts/${hostName}/users/g/preferences.nix");
@@ -47,19 +57,13 @@ in
       vimAlias = true;
     };
     rmpc = enabled;
-    protonmail-desktop = enabled;
     bottles = enabled;
-    bustle = enabled;
     freetube = enabled;
     filezilla = enabled;
     gcolor = enabled;
     ghex = enabled;
     moonlight = enabled;
-    okular.enable = true;
-    obs-studio = enabled;
-    prismlauncher = enabled;
     discord = enabled;
-    wofi = enabled;
 
     mov-cli = {
       enable = mkDefault true;
