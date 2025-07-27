@@ -1,11 +1,16 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   cfg = config.modules.gpu.nvidia;
 in
 {
   options.modules.gpu.nvidia.enable = lib.mkEnableOption "enable nvidia drivers";
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [ pkgs.nvtopPackages.nvidia ];
+    # environment.systemPackages = [ pkgs.nvtopPackages.nvidia ];
     services.xserver.videoDrivers = [ "nvidia" ];
     programs.sway.extraOptions = [ "--unsupported-gpu" ]; # sway will not launch on nvidia without this set
     hardware.nvidia = {

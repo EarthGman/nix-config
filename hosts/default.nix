@@ -1,4 +1,10 @@
-{ self, inputs, outputs, lib, ... }:
+{
+  self,
+  inputs,
+  outputs,
+  lib,
+  ...
+}:
 let
   inherit (lib) mkHost;
   keys = import ../keys.nix;
@@ -17,7 +23,14 @@ in
     system = "x86_64-linux";
     stateVersion = "24.05";
     configDir = ./cypher;
-    extraSpecialArgs = { inherit self inputs outputs keys; };
+    extraSpecialArgs = {
+      inherit
+        self
+        inputs
+        outputs
+        keys
+        ;
+    };
   };
 
   # Corebooted Thinkpad x230
@@ -31,7 +44,14 @@ in
     secretsFile = ./twilight/secrets.yaml;
     system = "x86_64-linux";
     configDir = ./twilight;
-    extraSpecialArgs = { inherit self inputs outputs keys; };
+    extraSpecialArgs = {
+      inherit
+        self
+        inputs
+        outputs
+        keys
+        ;
+    };
   };
 
   # still working HP pavilion x360 potato
@@ -46,7 +66,14 @@ in
     system = "x86_64-linux";
     stateVersion = "25.05";
     configDir = ./tater;
-    extraSpecialArgs = { inherit self inputs outputs keys; };
+    extraSpecialArgs = {
+      inherit
+        self
+        inputs
+        outputs
+        keys
+        ;
+    };
   };
 
   HP-G71340US = mkHost {
@@ -118,12 +145,12 @@ in
   thePumpkinPatch = mkHost {
     hostName = "thePumpkinPatch";
     bios = "UEFI";
-    cpu = "amd";
+    cpu = "intel";
     gpu = "nvidia";
     users = [ "pumpkinking" ];
     desktop = "gnome";
     system = "x86_64-linux";
-    stateVersion = "24.05";
+    stateVersion = "25.11";
     configDir = ./thePumpkinPatch;
     extraSpecialArgs = { inherit self inputs outputs; };
   };
@@ -151,7 +178,14 @@ in
     system = "x86_64-linux";
     stateVersion = "25.05";
     configDir = ./gman-theatre;
-    extraSpecialArgs = { inherit self inputs outputs keys; };
+    extraSpecialArgs = {
+      inherit
+        self
+        inputs
+        outputs
+        keys
+        ;
+    };
   };
 
   # isos

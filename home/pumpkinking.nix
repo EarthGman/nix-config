@@ -4,7 +4,6 @@
     (self + /hosts/${hostName}/users/pumpkinking/preferences.nix)
   ];
 
-  profiles.essentials.enable = true;
   custom.profiles.firefox = "shyfox";
 
   programs.git = {

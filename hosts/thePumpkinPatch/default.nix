@@ -17,6 +17,16 @@
     ];
   };
 
+  programs = {
+    ffxiv-launcher.enable = true;
+    bottles.enable = true;
+    r2modman.enable = true;
+    discord.enable = true;
+    prismlauncher.enable = true;
+    gthumb.enable = true;
+    neovim-custom.enable = false;
+  };
+
   services.displayManager.gdm.enable = false;
   services.displayManager.sddm.enable = true;
 }

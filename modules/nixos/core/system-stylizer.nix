@@ -112,9 +112,9 @@ in
           };
         })
         (mkIf (theme == "hollow-knight") {
-          boot.loader.grub.themeConfig = {
-            background = builtins.fetchurl wallpapers.hollow-knight-minimal;
-          };
+          # boot.loader.grub.themeConfig = {
+          #   background = builtins.fetchurl wallpapers.hollow-knight-minimal;
+          # };
           services = {
             displayManager = {
               sddm = {
@@ -131,7 +131,7 @@ in
                   placeholderColor = "#302a19";
                   IconColor = "#cd4967";
                   HourFormat = "hh:mm A";
-                  FontSize = "16";
+                  FontSize = "10";
                 };
               };
             };
