@@ -1,9 +1,20 @@
 # this module is not finished
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   tomlFormat = pkgs.formats.toml { };
   cfg = config.programs.mov-cli;
-  inherit (lib) mkEnableOption mkOption mkIf types mkDefault;
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    mkDefault
+    ;
 
   mov-cli = cfg.package.overrideAttrs (old: {
     propagatedBuildInputs = old.propagatedBuildInputs ++ cfg.plugins;
@@ -37,9 +48,12 @@ in
       mov-cli
     ];
 
-    programs.mov-cli.plugins = mkDefault (with pkgs; [
-      mov-cli-youtube
-    ]);
+    programs.mov-cli.plugins = mkDefault (
+      with pkgs;
+      [
+        mov-cli-youtube
+      ]
+    );
 
     # import some default settings identical to those that mov-cli -e generates
     programs.mov-cli.settings = import ./settings.nix { inherit lib; };

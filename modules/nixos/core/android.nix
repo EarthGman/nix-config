@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   inherit (lib) mkEnableOption mkIf mkDefault;
   cfg = config.modules.android;
@@ -19,7 +24,7 @@ in
       apksigner
     ];
 
-    services.udev.packages = with pkgs;[
+    services.udev.packages = with pkgs; [
       android-udev-rules
     ];
   };

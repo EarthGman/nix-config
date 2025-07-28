@@ -9,4 +9,3 @@ in
     stylix.targets.bat.enable = true;
   };
 }
-

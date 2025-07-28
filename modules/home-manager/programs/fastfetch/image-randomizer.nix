@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   inherit (lib) getExe concatStringsSep;
   cfg = config.programs.fastfetch;
@@ -11,4 +16,3 @@ pkgs.writeShellScriptBin "ff-image-randomizer" ''
 
   ${getExe pkgs.fastfetch} -l "$selected_image"
 ''
-

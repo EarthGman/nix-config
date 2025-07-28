@@ -1,6 +1,11 @@
 { config, lib, ... }:
 let
-  inherit (lib) mkOption types mkDefault mkIf;
+  inherit (lib)
+    mkOption
+    types
+    mkDefault
+    mkIf
+    ;
   cfg = config.stylix;
 in
 {

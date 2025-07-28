@@ -5,7 +5,8 @@ let
   cfg = config.profiles.server.docker-env;
 in
 {
-  options.profiles.server.docker-env.enable = mkEnableOption "blank docker environment with portainer agent";
+  options.profiles.server.docker-env.enable =
+    mkEnableOption "blank docker environment with portainer agent";
   config = mkIf cfg.enable {
 
     modules.docker.enable = true;

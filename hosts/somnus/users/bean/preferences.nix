@@ -1,4 +1,9 @@
-{ pkgs, lib, icons, ... }:
+{
+  pkgs,
+  lib,
+  icons,
+  ...
+}:
 let
   inherit (lib) getExe;
   liquidctl-profile = pkgs.writeScriptBin "liquidctl-profile" ''

@@ -1,6 +1,13 @@
-{ self, hostName, lib, ... }:
+{
+  self,
+  hostName,
+  lib,
+  ...
+}:
 let
-  enabled = { enable = lib.mkDefault true; };
+  enabled = {
+    enable = lib.mkDefault true;
+  };
 in
 {
   imports = [

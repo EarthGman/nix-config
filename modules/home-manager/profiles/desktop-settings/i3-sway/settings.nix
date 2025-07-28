@@ -1,4 +1,10 @@
-{ pkgs, lib, config, desktop, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  desktop,
+  ...
+}:
 let
   inherit (lib) mkDefault mkForce;
   scripts = import ../../../scripts { inherit pkgs lib config; };
@@ -13,7 +19,15 @@ in
   menu = "rofi";
   terminal = config.custom.terminal;
   workspaceAutoBackAndForth = mkDefault true;
-  keybindings = import ./keybinds.nix { inherit pkgs config lib desktop scripts; };
+  keybindings = import ./keybinds.nix {
+    inherit
+      pkgs
+      config
+      lib
+      desktop
+      scripts
+      ;
+  };
   modes = {
     resize = {
       Up = "resize grow height 10px";

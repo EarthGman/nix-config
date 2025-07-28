@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   inherit (lib) mkIf mkEnableOption optionalString;
 in
@@ -13,13 +18,14 @@ in
       shellAliases = import ../../../../shared/shell-aliases.nix { inherit pkgs lib config; } // {
         hms = "home-manager switch";
       };
-      initContent = ''
-        setopt interactivecomments
-        compdef batman=man
-      '' + optionalString (config ? custom.editor) ''
-        export EDITOR=${config.custom.editor}
-      '';
+      initContent =
+        ''
+          setopt interactivecomments
+          compdef batman=man
+        ''
+        + optionalString (config ? custom.editor) ''
+          export EDITOR=${config.custom.editor}
+        '';
     };
   };
 }
-    

@@ -1,6 +1,20 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
-  inherit (lib) mkAfter mkEnableOption optionals mkOption mkIf types getExe mkForce;
+  inherit (lib)
+    mkAfter
+    mkEnableOption
+    optionals
+    mkOption
+    mkIf
+    types
+    getExe
+    mkForce
+    ;
   cfg = config.programs.fastfetch;
 in
 {
@@ -27,19 +41,19 @@ in
       # ok so long story here. To redirect the fastfetch shell command to the image randomizer script I must set cfg.package using symlinkJoin
       # if using symlinkJoin to link "fastfetch" to the script and adding to home.packages, HM throws a fit about a collision
       # doing it this way works well but with the only downside of being unable to set your fastfetch version when using the image randomizer option
-      package = mkIf cfg.imageRandomizer.enable (mkForce (
-        pkgs.symlinkJoin {
-          name = "fastfetch";
-          paths = [ (import ./image-randomizer.nix { inherit pkgs lib config; }) ];
+      package = mkIf cfg.imageRandomizer.enable (
+        mkForce (
+          pkgs.symlinkJoin {
+            name = "fastfetch";
+            paths = [ (import ./image-randomizer.nix { inherit pkgs lib config; }) ];
 
-          postBuild = ''
-            rm -f $out/bin/fastfetch
-            ln -s $out/bin/ff-image-randomizer $out/bin/fastfetch
-          '';
-        }
-      ));
+            postBuild = ''
+              rm -f $out/bin/fastfetch
+              ln -s $out/bin/ff-image-randomizer $out/bin/fastfetch
+            '';
+          }
+        )
+      );
     };
   };
 }
-
-

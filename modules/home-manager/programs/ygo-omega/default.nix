@@ -1,8 +1,19 @@
-{ pkgs, lib, config, ... }@args:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}@args:
 # does not provide game files, they must be installed already
 let
   icons = if args ? icons then args.icons else null;
-  inherit (lib) mkEnableOption mkOption types mkIf getExe;
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    types
+    mkIf
+    getExe
+    ;
   inherit (builtins) toPath;
   cfg = config.programs.ygo-omega;
   home = config.home.homeDirectory;

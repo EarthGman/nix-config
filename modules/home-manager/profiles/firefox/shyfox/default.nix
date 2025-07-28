@@ -1,5 +1,10 @@
 # warning: the owner of this theme has deprecated the project
-{ pkgs, lib, config, ... }@args:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}@args:
 let
   icons = if args ? icons then args.icons else null;
   inherit (lib) mkEnableOption mkIf mkDefault;
@@ -10,14 +15,16 @@ in
   config = mkIf cfg.enable {
     programs.firefox.profiles.default = {
       id = 0;
-      extensions.packages = (with pkgs.nur.repos.rycee.firefox-addons; [
-        ublock-origin
-        onepassword-password-manager
-        darkreader
-        sidebery
-      ]) ++ (with pkgs; [
-        userchrome-toggle-extended
-      ]);
+      extensions.packages =
+        (with pkgs.nur.repos.rycee.firefox-addons; [
+          ublock-origin
+          onepassword-password-manager
+          darkreader
+          sidebery
+        ])
+        ++ (with pkgs; [
+          userchrome-toggle-extended
+        ]);
       search = {
         default = mkDefault "ddg"; # DuckDuckGo
         engines = import ../search-engines.nix { inherit pkgs icons; };

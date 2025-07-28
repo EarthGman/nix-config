@@ -1,4 +1,10 @@
-{ keys, pkgs, config, lib, ... }:
+{
+  keys,
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   username = "g";
 in
@@ -6,7 +12,9 @@ in
   sops.secrets.${username}.neededForUsers = true;
   users.users.${username} = {
     initialPassword = "";
-    hashedPasswordFile = lib.mkIf (config.sops.secrets ? ${username}) config.sops.secrets.${username}.path;
+    hashedPasswordFile = lib.mkIf (
+      config.sops.secrets ? ${username}
+    ) config.sops.secrets.${username}.path;
     password = null;
     isNormalUser = true;
     shell = pkgs.zsh;

@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   inherit (lib) mkIf;
   cfg = config.wayland.windowManager.hyprland;
@@ -23,9 +28,8 @@ in
     };
 
     # if swayidle is somehow enabled on hyprland then stop it
-    wayland.windowManager.hyprland.settings.exec-once = mkIf config.services.swayidle.enable
-      [
-        "systemctl --user stop swayidle"
-      ];
+    wayland.windowManager.hyprland.settings.exec-once = mkIf config.services.swayidle.enable [
+      "systemctl --user stop swayidle"
+    ];
   };
 }

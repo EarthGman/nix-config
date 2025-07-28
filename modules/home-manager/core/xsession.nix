@@ -51,23 +51,39 @@ in
   };
 
   config = {
-    xsession = let cfg = config.xsession; in {
-      initExtra = ''
-        systemctl --user import-environment XDG_CURRENT_DESKTOP PATH
-      '';
-      profileExtra = (if cfg.dpms.enable then ''
-        xset +dpms
-        xset dpms ${toString cfg.dpms.standby} ${toString cfg.dpms.suspend} ${toString cfg.dpms.poweroff}
-      '' else ''
-        xset -dpms
-      '') + (if cfg.screensaver.enable then ''
-        xset s on
-        xset s ${if cfg.screensaver.preferBlanking then "blank" else "noblank"}
-        xset s ${if cfg.screensaver.allowExposures then "expose" else "noexpose"}
-        xset s ${toString cfg.screensaver.timeout} ${toString cfg.screensaver.cycle}
-      '' else ''
-        xset s off
-      '');
-    };
+    xsession =
+      let
+        cfg = config.xsession;
+      in
+      {
+        initExtra = ''
+          systemctl --user import-environment XDG_CURRENT_DESKTOP PATH
+        '';
+        profileExtra =
+          (
+            if cfg.dpms.enable then
+              ''
+                xset +dpms
+                xset dpms ${toString cfg.dpms.standby} ${toString cfg.dpms.suspend} ${toString cfg.dpms.poweroff}
+              ''
+            else
+              ''
+                xset -dpms
+              ''
+          )
+          + (
+            if cfg.screensaver.enable then
+              ''
+                xset s on
+                xset s ${if cfg.screensaver.preferBlanking then "blank" else "noblank"}
+                xset s ${if cfg.screensaver.allowExposures then "expose" else "noexpose"}
+                xset s ${toString cfg.screensaver.timeout} ${toString cfg.screensaver.cycle}
+              ''
+            else
+              ''
+                xset s off
+              ''
+          );
+      };
   };
 }

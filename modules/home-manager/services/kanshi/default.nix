@@ -7,4 +7,3 @@ in
     systemdTarget = mkDefault "graphical-session.target";
   };
 }
-

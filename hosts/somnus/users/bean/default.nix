@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   username = "bean";
 in
@@ -7,7 +12,9 @@ in
   users.users.${username} = {
     initialPassword = lib.mkDefault "";
     password = null;
-    hashedPasswordFile = lib.mkIf (config.sops.secrets ? "${username}") config.sops.secrets.${username}.path;
+    hashedPasswordFile = lib.mkIf (
+      config.sops.secrets ? "${username}"
+    ) config.sops.secrets.${username}.path;
     isNormalUser = true;
     description = username;
     shell = pkgs.zsh;

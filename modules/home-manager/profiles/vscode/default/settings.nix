@@ -50,7 +50,6 @@ in
     "openRepositoryInParentFolders" = "always";
   };
 
-
   "terminal.integrated.smoothScrolling" = true;
   "terminal.integrated.cursorWidth" = 2;
   "terminal.integrated.cursorBlinking" = true;
@@ -65,4 +64,3 @@ in
     "serverSettings"."nil"."formatting"."command" = [ "${pkgs.alejandra}/bin/alejandra" ];
   };
 }
-

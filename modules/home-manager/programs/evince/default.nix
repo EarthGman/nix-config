@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   inherit (lib) mkIf mkProgramOption;
   cfg = config.programs.evince;
@@ -9,7 +14,6 @@ in
     description = "PDF viewer for GNOME";
     inherit pkgs;
   };
-
 
   config = mkIf cfg.enable {
     home.packages = [

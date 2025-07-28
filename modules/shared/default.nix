@@ -6,7 +6,5 @@ in
 {
   imports = [
     ./programs.nix
-  ]
-  ++ profiles;
+  ] ++ profiles;
 }
-

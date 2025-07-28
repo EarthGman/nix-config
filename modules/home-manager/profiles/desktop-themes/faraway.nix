@@ -1,10 +1,20 @@
-{ pkgs, lib, config, ... }@args:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}@args:
 let
   wallpapers = if args ? wallpapers then args.wallpapers else null;
   icons = if args ? icons then args.icons else null;
 
   inherit (builtins) fetchurl;
-  inherit (lib) mkForce mkEnableOption mkIf mkMerge;
+  inherit (lib)
+    mkForce
+    mkEnableOption
+    mkIf
+    mkMerge
+    ;
   cfg = config.profiles.desktopThemes.faraway;
 in
 {
@@ -28,15 +38,17 @@ in
     }
     (mkIf cfg.withOmoriFont {
       programs = {
-        waybar = (mkIf config.profiles.waybar.default.enable {
-          bottomBar.settings = {
-            "cpu".format = mkForce "  {usage}%";
-            "memory".format = mkForce "  {percentage}%";
-            "disk".format = mkForce "  {percentage_used}%";
-            "clock".format = mkForce "  {:%R   %m.%d.%Y}";
-            "pulseaudio".format = mkForce "{icon}  {volume}%";
-          };
-        });
+        waybar = (
+          mkIf config.profiles.waybar.default.enable {
+            bottomBar.settings = {
+              "cpu".format = mkForce "  {usage}%";
+              "memory".format = mkForce "  {percentage}%";
+              "disk".format = mkForce "  {percentage_used}%";
+              "clock".format = mkForce "  {:%R   %m.%d.%Y}";
+              "pulseaudio".format = mkForce "{icon}  {volume}%";
+            };
+          }
+        );
         vscode.profiles.default.userSettings = {
           editor = {
             fontFamily = "'OMORI_GAME'";
@@ -74,5 +86,3 @@ in
     })
   ]);
 }
-
-

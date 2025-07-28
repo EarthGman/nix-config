@@ -10,4 +10,3 @@ in
     programs.keymapp.enable = mkDefault true;
   };
 }
-

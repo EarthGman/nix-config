@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }@args:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}@args:
 let
   wallpapers = if args ? wallpapers then args.wallpapers else null;
   icons = if args ? wallpapers then args.icons else null;
@@ -63,4 +68,3 @@ in
     programs.waybar.bottomBar.settings."memory".format = "  {percentage}%";
   };
 }
-

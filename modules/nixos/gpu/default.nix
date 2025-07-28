@@ -10,11 +10,14 @@ in
     ./intel.nix
   ];
 
-  environment.systemPackages = mkIf (gpu != null) (with pkgs; [
-    glxinfo
-    libva-utils
-    vulkan-tools
-  ]);
+  environment.systemPackages = mkIf (gpu != null) (
+    with pkgs;
+    [
+      glxinfo
+      libva-utils
+      vulkan-tools
+    ]
+  );
 
   modules.gpu.amd.enable = (gpu == "amd");
   modules.gpu.nvidia.enable = (gpu == "nvidia");

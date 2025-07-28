@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   inherit (builtins) readFile;
   inherit (lib) mkEnableOption mkIf;
@@ -16,15 +21,9 @@ in
       let
         cfg = config.programs.rmpc;
       in
-      mkIf
-        (cfg.enable && !cfg.imperativeConfig)
-        {
-          enable = true;
-          text = readFile ./theme.ron;
-        };
+      mkIf (cfg.enable && !cfg.imperativeConfig) {
+        enable = true;
+        text = readFile ./theme.ron;
+      };
   };
 }
-
-
-
-

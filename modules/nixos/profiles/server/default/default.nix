@@ -1,6 +1,16 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
-  inherit (lib) mkDefault mkOverride mkEnableOption mkIf;
+  inherit (lib)
+    mkDefault
+    mkOverride
+    mkEnableOption
+    mkIf
+    ;
   cfg = config.profiles.server.default;
 in
 {

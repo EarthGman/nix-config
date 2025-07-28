@@ -1,4 +1,10 @@
-{ pkgs, lib, config, scripts, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  scripts,
+  ...
+}:
 # default config for hyprland
 let
   inherit (lib) mkDefault;
@@ -24,7 +30,15 @@ in
   ];
 
   #keybinds
-  bind = import ./keybinds.nix { inherit pkgs lib config scripts mainMod; };
+  bind = import ./keybinds.nix {
+    inherit
+      pkgs
+      lib
+      config
+      scripts
+      mainMod
+      ;
+  };
   bindm = [
     "SUPER, mouse:272, movewindow"
     "SUPER, mouse:273, resizewindow"

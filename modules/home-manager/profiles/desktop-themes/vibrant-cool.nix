@@ -6,7 +6,8 @@ let
   cfg = config.profiles.desktopThemes.vibrant-cool;
 in
 {
-  options.profiles.desktopThemes.vibrant-cool.enable = mkEnableOption "vbrant-cool ROR inspired desktop theme";
+  options.profiles.desktopThemes.vibrant-cool.enable =
+    mkEnableOption "vbrant-cool ROR inspired desktop theme";
   config = mkIf cfg.enable {
     custom.wallpaper = builtins.fetchurl wallpapers.survivors;
     stylix.colorScheme = "vibrant-cool";

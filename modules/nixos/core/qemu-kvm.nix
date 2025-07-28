@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }@args:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}@args:
 let
   cfg = config.modules.qemu-kvm;
   cpu = if args ? cpu then args.cpu else "";

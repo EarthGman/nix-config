@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }@args:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}@args:
 let
   wallpapers = if args ? wallpapers then args.wallpapers else null;
   icons = if args ? icons then args.icons else null;

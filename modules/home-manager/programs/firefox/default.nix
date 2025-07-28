@@ -1,6 +1,12 @@
 { lib, config, ... }:
 let
-  inherit (lib) types mkIf mkForce mkOption mkEnableOption;
+  inherit (lib)
+    types
+    mkIf
+    mkForce
+    mkOption
+    mkEnableOption
+    ;
   cfg = config.programs.firefox;
 in
 {

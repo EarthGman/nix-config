@@ -1,4 +1,9 @@
-{ pkgs, lib, outputs, ... }:
+{
+  pkgs,
+  lib,
+  outputs,
+  ...
+}:
 {
   networking.firewall.allowedTCPPorts = [ 25567 ];
   services.minecraft-server = {

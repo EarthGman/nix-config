@@ -32,7 +32,12 @@ in
   };
 
   "mainbox" = {
-    children = map mkLiteral [ "inputbar" "message" "mode-switcher" "listview" ];
+    children = map mkLiteral [
+      "inputbar"
+      "message"
+      "mode-switcher"
+      "listview"
+    ];
     spacing = mkLiteral "30px";
     padding = mkLiteral "30px 0";
     border = mkLiteral "1px";
@@ -41,7 +46,12 @@ in
 
   "inputbar" = {
     padding = mkLiteral "0 30px";
-    children = map mkLiteral [ "prompt" "textbox-prompt-colon" "entry" "case-indicator" ];
+    children = map mkLiteral [
+      "prompt"
+      "textbox-prompt-colon"
+      "entry"
+      "case-indicator"
+    ];
   };
 
   "prompt" = {
@@ -90,7 +100,10 @@ in
     padding = mkLiteral "5px";
     spacing = mkLiteral "5px";
     highlight = mkLiteral "bold underline";
-    children = map mkLiteral [ "element-icon" "element-text" ];
+    children = map mkLiteral [
+      "element-icon"
+      "element-text"
+    ];
   };
 
   "element-text, element-icon" = {

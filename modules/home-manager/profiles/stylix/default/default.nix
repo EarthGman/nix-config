@@ -1,6 +1,16 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
-  inherit (lib) mkEnableOption mkIf mkDefault types;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkDefault
+    types
+    ;
   cfg = config.profiles.stylix.default;
 in
 {
@@ -11,10 +21,12 @@ in
 
       targets =
         let
-          enabled = { enable = mkDefault true; };
+          enabled = {
+            enable = mkDefault true;
+          };
         in
         {
-          # NOTE: gnome must be enabled for electron apps such as obsidian and 1password for example to properly follow stylix.polarity
+          # NOTE: gnome must be enabled for electron apps such as obsidian and 1password to properly follow stylix.polarity
           gnome = enabled;
           gtk = enabled;
           qt = enabled;

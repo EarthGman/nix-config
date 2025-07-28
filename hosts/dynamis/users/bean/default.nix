@@ -1,11 +1,16 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   username = "bean";
 in
 {
   users.users.${username} = {
     password = "123";
-    # hashedPasswordFile = 
+    # hashedPasswordFile =
     isNormalUser = true;
     description = username;
     shell = pkgs.zsh;

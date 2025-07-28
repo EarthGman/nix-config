@@ -1,25 +1,48 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
-  inherit (lib) mkEnableOption mkOption types mkIf optionals;
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    types
+    mkIf
+    optionals
+    ;
   cfg = config.services.portainer;
   initalize-script = pkgs.writeScriptBin "portainer-initalize" ''
-      #!/usr/bin/env bash 
-      docker volume create portainer_data ${if cfg.gui.enable then ''&&
-      docker run -d \
-      -p ${toString cfg.gui.port}:9443 \
-      --name portainer \
-      --restart=always \
-      -v /var/run/docker.sock:/var/run/docker.sock \
-      -v portainer_data:/data portainer/portainer-ce:${cfg.version}'' else ""} ${if cfg.agent.enable then ''&&
-      sudo docker run -d \
-        -p ${toString cfg.agent.port}:9001 \
-        --name portainer_agent \
-        --restart=always \
-        -v /var/run/docker.sock:/var/run/docker.sock \
-        -v /var/lib/docker/volumes:/var/lib/docker/volumes \
-        -v /:/host \
-        portainer/agent:${cfg.version}
-    '' else ""}
+    #!/usr/bin/env bash 
+    docker volume create portainer_data ${
+      if cfg.gui.enable then
+        ''
+          &&
+                docker run -d \
+                -p ${toString cfg.gui.port}:9443 \
+                --name portainer \
+                --restart=always \
+                -v /var/run/docker.sock:/var/run/docker.sock \
+                -v portainer_data:/data portainer/portainer-ce:${cfg.version}''
+      else
+        ""
+    } ${
+      if cfg.agent.enable then
+        ''
+          &&
+                sudo docker run -d \
+                  -p ${toString cfg.agent.port}:9001 \
+                  --name portainer_agent \
+                  --restart=always \
+                  -v /var/run/docker.sock:/var/run/docker.sock \
+                  -v /var/lib/docker/volumes:/var/lib/docker/volumes \
+                  -v /:/host \
+                  portainer/agent:${cfg.version}
+        ''
+      else
+        ""
+    }
   '';
 in
 {
@@ -50,9 +73,11 @@ in
 
   config = mkIf (cfg.gui.enable || cfg.agent.enable) {
     # issue a warning if docker is not enabled
-    warnings = mkIf (!(config.modules.docker.enable))
-      [ "Portainer enabled without docker. Make sure to set option modules.docker.enable = true" ];
-    networking.firewall.allowedTCPPorts = [ ]
+    warnings = mkIf (!(config.modules.docker.enable)) [
+      "Portainer enabled without docker. Make sure to set option modules.docker.enable = true"
+    ];
+    networking.firewall.allowedTCPPorts =
+      [ ]
       ++ optionals cfg.gui.openFirewall [ cfg.gui.port ]
       ++ optionals cfg.agent.enable [ cfg.agent.port ];
     environment.systemPackages = [ initalize-script ];

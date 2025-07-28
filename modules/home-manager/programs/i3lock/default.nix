@@ -1,7 +1,17 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 # enabling i3 enables i3lock by default
 let
-  inherit (lib) mkIf mkOption mkEnableOption types;
+  inherit (lib)
+    mkIf
+    mkOption
+    mkEnableOption
+    types
+    ;
   i3lock = import ./script.nix { inherit pkgs lib config; };
 in
 {
@@ -33,6 +43,3 @@ in
     home.packages = [ i3lock ];
   };
 }
-
-
-

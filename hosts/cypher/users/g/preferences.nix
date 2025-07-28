@@ -9,17 +9,6 @@ let
 in
 {
   programs = {
-    prismlauncher.package = inputs.prismlauncher.packages.${system}.default;
-    gparted.enable = true;
-    musescore.enable = true;
-    gnome-clocks.enable = true;
-    lutris.enable = true;
-    ardour.enable = true;
-    dolphin-emu.enable = true;
-    cemu.enable = true;
-    mcrcon.enable = true;
-    obs-studio.enable = true;
-    ryujinx.enable = true;
     ygo-omega.enable = true;
   };
 

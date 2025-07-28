@@ -2,7 +2,9 @@
 # many essential programs for a desktop setup.
 let
   inherit (lib) mkEnableOption mkIf;
-  enabled = { enable = lib.mkDefault true; };
+  enabled = {
+    enable = lib.mkDefault true;
+  };
   cfg = config.profiles.essentials;
 in
 {

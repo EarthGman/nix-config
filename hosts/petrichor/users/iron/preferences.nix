@@ -1,4 +1,10 @@
-{ pkgs, lib, config, icons, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  icons,
+  ...
+}:
 let
   inherit (lib) getExe;
   kl-script = pkgs.writeScript "knight-launcher.sh" ''

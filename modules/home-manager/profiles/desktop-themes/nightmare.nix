@@ -12,6 +12,7 @@ in
     custom.wallpaper = fetchurl wallpapers.the-pumpkin-patch;
     stylix.colorScheme = "ashes";
 
-    programs.firefox.themes.shyfox.config.walls.shyfoxpaper = fetchurl wallpapers.the-nightmare-before-firefox;
+    programs.firefox.themes.shyfox.config.walls.shyfoxpaper =
+      fetchurl wallpapers.the-nightmare-before-firefox;
   };
 }

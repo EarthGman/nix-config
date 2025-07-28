@@ -1,7 +1,20 @@
 # service for setting the wallpaper with feh on xorg desktops
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
-  inherit (lib) mkIf mkEnableOption mkOption types concatStringsSep mapAttrsToList getExe;
+  inherit (lib)
+    mkIf
+    mkEnableOption
+    mkOption
+    types
+    concatStringsSep
+    mapAttrsToList
+    getExe
+    ;
   cfg = config.services.fehbg;
 in
 {
@@ -61,37 +74,43 @@ in
   config =
     let
       multi-monitor = monitors: ''
-        feh --no-fehbg --bg-${cfg.settings.scale-mode} ${concatStringsSep " " (mapAttrsToList (monitor: settings: "${settings.image}") monitors)}
+        feh --no-fehbg --bg-${cfg.settings.scale-mode} ${
+          concatStringsSep " " (mapAttrsToList (monitor: settings: "${settings.image}") monitors)
+        }
       '';
 
-      script =
-        pkgs.writeScript "fehbg.sh" ''
-          #!${getExe pkgs.bash}
-         
-          ${if (cfg.slideshow.enable) then '' 
-          images=(${toString (concatStringsSep " " cfg.slideshow.images)})
-          image_count=''${#images[@]}
-          current_image=0
+      script = pkgs.writeScript "fehbg.sh" ''
+        #!${getExe pkgs.bash}
 
-          set_wallpaper() {
-            feh --no-fehbg --bg-fill ''${images[$1]}
-          }
+        ${
+          if (cfg.slideshow.enable) then
+            ''
+              images=(${toString (concatStringsSep " " cfg.slideshow.images)})
+              image_count=''${#images[@]}
+              current_image=0
 
-          set_wallpaper $current_image
+              set_wallpaper() {
+                feh --no-fehbg --bg-fill ''${images[$1]}
+              }
 
-          while true; do
-            sleep ${toString cfg.slideshow.interval}
-            current_image=$((($current_image + 1) % $image_count))
-            set_wallpaper $current_image
-          done
-          '' 
-          else if cfg.settings.monitors != { } then ''
-            ${multi-monitor cfg.settings.monitors}
-          ''
-          else ''
-            feh --no-fehbg --bg-${cfg.settings.scale-mode} ${cfg.image}
-          ''}
-        '';
+              set_wallpaper $current_image
+
+              while true; do
+                sleep ${toString cfg.slideshow.interval}
+                current_image=$((($current_image + 1) % $image_count))
+                set_wallpaper $current_image
+              done
+            ''
+          else if cfg.settings.monitors != { } then
+            ''
+              ${multi-monitor cfg.settings.monitors}
+            ''
+          else
+            ''
+              feh --no-fehbg --bg-${cfg.settings.scale-mode} ${cfg.image}
+            ''
+        }
+      '';
     in
     mkIf cfg.enable {
       stylix.targets.feh.enable = false; # prevent stylix from controlling feh

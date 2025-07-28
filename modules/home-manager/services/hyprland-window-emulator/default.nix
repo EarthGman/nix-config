@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   cfg = config.services.hyprland-window-emulator;
   script = import ./script.nix { inherit pkgs lib config; };

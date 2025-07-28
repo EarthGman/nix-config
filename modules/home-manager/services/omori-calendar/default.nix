@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }@args:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}@args:
 let
   wallpapers = if args ? wallpapers then args.wallpapers else null;
   inherit (lib) getExe mkForce mkEnableOption;
@@ -6,7 +11,15 @@ let
 
   script =
     if (wallpapers != null) then
-      import ./script.nix { inherit pkgs config fetchurl wallpapers getExe; }
+      import ./script.nix {
+        inherit
+          pkgs
+          config
+          fetchurl
+          wallpapers
+          getExe
+          ;
+      }
     else
       "bash -c 'exit 1'";
 in
@@ -48,7 +61,6 @@ in
     # for wayland
     # the swww module checks if this service is enabled. If true then it will point to it instead of the default wallpaper managment service
     services.swww.enable = mkForce true;
-
 
     xsession.initExtra = ''
       systemctl --user start omori-calendar-project;

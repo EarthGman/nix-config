@@ -4,10 +4,7 @@ let
   # extract a preferred desktop envrionment from the first one specified in the string
   desktop = if args ? desktop then args.desktop else null;
   preferredDesktop =
-    if (desktop != null) then
-      builtins.elemAt (lib.splitString "," desktop) 0
-    else
-      null;
+    if (desktop != null) then builtins.elemAt (lib.splitString "," desktop) 0 else null;
 
   defaultSession =
     if (preferredDesktop == "i3") then

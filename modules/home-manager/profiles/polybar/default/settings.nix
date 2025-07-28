@@ -1,4 +1,10 @@
-{ pkgs, config, mkDefault, getExe, ... }:
+{
+  pkgs,
+  config,
+  mkDefault,
+  getExe,
+  ...
+}:
 {
   "bar/bottom" = {
     monitor = "\${env:MONITOR:}";
@@ -95,7 +101,7 @@
 
       elif [ $current_volume -lt 75 ]; then
         echo " ''${current_volume}%"
-  
+
       else
         echo " ''${current_volume}%"
       fi

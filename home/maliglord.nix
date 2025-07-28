@@ -1,10 +1,18 @@
-{ self, outputs, lib, hostName, ... }:
+{
+  self,
+  outputs,
+  lib,
+  hostName,
+  ...
+}:
 let
   extraHM = self + /hosts/${hostName}/users/maliglord/preferences.nix;
 in
 {
-  imports = [
-  ] ++ lib.optionals (builtins.pathExists extraHM) [
-    extraHM
-  ];
+  imports =
+    [
+    ]
+    ++ lib.optionals (builtins.pathExists extraHM) [
+      extraHM
+    ];
 }

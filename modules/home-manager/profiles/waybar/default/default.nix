@@ -1,7 +1,17 @@
-{ pkgs, lib, config, ... }@args:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}@args:
 let
   nixosConfig = if args ? nixosConfig then args.nixosConfig else null;
-  inherit (lib) mkIf mkDefault mkEnableOption mkMerge;
+  inherit (lib)
+    mkIf
+    mkDefault
+    mkEnableOption
+    mkMerge
+    ;
   inherit (builtins) readFile;
   cfg = config.profiles.waybar.default;
   scripts = import ../../../scripts { inherit pkgs lib config; };
@@ -17,19 +27,13 @@ in
     {
       services.network-manager-applet.enable =
         if (nixosConfig != null && config.programs.waybar.enable) then
-          if (nixosConfig.networking.networkmanager.enable) then
-            mkDefault true
-          else
-            false
+          if (nixosConfig.networking.networkmanager.enable) then mkDefault true else false
         else
           false;
 
       services.blueman-applet.enable =
         if (nixosConfig != null && config.programs.waybar.enable) then
-          if (nixosConfig.services.blueman.enable) then
-            mkDefault true
-          else
-            false
+          if (nixosConfig.services.blueman.enable) then mkDefault true else false
         else
           false;
 
@@ -39,7 +43,14 @@ in
 
       programs.waybar = {
         bottomBar.settings = mkMerge [
-          (import ./bottom.nix { inherit pkgs lib config scripts; })
+          (import ./bottom.nix {
+            inherit
+              pkgs
+              lib
+              config
+              scripts
+              ;
+          })
           (mkIf cfg.small {
             height = 30;
             network = {
@@ -48,11 +59,7 @@ in
             };
           })
         ];
-        style =
-          if (cfg.small) then
-            (readFile ./small.css)
-          else
-            (readFile ./style.css);
+        style = if (cfg.small) then (readFile ./small.css) else (readFile ./style.css);
       };
     }
     (mkIf config.programs.waybar.enable {

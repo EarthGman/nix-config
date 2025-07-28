@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.profiles.gnome.default;
@@ -11,14 +16,16 @@ in
   config = mkIf (cfg.enable && config.modules.desktops.gnome.enable) {
     dconf.settings = import ./dconf.nix;
     programs.ghostty.settings.gtk-titlebar = true;
-    home.packages = (with pkgs.gnomeExtensions; [
-      dash-to-panel
-      vitals
-      arcmenu
-    ]) ++ (with pkgs; [
-      dconf2nix
-      gnome-tweaks
-      dconf-editor
-    ]);
+    home.packages =
+      (with pkgs.gnomeExtensions; [
+        dash-to-panel
+        vitals
+        arcmenu
+      ])
+      ++ (with pkgs; [
+        dconf2nix
+        gnome-tweaks
+        dconf-editor
+      ]);
   };
 }

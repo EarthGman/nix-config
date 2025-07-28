@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 {
   options.modules.ledger.enable = lib.mkEnableOption "enable ledger module, udev rules and ledger live desktop";
   config = lib.mkIf config.modules.ledger.enable {

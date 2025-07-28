@@ -1,7 +1,19 @@
-{ pkgs, lib, config, ... }@args:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}@args:
 let
   bios = if args ? bios then args.bios else null;
-  inherit (lib) mkOption types mkDefault mkEnableOption mkIf optionalString;
+  inherit (lib)
+    mkOption
+    types
+    mkDefault
+    mkEnableOption
+    mkIf
+    optionalString
+    ;
   cfg = config.boot.loader.grub;
 in
 {
@@ -40,18 +52,20 @@ in
             efiSupport = (bios == "UEFI");
             devices = [ "nodev" ];
             gfxmodeEfi = "1920x1080";
-            extraEntries = ''
-              menuentry "Reboot" {
-                reboot
-              }
-              menuentry "Poweroff" {
-                halt
-              } 
-            '' + optionalString (bios == "UEFI") ''
-              menuentry 'UEFI Firmware Settings' --id 'uefi-firmware' {
-                fwsetup
-              }
-            '';
+            extraEntries =
+              ''
+                menuentry "Reboot" {
+                  reboot
+                }
+                menuentry "Poweroff" {
+                  halt
+                } 
+              ''
+              + optionalString (bios == "UEFI") ''
+                menuentry 'UEFI Firmware Settings' --id 'uefi-firmware' {
+                  fwsetup
+                }
+              '';
           };
           timeout = mkDefault 10;
         };

@@ -1,4 +1,8 @@
-{ self, outputs, hostName, ... }:
+{
+  self,
+  hostName,
+  ...
+}:
 {
   imports = [
     (self + /hosts/${hostName}/users/iron/preferences.nix)

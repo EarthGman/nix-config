@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   inherit (lib) mkIf mkDefault;
 in
@@ -14,12 +19,11 @@ in
       "WLR_DRM_NO_MODIFIERS" = "1";
     };
 
-    wayland.windowManager.sway.config.startup = mkIf config.services.hypridle.enable
-      [
-        {
-          command = "systemctl --user stop hypridle";
-        }
-      ];
+    wayland.windowManager.sway.config.startup = mkIf config.services.hypridle.enable [
+      {
+        command = "systemctl --user stop hypridle";
+      }
+    ];
   };
 
 }

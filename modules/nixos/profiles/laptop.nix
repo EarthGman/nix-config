@@ -1,6 +1,11 @@
 { lib, config, ... }:
 let
-  inherit (lib) mkDefault mkIf mkEnableOption mkForce;
+  inherit (lib)
+    mkDefault
+    mkIf
+    mkEnableOption
+    mkForce
+    ;
   cfg = config.profiles.laptop;
 in
 {
