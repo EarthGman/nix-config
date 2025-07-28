@@ -2,7 +2,9 @@
 let
   inherit (lib) mkEnableOption mkIf mkDefault;
   cfg = config.profiles.cli-tools;
-  enabled = { enable = mkDefault true; };
+  enabled = {
+    enable = mkDefault true;
+  };
 in
 {
   options.profiles.cli-tools.enable = mkEnableOption "basic cli-tools";

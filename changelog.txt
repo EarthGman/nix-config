@@ -7,6 +7,7 @@
 - added evince and simple-scan to excluded packages for gnome
 - add openvpn module
 - add programs.remmina to nixos and home-manager
+- add btop-cuda and btop-rocm to programs.btop.package for nvidia and amd gpu modules.
 
 
 7-26-2025

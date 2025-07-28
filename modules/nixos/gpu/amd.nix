@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   inherit (lib) mkDefault;
   cfg = config.modules.gpu.amd;
@@ -6,6 +11,7 @@ in
 {
   options.modules.gpu.amd.enable = lib.mkEnableOption "amdgpu module";
   config = lib.mkIf cfg.enable {
+    programs.btop.package = pkgs.btop-rocm;
     environment.systemPackages = with pkgs; [
       radeontop
     ];
