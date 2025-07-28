@@ -5,6 +5,8 @@
 - set waybar's logout menu option command to "uwsm stop" instead of "hyprctl dispatch exit || swaymsg exit"
 - set sway win+shift+e keybind to "uwsm stop" instead of "swaymsg exit"
 - added evince and simple-scan to excluded packages for gnome
+- add openvpn module
+- add programs.remmina to nixos and home-manager
 
 
 7-26-2025

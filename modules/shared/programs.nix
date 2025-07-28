@@ -380,6 +380,12 @@ in
       inherit pkgs;
     };
 
+    remmina = mkProgramOption {
+      programName = "remmina";
+      description = "a gtk remote desktop client";
+      inherit pkgs;
+    };
+
     rpi-imager = mkProgramOption {
       programName = "rpi-imager";
       description = "image creater for rasberry pi";
