@@ -33,9 +33,11 @@ in
       # exclude all packages built into gnome and allow each user to choose what they want installed
       programs.geary.enable = mkOverride 800 false;
       programs.evince.enable = mkOverride 800 false;
+      programs.seahorse.enable = mkOverride 800 false;
       environment.gnome.excludePackages = with pkgs; [
         gnome-tour
         simple-scan
+        file-roller
         gedit
         hexchat
         loupe

@@ -3,6 +3,7 @@
 - format all nix files in the project to follow the nixpkgs rfc style standard
 - fix an import bug for take-screenshot-xorg where the import was missing the .nix extension
 - fix nvidia module to use hardware.nvidia.open = true; by default.
+- add file-roller and programs.seahorse to excluded gnome packages
 
 
 7-27-2025

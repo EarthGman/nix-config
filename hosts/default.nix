@@ -148,7 +148,7 @@ in
     cpu = "intel";
     gpu = "nvidia";
     users = [ "pumpkinking" ];
-    desktop = "i3";
+    desktop = "gnome";
     system = "x86_64-linux";
     stateVersion = "25.11";
     configDir = ./thePumpkinPatch;

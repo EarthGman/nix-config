@@ -17,6 +17,10 @@
     ];
   };
 
+  modules = {
+    printing.enable = false;
+  };
+
   programs = {
     ffxiv-launcher.enable = true;
     lutris.enable = true;
@@ -26,6 +30,7 @@
     prismlauncher.enable = true;
     gthumb.enable = true;
     neovim-custom.enable = false;
+    piper.enable = false;
   };
 
   services.displayManager.gdm.enable = false;

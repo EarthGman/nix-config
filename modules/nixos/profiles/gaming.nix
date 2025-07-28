@@ -8,7 +8,6 @@ in
   config = mkIf cfg.enable {
     modules.steam.enable = true;
     programs = {
-      dolphin-emu.enable = mkDefault true;
       # mouse control gui
       piper.enable = mkDefault true;
     };
