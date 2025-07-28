@@ -2,6 +2,7 @@
 - add format script for nix files under /scripts/nixfmt.sh
 - format all nix files in the project to follow the nixpkgs rfc style standard
 - fix an import bug for take-screenshot-xorg where the import was missing the .nix extension
+- fix nvidia module to use hardware.nvidia.open = true; by default.
 
 
 7-27-2025

@@ -6,6 +6,7 @@
 }:
 let
   cfg = config.modules.gpu.nvidia;
+  inherit (lib) mkDefault;
 in
 {
   options.modules.gpu.nvidia.enable = lib.mkEnableOption "enable nvidia drivers";
@@ -23,9 +24,11 @@ in
       # Enable power management (do not disable this unless you have a reason to).
       # Likely to cause problems on laptops and with screen tearing if disabled.
       powerManagement.enable = true;
-      open = false;
+
+      # use open for RTXiiii 20 series or newer
+      open = mkDefault true;
       # Enable the Nvidia settings menu,
-      # accessible via `nvidia-settings`.
+      # accessible via `qqnvidia-settings`.
       nvidiaSettings = true;
 
       package = lib.mkDefault config.boot.kernelPackages.nvidiaPackages.beta;
