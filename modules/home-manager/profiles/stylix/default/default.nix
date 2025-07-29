@@ -10,14 +10,29 @@ let
     mkIf
     mkDefault
     types
+    mkOption
     ;
   cfg = config.profiles.stylix.default;
 in
 {
-  options.profiles.stylix.default.enable = mkEnableOption "default stylix configuration";
+  options.profiles.stylix.default = {
+    enable = mkEnableOption "default stylix configuration";
+    colorScheme = mkOption {
+      description = ''
+        name of the .yaml file under ./color-palettes (excluding .yaml)
+        used to convert a simple string into a path for easier config management
+      '';
+      type = types.str;
+      default = "ashes";
+    };
+  };
   config = mkIf cfg.enable {
+
     stylix = {
       polarity = mkDefault "dark";
+      base16Scheme = mkIf (cfg.colorScheme != "") (
+        ../../../stylix/color-palettes + "/${cfg.colorScheme}.yaml"
+      );
 
       targets =
         let

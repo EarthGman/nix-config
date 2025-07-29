@@ -7,9 +7,11 @@
 let
   inherit (lib)
     mkEnableOption
+    mkOption
     mkIf
     mkDefault
     mkMerge
+    types
     ;
   cfg = config.profiles.hyprland.default;
   enabled = {
@@ -20,6 +22,11 @@ in
 {
   options.profiles.hyprland.default = {
     enable = mkEnableOption "default hyprland config";
+    mainMod = mkOption {
+      description = "main mod for the default hyprland profile";
+      type = types.str;
+      default = "SUPER";
+    };
   };
 
   config = mkIf cfg.enable (mkMerge [

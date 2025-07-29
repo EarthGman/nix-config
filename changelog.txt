@@ -4,6 +4,48 @@
 - fix an import bug for take-screenshot-xorg where the import was missing the .nix extension
 - fix nvidia module to use hardware.nvidia.open = true; by default.
 - add file-roller and programs.seahorse to excluded gnome packages
+- changes to the assets repository:
+  - added wallpapers:
+    - scarlet-tree-light
+    - megumin-starry-sky
+  - removed wallpapers:
+    - the-nightmare-of-finding-wallpapers
+    - winders7-machine-edition
+    - hallownest-bench
+  - renamed wallpapers:
+    - celeste-chill -> celeste-chapter-1-end
+    - celeste -> celeste-chapter-7-end
+    - two-hallow-knights -> ghost-and-hornet-2
+    - siblings -> hollow-knight-lake
+    - kaori -> kaori-1
+    - kitties -> kittens
+    - celeste-mountain -> mountain
+    - the-nightmare-before-firefox -> nightmare-before-christmas-1
+    - the-nightmare-before-grub -> nightmare-before-christmas-2
+    - oneshot-1 -> niko-1
+    - oneshot-2 -> niko-2
+    - oneshot-title-screen -> niko-3
+    - oneshot-roomba -> niko-roomba
+    - the-gang-1 -> omori-gang-1
+    - the-gang-2 -> omori-gang-2
+    - the-gang-headspace-2 -> omori-gang-3
+    - the-gang-headspace -> omori-gang-4
+    - the-gang-grouphug -> omori-gang-5
+    - the-gate-before-rizzmas -> the-gate
+  - renamed icons:
+    - bean-coded -> sandy-sunny
+- removed inferno theme and colorscheme
+- removed ashes theme
+- removed vibrant-cool theme and colorscheme
+- move shyfox config from programs.firefox.themes.shyfox.config to profiles.firefox.shyfox.config
+- move stylix.colorScheme to profiles.stylix.default.colorScheme
+- move wayland.windowManager.hyprland.mainMod to profiles.hyprland.config.mainMod
+- rework april colorscheme shades
+- rename "faraway" colorscheme to "spring-garden"
+- rename "undertale" theme to "cozy-undertale"
+- updated themes to reflect new changes
+- removed resolution dimensions from system-stylizer sddm themeConfig
+- add the-gate to sddm for nightmare theme
 
 
 7-27-2025
@@ -223,7 +265,7 @@
 - new mkProgramOption function: returns enable and package options for program
 - patched up several old modules:
   - removed all references to /run/current-system/sw/bin or nixos specific paths from home-manager services
-	- made heavier use of program.package options for modules and scripts instead of hardcoding the path from pkgs.
+  - made heavier use of program.package options for modules and scripts instead of hardcoding the path from pkgs.
 - removed other nixpkgs inputs and ensure that all inputs follow nixpkgs to mitigate the very prominant disk usage isssue with cloning nixpkgs by flakes.
 
 
@@ -268,10 +310,10 @@ Should still function as before
 - removed the stupid warning message from direnv
 - vim update:
   - cleanup dashboard
-	- change flake structure
-	- repo flake will now create a temporary neovim with the config (still kind of buggy)
-	- remove some old vim plugins that I dont use at all such as gruvbox and gdb
-	- downgrade blink-cmp 13.0 > 12.4
+  - change flake structure
+  - repo flake will now create a temporary neovim with the config (still kind of buggy)
+  - remove some old vim plugins that I dont use at all such as gruvbox and gdb
+  - downgrade blink-cmp 13.0 > 12.4
 - add LACT an amdgpu control gui
 - rename workstation profile to laptop
 - redo sddm module
@@ -465,8 +507,8 @@ Should still function as before
 11-26-2024
 - Fixed nasty bug with the i3-hyprland-windows
   - Now a systemd service
-	- removed unncessary while loop
-	- throw systemd output into the void instead of spamming the journal
+  - removed unncessary while loop
+  - throw systemd output into the void instead of spamming the journal
 - proper polybar integration with systemd
 - finally make use of the waybar service instead of just spawning it in the background like a dum dum
 
@@ -478,8 +520,8 @@ Should still function as before
 11-24-2024
 - more vim plugins:
   - harpoon
-	- vim-fugitive
-	- undotree
+  - vim-fugitive
+  - undotree
 - new vim theme "vague"
 - add scan software gscan2pdf
 - fix weird error in yazi with the $EDITOR variable

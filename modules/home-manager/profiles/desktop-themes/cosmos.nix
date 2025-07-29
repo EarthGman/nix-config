@@ -9,15 +9,12 @@ in
 {
   options.profiles.desktopThemes.cosmos.enable = mkEnableOption "cosmos desktop theme";
   config = mkIf cfg.enable {
-    programs = {
-      firefox.themes.shyfox.config.wallpaper = fetchurl wallpapers.pixel-earth;
-    };
-
     custom.wallpaper = fetchurl wallpapers.space-piano;
-    stylix = {
-      colorScheme = "ashes";
-    };
 
+    profiles = {
+      stylix.default.colorScheme = "ashes";
+      firefox.shyfox.config.wallpaper = fetchurl wallpapers.pixel-earth;
+    };
     services.swww.slideshow = {
       enable = mkDefault true;
       interval = mkDefault 300;

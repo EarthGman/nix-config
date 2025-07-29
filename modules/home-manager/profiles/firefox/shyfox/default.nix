@@ -7,11 +7,26 @@
 }@args:
 let
   icons = if args ? icons then args.icons else null;
-  inherit (lib) mkEnableOption mkIf mkDefault;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkDefault
+    mkOption
+    types
+    ;
   cfg = config.profiles.firefox.shyfox;
 in
 {
-  options.profiles.firefox.shyfox.enable = mkEnableOption "shyfox theme for firefox";
+  options.profiles.firefox.shyfox = {
+    enable = mkEnableOption "shyfox theme for firefox";
+    config = mkOption {
+      description = ''
+        extra configuration for the shyfox theme
+      '';
+      default = { };
+      type = types.attrsOf types.str;
+    };
+  };
   config = mkIf cfg.enable {
     programs.firefox.profiles.default = {
       id = 0;
@@ -34,9 +49,6 @@ in
     };
     # apply the chrome patch, inheriting any configuration such as a different wallpaper
     home.file.".mozilla/firefox/default/chrome".source =
-      let
-        cfg = config.programs.firefox.themes.shyfox;
-      in
       if cfg.config != { } then
         (pkgs.shyfox.override { themeConfig = cfg.config; } + "/chrome")
       else

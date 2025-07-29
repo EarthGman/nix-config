@@ -1,3 +1,7 @@
+system: "base16"
+name: "Headspace"
+author: "EarthGman"
+variant: "dark"
 palette:
   base00: "#151515"
   base01: "#202020"

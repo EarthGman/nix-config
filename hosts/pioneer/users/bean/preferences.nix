@@ -1,7 +1,7 @@
 { ... }:
 {
 
-  custom.profiles.desktopTheme = "undertale";
+  custom.profiles.desktopTheme = "cozy-undertale";
   profiles.laptop.enable = true;
   profiles.smallscreen.enable = true;
 

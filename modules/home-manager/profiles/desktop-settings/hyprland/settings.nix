@@ -9,7 +9,7 @@
 let
   inherit (lib) mkDefault;
   inherit (builtins) toString;
-  mainMod = config.wayland.windowManager.hyprland.mainMod;
+  mainMod = config.profiles.hyprland.default.mainMod;
 in
 {
   # env
@@ -23,7 +23,7 @@ in
     ", preferred, auto, 1"
   ];
 
-  # exec at every reload (Mod+r) by default
+  # exec at every reload (Mod+r)
   exec = [
     "systemctl --user restart swww"
     "systemctl --user restart waybar"
@@ -40,8 +40,8 @@ in
       ;
   };
   bindm = [
-    "SUPER, mouse:272, movewindow"
-    "SUPER, mouse:273, resizewindow"
+    "${mainMod}, mouse:272, movewindow"
+    "${mainMod}, mouse:273, resizewindow"
   ];
 
   # other settings

@@ -25,16 +25,18 @@ in
 
   config = mkIf cfg.enable (mkMerge [
     {
+      profiles = {
+        stylix.default.colorScheme = "spring-garden";
+        firefox.shyfox.config.wallpaper = fetchurl wallpapers.a-home-for-flowers;
+      };
       programs = {
-        firefox.themes.shyfox.config.wallpaper = fetchurl wallpapers.a-home-for-flowers;
         fastfetch.image = fetchurl icons.oops;
 
         swaylock.settings.effect-blur = "";
       };
 
       services.omori-calendar-project.enable = true;
-      stylix.colorScheme = "faraway";
-      custom.wallpaper = builtins.fetchurl wallpapers.the-gang-grouphug;
+      custom.wallpaper = builtins.fetchurl wallpapers.omori-gang-5;
     }
     (mkIf cfg.withOmoriFont {
       programs = {

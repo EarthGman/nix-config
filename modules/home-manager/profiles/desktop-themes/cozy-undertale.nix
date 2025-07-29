@@ -10,34 +10,34 @@ let
 
   inherit (lib) mkIf mkEnableOption;
   inherit (builtins) fetchurl;
-  cfg = config.profiles.desktopThemes.undertale;
+  cfg = config.profiles.desktopThemes.cozy-undertale;
 in
 {
-  options.profiles.desktopThemes.undertale.enable = mkEnableOption "cozy undertale desktop theme";
+  options.profiles.desktopThemes.cozy-undertale.enable =
+    mkEnableOption "cozy undertale desktop theme";
   config = mkIf cfg.enable {
     custom.wallpaper = fetchurl wallpapers.home;
-    stylix.colorScheme = "faraway";
 
-    programs = {
-      firefox.themes.shyfox.config.wallpaper = fetchurl wallpapers.mt-ebott-alt;
-
-      fastfetch = {
-        settings.logo = {
-          height = 15;
-          width = 36;
-        };
-        imageRandomizer = {
-          enable = true;
-          images = with icons; [
-            (fetchurl heart-red)
-            (fetchurl heart-blue)
-            (fetchurl heart-orange)
-            (fetchurl heart-pink)
-            (fetchurl heart-green)
-            (fetchurl heart-yellow)
-            (fetchurl heart-teal)
-          ];
-        };
+    profiles = {
+      firefox.shyfox.config.wallpaper = fetchurl wallpapers.mt-ebott-alt;
+      stylix.default.colorScheme = "spring-garden";
+    };
+    programs.fastfetch = {
+      settings.logo = {
+        height = 15;
+        width = 36;
+      };
+      imageRandomizer = {
+        enable = true;
+        images = with icons; [
+          (fetchurl heart-red)
+          (fetchurl heart-blue)
+          (fetchurl heart-orange)
+          (fetchurl heart-pink)
+          (fetchurl heart-green)
+          (fetchurl heart-yellow)
+          (fetchurl heart-teal)
+        ];
       };
     };
     stylix.fonts = {

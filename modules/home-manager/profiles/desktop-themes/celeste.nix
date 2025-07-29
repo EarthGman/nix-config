@@ -15,9 +15,11 @@ in
 {
   options.profiles.desktopThemes.celeste.enable = mkEnableOption "celeste desktop theme";
   config = mkIf cfg.enable {
+    profiles = {
+      firefox.shyfox.config.wallpaper = fetchurl wallpapers.celeste-chapter-1-end;
+      stylix.default.colorScheme = "ashes";
+    };
     programs = {
-      firefox.themes.shyfox.config.wallpaper = fetchurl wallpapers.celeste-chill;
-
       fastfetch.imageRandomizer = {
         enable = true;
         images = with icons; [
@@ -29,8 +31,7 @@ in
       };
     };
 
-    custom.wallpaper = fetchurl wallpapers.celeste;
-    stylix.colorScheme = "ashes";
+    custom.wallpaper = fetchurl wallpapers.celeste-chapter-7-end;
     stylix.iconTheme = {
       dark = "candy-icons";
       light = "candy-icons";

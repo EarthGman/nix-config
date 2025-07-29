@@ -8,8 +8,11 @@ in
 {
   options.profiles.desktopThemes.hollow-knight.enable = mkEnableOption "hollow knight desktop theme";
   config = mkIf cfg.enable {
-    custom.wallpaper = (fetchurl wallpapers.hallownest-bench);
+    custom.wallpaper = fetchurl wallpapers.ghost-and-hornet-2;
 
-    programs.firefox.themes.shyfox.config.wallpaper = fetchurl wallpapers.ghost-and-hornet;
+    profiles = {
+      firefox.shyfox.config.wallpaper = fetchurl wallpapers.ghost-and-hornet;
+      stylix.default.colorScheme = "ashes";
+    };
   };
 }

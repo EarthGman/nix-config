@@ -7,12 +7,14 @@ let
   cfg = config.profiles.desktopThemes.nightmare;
 in
 {
-  options.profiles.desktopThemes.nightmare.enable = mkEnableOption "nightmare desktop theme";
+  options.profiles.desktopThemes.nightmare.enable =
+    mkEnableOption "the nightmare before christmas desktop theme";
   config = mkIf cfg.enable {
     custom.wallpaper = fetchurl wallpapers.the-pumpkin-patch;
-    stylix.colorScheme = "ashes";
 
-    programs.firefox.themes.shyfox.config.walls.shyfoxpaper =
-      fetchurl wallpapers.the-nightmare-before-firefox;
+    profiles = {
+      stylix.default.colorScheme = "ashes";
+      firefox.shyfox.config.wallpaper = fetchurl wallpapers.nightmare-before-christmas-1;
+    };
   };
 }

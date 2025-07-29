@@ -1731,7 +1731,7 @@
     "icons": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-V9wdMzhiV+4S4FtHem5xJUWnWKdQTBC+GM8bBhFUJGY=",
+        "narHash": "sha256-B1RNHDIsOJ4OxzeR8qEDNp2etMRrTZlmq1y4lf/sigc=",
         "type": "file",
         "url": "https://raw.githubusercontent.com/EarthGman/assets/master/icons.json"
       },
@@ -3034,7 +3034,7 @@
     "wallpapers": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-tIWncLWJnwvHf9SAE+bRbYs5f2dHsKwBotGH6AvXyhw=",
+        "narHash": "sha256-OezyGLHc6Uk+YgH8eGV+WzAhtcDzntEcHwADKJVIAF8=",
         "type": "file",
         "url": "https://raw.githubusercontent.com/EarthGman/assets/master/wallpapers.json"
       },

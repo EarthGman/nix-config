@@ -22,11 +22,14 @@ in
 
   config = mkIf cfg.enable (mkMerge [
     {
-      custom.wallpaper = builtins.fetchurl wallpapers.the-gang-headspace;
-      stylix.colorScheme = "headspace";
+      custom.wallpaper = builtins.fetchurl wallpapers.omori-gang-4;
+
+      profiles = {
+        stylix.default.colorScheme = "headspace";
+        firefox.shyfox.config.wallpaper = builtins.fetchurl wallpapers.headspace-dark;
+      };
 
       programs = {
-        firefox.themes.shyfox.config.wallpaper = builtins.fetchurl wallpapers.headspace-dark;
         vscode.profiles.default.userSettings = {
           editor = {
             fontFamily = "'OMORI_GAME'";

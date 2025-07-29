@@ -73,14 +73,13 @@ in
             background = fetchurl wallpapers.april-red;
           };
           services.displayManager.sddm.themeConfig = {
-            Background = fetchurl wallpapers.kaori;
+            FormPosition = "left";
+            Background = fetchurl wallpapers.kaori-1;
           };
         })
-        (mkIf (theme == "undertale") {
+        (mkIf (theme == "cozy-undertale") {
           services.displayManager.sddm.themeConfig = {
             Background = fetchurl wallpapers.mt-ebott;
-            ScreenWidth = "1366";
-            ScreenHeight = "768";
             FullBlur = "false";
             PartialBlur = "false";
             MainColor = "#352500";
@@ -96,9 +95,7 @@ in
         })
         (mkIf (theme == "faraway") {
           services.displayManager.sddm.themeConfig = {
-            Background = builtins.fetchurl wallpapers.the-gang-grouphug;
-            ScreenWidth = "2560";
-            ScreenHeight = "1440";
+            Background = fetchurl wallpapers.omori-gang-5;
             FullBlur = "false";
             PartialBlur = "false";
             MainColor = "#FFFFFF";
@@ -111,6 +108,13 @@ in
             HourFormat = "hh:mm A";
           };
         })
+        (mkIf (theme == "nightmare") {
+          # boot.loader.grub.themeConfig.background = fetchurl wallpapers.nightmare-before-christmas-2;
+          services.displayManager.sddm.themeConfig = {
+            Background = fetchurl wallpapers.the-gate;
+            FullBlur = "false";
+          };
+        })
         (mkIf (theme == "hollow-knight") {
           # boot.loader.grub.themeConfig = {
           #   background = builtins.fetchurl wallpapers.hollow-knight-minimal;
@@ -120,11 +124,9 @@ in
               sddm = {
                 themeConfig = {
                   Background = builtins.fetchurl wallpapers.hallownest;
-                  ScreenWidth = "2560";
-                  ScreenHeight = "1440";
                   FullBlur = "false";
                   PartialBlur = "false";
-                  FormPosition = "right";
+                  FormPosition = "center";
                   MainColor = "#cd4967";
                   AccentColor = "#000000";
                   BackgroundColor = "#000000";
