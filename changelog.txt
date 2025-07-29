@@ -1,3 +1,7 @@
+7-29-2025
+- fix an issue where dpms timeout for swayidle still referred to swaylock.settings
+
+
 7-28-2025
 - add format script for nix files under /scripts/nixfmt.sh
 - format all nix files in the project to follow the nixpkgs rfc style standard

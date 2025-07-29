@@ -55,7 +55,7 @@ in
       timeouts =
         optionals (cfg.swaylock.timeout > 0) [
           {
-            timeout = cfg.settings.swaylock.timeout;
+            timeout = cfg.swaylock.timeout;
             command = "swaylock -fF";
           }
         ]
