@@ -12,9 +12,15 @@
     };
   };
 
+  modules = {
+    steam.enable = true;
+    flatpak.enable = true;
+  };
+
   programs = {
     # lens.enable = true;
     fastfetch.enable = true;
+    prismlauncher.enable = true;
   };
 
   boot.initrd.availableKernelModules = [
@@ -46,9 +52,4 @@
   systemd.services.thinkfan.preStart = "
     /run/current-system/sw/bin/modprobe -r thinkpad_acpi && /run/current-system/sw/bin/modprobe thinkpad_acpi
   ";
-
-  modules = {
-    steam.enable = true;
-    flatpak.enable = true;
-  };
 }

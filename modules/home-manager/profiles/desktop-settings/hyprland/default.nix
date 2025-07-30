@@ -59,7 +59,15 @@ in
       services = {
         hypridle = {
           enable = mkDefault true;
-          dpms.timeout = mkDefault 300;
+          dpms = {
+            on-bat.timeout = mkDefault 150;
+          };
+          hyprlock = {
+            on-bat.timeout = mkDefault 150;
+          };
+          suspend = {
+            on-bat.timeout = mkDefault 150;
+          };
 
           settings.general = {
             before_sleep_cmd = "hyprlock";

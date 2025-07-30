@@ -1,3 +1,12 @@
+7-30-2025
+- rewrite swayidle and hypridle services to include configuration options "on-bat" and "on-ac" for timeouts.
+- set new default timeout values for sway and hyprland configurations:
+  - lockscreen = 150 seconds
+  - dpms (screen-blank) = 150 seconds
+  - suspend = 600 seconds
+- add kanshi profile for twilight
+
+
 7-29-2025
 - fix an issue where dpms timeout for swayidle still referred to swaylock.settings
 

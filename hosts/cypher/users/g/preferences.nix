@@ -25,9 +25,6 @@ in
     "unity3d/Pugstorm/Core\ Keeper".source = ln "/home/g/games/SteamLibrary/game-saves/Core\ Keeper";
   };
 
-  services.swayidle.dpms.timeout = 0;
-  services.hypridle.dpms.timeout = 3600;
-
   # kanshi profiles
   services.kanshi = {
     enable = true;

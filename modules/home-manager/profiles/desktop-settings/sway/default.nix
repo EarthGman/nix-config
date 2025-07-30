@@ -22,31 +22,30 @@ in
         systemd.enable = false;
         config = {
           output."*" = lib.mkForce { };
-          startup =
-            [
-              {
-                command = "uwsm finalize";
-              }
-              {
-                command = "systemctl --user restart waybar";
-                always = true;
-              }
-              {
-                command = "swaymsg workspace 1";
-                always = false;
-              }
-              {
-                command = "systemctl --user restart swww";
-                always = true;
-              }
-              # dont know why but kanshi seems to not restart properly when sway is reloaded
-            ]
-            ++ optionals (config.services.kanshi.enable) [
-              {
-                command = "systemctl --user restart kanshi";
-                always = true;
-              }
-            ];
+          startup = [
+            {
+              command = "uwsm finalize";
+            }
+            {
+              command = "systemctl --user restart waybar";
+              always = true;
+            }
+            {
+              command = "swaymsg workspace 1";
+              always = false;
+            }
+            {
+              command = "systemctl --user restart swww";
+              always = true;
+            }
+            # dont know why but kanshi seems to not restart properly when sway is reloaded
+          ]
+          ++ optionals (config.services.kanshi.enable) [
+            {
+              command = "systemctl --user restart kanshi";
+              always = true;
+            }
+          ];
         };
       };
     }
@@ -64,8 +63,14 @@ in
           enable = mkDefault true;
           swaylock = {
             before-sleep = true;
+            on-bat.timeout = mkDefault 150;
           };
-          dpms.timeout = mkDefault 300;
+          dpms = {
+            on-bat.timeout = mkDefault 150;
+          };
+          suspend = {
+            on-bat.timeout = mkDefault 600;
+          };
         };
       };
     })

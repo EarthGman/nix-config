@@ -14,7 +14,6 @@ in
 {
   home.packages = [ liquidctl-profile ];
   custom.profiles.desktopTheme = "cozy-undertale";
-  services.hypridle.dpms.timeout = 0;
 
   programs = {
     dolphin-emu.enable = true;
