@@ -1,9 +1,20 @@
+7-31-2025
+- append betterfox patch to the shyfox firefox theme
+- betterfox and shyfox configurations will now check for programs._1password-gui.enable
+  before installing the 1password firefox extension
+
+
 7-30-2025
 - rewrite swayidle and hypridle services to include configuration options "on-bat" and "on-ac" for timeouts.
 - set new default timeout values for sway and hyprland configurations:
+  on-bat:
   - lockscreen = 150 seconds
   - dpms (screen-blank) = 150 seconds
   - suspend = 600 seconds
+	on-ac:
+	- lockscreen = 0
+	- dpms = 0
+	- suspend = 0
 - add kanshi profile for twilight
 
 

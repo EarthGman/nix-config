@@ -6,7 +6,13 @@
 }@args:
 let
   icons = if args ? icons then args.icons else null;
-  inherit (lib) mkDefault mkIf mkEnableOption;
+  nixosConfig = if args ? nixosConfig then args.nixosConfig else null;
+  inherit (lib)
+    mkDefault
+    mkIf
+    mkEnableOption
+    optionals
+    ;
   cfg = config.profiles.firefox.betterfox;
 in
 {
@@ -18,9 +24,11 @@ in
         with pkgs.nur.repos.rycee.firefox-addons;
         [
           ublock-origin
-          onepassword-password-manager
           darkreader
           sidebery
+        ]
+        ++ optionals (nixosConfig != null && nixosConfig.programs._1password-gui.enable) [
+          onepassword-password-manager
         ]
       );
       search = {
