@@ -66,7 +66,7 @@ in
             on-bat.timeout = mkDefault 150;
           };
           suspend = {
-            on-bat.timeout = mkDefault 150;
+            on-bat.timeout = mkDefault 600;
           };
 
           settings.general = {
