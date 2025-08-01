@@ -1,7 +1,7 @@
 { wallpapers, ... }:
 {
   imports = [
-    ./disko.nix
+    ./disko
   ];
 
   profiles.gaming.enable = true;
