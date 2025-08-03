@@ -37,14 +37,16 @@ let
   ];
 in
 {
-  services.displayManager.sddm = {
-    wayland = {
-      compositor = lib.mkForce "weston";
-      inherit compositorCommand;
-    };
-    themeConfig = {
-      FullBlur = "false";
-      PartialBlur = "false";
+  services.displayManager = {
+    sddm = {
+      wayland = {
+        compositor = lib.mkForce "weston";
+        inherit compositorCommand;
+      };
+      themeConfig = {
+        FullBlur = "false";
+        PartialBlur = "false";
+      };
     };
   };
 }

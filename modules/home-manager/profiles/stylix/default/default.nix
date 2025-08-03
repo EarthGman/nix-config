@@ -64,8 +64,8 @@ in
       fonts = {
         sizes = {
           applications = mkDefault 12;
-          desktop = mkDefault 12;
-          popups = mkDefault 10;
+          desktop = mkDefault 14;
+          popups = mkDefault 12;
           terminal = mkDefault 14;
         };
         sansSerif = mkDefault {
