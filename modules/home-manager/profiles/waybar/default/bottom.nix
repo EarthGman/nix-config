@@ -40,7 +40,7 @@ in
   ];
 
   "custom/settings-menu" = {
-    format = "  ";
+    format = "";
     tooltip = false;
     menu = "on-click";
     menu-file = "${config.xdg.configHome}/waybar/settings-menu.xml";
@@ -173,14 +173,14 @@ in
       if [[ $(swaync-client -D) == "false" ]]; then
         case $UNREAD_NOTIFICATIONS in
           0)
-            echo 󰂚
+            echo 󰂚 
             ;;
           *)
             echo 󰂚 $UNREAD_NOTIFICATIONS
             ;;
       esac
       else
-        echo 󰂛
+        echo 󰂛 
       fi
     '';
     interval = 1;

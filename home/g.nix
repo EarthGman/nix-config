@@ -64,12 +64,11 @@ in
     ghex = enabled;
     moonlight = enabled;
     discord = enabled;
-
     mov-cli = {
       enable = mkDefault true;
       plugins = [ pkgs.mov-cli-youtube ];
     };
-
+    protonmail-desktop = enabled;
     # fun and useless
     pipes = enabled;
     cbonsai = enabled;

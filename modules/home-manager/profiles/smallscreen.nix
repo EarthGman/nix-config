@@ -14,7 +14,7 @@ in
       desktop = mkOverride 800 12;
     };
 
-    profiles.waybar.default.small = true;
-    profiles.swaync.default.small = true;
+    profiles.waybar.default.config.small = true;
+    profiles.swaync.default.config.small = true;
   };
 }

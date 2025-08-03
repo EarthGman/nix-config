@@ -20,7 +20,9 @@ in
 {
   options.profiles.waybar.default = {
     enable = mkEnableOption "default waybar profile";
-    small = mkEnableOption "smaller fonts and boxes for default waybar";
+    config = {
+      small = mkEnableOption "smaller fonts and boxes for default waybar";
+    };
   };
 
   config = mkIf cfg.enable (mkMerge [
@@ -51,7 +53,8 @@ in
               scripts
               ;
           })
-          (mkIf cfg.small {
+          (mkIf cfg.config.small {
+            # remove network traffic monitor to conserve space
             height = 30;
             network = {
               format-wifi = " {icon} {essid}";
@@ -59,7 +62,11 @@ in
             };
           })
         ];
-        style = if (cfg.small) then (readFile ./small.css) else (readFile ./style.css);
+        style =
+          if (cfg.config.small) then
+            (import ./style-small.nix { inherit config; })
+          else
+            (import ./style.nix { inherit config; });
       };
     }
     (mkIf config.programs.waybar.enable {
@@ -67,8 +74,8 @@ in
 
       xdg.configFile = {
         "waybar/settings-menu.xml" = {
-          enable = config.programs.waybar.enable && !config.programs.waybar.imperativeConfig;
-          text = mkDefault (builtins.readFile ./settings-menu.xml);
+          enable = !config.programs.waybar.imperativeConfig;
+          text = mkDefault (readFile ./settings-menu.xml);
         };
       };
     })

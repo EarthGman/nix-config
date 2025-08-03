@@ -21,6 +21,7 @@
     # lens.enable = true;
     fastfetch.enable = true;
     prismlauncher.enable = true;
+    ani-cli.enable = true;
   };
 
   boot.initrd.availableKernelModules = [

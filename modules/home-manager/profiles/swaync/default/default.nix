@@ -10,7 +10,7 @@ in
 {
   options.profiles.swaync.default = {
     enable = mkEnableOption "default swaync profile";
-    small = mkEnableOption "special config for smaller monitors < 1920x1080";
+    config.small = mkEnableOption "special config for smaller monitors < 1920x1080";
   };
 
   config = mkIf cfg.enable (mkMerge [
@@ -20,7 +20,7 @@ in
         # style = builtins.readFile ./style.css;
       };
     }
-    (mkIf cfg.small {
+    (mkIf cfg.config.small {
       services.swaync.settings = {
         control-center-width = 300;
         control-center-height = 450;
