@@ -23,7 +23,7 @@ in
       desktop ? null, # what desktop? "gnome" "i3" "hyprland" or "i3,hyprland" for multiple.
       server ? false, # is this machine a server
       vm ? false, # is this a virtual machine?
-      iso ? false, # is this an ISO?
+      installer ? false, # is this an installer ISO?
       secretsFile ? null, # path to secrets file
       system ? "x86_64-linux", # what cpu architecture?
       stateVersion ? "25.11", # what version of nixos was this machine initalized?
@@ -49,11 +49,12 @@ in
           secretsFile
           server
           vm
-          iso
+          installer
           stateVersion
           extraSpecialArgs
           ;
-      } // extraSpecialArgs;
+      }
+      // extraSpecialArgs;
       modules =
         let
           inherit (lib) autoImport mkIf;
@@ -92,7 +93,7 @@ in
       desktop ? null, # what desktop? "gnome" "i3" "hyprland" or "i3,hyprland" for multiple.
       server ? false, # is this user on a server
       vm ? false, # is this user on a virtual machine?
-      iso ? false, # is this user on an ISO?
+      installer ? false, # is this user on an ISO?
       system ? "x86_64-linux", # what cpu architecture does your host have?
       stateVersion ? "25.05", # what version of home-manager was this user initalized?
       profile ? null, # file for your extra user configuration
@@ -108,25 +109,24 @@ in
     if standAlone then
       lib.homeManagerConfiguration {
         pkgs = inputs.nixpkgs.legacyPackages.${system};
-        modules =
-          [
-            outputs.homeModules
-            {
-              modules.sops.enable = (secretsFile != null);
-              sops.defaultSopsFile = mkIf (secretsFile != null) secretsFile;
+        modules = [
+          outputs.homeModules
+          {
+            modules.sops.enable = (secretsFile != null);
+            sops.defaultSopsFile = mkIf (secretsFile != null) secretsFile;
 
-              home = {
-                inherit username stateVersion;
-                homeDirectory = mkDefault "/home/${username}";
-              };
-              profiles.default.enable = mkDefault true;
-              nixpkgs.overlays = (builtins.attrValues outputs.overlays);
-            }
-          ]
-          ++ optionals (profile != null) [
-            profile
-          ]
-          ++ extraModules;
+            home = {
+              inherit username stateVersion;
+              homeDirectory = mkDefault "/home/${username}";
+            };
+            profiles.default.enable = mkDefault true;
+            nixpkgs.overlays = (builtins.attrValues outputs.overlays);
+          }
+        ]
+        ++ optionals (profile != null) [
+          profile
+        ]
+        ++ extraModules;
 
         extraSpecialArgs = {
           inherit
@@ -139,12 +139,13 @@ in
             binaries
             server
             vm
-            iso
+            installer
             secretsFile
             system
             stateVersion
             ;
-        } // extraExtraSpecialArgs;
+        }
+        // extraExtraSpecialArgs;
       }
 
     # create a HM configuration integrated into NixOS via modules/nixos/core/home-manager.nix
@@ -152,7 +153,8 @@ in
       {
         imports = [
           outputs.homeModules
-        ] ++ optionals (profile != null) [ profile ];
+        ]
+        ++ optionals (profile != null) [ profile ];
 
         home = { inherit stateVersion; };
 
@@ -170,7 +172,6 @@ in
       system ? "x86_64-linux",
       stateVersion ? "25.05",
       format ? "proxmox-lxc",
-      personal ? false, # whether to enable my personal server profile
       extraModules ? [ ],
       extraSpecialArgs ? { },
       ...
@@ -187,27 +188,25 @@ in
           system
           stateVersion
           ;
-      } // extraSpecialArgs;
-      modules =
-        [
-          (outputs.nixosModules)
-          (inputs.srvos.nixosModules.server)
-          {
-            modules.bootloaders = {
-              grub.enable = mkForce false;
-              systemd-boot.enable = mkForce false;
-            };
-            nixpkgs.overlays = (builtins.attrValues outputs.overlays);
-            profiles = {
-              hardware-tools.enable = false;
-              default.enable = true;
-              server.default.enable = true;
-              server.${template}.enable = true;
-              gman.server.enable = personal;
-            };
-          }
-        ]
-        ++ optionals (extraConfig != null) [ extraConfig ]
-        ++ extraModules;
+      }
+      // extraSpecialArgs;
+      modules = [
+        (outputs.nixosModules)
+        (inputs.srvos.nixosModules.server)
+        {
+          modules.bootloaders = {
+            grub.enable = mkForce false;
+            systemd-boot.enable = mkForce false;
+          };
+          nixpkgs.overlays = (builtins.attrValues outputs.overlays);
+          profiles = {
+            hardware-tools.enable = false;
+            default.enable = true;
+            server.${template}.enable = true;
+          };
+        }
+      ]
+      ++ optionals (extraConfig != null) [ extraConfig ]
+      ++ extraModules;
     };
 }

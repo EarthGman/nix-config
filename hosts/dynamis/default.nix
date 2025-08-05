@@ -5,6 +5,8 @@
     inputs.jovian-nixos.nixosModules.jovian
   ];
 
+  time.timeZone = "America/Chicago";
+
   profiles = {
     benchmarking.enable = true;
   };

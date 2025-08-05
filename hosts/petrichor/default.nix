@@ -1,4 +1,4 @@
-{ pkgs, wallpapers, ... }:
+{ wallpapers, ... }:
 {
   imports = [
     ./disko.nix
@@ -14,17 +14,17 @@
     "usbhid"
     "sd_mod"
   ];
+
+  time.timeZone = "America/Chicago";
+
   # display manager customization
   services.displayManager = {
     gdm.enable = false;
     sddm = {
       enable = true;
       themeConfig = {
-        Background = builtins.fetchurl wallpapers.celeste-mountain;
+        Background = builtins.fetchurl wallpapers.mountain;
       };
     };
   };
-
-  programs.blender.enable = true;
-  environment.systemPackages = [ pkgs.steamtinkerlaunch ];
 }

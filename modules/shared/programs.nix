@@ -188,11 +188,13 @@ in
 
     gnome-calculator = mkProgramOption {
       programName = "gnome-calculator";
+      description = "calculator from the GNOME destop environment";
       inherit pkgs;
     };
 
     gnome-clocks = mkProgramOption {
       programName = "gnome-clocks";
+      description = "clocks app from the GNOME destop environment";
       inherit pkgs;
     };
 
@@ -204,6 +206,13 @@ in
 
     gnome-system-monitor = mkProgramOption {
       programName = "gnome-system-monitor";
+      description = "task manager from the GNOME desktop environment";
+      inherit pkgs;
+    };
+
+    gnome-text-editor = mkProgramOption {
+      programName = "gnome-text-editor";
+      description = "text editor from the GNOME desktop environment";
       inherit pkgs;
     };
 
@@ -419,6 +428,12 @@ in
     sparrow = mkProgramOption {
       programName = "sparrow";
       description = "bitcoin trading app written in python";
+      inherit pkgs;
+    };
+
+    steamtinkerlaunch = mkProgramOption {
+      programName = "steamtinkerlaunch";
+      description = "Linux wrapper tool for use with the Steam client for custom launch options and 3rd party programs";
       inherit pkgs;
     };
 

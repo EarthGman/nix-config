@@ -1,3 +1,13 @@
+8-05-2025
+- tweak personal module
+- removed modules.ssh.enable
+- add gnome-text-editor and steamtinkerlaunch to programs for nixos and home-manager
+- remove vscode from some hosts in favor of gnome-text-editor
+- openssh will now use password auth by default unless the host is a server
+- removed timeZone from default profile
+- removed juno from hosts
+
+
 8-04-2025
 - remove hardcoded evince as pdf viewer from yazi
 - add some default apps for xdg mimetypes: images, pdf, and video files

@@ -1,4 +1,3 @@
-{ wallpapers, ... }:
 {
   imports = [
     ./disko
@@ -17,6 +16,8 @@
     ];
   };
 
+  time.timeZone = "America/Chicago";
+
   modules = {
     printing.enable = false;
   };
@@ -31,6 +32,7 @@
     gthumb.enable = true;
     neovim-custom.enable = false;
     piper.enable = false;
+    gnome-text-editor.enable = true;
   };
 
   services.displayManager.gdm.enable = false;

@@ -4,6 +4,8 @@
 
   zramSwap.enable = true;
 
+  time.timeZone = "America/Chicago";
+
   boot.initrd.availableKernelModules = [
     "uhci_hcd"
     "ehci_pci"

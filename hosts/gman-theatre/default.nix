@@ -6,8 +6,7 @@
   ];
 
   profiles.gman = {
-    wireguard.wg0.enable = true;
-    server.enable = true;
+    enable = true;
   };
 
   modules.nh.enable = false;

@@ -11,6 +11,8 @@
 
   profiles.laptop.enable = true;
 
+  time.timeZone = "America/Chicago";
+
   boot.initrd.availableKernelModules = [
     "ahci"
     "xhci_pci"

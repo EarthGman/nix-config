@@ -155,19 +155,6 @@ in
     extraSpecialArgs = { inherit self inputs outputs; };
   };
 
-  juno = mkHost {
-    hostName = "juno";
-    bios = "UEFI";
-    cpu = "amd";
-    gpu = "amd";
-    users = [ "maliglord" ];
-    desktop = "gnome";
-    system = "x86_64-linux";
-    stateVersion = "25.05";
-    configDir = ./juno;
-    extraSpecialArgs = { inherit self inputs outputs; };
-  };
-
   gman-theatre = mkHost {
     hostName = "gman-theatre";
     cpu = "intel";
@@ -191,15 +178,16 @@ in
   # isos
   installer-x86_64-without-firmware = mkHost {
     hostName = "nixos-installer";
-    iso = true;
+    installer = true;
     system = "x86_64-linux";
-    configDir = ./iso/without-firmware;
+    configDir = ./installer;
+    extraModules = [ { hardware.enableAllFirmware = false; } ];
   };
 
   installer-x86_64-with-firmware = mkHost {
     hostName = "nixos-installer";
-    iso = true;
+    installer = true;
     system = "x86_64-linux";
-    configDir = ./iso/with-firmware;
+    configDir = ./installer;
   };
 }

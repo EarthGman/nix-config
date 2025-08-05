@@ -14,10 +14,12 @@ let
 in
 {
   custom = {
-    editor = "codium";
     profiles.desktopTheme = "celeste";
   };
   programs = {
+    blender.enable = true;
+    gnome-text-editor.enable = true;
+    steamtinkerlaunch.enable = true;
     r2modman.enable = true;
     bottles.enable = true;
     lutris.enable = true;
@@ -31,10 +33,7 @@ in
     obs-studio.enable = true;
     totem.enable = true;
   };
-  # no printscreen, use mainMod + f1 instead
-  # wayland.windowManager.hyprland.extraConfig = ''
-  #   bind=${config.wayland.windowManager.hyprland.mainMod}, F1, exec, ${lib.getExe pkgs.grim} -g \"$(${lib.getExe pkgs.slurp})\" - | ${pkgs.wl-clipboard}/bin/wl-copy && ${pkgs.wl-clipboard}/bin/wl-paste > ${config.home.homeDirectory}/Pictures/Screenshots/Screenshot-$(date +%F_%T).png
-  # '';
+
   xdg.dataFile."applications/knight-launcher.desktop" = {
     enable = true;
     text = ''

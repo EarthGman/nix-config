@@ -17,7 +17,7 @@
     in
     {
       inherit lib;
-      overlays = import ./overlays.nix { inherit inputs nixpkgs; };
+      overlays = import ./overlays.nix { inherit inputs; };
 
       nixosModules = import ./modules/nixos { inherit inputs outputs lib; };
       homeModules = import ./modules/home-manager { inherit inputs outputs lib; };
@@ -40,20 +40,17 @@
           mc112 = lib.mkLXC {
             template = "minecraft";
             extraConfig = ./hosts/mc112;
-            personal = true;
             extraSpecialArgs = { inherit keys; };
           };
 
           mc112-blueprints = lib.mkLXC {
             template = "minecraft";
             extraConfig = ./hosts/mc-blueprints;
-            personal = true;
             extraSpecialArgs = { inherit keys; };
           };
 
           docker-env = lib.mkLXC {
             template = "docker-env";
-            personal = true;
             extraSpecialArgs = { inherit keys; };
           };
         };

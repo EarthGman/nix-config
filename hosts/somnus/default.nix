@@ -23,6 +23,8 @@
     "sd_mod"
   ];
 
+  time.timeZone = "America/Chicago";
+
   environment.systemPackages = with pkgs; [
     liquidctl
   ];

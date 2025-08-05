@@ -9,7 +9,6 @@ let
   cpu = if args ? cpu then args.cpu else null;
   vm = if args ? vm then args.vm else false;
   server = if args ? server then args.server else false;
-  iso = if args ? iso then args.iso else false;
   desktop = if args ? desktop then args.desktop else null;
   stateVersion = if args ? stateVersion then args.stateVersion else "";
   system = if args ? system then args.system else null;
@@ -36,10 +35,8 @@ in
     modules = {
       determinate.enable = mkDefault true;
       direnv.enable = mkDefault true;
-      ssh.enable = mkDefault true;
       nh.enable = mkDefault true;
 
-      iso.enable = iso;
       desktop.enable = desktop != null;
       qemu-guest.enable = vm;
     };
@@ -53,7 +50,7 @@ in
       zsh.default.enable = mkDefault true;
       fzf.default.enable = mkDefault true;
       fish.default.enable = mkDefault true;
-      server.default.enable = mkDefault server;
+      server.default.enable = server;
       sddm.default.enable = mkDefault true;
 
       hardware-tools.enable = mkDefault true;
@@ -61,7 +58,10 @@ in
     };
 
     documentation.nixos.enable = mkDefault false;
-    services.dbus.implementation = "broker";
+    services = {
+      openssh.enable = mkDefault true;
+      dbus.implementation = "broker";
+    };
 
     users.users."root".shell = pkgs.zsh;
     users.mutableUsers = mkDefault false;
@@ -99,10 +99,7 @@ in
       hostPlatform = mkIf (system != null) system;
     };
 
-    time.timeZone = mkDefault "America/Chicago";
-
     environment = {
-
       systemPackages = with pkgs; [
         nixos-update
         file

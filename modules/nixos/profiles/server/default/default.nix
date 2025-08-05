@@ -15,32 +15,41 @@ let
 in
 {
   options.profiles.server.default.enable = mkEnableOption "default server profile";
+  # srvos module is imported using lib.mkHost for debloat
+  # https://github.com/nix-community/srvos
   config = mkIf cfg.enable {
-
     # debloat
     environment.defaultPackages = [ ];
-    #boot.initrd.includeDefaultModules = false;
+    # by default remove linux firmwares as they aren't normally needed by vms or containers
     hardware.enableRedistributableFirmware = mkDefault false;
 
-    # make sure clean doesn't leave any unnecessary nixos configurations
-    programs = {
-      git.enable = mkOverride 800 false;
-      lazygit.enable = mkOverride 800 false;
-      nh.enable = mkOverride 800 false;
-      neovim-custom = {
-        package = pkgs.nvim-lite;
-      };
-      vim = {
-        # srvos assumes im using vim instead of neovim
-        enable = false;
-        defaultEditor = false;
-      };
-      nh = {
-        clean.extraArgs = "--keep-since 1d --keep 1";
+    services.openssh = {
+      enable = mkDefault true;
+      # ensure that password authentication is disabled by default
+      settings = {
+        PasswordAuthentication = mkDefault false;
+        KbdInteractiveAuthentication = mkDefault false;
       };
     };
 
-    # use systemd boot, less bloated than grub
-    modules.bootloaders.systemd-boot.enable = mkDefault true;
+    programs = {
+      # disable nh as it has gotten fairly buggy lately and I just update servers using ssh anyway
+      nh.enable = mkOverride 800 false;
+      neovim-custom = {
+        # use a smaller neovim with no lsps clogging the hard drive
+        package = pkgs.nvim-lite;
+      };
+      # srvos server module automatically enables vim, just ensure that its disabled in favor of neovim
+      vim = {
+        enable = false;
+        defaultEditor = false;
+      };
+    };
+
+    # use systemd boot as opposed to grub
+    modules.bootloaders = {
+      systemd-boot.enable = mkDefault true;
+      grub.enable = false;
+    };
   };
 }

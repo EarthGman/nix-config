@@ -3,12 +3,12 @@
   pkgs,
   lib,
   config,
-  desktop ? null,
   ...
-}:
+}@args:
 let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.profiles.hacker-mode;
+  desktop = if args ? desktop then args.desktop else null;
 in
 {
   options.profiles.hacker-mode.enable = mkEnableOption "cybersecurity suite";
