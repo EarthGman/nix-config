@@ -1,3 +1,8 @@
+8-04-2025
+- remove hardcoded evince as pdf viewer from yazi
+- add some default apps for xdg mimetypes: images, pdf, and video files
+
+
 7-31-2025
 - append betterfox patch to the shyfox firefox theme
 - betterfox and shyfox configurations will now check for programs._1password-gui.enable

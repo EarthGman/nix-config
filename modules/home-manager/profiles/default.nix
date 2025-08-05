@@ -1,4 +1,4 @@
-# default HM profiles for all users
+# default HM profile for all users
 {
   pkgs,
   lib,
@@ -6,6 +6,8 @@
   ...
 }@args:
 let
+  desktop = if args ? desktop then args.desktop else "";
+
   wallpapers = if args ? wallpapers then args.wallpapers else null;
   inherit (lib)
     autoImport
@@ -63,16 +65,51 @@ in
         };
     };
 
-    # pretty colors
+    # unified desktop stylizer
     stylix.enable = mkDefault true;
 
-    xdg.userDirs = {
-      # enable and create common Directories (Downloads, Documents, Music, etc)
-      enable = mkDefault true;
-      createDirectories = mkDefault true;
+    # set default mimeApp priorities
+    xdg = {
+      mimeApps = {
+        # allow imperative xdg config through nautilus on gnome by default
+        enable = mkDefault (desktop != "gnome");
+        defaultApplications = {
+          "application/pdf" = mkDefault [
+            "org.gnome.Evince.desktop"
+            "firefox.desktop"
+          ];
+          "image/png" = mkDefault [
+            "org.gnome.gThumb.desktop"
+            "gimp.desktop"
+          ];
+          "image/jpeg" = mkDefault [
+            "org.gnome.gThumb.desktop"
+            "gimp.desktop"
+          ];
+          "image/webp" = mkDefault [
+            "org.gnome.gThumb.desktop"
+            "gimp.desktop"
+          ];
+          "image/gif" = mkDefault [
+            "org.gnome.gThumb.desktop"
+            "gimp.desktop"
+          ];
+          "video/mp4" = mkDefault [
+            "vlc.desktop"
+            "org.gnome.gitlab.YaLTeR.VideoTrimmer.desktop"
+          ];
+        };
+      };
+
+      userDirs = {
+        # enable and create common Directories (Downloads, Documents, Music, etc)
+        enable = mkDefault true;
+        createDirectories = mkDefault true;
+      };
     };
 
     home.sessionVariables = {
+      # required for some scripts
       XDG_SCREENSHOTS_DIR = mkDefault "${config.xdg.userDirs.pictures}/screenshots";
     };
 

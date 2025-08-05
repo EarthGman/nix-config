@@ -34,13 +34,6 @@
         block = true;
       }
     ];
-    pdf = [
-      {
-        run = ''${lib.getExe pkgs.evince} "$@"'';
-        desc = "Open with evince";
-        orphan = true;
-      }
-    ];
     reveal = [
       {
         run = ''${lib.getExe pkgs.exiftool} "$1"; echo "Press <enter> to exit"; read _'';
