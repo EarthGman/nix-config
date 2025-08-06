@@ -31,29 +31,6 @@
           ;
       };
       homeConfigurations = import ./home { inherit self lib; };
-
-      packages."x86_64-linux" =
-        let
-          keys = import ./keys.nix;
-        in
-        {
-          mc112 = lib.mkLXC {
-            template = "minecraft";
-            extraConfig = ./hosts/mc112;
-            extraSpecialArgs = { inherit keys; };
-          };
-
-          mc112-blueprints = lib.mkLXC {
-            template = "minecraft";
-            extraConfig = ./hosts/mc-blueprints;
-            extraSpecialArgs = { inherit keys; };
-          };
-
-          docker-env = lib.mkLXC {
-            template = "docker-env";
-            extraSpecialArgs = { inherit keys; };
-          };
-        };
     };
 
   inputs = {

@@ -165,6 +165,7 @@ in
         sops.defaultSopsFile = mkIf (secretsFile != null) secretsFile;
       };
 
+  # unused
   mkLXC =
     {
       template, # server profile to enable from modules/nixos/profiles/server
