@@ -4,7 +4,7 @@ let
 in
 {
   username,
-  hostName ? "",
+  hostName,
   desktop ? "",
   system ? "x86_64-linux",
   profile ? null,
