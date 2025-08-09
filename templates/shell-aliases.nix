@@ -6,9 +6,11 @@
 let
   has-nh = config.programs.nh.enable;
   has-git = config.programs.git.enable;
+  has-eza = config.programs.eza.enable;
 in
 {
-  l = "ls -al";
+  l = if (has-eza) then "eza -al --icons" else "ls -al";
+  ls = lib.mkIf (has-eza) "eza --icons";
   g = "git";
   t = "tree";
   ff = lib.mkIf config.programs.fastfetch.enable "fastfetch";

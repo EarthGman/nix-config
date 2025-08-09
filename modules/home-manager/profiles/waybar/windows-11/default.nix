@@ -55,6 +55,16 @@ in
           };
         };
       }
+      (lib.mkIf cfg.config.small {
+        # remove network traffic monitor to conserve space
+        programs.waybar.settings = {
+          height = 30;
+          network = {
+            format-wifi = " {icon} {essid}";
+            format-ethernet = " 󰈁 {ifname}";
+          };
+        };
+      })
     ]
   );
 }

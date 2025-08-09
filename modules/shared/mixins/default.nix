@@ -17,6 +17,7 @@
       neovim.enable = lib.mkDefault true;
       fzf.enable = lib.mkDefault true;
       fd.enable = lib.mkDefault true;
+      eza.enable = lib.mkDefault true;
       btop.enable = lib.mkDefault true;
       sysz.enable = lib.mkDefault true;
       yazi.enable = lib.mkDefault true;

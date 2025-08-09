@@ -11,6 +11,8 @@
 
   environment.systemPackages = [ pkgs.nixos-generators ];
 
+  nix.settings.trusted-users = [ "bob" ];
+
   gman = {
     personalized-modules.earthgman.enable = true;
   };
