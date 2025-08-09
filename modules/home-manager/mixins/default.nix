@@ -48,10 +48,12 @@ in
       };
     };
 
+    # set metadata
     meta = {
       browser = lib.mkDefault "firefox";
       terminal = lib.mkDefault "kitty";
       fileManager = lib.mkDefault "nautilus";
+      editor = lib.mkDefault "nano";
       #TODO move the assets repo to a website
       wallpaper = lib.mkDefault (builtins.fetchurl pkgs.wallpapers.default);
 
@@ -73,9 +75,12 @@ in
 
     programs = {
       firefox.enable = (config.meta.browser == "firefox");
+      brave.enable = (config.meta.browser == "brave");
       nautilus.enable = (config.meta.fileManager == "nautilus");
+      dolphin.enable = (config.meta.fileManager == "dolphin");
       kitty.enable = (config.meta.terminal == "kitty");
       ghostty.enable = (config.meta.terminal == "ghostty");
+      vscode.enable = (config.meta.editor == "codium");
 
       fastfetch.enable = lib.mkDefault true;
       waybar.systemd.enable = lib.mkDefault true;
@@ -84,7 +89,7 @@ in
       nh = {
         enable = lib.mkDefault true;
         # only enable clean if nixos doesn't already have cleaning enabled
-        clean.enable = (nixosConfig != null && !nixosConfig.programs.nh.clean.enable);
+        clean.enable = if (nixosConfig != null) then (!nixosConfig.programs.nh.clean.enable) else true;
       };
     };
 
