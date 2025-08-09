@@ -1,24 +1,16 @@
-{ lib, self, ... }:
-let
-  inherit (lib) mkHome;
-  keys = import ../keys.nix;
-in
 {
-  "g@tater" = mkHome {
-    username = "g";
-    hostName = "tater";
-    desktop = "hyprland";
-    stateVersion = "25.05";
-    profile = ./g.nix;
-    extraExtraSpecialArgs = { inherit self keys; };
-  };
-
-  "g@archlinux" = mkHome {
+  self,
+  inputs,
+  lib,
+  ...
+}:
+{
+  "g@archlinux" = lib.mkHome {
     username = "g";
     hostName = "archlinux";
     desktop = "hyprland";
     stateVersion = "25.11";
-    profile = ./g.nix;
-    extraExtraSpecialArgs = { inherit self keys; };
+    profile = ./g;
+    extraExtraSpecialArgs = { inherit self inputs; };
   };
 }

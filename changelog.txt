@@ -1,3 +1,7 @@
+8-09-2025
+- release V7 beta
+
+
 8-06-2025
 - update flake to linux 6.16
 - 1 sops key for hosts

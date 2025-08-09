@@ -1,10 +1,5 @@
+# modules shared between nixos and home-manager
 { lib, ... }:
-let
-  inherit (lib) autoImport;
-  profiles = autoImport ./profiles;
-in
 {
-  imports = [
-    ./programs.nix
-  ] ++ profiles;
+  imports = lib.autoImport ./.;
 }

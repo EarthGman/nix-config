@@ -1,16 +1,15 @@
 { config, lib, ... }:
 let
-  inherit (lib) mkDefault mkEnableOption mkIf;
-  cfg = config.profiles.fastfetch.default;
+  cfg = config.gman.profiles.fastfetch.default;
 in
 {
-  options.profiles.fastfetch.default.enable = mkEnableOption "default fastfetch profile";
-  config = mkIf cfg.enable {
+  options.gman.profiles.fastfetch.default.enable =
+    lib.mkEnableOption "gman's default fastfetch config";
+  config = lib.mkIf cfg.enable {
     programs.fastfetch.settings = {
       logo = {
-        source = config.programs.fastfetch.image;
-        height = mkDefault 20;
-        width = mkDefault 48;
+        height = lib.mkDefault 20;
+        width = lib.mkDefault 48;
       };
       display = {
         separator = " - ";

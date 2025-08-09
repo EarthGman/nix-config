@@ -1,50 +1,13 @@
 {
   description = "Gman's nix config";
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      nix-library,
-      ...
-    }@inputs:
-    let
-      inherit (self) outputs;
-      helpers = import ./lib/helpers.nix { inherit inputs outputs; };
-      myLib = helpers // nix-library.lib;
-      lib = nixpkgs.lib.extend (final: prev: myLib // home-manager.lib);
-    in
-    {
-      inherit lib;
-      overlays = import ./overlays.nix { inherit inputs; };
-
-      nixosModules = import ./modules/nixos { inherit inputs outputs lib; };
-      homeModules = import ./modules/home-manager { inherit inputs outputs lib; };
-
-      nixosConfigurations = import ./hosts {
-        inherit
-          self
-          inputs
-          outputs
-          lib
-          ;
-      };
-      homeConfigurations = import ./home { inherit self lib; };
-    };
-
   inputs = {
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.0.tar.gz";
 
-    # some guy who packaged freelens
-    matthewpi = {
-      url = "github:matthewpi/nixos-config";
+    assets = {
+      url = "github:earthgman/assets";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nixos-generators = {
-      url = "https://flakehub.com/f/nix-community/nixos-generators/*";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nix-library.follows = "nix-library";
     };
 
     determinate = {
@@ -52,29 +15,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    swww = {
-      url = "github:LGFae/swww";
+    disko = {
+      url = "https://flakehub.com/f/nix-community/disko/*";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    prismlauncher = {
-      url = "github:PrismLauncher/PrismLauncher";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    stylix = {
-      url = "https://flakehub.com/f/nix-community/stylix/*";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nur.follows = "nur";
-    };
-
-    srvos = {
-      url = "github:nix-community/srvos";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    jovian-nixos = {
-      url = "github:Jovian-Experiments/Jovian-NixOS";
+    home-manager = {
+      url = "https://flakehub.com/f/nix-community/home-manager/0.1.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -87,29 +34,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nur = {
-      url = "github:nix-community/nur";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-library = {
       url = "github:EarthGman/nix-library";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    home-manager = {
-      url = "https://flakehub.com/f/nix-community/home-manager/0.1.0.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    vim-config = {
-      url = "github:EarthGman/vim-config";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nix-library.follows = "nix-library";
-    };
-
-    disko = {
-      url = "https://flakehub.com/f/nix-community/disko/*";
+    nur = {
+      url = "github:nix-community/nur";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -118,19 +49,45 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    wallpapers = {
-      url = "https://raw.githubusercontent.com/EarthGman/assets/master/wallpapers.json";
-      flake = false;
+    stylix = {
+      url = "https://flakehub.com/f/nix-community/stylix/*";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nur.follows = "nur";
     };
 
-    icons = {
-      url = "https://raw.githubusercontent.com/EarthGman/assets/master/icons.json";
-      flake = false;
-    };
-
-    binaries = {
-      url = "https://raw.githubusercontent.com/EarthGman/assets/master/binaries.json";
-      flake = false;
+    vim-config = {
+      url = "github:EarthGman/vim-config";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nix-library.follows = "nix-library";
     };
   };
+
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nix-library,
+      home-manager,
+      ...
+    }@inputs:
+    let
+      myLib =
+        (import ./lib {
+          inherit inputs;
+          outputs = self.outputs;
+        })
+        // nix-library.lib;
+      lib = nixpkgs.lib.extend (final: prev: (myLib // home-manager.lib));
+    in
+    {
+      inherit lib;
+
+      nixosModules = import ./modules/nixos { inherit inputs lib; };
+      homeModules = import ./modules/home-manager { inherit inputs lib; };
+
+      nixosConfigurations = import ./hosts { inherit lib self inputs; };
+      homeConfigurations = import ./home { inherit lib self inputs; };
+
+      overlays = import ./overlays.nix { inherit inputs; };
+    };
 }

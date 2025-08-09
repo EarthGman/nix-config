@@ -1,8 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
-  imports = [
-    ./default
-    ./betterfox
-    ./shyfox
-  ];
+  imports = lib.autoImport ./.;
 }

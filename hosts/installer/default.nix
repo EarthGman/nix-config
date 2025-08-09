@@ -1,37 +1,32 @@
+# Gman's custom installer ISO
 {
   pkgs,
   lib,
   config,
+  modulesPath,
   ...
 }:
-let
-  inherit (lib) mkIf mkForce;
-in
 {
-  environment.systemPackages = with pkgs; [
-    disko
-  ];
+  imports = [ (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix") ];
 
-  programs.neovim-custom.package = pkgs.nvim-nix;
-  # Temporary solution until I can figure what to do about the issue with importing the cd-minimal.nix profile from nixpkgs
-  # basically some guy decided to place pkgs.vim into environment.systemPackages instead of using programs.vim.enable
-  # https://github.com/NixOS/nixpkgs/blob/nixos-25.05/nixos/modules/profiles/base.nix
-  programs.zsh = {
-    shellAliases =
-      let
-        cfg = config.programs.neovim-custom;
-      in
-      {
-        vi = mkIf cfg.viAlias ("nvim");
-        vim = mkIf cfg.vimAlias ("nvim");
-      };
+  gman = {
+    suites.debloat.enable = true;
+  };
+
+  # needed for some machines
+  hardware = {
+    enableRedistributableFirmware = true;
+
+    # no need for these on an installer
+    cpu.intel.updateMicrocode = false;
+    cpu.amd.updateMicrocode = false;
   };
 
   users.users.root = {
-    shell = mkForce pkgs.zsh;
-    # for SSH
-    password = "123";
-    hashedPassword = null;
+    shell = pkgs.zsh;
+    openssh.authorizedKeys.keys = [
+      config.gman.ssh-keys.g
+    ];
   };
 
   time.timeZone = "America/Chicago";
@@ -58,9 +53,23 @@ in
     ];
   };
 
-  services.openssh = {
-    settings.PasswordAuthentication = true;
+  programs = {
+    neovim-custom = {
+      enable = true;
+      defaultEditor = true;
+      # custom build of neovim with only nix lsp
+      package = pkgs.nvim-nix;
+    };
+
+    zsh = {
+      # cannot use the standard method of vi and vim aliases
+      # vi and vim packages must be uninstalled, however someone at nixpkgs
+      # decided to put vim into environment.systemPackages instead of using programs.vim.enable
+      # https://github.com/NixOS/nixpkgs/blob/nixos-25.05/nixos/modules/profiles/base.nix
+      shellAliases = {
+        vi = "nvim";
+        vim = "nvim";
+      };
+    };
   };
-  # debloat
-  documentation.enable = false;
 }

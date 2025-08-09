@@ -1,20 +1,7 @@
-{ lib, inputs, ... }:
-let
-  inherit (lib) autoImport;
-  programs = autoImport ./programs;
-  services = autoImport ./services;
-in
+{ inputs, lib, ... }:
 {
-  imports =
-    [
-      inputs.stylix.homeModules.stylix
-      inputs.sops-nix.homeManagerModules.sops
-      ../shared
-      ./stylix
-      ./profiles
-      ./desktops
-      ./core
-    ]
-    ++ programs
-    ++ services;
+  imports = lib.autoImport ./. ++ [
+    inputs.sops-nix.homeManagerModules.sops
+    ../shared
+  ];
 }

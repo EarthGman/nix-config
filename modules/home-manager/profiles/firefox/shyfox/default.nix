@@ -6,53 +6,45 @@
   ...
 }@args:
 let
-  icons = if args ? icons then args.icons else null;
   nixosConfig = if args ? nixosConfig then args.nixosConfig else null;
-  inherit (lib)
-    mkEnableOption
-    mkIf
-    mkDefault
-    mkOption
-    optionals
-    types
-    ;
-  cfg = config.profiles.firefox.shyfox;
+  cfg = config.gman.profiles.firefox.shyfox;
 
   # append the betterfox patch to the shyfox user_js
   betterfox_js = builtins.readFile (pkgs.betterfox + "/user.js");
 in
 {
-  options.profiles.firefox.shyfox = {
-    enable = mkEnableOption "shyfox theme for firefox";
-    config = mkOption {
+  options.gman.profiles.firefox.shyfox = {
+    enable = lib.mkEnableOption "shyfox theme for firefox";
+    config = lib.mkOption {
       description = ''
         extra configuration for the shyfox theme
       '';
       default = { };
-      type = types.attrsOf types.str;
+      type = lib.types.attrsOf lib.types.str;
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs.firefox.profiles.default = {
       id = 0;
-      extensions.packages =
-        (
-          with pkgs.nur.repos.rycee.firefox-addons;
-          [
+      extensions.packages = (
+        builtins.attrValues {
+          inherit (pkgs.nur.repos.rycee.firefox-addons)
             ublock-origin
             darkreader
             sidebery
-          ]
-          ++ optionals (nixosConfig != null && nixosConfig.programs._1password-gui.enable) [
-            onepassword-password-manager
-          ]
-        )
-        ++ (with pkgs; [
-          userchrome-toggle-extended
-        ]);
+            ;
+        }
+        ++ lib.optionals (nixosConfig != null && nixosConfig.programs._1password-gui.enable) [
+          pkgs.nur.repos.rycee.firefox-addons.onepassword-password-manager
+        ]
+        ++ [
+          pkgs.userchrome-toggle-extended
+        ]
+      );
+
       search = {
-        default = mkDefault "ddg"; # DuckDuckGo
-        engines = import ../search-engines.nix { inherit pkgs icons; };
+        default = lib.mkDefault "ddg"; # DuckDuckGo
+        engines = import ../../../../../templates/search-engines.nix { inherit pkgs; };
         force = true;
       };
       # apply betterfox settings on top of shyfox

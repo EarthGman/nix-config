@@ -1,90 +1,38 @@
+{ lib, config, ... }:
 {
-  pkgs,
-  config,
-  hostName,
-  vm,
-  server,
-  wallpapers,
-  icons,
-  binaries,
-  system,
-  lib,
-  users,
-  secretsFile,
-  desktop,
-  stateVersion,
-  extraSpecialArgs,
-  ...
-}:
-let
-  inherit (lib)
-    mkDefault
-    mkIf
-    genAttrs
-    types
-    mkOption
-    mkEnableOption
-    mkHome
-    ;
-  cfg = config.modules.home-manager;
-in
-{
-  options = {
-    home-manager.profilesDir = mkOption {
-      description = "directory containing profiles for HM users";
-      type = types.path;
+  options.home-manager = {
+    enable = lib.mkEnableOption "Home Manager integration with nixos";
+
+    profilesDir = lib.mkOption {
+      description = "directory containing the home-manager profiles for your users";
+      type = lib.types.path;
       default = ../../../home;
     };
-    modules.home-manager.enable = mkEnableOption "enable home-manager integration with nixos";
   };
 
-  config = mkIf cfg.enable {
-    environment.systemPackages = [ pkgs.home-manager ];
-    home-manager =
-      let
-        homeProfilesDir = config.home-manager.profilesDir;
-      in
-      {
-        # creates a home-manager configuration using lib/helpers mkHome function for each user specified in users [ ]
-        users = genAttrs users (
-          username:
-          mkHome {
-            inherit
-              username
-              hostName
-              desktop
-              server
-              vm
-              secretsFile
-              system
-              stateVersion
-              ;
-
-            profile =
-              if builtins.pathExists (homeProfilesDir + "/${username}.nix") then
-                (homeProfilesDir + "/${username}.nix")
-              else
-                null;
-
-            standAlone = false;
-          }
-        );
-        extraSpecialArgs = {
-          inherit
-            hostName
-            desktop
-            wallpapers
-            icons
-            binaries
-            secretsFile
-            server
-            system
-            vm
-            stateVersion
-            ;
-        } // extraSpecialArgs;
-
-        backupFileExtension = mkDefault "bak";
+  config = lib.mkIf config.home-manager.enable {
+    home-manager = {
+      backupFileExtension = lib.mkDefault "bak";
+      users = lib.genAttrs config.meta.users (
+        username:
+        lib.mkHome {
+          inherit username;
+          hostName = config.networking.hostName;
+          desktop = config.meta.desktop;
+          system = config.meta.system;
+          # extra configuration for a username (not required)
+          profile =
+            if (builtins.pathExists (config.home-manager.profilesDir + "/${username}")) then
+              (config.home-manager.profilesDir + "/${username}")
+            else
+              null;
+          standAlone = false;
+          stateVersion = config.system.stateVersion;
+        }
+      );
+      extraSpecialArgs = {
+        hostName = config.networking.hostName;
       };
+    };
   };
 }
