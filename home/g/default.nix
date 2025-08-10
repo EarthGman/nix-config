@@ -2,12 +2,12 @@
   config,
   pkgs,
   lib,
-  hostName,
+  hostname,
   ...
 }:
 let
   signingkey = config.gman.ssh-keys.g;
-  extraHM = ../../hosts/${hostName}/users/g/home-manager.nix;
+  extraHM = ../../hosts/${hostname}/users/g/home-manager.nix;
 in
 {
   imports = lib.optionals (builtins.pathExists extraHM) [

@@ -6,7 +6,7 @@
 }:
 {
   nixos = lib.mkHost {
-    hostName = "nixos";
+    hostname = "nixos";
     cpu = "intel";
     gpu = "intel";
     users = [ "bob" ];
@@ -17,15 +17,8 @@
     extraSpecialArgs = { inherit self inputs; };
   };
 
-  # custom installer
-  nixos-installer-x86_64 = lib.mkHost {
-    hostName = "nixos-installer";
-    system = "x86_64-linux";
-    configDir = ./nixos-installer;
-  };
-
   irons-laptop = lib.mkHost {
-    hostName = "irons-laptop";
+    hostname = "irons-laptop";
     cpu = "intel";
     gpu = "nvidia";
     users = [ "iron" ];
@@ -33,5 +26,12 @@
     system = "x86_64-linux";
     configDir = ./irons-laptop;
     stateVersion = "25.11";
+  };
+
+  # custom installer
+  nixos-installer-x86_64 = lib.mkHost {
+    hostname = "nixos-installer";
+    system = "x86_64-linux";
+    configDir = ./nixos-installer;
   };
 }

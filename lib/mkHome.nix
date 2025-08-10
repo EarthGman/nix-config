@@ -4,7 +4,7 @@ let
 in
 {
   username,
-  hostName,
+  hostname,
   desktop ? "",
   system ? "x86_64-linux",
   profile ? null,
@@ -43,7 +43,7 @@ if standAlone then
     ++ extraModules;
 
     extraSpecialArgs = {
-      inherit lib hostName;
+      inherit lib hostname;
     }
     // extraExtraSpecialArgs;
   }

@@ -1,12 +1,12 @@
 {
   lib,
   config,
-  hostName,
+  hostname,
   ...
 }:
 {
   imports = [
-    ../../hosts/${hostName}/users/bob/home-manager.nix
+    ../../hosts/${hostname}/users/bob/home-manager.nix
   ];
 
   gman = {

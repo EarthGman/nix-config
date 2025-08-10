@@ -8,7 +8,7 @@
       example = "hyprland";
     };
 
-    hostName = lib.mkOption {
+    hostname = lib.mkOption {
       description = "system hostname";
       type = lib.types.str;
       default = "";

@@ -86,7 +86,7 @@ in
     };
 
     networking = {
-      hostName = config.meta.hostName;
+      hostName = config.meta.hostname;
       # hardware-configuration.nix has always had this on
       useDHCP = lib.mkDefault true;
 

@@ -17,7 +17,7 @@
         username:
         lib.mkHome {
           inherit username;
-          hostName = config.networking.hostName;
+          hostname = config.networking.hostName;
           desktop = config.meta.desktop;
           system = config.meta.system;
           # extra configuration for a username (not required)
@@ -31,7 +31,7 @@
         }
       );
       extraSpecialArgs = {
-        hostName = config.networking.hostName;
+        hostname = config.networking.hostName;
       };
     };
   };

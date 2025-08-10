@@ -4,7 +4,7 @@ let
   lib = outputs.lib;
 in
 {
-  hostName, # name your PC
+  hostname, # name your PC
   bios ? "UEFI", # bios type: one of "legacy" or "UEFI"
   cpu ? "intel", # cpu brand (amd, intel)
   gpu ? "intel", # gpu brand (amd, intel, nvidia)
@@ -46,7 +46,7 @@ lib.nixosSystem {
 
         meta = {
           inherit
-            hostName
+            hostname
             cpu
             gpu
             bios
