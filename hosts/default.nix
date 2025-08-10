@@ -5,6 +5,17 @@
   ...
 }:
 {
+  think-one = {
+    hostname = "think-one";
+    cpu = "intel";
+    gpu = "intel";
+    users = [ "g" ];
+    desktop = "hyprland";
+    system = "x86_64-linux";
+    stateVersion = "25.11";
+    extraSpecialArgs = { inherit inputs; };
+  };
+
   nixos = lib.mkHost {
     hostname = "nixos";
     cpu = "intel";

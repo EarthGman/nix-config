@@ -15,6 +15,11 @@
       gnome.enable = lib.mkDefault (config.meta.desktop == "gnome");
     };
 
+    # battery notifier
+    services.batsignal.enable = lib.mkDefault (
+      config.meta.desktop == "hyprland" || config.meta.desktop == "sway"
+    );
+
     # some dependencies
     home.packages =
       (builtins.attrValues {

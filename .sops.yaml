@@ -6,7 +6,7 @@ creation_rules:
     key_groups:
       - age:
           - *gman
-  - path_regex: hosts/twilight/secrets.yaml
+  - path_regex: hosts/think-one/secrets.yaml
     key_groups:
       - age:
           - *gman

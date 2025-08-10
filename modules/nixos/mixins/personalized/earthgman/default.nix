@@ -5,12 +5,12 @@
   ...
 }:
 let
-  cfg = config.gman.personalized-modules.earthgman;
+  cfg = config.gman.personalized.earthgman;
 in
 {
   imports = lib.autoImport ./.;
 
-  options.gman.personalized-modules.earthgman = {
+  options.gman.personalized.earthgman = {
     enable = lib.mkEnableOption "gman's more heavily personalized modules";
   };
 
@@ -18,7 +18,7 @@ in
     lib.mkMerge [
       {
         gman = {
-          personalized-modules.earthgman = {
+          personalized.earthgman = {
             kanata.enable = lib.mkDefault true;
           };
         };
@@ -46,10 +46,6 @@ in
           defaultEditor = true;
         };
       }
-      # server only
-      (lib.mkIf config.meta.server {
-        programs.neovim-custom.package = pkgs.nvim-lite;
-      })
 
       # desktop only
       (lib.mkIf (config.meta.desktop != "") {

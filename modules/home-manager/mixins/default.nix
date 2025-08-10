@@ -93,8 +93,10 @@ in
       };
     };
 
-    services.swaync.settings = {
-      positionY = lib.mkDefault "bottom";
+    services = {
+      swaync.settings = {
+        positionY = lib.mkDefault "bottom";
+      };
     };
   };
 }
