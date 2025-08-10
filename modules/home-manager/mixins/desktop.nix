@@ -15,7 +15,7 @@
       gnome.enable = lib.mkDefault (config.meta.desktop == "gnome");
     };
 
-    # battery notifier
+    # battery notifier (gnome already has one)
     services.batsignal.enable = lib.mkDefault (
       config.meta.desktop == "hyprland" || config.meta.desktop == "sway"
     );
@@ -25,6 +25,7 @@
       (builtins.attrValues {
         inherit (pkgs)
           imagemagick
+          wl-clipboard
           ;
       })
       ++ lib.optionals (pkgs.stdenv.isLinux) (

@@ -80,6 +80,7 @@ in
       vscode.enable = (config.meta.editor == "codium");
 
       fastfetch.enable = lib.mkDefault true;
+      gh.enable = true;
       waybar.systemd.enable = lib.mkDefault true;
       # works on both x11 and wayland
       rofi.package = lib.mkDefault pkgs.rofi-wayland;
