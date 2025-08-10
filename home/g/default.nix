@@ -50,8 +50,6 @@ in
     };
 
     # use customized neovim
-    vim.enable = lib.mkForce false;
-    neovim.enable = lib.mkForce false;
     neovim-custom = {
       enable = (config.meta.editor == "nvim");
       viAlias = true;

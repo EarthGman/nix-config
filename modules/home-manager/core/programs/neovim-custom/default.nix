@@ -9,6 +9,13 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
+    home.sessionVariables.EDITOR = lib.mkIf (cfg.defaultEditor) (lib.mkForce "nvim");
+
+    programs = {
+      vim.enable = lib.mkIf (cfg.vimAlias) (lib.mkForce false);
+      neovim.enable = lib.mkForce false;
+    };
+
     home.packages = [
       cfg.package
     ]

@@ -35,10 +35,6 @@ in
         # allow nixos rebuiling over ssh
         nix.settings.trusted-users = [ "g" ];
 
-        # disable stock vims
-        programs.neovim.enable = lib.mkForce false;
-        programs.vim.enable = lib.mkForce false;
-
         programs.neovim-custom = {
           enable = true;
           package = lib.mkDefault pkgs.nvim;

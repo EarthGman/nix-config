@@ -14,9 +14,9 @@
     desktop = "sway";
     system = "x86_64-linux";
     stateVersion = "25.11";
+    configDir = ./cypher;
     extraSpecialArgs = { inherit inputs; };
     secretsFile = ./cypher/secrets.yaml;
-    configDir = ./cypher;
   };
 
   think-one = lib.mkHost {
@@ -28,21 +28,21 @@
     desktop = "hyprland";
     system = "x86_64-linux";
     stateVersion = "25.11";
-    extraSpecialArgs = { inherit inputs; };
     secretsFile = ./think-one/secrets.yaml;
     configDir = ./think-one;
+    extraSpecialArgs = { inherit inputs; };
   };
 
-  nixos = lib.mkHost {
-    hostname = "nixos";
+  think-two = lib.mkHost {
+    hostname = "think-two";
     cpu = "intel";
     gpu = "intel";
     users = [ "bob" ];
     desktop = "sway";
     system = "x86_64-linux";
     stateVersion = "25.05";
-    configDir = ./nixos;
-    extraSpecialArgs = { inherit self inputs; };
+    configDir = ./think-two;
+    extraSpecialArgs = { inherit inputs; };
   };
 
   irons-laptop = lib.mkHost {

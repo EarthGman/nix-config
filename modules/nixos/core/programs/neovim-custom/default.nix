@@ -11,6 +11,11 @@ in
   config = lib.mkIf cfg.enable {
     environment.variables.EDITOR = lib.mkIf cfg.defaultEditor (lib.mkForce "nvim");
 
+    programs = {
+      vim.enable = lib.mkIf (cfg.vimAlias) (lib.mkForce false);
+      neovim.enable = lib.mkForce false;
+    };
+
     environment.systemPackages = [
       cfg.package
     ]

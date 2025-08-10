@@ -66,21 +66,29 @@ in
     # stock home-manager modules
     # -------------------------------------------------------------
 
-    home.packages = [
-      pkgs.coreutils-full
-    ];
+    home = {
+      packages = lib.mkIf (pkgs.stdenv.isLinux) [
+        pkgs.coreutils-full
+      ];
+      sessionVariables.EDITOR = lib.mkDefault config.meta.editor;
+    };
 
     programs = {
       firefox.enable = (config.meta.browser == "firefox");
       brave.enable = (config.meta.browser == "brave");
+
       nautilus.enable = (config.meta.fileManager == "nautilus");
       dolphin.enable = (config.meta.fileManager == "dolphin");
+
       kitty.enable = (config.meta.terminal == "kitty");
       ghostty.enable = (config.meta.terminal == "ghostty");
+
       vscode.enable = (config.meta.editor == "codium");
+      neovim.enable = (config.meta.editor == "nvim");
+      vim.enable = (config.meta.editor == "vim");
 
       fastfetch.enable = lib.mkDefault true;
-      gh.enable = true;
+      gh.enable = lib.mkDefault true;
       waybar.systemd.enable = lib.mkDefault true;
       # works on both x11 and wayland
       rofi.package = lib.mkDefault pkgs.rofi-wayland;
