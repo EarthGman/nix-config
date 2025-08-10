@@ -5,6 +5,20 @@
   ...
 }:
 {
+  # custom built gaming desktop and workstation
+  cypher = lib.mkHost {
+    hostname = "cypher";
+    cpu = "amd";
+    gpu = "amd";
+    users = [ "g" ];
+    desktop = "sway";
+    system = "x86_64-linux";
+    stateVersion = "25.11";
+    extraSpecialArgs = { inherit inputs; };
+    secretsFile = ./cypher/secrets.yaml;
+    configDir = ./cypher;
+  };
+
   think-one = lib.mkHost {
     hostname = "think-one";
     bios = "legacy";

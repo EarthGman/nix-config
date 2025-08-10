@@ -258,6 +258,12 @@ in
       inherit pkgs;
     };
 
+    ledger-live-desktop = mkProgramOption {
+      programName = "ledger-live-desktop";
+      description = "an app for ledger hardware wallets";
+      inherit pkgs;
+    };
+
     # lens = mkProgramOption {
     #   programName = "lens";
     #   description = "ide for kubernetes";
