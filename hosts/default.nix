@@ -7,6 +7,7 @@
 {
   think-one = lib.mkHost {
     hostname = "think-one";
+    bios = "legacy";
     cpu = "intel";
     gpu = "intel";
     users = [ "g" ];

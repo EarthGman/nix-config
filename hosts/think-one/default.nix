@@ -5,6 +5,8 @@
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x230
   ];
 
+  time.timeZone = "America/Chicago";
+
   gman = {
     suites = {
       hacker-mode.enable = true;
