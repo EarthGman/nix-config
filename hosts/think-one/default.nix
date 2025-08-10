@@ -5,7 +5,12 @@
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x230
   ];
 
-  gman.personalized.earthgman.enable = true;
+  gman = {
+    suites = {
+      hacker-mode.enable = true;
+      personalized.earthgman.enable = true;
+    };
+  };
 
   services.flatpak.enable = true;
 
@@ -48,7 +53,7 @@
     /run/current-system/sw/bin/modprobe -r thinkpad_acpi && /run/current-system/sw/bin/modprobe thinkpad_acpi
   ";
 
-  etc = {
+  environment.etc = {
     "ssh/ssh_host_ed25519_key.pub".source = ./ssh_host_ed25519_key.pub;
     "ssh/ssh_host_rsa_key.pub".source = ./ssh_host_rsa_key.pub;
   };

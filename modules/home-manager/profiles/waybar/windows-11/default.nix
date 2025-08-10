@@ -14,6 +14,11 @@ in
 
     config = {
       small = lib.mkEnableOption "small form factor for the windows 11 style waybar";
+      settings-unmerged = lib.mkOption {
+        description = "settings for direct tweaks before they are merged into programs.waybar.settings";
+        type = lib.types.attrsOf lib.types.anything;
+        default = { };
+      };
       os-button = lib.mkOption {
         description = "string to use for the os button";
         type = lib.types.str;
@@ -36,9 +41,14 @@ in
       {
         programs.pwvucontrol.enable = true;
         services.swaync.enable = true;
+
+        gman.profiles.waybar.windows-11.config.settings-unmerged = import ./settings.nix {
+          inherit pkgs lib config;
+        };
+
         programs.waybar = {
           settings = [
-            (import ./settings.nix { inherit pkgs lib config; })
+            config.gman.profiles.waybar.windows-11.config.settings-unmerged
           ];
 
           style =
@@ -57,7 +67,7 @@ in
       }
       (lib.mkIf cfg.config.small {
         # remove network traffic monitor to conserve space
-        programs.waybar.settings = {
+        gman.profiles.waybar.windows-11.config.settings-unmerged = {
           height = 30;
           network = {
             format-wifi = " {icon} {essid}";

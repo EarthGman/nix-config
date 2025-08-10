@@ -29,9 +29,14 @@ lib.nixosSystem {
   // extraSpecialArgs;
   modules =
     let
+      host =
+        if (configDir != null) then if builtins.pathExists (configDir) then [ configDir ] else [ ] else [ ];
+
       nixosUsers =
-        if builtins.pathExists (configDir + /users) then lib.autoImport (configDir + /users) else [ ];
-      host = if builtins.pathExists (configDir) then [ configDir ] else [ ];
+        if (host != [ ]) then
+          if builtins.pathExists (configDir + "/users") then lib.autoImport (configDir + "/users") else [ ]
+        else
+          [ ];
     in
     [
       {

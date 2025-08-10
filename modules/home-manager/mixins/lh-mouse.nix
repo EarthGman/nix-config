@@ -1,8 +1,8 @@
 { lib, config, ... }:
 {
-  options.gman.suites.lh-mouse.enable = lib.mkEnableOption "gman's left handed mouse modules";
+  options.gman.lh-mouse.enable = lib.mkEnableOption "gman's left handed mouse modules";
 
-  config = lib.mkIf config.gman.suites.lh-mouse.enable {
+  config = lib.mkIf config.gman.lh-mouse.enable {
     wayland.windowManager = {
       hyprland.settings = {
         input.left_handed = true;

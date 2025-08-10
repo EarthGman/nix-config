@@ -14,7 +14,7 @@
   nix.settings.trusted-users = [ "bob" ];
 
   gman = {
-    personalized.earthgman.enable = true;
+    suites.personalized.earthgman.enable = true;
   };
   programs.neovim-custom.package = pkgs.nvim-nix;
 

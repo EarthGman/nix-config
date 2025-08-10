@@ -5,7 +5,7 @@
   ...
 }:
 {
-  think-one = {
+  think-one = lib.mkHost {
     hostname = "think-one";
     cpu = "intel";
     gpu = "intel";
@@ -14,6 +14,8 @@
     system = "x86_64-linux";
     stateVersion = "25.11";
     extraSpecialArgs = { inherit inputs; };
+    secretsFile = ./think-one/secrets.yaml;
+    configDir = ./think-one;
   };
 
   nixos = lib.mkHost {

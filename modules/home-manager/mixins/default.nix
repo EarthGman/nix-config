@@ -31,12 +31,9 @@ in
       kitty.enable = lib.mkDefault (config.meta.terminal == "kitty");
       yazi.enable = lib.mkDefault true;
       sops.enable = (config.meta.secretsFile != null);
-
-      suites = {
-        lh-mouse.enable = lib.mkDefault (
-          nixosConfig != null && nixosConfig.services.libinput.mouse.leftHanded
-        );
-      };
+      lh-mouse.enable = lib.mkDefault (
+        nixosConfig != null && nixosConfig.services.libinput.mouse.leftHanded
+      );
 
       profiles = {
         stylix = enableProfile "stylix";

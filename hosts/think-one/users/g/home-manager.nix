@@ -1,27 +1,25 @@
 { ... }:
 {
-  gman.suites.smallscreen.enable = true;
+  gman.smallscreen.enable = true;
 
-  programs = {
-    waybar.bottomBar.settings = {
-      modules-left = [
-        "custom/settings-menu"
-        "network"
-        "cpu"
-        "memory"
-        "disk"
-        "temperature"
+  gman.profiles.waybar.windows-11.config.settings-unmerged = {
+    modules-left = [
+      "custom/settings-menu"
+      "network"
+      "cpu"
+      "memory"
+      "disk"
+      "temperature"
+    ];
+
+    temperature = {
+      hwmon-path = "/sys/class/hwmon/hwmon3/temp1_input";
+      format = " {icon} {temperatureC}°C";
+      format-icons = [
+        ""
+        ""
+        ""
       ];
-
-      temperature = {
-        hwmon-path = "/sys/class/hwmon/hwmon3/temp1_input";
-        format = " {icon} {temperatureC}°C";
-        format-icons = [
-          ""
-          ""
-          ""
-        ];
-      };
     };
   };
 
@@ -49,5 +47,4 @@
       }
     ];
   };
-
 }

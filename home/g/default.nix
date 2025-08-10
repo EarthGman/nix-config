@@ -15,9 +15,7 @@ in
   ];
 
   gman = {
-    suites = {
-      lh-mouse.enable = lib.mkOverride 800 true;
-    };
+    lh-mouse.enable = lib.mkOverride 800 true;
   };
 
   meta = {

@@ -5,21 +5,22 @@
   ...
 }:
 let
-  cfg = config.gman.personalized.earthgman;
+  cfg = config.gman.suites.personalized.earthgman;
 in
 {
   imports = lib.autoImport ./.;
 
-  options.gman.personalized.earthgman = {
+  options.gman.suites.personalized.earthgman = {
     enable = lib.mkEnableOption "gman's more heavily personalized modules";
   };
 
   config = lib.mkIf cfg.enable (
     lib.mkMerge [
       {
-        gman = {
+        gman.suites = {
           personalized.earthgman = {
             kanata.enable = lib.mkDefault true;
+            wireguard.wg0.enable = lib.mkDefault true;
           };
         };
 
@@ -50,8 +51,8 @@ in
       # desktop only
       (lib.mkIf (config.meta.desktop != "") {
         gman = {
-          android.enable = true;
-          onepassword.enable = true;
+          android.enable = lib.mkDefault true;
+          onepassword.enable = lib.mkDefault true;
         };
 
         services.libinput.mouse.leftHanded = true;

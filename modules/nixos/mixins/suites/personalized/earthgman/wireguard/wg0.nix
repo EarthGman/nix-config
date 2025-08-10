@@ -6,14 +6,18 @@
 }:
 let
   inherit (lib) mkEnableOption mkIf;
-  cfg = config.gman.personalized.earthgman.wireguard.wg0;
+  cfg = config.gman.suites.personalized.earthgman.wireguard.wg0;
 in
 {
-  options.gman.personalized.earhgman.wireguard.wg0.enable = mkEnableOption "wg0";
+  options.gman.suites.personalized.earthgman.wireguard.wg0.enable = mkEnableOption "wg0";
   config = mkIf cfg.enable {
     sops.secrets.wg0_conf.path = "/etc/wireguard/wg0.conf";
     networking = {
       firewall.allowedUDPPorts = [ 51820 ];
+      extraHosts = ''
+        10.0.24.2 cypher
+        10.0.24.3 think-one
+      '';
       # work around the wireguard endpoint bug
       networkmanager.dispatcherScripts = [
         {
