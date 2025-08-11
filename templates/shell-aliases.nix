@@ -14,6 +14,7 @@ in
   g = "git";
   t = "tree";
   ff = lib.mkIf config.programs.fastfetch.enable "fastfetch";
+  hh = lib.mkIf config.programs.hstr.enable "hstr";
   lg = lib.mkIf has-git "lazygit";
   ga = lib.mkIf has-git "git add .";
   gco = lib.mkIf has-git "git checkout";

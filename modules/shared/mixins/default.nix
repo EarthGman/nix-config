@@ -14,6 +14,7 @@
 
     # stuff im sure everyone wants
     programs = {
+      hstr.enable = lib.mkDefault true;
       neovim.enable = lib.mkDefault true;
       fzf.enable = lib.mkDefault true;
       fd.enable = lib.mkDefault true;
