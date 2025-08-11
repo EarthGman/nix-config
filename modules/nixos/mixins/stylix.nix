@@ -15,7 +15,6 @@
       targets = {
         qt = {
           enable = lib.mkDefault true;
-          platform = lib.mkDefault "adwaita";
         };
 
         gnome.enable = lib.mkDefault true;

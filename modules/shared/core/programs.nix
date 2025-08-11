@@ -314,7 +314,7 @@ in
       package = mkOption {
         description = "package for portable neovim";
         type = types.package;
-        default = pkgs.neovim-unwrapped; # only here in case the overlay for my custom-neovims is not applied
+	default = pkgs.nvim;
       };
       viAlias = mkEnableOption "vi alias";
       vimAlias = mkEnableOption "vim alias";

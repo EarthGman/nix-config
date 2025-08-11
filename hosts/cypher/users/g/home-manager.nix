@@ -23,6 +23,9 @@ in
     "unity3d/Pugstorm/Core\ Keeper".source = ln "/home/g/games/SteamLibrary/game-saves/Core\ Keeper";
   };
 
+  # no battery, stop the error messages in journalctl
+  services.batsignal.enable = false;
+
   # kanshi profiles
   services.kanshi = {
     enable = true;

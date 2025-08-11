@@ -54,7 +54,7 @@ in
         services.libinput.mouse.leftHanded = true;
         hardware.keyboard.zsa.enable = lib.mkDefault true;
         programs = {
-          keymapp.enable = lib.mkDefault true;
+          keymapp.enable = lib.mkDefault (config.meta.desktop != null);
           _1password-gui.polkitPolicyOwners = [ "g" ];
         };
       })

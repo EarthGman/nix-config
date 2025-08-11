@@ -18,7 +18,7 @@ if standAlone then
   lib.homeManagerConfiguration {
     pkgs = inputs.nixpkgs.legacyPackages.${system};
     modules = [
-      outputs.homeModules
+      outputs.homeModules.gman
       # only import stylix if home manager is standlone due to the automatic propgation of the input through nixos
       inputs.stylix.homeModules.stylix
       {
@@ -52,7 +52,7 @@ if standAlone then
 else
   {
     imports = [
-      outputs.homeModules
+      outputs.homeModules.gman
     ]
     ++ lib.optionals (profile != null) [ profile ];
 

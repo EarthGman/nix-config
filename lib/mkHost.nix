@@ -65,7 +65,7 @@ lib.nixosSystem {
         };
       }
     ]
-    ++ [ outputs.nixosModules ]
+    ++ [ outputs.nixosModules.gman ]
     ++ nixosUsers
     ++ host
     ++ extraModules;

@@ -1,5 +1,4 @@
 {
-  self,
   inputs,
   lib,
   ...
@@ -43,6 +42,29 @@
     stateVersion = "25.05";
     configDir = ./think-two;
     extraSpecialArgs = { inherit inputs; };
+  };
+
+  dynamis = lib.mkHost {
+    hostname = "dynamis";
+    cpu = "amd";
+    gpu = "amd";
+    users = [ "bean" ];
+    desktop = "hyprland";
+    system = "x86_64-linux";
+    stateVersion = "25.11";
+    configDir = ./dynamis;
+    extraSpecialArgs = { inherit inputs; };
+  };
+
+  pumpkin-patch = lib.mkHost {
+    hostname = "pumpkin-patch";
+    cpu = "intel";
+    gpu = "nvidia";
+    users = [ "pumpkinking" ];
+    desktop = "hyprland";
+    system = "x86_64-linux";
+    stateVersion = "25.11";
+    configDir = ./pumpkin-patch;
   };
 
   irons-laptop = lib.mkHost {

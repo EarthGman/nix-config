@@ -21,11 +21,18 @@
     {
       inherit lib;
 
-      nixosModules = import ./modules/nixos { inherit inputs lib; };
-      homeModules = import ./modules/home-manager { inherit inputs lib; };
+      nixosModules = rec {
+        gman = import ./modules/nixos { inherit inputs lib; };
+        default = gman;
+      };
 
-      nixosConfigurations = import ./hosts { inherit lib self inputs; };
-      homeConfigurations = import ./home { inherit lib self inputs; };
+      homeModules = rec {
+        gman = import ./modules/home-manager { inherit inputs lib; };
+        default = gman;
+      };
+
+      nixosConfigurations = import ./hosts { inherit lib inputs; };
+      homeConfigurations = import ./home { inherit lib inputs; };
 
       overlays = import ./overlays.nix { inherit inputs; };
     };

@@ -18,7 +18,6 @@
         gtk.enable = lib.mkDefault true;
         qt = {
           enable = lib.mkDefault true;
-          platform = lib.mkOverride 800 "adwaita";
         };
         starship.enable = lib.mkDefault true;
         vesktop.enable = lib.mkDefault true;

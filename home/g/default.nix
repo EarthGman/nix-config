@@ -51,7 +51,7 @@ in
 
     # use customized neovim
     neovim-custom = {
-      enable = (config.meta.editor == "nvim");
+      enable = true;
       viAlias = true;
       vimAlias = true;
     };

@@ -15,7 +15,11 @@
   gman = {
     qemu-kvm.enable = true;
     suites = {
-      personalized.earthgman.enable = true;
+      personalized.earthgman = {
+        enable = true;
+        # conflicts with zsa moonlander
+        kanata.enable = false;
+      };
       gaming.enable = true;
       hacker-mode.enable = true;
     };
