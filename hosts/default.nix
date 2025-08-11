@@ -56,6 +56,17 @@
     extraSpecialArgs = { inherit inputs; };
   };
 
+  pioneer = lib.mkHost {
+    hostname = "pioneer";
+    cpu = "intel";
+    gpu = "intel";
+    desktop = "sway";
+    users = [ "bean" ];
+    system = "x86_64-linux";
+    stateVersion = "25.11";
+    configDir = ./pioneer;
+  };
+
   pumpkin-patch = lib.mkHost {
     hostname = "pumpkin-patch";
     cpu = "intel";
