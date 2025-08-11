@@ -38,6 +38,12 @@
     };
 
   inputs = {
+    kriswill = {
+      url = "github:kriswill/dotfiles";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.0.tar.gz";
 
     assets = {

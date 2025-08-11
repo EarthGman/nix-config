@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.gman.profiles.tmux.dracula;
+  cfg = config.gman.tmux;
 in
 {
-  options.gman.profiles.tmux.dracula = {
-    enable = lib.mkEnableOption "gman's default tmux configuration with dracula";
+  options.gman.tmux = {
+    enable = lib.mkEnableOption "gman's tmux configuration";
     config = {
       hostIcon = lib.mkOption {
         description = "icon to use for the hostname tab";
@@ -19,7 +19,7 @@ in
     };
   };
 
-  config = lib.mkIf config.gman.profiles.tmux.dracula.enable {
+  config = lib.mkIf config.gman.tmux.enable {
     programs.tmux = {
       shortcut = lib.mkDefault "space";
       clock24 = lib.mkDefault true;

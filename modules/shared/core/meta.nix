@@ -41,13 +41,6 @@
         type = lib.types.str;
         default = "ashes";
       };
-
-      tmux = lib.mkOption {
-        description = "tmux profile to use";
-        type = lib.types.str;
-        default = "";
-        example = "dracula";
-      };
     };
   };
 }

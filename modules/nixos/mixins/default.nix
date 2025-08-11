@@ -43,7 +43,6 @@ in
       profiles = {
         sddm = enableProfile "sddm";
         stylix = enableProfile "stylix";
-        tmux = enableProfile "tmux";
       };
 
       # enable mixins based on host metadata

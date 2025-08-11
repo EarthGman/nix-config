@@ -11,7 +11,7 @@ in
   options = {
     gman.gnome = {
       enable = lib.mkEnableOption "gman's gnome configuration";
-      withDconf = lib.mkOption {
+      config.withDconf = lib.mkOption {
         description = "whether to enable gman's declarative dconf for gnome";
         type = lib.types.bool;
         default = true;
@@ -19,7 +19,9 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    dconf.settings = lib.mkIf cfg.withDconf (import ./dconf.nix);
+    dconf.settings = lib.mkIf cfg.config.withDconf (import ./dconf.nix);
+
+    stylix.targets.qt.platform = "adwaita";
 
     # here are some extensions, go crazy
     home.packages =

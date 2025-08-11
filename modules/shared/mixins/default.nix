@@ -9,7 +9,10 @@
 
     meta.profiles = {
       stylix = lib.mkDefault "ashes";
-      tmux = lib.mkDefault "dracula";
+    };
+
+    gman = {
+      tmux.enable = true;
     };
 
     # stuff im sure everyone wants
