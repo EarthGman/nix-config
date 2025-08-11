@@ -40,6 +40,7 @@ in
         desktopThemes = enableProfile "desktopTheme";
         firefox = enableProfile "firefox";
         waybar = enableProfile "waybar";
+        rofi = enableProfile "rofi";
       };
     };
 
