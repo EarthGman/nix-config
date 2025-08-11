@@ -15,7 +15,6 @@ in
     meta = {
       wallpaper = builtins.fetchurl pkgs.wallpapers.space-piano;
       profiles.stylix = lib.mkForce "ashes";
-
     };
 
     gman.profiles.firefox.shyfox.config.wallpaper = builtins.fetchurl pkgs.wallpapers.pixel-earth;

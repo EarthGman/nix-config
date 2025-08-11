@@ -7,13 +7,13 @@
 let
   cfg = config.programs.fastfetch;
 
-  image-randomizer = pkgs.writeShellScript "fastfetch-image-randomizer.sh" ''
+  image-randomizer = pkgs.writeShellScriptBin "ff-image-randomizer" ''
     images=(${toString (lib.concatStringsSep " " cfg.imageRandomizer.images)})
     image_count=''${#images[@]}
     random_index=$((RANDOM % image_count))
     selected_image=''${images[$random_index]}
 
-    fastfetch -l "$selected_image"
+    ${lib.getExe pkgs.fastfetch} -l "$selected_image"
   '';
 in
 {
