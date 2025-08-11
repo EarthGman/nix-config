@@ -56,6 +56,18 @@
     extraSpecialArgs = { inherit inputs; };
   };
 
+  somnus = lib.mkHost {
+    hostname = "somnus";
+    cpu = "amd";
+    gpu = "amd";
+    desktop = "gnome";
+    users = [ "bean" ];
+    system = "x86_64-linux";
+    stateVersion = "24.05";
+    configDir = ./somnus;
+    secretsFile = ./somnus/secrets.yaml;
+  };
+
   pioneer = lib.mkHost {
     hostname = "pioneer";
     cpu = "intel";

@@ -19,13 +19,13 @@ in
       scrcpy.enable = lib.mkDefault true;
     };
 
-    environment.systemPackages = with pkgs; [
-      android-tools
-      apksigner
+    environment.systemPackages = [
+      pkgs.android-tools
+      pkgs.apksigner
     ];
 
-    services.udev.packages = with pkgs; [
-      android-udev-rules
+    services.udev.packages = [
+      pkgs.android-udev-rules
     ];
   };
 }

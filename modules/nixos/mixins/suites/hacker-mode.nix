@@ -23,13 +23,15 @@ in
       burpsuite.enable = (config.meta.desktop != "");
     };
 
-    environment.systemPackages = with pkgs; [
-      gcc
-      python3
-      binutils
-      busybox
-      nmap
-      dig
-    ];
+    environment.systemPackages = builtins.attrValues {
+      inherit (pkgs)
+        gcc
+        python3
+        binutils
+        busybox
+        nmap
+        dig
+        ;
+    };
   };
 }
