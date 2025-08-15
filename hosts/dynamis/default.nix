@@ -29,7 +29,7 @@
     prismlauncher.enable = true;
     dolphin-emu.enable = true;
     cemu.enable = true;
-    ryujinx.enable = true;
+    ryubing.enable = true;
     discord.enable = true;
     ffxiv-launcher.enable = true;
     lutris.enable = true;

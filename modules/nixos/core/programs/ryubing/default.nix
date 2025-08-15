@@ -4,7 +4,7 @@
   ...
 }:
 let
-  program-name = "ryujinx";
+  program-name = "ryubing";
   cfg = config.programs.${program-name};
 in
 {

@@ -15,6 +15,8 @@
       gnome.enable = lib.mkDefault (config.meta.desktop == "gnome");
     };
 
+    programs.vlc.enable = lib.mkDefault true;
+
     # battery notifier (gnome already has one)
     services.batsignal.enable = lib.mkDefault (
       config.meta.desktop == "hyprland" || config.meta.desktop == "sway"

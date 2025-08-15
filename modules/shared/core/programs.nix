@@ -314,7 +314,7 @@ in
       package = mkOption {
         description = "package for portable neovim";
         type = types.package;
-	default = pkgs.nvim;
+        default = pkgs.nvim;
       };
       viAlias = mkEnableOption "vi alias";
       vimAlias = mkEnableOption "vim alias";
@@ -407,8 +407,8 @@ in
       inherit pkgs;
     };
 
-    ryujinx = mkProgramOption {
-      programName = "ryujinx";
+    ryubing = mkProgramOption {
+      programName = "ryubing";
       description = "nintendo switch emulator";
       inherit pkgs;
     };

@@ -56,6 +56,7 @@ in
       vimAlias = true;
     };
 
+    obsidian.enable = lib.mkDefault true;
     freetube.enable = lib.mkDefault true;
     moonlight.enable = lib.mkDefault true;
     discord.enable = lib.mkDefault true;

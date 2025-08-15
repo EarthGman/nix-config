@@ -1,52 +1,83 @@
+
+Home Manager can be enabled as a standalone configuration on many Linux distributions and even MacOS.
+
+add the flake input
+
+```
+gman = {
+  url = "github:earthgman/nix-config";
+  inputs.nixpkgs.follows = "nixpkgs";
+};
+```
+
+extend lib and apply overlays
+
+```
+outputs = { gman, ... }:
+let
+  lib = gman.lib;
+in
+homeConfigurations = lib.homeManagerConfiguration {
+  modules = [
+    {
+      nixpkgs.overlays = builtins.attrValues gman.overlays;
+    }
+    ...
+  ];
+  extraSpecialArgs = {
+    inherit lib;
+  };
+};
+```
+
+home-manager modules are accessible via
+
+```
+gman.enable = true;
+```
+
+or individually from this list:
+
+```
+{
+  desktop = { ... };
+  enable = true;
+  gnome = { ... };
+  hyprland = { ... };
+  kitty = { ... };
+  lh-mouse = { ... };
+  profiles = { ... };
+  rmpc = { ... };
+  scripts = { ... };
+  smallscreen = { ... };
+  sops = { ... };
+  ssh-keys = { ... };
+  stylix = { ... };
+  suites = { ... };
+  sway = { ... };
+  tmux = { ... };
+  vscode = { ... };
+  yazi = { ... };
+  zsh = { ... };
+}
+```
+
+both these and other "programs" and "services" can be explored using the nix repl. 
+
 ------------------------------------------------------------------------
+# mkHome
 
-This guide is for installing a home-manager standalone configuration for another Linux distribution (tested with arch) or even Mac (untested).
-
-**As mentioned in the readme, home-manager is not that good when used on its own. This is because unlike NixOS, your system configuration will differ from distribution to distribution. Certain programs or services that a particular home-manager module depends on may not be present.
-
-If I somehow haven't scared you off yet and you still want to follow through with installing a standalone home-manager here is what I recommend using it for:
-- installing apps that mostly manage themselves and are not managed by home-manager: gimp, libreoffice, davinci-resolve, etc
-- Installing some additional packages such as fonts.
-- config files for programs you rarely touch; in my case: tmux, kitty, zsh, ghostty, etc.
-- creating out of store symlinks.
-
-and just leave the more complex stuff to your distribution of choice.
-
-To start, you will need to follow your distribution's guide to installing nix. I did this on arch (btw) through the determinate-nix installer found at https://zero-to-nix.com/start/install/
-
-Now, create a flake with a homeConfigurations output.
-Paste the following into a flake.nix:
+You can use an opinionated wrapper for lib.homeManagerConfiguration, which will perform the required setup automatically and assign metadata to config.meta. (both username and hostname arguments are required)
 
 ```
-    description = "my home-manager configurations";
-    
-	inputs = {
-	  nix-config = {
-	    url = "github:earthgman/nix-config";
-	  };
-	};
-	
-	outputs = { nix-config, ... }:
-	  let
-	    inherit (nix-config) lib;
-	  in
-	  {
-	    homeConfigurations = { 
-	      "bob@archlinux" = lib.mkHome {
-		    username = "bob";
-		    hostName = "archlinux";
-		    desktop = "gnome";
-		    stateVersion = "25.11";
-		    profile = ./home/bob.nix; # or wherever you want it
-		    system = "x86_64-linux";
-	      };
-	    };
-	  };
+homeConfigurations."bob@nixos" = {
+  username = "bob";
+  hostname = "nixos";
+  system = "x86_64-linux"; # system type
+  profile = ./home/bob; # path to extra user configuration based on username
+  secretsFile = ./home/bob/secrets.yaml # file for secrets
+  stateVersion = "25.11"; # version of home-manager
+  extraModules = [ ./another-module.nix ];
+  extraExtraSpecialArgs = { inherit inputs; }; # more special arguments
+};
 ```
-
-Create the directory path and nix file specified in the "profile" key in the root of your flake.
-
-Here you will specify options that will be consumed by home-manager, and each system can have a different home configuration entirely. Just specify a different.nix file.
-
-**Default config will most likely not work out of the box depending on the distribution.
-Certain system services and packages may need to be installed manually.

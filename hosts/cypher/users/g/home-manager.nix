@@ -18,7 +18,7 @@ in
   };
 
   xdg.configFile = {
-    "Ryujinx".source = ln "/home/g/games/Ryujinx";
+    "Ryubing".source = ln "/home/g/games/Ryujinx";
     "StardewValley".source = ln "/home/g/games/SteamLibrary/game-saves/StardewValley";
     "unity3d/Pugstorm/Core\ Keeper".source = ln "/home/g/games/SteamLibrary/game-saves/Core\ Keeper";
   };

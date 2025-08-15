@@ -7,7 +7,7 @@ in
 
   xdg = {
     configFile = {
-      "Ryujinx".source = ln "/home/bean/games/ryujinx";
+      "Ryubing".source = ln "/home/bean/games/ryujinx";
       "Cemu".source = ln "/home/bean/games/cemu";
     };
     dataFile = {

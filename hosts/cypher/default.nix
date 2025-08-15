@@ -93,7 +93,7 @@
     cemu.enable = true;
     mcrcon.enable = true;
     obs-studio.enable = true;
-    ryujinx.enable = true;
+    ryubing.enable = true;
     # no compatible mouse :(
     piper.enable = false;
     blender.enable = true;

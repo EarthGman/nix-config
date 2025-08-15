@@ -23,7 +23,7 @@ in
     programs.tmux = {
       shortcut = lib.mkDefault "space";
       clock24 = lib.mkDefault true;
-      baseIndex = lib.mkDefault 1;
+      baseIndex = 1;
       # plugins = with pkgs.tmuxPlugins; [
       #   vim-tmux-navigator
       # ];

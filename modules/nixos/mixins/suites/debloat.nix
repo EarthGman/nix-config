@@ -10,8 +10,6 @@
   config = lib.mkIf config.gman.suites.debloat.enable {
     hardware.enableRedistributableFirmware = lib.mkOverride 800 false;
 
-    home-manager.enable = lib.mkOverride 800 false;
-
     environment = {
       defaultPackages = [ ];
       variables.BROWSER = "echo";

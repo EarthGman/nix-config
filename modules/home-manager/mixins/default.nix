@@ -39,6 +39,7 @@ in
         stylix = enableProfile "stylix";
         desktopThemes = enableProfile "desktopTheme";
         firefox = enableProfile "firefox";
+        fastfetch = enableProfile "fastfetch";
         waybar = enableProfile "waybar";
         rofi = enableProfile "rofi";
       };
