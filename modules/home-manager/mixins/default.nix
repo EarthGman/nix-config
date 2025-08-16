@@ -76,6 +76,7 @@ in
     programs = {
       firefox.enable = (config.meta.browser == "firefox");
       brave.enable = (config.meta.browser == "brave");
+      thunderbird.imperativeConfig = lib.mkDefault true;
 
       nautilus.enable = (config.meta.fileManager == "nautilus");
       dolphin.enable = (config.meta.fileManager == "dolphin");

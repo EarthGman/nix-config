@@ -1,5 +1,7 @@
 8-16-2025
 - release v7
+- finalize think-two
+- add gtk portal to home-manager hyprland config
 
 
 8-09-2025

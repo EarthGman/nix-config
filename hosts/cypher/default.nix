@@ -78,6 +78,7 @@
 
   programs = {
     cutentr.enable = true;
+    bottles.enable = true;
     prismlauncher = {
       enable = true;
       # newest version of prism

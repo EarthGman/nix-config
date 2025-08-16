@@ -11,12 +11,9 @@
 
   nix.settings.trusted-users = [ "Chris" ];
 
-  # gman = {
-  #   suites.personalized.earthgman = {
-  #     enable = true;
-  #     wireguard.wg0.enable = false;
-  #   };
-  # };
+  gman = {
+    openvpn.enable = true;
+  };
 
   programs.neovim-custom.package = pkgs.nvim-nix;
 

@@ -25,6 +25,12 @@ in
       {
         stylix.targets.hyprland.enable = true;
 
+        # required for openURI
+        xdg.portal = {
+          enable = true;
+          extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+        };
+
         wayland.windowManager.hyprland = {
           enable = lib.mkDefault true;
           systemd.enable = false;
