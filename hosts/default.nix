@@ -36,8 +36,8 @@
     hostname = "think-two";
     cpu = "intel";
     gpu = "intel";
-    users = [ "bob" ];
-    desktop = "sway";
+    users = [ "Chris" ];
+    desktop = "gnome";
     system = "x86_64-linux";
     stateVersion = "25.05";
     configDir = ./think-two;

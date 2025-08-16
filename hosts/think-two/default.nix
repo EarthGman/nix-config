@@ -9,16 +9,15 @@
     ./hardware-configuration.nix
   ];
 
-  environment.systemPackages = [ pkgs.nixos-generators ];
+  nix.settings.trusted-users = [ "Chris" ];
 
-  nix.settings.trusted-users = [ "bob" ];
+  # gman = {
+  #   suites.personalized.earthgman = {
+  #     enable = true;
+  #     wireguard.wg0.enable = false;
+  #   };
+  # };
 
-  gman = {
-    suites.personalized.earthgman = {
-      enable = true;
-      wireguard.wg0.enable = false;
-    };
-  };
   programs.neovim-custom.package = pkgs.nvim-nix;
 
   services.openssh.settings = {
