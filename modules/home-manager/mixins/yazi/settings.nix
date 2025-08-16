@@ -29,7 +29,7 @@
   opener = {
     edit = [
       {
-        run = ''${config.meta.editor} "$@"'';
+        run = ''${config.home.sessionVariables.EDITOR} "$@"'';
         desc = "Open with $EDITOR";
         block = true;
       }
