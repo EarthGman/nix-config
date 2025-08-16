@@ -6,7 +6,7 @@
 }:
 # NOT copied ;)
 {
-  manager = {
+  mgr = {
     layout = [
       1
       3
