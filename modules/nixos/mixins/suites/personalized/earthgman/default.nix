@@ -51,7 +51,10 @@ in
           onepassword.enable = lib.mkDefault true;
         };
 
-        services.libinput.mouse.leftHanded = true;
+        services.libinput = {
+          touchpad.leftHanded = true;
+          mouse.leftHanded = true;
+        };
         hardware.keyboard.zsa.enable = lib.mkDefault true;
         programs = {
           keymapp.enable = lib.mkDefault (config.meta.desktop != null);

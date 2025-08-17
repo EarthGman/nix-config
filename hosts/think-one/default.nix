@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ pkgs, inputs, ... }:
 {
   imports = [
     ./disko.nix
@@ -14,10 +14,25 @@
     };
   };
 
-  services.flatpak.enable = true;
+  services = {
+    flatpak.enable = true;
+    xserver.xkb.layout = "jp";
+  };
+
+  i18n = {
+    inputMethod = {
+      enable = true;
+      type = "fcitx5";
+      fcitx5.addons = [ pkgs.fcitx5-mozc ];
+    };
+    extraLocales = [
+      "ja_JP.UTF-8/UTF-8"
+    ];
+  };
 
   programs = {
     # lens.enable = true;
+    libreoffice.enable = true;
     moonlight.enable = true;
     gnome-software.enable = true;
     fastfetch.enable = true;

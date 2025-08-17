@@ -23,6 +23,12 @@
     };
   };
 
+  wayland.windowManager.hyprland.settings = {
+    input = {
+      kb_layout = "jp";
+    };
+  };
+
   services.kanshi = {
     enable = true;
     settings = [

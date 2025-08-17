@@ -113,6 +113,12 @@ in
       (!config.meta.vm) && (builtins.substring 0 3 config.meta.system) == "x86"
     ) (lib.mkDefault config.hardware.enableRedistributableFirmware);
 
+    environment.systemPackages = builtins.attrValues {
+      inherit (pkgs)
+        libinput
+        ;
+    };
+
     programs = {
       zoxide = {
         enable = lib.mkDefault true;

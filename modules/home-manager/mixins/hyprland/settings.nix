@@ -95,7 +95,7 @@ in
   };
 
   input = {
-    kb_layout = "us";
+    kb_layout = lib.mkDefault "us";
     follow_mouse = 1;
     left_handed = lib.mkDefault false;
     sensitivity = 0;

@@ -1,6 +1,6 @@
 { hostname, ... }:
 let
-  extraHM = ../../hosts/${hostname}/users/g/home-manager.nix;
+  extraHM = ../../hosts/${hostname}/users/pumpkinking/home-manager.nix;
 in
 {
   imports = if builtins.pathExists extraHM then [ extraHM ] else [ ];
