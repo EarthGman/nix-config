@@ -4,6 +4,7 @@ let
 in
 {
   meta.profiles.desktopTheme = "omori-faraway";
+  gman.profiles.desktopThemes.omori-faraway.config.withOmoriFont = true;
 
   xdg = {
     configFile = {
