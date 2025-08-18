@@ -17,6 +17,7 @@
 
     # stuff im sure everyone wants
     programs = {
+      ncdu.enable = lib.mkDefault true;
       hstr.enable = lib.mkDefault true;
       neovim.enable = lib.mkDefault true;
       fzf.enable = lib.mkDefault true;

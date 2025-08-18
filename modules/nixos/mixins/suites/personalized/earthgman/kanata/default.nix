@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   config,
   ...
@@ -10,6 +11,7 @@ in
   options.gman.suites.personalized.earthgman.kanata.enable =
     lib.mkEnableOption "my personal keymap using kanata";
   config = lib.mkIf cfg.enable {
+    environment.systemPackages = [ pkgs.kanata ];
     services.kanata = {
       enable = true;
       keyboards = {

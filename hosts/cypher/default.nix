@@ -79,6 +79,9 @@
   programs = {
     cutentr.enable = true;
     bottles.enable = true;
+    filezilla.enable = true;
+    gthumb.enable = true;
+    gimp.enable = true;
     prismlauncher = {
       enable = true;
       # newest version of prism

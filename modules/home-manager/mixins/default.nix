@@ -105,5 +105,49 @@ in
         positionY = lib.mkDefault "bottom";
       };
     };
+
+    xdg = {
+      mimeApps = {
+        # allow imperative xdg config through nautilus on gnome by default
+        enable = lib.mkDefault (config.meta.desktop != "gnome");
+        defaultApplications = {
+          "application/pdf" = lib.mkDefault [
+            "org.gnome.Evince.desktop"
+            "firefox.desktop"
+          ];
+          "image/png" = lib.mkDefault [
+            "org.gnome.gThumb.desktop"
+            "gimp.desktop"
+          ];
+          "image/jpeg" = lib.mkDefault [
+            "org.gnome.gThumb.desktop"
+            "gimp.desktop"
+          ];
+          "image/webp" = lib.mkDefault [
+            "org.gnome.gThumb.desktop"
+            "gimp.desktop"
+          ];
+          "image/gif" = lib.mkDefault [
+            "org.gnome.gThumb.desktop"
+            "gimp.desktop"
+          ];
+          "video/mp4" = lib.mkDefault [
+            "vlc.desktop"
+            "org.gnome.gitlab.YaLTeR.VideoTrimmer.desktop"
+          ];
+        };
+      };
+
+      userDirs = {
+        # enable and create common Directories (Downloads, Documents, Music, etc)
+        enable = lib.mkDefault true;
+        createDirectories = lib.mkDefault true;
+      };
+    };
+
+    home.sessionVariables = {
+      # required for some scripts
+      XDG_SCREENSHOTS_DIR = lib.mkDefault "${config.xdg.userDirs.pictures}/screenshots";
+    };
   };
 }

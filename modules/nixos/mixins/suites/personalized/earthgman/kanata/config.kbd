@@ -5,9 +5,14 @@
   hold-time 200
 )
 
+(deflocalkeys-linux
+  convert 92
+)
+
 (deflayermap base
   caps esc
   esc (layer-switch norm)
+  convert (multi f24 (tap-hold $tap-time $hold-time ret rmeta))
   a (multi f24 (tap-hold $tap-time $hold-time a lmet))
   s (multi f24 (tap-hold $tap-time $hold-time s (layer-while-held nav)))
   d (multi f24 (tap-hold $tap-time $hold-time d lsft))

@@ -28,7 +28,6 @@ in
 
   #tray {
     padding: 0 10px;
-    font-size: ${desktop-fontsize};
   }
 
   #custom-os_button {
