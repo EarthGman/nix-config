@@ -17,6 +17,7 @@ in
       extraHosts = ''
         10.0.24.2 cypher
         10.0.24.3 think-one
+        10.0.24.8 home-nas
       '';
       # work around the wireguard endpoint bug
       networkmanager.dispatcherScripts = [

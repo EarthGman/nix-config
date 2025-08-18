@@ -13,6 +13,7 @@ in
     environment.systemPackages = builtins.attrValues {
       inherit (pkgs)
         usbutils
+        hdparm
         pciutils
         lshw
         inxi

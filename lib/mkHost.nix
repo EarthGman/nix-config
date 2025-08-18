@@ -12,7 +12,6 @@ in
   desktop ? "", # what desktop? "gnome" "hyprland" or "sway"
   server ? false, # is this machine a server
   vm ? false, # is this a virtual machine?
-  installer ? false, # is this an installer ISO?
   secretsFile ? null, # path to secrets file
   system ? "x86_64-linux", # what cpu architecture?
   # TODO Update me in november
@@ -43,6 +42,7 @@ lib.nixosSystem {
         # enable my default module and mixins
         gman = {
           enable = true;
+          server.enable = server;
         };
 
         nixpkgs = {
