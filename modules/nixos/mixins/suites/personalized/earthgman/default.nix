@@ -61,6 +61,9 @@ in
           _1password-gui.polkitPolicyOwners = [ "g" ];
         };
       })
+      (lib.mkIf (config.meta.server) {
+        programs.neovim-custom.package = pkgs.nvim-lite;
+      })
     ]
   );
 }

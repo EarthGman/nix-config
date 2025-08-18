@@ -37,9 +37,6 @@
     programs = {
       git.package = lib.mkDefault pkgs.gitMinimal;
       command-not-found.enable = lib.mkDefault false;
-
-      # lighter custom neovim with no lspconfig (only relevent if its enabled)
-      neovim-custom.package = lib.mkDefault pkgs.nvim-lite;
     };
   };
 }
