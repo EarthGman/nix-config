@@ -38,6 +38,12 @@
         default = "";
       };
 
+      eww = lib.mkOption {
+        description = "eww profile to use";
+        type = lib.types.str;
+        default = "";
+      };
+
       fastfetch = lib.mkOption {
         description = "whice fastfetch profile to use";
         type = lib.types.str;

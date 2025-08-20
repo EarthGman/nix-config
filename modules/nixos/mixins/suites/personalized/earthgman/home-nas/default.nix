@@ -4,6 +4,9 @@
   config,
   ...
 }:
+# let
+#   ln = config.home-manager.users.g.lib.file.mkOutOfStoreSymlink;
+# in
 {
   options.gman.suites.personalized.earthgman.home-nas.enable =
     lib.mkEnableOption "gman's home-nas client configuration";
@@ -49,5 +52,13 @@
         '';
       }
     ];
+
+    home-manager.users.g = {
+      # TODO doesn't work??? no symlink is created
+      # home.file = {
+      #   "Documents".source = ln "/home/g/nas/Documents";
+      #   "Pictures".source = ln "/home/g/nas/Pictures";
+      # };
+    };
   };
 }

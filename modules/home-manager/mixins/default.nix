@@ -41,6 +41,7 @@ in
         firefox = enableProfile "firefox";
         fastfetch = enableProfile "fastfetch";
         waybar = enableProfile "waybar";
+        eww = enableProfile "eww";
         rofi = enableProfile "rofi";
       };
     };
@@ -59,6 +60,7 @@ in
         firefox = lib.mkDefault "betterfox";
         fastfetch = lib.mkDefault "default";
         waybar = lib.mkDefault "windows-11";
+        eww = lib.mkDefault "default";
         rofi = lib.mkDefault "material-dark";
       };
     };
