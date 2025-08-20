@@ -10,7 +10,10 @@
   gman = {
     suites = {
       hacker-mode.enable = true;
-      personalized.earthgman.enable = true;
+      personalized.earthgman = {
+        enable = true;
+        home-nas.enable = true;
+      };
     };
   };
 

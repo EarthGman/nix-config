@@ -28,6 +28,7 @@
       yazi.enable = lib.mkDefault true;
       git.enable = lib.mkDefault true;
       lazygit.enable = lib.mkDefault true;
+      ripgrep.enable = lib.mkDefault true;
       zsh.enable = lib.mkDefault true;
       bat.enable = lib.mkDefault true;
       starship.enable = lib.mkDefault true;

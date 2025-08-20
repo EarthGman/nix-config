@@ -1,6 +1,7 @@
 { ... }:
 {
   gman.smallscreen.enable = true;
+  gman.rmpc.enable = true;
 
   gman.profiles.waybar.windows-11.config.settings-unmerged = {
     modules-left = [

@@ -941,12 +941,12 @@
         ]
       },
       "locked": {
-        "lastModified": 1755121891,
-        "narHash": "sha256-UtYkukiGnPRJ5rpd4W/wFVrLMh8fqtNkqHTPgHEtrqU=",
-        "rev": "279ca5addcdcfa31ac852b3ecb39fc372684f426",
-        "revCount": 5272,
+        "lastModified": 1755618859,
+        "narHash": "sha256-VGEZMAX/bOKrkg9x5DjXBfjpxm9gvU3kRVps7RKm8mQ=",
+        "rev": "0e0a16b342bcd435ad83c62f4794ce1a4ccff0ea",
+        "revCount": 5298,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/nix-community/home-manager/0.1.5272%2Brev-279ca5addcdcfa31ac852b3ecb39fc372684f426/0198a718-656d-7296-a1c6-e58af774a88b/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/nix-community/home-manager/0.1.5298%2Brev-0e0a16b342bcd435ad83c62f4794ce1a4ccff0ea/0198c368-4d8f-75b0-8a1e-2d02765cb05c/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -1123,11 +1123,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1755136941,
-        "narHash": "sha256-tb7d+oBwD6ZBPzAhV/eXQs42YaZuzoNczRSPD3ubuoE=",
+        "lastModified": 1755593834,
+        "narHash": "sha256-lFFnBp3rDST1TCyQt/8qLWP9DRKiaxK4m8SqMIUWXS4=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "09708adbb33a6dbdb9c270131280284ad9e3be9c",
+        "rev": "a97963a3ce85ce065ae889452e8371024c4bb2f6",
         "type": "github"
       },
       "original": {
@@ -1375,12 +1375,12 @@
     },
     "nixpkgs_10": {
       "locked": {
-        "lastModified": 1754725699,
-        "narHash": "sha256-iAcj9T/Y+3DBy2J0N+yF9XQQQ8IEb5swLFzs23CdP88=",
-        "rev": "85dbfc7aaf52ecb755f87e577ddbe6dbbdbc1054",
-        "revCount": 841808,
+        "lastModified": 1755186698,
+        "narHash": "sha256-wNO3+Ks2jZJ4nTHMuks+cxAiVBGNuEBXsT29Bz6HASo=",
+        "rev": "fbcf476f790d8a217c3eab4e12033dc4a0f6d23c",
+        "revCount": 844474,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.1.841808%2Brev-85dbfc7aaf52ecb755f87e577ddbe6dbbdbc1054/01989280-4b63-70f9-95b3-49c511cb4d92/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.1.844474%2Brev-fbcf476f790d8a217c3eab4e12033dc4a0f6d23c/0198bda5-652a-7335-9dc6-4f65049b2b8c/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -1523,11 +1523,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1755102471,
-        "narHash": "sha256-ecWsZvrU/v7phSRIulxUYoCZ+i8s+mQ0ecmxxcgHUko=",
+        "lastModified": 1755632598,
+        "narHash": "sha256-zxKxbtjtsxOqcoqH4rut6WezGEDUMPyzSoV/l4MDtck=",
         "owner": "nix-community",
         "repo": "nur",
-        "rev": "94c6c5b9798480dc220ee2cc8b1ce93a472a8d8f",
+        "rev": "c7b87380a48999a9a7cb5d0da035fd69ed06832f",
         "type": "github"
       },
       "original": {
@@ -1565,11 +1565,11 @@
         "qrcodegenerator": "qrcodegenerator"
       },
       "locked": {
-        "lastModified": 1754950460,
-        "narHash": "sha256-wQFUtlc1IwVFFXa7IkgB41Gn5UJhNxhoHQZ+sh8GOqI=",
+        "lastModified": 1755533773,
+        "narHash": "sha256-xYEcej3BU+4nRiPB12Ipwnjd5krzBcumuUYTukd4JkE=",
         "owner": "PrismLauncher",
         "repo": "PrismLauncher",
-        "rev": "2ae9b63a220305ad97c4208372724cd82b42aa77",
+        "rev": "accb3382aaf3726939d64805ebcdad992914ac5a",
         "type": "github"
       },
       "original": {
@@ -1671,12 +1671,12 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1755027820,
-        "narHash": "sha256-hBSU7BEhd05y/pC9tliYjkFp8AblkbNEkPei229+0Pg=",
-        "rev": "c592717e9f713bbae5f718c784013d541346363d",
-        "revCount": 1163,
+        "lastModified": 1755546184,
+        "narHash": "sha256-KxRj/8SydDk3gzamS0VEewo5pu8JAYhSZ5GPcImPGNQ=",
+        "rev": "9810b32b9b7520e3b37358ff8e793fb5034c3299",
+        "revCount": 1168,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/nix-community/stylix/0.1.1163%2Brev-c592717e9f713bbae5f718c784013d541346363d/0198a1f1-77e2-72cf-97df-dbcd7df89488/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/nix-community/stylix/0.1.1168%2Brev-9810b32b9b7520e3b37358ff8e793fb5034c3299/0198c0d5-b5ad-716a-8cb4-7885093caaf1/source.tar.gz"
       },
       "original": {
         "type": "tarball",

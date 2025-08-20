@@ -13,6 +13,7 @@
   time.timeZone = "America/Chicago";
 
   gman = {
+    suites.personalized.earthgman.home-nas.enable = true;
     qemu-kvm.enable = true;
     suites = {
       personalized.earthgman = {
