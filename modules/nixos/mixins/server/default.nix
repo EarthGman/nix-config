@@ -10,7 +10,7 @@
 
   config = lib.mkIf config.gman.server.enable {
     gman = {
-      suites.debloat.enable = true;
+      debloat.enable = true;
     };
 
     boot.loader = {

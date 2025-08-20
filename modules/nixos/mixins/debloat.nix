@@ -5,9 +5,9 @@
   ...
 }:
 {
-  options.gman.suites.debloat.enable = lib.mkEnableOption "gman's nixos debloater";
+  options.gman.debloat.enable = lib.mkEnableOption "gman's nixos debloater";
 
-  config = lib.mkIf config.gman.suites.debloat.enable {
+  config = lib.mkIf config.gman.debloat.enable {
     hardware.enableRedistributableFirmware = lib.mkOverride 800 false;
 
     environment = {

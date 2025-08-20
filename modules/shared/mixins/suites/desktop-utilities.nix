@@ -1,9 +1,8 @@
 { lib, config, ... }:
 {
-  options.gman.suites.desktop-utilities.enable =
-    lib.mkEnableOption "gman's chosen lightweight and most useful desktop apps";
+  options.gman.desktop-utilities.enable = lib.mkEnableOption "gman's chosen lightweight and most useful desktop apps";
 
-  config = lib.mkIf config.gman.suites.desktop-utilities.enable {
+  config = lib.mkIf config.gman.desktop-utilities.enable {
     programs = {
       vlc.enable = lib.mkDefault true;
       gthumb.enable = lib.mkDefault true;

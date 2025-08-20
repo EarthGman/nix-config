@@ -6,10 +6,10 @@
 }:
 let
   inherit (lib) mkEnableOption mkIf;
-  cfg = config.gman.suites.personalized.earthgman.wireguard.wg0;
+  cfg = config.gman.wireguard.wg0;
 in
 {
-  options.gman.suites.personalized.earthgman.wireguard.wg0.enable = mkEnableOption "wg0";
+  options.gman.wireguard.wg0.enable = mkEnableOption "gman's main wireguard hub";
   config = mkIf cfg.enable {
     sops.secrets.wg0_conf.path = "/etc/wireguard/wg0.conf";
     networking = {

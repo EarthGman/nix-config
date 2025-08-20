@@ -4,20 +4,16 @@
   config,
   ...
 }:
-# let
-#   ln = config.home-manager.users.g.lib.file.mkOutOfStoreSymlink;
-# in
 {
-  options.gman.suites.personalized.earthgman.home-nas.enable =
-    lib.mkEnableOption "gman's home-nas client configuration";
+  options.gman.home-nas-sync.enable = lib.mkEnableOption "gman's home-nas client configuration";
 
-  config = lib.mkIf config.gman.suites.personalized.earthgman.home-nas.enable {
+  config = lib.mkIf config.gman.home-nas-sync.enable {
     environment.systemPackages = [
       pkgs.cifs-utils
     ];
 
     sops.secrets.home_nas_smb_secrets = {
-      sopsFile = ../../../../../../../secrets/shared.yaml;
+      sopsFile = ../../../secrets/shared.yaml;
       path = "/etc/samba/secrets";
     };
 
@@ -52,13 +48,5 @@
         '';
       }
     ];
-
-    home-manager.users.g = {
-      # TODO doesn't work??? no symlink is created
-      # home.file = {
-      #   "Documents".source = ln "/home/g/nas/Documents";
-      #   "Pictures".source = ln "/home/g/nas/Pictures";
-      # };
-    };
   };
 }

@@ -8,13 +8,9 @@
   time.timeZone = "America/Chicago";
 
   gman = {
-    suites = {
-      hacker-mode.enable = true;
-      personalized.earthgman = {
-        enable = true;
-        home-nas.enable = true;
-      };
-    };
+    hacker-mode.enable = true;
+    earthgman.enable = true;
+    home-nas-sync.enable = true;
   };
 
   services = {

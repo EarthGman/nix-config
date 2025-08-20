@@ -6,10 +6,10 @@
   ...
 }:
 let
-  cfg = config.gman.suites.hacker-mode;
+  cfg = config.gman.hacker-mode;
 in
 {
-  options.gman.suites.hacker-mode.enable = lib.mkEnableOption "gman's cybersecurity suite";
+  options.gman.hacker-mode.enable = lib.mkEnableOption "gman's cybersecurity suite";
   config = lib.mkIf cfg.enable {
     programs = {
       tcpdump = {

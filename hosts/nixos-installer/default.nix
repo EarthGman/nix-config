@@ -10,8 +10,8 @@
   imports = [ (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix") ];
 
   gman = {
-    suites.debloat.enable = true;
-    suites.hardware-tools.enable = true;
+    debloat.enable = true;
+    hardware-tools.enable = true;
   };
 
   # needed for some machines

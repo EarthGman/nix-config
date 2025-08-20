@@ -5,23 +5,19 @@
   ...
 }:
 let
-  cfg = config.gman.suites.personalized.earthgman;
+  cfg = config.gman.earthgman;
 in
 {
-  imports = lib.autoImport ./.;
-
-  options.gman.suites.personalized.earthgman = {
+  options.gman.earthgman = {
     enable = lib.mkEnableOption "gman's more heavily personalized modules";
   };
 
   config = lib.mkIf cfg.enable (
     lib.mkMerge [
       {
-        gman.suites = {
-          personalized.earthgman = {
-            kanata.enable = lib.mkDefault true;
-            wireguard.wg0.enable = lib.mkDefault true;
-          };
+        gman = {
+          kanata.enable = lib.mkDefault true;
+          wireguard.wg0.enable = lib.mkDefault true;
         };
 
         services = {

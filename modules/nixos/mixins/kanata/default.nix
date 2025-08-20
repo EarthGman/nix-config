@@ -5,11 +5,10 @@
   ...
 }:
 let
-  cfg = config.gman.suites.personalized.earthgman.kanata;
+  cfg = config.gman.kanata;
 in
 {
-  options.gman.suites.personalized.earthgman.kanata.enable =
-    lib.mkEnableOption "my personal keymap using kanata";
+  options.gman.kanata.enable = lib.mkEnableOption "gman's personal keymap using kanata";
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [ pkgs.kanata ];
     services.kanata = {

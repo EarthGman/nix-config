@@ -13,17 +13,13 @@
   time.timeZone = "America/Chicago";
 
   gman = {
-    suites.personalized.earthgman.home-nas.enable = true;
+    home-nas-sync.enable = true;
     qemu-kvm.enable = true;
-    suites = {
-      personalized.earthgman = {
-        enable = true;
-        # conflicts with zsa moonlander
-        kanata.enable = false;
-      };
-      gaming.enable = true;
-      hacker-mode.enable = true;
-    };
+    # conflicts with zsa moonlander
+    kanata.enable = false;
+    earthgman.enable = true;
+    gaming.enable = true;
+    hacker-mode.enable = true;
   };
 
   boot.initrd.availableKernelModules = [
