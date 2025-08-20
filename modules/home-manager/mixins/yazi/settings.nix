@@ -34,19 +34,19 @@
         block = true;
       }
     ];
-    reveal = [
-      {
-        run = ''${lib.getExe pkgs.exiftool} "$1"; echo "Press <enter> to exit"; read _'';
-        desc = "Show EXIF";
-        block = true;
-        for = "unix";
-      }
-      {
-        run = ''open -R "$1"'';
-        desc = "Reveal";
-        for = "macos";
-      }
-    ];
+    # reveal = [
+    #   {
+    #     run = ''${lib.getExe pkgs.exiftool} "$1"; echo "Press <enter> to exit"; read _'';
+    #     desc = "Show EXIF";
+    #     block = true;
+    #     for = "unix";
+    #   }
+    #   {
+    #     run = ''open -R "$1"'';
+    #     desc = "Reveal";
+    #     for = "macos";
+    #   }
+    # ];
     extract = [
       {
         desc = "Extract with atool";
