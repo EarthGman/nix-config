@@ -32,6 +32,7 @@
   programs = {
     # lens.enable = true;
     libreoffice.enable = true;
+    filezilla.enable = true;
     moonlight.enable = true;
     gnome-software.enable = true;
     fastfetch.enable = true;
