@@ -77,14 +77,12 @@
     cutentr.enable = true;
     bottles.enable = true;
     filezilla.enable = true;
-    gthumb.enable = true;
     gimp.enable = true;
     prismlauncher = {
       enable = true;
       # newest version of prism
       package = inputs.prismlauncher.packages.${config.meta.system}.default;
     };
-    gparted.enable = true;
     gnome-software.enable = true;
     musescore.enable = true;
     lutris.enable = true;
@@ -108,6 +106,7 @@
     # remote desktop
     sunshine = {
       enable = true;
+      openFirewall = true;
       capSysAdmin = true;
     };
 
