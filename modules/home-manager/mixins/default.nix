@@ -69,15 +69,16 @@ in
     # -------------------------------------------------------------
 
     home = {
-      packages = lib.mkIf (pkgs.stdenv.isLinux) [
+      packages = [
+        pkgs.home-manager
+      ]
+      ++ lib.optionals (pkgs.stdenv.isLinux) [
         pkgs.coreutils-full
       ];
       sessionVariables.EDITOR = lib.mkDefault config.meta.editor;
     };
 
     programs = {
-      home-manager.enable = true;
-
       firefox.enable = (config.meta.browser == "firefox");
       brave.enable = (config.meta.browser == "brave");
       thunderbird.imperativeConfig = lib.mkDefault true;
