@@ -32,21 +32,30 @@
         run = ''${config.home.sessionVariables.EDITOR} "$@"'';
         desc = "Open with $EDITOR";
         block = true;
+        for = "unix";
       }
     ];
-    # reveal = [
-    #   {
-    #     run = ''${lib.getExe pkgs.exiftool} "$1"; echo "Press <enter> to exit"; read _'';
-    #     desc = "Show EXIF";
-    #     block = true;
-    #     for = "unix";
-    #   }
-    #   {
-    #     run = ''open -R "$1"'';
-    #     desc = "Reveal";
-    #     for = "macos";
-    #   }
-    # ];
+    open = [
+      {
+        run = ''xdg-open "$@"'';
+        desc = "Open using xdg-open";
+        for = "linux";
+        block = true;
+      }
+    ];
+    reveal = [
+      {
+        run = ''${lib.getExe pkgs.exiftool} "$1"; echo "Press <enter> to exit"; read _'';
+        desc = "Show EXIF";
+        block = true;
+        for = "unix";
+      }
+      {
+        run = ''open -R "$1"'';
+        desc = "Reveal";
+        for = "macos";
+      }
+    ];
     extract = [
       {
         desc = "Extract with atool";
@@ -56,6 +65,31 @@
       {
         desc = "Extract here";
         run = ''${lib.getExe pkgs.unrar} "$1"'';
+      }
+    ];
+
+    # TODO xdg-open seems to open the wrong thing for some reason, just hardcode the values until it fixes itself?
+    pdf = [
+      {
+        desc = "Open a pdf file with evince";
+        run = "evince $1";
+        block = true;
+        for = "unix";
+      }
+    ];
+    image = [
+      {
+        desc = "open with gthumb";
+        run = "gthumb $1";
+        block = true;
+        for = "unix";
+      }
+    ];
+    gimp = [
+      {
+        desc = "open with gimp";
+        run = "gimp $1";
+        block = true;
       }
     ];
   };
@@ -101,9 +135,15 @@
     {
       rules = archiveRules ++ [
         {
+          name = "*.xcf";
+          use = [
+            "gimp"
+            "reveal"
+          ];
+        }
+        {
           name = "*.dmg";
           use = [
-            "dmg"
             "reveal"
           ];
         }
@@ -125,21 +165,21 @@
         {
           mime = "image/*";
           use = [
-            "open"
+            "image"
             "reveal"
           ];
         }
         {
           mime = "video/*";
           use = [
-            "play"
+            "open"
             "reveal"
           ];
         }
         {
           mime = "audio/*";
           use = [
-            "play"
+            "open"
             "reveal"
           ];
         }

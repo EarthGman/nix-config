@@ -31,6 +31,7 @@
 
   programs = {
     # lens.enable = true;
+    gimp.enable = true;
     libreoffice.enable = true;
     filezilla.enable = true;
     moonlight.enable = true;

@@ -1,3 +1,8 @@
+8-22-2025
+- hotfix for yazi, xdg-open doesn't seem to work correctly with it anymore
+- update flake
+
+
 8-16-2025
 - release v7
 - finalize think-two
