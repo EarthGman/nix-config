@@ -18,6 +18,7 @@ in
     {
       gman = {
         lh-mouse.enable = lib.mkOverride 800 true;
+        nix-development.enable = lib.mkDefault true;
       };
 
       meta = {

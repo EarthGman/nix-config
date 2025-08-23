@@ -18,7 +18,7 @@
     # conflicts with zsa moonlander
     kanata.enable = false;
     earthgman.enable = true;
-    gaming.enable = true;
+    steam.enable = true;
     hacker-mode.enable = true;
   };
 

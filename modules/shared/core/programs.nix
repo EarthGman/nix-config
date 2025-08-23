@@ -320,6 +320,12 @@ in
       vimAlias = mkEnableOption "vim alias";
     };
 
+    nmap = mkProgramOption {
+      programName = "nmap";
+      description = "a network scanning tool";
+      inherit pkgs;
+    };
+
     okular = mkProgramOption {
       programName = "okular";
       packageName = "okular";
@@ -482,6 +488,12 @@ in
     xclicker = mkProgramOption {
       programName = "xclicker";
       description = "a simple autoclicker for X11";
+      inherit pkgs;
+    };
+
+    zenmap = mkProgramOption {
+      programName = "zenmap";
+      description = "graphical fontend for nmap";
       inherit pkgs;
     };
 
