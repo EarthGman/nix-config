@@ -93,7 +93,10 @@ in
       networkmanager.enable = lib.mkDefault true;
     };
 
-    users.mutableUsers = lib.mkDefault false;
+    users = {
+      mutableUsers = lib.mkDefault false;
+      users.root.shell = lib.mkDefault pkgs.zsh;
+    };
 
     nix = {
       channel.enable = lib.mkDefault false;
