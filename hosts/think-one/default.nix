@@ -18,6 +18,14 @@
     xserver.xkb.layout = "jp";
   };
 
+  networking.firewall = {
+    allowedTCPPorts = [ 22000 ];
+    allowedUDPPorts = [
+      22000
+      21027
+    ];
+  };
+
   i18n = {
     inputMethod = {
       enable = true;

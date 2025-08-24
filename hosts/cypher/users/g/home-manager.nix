@@ -8,6 +8,7 @@ in
 {
   gman = {
     rmpc.enable = true;
+    syncthing.enable = true;
   };
 
   xdg.dataFile = {
