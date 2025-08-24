@@ -16,7 +16,6 @@ in
       pipewire.enable = lib.mkDefault true;
       bluetooth.enable = lib.mkDefault true;
       printing.enable = lib.mkDefault true;
-      grub.enable = lib.mkDefault true;
       stylix.enable = lib.mkDefault true;
 
       # which desktop to enable

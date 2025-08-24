@@ -34,6 +34,7 @@ in
     # custom options
     gman = {
       # default mixins
+      grub.enable = lib.mkDefault true;
       determinate.enable = lib.mkDefault true;
       nh.enable = lib.mkDefault true;
       zsh.enable = lib.mkDefault true;
