@@ -39,6 +39,9 @@ lib.nixosSystem {
     in
     [
       {
+        # initrd modules for qemu
+        imports = lib.mkIf (vm) [ (inputs.nixpkgs + "/modules/profiles/qemu-guest.nix") ];
+
         # enable my default module and mixins
         gman = {
           enable = true;

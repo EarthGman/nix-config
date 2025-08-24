@@ -10,15 +10,16 @@
 
   config = lib.mkIf config.gman.server.enable {
     gman = {
+      grub.enable = false;
       debloat.enable = true;
     };
 
-    # boot.loader = {
-    # systemd-boot = {
-    #   enable = lib.mkDefault true;
-    #   configurationLimit = lib.mkDefault 2;
-    # };
-    # };
+    boot.loader = {
+      systemd-boot = {
+        enable = lib.mkDefault true;
+        configurationLimit = lib.mkDefault 2;
+      };
+    };
 
     # remove emergency mode
     boot.initrd.systemd.suppressedUnits = lib.mkIf config.systemd.enableEmergencyMode [
