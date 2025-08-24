@@ -17,6 +17,8 @@ in
       extraHosts = ''
         10.0.24.2 cypher
         10.0.24.3 think-one
+        10.0.24.5 mc112
+        10.0.24.6 mc112-blueprints
         10.0.24.8 home-nas
         10.0.24.32 prox2
       '';

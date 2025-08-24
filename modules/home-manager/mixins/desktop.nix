@@ -19,6 +19,7 @@
       gthumb.enable = lib.mkDefault true;
       vlc.enable = lib.mkDefault true;
       evince.enable = lib.mkDefault true;
+      gnome-calculator.enable = lib.mkDefault true;
     };
 
     # battery notifier (gnome already has one)
