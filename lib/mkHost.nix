@@ -40,7 +40,7 @@ lib.nixosSystem {
     [
       {
         # initrd modules for qemu
-        imports = if (vm) then [ (inputs.nixpkgs + "/modules/profiles/qemu-guest.nix") ] else [ ];
+        imports = if (vm) then [ (inputs.nixpkgs.outPath + "/modules/profiles/qemu-guest.nix") ] else [ ];
 
         # enable my default module and mixins
         gman = {
