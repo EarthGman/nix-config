@@ -13,7 +13,7 @@
       enableCompletion = true;
       syntaxHighlighting.enable = true;
       autocd = true;
-      shellAliases = import ../../../templates/shell-aliases.nix { inherit pkgs lib config; } // {
+      shellAliases = import ../../../mixins/shell-aliases.nix { inherit pkgs lib config; } // {
         hms = "home-manager switch";
       };
       initContent = ''

@@ -1,6 +1,11 @@
+8-25-2025
+- move some modules from /templates to /mixins
+
+
 8-24-2025
 - add syncthing
 - use grub for all machines by default
+- change default path for minecraft server
 
 
 8-22-2025

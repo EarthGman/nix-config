@@ -11,6 +11,6 @@ in
   options.gman.nix-development.enable = lib.mkEnableOption "gman's nix development suite";
 
   config = lib.mkIf cfg.enable {
-    home.packages = import ../../../templates/nix-dev-packages.nix { inherit pkgs; };
+    home.packages = import ../../../mixins/nix-dev-packages.nix { inherit pkgs; };
   };
 }

@@ -44,7 +44,7 @@ in
 
       search = {
         default = lib.mkDefault "ddg"; # DuckDuckGo
-        engines = import ../../../../../templates/search-engines.nix { inherit pkgs; };
+        engines = import ../../../../../mixins/search-engines.nix { inherit pkgs; };
         force = true;
       };
       # apply betterfox settings on top of shyfox
