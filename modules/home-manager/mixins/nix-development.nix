@@ -12,5 +12,13 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = import ../../../mixins/nix-dev-packages.nix { inherit pkgs; };
+
+    programs.direnv = {
+      enable = true;
+      silent = true;
+      nix-direnv = {
+        enable = true;
+      };
+    };
   };
 }

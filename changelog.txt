@@ -1,5 +1,7 @@
 8-25-2025
 - move some modules from /templates to /mixins
+- remove suites from home-manager
+- integrate direnv into gman.nix-development.enable
 
 
 8-24-2025
