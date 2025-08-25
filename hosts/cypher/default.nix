@@ -13,7 +13,6 @@
   time.timeZone = "America/Chicago";
 
   gman = {
-    home-nas-sync.enable = true;
     qemu-kvm.enable = true;
     # conflicts with zsa moonlander
     kanata.enable = false;

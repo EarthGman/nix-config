@@ -10,7 +10,6 @@
   gman = {
     hacker-mode.enable = true;
     earthgman.enable = true;
-    home-nas-sync.enable = true;
   };
 
   services = {
