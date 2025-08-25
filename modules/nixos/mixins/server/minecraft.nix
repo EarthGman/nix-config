@@ -11,7 +11,7 @@ in
       enable = true;
       eula = true;
       openFirewall = lib.mkDefault true;
-      dataDir = lib.mkDefault "/srv/minecraft/server";
+      dataDir = lib.mkDefault "/srv";
     };
   };
 }
