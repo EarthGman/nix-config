@@ -8,6 +8,7 @@ let
   cfg = config.gman.qemu-kvm;
 in
 {
+  # If you dont want libvirtd to requre sudo, add your user to the "libvirtd" group
   options.gman.qemu-kvm.enable = lib.mkEnableOption "gman's qemu configuration";
   config = lib.mkIf cfg.enable {
     virtualisation = {

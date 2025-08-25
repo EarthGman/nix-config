@@ -9,7 +9,7 @@ in
 
     # additional utilities
     programs = {
-      pwvucontrol.enable = (config.meta.desktop != "");
+      pwvucontrol.enable = lib.mkDefault (config.meta.desktop != "");
     };
 
     services = {
@@ -24,7 +24,7 @@ in
         # from nix-gaming
         # https://github.com/fufexan/nix-gaming
         lowLatency = {
-          enable = true;
+          enable = lib.mkDefault true;
         };
       };
     };

@@ -14,6 +14,7 @@
     openssh.authorizedKeys.keys = [ config.gman.ssh-keys.g ];
     extraGroups = [
       "networkmanager"
+      "libvirtd"
       "wheel"
       "wireshark"
       "keyd"
