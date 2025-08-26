@@ -12,11 +12,11 @@
 
 (deflayermap base
   caps esc
-  muhenkan bspc
+  muhenkan (multi f24 (tap-hold $tap-time $hold-time bspc (layer-while-held nav)))
   esc (layer-switch norm)
   convert (multi f24 (tap-hold $tap-time $hold-time ret rmeta))
   a (multi f24 (tap-hold $tap-time $hold-time a lmet))
-  s (multi f24 (tap-hold $tap-time $hold-time s (layer-while-held nav)))
+  s (multi f24 (tap-hold $tap-time $hold-time s lalt))
   d (multi f24 (tap-hold $tap-time $hold-time d lsft))
   f (multi f24 (tap-hold $tap-time $hold-time f lctl))
   j (multi f24 (tap-hold $tap-time $hold-time j rctl))
