@@ -19,6 +19,7 @@
     "cpu"
     "memory"
     "disk"
+    "battery"
   ];
   modules-center = lib.mkDefault [
     "custom/os_button"
@@ -26,7 +27,6 @@
     "sway/workspaces"
   ];
   modules-right = lib.mkDefault [
-    "battery"
     "tray"
     "custom/microphone"
     "pulseaudio"

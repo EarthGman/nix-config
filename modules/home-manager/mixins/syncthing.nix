@@ -18,6 +18,10 @@
                 name = "think-one";
                 id = "3IQNNM7-I2ASVNT-JHFFAWP-CNJWH34-NOGOXZG-WFL2LP6-4DI5RUV-LUUNWA7";
               };
+              pixel-6a = {
+                name = "pixel-6a";
+                id = "HSMUIAY-VKYUTYG-HN56DRW-SKE3KNW-7DDOVEE-G3IN7NL-VPOEKCL-B35CVAZ";
+              };
             };
             folders = {
               Documents = {
@@ -45,6 +49,7 @@
                 devices = [
                   "cypher"
                   "think-one"
+                  "pixel-6a"
                 ];
               };
               Videos = {

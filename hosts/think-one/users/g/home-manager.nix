@@ -14,6 +14,7 @@
       "memory"
       "disk"
       "temperature"
+      "battery"
     ];
 
     temperature = {

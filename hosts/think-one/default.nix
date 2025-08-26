@@ -8,6 +8,7 @@
   time.timeZone = "America/Chicago";
 
   gman = {
+    steam.enable = true;
     hacker-mode.enable = true;
     earthgman.enable = true;
   };
