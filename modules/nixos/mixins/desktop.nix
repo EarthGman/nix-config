@@ -28,7 +28,7 @@ in
     boot = {
       extraModulePackages = [
         # for obs virtual camera
-        config.boot.kernelPackages.v4l2loopback
+        # config.boot.kernelPackages.v4l2loopback
       ];
     };
     hardware.graphics = {

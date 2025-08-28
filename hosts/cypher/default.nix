@@ -14,7 +14,7 @@
 
   gman = {
     # been broken for awhile
-    # qemu-kvm.enable = true;
+    qemu-kvm.enable = true;
     # conflicts with zsa moonlander
     kanata.enable = false;
     earthgman.enable = true;
@@ -118,26 +118,25 @@
       capSysAdmin = true;
     };
 
-    # TODO: temporary work-around for hjkl arrow navigation on zsa moonlander
-    keyd = {
-      enable = true;
-      keyboards = {
-        default = {
-          ids = [ "*" ];
-          settings = {
-            main = {
-              leftalt = "layer(nav)";
-            };
-            "nav:A" = {
-              h = "left";
-              j = "down";
-              k = "up";
-              l = "right";
-            };
-          };
-        };
-      };
-    };
+    # keyd = {
+    #   enable = true;
+    #   keyboards = {
+    #     default = {
+    #       ids = [ "*" ];
+    #       settings = {
+    #         main = {
+    #           leftalt = "layer(nav)";
+    #         };
+    #         "nav:A" = {
+    #           h = "left";
+    #           j = "down";
+    #           k = "up";
+    #           l = "right";
+    #         };
+    #       };
+    #     };
+    #   };
+    # };
   };
 
   environment = {

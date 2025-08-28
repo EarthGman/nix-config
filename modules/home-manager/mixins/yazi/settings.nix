@@ -68,27 +68,10 @@
       }
     ];
 
-    # TODO xdg-open seems to open the wrong thing for some reason, just hardcode the values until it fixes itself?
-    pdf = [
-      {
-        desc = "Open a pdf file with evince";
-        run = "evince $1";
-        block = true;
-        for = "unix";
-      }
-    ];
-    image = [
-      {
-        desc = "open with gthumb";
-        run = "gthumb $1";
-        block = true;
-        for = "unix";
-      }
-    ];
     gimp = [
       {
         desc = "open with gimp";
-        run = "gimp $1";
+        run = ''gimp "$@"'';
         block = true;
       }
     ];
@@ -165,7 +148,7 @@
         {
           mime = "image/*";
           use = [
-            "image"
+            "open"
             "reveal"
           ];
         }
@@ -263,7 +246,7 @@
         {
           mime = "application/pdf";
           use = [
-            "pdf"
+            "open"
             "reveal"
           ];
         }

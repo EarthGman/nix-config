@@ -111,8 +111,7 @@ in
   "${mod}+Shift+9" = "move container to workspace number 9";
   "${mod}+Shift+0" = "move container to workspace number 10";
 
-  "${mod}+n" = "exec --no-startup-id swaync-client -cp";
-  "${mod}+Shift+n" = "exec --no-startup-id swaync-client -op";
+  "${mod}+n" = "exec --no-startup-id swaync-client -op";
   "${mod}+Shift+r" = "reload";
 
   "${mod}+Shift+e" = "uwsm stop";

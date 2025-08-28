@@ -107,5 +107,4 @@
       inputs.nix-library.follows = "nix-library";
     };
   };
-
 }

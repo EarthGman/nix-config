@@ -26,8 +26,7 @@ in
   "${mainMod}, F, fullscreen"
   "${mainMod}, R, exec, hyprctl reload"
   "${mainMod}, W, exec, rofi -show window"
-  "${mainMod} SHIFT, N, exec, swaync-client -op"
-  "${mainMod}, N, exec, swaync-client -cp"
+  "${mainMod}, N, exec, swaync-client -op"
   "${mainMod}, T, exec, hyprlock"
 
   "${mainMod}, left, movefocus, l"

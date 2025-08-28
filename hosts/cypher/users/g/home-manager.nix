@@ -11,6 +11,10 @@ in
     syncthing.enable = true;
   };
 
+  programs = {
+    libreoffice.enable = true;
+  };
+
   xdg.dataFile = {
     "PrismLauncher".source = ln "/home/g/games/PrismLauncher";
     "Terraria".source = ln "/home/g/games/SteamLibrary/game-saves/Terraria";
