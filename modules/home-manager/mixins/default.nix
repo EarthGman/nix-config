@@ -98,6 +98,11 @@ in
       waybar.systemd.enable = lib.mkDefault true;
       # works on both x11 and wayland
       rofi.package = lib.mkDefault pkgs.rofi-wayland;
+
+      ssh = {
+        enableDefaultConfig = false;
+      };
+
       nh = {
         enable = lib.mkDefault true;
         # only enable clean if nixos doesn't already have cleaning enabled

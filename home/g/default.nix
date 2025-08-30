@@ -63,7 +63,7 @@ in
 
       programs.ssh = {
         enable = true;
-        forwardAgent = true;
+        matchBlocks."*".forwardAgent = true;
         extraConfig = "IdentityAgent ${config.home.homeDirectory}/.1password/agent.sock";
       };
 
