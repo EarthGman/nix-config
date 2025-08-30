@@ -123,6 +123,11 @@ in
     };
 
     programs = {
+      gnupg.agent = {
+        enable = true;
+        enableSSHSupport = true;
+      };
+
       zoxide = {
         enable = lib.mkDefault true;
         flags = lib.mkDefault [

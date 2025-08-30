@@ -13,7 +13,7 @@ in
     type = lib.types.attrsOf lib.types.package;
     default = {
       rofi-wallpaper-switcher = import ./rofi-wallpaper-switcher.nix { inherit pkgs config; };
-      take-screenshot-wayland = import ./take-screenshot-wayland.nix { inherit pkgs getExe; };
+      take-screenshot-wayland = import ./take-screenshot-wayland.nix { inherit pkgs getExe config; };
       idle-daemon-event-handler = import ./idle-daemon-event-handler.nix { inherit pkgs; };
     };
   };

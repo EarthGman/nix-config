@@ -1,4 +1,9 @@
-{ pkgs, getExe, ... }:
+{
+  pkgs,
+  getExe,
+  config,
+  ...
+}:
 pkgs.writeShellScript "take-screenshot-wayland.sh" ''
   screenshot_dir=$XDG_SCREENSHOTS_DIR
   saved=false
@@ -55,7 +60,7 @@ pkgs.writeShellScript "take-screenshot-wayland.sh" ''
   esac
 
   if [ $saved == "true" ]; then
-    ${pkgs.libnotify}/bin/notify-send "Screenshot saved to ~/Pictures/screenshots
+    ${pkgs.libnotify}/bin/notify-send "Screenshot saved to ~/${config.home.sessionVariables.XDG_SCREENSHOTS_DIR}
   ''${timestamp}.png"
     exit 0
   fi
