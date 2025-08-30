@@ -15,6 +15,6 @@
       #   enable = lib.mkDefault true;
       # };
     };
-    environment.systemPackages = [ pkgs.openvpn ];
+    # environment.systemPackages = [ pkgs.openvpn ];
   };
 }
