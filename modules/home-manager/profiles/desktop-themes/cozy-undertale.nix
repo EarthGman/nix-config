@@ -13,12 +13,12 @@ in
   config = lib.mkIf cfg.enable {
     meta = {
       profiles.stylix = "spring-garden";
-      wallpaper = builtins.fetchurl pkgs.wallpapers.home;
+      wallpaper = pkgs.images.home;
     };
 
     gman = {
       profiles = {
-        firefox.shyfox.config.wallpaper = builtins.fetchurl pkgs.wallpapers.mt-ebott-alt;
+        firefox.shyfox.config.wallpaper = pkgs.images.mt-ebott-alt;
         waybar.windows-11.config.settings-unmerged."memory".format = "  {percentage}%";
       };
     };
@@ -31,13 +31,13 @@ in
       imageRandomizer = {
         enable = true;
         images = [
-          (builtins.fetchurl pkgs.icons.heart-red)
-          (builtins.fetchurl pkgs.icons.heart-blue)
-          (builtins.fetchurl pkgs.icons.heart-orange)
-          (builtins.fetchurl pkgs.icons.heart-pink)
-          (builtins.fetchurl pkgs.icons.heart-green)
-          (builtins.fetchurl pkgs.icons.heart-yellow)
-          (builtins.fetchurl pkgs.icons.heart-teal)
+          (pkgs.images.heart-red)
+          (pkgs.images.heart-blue)
+          (pkgs.images.heart-orange)
+          (pkgs.images.heart-pink)
+          (pkgs.images.heart-green)
+          (pkgs.images.heart-yellow)
+          (pkgs.images.heart-teal)
         ];
       };
     };

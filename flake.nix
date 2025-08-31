@@ -40,12 +40,6 @@
   inputs = {
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.0.tar.gz";
 
-    assets = {
-      url = "github:earthgman/assets";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nix-library.follows = "nix-library";
-    };
-
     determinate = {
       url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -104,7 +98,6 @@
     vim-config = {
       url = "github:EarthGman/vim-config";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nix-library.follows = "nix-library";
     };
   };
 }

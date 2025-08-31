@@ -19,14 +19,13 @@ in
       {
         meta = {
           profiles.stylix = "spring-garden";
-          wallpaper = builtins.fetchurl pkgs.wallpapers.omori-gang-5;
+          wallpaper = pkgs.images.omori-gang-5;
         };
 
-        gman.profiles.firefox.shyfox.config.wallpaper =
-          builtins.fetchurl pkgs.wallpapers.a-home-for-flowers;
+        gman.profiles.firefox.shyfox.config.wallpaper = pkgs.images.a-home-for-flowers;
 
         programs = {
-          fastfetch.image = builtins.fetchurl pkgs.icons.oops;
+          fastfetch.image = pkgs.images.oops;
 
           # remove swaylock blur
           swaylock.settings.effect-blur = "";

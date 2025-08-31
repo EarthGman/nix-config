@@ -5,7 +5,7 @@
 let
   liquidctl-profile = pkgs.writeScriptBin "liquidctl-profile" ''
     liquidctl --match kraken set external color fixed 2f18d6
-    liquidctl --match kraken set lcd screen gif ${builtins.fetchurl pkgs.icons.pluto-expanded}
+    liquidctl --match kraken set lcd screen gif ${pkgs.images.pluto-expanded}
     liquidctl --match kraken set pump speed 70
     liquidctl --match kraken set fan speed 70
   '';

@@ -42,7 +42,7 @@
         template = "https://noogle.dev/q?term={searchTerms}";
       }
     ];
-    icon = builtins.fetchurl pkgs.icons.lambda;
+    icon = pkgs.images.lambda;
     definedAliases = [ "@ngd" ];
   };
 }

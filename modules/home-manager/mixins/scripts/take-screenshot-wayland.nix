@@ -60,7 +60,7 @@ pkgs.writeShellScript "take-screenshot-wayland.sh" ''
   esac
 
   if [ $saved == "true" ]; then
-    ${pkgs.libnotify}/bin/notify-send "Screenshot saved to ~/${config.home.sessionVariables.XDG_SCREENSHOTS_DIR}
+    ${pkgs.libnotify}/bin/notify-send "Screenshot saved to ${config.home.sessionVariables.XDG_SCREENSHOTS_DIR}
   ''${timestamp}.png"
     exit 0
   fi

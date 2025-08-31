@@ -6,18 +6,18 @@
 }:
 let
   script = pkgs.writeShellScript "omori-calendar-project.sh" ''
-     January="${builtins.fetchurl pkgs.wallpapers.omori-january}"
-     February="${builtins.fetchurl pkgs.wallpapers.omori-february}"
-     March="${builtins.fetchurl pkgs.wallpapers.omori-march}"
-     April="${builtins.fetchurl pkgs.wallpapers.omori-april}"
-     May="${builtins.fetchurl pkgs.wallpapers.omori-may}"
-     June="${builtins.fetchurl pkgs.wallpapers.omori-june}"
-     July="${builtins.fetchurl pkgs.wallpapers.omori-july}"
-     August="${builtins.fetchurl pkgs.wallpapers.omori-august}"
-     September="${builtins.fetchurl pkgs.wallpapers.omori-september}"
-     October="${builtins.fetchurl pkgs.wallpapers.omori-october}"
-     November="${builtins.fetchurl pkgs.wallpapers.omori-november}"
-     December="${builtins.fetchurl pkgs.wallpapers.omori-december}"
+     January="${pkgs.images.omori-january}"
+     February="${pkgs.images.omori-february}"
+     March="${pkgs.images.omori-march}"
+     April="${pkgs.images.omori-april}"
+     May="${pkgs.images.omori-may}"
+     June="${pkgs.images.omori-june}"
+     July="${pkgs.images.omori-july}"
+     August="${pkgs.images.omori-august}"
+     September="${pkgs.images.omori-september}"
+     October="${pkgs.images.omori-october}"
+     November="${pkgs.images.omori-november}"
+     December="${pkgs.images.omori-december}"
 
      MONTH=$(date +"%B")
 

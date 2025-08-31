@@ -13,28 +13,27 @@ in
   config = lib.mkIf cfg.enable {
     services.swww.enable = true;
     meta = {
-      wallpaper = builtins.fetchurl pkgs.wallpapers.space-piano;
+      wallpaper = pkgs.images.space-piano;
       profiles.stylix = lib.mkForce "ashes";
     };
 
-    gman.profiles.firefox.shyfox.config.wallpaper = builtins.fetchurl pkgs.wallpapers.pixel-earth;
+    gman.profiles.firefox.shyfox.config.wallpaper = pkgs.images.pixel-earth;
 
     services.swww.slideshow = {
       enable = lib.mkDefault true;
       interval = lib.mkDefault 300;
-      #TODO ugly but will fix later
       images = [
-        (builtins.fetchurl pkgs.wallpapers.space-piano)
-        (builtins.fetchurl pkgs.wallpapers.space-jelly)
-        (builtins.fetchurl pkgs.wallpapers.black-hole)
-        (builtins.fetchurl pkgs.wallpapers.pixel-galaxy)
-        (builtins.fetchurl pkgs.wallpapers.galaxy)
-        (builtins.fetchurl pkgs.wallpapers.out-of-this-whirl)
-        (builtins.fetchurl pkgs.wallpapers.nebula)
-        (builtins.fetchurl pkgs.wallpapers.nebula-2)
-        (builtins.fetchurl pkgs.wallpapers.blue-marble)
-        (builtins.fetchurl pkgs.wallpapers.blue-marble-2)
-        (builtins.fetchurl pkgs.wallpapers.pixel-earth)
+        (pkgs.images.space-piano)
+        (pkgs.images.space-jelly)
+        (pkgs.images.black-hole)
+        (pkgs.images.pixel-galaxy)
+        (pkgs.images.galaxy)
+        (pkgs.images.out-of-this-whirl)
+        (pkgs.images.nebula)
+        (pkgs.images.nebula-2)
+        (pkgs.images.blue-marble)
+        (pkgs.images.blue-marble-2)
+        (pkgs.images.pixel-earth)
       ];
     };
   };

@@ -52,8 +52,8 @@ in
       terminal = lib.mkDefault "kitty";
       fileManager = lib.mkDefault "nautilus";
       editor = lib.mkDefault "nano";
-      #TODO move the assets repo to a website
-      wallpaper = lib.mkDefault (builtins.fetchurl pkgs.wallpapers.default);
+
+      wallpaper = lib.mkDefault pkgs.images.default;
 
       profiles = {
         desktopTheme = lib.mkDefault "astronaut";

@@ -23,6 +23,7 @@ in
       {
         programs = {
           tcpdump.enable = true;
+          lynx.enable = true;
 
           wireshark.enable = true;
           nmap.enable = true;
