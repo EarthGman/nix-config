@@ -119,6 +119,7 @@ in
     environment.systemPackages = builtins.attrValues {
       inherit (pkgs)
         libinput
+        file
         ;
     };
 

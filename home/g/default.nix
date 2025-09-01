@@ -10,9 +10,11 @@ let
   extraHM = ../../hosts/${hostname}/users/g/home-manager.nix;
 in
 {
-  imports = lib.optionals (builtins.pathExists extraHM) [
-    extraHM
-  ];
+  imports =
+    lib.optionals (builtins.pathExists extraHM) [
+      extraHM
+    ]
+    ++ [ ./identity.nix ];
 
   config = lib.mkMerge [
     {
@@ -30,20 +32,6 @@ in
       };
 
       programs = {
-        git = {
-          userName = "EarthGman";
-          userEmail = "EarthGman@protonmail.com";
-          signing = {
-            key = signingkey;
-            signByDefault = true;
-            signer = "";
-          };
-          extraConfig = {
-            gpg.format = "ssh";
-            gpg."ssh".program = "${pkgs._1password-gui}/bin/op-ssh-sign";
-            init.defaultBranch = "main";
-          };
-        };
         zsh = {
           shellAliases = {
             edit-config = "cd ~/src/github/earthgman/nix-config && $EDITOR .";
@@ -52,6 +40,13 @@ in
             export MANPAGER='nvim +Man!'
           '';
         };
+        ssh = {
+          enable = true;
+          matchBlocks."*" = {
+            forwardAgent = true;
+          };
+          # extraConfig = "IdentityAgent ${config.home.homeDirectory}/.1password/agent.sock";
+        };
 
         # use customized neovim
         neovim-custom = {
@@ -59,12 +54,6 @@ in
           viAlias = true;
           vimAlias = true;
         };
-      };
-
-      programs.ssh = {
-        enable = true;
-        matchBlocks."*".forwardAgent = true;
-        extraConfig = "IdentityAgent ${config.home.homeDirectory}/.1password/agent.sock";
       };
 
       wayland.windowManager.hyprland.settings = {

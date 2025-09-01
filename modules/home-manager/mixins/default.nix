@@ -71,6 +71,7 @@ in
     home = {
       packages = [
         pkgs.home-manager
+        pkgs.file
       ]
       ++ lib.optionals (pkgs.stdenv.isLinux) [
         pkgs.coreutils-full
@@ -108,11 +109,22 @@ in
         # only enable clean if nixos doesn't already have cleaning enabled
         clean.enable = if (nixosConfig != null) then (!nixosConfig.programs.nh.clean.enable) else true;
       };
+      gpg.enable = lib.mkDefault true;
+
+      password-store = {
+        enable = lib.mkDefault true;
+        package = lib.mkDefault (pkgs.pass.withExtensions (exts: [ exts.pass-otp ]));
+      };
     };
 
     services = {
       swaync.settings = {
         positionY = lib.mkDefault "bottom";
+      };
+      gpg-agent = {
+        enable = lib.mkDefault true;
+        pinentry.package = lib.mkDefault pkgs.pinentry-gnome3;
+        enableSshSupport = lib.mkDefault true;
       };
     };
 

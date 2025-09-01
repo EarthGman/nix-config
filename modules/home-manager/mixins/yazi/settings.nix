@@ -29,7 +29,7 @@
   opener = {
     edit = [
       {
-        run = ''${config.home.sessionVariables.EDITOR} "$@"'';
+        run = ''$EDITOR "$@"'';
         desc = "Open with $EDITOR";
         block = true;
         for = "unix";
