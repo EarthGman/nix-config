@@ -23,9 +23,17 @@
     };
 
     # battery notifier (gnome already has one)
-    services.batsignal.enable = lib.mkDefault (
-      config.meta.desktop == "hyprland" || config.meta.desktop == "sway"
-    );
+    services = {
+      batsignal.enable = lib.mkDefault (
+        config.meta.desktop == "hyprland" || config.meta.desktop == "sway"
+      );
+
+      # set a low timeout for gpg agent for security purposes
+      gpg-agent = {
+        maxCacheTtl = lib.mkDefault 120;
+        maxCacheTtlSsh = lib.mkDefault 120; # 2 minutes
+      };
+    };
 
     # some dependencies
     home.packages =
