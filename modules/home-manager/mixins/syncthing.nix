@@ -79,6 +79,15 @@
                   "think-one"
                 ];
               };
+              password-store = {
+                label = "Passwords";
+                id = "dspet-exglm";
+                path = "${config.programs.password-store.settings.PASSWORD_STORE_DIR}";
+                devices = [
+                  "cypher"
+                  "think-one"
+                ];
+              };
             };
           };
         };

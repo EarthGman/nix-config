@@ -93,7 +93,6 @@ gman = {
   hyprland = { ... };
   iphone = { ... };
   nh = { ... };
-  onepassword = { ... };
   pipewire = { ... };
   printing = { ... };
   profiles = { ... };

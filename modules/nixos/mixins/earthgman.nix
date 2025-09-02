@@ -44,7 +44,6 @@ in
       (lib.mkIf (config.meta.desktop != "") {
         gman = {
           android.enable = lib.mkDefault true;
-          onepassword.enable = lib.mkDefault true;
         };
 
         services.libinput = {
@@ -54,7 +53,6 @@ in
         hardware.keyboard.zsa.enable = lib.mkDefault true;
         programs = {
           keymapp.enable = lib.mkDefault (config.meta.desktop != null);
-          _1password-gui.polkitPolicyOwners = [ "g" ];
         };
       })
       (lib.mkIf (config.meta.server) {
