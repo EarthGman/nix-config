@@ -8,6 +8,8 @@
   };
 
   programs = {
+    switcheroo.enable = true;
+    bottles.enable = true;
     libreoffice.enable = true;
     discord.enable = true;
     sl.enable = true;
