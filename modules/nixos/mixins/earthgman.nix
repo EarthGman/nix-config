@@ -17,7 +17,6 @@ in
       {
         gman = {
           kanata.enable = lib.mkDefault true;
-          wireguard.wg0.enable = lib.mkDefault true;
         };
 
         services = {
