@@ -56,6 +56,8 @@ in
         };
       };
 
+      services.protonmail-bridge.enable = true;
+
       wayland.windowManager.hyprland.settings = {
         animations.enabled = false;
       };

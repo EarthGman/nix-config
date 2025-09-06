@@ -9,6 +9,7 @@
 
   programs = {
     libreoffice.enable = true;
+    switcheroo.enable = true;
     discord.enable = true;
     sl.enable = true;
     cmatrix.enable = true;
