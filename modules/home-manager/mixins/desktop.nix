@@ -30,8 +30,8 @@
 
       # set a low timeout for gpg agent for security purposes
       gpg-agent = {
-        maxCacheTtl = lib.mkDefault 120;
-        maxCacheTtlSsh = lib.mkDefault 120; # 2 minutes
+        maxCacheTtl = lib.mkDefault 300;
+        maxCacheTtlSsh = lib.mkDefault 300;
       };
     };
 
