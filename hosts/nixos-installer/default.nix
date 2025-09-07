@@ -15,6 +15,7 @@
   };
 
   # needed for some machines
+  boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
   hardware = {
     enableRedistributableFirmware = true;
 
