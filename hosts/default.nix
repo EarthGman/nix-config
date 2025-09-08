@@ -108,4 +108,12 @@
     configDir = ./nixos-installer;
     extraSpecialArgs = { inherit inputs; };
   };
+
+  installer-test = lib.mkHost {
+    hostname = "installer-test";
+    cpu = "intel";
+    gpu = "intel";
+    configDir = ./installer-test;
+    stateVersion = "25.11";
+  };
 }
