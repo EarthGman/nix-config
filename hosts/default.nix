@@ -106,5 +106,6 @@
     hostname = "nixos-installer";
     system = "x86_64-linux";
     configDir = ./nixos-installer;
+    extraSpecialArgs = { inherit inputs; };
   };
 }

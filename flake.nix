@@ -45,8 +45,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # disko 1.12.0 is seems very unstable right now
     disko = {
-      url = "https://flakehub.com/f/nix-community/disko/*";
+      url = "github:nix-community/disko/v1.11.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
