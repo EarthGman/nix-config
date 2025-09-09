@@ -8,6 +8,7 @@
   };
 
   programs = {
+    zotero.enable = true;
     bottles.enable = true;
     libreoffice.enable = true;
     switcheroo.enable = true;

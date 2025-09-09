@@ -23,6 +23,7 @@
   };
 
   programs = {
+    zotero.enable = true;
     ffxiv-launcher.enable = true;
     lutris.enable = true;
     bottles.enable = true;
