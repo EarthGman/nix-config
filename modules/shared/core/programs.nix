@@ -509,5 +509,11 @@ in
       description = "video chat and meeting app";
       inherit pkgs;
     };
+
+    zotero = mkProgramOption {
+      programName = "zotero";
+      description = "Collect, organize, cite, and share your research sources";
+      inherit pkgs;
+    };
   };
 }
