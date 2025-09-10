@@ -84,6 +84,8 @@ in
       };
     };
 
+    console.useXkbConfig = true;
+
     networking = {
       hostName = config.meta.hostname;
       # hardware-configuration.nix has always had this on
