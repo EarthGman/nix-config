@@ -97,8 +97,6 @@ in
       fastfetch.enable = lib.mkDefault true;
       gh.enable = lib.mkDefault true;
       waybar.systemd.enable = lib.mkDefault true;
-      # works on both x11 and wayland
-      rofi.package = lib.mkDefault pkgs.rofi-wayland;
 
       ssh = {
         enableDefaultConfig = false;
