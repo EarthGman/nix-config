@@ -1,5 +1,6 @@
 {
   inputs,
+  lib,
   pkgs,
   config,
   ...
@@ -85,6 +86,7 @@
 
   programs = {
     cutentr.enable = true;
+    davinci-resolve.enable = true;
     bottles.enable = true;
     filezilla.enable = true;
     gimp.enable = true;
@@ -94,6 +96,7 @@
       package = inputs.prismlauncher.packages.${config.meta.system}.default;
     };
     gnome-software.enable = true;
+    gcolor.enable = true;
     musescore.enable = true;
     lutris.enable = true;
     ledger-live-desktop.enable = true;
@@ -110,9 +113,6 @@
   };
 
   services = {
-    # for vinegar and sober (roblox) un-sandboxed doesn't work well
-    flatpak.enable = true;
-
     # remote desktop
     sunshine = {
       enable = true;

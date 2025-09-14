@@ -97,7 +97,7 @@ in
 
     users = {
       mutableUsers = lib.mkDefault false;
-      users.root.shell = lib.mkOverride 800 pkgs.zsh;
+      defaultUserShell = lib.mkOverride 800 pkgs.zsh;
     };
 
     nix = {

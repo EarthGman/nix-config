@@ -22,6 +22,8 @@ in
       hyprland.enable = (config.meta.desktop == "hyprland");
       sway.enable = (config.meta.desktop == "sway");
       gnome.enable = (config.meta.desktop == "gnome");
+
+      hardware-tools.enable = lib.mkDefault true;
     };
 
     # additional boilerplate
@@ -31,6 +33,18 @@ in
         # config.boot.kernelPackages.v4l2loopback
       ];
     };
+
+    services.flatpak.enable = true;
+    # flatpak frontend
+    programs.gnome-software.enable = true;
+    systemd.services.flatpak-repo = {
+      wantedBy = [ "multi-user.target" ];
+      path = [ pkgs.flatpak ];
+      script = ''
+        flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+      '';
+    };
+
     hardware.graphics = {
       enable = true;
       enable32Bit = lib.mkDefault true;

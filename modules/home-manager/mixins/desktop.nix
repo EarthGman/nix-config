@@ -16,9 +16,13 @@
     };
 
     programs = {
+      # image viewer
       gthumb.enable = lib.mkDefault true;
+      # video player
       vlc.enable = lib.mkDefault true;
+      # pdf viewer
       evince.enable = lib.mkDefault true;
+      # basic calculator
       gnome-calculator.enable = lib.mkDefault true;
     };
 
@@ -28,10 +32,9 @@
         config.meta.desktop == "hyprland" || config.meta.desktop == "sway"
       );
 
-      # set a low timeout for gpg agent for security purposes
       gpg-agent = {
-        maxCacheTtl = lib.mkDefault 300;
-        maxCacheTtlSsh = lib.mkDefault 300;
+        maxCacheTtl = lib.mkDefault 600;
+        maxCacheTtlSsh = lib.mkDefault 600;
       };
     };
 

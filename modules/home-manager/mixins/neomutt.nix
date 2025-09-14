@@ -9,6 +9,9 @@
 
   config = lib.mkIf config.gman.neomutt.enable {
     programs = {
+      # address book
+      abook.enable = true;
+
       password-store.enable = true;
       neomutt = {
         enable = true;

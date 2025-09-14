@@ -9,5 +9,6 @@ builtins.attrValues {
     nix-init
     nix-update
     nixpkgs-review
+    nixfmt
     ;
 }
