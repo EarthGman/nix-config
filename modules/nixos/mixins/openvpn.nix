@@ -10,11 +10,10 @@
   config = lib.mkIf config.gman.openvpn.enable {
     networking.networkmanager.plugins = [ pkgs.networkmanager-openvpn ];
     programs = {
-      # doesn't build 8-30-2025
-      # openvpn3 = {
-      #   enable = lib.mkDefault true;
-      # };
+      openvpn3 = {
+        enable = lib.mkDefault true;
+      };
     };
-    # environment.systemPackages = [ pkgs.openvpn ];
+    environment.systemPackages = [ pkgs.openvpn ];
   };
 }
