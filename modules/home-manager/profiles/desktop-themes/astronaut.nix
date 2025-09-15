@@ -11,7 +11,6 @@ in
   options.gman.profiles.desktopThemes.astronaut.enable =
     lib.mkEnableOption "gman's space theme for sway hyprland and gnome";
   config = lib.mkIf cfg.enable {
-    services.swww.enable = true;
     meta = {
       wallpaper = pkgs.images.space-piano;
       profiles.stylix = lib.mkForce "ashes";
