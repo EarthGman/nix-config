@@ -4,8 +4,12 @@
   lib,
   config,
   modulesPath,
+  inputs,
   ...
 }:
+let
+  install-sh = pkgs.writeShellScriptBin "install.sh" (builtins.readFile ./install.sh);
+in
 {
   imports = [ (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix") ];
 
@@ -23,12 +27,35 @@
     cpu.amd.updateMicrocode = false;
   };
 
-  users.users.root = {
-    shell = pkgs.zsh;
-    openssh.authorizedKeys.keys = [
-      config.gman.ssh-keys.g
+  services.getty.helpLine = lib.mkForce ''
+    Welcome to EarthGman's NixOS installer.
+
+    To log in over ssh, set a password for the root user with `sudo passwd`
+
+    Begin install by running `install.sh` as root.
+  '';
+
+  environment = {
+    systemPackages = [
+      # disko v11
+      inputs.disko.packages.${config.meta.system}.disko
+      install-sh
+      pkgs.nixfmt
     ];
+
+    # these are not set properly on nixos by default
+    sessionVariables = {
+      SYSTEMD_KEYMAP_DIRECTORIES = "${pkgs.kbd}/share/keymaps";
+    };
+
+    #	make all possible locales accessible for install script
+    etc = {
+      "locales.txt".source = ./locales.txt;
+    };
   };
+
+  # zsh will complain about no config file in the home directory
+  users.users.nixos.shell = pkgs.bash;
 
   time.timeZone = "America/Chicago";
 
