@@ -1,5 +1,6 @@
 {
   inputs,
+  lib,
   pkgs,
   ...
 }:
@@ -15,7 +16,10 @@
     openvpn.enable = true;
   };
 
-  programs.neovim-custom.package = pkgs.nvim-nix;
+  programs.neovim-custom = {
+    enable = true;
+    package = pkgs.nvim-nix;
+  };
 
   services.openssh.settings = {
     PasswordAuthentication = true;
@@ -46,11 +50,21 @@
     variant = "";
   };
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  boot.loader.grub.extraEntries = lib.mkForce ''
+    menuentry 'Windows 11' --class windows --class os {
+      insmod part_gpt
+      insmod ntfs
+      search --no-floppy --fs-uuid --set=root 2727-C821
+      chainloader /efi/Microsoft/Boot/bootmgfw.efi
+    }
+    menuentry 'UEFI Firmware Setup' --id 'uefi-firmware' {
+      fwsetup
+    } 
+    menuentry "Reboot" {
+      reboot
+    }
+    menuentry "Poweroff" {
+      halt
+    } 
+  '';
 }
