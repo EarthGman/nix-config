@@ -16,8 +16,17 @@
   };
 
   services = {
-    flatpak.enable = true;
     xserver.xkb.layout = "jp";
+
+    # used for mw -t
+    cron = {
+      enable = true;
+    };
+  };
+
+  security.pam.services.login.gnupg = {
+    enable = true;
+    storeOnly = true;
   };
 
   networking.firewall = {
@@ -41,6 +50,7 @@
 
   programs = {
     # lens.enable = true;
+    simple-scan.enable = true;
     gimp.enable = true;
     libreoffice.enable = true;
     filezilla.enable = true;
