@@ -116,4 +116,16 @@
     configDir = ./installer-test;
     stateVersion = "25.11";
   };
+
+  eve = lib.mkHost {
+    hostname = "eve";
+    stateVersion = "25.11";
+    system = "x86_64-linux";
+    server = false;
+    cpu = "intel";
+    gpu = "intel";
+    desktop = "hyprland";
+    configDir = ./eve;
+    users = [ "bean" ];
+  };
 }
