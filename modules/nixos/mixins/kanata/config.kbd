@@ -41,13 +41,6 @@
 )
 
 (deflayermap (helper)
-  h left
-  j down
-  k up
-  l right
-
-  spc M-spc
-
   a S--
   q S-1
   w S-2
@@ -63,10 +56,14 @@
   v \
   b S-0
 
-	i S-,
+  h left
+  j down
+  k up
+  l right
+  i S-,
   o S-.
-	u -
-	p S-7
-	n S-IntlYen
-	m S-IntlRo
+  u -
+  p S-7
+  n S-IntlYen
+  m S-IntlRo
 )

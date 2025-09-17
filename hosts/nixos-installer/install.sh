@@ -301,12 +301,21 @@ function format_disks {
 	parted -a optimal -s $SELECTED_DISK mklabel gpt mkpart "EFI" 0% 512MiB && parted -s $SELECTED_DISK set 1 esp on
 	parted -s $SELECTED_DISK mkpart "root" 512MiB 100%
 
-	mkfs.fat -F 32 "$SELECTED_DISK""1"
-	mkfs.ext4 "$SELECTED_DISK""2"
+	if [[ $(echo $SELECTED_DISK | grep "nvme") ]]; then
+		mkfs.fat -F 32 "$SELECTED_DISK""p1"
+		mkfs.ext4 "$SELECTED_DISK""p2"
 
-	mount "$SELECTED_DISK""2" /mnt
-	mkdir -p /mnt/boot
-	mount "$SELECTED_DISK""1" /mnt/boot
+		mount "$SELECTED_DISK""p2" /mnt
+		mkdir -p /mnt/boot
+		mount "$SELECTED_DISK""p1" /mnt/boot
+	else
+		mkfs.fat -F 32 "$SELECTED_DISK""1"
+		mkfs.ext4 "$SELECTED_DISK""2"
+
+		mount "$SELECTED_DISK""2" /mnt
+		mkdir -p /mnt/boot
+		mount "$SELECTED_DISK""1" /mnt/boot
+	fi
 }
 
 function main {
