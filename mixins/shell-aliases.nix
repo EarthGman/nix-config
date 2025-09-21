@@ -16,6 +16,7 @@ in
   ff = lib.mkIf config.programs.fastfetch.enable "fastfetch";
   hh = lib.mkIf config.programs.hstr.enable "hstr";
   lg = lib.mkIf has-git "lazygit";
+  ni = lib.mkIf config.programs.nix-inspect.enable "nix-inspect";
   ga = lib.mkIf has-git "git add .";
   gco = lib.mkIf has-git "git checkout";
   gba = lib.mkIf has-git "git branch -a";

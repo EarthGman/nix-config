@@ -80,6 +80,7 @@ in
     };
 
     programs = {
+      nix-inspect.enable = true;
       firefox.enable = (config.meta.browser == "firefox");
       brave.enable = (config.meta.browser == "brave");
       thunderbird.imperativeConfig = lib.mkDefault true;

@@ -126,6 +126,7 @@ in
     };
 
     programs = {
+      nix-inspect.enable = true;
       gnupg.agent = {
         enable = true;
         enableSSHSupport = true;

@@ -320,6 +320,12 @@ in
       vimAlias = mkEnableOption "vim alias";
     };
 
+    nix-inspect = mkProgramOption {
+      programName = "nix-inspect";
+      description = "a inspection tool for nix";
+      inherit pkgs;
+    };
+
     nmap = mkProgramOption {
       programName = "nmap";
       description = "a network scanning tool";
