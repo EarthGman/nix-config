@@ -18,6 +18,7 @@ in
         10.0.25.5 home-nas
         10.0.25.6 mc112
         10.0.25.7 mc112-blueprints
+        10.0.25.8 home-jellyfin
         10.0.25.32 prox2
       '';
 

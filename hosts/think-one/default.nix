@@ -18,10 +18,7 @@
   services = {
     xserver.xkb.layout = "jp";
 
-    # used for mw -t
-    cron = {
-      enable = true;
-    };
+    postgresql.enable = true;
   };
 
   security.pam.services.login.gnupg = {

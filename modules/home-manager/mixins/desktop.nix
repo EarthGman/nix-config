@@ -31,11 +31,6 @@
       batsignal.enable = lib.mkDefault (
         config.meta.desktop == "hyprland" || config.meta.desktop == "sway"
       );
-
-      gpg-agent = {
-        maxCacheTtl = lib.mkDefault 600;
-        maxCacheTtlSsh = lib.mkDefault 600;
-      };
     };
 
     # some dependencies

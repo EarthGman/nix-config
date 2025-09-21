@@ -70,7 +70,7 @@ in
         freetube.enable = lib.mkDefault true;
         moonlight.enable = lib.mkDefault true;
         discord.enable = lib.mkDefault true;
-        protonmail-desktop.enable = lib.mkDefault true;
+        # protonmail-desktop.enable = lib.mkDefault true;
       };
     })
   ];
