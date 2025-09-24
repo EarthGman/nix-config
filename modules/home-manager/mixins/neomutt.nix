@@ -48,6 +48,15 @@ in
           # set gpg-agent to 400 days so email sync doesn't prompt for password
           maxCacheTtl = 34560000;
         };
+
+        # mutt wizard hardcodes the config files to the nix store.
+        # so when the path changes due to a flake update your email accounts break, YAY
+        # provide the required files in ~/.config/mutt/mutt-wizard for accounts to source
+        xdg.configFile = {
+          "mutt/mutt-wizard/mutt-wizard.muttrc".source =
+            "${pkgs.mutt-wizard}/share/mutt-wizard/mutt-wizard.muttrc";
+          "mutt/mutt-wizard/switch.muttrc".source = "${pkgs.mutt-wizard}/share/mutt-wizard/switch.muttrc";
+        };
       }
       (lib.mkIf cfg.config.mailsync.enable {
         systemd.user = {

@@ -31,6 +31,7 @@ in
       kitty.enable = lib.mkDefault (config.meta.terminal == "kitty");
       yazi.enable = lib.mkDefault true;
       sops.enable = (config.meta.secretsFile != null);
+      password-store.enable = lib.mkDefault true;
       lh-mouse.enable = lib.mkDefault (
         nixosConfig != null && nixosConfig.services.libinput.mouse.leftHanded
       );
@@ -109,11 +110,6 @@ in
         clean.enable = if (nixosConfig != null) then (!nixosConfig.programs.nh.clean.enable) else true;
       };
       gpg.enable = lib.mkDefault true;
-
-      password-store = {
-        enable = lib.mkDefault true;
-        package = lib.mkDefault (pkgs.pass.withExtensions (exts: [ exts.pass-otp ]));
-      };
     };
 
     services = {
@@ -121,8 +117,7 @@ in
         positionY = lib.mkDefault "bottom";
       };
       gpg-agent = {
-        enable = lib.mkDefault true;
-        pinentry.package = lib.mkDefault pkgs.pinentry-gnome3;
+        pinentry.package = lib.mkDefault pkgs.pinentry-tty;
         enableSshSupport = lib.mkDefault true;
       };
     };

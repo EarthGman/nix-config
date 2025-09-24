@@ -1,3 +1,9 @@
+9-23-2025
+- seperate password-store modules for home-manager
+
+- did alot of stuff, I kind of lost track since last month
+
+
 8-27-2025
 - remove gamemode from steam module
 - moved keybind for sway nc from $mainmod+shift+n to $mainmod+n for sway and hyprland

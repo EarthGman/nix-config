@@ -13,12 +13,11 @@
     wireguard.homelab.enable = true;
     hacker-mode.enable = true;
     earthgman.enable = true;
+    postgresql.enable = true;
   };
 
   services = {
     xserver.xkb.layout = "jp";
-
-    postgresql.enable = true;
   };
 
   security.pam.services.login.gnupg = {

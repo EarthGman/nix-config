@@ -79,6 +79,6 @@ Imperative actions after install
 # TODO
 - [ ] add more showcase pictures
 - [ ] rewrite old desktop themes from v6
-- [ ] cache website
-- [ ] install.sh
+- [x] cache website
+- [x] install.sh
 - [ ] configuration TUI written in rust
