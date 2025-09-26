@@ -14,7 +14,20 @@
         it will not work properly on MacOS, and mpd will have to reconfigured.
       ''
     ];
-    home.packages = [ pkgs.yt-dlp ];
+
+    programs.yt-dlp = {
+      enable = true;
+      package = pkgs.yt-dlp.overrideAttrs (old: rec {
+        version = "2025.09.23";
+
+        src = pkgs.fetchFromGitHub {
+          owner = "yt-dlp";
+          repo = "yt-dlp";
+          tag = version;
+          hash = "sha256-pqdR1JfiqvBs5vSKF7bBBKqq0DRAi3kXCN1zDvaW3nQ=";
+        };
+      });
+    };
 
     programs.rmpc = {
       enable = true;

@@ -12,6 +12,7 @@ let
   pamixer = lib.getExe pkgs.pamixer;
   brightnessctl = lib.getExe pkgs.brightnessctl;
   screenshot = config.gman.scripts.take-screenshot-wayland;
+  screenshotKey = config.gman.hyprland.config.screenshotKey;
 in
 [
   "${mainMod}, Return, exec, ${terminal}"
@@ -76,9 +77,9 @@ in
   # "${mainMod}, mouse_down, workspace, e+1"
   # "${mainMod}, mouse_up, workspace, e-1"
 
-  ", Print, exec, ${screenshot} selection"
-  "SHIFT, Print, exec, ${screenshot} screen"
-  "Control, Print, exec, ${screenshot} window"
+  ", ${screenshotKey}, exec, ${screenshot} selection"
+  "SHIFT, ${screenshotKey}, exec, ${screenshot} screen"
+  "Control, ${screenshotKey}, exec, ${screenshot} window"
 
   "${mainMod}, B, exec, ${browser}"
 

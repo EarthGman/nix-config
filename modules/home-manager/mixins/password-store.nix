@@ -37,11 +37,9 @@ in
           };
         };
       }
-      # (
-      #   lib.mkIf config.meta.desktop != "" {
-      #     services.gpg-agent.package = pkgs.pinentry-gnome3;
-      #   }
-      # )
+      (lib.mkIf (config.meta.desktop != "") {
+        services.gpg-agent.pinentry.package = pkgs.pinentry-gnome3;
+      })
     ]
   );
 }

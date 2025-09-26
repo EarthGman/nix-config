@@ -4,6 +4,7 @@
 
   # hyprland
   wayland.windowManager.hyprland.settings.monitor = [ "eDP-1, preferred, auto, 1.5" ];
+  gman.hyprland.config.screenshotKey = "Alt_R";
 
   # programs
   programs.thunderbird.enable = true;

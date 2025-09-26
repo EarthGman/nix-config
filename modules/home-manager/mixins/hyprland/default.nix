@@ -17,6 +17,11 @@ in
         default = "SUPER";
         example = "Alt";
       };
+      screenshotKey = lib.mkOption {
+        description = "The keyboard key used for taking screenshots";
+        type = lib.types.str;
+        default = "Print";
+      };
     };
   };
 

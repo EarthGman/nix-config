@@ -1,3 +1,10 @@
+# for all components of this module to work, you must enable pam-gnupg.so for "login"
+# see https://github.com/cruegge/pam-gnupg for instructions
+# for nixos use
+# security.pam.services.login.pam-gnupg = {
+#   enable = true;
+#   storeOnly = true;
+# }
 {
   pkgs,
   lib,
@@ -30,8 +37,10 @@ in
         programs = {
           # address book
           abook.enable = true;
-
+          # store passwords using mutt wizard
           password-store.enable = true;
+
+          gpg.enable = true;
           neomutt = {
             enable = true;
           };
@@ -45,8 +54,13 @@ in
             ;
         };
         services.gpg-agent = {
+          enable = true;
           # set gpg-agent to 400 days so email sync doesn't prompt for password
           maxCacheTtl = 34560000;
+          # TODO: gpg-agent unlock with lockscreen. Gnome swaylock and hyprlock which should be possible with pam-gnupg
+          # gpg does not lock when screen is up so a DMA attack is possible. https://en.wikipedia.org/wiki/DMA_attack
+          # as a temporary fix The key vault will remain unlocked for 8 hours after mailsync is last run
+          defaultCacheTtl = 28800;
         };
 
         # mutt wizard hardcodes the config files to the nix store.

@@ -31,6 +31,8 @@
       batsignal.enable = lib.mkDefault (
         config.meta.desktop == "hyprland" || config.meta.desktop == "sway"
       );
+      # use a graphical pinentry for gpg-agent
+      gpg-agent.pinentry.package = lib.mkOverride 899 pkgs.pinentry-gnome3;
     };
 
     # some dependencies
