@@ -30,7 +30,6 @@ in
     boot.kernelModules = lib.mkIf (config.meta.cpu != "") [ "kvm-${config.meta.cpu}" ];
     environment.systemPackages = builtins.attrValues {
       inherit (pkgs)
-        qemu_kvm
         virtiofsd # file system sharing with VMs
         ;
     };

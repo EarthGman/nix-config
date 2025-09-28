@@ -19,6 +19,11 @@ in
           kanata.enable = lib.mkDefault true;
         };
 
+        security.pam.services.login.gnupg = {
+          enable = lib.mkDefault true;
+          storeOnly = lib.mkDefault true;
+        };
+
         services = {
           # ensure that password ssh authentication is disabled
           openssh.settings = {

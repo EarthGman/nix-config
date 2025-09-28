@@ -32,9 +32,9 @@ in
             pinentry.package = lib.mkOverride 899 pkgs.pinentry-tty;
           };
 
-          pass-secret-service = {
-            enable = true;
-          };
+          # pass-secret-service = {
+          #   enable = true;
+          # };
         };
       }
       (lib.mkIf (config.meta.desktop != "") {
