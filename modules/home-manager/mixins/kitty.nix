@@ -20,7 +20,7 @@ in
     programs.kitty = {
       enable = true;
       settings = {
-        font_family = "MesloLGS Nerd Font";
+        # font_family = "MesloLGS Nerd Font";
         update_check_interval = 0;
         tab_bar_style = "powerline";
         tab_powerline_style = "slanted";

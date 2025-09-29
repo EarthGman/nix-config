@@ -11,8 +11,5 @@
         terminal = lib.mkOverride 799 12;
       };
     };
-    gman = {
-      profiles.waybar.windows-11.config.small = true;
-    };
   };
 }

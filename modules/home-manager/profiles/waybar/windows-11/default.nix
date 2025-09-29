@@ -6,6 +6,7 @@
 }@args:
 let
   cfg = config.gman.profiles.waybar.windows-11;
+  small = config.gman.smallscreen.enable;
   nixosConfig = if args ? nixosConfig then args.nixosConfig else null;
 in
 {
@@ -13,7 +14,6 @@ in
     enable = lib.mkEnableOption "windows 11 -ish style for waybar";
 
     config = {
-      small = lib.mkEnableOption "small form factor for the windows 11 style waybar";
       settings-unmerged = lib.mkOption {
         description = "settings for direct tweaks before they are merged into programs.waybar.settings";
         type = lib.types.attrsOf lib.types.anything;
@@ -52,7 +52,7 @@ in
           ];
 
           style =
-            if cfg.config.small then
+            if small then
               (import ./style-small.nix { inherit config; })
             else
               (import ./style.nix { inherit config; });
@@ -65,7 +65,7 @@ in
           };
         };
       }
-      (lib.mkIf cfg.config.small {
+      (lib.mkIf small {
         # remove network traffic monitor to conserve space
         gman.profiles.waybar.windows-11.config.settings-unmerged = {
           height = 30;

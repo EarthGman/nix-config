@@ -32,6 +32,12 @@
     };
 
     profiles = {
+      conky = lib.mkOption {
+        description = "which conky configuration to use";
+        type = lib.types.str;
+        default = "";
+      };
+
       desktopTheme = lib.mkOption {
         description = "which desktop theme is enabled if any";
         type = lib.types.str;

@@ -1,4 +1,5 @@
 {
+  pkgs,
   config,
   ...
 }:
@@ -6,6 +7,11 @@ let
   ln = config.lib.file.mkOutOfStoreSymlink;
 in
 {
+
+  meta = {
+    profiles.desktopTheme = "the-world-machine";
+  };
+
   gman = {
     rmpc.enable = true;
     syncthing.enable = true;

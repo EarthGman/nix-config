@@ -6,6 +6,8 @@
     syncthing.enable = true;
   };
 
+  meta.profiles.desktopTheme = "the-world-machine";
+
   gman.profiles.waybar.windows-11.config.settings-unmerged = {
     modules-left = [
       "custom/settings-menu"

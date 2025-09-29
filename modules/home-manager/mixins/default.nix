@@ -38,6 +38,7 @@ in
 
       profiles = {
         stylix = enableProfile "stylix";
+        conky = enableProfile "conky";
         desktopThemes = enableProfile "desktopTheme";
         firefox = enableProfile "firefox";
         fastfetch = enableProfile "fastfetch";

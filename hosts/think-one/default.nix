@@ -20,11 +20,6 @@
     xserver.xkb.layout = "jp";
   };
 
-  security.pam.services.login.gnupg = {
-    enable = true;
-    storeOnly = true;
-  };
-
   networking.firewall = {
     allowedTCPPorts = [ 22000 ];
     allowedUDPPorts = [
