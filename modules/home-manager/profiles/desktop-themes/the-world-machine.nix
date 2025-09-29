@@ -57,5 +57,15 @@ in
     services.conky = {
       enable = lib.mkDefault true;
     };
+
+    wayland.windowManager = {
+      sway.config.startup = [
+        {
+          command = "systemctl --user restart conky";
+          always = true;
+        }
+      ];
+      hyprland.settings.exec = [ "systemctl --user restart conky" ];
+    };
   };
 }
