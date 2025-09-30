@@ -57,6 +57,7 @@ in
         hardware.keyboard.zsa.enable = lib.mkDefault true;
         programs = {
           keymapp.enable = lib.mkDefault true;
+          calcure.enable = lib.mkDefault true;
         };
       })
       (lib.mkIf (config.meta.server) {

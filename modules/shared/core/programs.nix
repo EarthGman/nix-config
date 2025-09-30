@@ -62,6 +62,12 @@ in
       inherit pkgs;
     };
 
+    calcure = mkProgramOption {
+      programName = "calcure";
+      description = "a TUI calendar for day planning";
+      inherit pkgs;
+    };
+
     cbonsai = mkProgramOption {
       programName = "cbonsai";
       description = "a randomized bonsai tree generator for your terminal";
