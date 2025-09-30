@@ -42,4 +42,8 @@
     sl.enable = true;
   };
 
+  environment.systemPackages = with pkgs.coolercontrol; [
+    coolercontrol-gui
+    coolercontrold
+  ];
 }
