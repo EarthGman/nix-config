@@ -20,6 +20,11 @@ in
     ", preferred, auto, 1"
   ];
 
+  # exec one time at login
+  exec-once = [
+    "uwsm finalize"
+  ];
+
   # exec at every reload (Mod+r)
   exec = [
     "systemctl --user restart swww"

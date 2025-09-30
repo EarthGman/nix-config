@@ -41,6 +41,7 @@
 
   programs = {
     # lens.enable = true;
+    bustle.enable = true;
     simple-scan.enable = true;
     gimp.enable = true;
     libreoffice.enable = true;

@@ -5,7 +5,7 @@
   ...
 }:
 {
-  options.gman.openvpn.enable = lib.mkEnableOption "gman's openvpn desktop module";
+  options.gman.openvpn.enable = lib.mkEnableOption "gman's openvpn module";
 
   config = lib.mkIf config.gman.openvpn.enable {
     networking.networkmanager.plugins = [ pkgs.networkmanager-openvpn ];

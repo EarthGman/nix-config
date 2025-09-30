@@ -56,7 +56,7 @@ in
         };
         hardware.keyboard.zsa.enable = lib.mkDefault true;
         programs = {
-          keymapp.enable = lib.mkDefault (config.meta.desktop != null);
+          keymapp.enable = lib.mkDefault true;
         };
       })
       (lib.mkIf (config.meta.server) {
