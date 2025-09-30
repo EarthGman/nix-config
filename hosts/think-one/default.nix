@@ -10,7 +10,6 @@
   gman = {
     steam.enable = true;
     wireguard.main.enable = true;
-    wireguard.homelab.enable = true;
     hacker-mode.enable = true;
     earthgman.enable = true;
     postgresql.enable = true;

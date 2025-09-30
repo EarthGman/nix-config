@@ -18,7 +18,6 @@
     qemu-kvm.enable = true;
     # conflicts with zsa moonlander
     wireguard.main.enable = true;
-    wireguard.homelab.enable = true;
     kanata.enable = false;
     earthgman.enable = true;
     steam.enable = true;

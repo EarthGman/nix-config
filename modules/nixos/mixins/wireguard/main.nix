@@ -9,33 +9,36 @@ let
   cfg = config.gman.wireguard.main;
 in
 {
-  options.gman.wireguard.main.enable = mkEnableOption "gman's main wireguard hub";
+  options.gman.wireguard.main.enable = mkEnableOption "gmans wireguard vpn";
   config = mkIf cfg.enable {
-    sops.secrets.wg0_conf.path = "/etc/wireguard/wg0.conf";
+    sops.secrets.wg1_conf.path = "/etc/wireguard/wg1.conf";
     networking = {
-      firewall.allowedUDPPorts = [ 51820 ];
+      firewall.allowedUDPPorts = [ 51821 ];
+
+      # static host mapping for peers
       extraHosts = ''
-        10.0.24.2 cypher
-        10.0.24.3 think-one
+        10.0.25.2 cypher
+        10.0.25.3 think-one
       '';
       # work around the wireguard endpoint bug
       networkmanager.dispatcherScripts = [
         {
-          source = pkgs.writeText "wg0hook" ''
-            if [[ "$1" == "wg"* ]]; then
+          source = pkgs.writeText "wireguard-hook" ''
+            if [[ "$1" == "wg"* || "$1" == "virbr"* ]]; then
               exit 0
             fi
 
             if [ "$2" == "up" ]; then
-              systemctl restart wg-quick-wg0
+              systemctl restart wg-quick-wg1
             fi
           '';
         }
       ];
+
       wg-quick.interfaces = {
-        wg0 = {
-          autostart = false;
-          configFile = config.sops.secrets.wg0_conf.path; # store whole file in secrets
+        wg1 = {
+          autostart = lib.mkDefault false;
+          configFile = config.sops.secrets.wg1_conf.path; # store whole file in secrets
         };
       };
     };
