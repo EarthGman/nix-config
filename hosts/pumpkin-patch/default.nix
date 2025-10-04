@@ -41,12 +41,15 @@
   services.displayManager.sddm.enable = true;
 
   # nvidia 575
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-    version = "575.64.05";
-    sha256_64bit = "sha256-hfK1D5EiYcGRegss9+H5dDr/0Aj9wPIJ9NVWP3dNUC0=";
-    settingsSha256 = lib.fakeSha256;
-    persistencedSha256 = lib.fakeSha256;
+  hardware.nvidia = {
+    gsp.enable = false;
+    open = false;
+    package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+      version = "575.64.05";
+      sha256_64bit = "sha256-hfK1D5EiYcGRegss9+H5dDr/0Aj9wPIJ9NVWP3dNUC0=";
+      settingsSha256 = lib.fakeSha256;
+      persistencedSha256 = lib.fakeSha256;
+    };
   };
-
   nixpkgs.config.nvidia.acceptLicense = true;
 }
