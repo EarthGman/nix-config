@@ -31,13 +31,10 @@ in
         set -g mouse on
         set -g allow-passthrough on
         set-option -g status-position top
-        bind -n S-Left previous-window
-        bind -n S-Right next-window
 
         set -g @dracula-show-powerline true
         set -g @dracula-show-left-icon "${cfg.config.hostIcon}#h"
-        set -g @dracula-plugins "battery cpu-usage ram-usage time"
-        set -g @dracula-military-time true
+        set -g @dracula-plugins "battery" 
         set -g @dracula-no-battery-label 󱉝
         set -g @dracula-battery-label " "
         set -g @dracula-show-battery-status true

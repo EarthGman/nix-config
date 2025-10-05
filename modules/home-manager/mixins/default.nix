@@ -84,7 +84,9 @@ in
     programs = {
       nix-inspect.enable = true;
       firefox.enable = (config.meta.browser == "firefox");
+      qutebrowser.enable = (config.meta.browser == "qutebrowser");
       brave.enable = (config.meta.browser == "brave");
+
       thunderbird.imperativeConfig = lib.mkDefault true;
 
       nautilus.enable = (config.meta.fileManager == "nautilus");

@@ -1,10 +1,16 @@
-{ ... }:
+{ config, ... }:
 {
   gman = {
     smallscreen.enable = true;
     rmpc.enable = true;
     syncthing.enable = true;
   };
+
+  #TODO: rofi-pass script is broken and unmaintained
+  # programs.rofi.pass = {
+  #   enable = true;
+  #   stores = [ config.programs.password-store.settings.PASSWORD_STORE_DIR ];
+  # };
 
   meta.profiles.desktopTheme = "the-world-machine";
 

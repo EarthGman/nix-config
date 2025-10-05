@@ -16,6 +16,9 @@ in
       btop.package = pkgs.btop-cuda;
       sway.extraOptions = [ "--unsupported-gpu" ]; # sway will not launch on nvidia without this set
     };
+
+    nixpkgs.config.nvidia.acceptLicense = lib.mkDefault true;
+
     hardware.nvidia = {
       # Modesetting is needed most of the time
       modesetting.enable = true;

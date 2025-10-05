@@ -109,12 +109,13 @@
     extraSpecialArgs = { inherit inputs; };
   };
 
-  installer-test = lib.mkHost {
-    hostname = "installer-test";
-    cpu = "intel";
-    gpu = "intel";
-    configDir = ./installer-test;
+  # test vm for install.sh and other
+  nixos = lib.mkHost {
+    hostname = "nixos";
+    vm = true;
+    configDir = ./nixos;
     stateVersion = "25.11";
+    system = "x86_64-linux";
   };
 
   eve = lib.mkHost {

@@ -17,16 +17,6 @@
 
     programs.yt-dlp = {
       enable = true;
-      package = pkgs.yt-dlp.overrideAttrs (old: rec {
-        version = "2025.09.23";
-
-        src = pkgs.fetchFromGitHub {
-          owner = "yt-dlp";
-          repo = "yt-dlp";
-          tag = version;
-          hash = "sha256-pqdR1JfiqvBs5vSKF7bBBKqq0DRAi3kXCN1zDvaW3nQ=";
-        };
-      });
     };
 
     programs.rmpc = {

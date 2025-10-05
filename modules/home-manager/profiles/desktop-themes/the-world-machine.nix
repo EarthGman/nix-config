@@ -59,13 +59,15 @@ in
     };
 
     wayland.windowManager = {
+      # restarting conky.service is weird af and this is somehow the smoothest way to do it
+      # without doing this it is possible that systemd will take over a minute to load the window manager services
       sway.config.startup = [
         {
-          command = "systemctl --user restart conky";
+          command = "pkill --signal SIGKILL conky";
           always = true;
         }
       ];
-      hyprland.settings.exec = [ "systemctl --user restart conky" ];
+      hyprland.settings.exec = [ "pkill --signal SIGKILL conky" ];
     };
   };
 }

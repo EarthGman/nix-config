@@ -22,12 +22,13 @@ in
         lh-mouse.enable = lib.mkOverride 800 true;
         nix-development.enable = lib.mkDefault true;
         neomutt.enable = lib.mkDefault true;
+        qutebrowser.enable = lib.mkDefault true;
       };
 
       meta = {
         profiles.firefox = "shyfox";
         editor = "nvim";
-        browser = "firefox";
+        browser = "qutebrowser";
         fileManager = "nautilus";
       };
 
@@ -67,6 +68,7 @@ in
     (lib.mkIf (config.meta.desktop != "") {
       programs = {
         obsidian.enable = lib.mkDefault true;
+        qutebrowser.enable = lib.mkForce true;
         freetube.enable = lib.mkDefault true;
         moonlight.enable = lib.mkDefault true;
         discord.enable = lib.mkDefault true;
