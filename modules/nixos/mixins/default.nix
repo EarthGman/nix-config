@@ -71,6 +71,9 @@ in
     # its not the best anyway
     documentation.nixos.enable = lib.mkDefault false;
 
+    # stylix will not include the home-manager module if its not enabled
+    stylix.enable = (config.home-manager.users != { });
+
     boot = {
       kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
       tmp.cleanOnBoot = lib.mkDefault true;
