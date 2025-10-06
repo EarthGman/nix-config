@@ -11,12 +11,20 @@ in
 {
   options.gman.desktop.enable = lib.mkEnableOption "gman's configuration for hosts with a desktop environment";
   config = lib.mkIf cfg.enable {
-    # mixins revelent for desktop
+    # configuration revelent for desktop
     gman = {
+      # sound
       pipewire.enable = lib.mkDefault true;
       bluetooth.enable = lib.mkDefault true;
+
+      # common printing configuration
       printing.enable = lib.mkDefault true;
+
+      # desktop stylization
       stylix.enable = lib.mkDefault true;
+
+      # imperative applications for ease of install
+      flatpak.enable = lib.mkDefault true;
 
       # which desktop to enable
       hyprland.enable = (config.meta.desktop == "hyprland");
@@ -30,32 +38,23 @@ in
     boot = {
       extraModulePackages = [
         # for obs virtual camera
-        # config.boot.kernelPackages.v4l2loopback
+        config.boot.kernelPackages.v4l2loopback
       ];
     };
 
-    services.flatpak.enable = true;
-    # flatpak frontend
-    programs.gnome-software.enable = true;
-    systemd.services.flatpak-repo = {
-      wantedBy = [ "multi-user.target" ];
-      path = [ pkgs.flatpak ];
-      script = ''
-        flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-      '';
-    };
-
+    # kind of redundant, but good to have.
     hardware.graphics = {
       enable = true;
       enable32Bit = lib.mkDefault true;
     };
 
-    # mounting network drives in file managers (specifically nautilus)
+    # mounting network drives in file managers
     services.gvfs.enable = lib.mkDefault true;
 
-    # setup a display manager
+    # use sddm as default display manager, will change to gdm if gnome is the desktop
     services.displayManager.sddm.enable = lib.mkDefault true;
 
+    # ensure xserver configuration is applied
     services.xserver = {
       enable = lib.mkDefault true;
       excludePackages = builtins.attrValues {
@@ -72,15 +71,14 @@ in
       xdgOpenUsePortal = true;
     };
 
-    security.polkit.enable = lib.mkDefault true; # graphical prompt for sudo
+    # graphical prompt for sudo
+    security.polkit.enable = lib.mkDefault true;
 
     qt = {
       enable = lib.mkDefault true;
-      # platformTheme = lib.mkDefault "gnome";
-      # style = mkDefault "adwaita-dark";
     };
 
-    # required for some stylix to work properly (gtk)
+    # required for some stylix modules to style gtk apps
     programs.dconf.enable = lib.mkDefault true;
   };
 }

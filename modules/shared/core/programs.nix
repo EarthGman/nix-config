@@ -401,6 +401,12 @@ in
       inherit pkgs;
     };
 
+    puddletag = mkProgramOption {
+      programName = "puddletag";
+      description = "an audio tag editor similar to mp3tag for windows";
+      inherit pkgs;
+    };
+
     pwvucontrol = mkProgramOption {
       programName = "pwvucontrol";
       description = "pipewire volume control";

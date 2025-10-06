@@ -84,6 +84,7 @@
   };
 
   programs = {
+    audacity.enable = true;
     cutentr.enable = true;
     davinci-resolve.enable = true;
     bottles.enable = true;
@@ -94,7 +95,6 @@
       # newest version of prism
       package = inputs.prismlauncher.packages.${config.meta.system}.default;
     };
-    gnome-software.enable = true;
     gcolor.enable = true;
     musescore.enable = true;
     lutris.enable = true;
@@ -104,11 +104,13 @@
     cemu.enable = true;
     mcrcon.enable = true;
     obs-studio.enable = true;
+    puddletag.enable = true;
     ryubing.enable = true;
     # no compatible mouse :(
     piper.enable = false;
     blender.enable = true;
     ani-cli.enable = true;
+    video-trimmer.enable = true;
   };
 
   services = {

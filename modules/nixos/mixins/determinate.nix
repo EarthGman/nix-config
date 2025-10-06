@@ -1,3 +1,4 @@
+# Installs and sets up the latest version and cache of determinate nix
 { lib, config, ... }:
 let
   inherit (lib) mkEnableOption mkIf;

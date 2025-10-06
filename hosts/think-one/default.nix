@@ -40,6 +40,7 @@
 
   programs = {
     # lens.enable = true;
+    ardour.enable = true;
     bustle.enable = true;
     simple-scan.enable = true;
     gimp.enable = true;
