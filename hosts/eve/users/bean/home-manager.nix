@@ -1,6 +1,6 @@
 {
   #stylix
-  meta.profiles.desktopTheme = "cozy-undertale";
+  meta.profiles.desktopTheme = "the-world-machine";
 
   # hyprland
   wayland.windowManager.hyprland.settings.monitor = [ "eDP-1, preferred, auto, 1.5" ];
