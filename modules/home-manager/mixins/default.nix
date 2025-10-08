@@ -52,13 +52,15 @@ in
     meta = {
       browser = lib.mkDefault "firefox";
       terminal = lib.mkDefault "kitty";
-      fileManager = lib.mkDefault "nautilus";
+      fileManager = lib.mkDefault "dolphin";
       editor = lib.mkDefault "nano";
+      imageViewer = lib.mkDefault "gthumb";
+      mediaPlayer = lib.mkDefault "vlc";
 
       wallpaper = lib.mkDefault pkgs.images.default;
 
       profiles = {
-        desktopTheme = lib.mkDefault "astronaut";
+        desktopTheme = lib.mkDefault "";
         firefox = lib.mkDefault "betterfox";
         fastfetch = lib.mkDefault "default";
         waybar = lib.mkDefault "windows-11";
@@ -83,22 +85,35 @@ in
 
     programs = {
       nix-inspect.enable = true;
-      firefox.enable = (config.meta.browser == "firefox");
-      qutebrowser.enable = (config.meta.browser == "qutebrowser");
-      brave.enable = (config.meta.browser == "brave");
+      firefox.enable = lib.mkDefault (config.meta.browser == "firefox");
+      qutebrowser.enable = lib.mkDefault (config.meta.browser == "qutebrowser");
+      brave.enable = lib.mkDefault (config.meta.browser == "brave");
 
       thunderbird.imperativeConfig = lib.mkDefault true;
 
-      nautilus.enable = (config.meta.fileManager == "nautilus");
-      dolphin.enable = (config.meta.fileManager == "dolphin");
+      # File managers
+      nautilus.enable = lib.mkDefault (config.meta.fileManager == "nautilus");
+      dolphin.enable = lib.mkDefault (config.meta.fileManager == "dolphin");
+      yazi.enable = lib.mkDefault (config.meta.fileManager == "yazi");
 
-      kitty.enable = (config.meta.terminal == "kitty");
-      ghostty.enable = (config.meta.terminal == "ghostty");
+      # terminal emulators
+      kitty.enable = lib.mkDefault (config.meta.terminal == "kitty");
+      ghostty.enable = lib.mkDefault (config.meta.terminal == "ghostty");
 
-      vscode.enable = (config.meta.editor == "codium");
-      neovim.enable = (config.meta.editor == "nvim");
-      vim.enable = (config.meta.editor == "vim");
+      # Editors
+      vscode.enable = lib.mkDefault (config.meta.editor == "vscode");
+      neovim.enable = lib.mkDefault (config.meta.editor == "nvim");
+      vim.enable = lib.mkDefault (config.meta.editor == "vim");
 
+      # Imageviewers
+      gthumb.enable = lib.mkDefault (config.meta.imageViewer == "gthumb");
+
+      # Media players
+      vlc.enable = lib.mkDefault (config.meta.mediaPlayer == "vlc");
+      mpv.enable = lib.mkDefault (config.meta.mediaPlayer == "mpv");
+      totem.enable = lib.mkDefault (config.meta.mediaPlayer == "totem");
+
+      # others
       fastfetch.enable = lib.mkDefault true;
       gh.enable = lib.mkDefault true;
       waybar.systemd.enable = lib.mkDefault true;

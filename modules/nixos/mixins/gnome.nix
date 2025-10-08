@@ -39,6 +39,7 @@ in
             loupe
             snapshot
             decibels
+            nautilus
             gnome-connections
             gnome-text-editor
             gnome-terminal

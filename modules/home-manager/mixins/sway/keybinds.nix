@@ -114,7 +114,7 @@ in
   "${mod}+n" = "exec --no-startup-id swaync-client -op";
   "${mod}+Shift+r" = "reload";
 
-  "${mod}+Shift+e" = "uwsm stop";
+  "${mod}+Shift+e" = "exec uwsm stop";
 
   # screenshots
   "Shift+Print" = "exec --no-startup-id ${screenshot} screen";

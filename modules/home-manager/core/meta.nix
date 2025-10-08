@@ -25,6 +25,18 @@
       default = "";
     };
 
+    imageViewer = lib.mkOption {
+      description = "preferred program for viewing images";
+      type = lib.types.str;
+      default = "";
+    };
+
+    mediaPlayer = lib.mkOption {
+      description = "preferred program for playing media files";
+      type = lib.types.str;
+      default = "";
+    };
+
     wallpaper = lib.mkOption {
       description = "path to preferred default wallpaper";
       type = lib.types.path;

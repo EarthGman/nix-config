@@ -10,7 +10,6 @@ in
 {
   options.gman.gpu.amd.enable = lib.mkEnableOption "gman's amdgpu configuration";
   config = lib.mkIf cfg.enable {
-    programs.btop.package = pkgs.btop-rocm;
     services = {
       xserver.videoDrivers = [ "amdgpu" ];
       lact.enable = lib.mkDefault true;

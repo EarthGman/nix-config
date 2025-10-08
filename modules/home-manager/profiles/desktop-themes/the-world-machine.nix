@@ -22,6 +22,11 @@ in
 
     gman.profiles.firefox.shyfox.config.wallpaper = lib.mkDefault pkgs.images.niko-roomba;
 
+    home.packages = [
+      # many icons are missing for pixel icons, ensure adwaita icon theme is intalled for inheritance and fallback
+      pkgs.adwaita-icon-theme
+    ];
+
     stylix.icons = {
       dark = "star-pixel-icons";
       light = "star-pixel-icons";

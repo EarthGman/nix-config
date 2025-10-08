@@ -133,8 +133,7 @@ in
         '';
 
         daemon-postup = pkgs.writeShellScript "swww-daemon-postup.sh" ''
-          userid=$(id -u)
-          socket_path="/run/user/$userid/swww-wayland-1.sock"
+          socket_path="$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY-swww-daemon..sock"
 
           for (( i=1; i<=30; i++ )); do
             if [ -e "$socket_path" ]; then
@@ -184,8 +183,8 @@ in
       {
         swww.Service = {
           # Incorporate the HM service with my addons
-          # forces xrgb, not really an issue for me rn but may come up?
-          ExecStart = lib.mkForce "${cfg.package}/bin/swww-daemon --no-cache -f xrgb";
+          # forces argb by default
+          ExecStart = lib.mkForce "${cfg.package}/bin/swww-daemon -f argb";
           ExecStartPost = "${daemon-postup}";
           Environment = "PATH=${config.home.homeDirectory}/.nix-profile/bin";
         };

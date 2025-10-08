@@ -19,8 +19,10 @@ in
       extraHosts = ''
         10.0.25.2 cypher
         10.0.25.3 think-one
+
+        192.168.25.32 prox2
       '';
-      # work around the wireguard endpoint bug
+      # restart on network reconnect
       networkmanager.dispatcherScripts = [
         {
           source = pkgs.writeText "wireguard-hook" ''

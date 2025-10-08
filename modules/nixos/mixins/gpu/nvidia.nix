@@ -13,7 +13,6 @@ in
     # environment.systemPackages = [ pkgs.nvtopPackages.nvidia ];
     services.xserver.videoDrivers = [ "nvidia" ];
     programs = {
-      btop.package = pkgs.btop-cuda;
       sway.extraOptions = [ "--unsupported-gpu" ]; # sway will not launch on nvidia without this set
     };
 

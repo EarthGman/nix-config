@@ -5,6 +5,8 @@
   nur = inputs.nur.overlays.default;
   images = inputs.nix-library.overlays.images;
 
+  swww = inputs.swww.overlays.default;
+
   disable-mbrola-voices = final: prev: {
     espeak = prev.espeak.override {
       mbrolaSupport = false;

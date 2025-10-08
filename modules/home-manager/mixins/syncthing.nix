@@ -8,7 +8,11 @@
         services.syncthing = {
           enable = true;
           settings = {
-            urAccepted = "-1";
+            options = {
+              # no random relay nodes
+              relaysEnabled = false;
+              urAccepted = -1;
+            };
             devices = {
               cypher = {
                 name = "cypher";

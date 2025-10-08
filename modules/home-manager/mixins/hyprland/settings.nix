@@ -95,8 +95,8 @@ in
   };
 
   misc = {
-    force_default_wallpaper = 0;
-    disable_hyprland_logo = lib.mkDefault false;
+    force_default_wallpaper = lib.mkDefault 0;
+    disable_hyprland_logo = lib.mkDefault true;
   };
 
   input = {

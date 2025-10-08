@@ -1,5 +1,22 @@
+10-08-2025
+- add swww flake input
+- revamp swww:
+  - use latest version
+  - use cache files to combat the monitor disconnect bug
+	- Script should now work for any running wayland session under multiple users on the system
+- disable all default hyprland wallpapers by default.
+- fix mod+shift+e on sway not properly exiting the WM because of a missing 'exec'
+- add "imageViewer"" and "mediaPlayer" to home-manager config.meta
+- remove relay node use for synthing config
+- fix a discrepency with the btop package added to home-manager.
+  The btop package will attempt to autodetect the gpu type "amd" or "nvidia" from nixos
+  and install the correct pacakge for the user so gpu stats are properly displayed.
+- fix missing icons for the oneshot world machine edition theme
+- change default filemanager to dolphin for desktop
+
+
 9-23-2025
-- seperate password-store modules for home-manager
+- separate password-store modules for home-manager
 
 - did alot of stuff, I kind of lost track since last month
 

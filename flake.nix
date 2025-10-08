@@ -96,6 +96,11 @@
       inputs.nur.follows = "nur";
     };
 
+    swww = {
+      url = "github:LGFae/swww";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     vim-config = {
       url = "github:EarthGman/vim-config";
       inputs.nixpkgs.follows = "nixpkgs";
