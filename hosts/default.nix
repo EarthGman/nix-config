@@ -112,6 +112,7 @@
   # test vm for install.sh and other
   nixos = lib.mkHost {
     hostname = "nixos";
+    bios = "legacy";
     vm = true;
     configDir = ./nixos;
     stateVersion = "25.11";
