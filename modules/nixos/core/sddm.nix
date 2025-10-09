@@ -10,11 +10,6 @@ in
       type = lib.types.package;
       default = null;
     };
-    themeConfig = lib.mkOption {
-      description = "extraConfiguration passed to the sddm theme";
-      type = lib.types.attrsOf lib.types.str;
-      default = { };
-    };
   };
 
   config = lib.mkIf cfg.enable (

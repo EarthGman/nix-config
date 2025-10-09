@@ -11,7 +11,11 @@ in
   options.gman.scripts = lib.mkOption {
     description = "gman's customized script bank for home-manager";
     type = lib.types.attrsOf lib.types.package;
-    default = {
+    default = { };
+  };
+
+  config = {
+    gman.scripts = {
       rofi-wallpaper-switcher = import ./rofi-wallpaper-switcher.nix { inherit pkgs config; };
       take-screenshot-wayland = import ./take-screenshot-wayland.nix { inherit pkgs getExe config; };
       idle-daemon-event-handler = import ./idle-daemon-event-handler.nix { inherit pkgs; };

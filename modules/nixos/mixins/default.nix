@@ -38,6 +38,7 @@ in
       determinate.enable = lib.mkDefault true;
       nh.enable = lib.mkDefault true;
       zsh.enable = lib.mkDefault true;
+      desktop-theme-sync.enable = lib.mkDefault true;
 
       # enable the profile requested by meta.profiles.${profile}
       profiles = {

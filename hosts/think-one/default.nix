@@ -13,6 +13,7 @@
     hacker-mode.enable = true;
     earthgman.enable = true;
     postgresql.enable = true;
+    # profiles.sddm.astronaut.config.embeddedTheme = "hyprland_kath";
   };
 
   services = {
@@ -73,11 +74,6 @@
   '';
 
   boot.loader.grub.gfxmodeBios = "1366x768";
-
-  services.displayManager.sddm.themeConfig = {
-    FullBlur = "false";
-    PartialBlur = "false";
-  };
 
   services.thinkfan.enable = true;
 
