@@ -19,6 +19,7 @@ in
 
   programs = {
     libreoffice.enable = true;
+    firefox.enable = true;
   };
 
   xdg.dataFile = {

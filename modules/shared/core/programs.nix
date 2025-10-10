@@ -92,6 +92,12 @@ in
       inherit pkgs;
     };
 
+    cpu-x = mkProgramOption {
+      programName = "cpu-x";
+      description = "Free software that gathers information on CPU, motherboard and more";
+      inherit pkgs;
+    };
+
     cutentr = mkProgramOption {
       programName = "cutentr";
       description = "3ds streaming client for NTR CFW";
