@@ -50,14 +50,11 @@ in
 
     # set metadata
     meta = {
-      browser = lib.mkDefault "firefox";
-      terminal = lib.mkDefault "kitty";
-      fileManager = lib.mkDefault "dolphin";
+      # defaults are terminal based for servers
+      # see home-manager/mixins/desktop.nix for defaults with a desktop environment installed
+      browser = lib.mkDefault "lynx";
+      fileManager = lib.mkDefault "yazi";
       editor = lib.mkDefault "nano";
-      imageViewer = lib.mkDefault "gthumb";
-      mediaPlayer = lib.mkDefault "vlc";
-
-      wallpaper = lib.mkDefault pkgs.images.default;
 
       profiles = {
         desktopTheme = lib.mkDefault "";
@@ -84,12 +81,14 @@ in
     };
 
     programs = {
-      nix-inspect.enable = true;
+      nix-inspect.enable = lib.mkDefault true;
+      thunderbird.imperativeConfig = lib.mkDefault true;
+
+      # browsers
       firefox.enable = lib.mkDefault (config.meta.browser == "firefox");
       qutebrowser.enable = lib.mkDefault (config.meta.browser == "qutebrowser");
       brave.enable = lib.mkDefault (config.meta.browser == "brave");
-
-      thunderbird.imperativeConfig = lib.mkDefault true;
+      lynx.enable = lib.mkDefault (config.meta.browser == "lynx");
 
       # File managers
       nautilus.enable = lib.mkDefault (config.meta.fileManager == "nautilus");
@@ -103,9 +102,9 @@ in
       # Editors
       vscode.enable = lib.mkDefault (config.meta.editor == "vscode");
       neovim.enable = lib.mkDefault (config.meta.editor == "nvim");
-      vim.enable = lib.mkDefault (config.meta.editor == "vim");
+      gnome-text-editor.enable = lib.mkDefault (config.meta.editor == "gnome-text-editor");
 
-      # Imageviewers
+      # Image viewers
       gthumb.enable = lib.mkDefault (config.meta.imageViewer == "gthumb");
 
       # Media players

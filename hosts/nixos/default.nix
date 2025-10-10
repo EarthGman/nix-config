@@ -1,7 +1,7 @@
 {
   imports = [
     ./disko.nix
-    ./hardware-configuration.nix
+    # ./hardware-configuration.nix
   ];
 
   users.users.root = {

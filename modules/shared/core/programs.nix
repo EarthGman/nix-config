@@ -283,6 +283,12 @@ in
       inherit pkgs;
     };
 
+    lynx = mkProgramOption {
+      programName = "lynx";
+      description = "text based browser for your terminal";
+      inherit pkgs;
+    };
+
     mcrcon = mkProgramOption {
       programName = "mcrcon";
       description = "minecraft remote control client";

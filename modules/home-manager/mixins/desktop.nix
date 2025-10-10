@@ -15,14 +15,20 @@
       gnome.enable = lib.mkDefault (config.meta.desktop == "gnome");
     };
 
+    # lib mkOverride 899 is one unit stronger than lib.mkDefault
+    meta = {
+      browser = lib.mkOverride 899 "firefox";
+      terminal = lib.mkOverride 899 "kitty";
+      fileManager = lib.mkOverride 899 "dolphin";
+      editor = lib.mkOverride 899 "gnome-text-editor";
+      imageViewer = lib.mkOverride 899 "gthumb";
+      mediaPlayer = lib.mkOverride 899 "vlc";
+
+      wallpaper = lib.mkDefault pkgs.images.default;
+    };
+
     programs = {
-      # image viewer
-      gthumb.enable = lib.mkDefault true;
-      # video player
-      vlc.enable = lib.mkDefault true;
-      # pdf viewer
       evince.enable = lib.mkDefault true;
-      # basic calculator
       gnome-calculator.enable = lib.mkDefault true;
     };
 

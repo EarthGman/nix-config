@@ -6,7 +6,7 @@
 {
   "g@archlinux" = lib.mkHome {
     username = "g";
-    hostName = "archlinux";
+    hostname = "archlinux";
     desktop = "hyprland";
     stateVersion = "25.11";
     profile = ./g;
