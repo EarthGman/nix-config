@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-function y_or_n {
+y_or_n() {
 	while true; do
 		read -p "$* [y/n]: " yn
 		case $yn in
@@ -11,7 +11,17 @@ function y_or_n {
 	done
 }
 
-function install {
+nixos_install() {
+	if [[ $IMPERATIVE_USERS == true ]]; then
+		nixos-install --no-channel-copy --flake /mnt/etc/nixos#$HOSTNAME
+	else
+		# remove the prompt which asks for root password if users are declaratively managed
+		nixos-install --no-channel-copy --no-root-password --flake /mnt/etc/nixos#$HOSTNAME
+	fi
+}
+
+create_swap() {
+	# /tmp will be cleared on bootup if nixos option boot.tmp.cleanOnBoot is set (which it is by default in my config)
 	if [[ $(cat /proc/meminfo | grep MemAvailable | cut -d ":" -f2 | tr -d " kB") -lt 4000000 && ! -f /mnt/tmp/swapfile ]]; then
 		printf "Detected less than 4GB of free ram\nNixOS requires at least 4GB of free ram to install smoothly.\nCreating a 4GB swapfile at /mnt/tmp/swapfile."
 		mkdir -p /mnt/tmp
@@ -20,15 +30,37 @@ function install {
 		chmod 600 /mnt/tmp/swapfile
 		swapon /mnt/tmp/swapfile
 	fi
+}
 
-	if [[ $REPO_DIR != "" ]]; then
-		nixos-install --flake $REPO_DIR'#'$HOST
+hardware_config() {
+	if [[ $DISKO_CONFIG == "" ]]; then
+		nixos-generate-config --root /mnt >/dev/null
 	else
-		nixos-install --flake /mnt/etc/nixos'#'$HOSTNAME
+		nixos-generate-config --no-filesystems --root /mnt >/dev/null
+	fi
+	rm /mnt/etc/nixos/configuration.nix
+
+	# regenerate the hardware config on every reinstall
+	if [[ -e $HOST_CONFIG/hardware-configuration.nix ]]; then
+		rm $HOST_CONFIG/hardware-configuration.nix
+	fi
+	mv /mnt/etc/nixos/hardware-configuration.nix $HOST_CONFIG
+
+	# if in a git repo then nix will fail to find the new file unless it is added
+	if [[ -d /mnt/etc/nixos/.git ]]; then
+		git -C /mnt/etc/nixos add /mnt/etc/nixos
 	fi
 }
 
-function pull_repo {
+pull_repo() {
+	#TODO: add support for private repos
+	REPO_DIR=/tmp/nix-config
+
+	if [[ -d $REPO_DIR ]]; then
+		echo "existing repository found at $REPO_DIR".
+		y_or_n "Would you like to remove it and pull your repository again?" || return 0
+	fi
+
 	read -p "Enter the url for your config repository: " REPO_URL
 	$(git ls-remote $REPO_URL)
 	while [[ $? == 128 ]]; do
@@ -36,23 +68,104 @@ function pull_repo {
 		$(git ls-remote $REPO_URL)
 	done
 
-	REPO_DIR=/tmp/nix-config
-
 	if [[ -d $REPO_DIR ]]; then
 		echo "removing existing repository found at $REPO_DIR"
 		rm -rf $REPO_DIR
 	fi
-	echo "$REPO_URL $REPO_DIR"
 	git clone $REPO_URL --depth 1 $REPO_DIR
 }
 
-function create_config {
-	format_disks
+install_existing_config() {
+	pull_repo
 
+	CONFIGURATIONS=($(nix eval $REPO_DIR'#'nixosConfigurations --apply builtins.attrNames | sed 's/[][]//g' | tr -d '"'))
+	HOSTNAME=$(printf "%s\n" "${CONFIGURATIONS[@]}" | fzf --border --border-label-pos 1:bottom --border-label="Found the following configurations. Which one would you like to install?")
+
+	if [[ $HOSTNAME == "" ]]; then
+		echo "No host selected."
+		exit 1
+	fi
+
+	HOST_CONFIG="/mnt/etc/nixos/hosts/$HOSTNAME"
+
+	printf "\nIf performing a fresh install you will need to proceed to disk partitioning and formatting\n"
+	echo "If performing a recovery install due to a non-booting system, say 'n' and mount the necessary drives and skip partitioning."
+	y_or_n "Format disks?" && format_disks
+
+	if [[ $yn == [Nn]* ]]; then
+		if [[ $(ls /mnt) ]]; then
+			echo "/mnt contains files. Assuming disks are mounted"
+		else
+			echo "/mnt is empty. Be sure to mount required disks and run the installer again"
+			exit 1
+		fi
+	fi
+
+	if [[ ! -d /mnt/etc/nixos ]]; then
+		mkdir -p /mnt/etc/nixos
+	fi
+
+	mv $REPO_DIR/{.,}* /mnt/etc/nixos
+	rm -rf $REPO_DIR
+	hardware_config
+
+	echo "checking configuration"
+	if [[ $(nix eval /mnt/etc/nixos'#'nixosConfigurations.$HOSTNAME.config.sops.secrets) != "{ }" ]]; then
+		SOPS_KEYFILE=$(nix eval /mnt/etc/nixos'#'nixosConfigurations.$HOSTNAME.config.sops.age.keyFile | tr -d '"')
+		if [[ ! -f /mnt$SOPS_KEYFILE ]]; then
+			echo "Detected sops secrets from this configuration."
+			printf "You will need to imperatively place your private key file at /mnt%s before you continue\n" $SOPS_KEYFILE
+			printf "Press any key to continue..."
+			read -n 1 key
+		fi
+
+		while [[ ! -f /mnt$SOPS_KEYFILE ]]; do
+			printf "Keyfile not found.\nEnsure the file is present in /mnt%s.\n" $SOPS_KEYFILE
+			printf "Press any key to continue..."
+			read -n 1 key
+		done
+	fi
+
+	create_swap
+	nixos_install
+	exit 0
+}
+
+# sops_setup() {
+#   if [[ $REPO_DIR != "" ]]; then
+#
+#   fi
+# }
+
+create_config() {
 	read -p "Set your system hostname: " HOSTNAME
 	HOST_CONFIG=/mnt/etc/nixos/hosts/$HOSTNAME
 
-	y_or_n "Is this machine going to be a server?" && SERVER=true || SERVER=false
+	PURPOSE_PROFILES=(
+		"Let me install my own bloatware."
+		"Server"
+		"Gaming"
+	)
+	PURPOSE=$(printf "%s\n" "${PURPOSE_PROFILES[@]}" | fzf --border --border-label-pos 1:bottom --border-label="What purpose will this machine serve?")
+
+	# assume not server first
+	SERVER="false"
+
+	case "$PURPOSE" in
+	"")
+		echo "no purpose selected, assuming SIGTERM was sent"
+		exit 0
+		;;
+	"Server")
+		SERVER="true"
+		;;
+	"Gaming")
+		GAMING="true"
+		;;
+	*)
+		echo "No specialization modules will be enabled by default."
+		;;
+	esac
 
 	if [[ $(lscpu | grep -i "intel") ]]; then
 		CPU="intel"
@@ -81,18 +194,24 @@ function create_config {
 	ARCH=$(lscpu | grep Arch | tr -d " " | cut -d ":" -f2)
 	STATEVERSION=$(nixos-version | cut -d "." -f1-2)
 
-	y_or_n "The default locale is en_US. Would you like to set a different localization configuration?" &&
+	y_or_n "Would you like to set a different default localization configuration? (default: en_US - English United States)" &&
 		LOCALE="$(cat /etc/locales.txt | fzf --border --border-label-pos 1:bottom --border-label="Select the default locale")"".UTF-8" ||
 		LOCALE="en_US.UTF-8"
-	KBD_LAYOUT=$(localectl list-keymaps | fzf --border --border-label-pos 1:bottom --border-label="Select a keyboard layout")
+	y_or_n "Would you like to set a different keyboard layout (Default: us)" &&
+		KBD_LAYOUT=$(localectl list-keymaps | fzf --border --border-label-pos 1:bottom --border-label="Select a keyboard layout") ||
+		KBD_LAYOUT="us"
+
 	TIMEZONE=$(timedatectl list-timezones | fzf --border --border-label-pos 1:bottom --border-label="Select your time zone.")
 
 	DESKTOPS=("gnome" "sway" "hyprland" "no-desktop")
 	DESKTOP=$(printf "%s\n" "${DESKTOPS[@]}" | fzf --border --border-label-pos 1:bottom --border-label "Choose a desktop environment.")
 
-	echo "Do you wish to enable imperative user management for this system?"
-	echo "When enabled, users can be imperatively modified using traditional commands (useradd, usermod, etc) independently of nix"
-	y_or_n "Choosing 'N' or 'n' will require the creation of a non-root user for reasons that will be explained later." && IMPERATIVE_USERS=true || IMPERATIVE_USERS=false
+	printf "\nWith many linux distributions, users can be imperatively modified using commands such as (usermod, useradd, etc)\n"
+	echo "However, with NixOS, users can be configured with these commands and with nix files."
+	echo "This will result in imperative user configuration taking presedence over your nix configuration."
+	echo "If you only want static user management you can disable this option."
+	echo "If you keep imperative user management, the installer will ask you to set a root password at the end of the installation process."
+	y_or_n "Enable imperative user management?" && IMPERATIVE_USERS=true || IMPERATIVE_USERS=false
 
 	echo "
 	  NixOS will install with the following configuration.
@@ -108,10 +227,12 @@ function create_config {
 	"
 
 	if [[ ! -d /mnt/etc/nixos ]]; then
-		mkdir -p $HOST_CONFIG
+		mkdir -p /mnt/etc/nixos
 	fi
 
-	echo " {
+	# create flake.nix
+	if [[ $INSTALL_MODE == "new" ]]; then
+		echo " {
 		description = \"my NixOS configurations\";
 
 		inputs = {
@@ -132,33 +253,39 @@ function create_config {
 		};
 	}
 	" >/mnt/etc/nixos/flake.nix
-
-	echo "Warning: hashed passwords are stored declaratively in the world-readable /nix/store."
-	echo "After install, it is advised to remove the hash from the config and manually set the user password."
-	echo "Alternatively, you can make use of sops-nix to securely encrypt the hashes in a sops file."
-
-	if [[ $IMPERATIVE_USERS == true ]]; then
-		y_or_n "Add a non-root user to the system?"
 	else
-		yn="y"
-		echo "Detected declarative user management. This requires the creation of a non-root user."
-		echo "As explained above, storing the password for root in the nix store is not a good idea."
-		echo "Without a valid password for an account, NixOS will fail to install."
-		echo "Add a non-root user to the system."
+		mv $REPO_DIR/{.,}* /mnt/etc/nixos
 	fi
 
+	mkdir -p $HOST_CONFIG
+
+	# if a disko file from the repo was used, ensure it gets moved into the host's configuration
+	if [[ ($DISKO_CONFIG != "") && (! -f $HOST_CONFIG/disko.nix) ]]; then
+		mv /mnt/etc/nixos/$DISKO_CONFIG $HOST_CONFIG/disko.nix
+	fi
+
+	# TODO sops
+	# printf "\nBefore creating your user accounts you will need to first set up sops-nix.\n"
+	# echo "By default, all configuration, including hashed passwords for users, will be world-readable in the /nix/store."
+	# echo "To circumvent this security limitation of NixOS, you can use a sops-nix configuration."
+	# echo "This framework allows secure storage of secrets in your configuration repository using encrypted files."
+	# sops_setup
+
+	y_or_n "Create users and additional user configuration?"
+
+	# TODO prevent creation of the same user twice
 	USERS=()
 	while [[ $yn == [Yy]* ]]; do
+		echo "Creating user configuration"
 		read -p "Username: " USERNAME
 		read -p "Password: " PASSWORD
-		read -p "Retype password: " PASSWORD2
-		while [[ $PASSWORD != $PASSWORD2 ]]; do
-			read -p "Passwords do not match. Try again: " PASSWORD2
-		done
+
 		y_or_n "Should this user have access to sudo?" && SUDO=true || SUDO=false
 
 		USER_DIR=$HOST_CONFIG/users/$USERNAME
-		mkdir -p $USER_DIR
+		if [[ ! -d $USER_DIR ]]; then
+			mkdir -p $USER_DIR
+		fi
 
 		echo " {
       users.users.$USERNAME = {
@@ -188,14 +315,15 @@ function create_config {
 
 		USERS+=$(echo \"$USERNAME\")
 
-		y_or_n "Add another non-root user to the system?"
-
+		y_or_n "Add/Configure another user?"
 	done
 
 	echo "{ pkgs, lib, config, ... }:
 		{
-			# kernel and fstab configuration
-			imports = [ ./hardware-configuration.nix ];
+			imports = [
+			  # kernel and fstab configuration
+			  ./hardware-configuration.nix 
+			];
 
 			time.timeZone = \"$TIMEZONE\";
 
@@ -207,20 +335,39 @@ function create_config {
 			
 			# import configuration files that match a particular username from this directory
 			home-manager.profilesDir = ../../home;
-		}
-	" >$HOST_CONFIG/default.nix
+		}" >$HOST_CONFIG/default.nix
+
+	# adds disko to the imports array
+	if [[ $DISKO_CONFIG != "" ]]; then
+		sed -i '/]/i./disko.nix' $HOST_CONFIG/default.nix
+	fi
+
+	if [[ $GAMING == "true" ]]; then
+		sed -i '$ s/.$//' $HOST_CONFIG/default.nix
+		echo "gman.gaming.enable = true;
+	  }
+	  " >>$HOST_CONFIG/default.nix
+	fi
 
 	if [[ $DESKTOP == "no-desktop" ]]; then
 		DESKTOP=""
 	fi
 
-	echo " { lib, ... }:
-	{
-		$HOSTNAME = lib.mkHost {
+	if [[ $INSTALL_MODE == "new" ]]; then
+		# add the function header if this is a new configuration
+		echo " { lib, ... }:
+		{" >/mnt/etc/nixos/hosts/default.nix
+	else
+		# INSTALL_MODE "append"
+		# remove the last character to make way for the new configuration
+		sed -i '$ s/.$//' /mnt/etc/nixos/hosts/default.nix
+	fi
+	echo "$HOSTNAME = lib.mkHost {
 			hostname = \"$HOSTNAME\";
 			stateVersion = \"$STATEVERSION\";
 			system = \"$ARCH-linux\";
 			server = $SERVER;
+			bios = \"$BIOS\";
 			cpu = \"$CPU\";
 			gpu = \"$GPU\";
 			desktop = \"$DESKTOP\";
@@ -228,11 +375,9 @@ function create_config {
 			users = [ $(echo ${USERS[*]}) ];
 		};
 	}
-  " >/mnt/etc/nixos/hosts/default.nix
+  " >>/mnt/etc/nixos/hosts/default.nix
 
-	nixos-generate-config --root /mnt >/dev/null
-	rm /mnt/etc/nixos/configuration.nix
-	mv /mnt/etc/nixos/hardware-configuration.nix $HOST_CONFIG
+	hardware_config
 
 	for i in $(find /mnt/etc/nixos -type f -not -path '*/.*'); do
 		if [[ $i == *.nix ]]; then
@@ -241,50 +386,42 @@ function create_config {
 	done
 }
 
-function disko {
+disko_format() {
 	pushd $REPO_DIR >/dev/null
 	DISKO_CONFIG=$(fzf --border --border-label-pos 1:bottom --border-label="Choose a disko.nix file")
 
+	# DISKO_CONFIG is a relative path to where ever the repository root currently is which will later be moved to /mnt/etc/nixos
 	while [[ ! $DISKO_CONFIG != "*disko.nix" ]]; do
-		DISKO_CONFIG=$(fzf --border --border-label-pos 1:bottom --border-label="File must be named disko.nix. Try again")
+		DISKO_CONFIG=$(fzf --border --border-label-pos 1:bottom --border-label="File must end in disko.nix. Try again")
 	done
-	printf "\nThese are the drives in your current environment\n"
-	lsblk
 
-	printf "\nConfiguration file in use: %s\n" $DISKO_CONFIG
-
-	printf "This configuration file will affect the following drives\n\n"
-	cat $DISKO_CONFIG | grep -i "/dev"
-
-	y_or_n "All data on the drives listed will be erased. Do you wish to continue?" || exit 0
-
-	disko --mode zap_create_mount $DISKO_CONFIG
+	disko --mode destroy,format,mount $DISKO_CONFIG
 
 	popd >/dev/null
 }
 
-function format_disks {
-	echo "You will need to choose and format a disk to install NixOS"
-	if [[ $REPO_DIR != "" ]]; then
-		y_or_n "Use a disko file from your repo?"
-
-		if [[ $yn == [Yy]* ]]; then
-			disko
-			return 0
-		fi
-	fi
-
+format_disks() {
 	if [[ $(ls /mnt) ]]; then
 		y_or_n "/mnt contains files, is your disk mounted?" && return 0 || echo "empty the /mnt directory and run the installer again"
 		exit 1
 	fi
 
-	echo "By default, the installer will create a boot with FAT32 and root partition with ext4, which is sufficient for daily use such as gaming or productivity work."
-	echo "More complex setups such as RAID, encrypted drives, or an existing configuration without using disko require manual disk setup."
-	echo "In this case, you will have to format and mount the disks yourself or use a disko file then run the installer when you are finished."
-	y_or_n "Would you prefer to do disk setup manually?" && exit 0
+	printf "\nYou will need to choose and format a disk to install NixOS\n"
+	if [[ $REPO_DIR != "" ]]; then
+		y_or_n "Use a disko file from your repo?"
 
-	DISKS=$(lsblk -dp | grep -v /dev/loop)
+		if [[ $yn == [Yy]* ]]; then
+			disko_format
+			return 0
+		fi
+	fi
+
+	echo "By default, the installer will create a boot partition with FAT32 and root partition with ext4, which is sufficient for daily use such as gaming or productivity work."
+	echo "More complex setups such as RAID, or encrypted drives require manual setup or a disko.nix file."
+	echo "In this case, you will have to format and mount the disks yourself or use a disko configuration file from an existing repository. Then, run the installer when you are finished."
+	y_or_n "Allow the installer to format disks for you?" || exit 0
+
+	DISKS=$(lsblk -dp | grep -v /dev/loop | grep -v "NAME")
 	SELECTED_DISK=$(printf "%s\n" "${DISKS[@]}" | fzf --border --border-label-pos 1:bottom --border-label="Select a disk to install NixOS")
 
 	if [[ $SELECTED_DISK == "" ]]; then
@@ -295,30 +432,58 @@ function format_disks {
 	SELECTED_DISK=$(echo $SELECTED_DISK | cut -d " " -f1)
 	y_or_n "WARNING: All data on $SELECTED_DISK will be destroyed. Are you sure you want to proceed?" || exit 1
 
-	wipefs -af $SELECTED_DISK
-	dd if=/dev/zero of=$SELECTED_DISK bs=1M count=1
+	if [[ -d /sys/firmware/efi ]]; then
+		BOOT_PART="1"
+		ROOT_PART="2"
+		BOOT_START="0%"
+	else
+		# TODO idk how to get this working with parted
+		# echo "detected legacy firmware."
+		# echo "I have not managed to get legacy booting with grub working yet."
+		# echo "if you must install for legacy bios use a disko.nix file"
+		# exit 1
 
-	parted -a optimal -s $SELECTED_DISK mklabel gpt mkpart "EFI" 0% 512MiB && parted -s $SELECTED_DISK set 1 esp on
-	parted -s $SELECTED_DISK mkpart "root" 512MiB 100%
+		# part 1 is for bios_grub boot
+		BOOT_PART="2"
+		ROOT_PART="3"
+		BOOT_START="1MiB"
+	fi
+
+	wipefs -a -f $SELECTED_DISK >/dev/null
+	dd if=/dev/zero of=$SELECTED_DISK bs=1M count=1 >/dev/null
+
+	# use a gpt disk regardless of firmware implementation
+	parted -s $SELECTED_DISK mklabel gpt
+
+	if [[ ! -d /sys/firmware/efi ]]; then
+		parted -s $SELECTED_DISK \
+			mkpart "bios-boot" 0% 1MiB \
+			set 1 bios_grub on
+	fi
+
+	parted -a optimal -s $SELECTED_DISK \
+		mkpart "esp" $BOOT_START 512MiB \
+		set $BOOT_PART esp on \
+		mkpart "root" 512MiB 100%
 
 	if [[ $(echo $SELECTED_DISK | grep "nvme") ]]; then
-		mkfs.fat -F 32 "$SELECTED_DISK""p1"
-		mkfs.ext4 "$SELECTED_DISK""p2"
+		mkfs.fat -F 32 "$SELECTED_DISK""p""$BOOT_PART"
+		mkfs.ext4 "$SELECTED_DISK""p""$ROOT_PART"
 
-		mount "$SELECTED_DISK""p2" /mnt
+		mount "$SELECTED_DISK""p""$ROOT_PART" /mnt
 		mkdir -p /mnt/boot
-		mount "$SELECTED_DISK""p1" /mnt/boot
+		mount "$SELECTED_DISK""p""$BOOT_PART" /mnt/boot
 	else
-		mkfs.fat -F 32 "$SELECTED_DISK""1"
-		mkfs.ext4 "$SELECTED_DISK""2"
+		mkfs.fat -F 32 "$SELECTED_DISK""$BOOT_PART"
+		mkfs.ext4 "$SELECTED_DISK""$ROOT_PART"
 
-		mount "$SELECTED_DISK""2" /mnt
+		mount "$SELECTED_DISK""$ROOT_PART" /mnt
 		mkdir -p /mnt/boot
-		mount "$SELECTED_DISK""1" /mnt/boot
+		mount "$SELECTED_DISK""$BOOT_PART" /mnt/boot
 	fi
 }
 
-function main {
+main() {
 	if [[ ! $(whoami) == "root" ]]; then
 		echo "You must be root."
 		exit 1
@@ -331,41 +496,24 @@ function main {
 	y_or_n "Are you installing an existing configuration?"
 
 	if [[ $yn == [Yy]* ]]; then
-		pull_repo
-
-		CONFIGURATIONS=($(nix eval $REPO_DIR'#'nixosConfigurations --apply builtins.attrNames | sed 's/[][]//g' | tr -d '"'))
-		HOST=$(printf "%s\n" "${CONFIGURATIONS[@]}" | fzf --border --border-label-pos 1:bottom --border-label="Found the following configurations. Which one would you like to install?")
-
-		if [[ $HOST == "" ]]; then
-			echo "No host selected."
-			exit 1
-		fi
-
-		printf "\nIf performing a fresh install you will need to proceed to disk partitioning and formatting\n"
-		echo "If performing a recovery install due to a non-booting system, skip partiioning"
-		y_or_n "Format Disks?" && format_disks
-		install
-
-		echo "checking configuration"
-		if [[ $(nix eval $REPO_DIR'#'nixosConfigurations.$HOST.config.sops.secrets) != "{ }" ]]; then
-			SOPS_KEYFILE=$(nix eval $REPO_DIR'#'nixosConfigurations.$HOST.config.sops.age.keyFile | tr -d '"')
-			echo "Detected sops secrets from this configuration."
-			printf "You will need to imperatively place your private key file at /mnt%s before you continue\n" $SOPS_KEYFILE
-			printf "Press any key to continue..."
-			read -n 1 key
-
-			while [[ ! -f /mnt$SOPS_KEYFILE ]]; do
-				printf "Keyfile not found.\nEnsure the file is present in /mnt%s.\n" $SOPS_KEYFILE
-				printf "Press any key to continue..."
-				read -n 1 key
-			done
-		fi
-
-		exit 0
+		INSTALL_MODE="existing"
+		install_existing_config
 	fi
 
+	echo "If you already have an existing repository that follows the required framework, you can add this host's configuration to your repository."
+	y_or_n "Would you like to append this host's configuration to an existing repository?"
+
+	if [[ $yn == [Yy]* ]]; then
+		INSTALL_MODE="append"
+		pull_repo
+	else
+		INSTALL_MODE="new"
+	fi
+
+	format_disks
 	create_config
-	install
+	create_swap
+	nixos_install
 }
 
 main

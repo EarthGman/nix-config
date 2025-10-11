@@ -18,8 +18,8 @@ in
     hardware-tools.enable = true;
   };
 
-  # needed for some machines
   hardware = {
+    # needed for some machines
     enableRedistributableFirmware = true;
 
     # no need for these on an installer
@@ -37,10 +37,13 @@ in
 
   environment = {
     systemPackages = [
-      # disko v11
+      # latest disko
       inputs.disko.packages.${config.meta.system}.disko
+
       install-sh
       pkgs.nixfmt
+      pkgs.sops
+      pkgs.age
     ];
 
     # these are not set properly on nixos by default
