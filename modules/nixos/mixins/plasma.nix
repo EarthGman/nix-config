@@ -18,11 +18,10 @@ in
 
       # ensure sddm is enabled
       displayManager.sddm.enable = true;
-
     };
 
     # modifying sddm does not play well with plasma
-    meta.profiles.sddm = lib.mkDefault "";
+    meta.profiles.sddm = lib.mkOverride 899 "";
 
     environment = {
       plasma6.excludePackages = builtins.attrValues {
