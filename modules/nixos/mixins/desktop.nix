@@ -30,6 +30,7 @@ in
       hyprland.enable = (config.meta.desktop == "hyprland");
       sway.enable = (config.meta.desktop == "sway");
       gnome.enable = (config.meta.desktop == "gnome");
+      plasma.enable = (config.meta.desktop == "plasma");
 
       hardware-tools.enable = lib.mkDefault true;
     };
