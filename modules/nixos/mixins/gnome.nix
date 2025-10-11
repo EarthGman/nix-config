@@ -21,6 +21,9 @@ in
           sddm.enable = lib.mkOverride 800 false;
           gdm.enable = lib.mkOverride 800 true;
         };
+
+        # qplatformgnome has failed to build in configurephase 10-10-2025
+        qt.platformTheme = lib.mkForce "qt5ct";
       }
       (lib.mkIf (!cfg.withDefaultPackages) {
         # exclude all packages built into gnome and allow each user to choose what they want installed
