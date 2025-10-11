@@ -13,6 +13,7 @@
       hyprland.enable = lib.mkDefault (config.meta.desktop == "hyprland");
       sway.enable = lib.mkDefault (config.meta.desktop == "sway");
       gnome.enable = lib.mkDefault (config.meta.desktop == "gnome");
+      plasma.enable = lib.mkDefault (config.meta.desktop == "plasma");
     };
 
     # lib mkOverride 899 is one unit stronger than lib.mkDefault

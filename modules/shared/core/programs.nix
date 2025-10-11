@@ -246,6 +246,12 @@ in
       inherit pkgs;
     };
 
+    gwenview = mkProgramOption {
+      programName = "gwenview";
+      description = "simple QT image viewer for KDE";
+      pkgs = pkgs.kdePackages;
+    };
+
     helvum = mkProgramOption {
       programName = "helvum";
       description = "patchbay for pipewire";
@@ -256,6 +262,12 @@ in
       programName = "john";
       description = "brute force password cracker";
       inherit pkgs;
+    };
+
+    kalk = mkProgramOption {
+      programName = "kalk";
+      description = "calculator for kdePlasma";
+      pkgs = pkgs.kdePackages;
     };
 
     kdiskmark = mkProgramOption {
