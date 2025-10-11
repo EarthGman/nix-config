@@ -6,6 +6,10 @@
 }:
 let
   cfg = config.gman.profiles.sddm.astronaut;
+  package = pkgs.sddm-astronaut.override {
+    inherit (cfg.config) themeConfig embeddedTheme;
+  };
+
 in
 {
   options.gman.profiles.sddm.astronaut = {
@@ -28,13 +32,16 @@ in
     services.displayManager.sddm = {
       wayland.enable = true;
       theme = "sddm-astronaut-theme";
-      themePackage = pkgs.sddm-astronaut.override {
-        inherit (cfg.config) themeConfig embeddedTheme;
-      };
 
       # astronaut requires sddm from plasma 6 (default is 5)
       package = pkgs.kdePackages.sddm;
+
+      extraPackages = [ package ];
     };
+
+    environment.systemPackages = [
+      package
+    ];
 
     gman.profiles.sddm.astronaut.config.themeConfig = {
       # why is this disabled by default?
