@@ -1,12 +1,12 @@
-- The installer will provide a script to guide users through the installation process. It can be invoked using `sudo install.sh`
+# Installation
 
-- NixOS requires a network connection to install. This is because software in the configuration is not compiled into the iso image. The script will check to ensure you have a network connection and will run `nmtui` if none is found.
+The installer will provide a script to guide users through the installation process. You will start it with  `sudo install.sh`
 
-- Advanced users may opt to run the script through a tmux session for various tasks such as the placement of key files. Note that the default tmux bind is ctrl+space not ctrl+b. This can be changed before compiling the iso.
+NixOS requires a network connection to install. This is because software in the configuration is not compiled into the iso image. The script will check to ensure you have a network connection and will run `nmtui` if none is found.
+
+- Advanced users may opt to run the script through a tmux session for various tasks such as the placement of key files. Note that the default tmux bind is `ctrl+space` not `ctrl+b`. This can be changed before compiling the iso.
 
 **For reference, any directory path will refer to the root of the repository being created NOT the root filesystem. During install this will be located under /mnt/etc/nixos**
-
-# Installation
 
 There are 3 options available, pick one:
 
