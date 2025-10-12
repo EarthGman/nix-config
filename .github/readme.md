@@ -30,11 +30,11 @@ Since I mostly wrote this for myself, my configurations will be used by default 
 
 To obtain the installer navigate to https://cache.earthgman.net and download the nixos-installer.iso and its sha256sum (only supports x86_64 at this time).
 
-If you don't want to put an iso image from a random guy on the internet into your PC, you can build the installer iso yourself. [Instructions](https://raw.githubusercontent.com/EarthGman/nix-config/refs/heads/main/docs/build-iso.md)
+If you don't want to put an iso image from a random guy on the internet into your PC, you can build the installer iso yourself. [Instructions](https://github.com/EarthGman/nix-config/blob/main/docs/build-iso.md)
 
 if installing on bare metal, Use a program such as rufus, balena-etcher, or dd to flash the iso image to a usb stick.
 
-the getty helpline will direct you through the installation process. [This document](https://raw.githubusercontent.com/EarthGman/nix-config/refs/heads/main/docs/install.md) will provide a detailed summary of the install script for those who want to read about it before having to boot the installer.
+the getty helpline will direct you through the installation process. [This document](https://raw.githubusercontent.com/EarthGman/nix-config/blob/main/docs/install.md) will provide a detailed summary of the install script for those who want to read about it before having to boot the installer.
 
 ------------------------------------------------------------------------
 # Known Issues - Last updated: 10-12-2025
