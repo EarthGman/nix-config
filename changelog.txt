@@ -5,6 +5,7 @@
 - fix desktop-theme-sync failing to eval if there are no users with home-manager
 - move desktop-theme-sync to modules/nixos/mixins/desktop.nix
 - fix an issue with plasma where cursor would reset when selected due to default stylix configuration.
+- add kiod6 service to home-manager and enable for dolphin smb password server access
 
 
 10-08-2025

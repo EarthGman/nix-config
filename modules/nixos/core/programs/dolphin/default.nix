@@ -12,6 +12,7 @@ in
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [
       cfg.package
+      pkgs.kdePackages.kio
       pkgs.kdePackages.kde-cli-tools
       pkgs.kdePackages.qtsvg
       pkgs.kdePackages.kio-fuse
