@@ -34,7 +34,7 @@ If you don't want to put an iso image from a random guy on the internet into you
 
 if installing on bare metal, Use a program such as rufus, balena-etcher, or dd to flash the iso image to a usb stick.
 
-the getty helpline will direct you through the installation process. [This document](https://raw.githubusercontent.com/EarthGman/nix-config/blob/main/docs/install.md) will provide a detailed summary of the install script for those who want to read about it before having to boot the installer.
+the getty helpline will direct you through the installation process. [This document](https://github.com/EarthGman/nix-config/blob/main/docs/install.md) will provide a detailed summary of the install script for those who want to read about it before having to boot the installer.
 
 ------------------------------------------------------------------------
 # Known Issues - Last updated: 10-12-2025
