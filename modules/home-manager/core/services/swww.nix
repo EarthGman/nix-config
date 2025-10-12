@@ -133,6 +133,7 @@ in
         '';
 
         daemon-postup = pkgs.writeShellScript "swww-daemon-postup.sh" ''
+          # TODO socket file may change
           socket_path="$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY-swww-daemon..sock"
 
           for (( i=1; i<=30; i++ )); do

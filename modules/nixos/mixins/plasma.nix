@@ -40,6 +40,9 @@ in
 
       # disable the default gnome frontend in favor of KDE discover
       gnome-software.enable = lib.mkOverride 899 false;
+
+      # disable pwvucontrol in favor of the default plasma volume control
+      pwvucontrol.enable = lib.mkOverride 899 false;
     };
   };
 }

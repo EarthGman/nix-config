@@ -6,7 +6,13 @@
 }:
 let
   cfg = config.gman.desktop-theme-sync;
-  theme = config.home-manager.users.${cfg.config.user}.meta.profiles.desktopTheme;
+  users = builtins.attrNames config.home-manager.users;
+  theme =
+    # disable if user is empty string
+    if (cfg.config.user != "") then
+      config.home-manager.users.${cfg.config.user}.meta.profiles.desktopTheme
+    else
+      null;
 in
 {
   options.gman.desktop-theme-sync = {
@@ -15,7 +21,8 @@ in
     config.user = lib.mkOption {
       description = "which user's theme config should control the style of system components";
       type = lib.types.str;
-      default = builtins.elemAt config.meta.users 0;
+      # depends on how users appear alphabetically in the home-manager.users attrset but will work for 0 or 1 home-manager user systems
+      default = if (users != [ ]) then builtins.elemAt users 0 else "";
     };
   };
 

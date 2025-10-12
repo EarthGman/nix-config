@@ -38,7 +38,9 @@ in
       determinate.enable = lib.mkDefault true;
       nh.enable = lib.mkDefault true;
       zsh.enable = lib.mkDefault true;
-      desktop-theme-sync.enable = lib.mkDefault true;
+
+      # this has to be enabled if a home-manager configuration exists or else home-manager will complain of missing modules
+      stylix.enable = true;
 
       # enable the profile requested by meta.profiles.${profile}
       profiles = {
@@ -74,7 +76,6 @@ in
 
     # stylix will not include the home-manager module if its not enabled
     stylix = {
-      enable = (config.home-manager.users != { });
 
       # make sure no conflicts get generated
       autoEnable = lib.mkDefault false;

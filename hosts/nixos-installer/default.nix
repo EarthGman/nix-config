@@ -8,7 +8,7 @@
   ...
 }:
 let
-  install-sh = pkgs.writeShellScriptBin "install.sh" (builtins.readFile ./install.sh);
+  install-sh = pkgs.writeShellScriptBin "install.sh" (builtins.readFile ../../scripts/install.sh);
 in
 {
   imports = [ (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix") ];

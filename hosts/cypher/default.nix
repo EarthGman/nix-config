@@ -14,10 +14,9 @@
   time.timeZone = "America/Chicago";
 
   gman = {
-    # been broken for awhile
     qemu-kvm.enable = true;
-    # conflicts with zsa moonlander
     wireguard.main.enable = true;
+    # conflicts with zsa moonlander
     kanata.enable = false;
     earthgman.enable = true;
     steam.enable = true;

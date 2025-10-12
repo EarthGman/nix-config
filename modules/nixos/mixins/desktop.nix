@@ -22,6 +22,7 @@ in
 
       # desktop stylization
       stylix.enable = lib.mkDefault true;
+      desktop-theme-sync.enable = lib.mkDefault true;
 
       # imperative applications for ease of install
       flatpak.enable = lib.mkDefault true;

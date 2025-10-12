@@ -21,21 +21,23 @@ let
 
      MONTH=$(date +"%B")
 
-     if [ -n "$WAYLAND_DISPLAY" ]; then
-       userid=$(id -u)
-       socket_path="/run/user/$userid/swww-wayland-1.sock"
+     if [ -n $WAYLAND_DISPLAY ]; then
+       # TODO socket path will probably change in a future swww version
+       socket_path="$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY-swww-daemon..sock"
 
        for ((i=1; i<=30; i++ )); do
          if [ -e "$socket_path" ]; then
            swww img "''${!MONTH}"
+           echo "Set wallpaper: ''${MONTH} for desktop: ''${XDG_CURRENT_DESKTOP}"
            exit 0
          fi
          sleep 0.1
        done
+       echo "Unable to locate swww socket within 3 seconds: aborting."
        exit 1
     fi
-
-     echo "Omori-Calendar-Project.service: Set wallpaper: ''${MONTH} for desktop: ''${XDG_CURRENT_DESKTOP}"
+    echo "Unable to locate wayland display. env var WAYLAND_DISPLAY has no value"
+    exit 1
   '';
 in
 {
@@ -48,7 +50,7 @@ in
     warnings = lib.mkIf (!config.services.swww.enable) [
       ''
         services.swww is not enabled!
-        Omori-calendar project requires a desktop environment supported by swww to function properly
+        Omori-calendar project requires a desktop environment that implements wlr-base-shell
         such as Hyprland or Sway, but not Gnome or KDE Plasma.
       ''
     ];

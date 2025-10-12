@@ -114,6 +114,7 @@
     hostname = "nixos";
     bios = "legacy";
     vm = true;
+    desktop = "plasma";
     configDir = ./nixos;
     stateVersion = "25.11";
     system = "x86_64-linux";

@@ -203,7 +203,7 @@ create_config() {
 
 	TIMEZONE=$(timedatectl list-timezones | fzf --border --border-label-pos 1:bottom --border-label="Select your time zone.")
 
-	DESKTOPS=("gnome" "sway" "hyprland" "no-desktop")
+	DESKTOPS=("gnome" "sway" "hyprland" "plasma" "no-desktop")
 	DESKTOP=$(printf "%s\n" "${DESKTOPS[@]}" | fzf --border --border-label-pos 1:bottom --border-label "Choose a desktop environment.")
 
 	printf "\nWith many linux distributions, users can be imperatively modified using commands such as (usermod, useradd, etc)\n"

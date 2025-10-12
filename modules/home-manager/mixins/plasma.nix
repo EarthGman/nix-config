@@ -29,6 +29,9 @@ in
 
     # HM and plasma fight for this file and it causes alot of problems
     gtk.gtk2.enable = lib.mkForce false;
-    gtk.cursorTheme = lib.mkForce null;
+
+    # allow configuration of cursor using plasma UI by default
+    gtk.cursorTheme = lib.mkOverride 899 null;
+    stylix.cursor = lib.mkOverride 899 null;
   };
 }

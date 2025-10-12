@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   config,
   ...
@@ -11,6 +12,10 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = [
       cfg.package
+      pkgs.kdePackages.kde-cli-tools
+      pkgs.kdePackages.qtsvg
+      pkgs.kdePackages.kio-fuse
+      pkgs.kdePackages.kio-extras
     ];
   };
 }

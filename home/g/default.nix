@@ -65,6 +65,13 @@ in
 
     # desktop only
     (lib.mkIf (config.meta.desktop != "") {
+      services = {
+        kdeconnect = {
+          enable = lib.mkDefault true;
+          indicator = lib.mkDefault true;
+        };
+      };
+
       programs = {
         obsidian.enable = lib.mkDefault true;
         qutebrowser.enable = lib.mkForce true;
