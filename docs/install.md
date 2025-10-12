@@ -6,25 +6,23 @@
 
 **For reference, any directory path will refer to the root of the repository being created NOT the root filesystem. During install this will be located under /mnt/etc/nixos**
 
-# 3 methods for installation
+# Installation
 
------------------------------------------------------------
+There are 3 options available, pick one:
 
-# 1. Creating a new configuration repository
+## 1. Creating a new configuration repository
 
-creates a brand new repository structured with a flake and the configuration for the current system.
+Creates a brand new repository structured with a flake and the configuration for the current system.
 
-# 2. Appending to an existing repository
+## 2. Appending to an existing repository
 
-appends a new host configuration to an existing flake repository under /hosts
+Appends a new host configuration to an existing flake repository under `/hosts`
 
-# 3. Installing or repairing an existing configuration.
+## 3. Installing or repairing an existing configuration.
 
 Used for reinstallation or repair if a system cannot be rolled back.
 
-**If pulling a private repository ensure the installer has access to your git repository via account login or ssh private key.**
-
-------------------------------------------------------------
+> NOTE: If pulling a private repository ensure the installer has access to your git repository via account login or ssh private key.
 
 # Formatting disks
 
