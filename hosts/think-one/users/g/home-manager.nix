@@ -12,7 +12,7 @@
   #   stores = [ config.programs.password-store.settings.PASSWORD_STORE_DIR ];
   # };
 
-  meta.profiles.desktopTheme = "the-world-machine";
+  meta.profiles.desktopTheme = "astronaut";
 
   gman.profiles.waybar.windows-11.config.settings-unmerged = {
     modules-left = [

@@ -1,4 +1,9 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  config,
+  ...
+}:
 {
   imports = [
     ./disko.nix
@@ -16,8 +21,16 @@
     # profiles.sddm.astronaut.config.embeddedTheme = "hyprland_kath";
   };
 
+  sops.secrets.pgadmin_pass.path = "/var/lib/sops-nix/pgadmin-pass";
+
   services = {
     xserver.xkb.layout = "jp";
+
+    pgadmin = {
+      enable = true;
+      initialEmail = "EarthGman@protonmail.com";
+      initialPasswordFile = config.sops.secrets.pgadmin_pass.path;
+    };
   };
 
   networking.firewall = {
