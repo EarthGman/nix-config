@@ -75,7 +75,24 @@ in
       programs = {
         obsidian.enable = lib.mkDefault true;
         qutebrowser.enable = lib.mkForce true;
-        freetube.enable = lib.mkDefault true;
+        freetube = {
+          enable = lib.mkDefault true;
+          package = pkgs.freetube.overrideAttrs (a: rec {
+            version = "0.23.11";
+
+            src = pkgs.fetchFromGitHub {
+              owner = "FreeTubeApp";
+              repo = "Freetube";
+              rev = "382cfeb7cb109e44e81075cbe87c622114e7d0ff";
+              hash = "sha256-AmT0zNqFJEG1qjMBgMTUKmEsZrJqocxRzPkTl25HiUs=";
+            };
+
+            yarnOfflineCache = pkgs.fetchYarnDeps {
+              yarnLock = "${src}/yarn.lock";
+              hash = "sha256-sM9CkDnATSEUf/uuUyT4JuRmjzwa1WzIyNYEw69MPtU=";
+            };
+          });
+        };
         moonlight.enable = lib.mkDefault true;
         discord.enable = lib.mkDefault true;
         # protonmail-desktop.enable = lib.mkDefault true;
