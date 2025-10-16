@@ -29,6 +29,7 @@ in
         profiles.firefox = "shyfox";
         editor = "nvim";
         browser = "qutebrowser";
+        fileManager = "yazi";
       };
 
       programs = {

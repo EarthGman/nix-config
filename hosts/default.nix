@@ -37,7 +37,7 @@
     cpu = "intel";
     gpu = "intel";
     users = [ "Chris" ];
-    desktop = "gnome";
+    desktop = "plasma";
     system = "x86_64-linux";
     stateVersion = "25.05";
     configDir = ./think-two;

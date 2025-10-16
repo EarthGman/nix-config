@@ -17,8 +17,5 @@ in
       pkgs.kdePackages.kio-fuse
       pkgs.kdePackages.kio-extras
     ];
-
-    # not from HM. See modules/home-manager/core/services/kio.nix
-    services.kio.enable = true;
   };
 }
