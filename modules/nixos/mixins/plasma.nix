@@ -31,7 +31,6 @@ in
           kinfocenter
           ;
       };
-
     };
 
     # plasma does not come with a calculator

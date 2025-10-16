@@ -37,10 +37,11 @@ in
         services.blueman-applet.enable = lib.mkDefault (
           nixosConfig != null && nixosConfig.services.blueman.enable
         );
-      })
-      {
+
         programs.pwvucontrol.enable = true;
         services.swaync.enable = true;
+      })
+      {
 
         gman.profiles.waybar.windows-11.config.settings-unmerged = import ./settings.nix {
           inherit pkgs lib config;
