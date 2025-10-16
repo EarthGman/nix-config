@@ -43,5 +43,10 @@ in
       # disable pwvucontrol in favor of the default plasma volume control
       pwvucontrol.enable = lib.mkOverride 899 false;
     };
+
+    stylix = {
+      cursor = lib.mkForce null;
+      targets.gtk.enable = lib.mkOverride 899 false;
+    };
   };
 }
