@@ -116,6 +116,12 @@ in
       inherit pkgs;
     };
 
+    discover = mkProgramOption {
+      programName = "discover";
+      description = "flatpak frontend for kde plasma";
+      pkgs = pkgs.kdePackages;
+    };
+
     dolphin-emu = mkProgramOption {
       programName = "dolphin-emu";
       description = "Wii and Gamecube emulator";

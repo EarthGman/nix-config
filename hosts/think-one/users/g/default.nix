@@ -20,6 +20,7 @@ in
       "wheel"
       "wireshark"
       "adbusers"
+      "libvirtd"
     ];
   };
 }

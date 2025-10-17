@@ -29,7 +29,7 @@ in
         profiles.firefox = "shyfox";
         editor = "nvim";
         browser = "qutebrowser";
-        fileManager = "yazi";
+        fileManager = "dolphin";
       };
 
       programs = {
@@ -79,13 +79,13 @@ in
         freetube = {
           enable = lib.mkDefault true;
           package = pkgs.freetube.overrideAttrs (a: rec {
-            version = "0.23.11";
+            version = "0.23.12";
 
             src = pkgs.fetchFromGitHub {
               owner = "FreeTubeApp";
               repo = "Freetube";
-              rev = "382cfeb7cb109e44e81075cbe87c622114e7d0ff";
-              hash = "sha256-AmT0zNqFJEG1qjMBgMTUKmEsZrJqocxRzPkTl25HiUs=";
+              tag = "v0.23.12-beta";
+              hash = "sha256-DH5uT3dPDFZnFYoiMjxpNouNDRbWDctVqvDwHpUlnkY=";
             };
 
             yarnOfflineCache = pkgs.fetchYarnDeps {

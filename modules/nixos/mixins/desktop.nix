@@ -24,9 +24,6 @@ in
       stylix.enable = lib.mkDefault true;
       desktop-theme-sync.enable = lib.mkDefault true;
 
-      # imperative applications for ease of install
-      flatpak.enable = lib.mkDefault true;
-
       # which desktop to enable
       hyprland.enable = (config.meta.desktop == "hyprland");
       sway.enable = (config.meta.desktop == "sway");
@@ -52,6 +49,10 @@ in
 
     # mounting network drives in file managers
     services.gvfs.enable = lib.mkDefault true;
+
+    # simple flatpak using discover by default
+    services.flatpak.enable = lib.mkDefault true;
+    programs.gnome-software.enable = lib.mkDefault config.services.flatpak.enable;
 
     # use sddm as default display manager, will change to gdm if gnome is the desktop
     services.displayManager.sddm.enable = lib.mkDefault true;

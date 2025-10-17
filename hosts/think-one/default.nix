@@ -18,6 +18,7 @@
     hacker-mode.enable = true;
     earthgman.enable = true;
     postgresql.enable = true;
+    qemu-kvm.enable = true;
     # profiles.sddm.astronaut.config.embeddedTheme = "hyprland_kath";
   };
 
@@ -64,7 +65,6 @@
     filezilla.enable = true;
     moonlight.enable = true;
     puddletag.enable = true;
-    gnome-software.enable = true;
     fastfetch.enable = true;
     prismlauncher.enable = true;
     ani-cli.enable = true;

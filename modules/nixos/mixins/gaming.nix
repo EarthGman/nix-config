@@ -16,7 +16,6 @@ in
     lib.mkMerge [
       {
         gman = {
-          flatpak.enable = true;
           steam.enable = true;
           hardware-tools.enable = true;
         };
