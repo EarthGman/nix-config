@@ -8,7 +8,6 @@ in
   bios ? "UEFI", # bios type: one of "legacy" or "UEFI"
   cpu ? "intel", # cpu brand (amd, intel)
   gpu ? "intel", # gpu brand (amd, intel, nvidia)
-  users ? [ ], # list of self defined users as strings [ "alice" "bob"]
   desktop ? "", # what desktop? "gnome" "hyprland" or "sway"
   server ? false, # is this machine a server
   vm ? false, # is this a virtual machine?
@@ -56,7 +55,6 @@ lib.nixosSystem {
             gpu
             bios
             desktop
-            users
             vm
             server
             secretsFile

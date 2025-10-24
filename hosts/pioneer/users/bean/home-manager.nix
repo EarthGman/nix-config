@@ -16,6 +16,6 @@
     sl.enable = true;
     cmatrix.enable = true;
     cbonsai.enable = true;
-    zoom.enable = true;
+    zoom-us.enable = true;
   };
 }

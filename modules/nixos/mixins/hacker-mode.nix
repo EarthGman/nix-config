@@ -16,7 +16,10 @@ in
         programs = {
           ghidra.enable = lib.mkDefault true;
           burpsuite.enable = lib.mkDefault true;
-          zenmap.enable = lib.mkDefault true;
+
+          john.package = lib.mkDefault pkgs.johnny;
+          nmap.package = lib.mkDefault pkgs.zenmap;
+
           wireshark.package = pkgs.wireshark; # install gui version if desktop is enabled
         };
       })
@@ -27,6 +30,7 @@ in
 
           wireshark.enable = true;
           nmap.enable = true;
+          john.enable = lib.mkDefault true;
         };
 
         environment.systemPackages = builtins.attrValues {
@@ -35,7 +39,6 @@ in
             python3
             binutils
             busybox
-            nmap
             dig
             ;
         };

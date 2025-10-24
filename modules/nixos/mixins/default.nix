@@ -1,3 +1,5 @@
+# Modules enabled by `gman.enable` for NixOS
+# /modules/shared is also included
 {
   pkgs,
   lib,
@@ -17,6 +19,7 @@ let
     else
       { };
 
+  # handle edge cases in display manager session names
   defaultSession =
     if (config.meta.desktop == "hyprland") then
       "hyprland-uwsm"
@@ -28,38 +31,50 @@ in
 {
   imports = lib.autoImport ./.;
 
-  options.gman.enable = lib.mkEnableOption "EarthGman's default nixos modules";
+  options.gman = {
+    enable = lib.mkEnableOption "EarthGman's default nixos modules";
+
+    ssh-keys = lib.mkOption {
+      description = "public ssh keys for ease of access";
+      type = lib.types.attrsOf lib.types.str;
+      default = { };
+    };
+  };
 
   config = lib.mkIf config.gman.enable {
-    # custom options
     gman = {
-      # default mixins
-      grub.enable = lib.mkDefault true;
-      determinate.enable = lib.mkDefault true;
-      nh.enable = lib.mkDefault true;
-      zsh.enable = lib.mkDefault true;
+      ssh-keys = {
+        g = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKNRHd6NLt4Yd9y5Enu54fJ/a2VCrRgbvfMuom3zn5zg";
+      };
 
-      # this has to be enabled if a home-manager configuration exists or else home-manager will complain of missing modules
-      stylix.enable = true;
+      # default mixins
+      # use grub by default as it supports legacy bios
+      grub.enable = lib.mkDefault true;
+      # improved nix daemon
+      determinate.enable = lib.mkDefault true;
+      # improved nixos rebuild
+      nh.enable = lib.mkDefault true;
+      # riced zsh
+      zsh.enable = lib.mkDefault true;
+      # tmux configuration
+      tmux.enable = lib.mkDefault true;
 
       # enable the profile requested by meta.profiles.${profile}
       profiles = {
         sddm = enableProfile "sddm";
-        stylix = enableProfile "stylix";
       };
 
       # enable mixins based on host metadata
+      # see /modules/nixos/mixins/desktop.nix
       desktop.enable = (config.meta.desktop != "");
+      # see /modules/nixos/mixins/sops.nix
       sops.enable = (config.meta.secretsFile != null);
 
-      # gpu modules
+      # gpu modules and drivers
       gpu.intel.enable = (config.meta.gpu == "intel");
       gpu.nvidia.enable = (config.meta.gpu == "nvidia");
       gpu.amd.enable = (config.meta.gpu == "amd");
     };
-
-    # custom core option, but it would be nice to have with stock home-manager
-    home-manager.enable = lib.mkDefault true;
 
     # set profile defaults
     meta.profiles = {
@@ -74,14 +89,8 @@ in
     # its not the best anyway
     documentation.nixos.enable = lib.mkDefault false;
 
-    # stylix will not include the home-manager module if its not enabled
-    stylix = {
-
-      # make sure no conflicts get generated
-      autoEnable = lib.mkDefault false;
-    };
-
     boot = {
+      # use latest nixpkgs linux kernel by default
       kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
       tmp.cleanOnBoot = lib.mkDefault true;
       kernelParams = [
@@ -94,6 +103,7 @@ in
       };
     };
 
+    # ensure that kanata keymaps transfer to virtual console TTY
     console.useXkbConfig = true;
 
     networking = {
@@ -101,59 +111,109 @@ in
       # hardware-configuration.nix has always had this on
       useDHCP = lib.mkDefault true;
 
-      wireless.enable = false;
+      # use networkmanager as im too lazy to learn wpa_supplicant
+      wireless.enable = false; # disable wpa_supplicant
       networkmanager.enable = lib.mkDefault true;
     };
 
     users = {
+      # users controlled by nix be default
       mutableUsers = lib.mkDefault false;
+
+      # all users get zsh for login shell
       defaultUserShell = lib.mkOverride 800 pkgs.zsh;
     };
 
     nix = {
+      # use flakes
       channel.enable = lib.mkDefault false;
       settings = {
         experimental-features = [
           "nix-command"
           "flakes"
         ];
+        # enable hard linking of identical contents within the nix store
         auto-optimise-store = lib.mkDefault true;
       };
     };
 
-    nixpkgs.hostPlatform = config.meta.system;
+    nixpkgs = {
+      # set nixpkgs cpu architecture target
+      hostPlatform = config.meta.system;
 
+      config.allowUnfree = true;
+    };
+
+    # enable linux firmware if a physical machine
     hardware.enableRedistributableFirmware = lib.mkDefault (!config.meta.vm);
+
+    # enable microcode updates for bare metal machines
+    # usually defined by hardware-configuration.nix but just in case its somehow not present
     hardware.cpu.${config.meta.cpu}.updateMicrocode = lib.mkIf (
       (!config.meta.vm) && (builtins.substring 0 3 config.meta.system) == "x86"
     ) (lib.mkDefault config.hardware.enableRedistributableFirmware);
 
-    environment.systemPackages = builtins.attrValues {
-      inherit (pkgs)
-        libinput
-        file
-        ;
-    };
+    # install tools
+    environment.systemPackages = [
+      # keylogger
+      pkgs.libinput
+      # cant rely on file extensions
+      pkgs.file
+    ]
+    ++ lib.optionals (!config.meta.vm) [
+      pkgs.brightnessctl
+    ];
 
     programs = {
-      nix-inspect.enable = true;
+      # program for viewing your nix configuration
+      nix-inspect.enable = lib.mkDefault true;
+
+      # better version of discord
+      discord.package = lib.mkDefault pkgs.vesktop;
+      # password store otp plugin
+      password-store.package = (pkgs.pass.withExtensions (exts: [ exts.pass-otp ]));
+
+      # system configuration viewer
+      fastfetch.enable = lib.mkDefault true;
+
+      # enable gpg key caching
       gnupg.agent = {
         enable = true;
         enableSSHSupport = true;
       };
 
+      # more shell stuff
       zoxide = {
         enable = lib.mkDefault true;
         flags = lib.mkDefault [
           "--cmd j"
         ];
       };
+
+      # nice tools
+      ncdu.enable = lib.mkDefault true;
+      hstr.enable = lib.mkDefault true;
+      fzf.enable = lib.mkDefault true;
+      fd.enable = lib.mkDefault true;
+      eza.enable = lib.mkDefault true;
+      btop.enable = lib.mkDefault true;
+      sysz.enable = lib.mkDefault true;
+      yazi.enable = lib.mkDefault true;
+      git.enable = lib.mkDefault true;
+      lazygit.enable = lib.mkDefault true;
+      ripgrep.enable = lib.mkDefault true;
+      zsh.enable = lib.mkDefault true;
+      bat.enable = lib.mkDefault true;
+      starship.enable = lib.mkDefault true;
+      tmux.enable = lib.mkDefault true;
     };
 
     services = {
+      # set the determined default session for the display manager
       displayManager = {
         inherit defaultSession;
       };
+      # enable ssh by default
       openssh.enable = lib.mkDefault true;
       # controversial but necessary for uwsm
       dbus.implementation = lib.mkDefault "broker";

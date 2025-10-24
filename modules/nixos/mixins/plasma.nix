@@ -36,17 +36,13 @@ in
     # plasma does not come with a calculator
     programs = {
       kalk.enable = true;
+      gnome-calculator.enable = lib.mkOverride 899 false;
 
       # disable the default gnome frontend in favor of KDE discover
       gnome-software.enable = lib.mkOverride 899 false;
 
       # disable pwvucontrol in favor of the default plasma volume control
       pwvucontrol.enable = lib.mkOverride 899 false;
-    };
-
-    stylix = {
-      cursor = lib.mkForce null;
-      targets.gtk.enable = lib.mkOverride 899 false;
     };
   };
 }

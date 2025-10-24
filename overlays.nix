@@ -2,7 +2,6 @@
 {
   custom-neovims = inputs.vim-config.overlays.default;
   gman-packages = inputs.nix-library.overlays.default;
-  nur = inputs.nur.overlays.default;
   images = inputs.nix-library.overlays.images;
 
   swww = inputs.swww.overlays.default;

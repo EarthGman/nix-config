@@ -11,7 +11,19 @@ in
   options.gman.nix-development.enable = lib.mkEnableOption "gman's nix development suite";
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = import ../../../mixins/nix-dev-packages.nix { inherit pkgs; };
+    environment.systemPackages = builtins.attrValues {
+      inherit (pkgs)
+        nurl
+        nix-prefetch-git
+        deadnix
+        nixpkgs-hammering
+        statix
+        nix-init
+        nix-update
+        nixpkgs-review
+        nixfmt
+        ;
+    };
 
     programs.direnv = {
       enable = true;

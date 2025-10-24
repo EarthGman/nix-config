@@ -8,6 +8,21 @@ let
   cfg = config.programs.neovim-custom;
 in
 {
+  options.programs.neovim-custom = {
+    enable = lib.mkEnableOption "fully configured custom neovim package";
+
+    package = lib.mkOption {
+      description = "package for your configured neovim";
+      type = lib.types.package;
+      default = pkgs.nvim;
+    };
+
+    defaultEditor = lib.mkEnableOption "neovim as the default editor";
+
+    viAlias = lib.mkEnableOption "custom neovim vi alias";
+    vimAlias = lib.mkEnableOption "custom neovim vim alias";
+  };
+
   config = lib.mkIf cfg.enable {
     environment.variables.EDITOR = lib.mkIf cfg.defaultEditor (lib.mkForce "nvim");
 

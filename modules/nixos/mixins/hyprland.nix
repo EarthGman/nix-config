@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   config,
   ...
@@ -10,9 +11,36 @@ in
   options.gman.hyprland.enable = lib.mkEnableOption "hyprland with uwsm";
 
   config = lib.mkIf cfg.enable {
-    programs.hyprland = {
-      enable = true;
-      withUWSM = true;
+    gman = {
+      window-manager.enable = true;
+      swww.enable = true;
+    };
+
+    programs = {
+      hyprland = {
+        enable = true;
+        withUWSM = true;
+      };
+      hyprlock.enable = true;
+      rofi.enable = lib.mkDefault true;
+      kitty.enable = lib.mkDefault true;
+    };
+
+    services = {
+      swaync.enable = true;
+      hypridle.enable = true;
+    };
+
+    environment.systemPackages = builtins.attrValues {
+      inherit (pkgs)
+        waybar
+        libnotify
+        wl-clipboard
+        grim
+        slurp
+        # screenshot script
+        grimblast
+        ;
     };
   };
 }

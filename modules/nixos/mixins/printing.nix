@@ -13,9 +13,10 @@ in
       };
       printing = {
         enable = true;
-        browsed.enable = false;
+        browsed.enable = lib.mkDefault false;
       };
     };
+    # TODO see if I can remove this
     networking.firewall.allowedUDPPorts = [ 5353 ];
   };
 }

@@ -20,14 +20,10 @@ in
       # common printing configuration
       printing.enable = lib.mkDefault true;
 
-      # desktop stylization
-      stylix.enable = lib.mkDefault true;
-      desktop-theme-sync.enable = lib.mkDefault true;
-
       # which desktop to enable
       hyprland.enable = (config.meta.desktop == "hyprland");
       sway.enable = (config.meta.desktop == "sway");
-      gnome.enable = (config.meta.desktop == "gnome");
+      # gnome.enable = (config.meta.desktop == "gnome");
       plasma.enable = (config.meta.desktop == "plasma");
 
       hardware-tools.enable = lib.mkDefault true;
@@ -41,6 +37,35 @@ in
       ];
     };
 
+    environment.systemPackages = [
+      # install some icons
+      pkgs.adwaita-icon-theme
+      pkgs.star-pixel-icons
+
+      # install some cursors
+      pkgs.bibata-cursors
+
+      # kvantum themes
+      pkgs.catppuccin-kvantum
+    ];
+
+    # install some fonts
+    fonts.packages = builtins.attrValues (
+      {
+        inherit (pkgs)
+          pixel-code
+          "8-bit-operator-font"
+          omori-font
+          ;
+      }
+      # nerd fonts
+      // {
+        inherit (pkgs.nerd-fonts)
+          meslo-lg
+          ;
+      }
+    );
+
     # kind of redundant, but good to have.
     hardware.graphics = {
       enable = true;
@@ -52,7 +77,9 @@ in
 
     # simple flatpak using discover by default
     services.flatpak.enable = lib.mkDefault true;
-    programs.gnome-software.enable = lib.mkDefault config.services.flatpak.enable;
+    programs = {
+      gnome-software.enable = lib.mkDefault config.services.flatpak.enable;
+    };
 
     # use sddm as default display manager, will change to gdm if gnome is the desktop
     services.displayManager.sddm.enable = lib.mkDefault true;
@@ -70,7 +97,6 @@ in
     # sets up a default desktop portal backend
     xdg.portal = {
       enable = lib.mkDefault true;
-      extraPortals = lib.mkDefault [ pkgs.xdg-desktop-portal ];
       xdgOpenUsePortal = true;
     };
 
@@ -79,9 +105,7 @@ in
 
     qt = {
       enable = lib.mkDefault true;
+      style = lib.mkDefault "kvantum";
     };
-
-    # required for some stylix modules to style gtk apps
-    programs.dconf.enable = lib.mkDefault true;
   };
 }

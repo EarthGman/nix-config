@@ -16,9 +16,9 @@
     steam.enable = true;
     wireguard.main.enable = true;
     hacker-mode.enable = true;
-    earthgman.enable = true;
+    personal-profile.enable = true;
     postgresql.enable = true;
-    qemu-kvm.enable = true;
+    libvirtd.enable = true;
     # profiles.sddm.astronaut.config.embeddedTheme = "hyprland_kath";
   };
 

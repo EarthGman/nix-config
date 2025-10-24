@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
   gman = {
     smallscreen.enable = true;
@@ -12,7 +12,7 @@
   #   stores = [ config.programs.password-store.settings.PASSWORD_STORE_DIR ];
   # };
 
-  meta.profiles.desktopTheme = "astronaut";
+  meta.profiles.desktopTheme = "the-world-machine";
 
   gman.profiles.waybar.windows-11.config.settings-unmerged = {
     modules-left = [

@@ -14,21 +14,13 @@
   time.timeZone = "America/Chicago";
 
   gman = {
-    qemu-kvm.enable = true;
+    libvirtd.enable = true;
     wireguard.main.enable = true;
     # conflicts with zsa moonlander
     kanata.enable = false;
-    earthgman.enable = true;
+    personal-profile.enable = true;
     steam.enable = true;
     hacker-mode.enable = true;
-  };
-
-  networking.firewall = {
-    allowedTCPPorts = [ 22000 ];
-    allowedUDPPorts = [
-      22000
-      21027
-    ];
   };
 
   boot.initrd.availableKernelModules = [
@@ -73,8 +65,6 @@
     # davinci resolve dependency for amd gpus
     amdgpu.opencl.enable = true;
 
-    # bitcoin
-    ledger.enable = true;
   };
 
   networking = {
@@ -85,7 +75,9 @@
   programs = {
     audacity.enable = true;
     cutentr.enable = true;
-    davinci-resolve.enable = true;
+    # fails to build (10-21-2025)
+    # davinci-resolve.enable = true;
+    bustle.enable = true;
     bottles.enable = true;
     filezilla.enable = true;
     gimp.enable = true;
@@ -95,11 +87,12 @@
       package = inputs.prismlauncher.packages.${config.meta.system}.default;
     };
     gcolor.enable = true;
-    musescore.enable = true;
+    # musescore.enable = true;
     lutris.enable = true;
     ledger-live-desktop.enable = true;
+    libreoffice.enable = true;
     ardour.enable = true;
-    dolphin-emu.enable = true;
+    # dolphin-emu.enable = true;
     cemu.enable = true;
     mcrcon.enable = true;
     obs-studio.enable = true;
@@ -119,6 +112,8 @@
       openFirewall = true;
       capSysAdmin = true;
     };
+    # monitor profile configuration for wayland window managers
+    kanshi.enable = true;
 
     # keyd = {
     #   enable = true;

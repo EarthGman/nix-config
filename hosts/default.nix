@@ -9,8 +9,7 @@
     hostname = "cypher";
     cpu = "amd";
     gpu = "amd";
-    users = [ "g" ];
-    desktop = "sway";
+    desktop = "hyprland";
     system = "x86_64-linux";
     stateVersion = "25.11";
     configDir = ./cypher;

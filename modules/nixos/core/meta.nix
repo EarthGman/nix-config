@@ -1,6 +1,40 @@
 { lib, ... }:
 {
   options.meta = {
+    desktop = lib.mkOption {
+      description = "which desktop environment is enabled";
+      type = lib.types.str;
+      default = "";
+      example = "hyprland";
+    };
+
+    hostname = lib.mkOption {
+      description = "system hostname";
+      type = lib.types.str;
+      default = "";
+      example = "nixos";
+    };
+
+    secretsFile = lib.mkOption {
+      description = "location of the default sops secrets file";
+      type = lib.types.anything;
+      default = null;
+    };
+
+    stateVersion = lib.mkOption {
+      description = "the version of nixos first installed on the system";
+      type = lib.types.str;
+      #TODO change me in november
+      default = "25.11";
+    };
+
+    system = lib.mkOption {
+      description = "cpu arch";
+      type = lib.types.str;
+      default = "x86_64-linux";
+      example = "aarch64-linux";
+    };
+
     bios = lib.mkOption {
       description = "x86 firmware implementation";
       type = lib.types.str;
@@ -20,16 +54,6 @@
       type = lib.types.str;
       default = "";
       example = "nvidia";
-    };
-
-    users = lib.mkOption {
-      description = "list of users that will recieve a home-manager configuration";
-      type = lib.types.listOf lib.types.str;
-      default = [ ];
-      example = [
-        "bob"
-        "alice"
-      ];
     };
 
     vm = lib.mkOption {

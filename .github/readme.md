@@ -1,4 +1,4 @@
-**EarthGman's Main Nix Flake ❄️ V7**
+**EarthGman's Main Nix Flake ❄️ V8 - The homeless update**
 
 This flake contains my nixos configurations and configuration framework developed over the course of several years.
 

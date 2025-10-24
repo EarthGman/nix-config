@@ -1,3 +1,13 @@
+10-17-2025
+- add discover to programs
+- update freetube to 0.23.12-beta for user g
+- installer script tweaks:
+	- make nixpkgs follow gman input to prevent breakages
+	- passwords are now concealed
+	- home-manager is now optional
+	- edited some formatting and wording
+
+
 10-12-2025
 - fix omori calendar project script
 - move install.sh to scripts

@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   cfg = config.gman.pipewire;
 in
@@ -11,6 +16,9 @@ in
     programs = {
       pwvucontrol.enable = lib.mkDefault (config.meta.desktop != "");
     };
+
+    # pipewire-pulse mixer
+    environment.systemPackages = [ pkgs.pamixer ];
 
     services = {
       pipewire = {
