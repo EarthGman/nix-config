@@ -214,7 +214,7 @@ create_config() {
 		keyboard - $KBD_LAYOUT
 		timezone - $TIMEZONE
 		Desktop - $DESKTOP 
-	  Specialization - $SPECIALIZATION
+		Specialization - $SPECIALIZATION
 	"
 
 	# remove the config files in case of an aborted or failed install
@@ -344,7 +344,6 @@ create_config() {
 			hostname = \"$HOSTNAME\";
 			stateVersion = \"$STATEVERSION\";
 			system = \"$ARCH-linux\";
-			server = $SERVER;
 			bios = \"$BIOS\";
 			specialization = \"$SPECIALIZATION\"; 
 			cpu = \"$CPU\";

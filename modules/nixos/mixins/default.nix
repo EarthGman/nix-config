@@ -50,8 +50,6 @@ in
       # default mixins
       # use grub by default as it supports legacy bios
       grub.enable = lib.mkDefault true;
-      # improved nix daemon
-      determinate.enable = lib.mkDefault true;
       # improved nixos rebuild
       nh.enable = lib.mkDefault true;
       # riced zsh
@@ -84,6 +82,16 @@ in
     meta.profiles = {
       sddm = lib.mkDefault "astronaut";
     };
+
+    # determinate configuration
+    # 10-24-2025 - determinate causes OOM when trying to build. Lets just stick to normal nix for now
+    determinate.enable = false;
+    # determinate.enable = lib.mkDefault true;
+    # nix.settings = {
+    #   substituters = [ "https://install.determinate.systems/" ];
+    #   trusted-public-keys = [ "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM=" ];
+    #   lazy-trees = true;
+    # };
 
     # Stock Nixos options
     # ------------------------------------------------------
