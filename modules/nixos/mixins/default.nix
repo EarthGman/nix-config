@@ -70,6 +70,10 @@ in
       # see /modules/nixos/mixins/sops.nix
       sops.enable = (config.meta.secretsFile != null);
 
+      server.enable = (config.meta.specialization == "server");
+
+      gaming.enable = (config.meta.specialization == "gaming");
+
       # gpu modules and drivers
       gpu.intel.enable = (config.meta.gpu == "intel");
       gpu.nvidia.enable = (config.meta.gpu == "nvidia");
@@ -157,8 +161,12 @@ in
     environment.systemPackages = [
       # keylogger
       pkgs.libinput
-      # cant rely on file extensions
+
       pkgs.file
+
+      # archive helpers
+      pkgs.atool
+      pkgs.unrar
     ]
     ++ lib.optionals (!config.meta.vm) [
       pkgs.brightnessctl

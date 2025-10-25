@@ -62,10 +62,10 @@
       default = false;
     };
 
-    server = lib.mkOption {
-      description = "whether this host is a server";
-      type = lib.types.bool;
-      default = false;
+    specialization = lib.mkOption {
+      description = "The specialization modules for this host";
+      type = lib.types.str;
+      default = "";
     };
 
     profiles = {

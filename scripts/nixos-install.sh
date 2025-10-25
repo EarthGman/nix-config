@@ -54,7 +54,7 @@ hardware_config() {
 
 pull_repo() {
 	#TODO: add support for private repos
-	REPO_DIR=/tmp/dotfiles
+	REPO_DIR=/tmp/nix-config
 
 	if [[ -d $REPO_DIR ]]; then
 		echo "existing repository found at $REPO_DIR".
@@ -143,33 +143,18 @@ create_config() {
 	# file containing all hosts on your flake
 	HOSTS_CONFIG=/mnt/etc/nixos/hosts/default.nix
 	# config for users controlled by home-manager on all systems
-	HOMES_CONFIG=/mnt/etc/nixos/home
 
-	PURPOSE_PROFILES=(
+	SPECIALIZATIONS=(
 		"Let me install my own bloatware."
-		"Server"
-		"Gaming"
+		"server"
+		"gaming"
 	)
-	PURPOSE=$(printf "%s\n" "${PURPOSE_PROFILES[@]}" | fzf --border --border-label-pos 1:bottom --border-label="What purpose will this machine serve?")
+	SPECIALIZATION=$(printf "%s\n" "${SPECIALIZATIONS[@]}" | fzf --border --border-label-pos 1:bottom --border-label="Enable a specialization module listed here?")
 
-	# assume not server first
-	SERVER="false"
-
-	case "$PURPOSE" in
-	"")
-		echo "no purpose selected, assuming SIGINT was sent"
-		exit 0
-		;;
-	"Server")
-		SERVER="true"
-		;;
-	"Gaming")
-		GAMING="true"
-		;;
-	*)
+	if [[ $SPECIALIZATION == "Let me install my own bloatware." ]]; then
 		printf "\nNo specialization modules will be enabled by default.\n"
-		;;
-	esac
+		SPECIALIZATION=""
+	fi
 
 	if [[ $(lscpu | grep -i "intel") ]]; then
 		CPU="intel"
@@ -229,6 +214,7 @@ create_config() {
 		keyboard - $KBD_LAYOUT
 		timezone - $TIMEZONE
 		Desktop - $DESKTOP 
+	  Specialization - $SPECIALIZATION
 	"
 
 	# remove the config files in case of an aborted or failed install
@@ -243,8 +229,13 @@ create_config() {
 		description = \"my NixOS configurations\";
 
 		inputs = {
+      # nixpkgs = {
+			#   url = \"github:NixOS/nixpkgs/nixos-unstable\";
+			# };
+
 			gman = {
-				url = \"github:EarthGman/nix-config\";
+				url = \"github:EarthGman/nix-config/v8\";
+				# inputs.nixpkgs.follows = \"nixpkgs\"
 			};
 		};
 
@@ -277,8 +268,6 @@ create_config() {
 
 	y_or_n "Add a non-root user to the system?"
 
-	# TODO prevent creation of the same user twice
-	USERS=()
 	while [[ $yn == [Yy]* ]]; do
 		read -p "Username: " USERNAME
 		# TODO * hide & match password
@@ -314,30 +303,8 @@ create_config() {
     }
 		" >>$USER_DIR/default.nix
 
-		if [[ ! -d $HOMES_CONIFIG/$USERNAME ]]; then
-			mkdir -p $HOMES_CONFIG/$USERNAME
-		fi
-
-		if [[ ! -f $HOMES_CONFIG/$USERNAME/default.nix ]]; then
-			echo "{ hostname, ... }:
-			{
-				imports = [ ../../hosts/\${hostname}/users/$USERNAME/home-manager.nix ];
-			}
-	  " >$HOMES_CONFIG/$USERNAME/default.nix
-		fi
-
-		echo "{ }" >$USER_DIR/home-manager.nix
-
-		USERS+=$(echo \"$USERNAME\")
-
 		y_or_n "Add/Configure another user?"
 	done
-
-	printf "\nNixOS comes with a set of modules for declaratively managing your dotfiles called home-manager.\n"
-	echo "As opposed traditional dotfile management, home-manager will manage dotfiles by symlinking them to the /nix/store."
-	echo "If you choose to not enable home-manager, its configuration files will still be present in case you want to give it a try later."
-	echo "just set the line 'home-manager.enable' from false to true in your hosts/$HOSTNAME/default.nix configuration file."
-	y_or_n "enable home-manager?" && HOME_MANAGER=true || HOME_MANAGER=false
 
 	echo "{ pkgs, lib, config, ... }:
 		{
@@ -353,23 +320,11 @@ create_config() {
 			services.xserver.xkb.layout = \"$KBD_LAYOUT\";
 			
 			users.mutableUsers = $IMPERATIVE_USERS;
-
-			home-manager.enable = $HOME_MANAGER;
-			
-			# import configuration files that match a particular username from this directory
-			home-manager.profilesDir = ../../home;
 		}" >$HOST_CONFIG/default.nix
 
 	# adds disko to the imports array
 	if [[ $DISKO_CONFIG != "" ]]; then
 		sed -i '/]/i./disko.nix' $HOST_CONFIG/default.nix
-	fi
-
-	if [[ $GAMING == "true" ]]; then
-		sed -i '$ s/.$//' $HOST_CONFIG/default.nix
-		echo "gman.gaming.enable = true;
-	  }
-	  " >>$HOST_CONFIG/default.nix
 	fi
 
 	if [[ $DESKTOP == "no-desktop" ]]; then
@@ -391,11 +346,11 @@ create_config() {
 			system = \"$ARCH-linux\";
 			server = $SERVER;
 			bios = \"$BIOS\";
+			specialization = \"$SPECIALIZATION\"; 
 			cpu = \"$CPU\";
 			gpu = \"$GPU\";
 			desktop = \"$DESKTOP\";
 			configDir = ./$HOSTNAME;
-			users = [ $(echo ${USERS[*]}) ];
 		};
 	}
   " >>$HOSTS_CONFIG

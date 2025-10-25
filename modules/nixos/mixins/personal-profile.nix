@@ -73,7 +73,7 @@ in
           neomutt.enable = lib.mkDefault true;
         };
       })
-      (lib.mkIf (config.meta.server) {
+      (lib.mkIf (config.meta.specialization == "server") {
         programs.neovim-custom.package = pkgs.nvim-lite;
         gman.nix-development.enable = lib.mkOverride 899 false;
       })
