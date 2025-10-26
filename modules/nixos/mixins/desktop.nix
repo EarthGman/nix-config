@@ -26,6 +26,7 @@ in
       # gnome.enable = (config.meta.desktop == "gnome");
       plasma.enable = (config.meta.desktop == "plasma");
 
+      # installs various hardware monitoring and configuration tools
       hardware-tools.enable = lib.mkDefault true;
     };
 
@@ -45,8 +46,9 @@ in
       # install some cursors
       pkgs.bibata-cursors
 
-      # kvantum themes
-      pkgs.catppuccin-kvantum
+      # backport of libadwaita to gtk3
+      # required for many legacy gtk3 apps to respect custom color schemes
+      pkgs.adw-gtk3
     ];
 
     # install some fonts

@@ -11,6 +11,10 @@ in
   options.gman.plasma.enable = lib.mkEnableOption "gman's plasma 6 configuration";
 
   config = lib.mkIf cfg.enable {
+    # make sure plasma can manage the QT configuration independent of nix
+    qt.platformTheme = lib.mkOverride 899 null;
+    qt.style = lib.mkOverride 899 null;
+
     services = {
       desktopManager.plasma6 = {
         enable = true;
