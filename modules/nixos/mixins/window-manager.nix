@@ -29,8 +29,6 @@ in
       enable = true;
       # require all xdg-open commands to use the portal
       xdgOpenUsePortal = lib.mkDefault true;
-      # provide a fallback portal for wlr or hyprland
-      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     };
     services.nm-applet.enable = lib.mkDefault true;
   };

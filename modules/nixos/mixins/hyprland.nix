@@ -33,11 +33,12 @@ in
 
     xdg.portal = {
       wlr.enable = true;
+      extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
       config.hyprland = {
         default = [
           "wlr"
-          "gtk"
           "hyprland"
+          "kde"
         ];
       };
     };

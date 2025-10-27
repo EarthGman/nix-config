@@ -29,9 +29,9 @@ in
       pkgs.apksigner
     ];
 
-    services.udev.packages = [
-      pkgs.android-udev-rules
-    ];
+    # services.udev.packages = [
+    #   pkgs.android-udev-rules
+    # ];
 
     services.kdeconnect-indicator.enable = lib.mkDefault true;
   };

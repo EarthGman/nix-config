@@ -75,8 +75,7 @@
   programs = {
     audacity.enable = true;
     cutentr.enable = true;
-    # fails to build (10-21-2025)
-    # davinci-resolve.enable = true;
+    davinci-resolve.enable = true;
     bustle.enable = true;
     bottles.enable = true;
     filezilla.enable = true;
@@ -87,12 +86,12 @@
       package = inputs.prismlauncher.packages.${config.meta.system}.default;
     };
     gcolor.enable = true;
-    # musescore.enable = true;
+    musescore.enable = true;
     lutris.enable = true;
     ledger-live-desktop.enable = true;
     libreoffice.enable = true;
     ardour.enable = true;
-    # dolphin-emu.enable = true;
+    dolphin-emu.enable = true;
     cemu.enable = true;
     mcrcon.enable = true;
     obs-studio.enable = true;
