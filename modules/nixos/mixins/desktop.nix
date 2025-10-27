@@ -105,6 +105,7 @@ in
     # graphical prompt for sudo
     security.polkit.enable = lib.mkDefault true;
 
+    # use kvantum themes
     qt = {
       enable = lib.mkDefault true;
       style = lib.mkDefault "kvantum";

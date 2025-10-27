@@ -31,6 +31,17 @@ in
       hypridle.enable = true;
     };
 
+    xdg.portal = {
+      wlr.enable = true;
+      config.hyprland = {
+        default = [
+          "wlr"
+          "gtk"
+          "hyprland"
+        ];
+      };
+    };
+
     environment.systemPackages = builtins.attrValues {
       inherit (pkgs)
         waybar
@@ -40,6 +51,8 @@ in
         slurp
         # screenshot script
         grimblast
+        # graphical prompt for sudo / other polkit rules
+        hyprpolkitagent
         ;
     };
   };
