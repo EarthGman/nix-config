@@ -24,6 +24,7 @@ in
       hyprlock.enable = true;
       rofi.enable = lib.mkDefault true;
       kitty.enable = lib.mkDefault true;
+      nwg-look.enable = lib.mkDefault true;
     };
 
     services = {
@@ -33,12 +34,11 @@ in
 
     xdg.portal = {
       wlr.enable = true;
-      extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
       config.hyprland = {
         default = [
           "wlr"
           "hyprland"
-          "kde"
+          "gtk"
         ];
       };
     };

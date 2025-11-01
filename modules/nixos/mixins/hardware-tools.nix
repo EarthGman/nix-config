@@ -18,6 +18,7 @@ in
             hdparm
             pciutils
             lshw
+            hwinfo
             inxi
             ;
         };

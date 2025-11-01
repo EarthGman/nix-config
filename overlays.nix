@@ -1,8 +1,13 @@
 { inputs, ... }:
 {
   custom-neovims = inputs.vim-config.overlays.default;
-  gman-packages = inputs.nix-library.overlays.default;
-  images = inputs.nix-library.overlays.images;
+
+  packages =
+    final: prev:
+    import ./packages {
+      inherit inputs;
+      pkgs = final;
+    };
 
   swww = inputs.swww.overlays.default;
 

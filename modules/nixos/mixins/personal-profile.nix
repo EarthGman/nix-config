@@ -69,6 +69,7 @@ in
           freetube.enable = lib.mkDefault true;
           qutebrowser.enable = lib.mkDefault true;
           vlc.enable = lib.mkDefault true;
+          obsidian.enable = lib.mkDefault true;
           discord.enable = lib.mkDefault true;
           neomutt.enable = lib.mkDefault true;
         };

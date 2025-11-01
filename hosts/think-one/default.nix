@@ -26,20 +26,13 @@
 
   services = {
     xserver.xkb.layout = "jp";
+    kanshi.enable = true;
 
     pgadmin = {
       enable = true;
       initialEmail = "EarthGman@protonmail.com";
       initialPasswordFile = config.sops.secrets.pgadmin_pass.path;
     };
-  };
-
-  networking.firewall = {
-    allowedTCPPorts = [ 22000 ];
-    allowedUDPPorts = [
-      22000
-      21027
-    ];
   };
 
   i18n = {

@@ -18,19 +18,19 @@
     secretsFile = ./cypher/secrets.yaml;
   };
 
-  # think-one = lib.mkHost {
-  #   hostname = "think-one";
-  #   bios = "legacy";
-  #   cpu = "intel";
-  #   gpu = "intel";
-  #   users = [ "g" ];
-  #   desktop = "hyprland";
-  #   system = "x86_64-linux";
-  #   stateVersion = "25.11";
-  #   secretsFile = ./think-one/secrets.yaml;
-  #   configDir = ./think-one;
-  #   extraSpecialArgs = { inherit inputs; };
-  # };
+  think-one = lib.mkHost {
+    hostname = "think-one";
+    bios = "legacy";
+    cpu = "intel";
+    gpu = "intel";
+    desktop = "hyprland";
+    specialization = "none";
+    system = "x86_64-linux";
+    stateVersion = "25.11";
+    secretsFile = ./think-one/secrets.yaml;
+    configDir = ./think-one;
+    extraSpecialArgs = { inherit inputs; };
+  };
   #
   # think-two = lib.mkHost {
   #   hostname = "think-two";

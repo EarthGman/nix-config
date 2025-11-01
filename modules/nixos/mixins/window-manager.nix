@@ -24,6 +24,8 @@ in
       dolphin.enable = lib.mkDefault true;
 
       gnome-calculator.enable = lib.mkDefault true;
+      # gtk themer
+      nwg-look.enable = lib.mkDefault true;
     };
     xdg.portal = {
       enable = true;

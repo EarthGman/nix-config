@@ -49,6 +49,10 @@ in
       # backport of libadwaita to gtk3
       # required for many legacy gtk3 apps to respect custom color schemes
       pkgs.adw-gtk3
+
+    ]
+    ++ lib.optionals (config.programs.dconf.enable) [
+      pkgs.dconf-editor
     ];
 
     # install some fonts
@@ -81,6 +85,8 @@ in
     services.flatpak.enable = lib.mkDefault true;
     programs = {
       gnome-software.enable = lib.mkDefault config.services.flatpak.enable;
+      # overcomplicated gtk settings database
+      dconf.enable = lib.mkDefault true;
     };
 
     # use sddm as default display manager, will change to gdm if gnome is the desktop
@@ -108,7 +114,8 @@ in
     # use kvantum themes
     qt = {
       enable = lib.mkDefault true;
-      style = lib.mkDefault "kvantum";
+      platformTheme = "kde";
+      style = "kvantum";
     };
   };
 }

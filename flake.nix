@@ -5,16 +5,20 @@
     {
       self,
       nixpkgs,
-      nix-library,
       ...
     }@inputs:
     let
-      myLib =
-        (import ./lib {
+      supported-systems = [
+        "x86_64-linux"
+        "aarch_64-linux"
+      ];
+      myLib = (
+        import ./lib {
           inherit inputs;
+          lib = nixpkgs.lib;
           outputs = self.outputs;
-        })
-        // nix-library.lib;
+        }
+      );
       lib = nixpkgs.lib.extend (final: prev: (myLib));
     in
     {
@@ -26,6 +30,14 @@
       };
 
       nixosConfigurations = import ./hosts { inherit lib inputs; };
+
+      packages = lib.genAttrs supported-systems (
+        system:
+        import ./packages {
+          inherit inputs;
+          pkgs = nixpkgs.legacyPackages.${system};
+        }
+      );
 
       overlays = import ./overlays.nix { inherit inputs; };
     };
@@ -54,11 +66,6 @@
 
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-library = {
-      url = "github:EarthGman/nix-library";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
