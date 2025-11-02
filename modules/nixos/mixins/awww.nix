@@ -5,15 +5,15 @@
   ...
 }:
 let
-  cfg = config.gman.swww;
+  cfg = config.gman.awww;
 in
 {
-  options.gman.swww = {
-    enable = lib.mkEnableOption "gman's swww service configuration";
+  options.gman.awww = {
+    enable = lib.mkEnableOption "gman's awww service configuration";
   };
 
   config = lib.mkIf cfg.enable {
-    services.swww = {
+    services.awww = {
       enable = lib.mkDefault true;
       flags = [
         "-f"

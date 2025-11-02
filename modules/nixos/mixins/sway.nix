@@ -9,7 +9,7 @@
   config = lib.mkIf config.gman.sway.enable {
     gman = {
       window-manager.enable = true;
-      swww.enable = true;
+      awww.enable = true;
     };
     services = {
       # notifications

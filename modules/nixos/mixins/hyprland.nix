@@ -13,7 +13,7 @@ in
   config = lib.mkIf cfg.enable {
     gman = {
       window-manager.enable = true;
-      swww.enable = true;
+      awww.enable = true;
     };
 
     programs = {

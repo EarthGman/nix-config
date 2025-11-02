@@ -9,7 +9,7 @@
       pkgs = final;
     };
 
-  swww = inputs.swww.overlays.default;
+  awww = inputs.awww.overlays.default;
 
   quickshell = inputs.quickshell.overlays.default;
 
