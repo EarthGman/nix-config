@@ -25,6 +25,7 @@ in
       rofi.enable = lib.mkDefault true;
       kitty.enable = lib.mkDefault true;
       nwg-look.enable = lib.mkDefault true;
+      quickshell.enable = lib.mkDefault true;
     };
 
     services = {

@@ -50,6 +50,8 @@ in
       # required for many legacy gtk3 apps to respect custom color schemes
       pkgs.adw-gtk3
 
+      # breeze assets for qt and other plasma stuff
+      pkgs.kdePackages.breeze
     ]
     ++ lib.optionals (config.programs.dconf.enable) [
       pkgs.dconf-editor

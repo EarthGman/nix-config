@@ -11,6 +11,8 @@
 
   swww = inputs.swww.overlays.default;
 
+  quickshell = inputs.quickshell.overlays.default;
+
   disable-mbrola-voices = final: prev: {
     espeak = prev.espeak.override {
       mbrolaSupport = false;
