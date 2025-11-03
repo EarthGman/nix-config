@@ -5,7 +5,7 @@
   ...
 }:
 let
-  program-name = "ffxiv-launcher";
+  program-name = "xivlauncher";
   cfg = config.programs.${program-name};
 in
 {

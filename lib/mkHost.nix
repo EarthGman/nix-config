@@ -40,7 +40,7 @@ lib.nixosSystem {
       {
         # enable my default module and mixins
         gman = {
-          enable = true;
+          enable = lib.mkDefault true;
         };
 
         nixpkgs = {

@@ -15,7 +15,6 @@ nixos_install() {
 	if [[ $IMPERATIVE_USERS == true ]]; then
 		nixos-install --no-channel-copy --flake /mnt/etc/nixos#$HOSTNAME
 	else
-		# remove the prompt which asks for root password if users are declaratively managed
 		nixos-install --no-channel-copy --no-root-password --flake /mnt/etc/nixos#$HOSTNAME
 	fi
 }
@@ -23,12 +22,12 @@ nixos_install() {
 create_swap() {
 	# /tmp will be cleared on bootup if nixos option boot.tmp.cleanOnBoot is set (which it is by default in my config)
 	if [[ $(cat /proc/meminfo | grep MemAvailable | cut -d ":" -f2 | tr -d " kB") -lt 4000000 && ! -f /mnt/tmp/swapfile ]]; then
-		printf "Detected less than 4GB of free ram\nNixOS requires at least 4GB of free ram to install smoothly.\nCreating a 4GB swapfile at /mnt/tmp/swapfile."
+		printf "Detected less than 4GB of free ram\nNixOS requires at least 4GB of free ram to install smoothly.\nCreating a 4GB swapfile at /mnt/tmp/swap."
 		mkdir -p /mnt/tmp
-		dd if=/dev/zero of=/mnt/tmp/swapfile bs=1024 count=4194304
-		mkswap /mnt/tmp/swapfile
-		chmod 600 /mnt/tmp/swapfile
-		swapon /mnt/tmp/swapfile
+		dd if=/dev/zero of=/mnt/tmp/swap bs=1024 count=4194304
+		mkswap /mnt/tmp/swap
+		chmod 600 /mnt/tmp/swap
+		swapon /mnt/tmp/swap
 	fi
 }
 
@@ -139,10 +138,10 @@ install_existing_config() {
 
 create_config() {
 	read -p "Set your system hostname: " HOSTNAME
-	HOST_CONFIG=/mnt/etc/nixos/hosts/$HOSTNAME
+	CONFIG_ROOT=/mnt/etc/nixos
+	HOST_CONFIG=$CONFIG_ROOT/hosts/$HOSTNAME
 	# file containing all hosts on your flake
-	HOSTS_CONFIG=/mnt/etc/nixos/hosts/default.nix
-	# config for users controlled by home-manager on all systems
+	HOSTS_CONFIG=$CONFIG_ROOT/hosts/default.nix
 
 	SPECIALIZATIONS=(
 		"Let me install my own bloatware."
@@ -218,45 +217,133 @@ create_config() {
 	"
 
 	# remove the config files in case of an aborted or failed install
-	if [[ -d /mnt/etc/nixos ]]; then
-		rm -rf /mnt/etc/nixos
+	if [[ -d $CONFIG_ROOT ]]; then
+		rm -rf $CONFIG_ROOT
 	fi
-	mkdir -p /mnt/etc/nixos
+	mkdir -p $CONFIG_ROOT
 
-	# create flake.nix
 	if [[ $INSTALL_MODE == "new" ]]; then
+		# create flake.nix
 		echo " {
 		description = \"my NixOS configurations\";
 
 		inputs = {
+			# Uncomment to lock your own nixpkgs revision in the flake.lock.
       # nixpkgs = {
 			#   url = \"github:NixOS/nixpkgs/nixos-unstable\";
 			# };
 
 			gman = {
-				url = \"github:EarthGman/nix-config/v8\";
-				# inputs.nixpkgs.follows = \"nixpkgs\"
+				url = \"github:EarthGman/nix-config\";
+				# Be sure to uncomment this if you use your own nixpkgs input. Mismatched system dependencies are not good.
+				# inputs.nixpkgs.follows = \"nixpkgs\";
 			};
 		};
 
-		outputs = { gman, ... }@inputs:
+		outputs = { self, nixpkgs, gman, ... }@inputs:
 		let
 			lib = gman.lib;
+			outputs = self.outputs;
 		in
 		{
-			nixosConfigurations = import ./hosts { inherit lib; };
+			# expose hosts configured under this flake
+			nixosConfigurations = import ./hosts { inherit lib outputs; };
+
+			# expose your custom modules
+			nixosModules.default = import ./modules/nixos { inherit inputs lib; };
+
+			# expose package set modifications
+			overlays = import ./overlays.nix { inherit inputs; };
+
+			# your custom derivations
+			packages = 
+			let
+			  supported-systems = [
+				  # add more archs as needed
+          \"$ARCH-linux\"
+				];
+			in
+			# generate a package attribute set for each supported architecture
+      lib.genAttrs supported-systems (
+				system:
+				import ./packages {
+				  pkgs = nixpkgs.legacyPackages.\${system};
+			  }
+			);
 		};
 	}
-	" >/mnt/etc/nixos/flake.nix
+	" >$CONFIG_ROOT/flake.nix
+
+		# create directory framework
+		echo "
+		  # wrapper for all your nixos modules and modules consumed from flake inputs.
+			{ inputs, lib, ... }:
+			{
+				# automatically import all configuration modules placed under core or mixins
+				imports = lib.autoImport ./. ++ [
+					# EXAMPLES
+					# inputs.home-manager.nixosModules.default
+				];
+		  }
+		" | install -D /dev/stdin "$CONFIG_ROOT/modules/nixos/default.nix"
+
+		echo "
+		  # This module directory is reserved for any modules appended to the core NixOS module set such as appending to options.programs options.services or options.hardware
+			{ }
+		" | install -D /dev/stdin "$CONFIG_ROOT/modules/nixos/core/default.nix"
+
+		echo "
+      # This module directory is reserved for your specific custom modules which can be enable using a single .enable option
+			# modules configured within this directory should be behind a config option of your name to distinguish the option set to your flake.
+			{ lib, ... }:
+			{
+				# EXAMPLE
+				# options.my-name.enable = lib.mkEnableOption \"my nixos modules\"
+				# config = lib.mkIf config.my-name.enable {
+				#   my-name.module1.enable = true;
+				#   my-name.module2.enable = true;
+				# }
+			}
+		" | install -D /dev/stdin "$CONFIG_ROOT/modules/nixos/mixins/default.nix"
+
+		echo "
+		  # create custom derivations using pkgs.callPackage
+      { pkgs, ... }:
+			{
+        # my-package = pkgs.callPackage ./my-package.nix { };
+			}
+		" | install -D /dev/stdin "$CONFIG_ROOT/packages/default.nix"
+
+		echo "
+      # overlays are defined as functions which modify the original nixpkgs package set.
+			# the flake.nix expects this to be a regular nix attribute set however
+			# the nixos option \`nixpkgs.overlays\` requires the functions to be in a nix array to properly apply them to the configuration modules.
+			# to apply them throughout your nixos configuration add:
+			
+			# extraModules = [
+			#   { nixpkgs.overlays = builtins.attrValues outputs.overlays; }
+			# ];
+			#
+			# to the lib.mkHost function at /hosts/default.nix (apply separately for each host)
+			{
+				# EXAMPLE 
+				# TODO example
+			}
+		" | install -D /dev/stdin "$CONFIG_ROOT/overlays.nix"
+
 	else
-		mv $REPO_DIR/{.,}* /mnt/etc/nixos
+		mv $REPO_DIR/{.,}* $CONFIG_ROOT
+		# if hostname is the same as an existing configuration, replace it
+		if [[ -d $HOST_CONFIG ]]; then
+			rm -rf $HOST_CONFIG
+		fi
 	fi
 
 	mkdir -p $HOST_CONFIG
 
 	# if a disko file from the repo was used, ensure it gets moved into the host's configuration
 	if [[ ($DISKO_CONFIG != "") && (! -f $HOST_CONFIG/disko.nix) ]]; then
-		mv /mnt/etc/nixos/$DISKO_CONFIG $HOST_CONFIG/disko.nix
+		mv $CONFIG_ROOT/$DISKO_CONFIG $HOST_CONFIG/disko.nix
 	fi
 
 	# TODO sops
@@ -332,8 +419,9 @@ create_config() {
 	fi
 
 	if [[ $INSTALL_MODE == "new" ]]; then
+		mkdir -p $CONFIG_ROOT/hosts
 		# add the function header if this is a new configuration
-		echo " { lib, ... }:
+		echo " { lib, outputs, ... }:
 		{" >$HOSTS_CONFIG
 	else
 		# INSTALL_MODE "append"
@@ -350,13 +438,14 @@ create_config() {
 			gpu = \"$GPU\";
 			desktop = \"$DESKTOP\";
 			configDir = ./$HOSTNAME;
+			extraModules = [ outputs.nixosModules.default ];
 		};
 	}
   " >>$HOSTS_CONFIG
 
 	hardware_config
 
-	for i in $(find /mnt/etc/nixos -type f -not -path '*/.*'); do
+	for i in $(find $CONFIG_ROOT -type f -not -path '*/.*'); do
 		if [[ $i == *.nix ]]; then
 			nixfmt $i
 		fi

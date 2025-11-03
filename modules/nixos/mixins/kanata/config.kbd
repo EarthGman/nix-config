@@ -50,6 +50,7 @@
   s S-6
   d S-]
   f S-\
+  g S-'
   z S-8
   x S-9
   c ]
@@ -60,10 +61,11 @@
   j down
   k up
   l right
+  ' S-7 
   i S-,
   o S-.
   u -
-  p S-7
+  p S-[
   n S-IntlYen
   m S-IntlRo
 )

@@ -1,3 +1,4 @@
+# TODO get monitor configuration before reinstalling
 { lib, config, ... }:
 {
   imports = [
@@ -25,7 +26,7 @@
 
   programs = {
     zotero.enable = true;
-    ffxiv-launcher.enable = true;
+    xivlauncher.enable = true;
     lutris.enable = true;
     bottles.enable = true;
     r2modman.enable = true;
