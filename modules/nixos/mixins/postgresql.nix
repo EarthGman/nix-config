@@ -1,3 +1,4 @@
+# this module was created for a school assignment and will probably be removed in the near future
 {
   pkgs,
   lib,

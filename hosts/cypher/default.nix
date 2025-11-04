@@ -16,8 +16,6 @@
   gman = {
     libvirtd.enable = true;
     wireguard.main.enable = true;
-    # conflicts with zsa moonlander
-    kanata.enable = false;
     personal-profile.enable = true;
     steam.enable = true;
     hacker-mode.enable = true;

@@ -16,7 +16,6 @@ in
     lib.mkMerge [
       {
         gman = {
-          kanata.enable = lib.mkDefault true;
           syncthing.enable = lib.mkDefault true;
           nix-development.enable = lib.mkDefault true;
           security-hardening.enable = lib.mkDefault true;

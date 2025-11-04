@@ -14,14 +14,16 @@
 
   gman = {
     steam.enable = true;
-    wireguard.main.enable = true;
     hacker-mode.enable = true;
     personal-profile.enable = true;
     postgresql.enable = true;
     libvirtd.enable = true;
-    # profiles.sddm.astronaut.config.embeddedTheme = "hyprland_kath";
+
+    kanata.jp106.enable = true;
+    wireguard.main.enable = true;
   };
 
+  # dumb school stuff
   sops.secrets.pgadmin_pass.path = "/var/lib/sops-nix/pgadmin-pass";
 
   services = {
@@ -70,6 +72,7 @@
     "usb_storage"
     "sd_mod"
     "rtsx_pci_sdmmc"
+    "thinkpad_acpi"
   ];
 
   boot.kernelParams = [ "video=1366x768" ];
