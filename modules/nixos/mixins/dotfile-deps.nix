@@ -15,6 +15,10 @@ in
   config = lib.mkIf cfg.enable {
     programs = {
       cava.enable = true;
+      cmatrix.enable = true;
+      cbonsai.enable = true;
+      sl.enable = true;
+      pipes.enable = true;
       # terminal
       alacritty.enable = false;
       kitty.enable = lib.mkDefault true;
