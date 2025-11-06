@@ -15,12 +15,13 @@
   gman = {
     steam.enable = true;
     hacker-mode.enable = true;
-    personal-profile.enable = true;
     postgresql.enable = true;
     libvirtd.enable = true;
 
     kanata.jp106.enable = true;
     wireguard.main.enable = true;
+
+    profiles.earthgman.enable = true;
   };
 
   # dumb school stuff

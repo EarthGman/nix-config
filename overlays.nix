@@ -10,6 +10,7 @@
     };
 
   awww = inputs.awww.overlays.default;
+  niri = inputs.niri.overlays.default;
 
   quickshell = inputs.quickshell.overlays.default;
 

@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.gman.personal-profile;
+  cfg = config.gman.profiles.earthgman;
 in
 {
-  options.gman.personal-profile = {
+  options.gman.profiles.earthgman = {
     enable = lib.mkEnableOption "gman's personal profile";
   };
 
@@ -19,6 +19,7 @@ in
           syncthing.enable = lib.mkDefault true;
           nix-development.enable = lib.mkDefault true;
           security-hardening.enable = lib.mkDefault true;
+          dotfile-deps.enable = lib.mkDefault true;
         };
 
         environment.systemPackages = [

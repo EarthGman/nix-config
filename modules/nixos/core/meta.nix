@@ -21,13 +21,6 @@
       default = null;
     };
 
-    stateVersion = lib.mkOption {
-      description = "the version of nixos first installed on the system";
-      type = lib.types.str;
-      #TODO change me in november
-      default = "25.11";
-    };
-
     system = lib.mkOption {
       description = "cpu arch";
       type = lib.types.str;
@@ -66,14 +59,6 @@
       description = "The specialization modules for this host";
       type = lib.types.str;
       default = "";
-    };
-
-    profiles = {
-      sddm = lib.mkOption {
-        description = "sddm profile to use";
-        type = lib.types.str;
-        default = "";
-      };
     };
   };
 }

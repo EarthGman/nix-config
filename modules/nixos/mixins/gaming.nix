@@ -1,3 +1,4 @@
+# triggered by the gaming specialization from the installer
 {
   pkgs,
   lib,
@@ -17,10 +18,10 @@ in
       {
         gman = {
           steam.enable = true;
-          hardware-tools.enable = true;
+          hardware-tools.enable = lib.mkDefault true;
         };
         programs = {
-          lutris.enable = true;
+          lutris.enable = lib.mkDefault true;
         };
       }
     ]

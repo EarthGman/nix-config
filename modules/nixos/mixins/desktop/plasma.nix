@@ -5,12 +5,14 @@
   ...
 }:
 let
-  cfg = config.gman.plasma;
+  cfg = config.gman.desktop.plasma;
 in
 {
-  options.gman.plasma.enable = lib.mkEnableOption "gman's plasma 6 configuration";
+  options.gman.desktop.plasma.enable = lib.mkEnableOption "gman's plasma 6 configuration";
 
   config = lib.mkIf cfg.enable {
+    gman.sddm.enable = false; # kde does not play well with this module
+
     # make sure plasma can manage the QT configuration independent of nix
     qt.platformTheme = lib.mkOverride 899 null;
     qt.style = lib.mkOverride 899 null;
@@ -23,9 +25,6 @@ in
       # ensure sddm is enabled
       displayManager.sddm.enable = true;
     };
-
-    # modifying sddm does not play well with plasma
-    meta.profiles.sddm = lib.mkOverride 899 "";
 
     environment = {
       plasma6.excludePackages = builtins.attrValues {

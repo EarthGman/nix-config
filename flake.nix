@@ -60,6 +60,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    niri = {
+      url = "github:YaLTeR/niri";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "";
+    };
+
     nixos-hardware = {
       url = "https://flakehub.com/f/NixOS/nixos-hardware/*.tar.gz";
     };

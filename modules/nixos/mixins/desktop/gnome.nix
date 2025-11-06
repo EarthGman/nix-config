@@ -5,10 +5,10 @@
   #   ...
   # }:
   # let
-  #   cfg = config.gman.gnome;
+  #   cfg = config.gman.desktop.gnome;
   # in
   # {
-  #   options.gman.gnome = {
+  #   options.gman.desktop.gnome = {
   #     enable = lib.mkEnableOption "custom gnome module";
   #     withDefaultPackages = lib.mkEnableOption "gnome's bloatware";
   #   };

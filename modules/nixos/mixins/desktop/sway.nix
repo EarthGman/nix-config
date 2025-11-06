@@ -5,15 +5,17 @@
   ...
 }:
 {
-  options.gman.sway.enable = lib.mkEnableOption "gman's sway installation with uwsm";
-  config = lib.mkIf config.gman.sway.enable {
-    gman = {
-      window-manager.enable = true;
-      awww.enable = true;
-    };
+  options.gman.desktop.sway.enable = lib.mkEnableOption "gman's sway installation with uwsm";
+  config = lib.mkIf config.gman.desktop.sway.enable {
     services = {
-      # notifications
       swaync.enable = true;
+      awww = {
+        enable = true;
+        flags = lib.mkDefault [
+          "-f"
+          "argb"
+        ];
+      };
     };
     programs = {
       sway = {

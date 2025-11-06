@@ -16,9 +16,10 @@
   gman = {
     libvirtd.enable = true;
     wireguard.main.enable = true;
-    personal-profile.enable = true;
     steam.enable = true;
     hacker-mode.enable = true;
+
+    profiles.earthgman.enable = true;
   };
 
   boot.initrd.availableKernelModules = [

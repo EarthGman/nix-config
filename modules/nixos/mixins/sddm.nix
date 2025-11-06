@@ -5,15 +5,15 @@
   ...
 }:
 let
-  cfg = config.gman.profiles.sddm.astronaut;
+  cfg = config.gman.sddm;
   package = pkgs.sddm-astronaut.override {
     inherit (cfg.config) themeConfig embeddedTheme;
   };
 
 in
 {
-  options.gman.profiles.sddm.astronaut = {
-    enable = lib.mkEnableOption "gman's sddm astronaut configuration";
+  options.gman.sddm = {
+    enable = lib.mkEnableOption "gman's sddm configuration themed with the astronaut qt6 theme";
     config = {
       themeConfig = lib.mkOption {
         description = "theme configuration for sddm astronaut theme";
@@ -30,6 +30,7 @@ in
 
   config = lib.mkIf cfg.enable {
     services.displayManager.sddm = {
+      enable = lib.mkDefault true;
       wayland.enable = true;
       theme = "sddm-astronaut-theme";
 
@@ -43,12 +44,12 @@ in
       package
     ];
 
-    gman.profiles.sddm.astronaut.config.themeConfig = {
+    gman.sddm.config.themeConfig = {
       # why is this disabled by default?
-      AllowUppercaseLettersInUsernames = "true";
+      AllowUppercaseLettersInUsernames = lib.mkDefault "true";
 
-      FullBlur = "false";
-      PartialBlur = "false";
+      FullBlur = lib.mkDefault "false";
+      PartialBlur = lib.mkDefault "false";
     };
   };
 }

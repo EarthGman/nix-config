@@ -7,13 +7,24 @@
 }:
 let
   cfg = config.gman.desktop;
+
+  defaultSession =
+    if (config.meta.desktop == "hyprland") then
+      "hyprland-uwsm"
+    else if (config.meta.desktop == "sway") then
+      "sway-uwsm"
+    else
+      config.meta.desktop;
 in
 {
+  imports = lib.autoImport ./.;
+
   options.gman.desktop.enable = lib.mkEnableOption "gman's configuration for hosts with a desktop environment";
+
   config = lib.mkIf cfg.enable {
     # configuration revelent for desktop
     gman = {
-      # sound
+      # sound / screen capture server
       pipewire.enable = lib.mkDefault true;
       bluetooth.enable = lib.mkDefault true;
 
@@ -21,19 +32,28 @@ in
       printing.enable = lib.mkDefault true;
 
       # which desktop to enable
-      hyprland.enable = (config.meta.desktop == "hyprland");
-      sway.enable = (config.meta.desktop == "sway");
-      # gnome.enable = (config.meta.desktop == "gnome");
-      plasma.enable = (config.meta.desktop == "plasma");
+      # multiple desktops can be enabled at once but it is not recommended nor supported
+      desktop =
+        let
+          activeDesktop = config.meta.desktop;
+        in
+        {
+          # friendship ended with gnome
+          # gnome.enable = (activeDesktop == "gnome");
+          plasma.enable = (activeDesktop == "plasma");
+          sway.enable = (activeDesktop == "sway");
+          hyprland.enable = (activeDesktop == "hyprland");
+          niri.enable = (activeDesktop == "niri");
+        };
 
       # installs various hardware monitoring and configuration tools
       hardware-tools.enable = lib.mkDefault true;
     };
 
-    # additional boilerplate
+    # stock nixos modules
     boot = {
       extraModulePackages = [
-        # for obs virtual camera
+        # adds a device for obs virtual camera
         config.boot.kernelPackages.v4l2loopback
       ];
     };
@@ -54,10 +74,11 @@ in
       pkgs.kdePackages.breeze
     ]
     ++ lib.optionals (config.programs.dconf.enable) [
+      # dang a registry editor on linux :(
       pkgs.dconf-editor
     ];
 
-    # install some fonts
+    # install some fonts (many are included by default)
     fonts.packages = builtins.attrValues (
       {
         inherit (pkgs)
@@ -80,19 +101,26 @@ in
       enable32Bit = lib.mkDefault true;
     };
 
-    # mounting network drives in file managers
-    services.gvfs.enable = lib.mkDefault true;
+    services = {
+      # set the determined default session for the display manager
+      displayManager = {
+        inherit defaultSession;
+      };
+      # mounting network drives in file managers
+      gvfs.enable = lib.mkDefault true;
+    };
 
-    # simple flatpak using discover by default
     services.flatpak.enable = lib.mkDefault true;
     programs = {
+      # gtk frontend to flatpak
       gnome-software.enable = lib.mkDefault config.services.flatpak.enable;
       # overcomplicated gtk settings database
       dconf.enable = lib.mkDefault true;
     };
 
     # use sddm as default display manager, will change to gdm if gnome is the desktop
-    services.displayManager.sddm.enable = lib.mkDefault true;
+    # my sddm config
+    gman.sddm.enable = lib.mkDefault true;
 
     # ensure xserver configuration is applied
     services.xserver = {
@@ -104,20 +132,25 @@ in
       };
     };
 
-    # sets up a default desktop portal backend
+    # configures the xdg-desktop-portal, allowing interprocess communication between applications
+    # EX: opening a link from some app in the default browser
     xdg.portal = {
       enable = lib.mkDefault true;
-      xdgOpenUsePortal = true;
+      # all xdg-open commands will use the portal configuration by default
+      xdgOpenUsePortal = lib.mkDefault true;
     };
 
-    # graphical prompt for sudo
+    # allows permission configuration for underprivileged users interacting with privileged process
+    # ex calling reboot or poweroff without sudo
+    # desktop modules install a graphical implementation for an interactive sudo prompt
     security.polkit.enable = lib.mkDefault true;
 
-    # use kvantum themes
+    # use kvantum themes by default since its portable
+    # plasma module will override for the in built configurator
     qt = {
       enable = lib.mkDefault true;
-      platformTheme = "kde";
-      style = "kvantum";
+      platformTheme = lib.mkDefault "kde";
+      style = lib.mkDefault "kvantum";
     };
   };
 }

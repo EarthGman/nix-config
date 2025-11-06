@@ -47,6 +47,8 @@ lib.nixosSystem {
           overlays = builtins.attrValues outputs.overlays;
         };
 
+        system.stateVersion = stateVersion;
+
         meta = {
           inherit
             hostname
@@ -57,7 +59,6 @@ lib.nixosSystem {
             vm
             specialization
             secretsFile
-            stateVersion
             ;
         };
       }

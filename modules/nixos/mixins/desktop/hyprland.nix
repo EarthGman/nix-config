@@ -5,17 +5,12 @@
   ...
 }:
 let
-  cfg = config.gman.hyprland;
+  cfg = config.gman.desktop.hyprland;
 in
 {
-  options.gman.hyprland.enable = lib.mkEnableOption "hyprland with uwsm";
+  options.gman.desktop.hyprland.enable = lib.mkEnableOption "hyprland with uwsm";
 
   config = lib.mkIf cfg.enable {
-    gman = {
-      window-manager.enable = true;
-      awww.enable = true;
-    };
-
     programs = {
       hyprland = {
         enable = true;
@@ -31,6 +26,13 @@ in
     services = {
       swaync.enable = true;
       hypridle.enable = true;
+      awww = {
+        enable = true;
+        flags = lib.mkDefault [
+          "-f"
+          "argb"
+        ];
+      };
     };
 
     xdg.portal = {

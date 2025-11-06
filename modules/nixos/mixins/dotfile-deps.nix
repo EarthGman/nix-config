@@ -1,19 +1,24 @@
+# dependencies of my personal dotfiles
 {
-  pkgs,
   lib,
   config,
   ...
 }:
 let
-  cfg = config.gman.window-manager;
+  cfg = config.gman.dotfile-deps;
 in
 {
-  options.gman.window-manager = {
-    enable = lib.mkEnableOption "gman's configuration for DIY window managers";
+  options.gman.dotfile-deps = {
+    enable = lib.mkEnableOption "the services and programs that my personal dotfiles depend upon";
   };
 
   config = lib.mkIf cfg.enable {
     programs = {
+      cava.enable = true;
+      # terminal
+      alacritty.enable = false;
+      kitty.enable = lib.mkDefault true;
+
       # pipewire control dashboard
       pwvucontrol.enable = lib.mkDefault true;
       # pdf viewer
@@ -22,16 +27,16 @@ in
       gthumb.enable = lib.mkDefault true;
       # graphical file manager
       dolphin.enable = lib.mkDefault true;
+      # setting timers
+      gnome-clocks.enable = lib.mkDefault true;
 
+      # calculator
       gnome-calculator.enable = lib.mkDefault true;
       # gtk themer
       nwg-look.enable = lib.mkDefault true;
     };
-    xdg.portal = {
-      enable = true;
-      # require all xdg-open commands to use the portal
-      xdgOpenUsePortal = lib.mkDefault true;
-    };
+
+    # tray applet for networkmanager
     services.nm-applet.enable = lib.mkDefault true;
   };
 }

@@ -10,7 +10,7 @@
     cpu = "amd";
     gpu = "amd";
     specialization = "gaming";
-    desktop = "hyprland";
+    desktop = "niri";
     system = "x86_64-linux";
     stateVersion = "25.11";
     configDir = ./cypher;
@@ -24,7 +24,7 @@
     bios = "legacy";
     cpu = "intel";
     gpu = "intel";
-    desktop = "hyprland";
+    desktop = "niri";
     specialization = "none";
     system = "x86_64-linux";
     stateVersion = "25.11";

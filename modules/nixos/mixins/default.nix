@@ -6,33 +6,12 @@
   config,
   ...
 }:
-let
-  enableProfile =
-    profile:
-    let
-      cfg = config.meta.profiles;
-    in
-    if (cfg.${profile} != "") then
-      {
-        ${cfg.${profile}}.enable = true;
-      }
-    else
-      { };
-
-  # handle edge cases in display manager session names
-  defaultSession =
-    if (config.meta.desktop == "hyprland") then
-      "hyprland-uwsm"
-    else if (config.meta.desktop == "sway") then
-      "sway-uwsm"
-    else
-      config.meta.desktop;
-in
+# handle edge cases in display manager session names
 {
   imports = lib.autoImport ./.;
 
   options.gman = {
-    enable = lib.mkEnableOption "EarthGman's default nixos modules";
+    enable = lib.mkEnableOption "gman's nixos modules";
 
     ssh-keys = lib.mkOption {
       description = "public ssh keys for ease of access";
@@ -57,11 +36,6 @@ in
       # tmux configuration
       tmux.enable = lib.mkDefault true;
 
-      # enable the profile requested by meta.profiles.${profile}
-      profiles = {
-        sddm = enableProfile "sddm";
-      };
-
       # enable mixins based on host metadata
       # see /modules/nixos/mixins/desktop.nix
       desktop.enable = (config.meta.desktop != "");
@@ -78,11 +52,6 @@ in
       gpu.amd.enable = (config.meta.gpu == "amd");
     };
 
-    # set profile defaults
-    meta.profiles = {
-      sddm = lib.mkDefault "astronaut";
-    };
-
     # determinate configuration
     nix.settings = {
       substituters = [ "https://install.determinate.systems/" ];
@@ -93,8 +62,6 @@ in
     # Stock Nixos options
     # ------------------------------------------------------
 
-    system.stateVersion = config.meta.stateVersion;
-
     # its not the best anyway
     documentation.nixos.enable = lib.mkDefault false;
 
@@ -104,7 +71,6 @@ in
       tmp.cleanOnBoot = lib.mkDefault true;
       kernelParams = [
         "quiet"
-        "noatime"
       ];
       loader = {
         efi.canTouchEfiVariables = lib.mkDefault true;
@@ -222,10 +188,6 @@ in
     };
 
     services = {
-      # set the determined default session for the display manager
-      displayManager = {
-        inherit defaultSession;
-      };
       # enable ssh by default
       openssh.enable = lib.mkDefault true;
       # controversial but necessary for uwsm
