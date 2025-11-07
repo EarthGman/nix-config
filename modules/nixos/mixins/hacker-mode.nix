@@ -15,7 +15,7 @@ in
       (lib.mkIf (config.meta.desktop != "") {
         programs = {
           ghidra.enable = lib.mkDefault true;
-          burpsuite.enable = lib.mkDefault true;
+          # burpsuite.enable = lib.mkDefault true;
 
           john.package = lib.mkDefault pkgs.johnny;
           nmap.package = lib.mkDefault pkgs.zenmap;

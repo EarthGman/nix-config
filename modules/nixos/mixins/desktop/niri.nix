@@ -28,6 +28,7 @@ in
     };
 
     services = {
+      batsignal.enable = lib.mkDefault true;
       swaync.enable = lib.mkDefault true;
       kde-polkit-agent.enable = lib.mkDefault true;
       awww = {
@@ -41,6 +42,7 @@ in
 
     environment = {
       # add network manager applet schemas to XDG_DATA_DIRS
+      # services.nm-applet.enable is not needed since it is provded by niri but the DATA DIRS path still needs to be set to render icons
       profiles = [ "${pkgs.networkmanagerapplet}" ];
 
       systemPackages = builtins.attrValues {
@@ -51,6 +53,7 @@ in
           grim # screenshots
           slurp # screen selector
           swaylock # lockscreen
+          swayidle # daemonless swayidle
           # setup xwayland support for niri
           xwayland-satellite
           ;
