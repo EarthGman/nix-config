@@ -7,6 +7,7 @@
   gman.hyprland.config.screenshotKey = "Alt_R";
 
   # programs
+  programs.zoom.enable = true;
   programs.thunderbird.enable = true;
   programs.discord.enable = true;
   programs.libreoffice.enable = true;
