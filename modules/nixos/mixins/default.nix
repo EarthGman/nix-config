@@ -156,10 +156,6 @@
       fastfetch.enable = lib.mkDefault true;
 
       # enable gpg key caching
-      gnupg.agent = {
-        enable = true;
-        enableSSHSupport = true;
-      };
 
       # more shell stuff
       zoxide = {

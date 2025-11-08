@@ -24,9 +24,9 @@ in
   config = lib.mkIf cfg.enable {
     programs = {
       # address book
-      abook.enable = true;
-      # store passwords using mutt wizard
-      password-store.enable = true;
+      abook.enable = lib.mkDefault true;
+      # helper
+      mutt-wizard.enable = lib.mkDefault true;
     };
 
     environment.systemPackages = [
@@ -34,7 +34,6 @@ in
     ]
     ++ builtins.attrValues {
       inherit (pkgs)
-        mutt-wizard
         msmtp
         isync
         ;

@@ -14,5 +14,7 @@
     fastfetch.enable = true;
     prismlauncher.enable = true;
     ani-cli.enable = true;
+
+    keymapp.enable = false;
   };
 }

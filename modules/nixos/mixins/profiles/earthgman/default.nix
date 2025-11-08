@@ -24,6 +24,7 @@ in
 
         environment.systemPackages = [
           pkgs.man-pages-posix
+          # suckless terminal
         ];
 
         # allow decrypting of gpg key on login
@@ -64,7 +65,10 @@ in
           keymapp.enable = lib.mkDefault true;
           calcure.enable = lib.mkDefault true;
           rofi.enable = lib.mkDefault true;
+          password-store.enable = lib.mkDefault true;
           kitty.enable = lib.mkDefault true;
+          # suckless terminal
+          st.enable = lib.mkDefault true;
           rmpc.enable = lib.mkDefault true;
           freetube.enable = lib.mkDefault true;
           qutebrowser.enable = lib.mkDefault true;
@@ -74,6 +78,10 @@ in
           discord.enable = lib.mkDefault true;
           neomutt.enable = lib.mkDefault true;
           xclicker.enable = lib.mkDefault true;
+          gnupg.agent = {
+            enable = true;
+            enableSSHSupport = true;
+          };
         };
       })
       (lib.mkIf (config.meta.specialization == "server") {
