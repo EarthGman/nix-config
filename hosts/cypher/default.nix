@@ -8,27 +8,19 @@
 {
   imports = [
     ./sddm.nix
+    ./programs.nix
     ./disko.nix
   ];
 
   time.timeZone = "America/Chicago";
 
   gman = {
-    qemu-kvm.enable = true;
+    libvirtd.enable = true;
     wireguard.main.enable = true;
-    # conflicts with zsa moonlander
-    kanata.enable = false;
-    earthgman.enable = true;
     steam.enable = true;
     hacker-mode.enable = true;
-  };
 
-  networking.firewall = {
-    allowedTCPPorts = [ 22000 ];
-    allowedUDPPorts = [
-      22000
-      21027
-    ];
+    profiles.earthgman.enable = true;
   };
 
   boot.initrd.availableKernelModules = [
@@ -73,43 +65,13 @@
     # davinci resolve dependency for amd gpus
     amdgpu.opencl.enable = true;
 
-    # bitcoin
-    ledger.enable = true;
   };
+
+  virtualisation.docker.enable = true;
 
   networking = {
     # required for sins of a solar empire lag bug in multiplayer
     extraHosts = ''66.79.209.80 ico-reb.stardock.com'';
-  };
-
-  programs = {
-    audacity.enable = true;
-    cutentr.enable = true;
-    davinci-resolve.enable = true;
-    bottles.enable = true;
-    filezilla.enable = true;
-    gimp.enable = true;
-    prismlauncher = {
-      enable = true;
-      # newest version of prism
-      package = inputs.prismlauncher.packages.${config.meta.system}.default;
-    };
-    gcolor.enable = true;
-    musescore.enable = true;
-    lutris.enable = true;
-    ledger-live-desktop.enable = true;
-    ardour.enable = true;
-    dolphin-emu.enable = true;
-    cemu.enable = true;
-    mcrcon.enable = true;
-    obs-studio.enable = true;
-    puddletag.enable = true;
-    ryubing.enable = true;
-    # no compatible mouse :(
-    piper.enable = false;
-    blender.enable = true;
-    ani-cli.enable = true;
-    video-trimmer.enable = true;
   };
 
   services = {
@@ -119,6 +81,8 @@
       openFirewall = true;
       capSysAdmin = true;
     };
+    # monitor profile configuration for wayland window managers
+    kanshi.enable = true;
 
     # keyd = {
     #   enable = true;

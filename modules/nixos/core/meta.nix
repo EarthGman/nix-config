@@ -1,6 +1,33 @@
 { lib, ... }:
 {
   options.meta = {
+    desktop = lib.mkOption {
+      description = "which desktop environment is enabled";
+      type = lib.types.str;
+      default = "";
+      example = "hyprland";
+    };
+
+    hostname = lib.mkOption {
+      description = "system hostname";
+      type = lib.types.str;
+      default = "";
+      example = "nixos";
+    };
+
+    secretsFile = lib.mkOption {
+      description = "location of the default sops secrets file";
+      type = lib.types.anything;
+      default = null;
+    };
+
+    system = lib.mkOption {
+      description = "cpu arch";
+      type = lib.types.str;
+      default = "x86_64-linux";
+      example = "aarch64-linux";
+    };
+
     bios = lib.mkOption {
       description = "x86 firmware implementation";
       type = lib.types.str;
@@ -22,34 +49,16 @@
       example = "nvidia";
     };
 
-    users = lib.mkOption {
-      description = "list of users that will recieve a home-manager configuration";
-      type = lib.types.listOf lib.types.str;
-      default = [ ];
-      example = [
-        "bob"
-        "alice"
-      ];
-    };
-
     vm = lib.mkOption {
       description = "whether this host is a qemu virtual machine";
       type = lib.types.bool;
       default = false;
     };
 
-    server = lib.mkOption {
-      description = "whether this host is a server";
-      type = lib.types.bool;
-      default = false;
-    };
-
-    profiles = {
-      sddm = lib.mkOption {
-        description = "sddm profile to use";
-        type = lib.types.str;
-        default = "";
-      };
+    specialization = lib.mkOption {
+      description = "The specialization modules for this host";
+      type = lib.types.str;
+      default = "";
     };
   };
 }

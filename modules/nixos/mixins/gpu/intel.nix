@@ -12,7 +12,7 @@ in
   options.gman.gpu.intel.enable = mkEnableOption "gman's intel gpu module";
   config = mkIf cfg.enable {
     hardware.graphics.extraPackages = with pkgs; [
-      vaapiIntel
+      intel-vaapi-driver
       libvdpau-va-gl
     ];
   };

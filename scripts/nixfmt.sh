@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 PROJECT_ROOT=$1
 
-echo "formatting for project $PROJECT_ROOT"
+echo "formatting nix files in $PROJECT_ROOT"
 # exclude all hidden files
 for i in $(find $PROJECT_ROOT -type f -not -path '*/.*'); do
 	if [[ $i == *.nix ]]; then

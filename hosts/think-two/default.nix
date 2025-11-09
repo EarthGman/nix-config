@@ -16,9 +16,18 @@
     openvpn.enable = true;
   };
 
-  programs.neovim-custom = {
-    enable = true;
-    package = pkgs.nvim-nix;
+  programs = {
+    libreoffice.enable = true;
+    thunderbird.enable = true;
+    remmina.enable = true;
+    firefox.enable = true;
+
+    neovim-custom = {
+      enable = true;
+      package = pkgs.gman.nvim-nix;
+      viAlias = true;
+      vimAlias = true;
+    };
   };
 
   services.openssh.settings = {

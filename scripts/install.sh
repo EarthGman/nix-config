@@ -15,7 +15,6 @@ nixos_install() {
 	if [[ $IMPERATIVE_USERS == true ]]; then
 		nixos-install --no-channel-copy --flake /mnt/etc/nixos#$HOSTNAME
 	else
-		# remove the prompt which asks for root password if users are declaratively managed
 		nixos-install --no-channel-copy --no-root-password --flake /mnt/etc/nixos#$HOSTNAME
 	fi
 }
@@ -23,12 +22,12 @@ nixos_install() {
 create_swap() {
 	# /tmp will be cleared on bootup if nixos option boot.tmp.cleanOnBoot is set (which it is by default in my config)
 	if [[ $(cat /proc/meminfo | grep MemAvailable | cut -d ":" -f2 | tr -d " kB") -lt 4000000 && ! -f /mnt/tmp/swapfile ]]; then
-		printf "Detected less than 4GB of free ram\nNixOS requires at least 4GB of free ram to install smoothly.\nCreating a 4GB swapfile at /mnt/tmp/swapfile."
+		printf "Detected less than 4GB of free ram\nNixOS requires at least 4GB of free ram to install smoothly.\nCreating a 4GB swapfile at /mnt/tmp/swap."
 		mkdir -p /mnt/tmp
-		dd if=/dev/zero of=/mnt/tmp/swapfile bs=1024 count=4194304
-		mkswap /mnt/tmp/swapfile
-		chmod 600 /mnt/tmp/swapfile
-		swapon /mnt/tmp/swapfile
+		dd if=/dev/zero of=/mnt/tmp/swap bs=1024 count=4194304
+		mkswap /mnt/tmp/swap
+		chmod 600 /mnt/tmp/swap
+		swapon /mnt/tmp/swap
 	fi
 }
 
@@ -139,33 +138,22 @@ install_existing_config() {
 
 create_config() {
 	read -p "Set your system hostname: " HOSTNAME
-	HOST_CONFIG=/mnt/etc/nixos/hosts/$HOSTNAME
+	CONFIG_ROOT=/mnt/etc/nixos
+	HOST_CONFIG=$CONFIG_ROOT/hosts/$HOSTNAME
+	# file containing all hosts on your flake
+	HOSTS_CONFIG=$CONFIG_ROOT/hosts/default.nix
 
-	PURPOSE_PROFILES=(
+	SPECIALIZATIONS=(
 		"Let me install my own bloatware."
-		"Server"
-		"Gaming"
+		"server"
+		"gaming"
 	)
-	PURPOSE=$(printf "%s\n" "${PURPOSE_PROFILES[@]}" | fzf --border --border-label-pos 1:bottom --border-label="What purpose will this machine serve?")
+	SPECIALIZATION=$(printf "%s\n" "${SPECIALIZATIONS[@]}" | fzf --border --border-label-pos 1:bottom --border-label="Enable a specialization module listed here?")
 
-	# assume not server first
-	SERVER="false"
-
-	case "$PURPOSE" in
-	"")
-		echo "no purpose selected, assuming SIGTERM was sent"
-		exit 0
-		;;
-	"Server")
-		SERVER="true"
-		;;
-	"Gaming")
-		GAMING="true"
-		;;
-	*)
-		echo "No specialization modules will be enabled by default."
-		;;
-	esac
+	if [[ $SPECIALIZATION == "Let me install my own bloatware." ]]; then
+		printf "\nNo specialization modules will be enabled by default.\n"
+		SPECIALIZATION=""
+	fi
 
 	if [[ $(lscpu | grep -i "intel") ]]; then
 		CPU="intel"
@@ -194,16 +182,17 @@ create_config() {
 	ARCH=$(lscpu | grep Arch | tr -d " " | cut -d ":" -f2)
 	STATEVERSION=$(nixos-version | cut -d "." -f1-2)
 
-	y_or_n "Would you like to set a different default localization configuration? (default: en_US - English United States)" &&
-		LOCALE="$(cat /etc/locales.txt | fzf --border --border-label-pos 1:bottom --border-label="Select the default locale")"".UTF-8" ||
+	y_or_n "Use the default localization configuration? (en_US.UTF-8)" ||
+		LOCALE="$(cat /etc/locales.txt | fzf --border --border-label-pos 1:bottom --border-label="Select the default locale")"".UTF-8" &&
 		LOCALE="en_US.UTF-8"
-	y_or_n "Would you like to set a different keyboard layout (Default: us)" &&
-		KBD_LAYOUT=$(localectl list-keymaps | fzf --border --border-label-pos 1:bottom --border-label="Select a keyboard layout") ||
+
+	y_or_n "Use the default keyboard layout? (us)" ||
+		KBD_LAYOUT=$(localectl list-keymaps | fzf --border --border-label-pos 1:bottom --border-label="Select a keyboard layout") &&
 		KBD_LAYOUT="us"
 
 	TIMEZONE=$(timedatectl list-timezones | fzf --border --border-label-pos 1:bottom --border-label="Select your time zone.")
 
-	DESKTOPS=("gnome" "sway" "hyprland" "plasma" "no-desktop")
+	DESKTOPS=("hyprland" "niri" "plasma" "no-desktop")
 	DESKTOP=$(printf "%s\n" "${DESKTOPS[@]}" | fzf --border --border-label-pos 1:bottom --border-label "Choose a desktop environment.")
 
 	printf "\nWith many linux distributions, users can be imperatively modified using commands such as (usermod, useradd, etc)\n"
@@ -224,44 +213,137 @@ create_config() {
 		keyboard - $KBD_LAYOUT
 		timezone - $TIMEZONE
 		Desktop - $DESKTOP 
+		Specialization - $SPECIALIZATION
 	"
 
-	if [[ ! -d /mnt/etc/nixos ]]; then
-		mkdir -p /mnt/etc/nixos
+	# remove the config files in case of an aborted or failed install
+	if [[ -d $CONFIG_ROOT ]]; then
+		rm -rf $CONFIG_ROOT
 	fi
+	mkdir -p $CONFIG_ROOT
 
-	# create flake.nix
 	if [[ $INSTALL_MODE == "new" ]]; then
+		# create flake.nix
 		echo " {
 		description = \"my NixOS configurations\";
 
 		inputs = {
-			nixpkgs.url = \"github:NixOS/nixpkgs/nixpkgs-unstable\";
+			# Uncomment to lock your own nixpkgs revision in the flake.lock.
+      # nixpkgs = {
+			#   url = \"github:NixOS/nixpkgs/nixos-unstable\";
+			# };
 
 			gman = {
-				url = \"github:EarthGman/nix-config\";
-				inputs.nixpkgs.follows = \"nixpkgs\";
+				url = \"github:EarthGman/nix-config/v8\";
+				# Be sure to uncomment this if you use your own nixpkgs input. Mismatched system dependencies are not good.
+				# inputs.nixpkgs.follows = \"nixpkgs\";
 			};
 		};
 
-		outputs = { gman, ... }@inputs:
+		outputs = { self, nixpkgs, gman, ... }@inputs:
 		let
 			lib = gman.lib;
+			outputs = self.outputs;
 		in
 		{
-			nixosConfigurations = import ./hosts { inherit lib; };
+			# expose hosts configured under this flake
+			nixosConfigurations = import ./hosts { inherit lib outputs; };
+
+			# expose your custom modules
+			nixosModules.default = import ./modules/nixos { inherit inputs lib; };
+
+			# expose package set modifications
+			overlays = import ./overlays.nix { inherit inputs; };
+
+			# your custom derivations
+			packages = 
+			let
+			  supported-systems = [
+				  # add more archs as needed
+          \"$ARCH-linux\"
+				];
+			in
+			# generate a package attribute set for each supported architecture
+      lib.genAttrs supported-systems (
+				system:
+				import ./packages {
+				  pkgs = nixpkgs.legacyPackages.\${system};
+			  }
+			);
 		};
 	}
-	" >/mnt/etc/nixos/flake.nix
+	" >$CONFIG_ROOT/flake.nix
+
+		# create directory framework
+		echo "
+		  # wrapper for all your nixos modules and modules consumed from flake inputs.
+			{ inputs, lib, ... }:
+			{
+				# automatically import all configuration modules placed under core or mixins
+				imports = lib.autoImport ./. ++ [
+					# EXAMPLES
+					# inputs.home-manager.nixosModules.default
+				];
+		  }
+		" | install -D /dev/stdin "$CONFIG_ROOT/modules/nixos/default.nix"
+
+		echo "
+		  # This module directory is reserved for any modules appended to the core NixOS module set such as appending to options.programs options.services or options.hardware
+			{ }
+		" | install -D /dev/stdin "$CONFIG_ROOT/modules/nixos/core/default.nix"
+
+		echo "
+      # This module directory is reserved for your specific custom modules which can be enable using a single .enable option
+			# modules configured within this directory should be behind a config option of your name to distinguish the option set to your flake.
+			{ lib, ... }:
+			{
+				# EXAMPLE
+				# options.my-name.enable = lib.mkEnableOption \"my nixos modules\"
+				# config = lib.mkIf config.my-name.enable {
+				#   my-name.module1.enable = true;
+				#   my-name.module2.enable = true;
+				# }
+			}
+		" | install -D /dev/stdin "$CONFIG_ROOT/modules/nixos/mixins/default.nix"
+
+		echo "
+		  # create custom derivations using pkgs.callPackage
+      { pkgs, ... }:
+			{
+        # my-package = pkgs.callPackage ./my-package.nix { };
+			}
+		" | install -D /dev/stdin "$CONFIG_ROOT/packages/default.nix"
+
+		echo "
+      # overlays are defined as functions which modify the original nixpkgs package set.
+			# the flake.nix expects this to be a regular nix attribute set however
+			# the nixos option \`nixpkgs.overlays\` requires the functions to be in a nix array to properly apply them to the configuration modules.
+			# to apply them throughout your nixos configuration add:
+			
+			# extraModules = [
+			#   { nixpkgs.overlays = builtins.attrValues outputs.overlays; }
+			# ];
+			#
+			# to the lib.mkHost function at /hosts/default.nix (apply separately for each host)
+			{
+				# EXAMPLE 
+				# TODO example
+			}
+		" | install -D /dev/stdin "$CONFIG_ROOT/overlays.nix"
+
 	else
-		mv $REPO_DIR/{.,}* /mnt/etc/nixos
+		mv $REPO_DIR/{.,}* $CONFIG_ROOT
+		# if hostname is the same as an existing configuration, replace it
+		if [[ -d $HOST_CONFIG ]]; then
+			rm -rf $HOST_CONFIG
+		fi
 	fi
 
 	mkdir -p $HOST_CONFIG
 
 	# if a disko file from the repo was used, ensure it gets moved into the host's configuration
 	if [[ ($DISKO_CONFIG != "") && (! -f $HOST_CONFIG/disko.nix) ]]; then
-		mv /mnt/etc/nixos/$DISKO_CONFIG $HOST_CONFIG/disko.nix
+		mv $CONFIG_ROOT/$DISKO_CONFIG $HOST_CONFIG/disko.nix
 	fi
 
 	# TODO sops
@@ -271,14 +353,23 @@ create_config() {
 	# echo "This framework allows secure storage of secrets in your configuration repository using encrypted files."
 	# sops_setup
 
-	y_or_n "Create users and additional user configuration?"
+	y_or_n "Add a non-root user to the system?"
 
-	# TODO prevent creation of the same user twice
-	USERS=()
 	while [[ $yn == [Yy]* ]]; do
-		echo "Creating user configuration"
 		read -p "Username: " USERNAME
-		read -p "Password: " PASSWORD
+		# TODO * hide & match password
+		read -p "Password: " -s PASSWORD
+		printf "\n"
+		read -p "Retype password:" -s PASSWORD_2
+		printf "\n"
+
+		while [[ $PASSWORD != $PASSWORD_2 ]]; do
+			printf "\nPasswords do not match\n"
+			read -p "Password: " -s PASSWORD
+			printf "\n"
+			read -p "Retype password: " -s PASSWORD_2
+			printf "\n"
+		done
 
 		y_or_n "Should this user have access to sudo?" && SUDO=true || SUDO=false
 
@@ -299,22 +390,6 @@ create_config() {
     }
 		" >>$USER_DIR/default.nix
 
-		if [[ ! -d /mnt/etc/nixos/home/$USERNAME ]]; then
-			mkdir -p /mnt/etc/nixos/home/$USERNAME
-		fi
-
-		if [[ ! -f /mnt/etc/nixos/home/$USERNAME/default.nix ]]; then
-			echo "{ hostname, ... }:
-			{
-				imports = [ ../../hosts/\${hostname}/users/$USERNAME/home-manager.nix ];
-			}
-	  " >/mnt/etc/nixos/home/$USERNAME/default.nix
-		fi
-
-		echo "{ }" >$USER_DIR/home-manager.nix
-
-		USERS+=$(echo \"$USERNAME\")
-
 		y_or_n "Add/Configure another user?"
 	done
 
@@ -332,9 +407,6 @@ create_config() {
 			services.xserver.xkb.layout = \"$KBD_LAYOUT\";
 			
 			users.mutableUsers = $IMPERATIVE_USERS;
-			
-			# import configuration files that match a particular username from this directory
-			home-manager.profilesDir = ../../home;
 		}" >$HOST_CONFIG/default.nix
 
 	# adds disko to the imports array
@@ -342,48 +414,37 @@ create_config() {
 		sed -i '/]/i./disko.nix' $HOST_CONFIG/default.nix
 	fi
 
-	if [[ $GAMING == "true" ]]; then
-		sed -i '$ s/.$//' $HOST_CONFIG/default.nix
-		echo "gman.gaming.enable = true;
-	  }
-	  " >>$HOST_CONFIG/default.nix
-	fi
-
 	if [[ $DESKTOP == "no-desktop" ]]; then
 		DESKTOP=""
 	fi
 
 	if [[ $INSTALL_MODE == "new" ]]; then
+		mkdir -p $CONFIG_ROOT/hosts
 		# add the function header if this is a new configuration
-		echo " { lib, ... }:
-		{" >/mnt/etc/nixos/hosts/default.nix
+		echo " { lib, outputs, ... }:
+		{" >$HOSTS_CONFIG
 	else
 		# INSTALL_MODE "append"
 		# remove the last character to make way for the new configuration
-		sed -i '$ s/.$//' /mnt/etc/nixos/hosts/default.nix
+		sed -i '$ s/.$//' $HOSTS_CONFIG
 	fi
 	echo "$HOSTNAME = lib.mkHost {
 			hostname = \"$HOSTNAME\";
 			stateVersion = \"$STATEVERSION\";
 			system = \"$ARCH-linux\";
-			server = $SERVER;
 			bios = \"$BIOS\";
+			specialization = \"$SPECIALIZATION\"; 
 			cpu = \"$CPU\";
 			gpu = \"$GPU\";
 			desktop = \"$DESKTOP\";
 			configDir = ./$HOSTNAME;
-			users = [ $(echo ${USERS[*]}) ];
+			extraModules = [ outputs.nixosModules.default ];
 		};
 	}
-  " >>/mnt/etc/nixos/hosts/default.nix
+  " >>$HOSTS_CONFIG
 
 	hardware_config
-
-	for i in $(find /mnt/etc/nixos -type f -not -path '*/.*'); do
-		if [[ $i == *.nix ]]; then
-			nixfmt $i
-		fi
-	done
+	nixfmt.sh $CONFIG_ROOT
 }
 
 disko_format() {
@@ -419,7 +480,12 @@ format_disks() {
 	echo "By default, the installer will create a boot partition with FAT32 and root partition with ext4, which is sufficient for daily use such as gaming or productivity work."
 	echo "More complex setups such as RAID, or encrypted drives require manual setup or a disko.nix file."
 	echo "In this case, you will have to format and mount the disks yourself or use a disko configuration file from an existing repository. Then, run the installer when you are finished."
-	y_or_n "Allow the installer to format disks for you?" || exit 0
+	y_or_n "Allow the installer to format disks for you?"
+
+	if [[ $yn == [Nn]* ]]; then
+		echo "Partition, format, and mount the drives you wish to use for install. Then, run the installer again."
+		exit 0
+	fi
 
 	DISKS=$(lsblk -dp | grep -v /dev/loop | grep -v "NAME")
 	SELECTED_DISK=$(printf "%s\n" "${DISKS[@]}" | fzf --border --border-label-pos 1:bottom --border-label="Select a disk to install NixOS")
@@ -437,16 +503,16 @@ format_disks() {
 		ROOT_PART="2"
 		BOOT_START="0%"
 	else
-		# TODO idk how to get this working with parted
-		# echo "detected legacy firmware."
-		# echo "I have not managed to get legacy booting with grub working yet."
-		# echo "if you must install for legacy bios use a disko.nix file"
-		# exit 1
+		# TODO idk how to get this working with parted grub seems to install but it just doesn't boot
+		echo "detected legacy firmware."
+		echo "I have not managed to get legacy booting with grub working yet."
+		echo "if you must install for legacy bios use a disko.nix file"
+		exit 1
 
 		# part 1 is for bios_grub boot
-		BOOT_PART="2"
-		ROOT_PART="3"
-		BOOT_START="1MiB"
+		# BOOT_PART="2"
+		# ROOT_PART="3"
+		# BOOT_START="1MiB"
 	fi
 
 	wipefs -a -f $SELECTED_DISK >/dev/null
@@ -501,6 +567,8 @@ main() {
 	fi
 
 	echo "If you already have an existing repository that follows the required framework, you can add this host's configuration to your repository."
+	echo "Additionally, if your repository is private, ensure to authenticate with your git provider before continuing."
+	echo "the \`gh\` cli is provided to assist with github authentication"
 	y_or_n "Would you like to append this host's configuration to an existing repository?"
 
 	if [[ $yn == [Yy]* ]]; then

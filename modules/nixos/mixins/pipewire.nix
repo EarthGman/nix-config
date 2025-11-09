@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   cfg = config.gman.pipewire;
 in
@@ -7,10 +12,8 @@ in
   config = lib.mkIf cfg.enable {
     security.rtkit.enable = true; # hands out realtime scheduling priority to user processes on demand. Improves performance of pulse
 
-    # additional utilities
-    programs = {
-      pwvucontrol.enable = lib.mkDefault (config.meta.desktop != "");
-    };
+    # pipewire-pulse mixer
+    environment.systemPackages = [ pkgs.pamixer ];
 
     services = {
       pipewire = {

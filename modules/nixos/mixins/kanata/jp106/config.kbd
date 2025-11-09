@@ -1,0 +1,71 @@
+(defsrc)
+
+(defvar
+  tap-time 150
+  hold-time 200
+)
+
+(deflocalkeys-linux
+  Convert 92
+  NonConvert 94
+  IntlYen 124
+  IntlRo 89
+)
+
+(deflayermap base
+  caps esc
+  NonConvert (multi f24 (tap-hold $tap-time $hold-time bspc (layer-while-held helper)))
+  esc (layer-switch norm)
+  Convert (multi f24 (tap-hold $tap-time $hold-time ret (layer-while-held helper)))
+  a (multi f24 (tap-hold $tap-time $hold-time a lmet))
+  s (multi f24 (tap-hold $tap-time $hold-time s lalt))
+  d (multi f24 (tap-hold $tap-time $hold-time d lsft))
+  f (multi f24 (tap-hold $tap-time $hold-time f lctl))
+  j (multi f24 (tap-hold $tap-time $hold-time j rctl))
+  k (multi f24 (tap-hold $tap-time $hold-time k rsft))
+  l (multi f24 (tap-hold $tap-time $hold-time l ralt))
+  ; (multi f24 (tap-hold $tap-time $hold-time ; rmet))
+)
+
+(deflayermap (norm)
+  a a
+  s s
+  d d
+  f f
+  j j
+  k k
+  l l
+  ; ;
+  esc (layer-switch base)
+  caps esc
+)
+
+(deflayermap (helper)
+  a S--
+  q S-1
+  w S-2
+  e S-3
+  r S-4
+  t S-5
+  s S-6
+  d S-]
+  f S-\
+  g S-'
+  z S-8
+  x S-9
+  c ]
+  v \
+  b S-0
+
+  h left
+  j down
+  k up
+  l right
+  ' S-7 
+  i S-,
+  o S-.
+  u -
+  p S-[
+  n S-IntlYen
+  m S-IntlRo
+)

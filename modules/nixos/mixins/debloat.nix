@@ -8,6 +8,7 @@
   options.gman.debloat.enable = lib.mkEnableOption "gman's nixos debloater";
 
   config = lib.mkIf config.gman.debloat.enable {
+    # disables linux firmware by default since most servers, especially vms, dont need firmware from it.
     hardware.enableRedistributableFirmware = lib.mkOverride 800 false;
 
     environment = {

@@ -1,0 +1,63 @@
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+let
+  cfg = config.gman.desktop.hyprland;
+in
+{
+  options.gman.desktop.hyprland.enable = lib.mkEnableOption "hyprland with uwsm";
+
+  config = lib.mkIf cfg.enable {
+    programs = {
+      hyprland = {
+        enable = true;
+        withUWSM = true;
+      };
+      hyprlock.enable = true;
+      rofi.enable = lib.mkDefault true;
+      kitty.enable = lib.mkDefault true;
+      nwg-look.enable = lib.mkDefault true;
+      quickshell.enable = lib.mkDefault true;
+    };
+
+    services = {
+      swaync.enable = true;
+      hypridle.enable = true;
+      awww = {
+        enable = true;
+        flags = lib.mkDefault [
+          "-f"
+          "argb"
+        ];
+      };
+    };
+
+    xdg.portal = {
+      wlr.enable = true;
+      config.hyprland = {
+        default = [
+          "wlr"
+          "hyprland"
+          "gtk"
+        ];
+      };
+    };
+
+    environment.systemPackages = builtins.attrValues {
+      inherit (pkgs)
+        waybar
+        libnotify
+        wl-clipboard
+        grim
+        slurp
+        # screenshot script
+        grimblast
+        # graphical prompt for sudo / other polkit rules
+        hyprpolkitagent
+        ;
+    };
+  };
+}

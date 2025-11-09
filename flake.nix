@@ -5,18 +5,21 @@
     {
       self,
       nixpkgs,
-      nix-library,
-      home-manager,
       ...
     }@inputs:
     let
-      myLib =
-        (import ./lib {
+      supported-systems = [
+        "x86_64-linux"
+        "aarch_64-linux"
+      ];
+      myLib = (
+        import ./lib {
           inherit inputs;
+          lib = nixpkgs.lib;
           outputs = self.outputs;
-        })
-        // nix-library.lib;
-      lib = nixpkgs.lib.extend (final: prev: (myLib // home-manager.lib));
+        }
+      );
+      lib = nixpkgs.lib.extend (final: prev: (myLib));
     in
     {
       inherit lib;
@@ -26,13 +29,15 @@
         default = gman;
       };
 
-      homeModules = rec {
-        gman = import ./modules/home-manager { inherit inputs lib; };
-        default = gman;
-      };
-
       nixosConfigurations = import ./hosts { inherit lib inputs; };
-      homeConfigurations = import ./home { inherit lib inputs; };
+
+      packages = lib.genAttrs supported-systems (
+        system:
+        import ./packages {
+          inherit inputs;
+          pkgs = nixpkgs.legacyPackages.${system};
+        }
+      );
 
       overlays = import ./overlays.nix { inherit inputs; };
     };
@@ -50,14 +55,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    home-manager = {
-      url = "https://flakehub.com/f/nix-community/home-manager/0.1.0.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     jovian-nixos = {
       url = "github:Jovian-Experiments/Jovian-NixOS";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    niri = {
+      url = "github:YaLTeR/niri";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "";
     };
 
     nixos-hardware = {
@@ -66,16 +72,6 @@
 
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-library = {
-      url = "github:EarthGman/nix-library";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nur = {
-      url = "github:nix-community/nur";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -89,19 +85,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix = {
-      url = "https://flakehub.com/f/nix-community/stylix/*";
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nur.follows = "nur";
     };
 
-    swww = {
-      url = "github:LGFae/swww";
+    awww = {
+      url = "git+https://codeberg.org/LGFae/awww";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     vim-config = {
-      url = "github:EarthGman/vim-config";
+      url = "git+https://git.earthgman.net/EarthGman/vim-config";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
