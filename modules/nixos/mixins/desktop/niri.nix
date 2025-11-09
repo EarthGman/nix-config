@@ -33,7 +33,7 @@ in
     services = {
       batsignal.enable = lib.mkDefault true;
       swaync.enable = lib.mkDefault true;
-      kde-polkit-agent.enable = lib.mkDefault true;
+      # kde-polkit-agent.enable = lib.mkDefault true;
       awww = {
         enable = true;
         flags = lib.mkDefault [

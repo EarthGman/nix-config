@@ -42,8 +42,8 @@ in
           ExecStart =
             "${cfg.package}/bin/batsignal "
             + lib.optionalString (cfg.flags != [ ]) (lib.concatStringsSep " " cfg.flags);
-          Restart = "on-failure";
-          RestartSec = 5;
+          # let the service fail if no battery is found
+          Restart = "no";
         };
         unitConfig = {
           After = "graphical-session.target";

@@ -43,7 +43,6 @@ in
             vimAlias = true;
             defaultEditor = true;
           };
-          gh.enable = true;
         };
       }
 
@@ -53,6 +52,8 @@ in
           android.enable = lib.mkDefault true;
           dotfile-deps.enable = lib.mkDefault true;
         };
+
+        environment.systemPackages = [ pkgs.pass-git-helper ];
 
         services.libinput = {
           touchpad.leftHanded = true;
