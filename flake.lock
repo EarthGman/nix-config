@@ -570,15 +570,15 @@
       "locked": {
         "lastModified": 1762712913,
         "narHash": "sha256-W+72GbTbz+JWhq0t/nIGmA/74x1kNSLnSHujCGyZLgk=",
-        "owner": "EarthGman",
-        "repo": "vim-config",
+        "ref": "refs/heads/main",
         "rev": "8dbd606f7022b19957399f121c82f6720f37e91c",
-        "type": "github"
+        "revCount": 165,
+        "type": "git",
+        "url": "https://git.earthgman.net/EarthGman/vim-config"
       },
       "original": {
-        "owner": "EarthGman",
-        "repo": "vim-config",
-        "type": "github"
+        "type": "git",
+        "url": "https://git.earthgman.net/EarthGman/vim-config"
       }
     }
   },
