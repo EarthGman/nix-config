@@ -22,7 +22,7 @@
 
     neovim-custom = {
       enable = true;
-      package = pkgs.nvim-nix;
+      package = pkgs.gman.nvim-nix;
     };
   };
 

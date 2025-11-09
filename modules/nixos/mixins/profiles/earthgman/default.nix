@@ -37,7 +37,7 @@ in
         programs = {
           neovim-custom = {
             enable = true;
-            package = lib.mkDefault pkgs.nvim;
+            package = lib.mkDefault pkgs.gman.nvim;
             viAlias = true;
             vimAlias = true;
             defaultEditor = true;
@@ -85,7 +85,7 @@ in
         };
       })
       (lib.mkIf (config.meta.specialization == "server") {
-        programs.neovim-custom.package = pkgs.nvim-lite;
+        programs.neovim-custom.package = pkgs.gman.nvim-lite;
         gman.nix-development.enable = lib.mkOverride 899 false;
       })
     ]

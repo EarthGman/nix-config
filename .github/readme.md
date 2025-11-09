@@ -27,7 +27,7 @@ if installing on bare metal, Use a program such as rufus, balena-etcher, or dd t
 
 ------------------------------------------------------------------------
 
-# Known Issues - Last updated: 10-12-2025
+# Bug tracker - Last updated: 11-09-2025
 
 - sddm is known to not properly restart when exiting Hyprland. This happens seemingly randomly and I don't know how to fix it.
   if you encounter this bug, log in via another tty and restart display-manager.service
@@ -35,15 +35,16 @@ if installing on bare metal, Use a program such as rufus, balena-etcher, or dd t
 - xwayland apps within wayland sessions have a bug in which the mouse will not be able to interact with the window if your monitor position contains a negative coordinate.
   This bug only affects setups with more than 1 monitor.
 
+- steam notifications appear in the middle of the screen on niri
+
 # Personal Notes
 Imperative actions after install
-- install public dotfiles
-- login to git
+- install dotfiles
 - login to discord
 - login to steam
-- import neomutt email accounts
 - import gpg private keys
 - ssh-add ssh private key
+- import neomutt email accounts
 - install protonup for steam
 - /etc/nixos -> ~/src/github/earthgman/nix-config
 - Install the English Dictionary extension for libreoffice (otherwise the spell checker wont work)

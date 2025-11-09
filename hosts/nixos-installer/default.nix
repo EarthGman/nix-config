@@ -91,7 +91,7 @@ in
       enable = true;
       defaultEditor = true;
       # custom build of neovim with only nix lsp
-      package = pkgs.nvim-nix;
+      package = pkgs.gman.nvim-nix;
     };
 
     # allow signing in to github for private repositories
