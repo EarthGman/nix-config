@@ -8,6 +8,7 @@
 
   # programs
   programs.zoom.enable = true;
+  programs.evince.enable = true;
   programs.thunderbird.enable = true;
   programs.discord.enable = true;
   programs.libreoffice.enable = true;
