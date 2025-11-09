@@ -1,3 +1,10 @@
+11-09-2025
+- using changelog to test git signing
+
+
+# undocumented
+-------------------
+
 10-17-2025
 - add discover to programs
 - update freetube to 0.23.12-beta for user g
