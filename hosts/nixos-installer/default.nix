@@ -9,6 +9,7 @@
 }:
 let
   install-sh = pkgs.writeShellScriptBin "install.sh" (builtins.readFile ../../scripts/install.sh);
+  nixfmt-sh = pkgs.writeShellScriptBin "nixfmt.sh" (builtins.readFile ../../scripts/nixfmt.sh);
 in
 {
   imports = [ (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix") ];
@@ -41,6 +42,7 @@ in
       inputs.disko.packages.${config.meta.system}.disko
 
       install-sh
+      nixfmt-sh
       pkgs.nixfmt
       pkgs.sops
       pkgs.age
@@ -91,6 +93,9 @@ in
       # custom build of neovim with only nix lsp
       package = pkgs.nvim-nix;
     };
+
+    # allow signing in to github for private repositories
+    gh.enable = true;
 
     zsh = {
       # cannot use the standard method of vi and vim aliases

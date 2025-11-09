@@ -25,6 +25,9 @@ in
 
       # default terminal for niri
       alacritty.enable = lib.mkDefault true;
+
+      # suckless terminal (fallback)
+      st.enable = lib.mkDefault true;
     };
 
     services = {
@@ -54,8 +57,7 @@ in
           slurp # screen selector
           swaylock # lockscreen
           swayidle # daemonless swayidle
-          # setup xwayland support for niri
-          xwayland-satellite
+          xwayland-satellite # setup xwayland support for niri
           ;
       };
     };

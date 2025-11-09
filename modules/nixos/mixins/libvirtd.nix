@@ -15,10 +15,12 @@ in
       {
         boot.kernelModules = lib.mkIf (config.meta.cpu != "") [ "kvm-${config.meta.cpu}" ];
 
-        environment.systemPackages = builtins.attrValues {
-          inherit (pkgs)
-            virtiofsd # file system sharing with VMs
-            ;
+        environment = {
+          systemPackages = builtins.attrValues {
+            inherit (pkgs)
+              virtiofsd # file system sharing with VMs
+              ;
+          };
         };
 
         virtualisation = {

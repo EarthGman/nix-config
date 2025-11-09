@@ -192,7 +192,7 @@ create_config() {
 
 	TIMEZONE=$(timedatectl list-timezones | fzf --border --border-label-pos 1:bottom --border-label="Select your time zone.")
 
-	DESKTOPS=("hyprland" "plasma" "no-desktop")
+	DESKTOPS=("hyprland" "niri" "plasma" "no-desktop")
 	DESKTOP=$(printf "%s\n" "${DESKTOPS[@]}" | fzf --border --border-label-pos 1:bottom --border-label "Choose a desktop environment.")
 
 	printf "\nWith many linux distributions, users can be imperatively modified using commands such as (usermod, useradd, etc)\n"
@@ -444,12 +444,7 @@ create_config() {
   " >>$HOSTS_CONFIG
 
 	hardware_config
-
-	for i in $(find $CONFIG_ROOT -type f -not -path '*/.*'); do
-		if [[ $i == *.nix ]]; then
-			nixfmt $i
-		fi
-	done
+	nixfmt.sh $CONFIG_ROOT
 }
 
 disko_format() {
@@ -572,6 +567,8 @@ main() {
 	fi
 
 	echo "If you already have an existing repository that follows the required framework, you can add this host's configuration to your repository."
+	echo "Additionally, if your repository is private, ensure to authenticate with your git provider before continuing."
+	echo "the \`gh\` cli is provided to assist with github authentication"
 	y_or_n "Would you like to append this host's configuration to an existing repository?"
 
 	if [[ $yn == [Yy]* ]]; then

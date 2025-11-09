@@ -19,7 +19,6 @@ in
           syncthing.enable = lib.mkDefault true;
           nix-development.enable = lib.mkDefault true;
           security-hardening.enable = lib.mkDefault true;
-          dotfile-deps.enable = lib.mkDefault true;
         };
 
         environment.systemPackages = [
@@ -52,6 +51,7 @@ in
       (lib.mkIf (config.meta.desktop != "") {
         gman = {
           android.enable = lib.mkDefault true;
+          dotfile-deps.enable = lib.mkDefault true;
         };
 
         services.libinput = {
