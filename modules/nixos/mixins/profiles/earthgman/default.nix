@@ -23,7 +23,6 @@ in
 
         environment.systemPackages = [
           pkgs.man-pages-posix
-          # suckless terminal
         ];
 
         # allow decrypting of gpg key on login
