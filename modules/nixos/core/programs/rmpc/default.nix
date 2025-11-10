@@ -10,7 +10,7 @@ let
 in
 {
   options.programs.${program-name} = lib.mkProgramOption {
-    description = "rusty frontend to mpd";
+    description = "rusty music player";
     programName = program-name;
     packageName = program-name;
     inherit pkgs;
@@ -19,9 +19,7 @@ in
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [
       cfg.package
-      # provide mpd to path for user configuration
-      # TODO test if services.mpd works
-      pkgs.mpd
     ];
+    services.mpd.enable = true;
   };
 }

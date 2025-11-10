@@ -30,21 +30,7 @@
     };
   };
 
-  programs = {
-    dolphin-emu.enable = true;
-    cemu.enable = true;
-    prismlauncher.enable = true;
-    discord.enable = true;
-    xivlauncher.enable = true;
-    lutris.enable = true;
-    bottles.enable = true;
-
-    cmatrix.enable = true;
-    cbonsai.enable = true;
-    pipes.enable = true;
-    ryubing.enable = true;
-    sl.enable = true;
-  };
+  programs.gnome-software.enable = true;
 
   #allow liquidctl without sudo (kraken z73)
   services.udev.extraRules = ''

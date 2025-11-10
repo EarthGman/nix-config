@@ -1,4 +1,3 @@
-# TODO configure hyprland screenshot key to Alt_R
 {
   pkgs,
   lib,
@@ -17,15 +16,6 @@
 
   users.mutableUsers = false;
 
-  programs = {
-    thunderbird.enable = true;
-    discord.enable = true;
-    libreoffice.enable = true;
-    obsidian.enable = true;
-    zotero.enable = true;
-    bottles.enable = true;
-    filezilla.enable = true;
-    freetube.enable = true;
-    ani-cli.enable = true;
-  };
+  # import configuration files that match a particular username from this directory
+  home-manager.profilesDir = ../../home;
 }

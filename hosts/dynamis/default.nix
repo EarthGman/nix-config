@@ -1,4 +1,3 @@
-# TODO symlink ryubing, prismlauncher, cemu, and dolphin-emu dotfiles to games drive
 { pkgs, inputs, ... }:
 {
   imports = [
@@ -32,7 +31,7 @@
     cemu.enable = true;
     ryubing.enable = true;
     discord.enable = true;
-    xivlauncher.enable = true;
+    ffxiv-launcher.enable = true;
     lutris.enable = true;
     bottles.enable = true;
     gcolor.enable = true;

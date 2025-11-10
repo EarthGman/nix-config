@@ -11,15 +11,10 @@ in
   options.gman.android.enable = lib.mkEnableOption "gman's android configuration";
   config = lib.mkIf cfg.enable {
     programs = {
-      # be sure to add your user to adbusers group
       adb.enable = lib.mkDefault true;
       kdeconnect = {
         enable = lib.mkDefault true;
-        package =
-          if (config.meta.desktop == "gnome") then
-            pkgs.gnomeExtensions.gsconnect
-          else
-            pkgs.kdePackages.kdeconnect-kde;
+        package = lib.mkIf (config.meta.desktop == "gnome") pkgs.gnomeExtensions.gsconnect;
       };
       scrcpy.enable = lib.mkDefault true;
     };
@@ -29,10 +24,8 @@ in
       pkgs.apksigner
     ];
 
-    # services.udev.packages = [
-    #   pkgs.android-udev-rules
-    # ];
-
-    services.kdeconnect-indicator.enable = lib.mkDefault true;
+    services.udev.packages = [
+      pkgs.android-udev-rules
+    ];
   };
 }

@@ -1,21 +1,13 @@
 {
-  pkgs,
   lib,
   config,
   ...
 }:
 let
-  program-name = "protonup";
+  program-name = "protonup-qt";
   cfg = config.programs.${program-name};
 in
 {
-  options.programs.${program-name} = lib.mkProgramOption {
-    description = "a graphical frontend to manage proton versions";
-    programName = program-name;
-    packageName = "protonup-qt";
-    inherit pkgs;
-  };
-
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [
       cfg.package

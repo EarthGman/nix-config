@@ -12,7 +12,7 @@ in
   config = lib.mkIf cfg.enable {
     programs = {
       mangohud.enable = lib.mkDefault true;
-      protonup.enable = lib.mkDefault true;
+      protonup-qt.enable = lib.mkDefault true;
       steam = {
         enable = true;
         gamescopeSession = {

@@ -18,7 +18,6 @@ in
             hdparm
             pciutils
             lshw
-            hwinfo
             inxi
             ;
         };
@@ -26,11 +25,11 @@ in
       (lib.mkIf (config.meta.desktop != "") {
         programs = {
           # cpu-z alternative
-          cpu-x.enable = lib.mkDefault true;
+          cpu-x.enable = true;
           # comphrensive testing suite
-          phoronix.enable = lib.mkDefault true;
+          phoronix.enable = true;
           # alternative to crystal disk mark
-          kdiskmark.enable = lib.mkDefault true;
+          kdiskmark.enable = true;
         };
       })
     ]

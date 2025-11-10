@@ -1,0 +1,22 @@
+# Ashes scheme for the Base16 Builder (https://github.com/chriskempson/base16-builder)
+system: "base16"
+name: "Ashes (modified)"
+author: "Jannik Siebert (https://github.com/janniks)"
+variant: "dark"
+palette:
+  base00: "#151515"
+  base01: "#202020"
+  base02: "#303030"
+  base03: "#505050"
+  base04: "#B0B0B0"
+  base05: "#d3d3d3"
+  base06: "#E0E0E0"
+  base07: "#FFFFFF"
+  base08: "#C7AE95" # orange
+  base09: "#C7C795" # yellow
+  base0A: "#AEC795" # poison green
+  base0B: "#95C7AE" # turquois
+  base0C: "#95AEC7" # aqua
+  base0D: "#AE95C7" # purple
+  base0E: "#C795AE" # pink
+  base0F: "#C79595" # light red

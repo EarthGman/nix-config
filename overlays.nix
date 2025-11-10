@@ -1,16 +1,11 @@
 { inputs, ... }:
 {
-  awww = inputs.awww.overlays.default;
-  niri = inputs.niri.overlays.default;
-  quickshell = inputs.quickshell.overlays.default;
   custom-neovims = inputs.vim-config.overlays.default;
+  gman-packages = inputs.nix-library.overlays.default;
+  nur = inputs.nur.overlays.default;
+  images = inputs.nix-library.overlays.images;
 
-  packages =
-    final: prev:
-    import ./packages {
-      inherit inputs;
-      pkgs = final;
-    };
+  swww = inputs.swww.overlays.default;
 
   disable-mbrola-voices = final: prev: {
     espeak = prev.espeak.override {

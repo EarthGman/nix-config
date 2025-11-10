@@ -7,7 +7,6 @@
 {
   imports = [
     ./disko.nix
-    ./programs.nix
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x230
   ];
 
@@ -15,28 +14,32 @@
 
   gman = {
     steam.enable = true;
-    hacker-mode.enable = true;
-    postgresql.enable = true;
-    libvirtd.enable = true;
-
-    kanata.jp106.enable = true;
     wireguard.main.enable = true;
-
-    profiles.earthgman.enable = true;
+    hacker-mode.enable = true;
+    earthgman.enable = true;
+    postgresql.enable = true;
+    qemu-kvm.enable = true;
+    # profiles.sddm.astronaut.config.embeddedTheme = "hyprland_kath";
   };
 
-  # dumb school stuff
   sops.secrets.pgadmin_pass.path = "/var/lib/sops-nix/pgadmin-pass";
 
   services = {
     xserver.xkb.layout = "jp";
-    kanshi.enable = true;
 
     pgadmin = {
       enable = true;
       initialEmail = "EarthGman@protonmail.com";
       initialPasswordFile = config.sops.secrets.pgadmin_pass.path;
     };
+  };
+
+  networking.firewall = {
+    allowedTCPPorts = [ 22000 ];
+    allowedUDPPorts = [
+      22000
+      21027
+    ];
   };
 
   i18n = {
@@ -50,6 +53,23 @@
     ];
   };
 
+  programs = {
+    # lens.enable = true;
+    audacity.enable = true;
+    ardour.enable = true;
+    bustle.enable = true;
+    simple-scan.enable = true;
+    gimp.enable = true;
+    gcolor.enable = true;
+    libreoffice.enable = true;
+    filezilla.enable = true;
+    moonlight.enable = true;
+    puddletag.enable = true;
+    fastfetch.enable = true;
+    prismlauncher.enable = true;
+    ani-cli.enable = true;
+  };
+
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "ehci_pci"
@@ -57,7 +77,6 @@
     "usb_storage"
     "sd_mod"
     "rtsx_pci_sdmmc"
-    "thinkpad_acpi"
   ];
 
   boot.kernelParams = [ "video=1366x768" ];

@@ -8,8 +8,9 @@ in
   bios ? "UEFI", # bios type: one of "legacy" or "UEFI"
   cpu ? "intel", # cpu brand (amd, intel)
   gpu ? "intel", # gpu brand (amd, intel, nvidia)
+  users ? [ ], # list of self defined users as strings [ "alice" "bob"]
   desktop ? "", # what desktop? "gnome" "hyprland" or "sway"
-  specialization ? "", # what will this machine be used for (determined by installer)
+  server ? false, # is this machine a server
   vm ? false, # is this a virtual machine?
   secretsFile ? null, # path to secrets file
   system ? "x86_64-linux", # what cpu architecture?
@@ -40,14 +41,13 @@ lib.nixosSystem {
       {
         # enable my default module and mixins
         gman = {
-          enable = lib.mkDefault true;
+          enable = true;
+          server.enable = server;
         };
 
         nixpkgs = {
           overlays = builtins.attrValues outputs.overlays;
         };
-
-        system.stateVersion = stateVersion;
 
         meta = {
           inherit
@@ -56,9 +56,11 @@ lib.nixosSystem {
             gpu
             bios
             desktop
+            users
             vm
-            specialization
+            server
             secretsFile
+            stateVersion
             ;
         };
       }

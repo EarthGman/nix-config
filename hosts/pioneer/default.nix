@@ -18,16 +18,4 @@
 
   # only 4GB of ram
   zramSwap.enable = true;
-
-  programs = {
-    zotero.enable = true;
-    bottles.enable = true;
-    libreoffice.enable = true;
-    switcheroo.enable = true;
-    discord.enable = true;
-    sl.enable = true;
-    cmatrix.enable = true;
-    cbonsai.enable = true;
-    zoom-us.enable = true;
-  };
 }

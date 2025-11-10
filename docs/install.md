@@ -56,11 +56,38 @@ However, I have included many NixOS modules to attempt to cover most of these ba
 
 -------------------------------------------------------------
 
+# lib.mkHost
+
+Is not a function from nixpkgs. Rather, it is a custom wrapper function I wrote for lib.nixosSystem to provide an overview of a system's current configuration.
+
+Hardware and other specifications will be detected by the installer and passed to this function to trigger custom modules throughout the config (such as installing nvidia or amdgpu drivers, or setting up a desktop environment).
+
+The installer will generate /hosts/default.nix with the call to this function.
+
+an example of my main workstation looks like this:
+
+```
+cypher = lib.mkHost {
+    hostname = "cypher";
+    cpu = "amd";
+    gpu = "amd";
+    users = [ "g" ];
+    desktop = "sway";
+    system = "x86_64-linux";
+    stateVersion = "25.11";
+    configDir = ./cypher;
+    extraSpecialArgs = { inherit inputs; };
+    secretsFile = ./cypher/secrets.yaml;
+  };
+```
+
+--------------------------------------------------------------
+
 # Home Manager
 
 Is a set of nix modules designed for the managment of user packages and dotfiles within a particular home directory.
 
-If home-manager is enabled, any non-root users created via the install script will automatically have a home-manager configuration generated for them.
+Any non-root users created via the install script will automatically have a home-manager configuration generated for them.
 
 Configuration files for home-manager are /home/username/default.nix and /hosts/hostname/users/username/home-manager.nix.
 
@@ -68,3 +95,21 @@ Configuration files for home-manager are /home/username/default.nix and /hosts/h
 This is where you want to place configuration for your git account, keys, or software you plan to use across all systems.
 
 /hosts/hostname/users/username/home-manager.nix defines home-manager configuration specific to that user on that host (such as monitor configuration).
+
+By default, the installer will integrate home-manager's modules into NixOS, allowing the system to rebuild as one unit.
+
+--------------------------------------------------------------
+
+# Sops Nix
+
+[Sops Nix](https://github.com/Mic92/sops-nix) is a tool and module set for nix that allows secrets such as user password hashes or private ssh keys to be securely stored in your nix configuration repository as encrypted files.
+
+Many NixOS modules allow for the specification of a secret using a string of text. This is always insecure even if the configuration repository cannot be viewed by other users on the system.
+
+The reason for this is that nix will copy a world-readable version of your configuration repository to the /nix/store which can be inspected to extract the secret.
+
+To work around this, nix modules often provide a secretFile option such as `users.users.username.hashedPasswordFile` to direct the configuration to a decrypted sops file (which is not world readable).
+
+By default, the installer does not have automatic sops setup and will have to be configured after the install has completed. (Will be added at a later date)
+
+However, for installing an existing configuration with secrets enabled, the installer will allow you to place your private key file at the configured location on the filesystem before you continue.
