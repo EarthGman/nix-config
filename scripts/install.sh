@@ -234,7 +234,7 @@ create_config() {
 			# };
 
 			gman = {
-				url = \"github:EarthGman/nix-config/v8\";
+				url = \"github:EarthGman/nix-config\";
 				# Be sure to uncomment this if you use your own nixpkgs input. Mismatched system dependencies are not good.
 				# inputs.nixpkgs.follows = \"nixpkgs\";
 			};
